@@ -7,7 +7,7 @@
 
 \todo{Could we have a big Haxe logo in the First Manual Page (Introduction) under the menu (a bit like a book cover ?) It looks a bit empty now and is a landing page for "Manual"}
 
-Haxeはオープンソースの高級プログラミング言語とコンパイラから構成されており、ECMAScript\footnote{http://www.ecma-international.org/publications/standards/Ecma-327.htm}をもとにした構文で書いたプログラムをさまざまなターゲットの言語へとコンパイルすることを可能にします。適度な抽象化をしてやれば、複数のターゲットへコンパイル可能な1つのコードベースを作成できます。
+Haxeはオープンソースの高級プログラミング言語とコンパイラで構成されており、ECMAScript\footnote{http://www.ecma-international.org/publications/standards/Ecma-327.htm}をもとにした構文で書いたプログラムをさまざまなターゲットの言語へとコンパイルすることを可能にします。適度な抽象化をしてやれば、複数のターゲットへコンパイル可能な1つのコードベースを作成できます。
 
 Haxeは強く型付けされている一方で、必要に応じて型付けを弱めることも可能です。型情報を活用すれば、ターゲットの言語では実行時にしか発見できないようなエラーをコンパイル時に検出することができます。さらには、ターゲットへの変換時に最適化や堅牢なコードを生成するためにも使用されます。
 
@@ -33,9 +33,9 @@ Haxeは強く型付けされている一方で、必要に応じて型付けを�
 
 \Fullref{types}では、Haxeの7種類の異なる型についてとそれらがどう関わりあっているのかについて紹介します。型に関する話は、\Fullref{type-system}へと続き、\emph{単一化(Unification)}, \emph{型パラメータ}, \emph{型推論}についての解説がされます。
 
-\Fullref{class-field}では、Haxeのクラスの構造に関するに全てをあつかいます。加えて、\emph{プロパティ}, \emph{インラインフィールド}, \emph{ジェネリック関数}についてもあつかいます。
+\Fullref{class-field}では、Haxeのクラスの構造に関する全てをあつかいます。加えて、\emph{プロパティ}, \emph{インラインフィールド}, \emph{ジェネリック関数}についてもあつかいます。
 
-\Fullref{expression}では、\emph{式}を使用して実際に動作をさせる方法をお見せします。
+\Fullref{expression}では、\emph{式}を使用して実際にいくつかの動作をさせる方法をお見せします。
 
 \Fullref{lf}では、\emph{パターンマッチング}, \emph{文字列補間}, \emph{デッドコード削除}のようなHaxeの詳細の機能について記述しています。ここで、Haxeの言語リファレンスは終わりです。
 
@@ -45,38 +45,42 @@ Haxeは強く型付けされている一方で、必要に応じて型付けを�
 
 Haxeは様々なターゲット間の差を吸収してくれますが、場合によってはターゲットを直接的にあつかうことが重要になります。これが、\Fullref{target-details}の話題です。
 
-\section{About this Document}
+\section{このドキュメントについて}
 \label{introduction-about-this-document}
 
-This document is the official manual for Haxe 3. As such, it is not a beginner's tutorial and does not teach programming. However, the topics are roughly designed to be read in order and there are references to topics ``previously seen'' and topics ``yet to come''. In some cases, an earlier section makes use of the information of a later section if it simplifies the explanation. These references are linked accordingly and it should generally not be a problem to read ahead on other topics.
+このドキュメントは、Haxe3の公式マニュアル（の非公式日本語訳）です。そのため、初心者向けののチュートリアルではなく、プログラミングは教えません。しかし、項目は大まかに前から順番に読めるように並べてあり、前に出てきた項目と、次に出てくる項目との関連づけがされています。先の項目で後の項目でててくる情報に触れた方が説明しやすい場所では、先にその情報に触れています。そのような場面ではリンクがされています。リンク先は、ほとんどの場合で先に読むべき内容ではありません。
 
-We use a lot of Haxe source code to keep a practical connection of theoretical matters. These code examples are often complete programs that come with a main function and can be compiled as-is. However, sometimes only the most important parts are shown.
-Source code looks like this:
+このドキュメントでは、理論的な要素を実物としてつなげるために、たくさんのHaxeのソースコードを使います。これらのコードのほとんどはmain関数を含む完全なコードでありそのままコンパイルが可能ですが、いくつかはそうではなくコードの重要な部分の抜き出しです。
+
+ソースコードは以下のように示されます：
 
 \begin{lstlisting}
 Haxe code here
 \end{lstlisting}
-Occasionally, we demonstrate how Haxe code is generated, for which we usually show the \target{Javascript} target.
 
-Furthermore, we define a set of terms in this document. Predominantly, this is done when introducing a new type or when a term is specific to Haxe. We do not define every new aspect we introduce, e.g. what a class is, to avoid cluttering the text. A definition looks like this:
+時々、Haxeがどのようなコードを出力をするか示すため、ターゲットの\target{JavaScript}などのコードも示します。
 
-\define{Definition name}{define-definition}{Definition description}
+さらに、このドキュメントではいくつかの単語の定義を行います。定義は主に、新しい型やHaxe特有の単語を紹介するときに行われます。私たちが紹介するすべての新しい内容に対して定義をするわけではありません(例えば、クラスの定義など)。
 
-In a few places, this document has \emph{trivia}-boxes. These include off-the-record information such as why certain decisions were made during Haxe's development or how a particular feature has been changed in past Haxe versions. This information is generally not important and can be skipped as it is only meant to convey trivia:
+定義は以下のように示されます。
 
-\trivia{About Trivia}{This is trivia.}
+\define{定義の名前}{define-definition}{定義の説明}
 
-\subsection{Authors and contributions}
+また、いくつかの場所には\emph{トリビア}欄を用意してます。トリビア欄では、Haxeの開発過程でどうしてそのような決定がなされたのか、なぜその機能が過去のHaxeのバージョンから変更されたのかなど非公開の情報をお届けします。この情報は一般的には重要ではない、些細な内容なので読み飛ばしても構いません。
+
+\trivia{トリビアについて}{これはトリビアです}
+
+\subsection{著者と貢献者}
 \label{introduction-authors-and-contributions}
 
-Most of this document's content was written by Simon Krajewski while working for the Haxe Foundation. We would like to thank these people for their contributions:
+このドキュメントの大半の内容は、Haxe Foundationで働くSimon Krajewskiによって書かれました。そして、このドキュメントの貢献者である以下の方々にも感謝の意を表します。
 
 \begin{itemize}
-	\item Dan Korostelev: Additional content and editing
-	\item Caleb Harper: Additional content and editing
-	\item Josefiene Pertosa: Editing
-	\item Miha Lunar: Editing
-	\item Nicolas Cannasse: Haxe creator
+	\item Dan Korostelev: 追加の内容と編集
+	\item Caleb Harper: 追加の内容と編集
+	\item Josefiene Pertosa: 編集
+	\item Miha Lunar: 編集
+	\item Nicolas Cannasse: Haxe創始者
 \end{itemize}
 
 
