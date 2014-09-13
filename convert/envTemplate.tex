@@ -9,6 +9,13 @@
 \setmainfont{Source Sans Pro}
 \setmonofont{Source Code Pro}
 
+%for JapaneseLocalize
+\usepackage{xltxtra}
+\setmainfont{IPAPMincho}
+\setsansfont{IPAPGothic}
+\setmonofont{IPAGothic}
+\XeTeXlinebreaklocale "ja"
+
 % TODO: this stuff needs to be imported from common lib tex
 \usepackage{underscore}
 \newcommand{\expr}[1]{\texttt{#1}} % Haxe expressions
