@@ -1,49 +1,49 @@
-\chapter{Introduction}
+\chapter{導入}
 \label{introduction}
 \state{NoContent}
 
-\section{What is Haxe?}
+\section{Haxeって何?}
 \label{introduction-what-is-haxe}
 
 \todo{Could we have a big Haxe logo in the First Manual Page (Introduction) under the menu (a bit like a book cover ?) It looks a bit empty now and is a landing page for "Manual"}
 
-Haxe consists of a high-level, open source programming language and a compiler. It allows compilation of programs, written using an ECMAScript\footnote{http://www.ecma-international.org/publications/standards/Ecma-327.htm}-oriented syntax, to multiple target languages. Employing proper abstraction, it is possible to maintain a single code-base which compiles to multiple targets.
+Haxeはオープンソースの高級プログラミング言語とコンパイラから構成されており、ECMAScript\footnote{http://www.ecma-international.org/publications/standards/Ecma-327.htm}をもとにした構文で書いたプログラムをさまざまなターゲットの言語へとコンパイルすることを可能にします。適度な抽象化をしてやれば、複数のターゲットへコンパイル可能な1つのコードベースを作成できます。
 
-Haxe is strongly typed but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect errors at compile-time which would only be noticeable at runtime in the target language. Furthermore, type information can be used by the target generators to generate optimized and robust code.
+Haxeは強く型付けされている一方で、必要に応じて型付けを弱めることも可能です。型情報を活用すれば、ターゲットの言語では実行時にしか発見できないようなエラーをコンパイル時に検出することができます。さらには、ターゲットへの変換時に最適化や堅牢なコードを生成するためにも使用されます。
 
-Currently, there are nine supported target languages which allow for different use-cases:
+現在、Haxeには9つのターゲット言語があり、さまざまな用途に利用できます。
 
 \begin{center}
 \begin{tabular}{| l | l | l |}
 	\hline
-	Name & Output type & Main usages \\ \hline
-	Javascript & Sourcecode & Browser, Desktop, Mobile, Server \\
-	Neko & Bytecode & Desktop, Server \\
-	PHP & Sourcecode & Server \\
-	Python & Sourcecode & Desktop, Server \\
-	C++ & Sourcecode & Desktop, Mobile, Server \\
-	Actionscript 3 & Sourcecode & Browser, Desktop, Mobile \\
-	Flash & Bytecode & Browser, Desktop, Mobile \\ 
-	Java & Sourcecode & Desktop, Server \\
-	C\# & Sourcecode & Desktop, Mobile, Server \\ \hline
+	名前 & 出力形式 & 主な用途 \\ \hline
+	JavaScript & ソースコード & ブラウザ, デスクトップ, モバイル, サーバー \\
+	Neko & バイトコード & デスクトップ, サーバー \\
+	PHP & ソースコード & サーバー \\
+	Python & ソースコード & デスクトップ, サーバー \\
+	C++ & ソースコード & デスクトップ, モバイル, サーバー \\
+	ActionScript 3 & ソースコード & ブラウザ, デスクトップ, モバイル \\
+	Flash & バイトコード & ブラウザ, デスクトップ, モバイル \\ 
+	Java & ソースコード & デスクトップ, サーバー \\
+	C\# & ソースコード & デスクトップ, モバイル, サーバー \\ \hline
 \end{tabular}
 \end{center}
 
-The remainder of section \ref{introduction} gives a brief overview of what a Haxe program looks like and how Haxe evolved since its inception in 2005.
+この\Fullref{introduction}の残りでは、Haxeのプログラムがどのようなものなのか、Haxeは2005年に生まれてからどのように進化してきたのか、を概要でお送りします。
 
-\Fullref{types} introduces the seven different kinds of types in Haxe and how they interact with each other. The discussion of types is continued in \Fullref{type-system}, where features like \emph{unification}, \emph{type parameters} and \emph{type inference} are explained.
+\Fullref{types}では、Haxeの7種類の異なる型についてとそれらがどう関わりあっているのかについて紹介します。型に関する話は、\Fullref{type-system}へと続き、\emph{単一化(Unification)}, \emph{型パラメータ}, \emph{型推論}についての解説がされます。
 
-\Fullref{class-field} is all about the structure of Haxe classes and, among other topics, deals with \emph{properties}, \emph{inline fields} and \emph{generic functions}.
+\Fullref{class-field}では、Haxeのクラスの構造に関するに全てをあつかいます。加えて、\emph{プロパティ}, \emph{インラインフィールド}, \emph{ジェネリック関数}についてもあつかいます。
 
-In \Fullref{expression} we see how to actually get programs to do something by using \emph{expressions}.
+\Fullref{expression}では、\emph{式}を使用して実際に動作をさせる方法をお見せします。
 
-\Fullref{lf} describes some of the Haxe features in detail such as \emph{pattern matching}, \emph{string interpolation} and \emph{dead code elimination}. This concludes the Haxe language reference.
+\Fullref{lf}では、\emph{パターンマッチング}, \emph{文字列補間}, \emph{デッドコード削除}のようなHaxeの詳細の機能について記述しています。ここで、Haxeの言語リファレンスは終わりです。
 
-We continue with the Haxe compiler reference, which first handles the basics in \Fullref{compiler-reference} before getting into the advanced features in \Fullref{cr-features}. Finally, we will venture into the exciting land of \emph{haxe macros} in \Fullref{macro} to see how some common tasks can be greatly simplified.
+そして、Haxeのコンパイラリファレンスへと続きます。まずは\Fullref{compiler-reference}で基本的な内容を、そして、\Fullref{cr-features}で高度な機能をあつかいます。最後に\Fullref{macro}で、ありふれたタスクを\emph{Haxeマクロ}がどのように単純かするのかを見ながら、刺激的なマクロの世界に挑んでいきます。
 
-In the following chapter, \Fullref{std}, we explore important types and concepts from the Haxe Standard Library. We then learn about Haxe's package manager Haxelib in \Fullref{haxelib}.
+次の\Fullref{std}のでは、Haxeの標準ライブラリに含まれる主要な型や概念を一つ一つ見ていきます。そして、\Fullref{haxelib}でHaxeのパッケージマネージャであるHaxelibについて学びます。
 
-Haxe abstracts away many target differences, but sometimes it is important to interact with a target directly, which is the subject of \Fullref{target-details}.
+Haxeは様々なターゲット間の差を吸収してくれますが、場合によってはターゲットを直接的にあつかうことが重要になります。これが、\Fullref{target-details}の話題です。
 
 \section{About this Document}
 \label{introduction-about-this-document}
