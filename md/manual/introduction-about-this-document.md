@@ -1,29 +1,33 @@
-## 1.2 About this Document
+## 1.2 このドキュメントについて
 
-This document is the official manual for Haxe 3. As such, it is not a beginner's tutorial and does not teach programming. However, the topics are roughly designed to be read in order and there are references to topics "previously seen" and topics "yet to come". In some cases, an earlier section makes use of the information of a later section if it simplifies the explanation. These references are linked accordingly and it should generally not be a problem to read ahead on other topics.
+このドキュメントは、Haxe3の公式マニュアル（の非公式日本語訳）です。そのため、初心者向けののチュートリアルではなく、プログラミングは教えません。しかし、項目は大まかに前から順番に読めるように並べてあり、前に出てきた項目と、次に出てくる項目との関連づけがされています。先の項目で後の項目でててくる情報に触れた方が説明しやすい場所では、先にその情報に触れています。そのような場面ではリンクがされています。リンク先は、ほとんどの場合で先に読むべき内容ではありません。
 
-We use a lot of Haxe source code to keep a practical connection of theoretical matters. These code examples are often complete programs that come with a main function and can be compiled as-is. However, sometimes only the most important parts are shown.
-Source code looks like this:
+このドキュメントでは、理論的な要素を実物としてつなげるために、たくさんのHaxeのソースコードを使います。これらのコードのほとんどはmain関数を含む完全なコードでありそのままコンパイルが可能ですが、いくつかはそうではなくコードの重要な部分の抜き出しです。
+
+ソースコードは以下のように示されます：
 
 ```haxe
 Haxe code here
 ```
-Occasionally, we demonstrate how Haxe code is generated, for which we usually show the Javascript target.
 
-Furthermore, we define a set of terms in this document. Predominantly, this is done when introducing a new type or when a term is specific to Haxe. We do not define every new aspect we introduce, e.g. what a class is, to avoid cluttering the text. A definition looks like this:
+時々、Haxeがどのようなコードを出力をするかを見せるため、ターゲットのJavaScriptなどのコードも示します。
 
-> ##### Define: Definition name
+さらに、このドキュメントではいくつかの単語の定義を行います。定義は主に、新しい型やHaxe特有の単語を紹介するときに行われます。私たちが紹介するすべての新しい内容に対して定義をするわけではありません(例えば、クラスの定義など)。
+
+定義は以下のように示されます。
+
+> ##### Define: 定義の名前
 >
-> Definition description
+> 定義の説明
 
-In a few places, this document has **trivia**-boxes. These include off-the-record information such as why certain decisions were made during Haxe's development or how a particular feature has been changed in past Haxe versions. This information is generally not important and can be skipped as it is only meant to convey trivia:
+また、いくつかの場所には**トリビア**欄を用意してます。トリビア欄では、Haxeの開発過程でどうしてそのような決定がなされたのか、なぜその機能が過去のHaxeのバージョンから変更されたのかなど非公開の情報をお届けします。この情報は一般的には重要ではない、些細な内容なので読み飛ばしても構いません。
 
-> ##### Trivia: About Trivia
+> ##### Trivia: トリビアについて
 >
-> This is trivia.
+> これはトリビアです
 
 ---
 
 Previous section: [Haxeって何?](introduction-what-is-haxe.md)
 
-Next section: [Authors and contributions](introduction-authors-and-contributions.md)
+Next section: [著者と貢献者](introduction-authors-and-contributions.md)

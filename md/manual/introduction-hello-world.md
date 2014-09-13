@@ -17,6 +17,6 @@ This can be tested by saving the above code to a file named `HelloWorld.hx` and 
 
 ---
 
-Previous section: [Authors and contributions](introduction-authors-and-contributions.md)
+Previous section: [著者と貢献者](introduction-authors-and-contributions.md)
 
 Next section: [History](introduction-haxe-history.md)

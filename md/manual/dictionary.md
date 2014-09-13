@@ -72,11 +72,6 @@ Basic types have the following default values on static targets:
 
 
 
-<a name="define-definition" class="anch"></a>
-
-##### Definition name
-Definition description
-
 <a name="define-dynamic-target" class="anch"></a>
 
 ##### Dynamic target
@@ -211,3 +206,8 @@ Void denotes the absence of a type. It is used to express that something (usuall
 
 ##### Write Access
 A write access to a field occurs when a [field access expression](expression-field-access.md) is assigned a value in the form of `obj.field = value`. It may also occur in combination with [read access](dictionary.md#define-read-access) for special assignment operators such as `+=` in expressions like `obj.field += value`.
+
+<a name="define-definition" class="anch"></a>
+
+##### 定義の名前
+定義の説明

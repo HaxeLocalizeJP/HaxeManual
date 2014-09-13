@@ -59,8 +59,8 @@ Missing Content:
 
 Unreviewed:
 1.1 - Haxeって何?
-1.2 - About this Document
-1.2.1 - Authors and contributions
+1.2 - このドキュメントについて
+1.2.1 - 著者と貢献者
 1.3 - Hello World
 2 - Types
 2.1 - Basic Types

@@ -1,15 +1,15 @@
-## 1.2.1 Authors and contributions
+## 1.2.1 著者と貢献者
 
-Most of this document's content was written by Simon Krajewski while working for the Haxe Foundation. We would like to thank these people for their contributions:
+このドキュメントの大半の内容は、Haxe Foundationで働くSimon Krajewskiによって書かれました。そして、このドキュメントの貢献者である以下の方々に感謝の意を表します。
 
-* Dan Korostelev: Additional content and editing
-* Caleb Harper: Additional content and editing
-* Josefiene Pertosa: Editing
-* Miha Lunar: Editing
-* Nicolas Cannasse: Haxe creator
+* Dan Korostelev: 追加の内容と編集
+* Caleb Harper: 追加の内容と編集
+* Josefiene Pertosa: 編集
+* Miha Lunar: 編集
+* Nicolas Cannasse: Haxe創始者
 
 ---
 
-Previous section: [About this Document](introduction-about-this-document.md)
+Previous section: [このドキュメントについて](introduction-about-this-document.md)
 
 Next section: [Hello World](introduction-hello-world.md)
