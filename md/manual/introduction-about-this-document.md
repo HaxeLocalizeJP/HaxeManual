@@ -24,6 +24,6 @@ In a few places, this document has **trivia**-boxes. These include off-the-recor
 
 ---
 
-Previous section: [What is Haxe?](introduction-what-is-haxe.md)
+Previous section: [Haxeって何?](introduction-what-is-haxe.md)
 
 Next section: [Authors and contributions](introduction-authors-and-contributions.md)

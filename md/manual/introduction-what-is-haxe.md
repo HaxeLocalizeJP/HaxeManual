@@ -1,42 +1,42 @@
-## 1.1 What is Haxe?
+## 1.1 Haxeって何?
 
-Haxe consists of a high-level, open source programming language and a compiler. It allows compilation of programs, written using an ECMAScript-oriented syntax, to multiple target languages. Employing proper abstraction, it is possible to maintain a single code-base which compiles to multiple targets.
+Haxeはオープンソースの高級プログラミング言語とコンパイラから構成されており、ECMAScriptをもとにした構文で書いたプログラムをさまざまなターゲットの言語へとコンパイルすることを可能にします。適度な抽象化をしてやれば、複数のターゲットへコンパイル可能な1つのコードベースを作成できます。
 
-Haxe is strongly typed but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect errors at compile-time which would only be noticeable at runtime in the target language. Furthermore, type information can be used by the target generators to generate optimized and robust code.
+Haxeは強く型付けされている一方で、必要に応じて型付けを弱めることも可能です。型情報を活用すれば、ターゲットの言語では実行時にしか発見できないようなエラーをコンパイル時に検出することができます。さらには、ターゲットへの変換時に最適化や堅牢なコードを生成するためにも使用されます。
 
-Currently, there are nine supported target languages which allow for different use-cases:
+現在、Haxeには9つのターゲット言語があり、さまざまな用途に利用できます。
 
-Name  | Output type  | Main usages 
+名前  | 出力形式  | 主な用途 
  --- | --- | ---
-Javascript  | Sourcecode  | Browser, Desktop, Mobile, Server 
-Neko  | Bytecode  | Desktop, Server 
-PHP  | Sourcecode  | Server 
-Python  | Sourcecode  | Desktop, Server 
-C++  | Sourcecode  | Desktop, Mobile, Server 
-Actionscript 3  | Sourcecode  | Browser, Desktop, Mobile 
-Flash  | Bytecode  | Browser, Desktop, Mobile 
- Java  | Sourcecode  | Desktop, Server 
-C#  | Sourcecode  | Desktop, Mobile, Server 
+JavaScript  | ソースコード  | ブラウザ, デスクトップ, モバイル, サーバー 
+Neko  | バイトコード  | デスクトップ, サーバー 
+PHP  | ソースコード  | サーバー 
+Python  | ソースコード  | デスクトップ, サーバー 
+C++  | ソースコード  | デスクトップ, モバイル, サーバー 
+ActionScript 3  | ソースコード  | ブラウザ, デスクトップ, モバイル 
+Flash  | バイトコード  | ブラウザ, デスクトップ, モバイル 
+ Java  | ソースコード  | デスクトップ, サーバー 
+C#  | ソースコード  | デスクトップ, モバイル, サーバー 
  
 
-The remainder of section [Introduction](introduction.md) gives a brief overview of what a Haxe program looks like and how Haxe evolved since its inception in 2005.
+この[導入](introduction.md)の残りでは、Haxeのプログラムがどのようなものなのか、Haxeは2005年に生まれてからどのように進化してきたのか、を概要でお送りします。
 
-[Types](types.md) introduces the seven different kinds of types in Haxe and how they interact with each other. The discussion of types is continued in [Type System](type-system.md), where features like **unification**, **type parameters** and **type inference** are explained.
+[Types](types.md)では、Haxeの7種類の異なる型についてとそれらがどう関わりあっているのかについて紹介します。型に関する話は、[Type System](type-system.md)へと続き、**単一化(Unification)**, **型パラメータ**, **型推論**についての解説がされます。
 
-[Class Fields](class-field.md) is all about the structure of Haxe classes and, among other topics, deals with **properties**, **inline fields** and **generic functions**.
+[Class Fields](class-field.md)では、Haxeのクラスの構造に関するに全てをあつかいます。加えて、**プロパティ**, **インラインフィールド**, **ジェネリック関数**についてもあつかいます。
 
-In [Expressions](expression.md) we see how to actually get programs to do something by using **expressions**.
+[Expressions](expression.md)では、**式**を使用して実際に動作をさせる方法をお見せします。
 
-[Language Features](lf.md) describes some of the Haxe features in detail such as **pattern matching**, **string interpolation** and **dead code elimination**. This concludes the Haxe language reference.
+[Language Features](lf.md)では、**パターンマッチング**, **文字列補間**, **デッドコード削除**のようなHaxeの詳細の機能について記述しています。ここで、Haxeの言語リファレンスは終わりです。
 
-We continue with the Haxe compiler reference, which first handles the basics in [Compiler Reference](#) before getting into the advanced features in [Compiler Features](cr-features.md). Finally, we will venture into the exciting land of **haxe macros** in [Macros](macro.md) to see how some common tasks can be greatly simplified.
+そして、Haxeのコンパイラリファレンスへと続きます。まずは[Compiler Reference](#)で基本的な内容を、そして、[Compiler Features](cr-features.md)で高度な機能をあつかいます。最後に[Macros](macro.md)で、ありふれたタスクを**Haxeマクロ**がどのように単純かするのかを見ながら、刺激的なマクロの世界に挑んでいきます。
 
-In the following chapter, [Standard Library](std.md), we explore important types and concepts from the Haxe Standard Library. We then learn about Haxe's package manager Haxelib in [Haxelib](haxelib.md).
+次の[Standard Library](std.md)のでは、Haxeの標準ライブラリに含まれる主要な型や概念を一つ一つ見ていきます。そして、[Haxelib](haxelib.md)でHaxeのパッケージマネージャであるHaxelibについて学びます。
 
-Haxe abstracts away many target differences, but sometimes it is important to interact with a target directly, which is the subject of [Target Details](#).
+Haxeは様々なターゲット間の差を吸収してくれますが、場合によってはターゲットを直接的にあつかうことが重要になります。これが、[Target Details](#)の話題です。
 
 ---
 
-Previous section: [Introduction](introduction.md)
+Previous section: [導入](introduction.md)
 
 Next section: [About this Document](introduction-about-this-document.md)

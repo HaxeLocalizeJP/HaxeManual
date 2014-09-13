@@ -1,6 +1,6 @@
-## 1 Introduction
+## 1 導入
 
-1.1: [What is Haxe?](introduction-what-is-haxe.md)
+1.1: [Haxeって何?](introduction-what-is-haxe.md)
 
 1.2: [About this Document](introduction-about-this-document.md)
 
@@ -10,4 +10,4 @@
 
 ---
 
-Next section: [What is Haxe?](introduction-what-is-haxe.md)
+Next section: [Haxeって何?](introduction-what-is-haxe.md)

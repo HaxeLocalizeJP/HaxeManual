@@ -1,7 +1,7 @@
 This file is generated, do not edit!
 
 Todo:
-1.1 - What is Haxe?: Could we have a big Haxe logo in the First Manual Page (Introduction) under the menu (a bit like a book cover ?) It looks a bit empty now and is a landing page for "Manual"
+1.1 - Haxeって何?: Could we have a big Haxe logo in the First Manual Page (Introduction) under the menu (a bit like a book cover ?) It looks a bit empty now and is a landing page for "Manual"
 1.3 - Hello World: This generates the following output: too many 'this'. You may like a passive sentence: the following output will be generated...though this is to be avoided, generally
 2.1.3 - Numeric Operators: make sure the types are right for inc, dec, negate, and bitwise negate
 2.1.3 - Numeric Operators: While introducing the different operations, we should include that information as well, including how they differ with the "C" standard, see http://haxe.org/manual/operators
@@ -58,7 +58,7 @@ Missing Content:
 12.7 - C#
 
 Unreviewed:
-1.1 - What is Haxe?
+1.1 - Haxeって何?
 1.2 - About this Document
 1.2.1 - Authors and contributions
 1.3 - Hello World
