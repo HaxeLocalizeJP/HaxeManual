@@ -88,16 +88,18 @@ Haxe code here
 \section{Hello World}
 \label{introduction-hello-world}
 
-The following program prints ``Hello World'' after being compiled and run:
+次のプログラムはコンパイルして実行をすると``Hello World''と表示します:
 
 \haxe{assets/HelloWorld.hx}
-This can be tested by saving the above code to a file named \ic{HelloWorld.hx} and invoking the Haxe Compiler like so: \ic{haxe -main HelloWorld --interp}. It then generates the following output: \ic{HelloWorld.hx:3: Hello world}. There are several things to learn from this:
+
+上記のコードは、\ic{HelloWorld.hx}という名前で保存して、\ic{haxe -main HelloWorld --interp}というコマンドでHaxeコンパイラを呼び出すと実際に動作させることが可能です。これで\ic{HelloWorld.hx:3: Hello world}という出力がされるはずです。このことから以下のいくつかのことを学ぶことができます。
+
 \todo{This generates the following output: too many 'this'. You may like a passive sentence: the following output will be generated...though this is to be avoided, generally}
 
 \begin{itemize}
-	\item Haxe programs are saved in files with an extension of \ic{.hx}.
-	\item The Haxe Compiler is a command-line tool which can be invoked with parameters such as \ic{-main HelloWorld} and \ic{--interp}.
-	\item Haxe programs have classes (\type{HelloWorld}, upper-case), which have functions (\expr{main}, lower-case). 
+	\item Haxeのコードは\ic{.hx}という拡張子で保存する。
+	\item Haxeのコンパイラはコマンドラインツールであり、\ic{-main HelloWorld}や\ic{--interp}のようなパラメータをつけて呼び出すことができる。
+	\item Haxeのプログラムにはクラスがあり(\type{HelloWorld}、大文字から始まる)、クラスには関数がある(\expr{main}、小文字からはじまる)。
 \end{itemize}
 
 \section{History}
