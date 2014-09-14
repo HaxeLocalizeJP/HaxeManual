@@ -20,4 +20,4 @@ Haxe1と同じように、以降の数か月で安定性のためのリリース
 
 Previous section: [Hello World](introduction-hello-world.md)
 
-Next section: [Types](types.md)
+Next section: [型](types.md)

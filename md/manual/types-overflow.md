@@ -1,14 +1,14 @@
-## 2.1.2 Overflow
+## 2.1.2 オーバーフロー
 
-For performance reasons, the Haxe Compiler does not enforce any overflow behavior. The burden of checking for overflows falls to the target platform. Here are some platform specific notes on overflow behavior:
+パフォーマンスのため、Haxeコンパイラはオーバーフローに対する挙動を矯正しません。オーバーフローに対する挙動は、ターゲットのプラットフォームが責任を持ちます。いくつかのプラットフォームごとのオーバーフローの挙動を以下にまとめています。
 
- * C++, Java, C#, Neko, Flash: 32-bit signed integers with usual overflow practices  
-* PHP, JS, Flash 8: No native **Int** type, loss of precision will occur if they reach their float limit (2<sup>52</sup>)
+ * C++, Java, C#, Neko, Flash: 一般的な挙動をもつ32Bit符号付き整数 
+* PHP, JS, Flash 8: ネイティブの**Int**型を持たない。Floatの上限(2<sup>52</sup>)を超えた場合に精度を失う。
 
-Alternatively, the **haxe.Int32** and **haxe.Int64** classes can be used to ensure correct overflow behavior regardless of the platform at the cost of additional computations depending on the platform.
+代替手段として、プラットフォームごとの追加の計算を行う代わりに、正しいオーバーフローの挙動を持つ**haxe.Int32**と**haxe.Int64**クラスが用意されています。
 
 ---
 
-Previous section: [Numeric types](types-numeric-types.md)
+Previous section: [数値型](types-numeric-types.md)
 
-Next section: [Numeric Operators](types-numeric-operators.md)
+Next section: [数値の演算子](types-numeric-operators.md)

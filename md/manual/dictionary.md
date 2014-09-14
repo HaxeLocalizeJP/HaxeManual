@@ -33,7 +33,7 @@ An **accessor method** (or short **accessor**) for a field named `field` of type
 <a name="define-bool" class="anch"></a>
 
 ##### Bool
-Represents a value which can be either **true** or **false**.
+真(**true**)または、偽(**false**)のどちらかになる値を表す。
 
 <a name="define-class-field" class="anch"></a>
 
@@ -44,11 +44,6 @@ A class field is a variable, property or method of a class which can either be s
 
 ##### Compiler Flag
 A compiler flag is a configurable value which may influence the compilation process. Such a flag can be set by invoking the command line with `-D key=value` or just `-D key`, in which case the value defaults to `"1"`. The compiler also sets several flags internally to pass information between different compilation steps.
-
-<a name="define-compound-type" class="anch"></a>
-
-##### Compound Type
-A compound type is a type which has sub-types. This includes any type with [type parameters](type-system-type-parameters.md) and the [function](types-function.md) type.
 
 <a name="define-contravariance" class="anch"></a>
 
@@ -90,7 +85,7 @@ Expected types occur when the type of an expression is known before that express
 <a name="define-float" class="anch"></a>
 
 ##### Float
-Represents a double-precision IEEE 64-bit floating point number.
+IEEEの64bit倍精度浮動小数点数を表します。
 
 <a name="define-generic-type-parameter" class="anch"></a>
 
@@ -111,7 +106,7 @@ Further limitations follow from the usage context, which are checked upon typing
 <a name="define-int" class="anch"></a>
 
 ##### Int
-Represents an integral number.
+整数を表します。
 
 <a name="define-macro-context" class="anch"></a>
 
@@ -200,7 +195,7 @@ Unification between two types A and B is a directional process which answers the
 <a name="define-void" class="anch"></a>
 
 ##### Void
-Void denotes the absence of a type. It is used to express that something (usually a function) has no value.
+Voidは型が存在しないことを表します。特定の場面(主に関数)で値を持たないことを表現するのに使います。
 
 <a name="define-write-access" class="anch"></a>
 
@@ -211,3 +206,9 @@ A write access to a field occurs when a [field access expression](expression-fie
 
 ##### 定義の名前
 定義の説明
+
+<a name="define-compound-type" class="anch"></a>
+
+##### 複合型(Compound Type)
+
+複合型というのは、従属する型を持つ型です。[型パラメータ](type-system-type-parameters.md)を持つ型や、[関数](types-function.md)型がこれに当たります。

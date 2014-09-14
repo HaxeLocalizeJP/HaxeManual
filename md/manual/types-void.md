@@ -2,10 +2,9 @@
 
 > ##### Define: Void
 >
-> Void denotes the absence of a type. It is used to express that something (usually a function) has no value.
+> Voidは型が存在しないことを表します。特定の場面(主に関数)で値を持たないことを表現するのに使います。
 
-`Void` is a special case in the type system because it is not actually a type. It is used to express the absence of a type, which applies mostly to function arguments and return types.
-We have already "seen" Void in the initial "Hello World" example:
+Voidは型システムにおける特殊な場合です。Voidは実際には型ではありません。Voidは特に関数の引数と戻り値で型が存在しないことを表現するのに使います。私たちはすでに最初の"Hello World"の例でVoidを使用しています。
 
 ```haxe
 class HelloWorld {
@@ -15,8 +14,9 @@ class HelloWorld {
 }
 ```
 
-The function type will be explored in detail in the section [Function Type](types-function.md) but a quick preview helps here: The type of the function `main` in the example above is `Void->Void`, which reads as "it has no arguments and returns nothing".
-Haxe does not allow fields and variables of type `Void` and will complain if an attempt at declaring such is made:
+関数型について詳しくは[Function Type](types-function.md)で解説しますが、ここで軽く予習をしておきましょう。上の例の`main`関数は`Void->Void`型です。これは"引数は無く、戻り値も無い"という意味です。
+
+Haxeでは、フィールドや変数に対してVoidを指定することはできません。以下のように書こうとするとエラーが発生します。
 
 ```haxe
 // Arguments and variables of type Void
@@ -26,6 +26,6 @@ var x:Void;
 
 ---
 
-Previous section: [Bool](types-bool.md)
+Previous section: [Bool(真偽値)](types-bool.md)
 
 Next section: [Nullability](types-nullability.md)

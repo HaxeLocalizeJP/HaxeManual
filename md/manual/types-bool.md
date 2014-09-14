@@ -1,26 +1,29 @@
-## 2.1.4 Bool
+## 2.1.4 Bool(真偽値)
 
 > ##### Define: Bool
 >
-> Represents a value which can be either **true** or **false**.
+> 真(**true**)または、偽(**false**)のどちらかになる値を表す。
 
-Values of type `Bool` are a common occurence in **conditions** such as [`if`](expression-if.md) and [`while`](expression-while.md). The following **operators** accept and return `Bool` values:
+`Bool`型の値は、[`if`](expression-if.md)や[`while`](expression-while.md)のような**条件分岐**によく表れます。以下の演算子は、`Bool`値を受け取って`Bool`値を返します。
 
 * `&&` (and)
 * `||` (or)
 * `!` (not)
 
-Haxe guarantees that compound boolean expressions are evaluated from left to right and only as far as necessary at run-time. For instance, an expression like `A && B` will evaluate `A` first and evaluate `B` only if the evaluation of `A` yielded `true`. Likewise, the expressions `A || B` will not evaluate `B` if the evaluation of `A` yielded `true`, because the value of `B` is irrelevant in that case. This is important in cases such as this:
+Haxeは、Bool値の2項演算は、実行時に左から右へ必要な分だけ評価することを保証します。例えば、`A && B`という式は、まず`A`を評価して`A`が`true`だった場合のみ`B`が評価されます。同じように、`A || B`では`A`が`true`だった場合は、`B`の値は意味を持たないので評価されません。
+
+これは、以下のような場合に重要です。
 
 ```haxe
-if (object != null && object.field == 1)
-  { ... }
+if (object != null && object.field == 1) {
+  ...
+}
 ```
 
-Accessing `object.field` if `object` is `null` would lead to a run-time error, but the check for `object != null` guards against it.
+`object`が`null`の場合に`object.field`にアクセスするとランタイムエラーになりますが、事前に`object != null`のチェックをすることでエラーから守ることができます。
 
 ---
 
-Previous section: [Numeric Operators](types-numeric-operators.md)
+Previous section: [数値の演算子](types-numeric-operators.md)
 
 Next section: [Void](types-void.md)

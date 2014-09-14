@@ -1,17 +1,17 @@
-## 2.1.1 Numeric types
+## 2.1.1 数値型
 
 > ##### Define: Float
 >
-> Represents a double-precision IEEE 64-bit floating point number.
+> IEEEの64bit倍精度浮動小数点数を表します。
 
 > ##### Define: Int
 >
-> Represents an integral number.
+> 整数を表します。
 
-While every `Int` can be used where a `Float` is expected (that is, `Int` **is assignable to** or **unifies with** `Float`), the reverse is not true: Assigning a `Float` to an `Int` might lose precision and is not allowed implicitly.
+`Int`は`Float`が期待されるすべての場所で使用することが可能です (IntはFloatへの代入が可能で、Floatとして表現可能です)。ですが、逆はできません。 `Float`から`Int`への代入は精度を失ってしまう場合があり、信頼できません。
 
 ---
 
-Previous section: [Basic Types](types-basic-types.md)
+Previous section: [基本型](types-basic-types.md)
 
-Next section: [Overflow](types-overflow.md)
+Next section: [オーバーフロー](types-overflow.md)
