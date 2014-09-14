@@ -6,7 +6,7 @@
 
 1.3: [Hello World](introduction-hello-world.md)
 
-1.4: [History](introduction-haxe-history.md)
+1.4: [歴史](introduction-haxe-history.md)
 
 ---
 

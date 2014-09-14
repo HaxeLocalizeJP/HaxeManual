@@ -1,6 +1,6 @@
 ## 1.3 Hello World
 
-The following program prints "Hello World" after being compiled and run:
+次のプログラムはコンパイルして実行をすると"Hello World"と表示します:
 
 ```haxe
 class HelloWorld {
@@ -9,14 +9,15 @@ class HelloWorld {
   }
 }
 ```
-This can be tested by saving the above code to a file named `HelloWorld.hx` and invoking the Haxe Compiler like so: `haxe -main HelloWorld --interp`. It then generates the following output: `HelloWorld.hx:3: Hello world`. There are several things to learn from this:
 
-* Haxe programs are saved in files with an extension of `.hx`.
-* The Haxe Compiler is a command-line tool which can be invoked with parameters such as `-main HelloWorld` and `--interp`.
-* Haxe programs have classes (`HelloWorld`, upper-case), which have functions (`main`, lower-case).
+上記のコードは、`HelloWorld.hx`という名前で保存して、`haxe -main HelloWorld --interp`というコマンドでHaxeコンパイラを呼び出すと実際に動作させることが可能です。これで`HelloWorld.hx:3: Hello world`という出力がされるはずです。このことから以下のいくつかのことを学ぶことができます。
+
+* Haxeのコードは`.hx`という拡張子で保存する。
+* Haxeのコンパイラはコマンドラインツールであり、`-main HelloWorld`や`--interp`のようなパラメータをつけて呼び出すことができる。
+* Haxeのプログラムにはクラスがあり(`HelloWorld`、大文字から始まる)、クラスには関数がある(`main`、小文字からはじまる)。
 
 ---
 
 Previous section: [著者と貢献者](introduction-authors-and-contributions.md)
 
-Next section: [History](introduction-haxe-history.md)
+Next section: [歴史](introduction-haxe-history.md)
