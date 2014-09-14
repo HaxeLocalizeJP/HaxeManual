@@ -18,7 +18,7 @@ This type is compatible with all enum types. At compile-time, `Enum<T>` can bee 
 <a name="define-null-t" class="anch"></a>
 
 ##### `Null<T>`
-On static targets the types `Null<Int>`, `Null<Float>` and `Null<Bool>` can be used to allow `null` as a value. On dynamic targets this has no effect. `Null<T>` can also be used with other types in order to document that `null` is an allowed value.
+静的ターゲットでは、`Null<Int>`、`Null<Float>`、`Null<Bool>`の型で`null`を許容することが可能になります。動的ターゲットでは`Null<T>`に効果はありません。また、`Null<T>`はその型が`null`を持つことを表すドキュメントとしても使うことができます。
 
 <a name="define-ast" class="anch"></a>
 
@@ -54,23 +54,6 @@ A [compound type](dictionary.md#define-compound-type) is considered contravarian
 
 ##### Covariance
 A [compound type](dictionary.md#define-compound-type) is considered covariant if its component types can be assigned to less specific components, i.e. if they are only read, but never written.
-
-<a name="define-default-value" class="anch"></a>
-
-##### Default values
-
-Basic types have the following default values on static targets:
-
-* `Int`: `0`
-* `Float`: `NaN` on Flash, `0.0` on other static targets
-* `Bool`: `false`
-
-
-
-<a name="define-dynamic-target" class="anch"></a>
-
-##### Dynamic target
-Dynamic targets are more lenient with their types and allow `null` values for basic types. This applies to the JavaScript, PHP, Neko and Flash 6-8 targets.
 
 <a name="define-enumvalue" class="anch"></a>
 
@@ -131,8 +114,8 @@ A general name may refer to
 
 <a name="define-nullable" class="anch"></a>
 
-##### nullable
-A type in Haxe is considered **nullable** if `null` is a valid value for it.
+##### Nullable
+Haxeでは、ある型が値として`null`をとる場合に**Nullable**(null許容型)であるとみなす。
 
 <a name="define-physical-field" class="anch"></a>
 
@@ -161,11 +144,6 @@ A read access to a field occurs when a right-hand side [field access expression]
 
 ##### Static Extension
 A static extension allows pseudo-extending existing types without modifying their source. In Haxe this is achieved by declaring a static method with a first argument of the extending type and then bringing the defining class into context through `using`.
-
-<a name="define-static-target" class="anch"></a>
-
-##### Static target
-Static targets employ their own type system where `null` is not a valid value for basic types. This is true for the Flash, C++, Java and C# targets.
 
 <a name="define-string" class="anch"></a>
 
@@ -202,6 +180,23 @@ Voidは型が存在しないことを表します。特定の場面(主に関数
 ##### Write Access
 A write access to a field occurs when a [field access expression](expression-field-access.md) is assigned a value in the form of `obj.field = value`. It may also occur in combination with [read access](dictionary.md#define-read-access) for special assignment operators such as `+=` in expressions like `obj.field += value`.
 
+<a name="define-default-value" class="anch"></a>
+
+##### デフォルト値
+
+  基本型は、静的ターゲットではデフォルト値は以下になります。
+  
+* `Int`: `0`。
+* `Float`: Flashでは`NaN`。その他の静的ターゲットでは`0.0`。
+* `Bool`: `false`。
+
+
+
+<a name="define-dynamic-target" class="anch"></a>
+
+##### 動的ターゲット
+動的ターゲットはもっと型に関して寛容で、基本型が`null`を許容します。これはJavaScriptとPHP、Neko、Flash 6-8ターゲットが当てはまります。
+
 <a name="define-definition" class="anch"></a>
 
 ##### 定義の名前
@@ -212,3 +207,9 @@ A write access to a field occurs when a [field access expression](expression-fie
 ##### 複合型(Compound Type)
 
 複合型というのは、従属する型を持つ型です。[型パラメータ](type-system-type-parameters.md)を持つ型や、[関数](types-function.md)型がこれに当たります。
+
+
+<a name="define-static-target" class="anch"></a>
+
+##### 静的ターゲット
+静的ターゲットでは、その言語自体が基本型が`null`を許容しないような型システムを持っています。この性質はFlash、C++、Java、C#ターゲットに当てはまります。

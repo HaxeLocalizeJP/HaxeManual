@@ -28,4 +28,4 @@ var x:Void;
 
 Previous section: [Bool(真偽値)](types-bool.md)
 
-Next section: [Nullability](types-nullability.md)
+Next section: [Nullable(null許容型)](types-nullability.md)

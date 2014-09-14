@@ -1,33 +1,31 @@
-## 2.2 Nullability
+## 2.2 Nullable(null許容型)
 
-> ##### Define: nullable
+> ##### Define: Nullable
 >
-> A type in Haxe is considered **nullable** if `null` is a valid value for it.
+> Haxeでは、ある型が値として`null`をとる場合に**Nullable**(null許容型)であるとみなす。
 
-It is common for programming languages to have a single, clean definition for nullability. However, Haxe has to find a compromise in this regard due to the nature of Haxe's target languages: While some of them allow and; in fact, default to `null` for anything, others do not even allow `null` for certain types. This necessitates the distinction of two types of target languages:
+プログラミング言語は、Nullableについてなにか1つ明確な定義を持つのが一般的です。ですが、Haxeではターゲットとなる言語のもともとの挙動に従うことで妥協しています。ターゲット言語のうちのいくつかは全てがデフォルト値として`null`をとり、その他は特定の型では`null`を許容しません。つまり、以下の2種類の言語を区別しなくてはいけません。
 
-> ##### Define: Static target
+> ##### Define: 静的ターゲット
 >
-> Static targets employ their own type system where `null` is not a valid value for basic types. This is true for the Flash, C++, Java and C# targets.
+> 静的ターゲットでは、その言語自体が基本型が`null`を許容しないような型システムを持っています。この性質はFlash、C++、Java、C#ターゲットに当てはまります。
 
-> ##### Define: Dynamic target
+> ##### Define: 動的ターゲット
 >
-> Dynamic targets are more lenient with their types and allow `null` values for basic types. This applies to the JavaScript, PHP, Neko and Flash 6-8 targets.
+> 動的ターゲットはもっと型に関して寛容で、基本型が`null`を許容します。これはJavaScriptとPHP、Neko、Flash 6-8ターゲットが当てはまります。
 
-There is nothing to worry about when working with `null` on dynamic targets; however, static ones may require some thought. For starters, basic types are initialized to their default values.
-
-> ##### Define: Default values
+> ##### Define: デフォルト値
 >
 > 
-> Basic types have the following default values on static targets:
-> 
-> * `Int`: `0`
-> * `Float`: `NaN` on Flash, `0.0` on other static targets
-> * `Bool`: `false`
+>   基本型は、静的ターゲットではデフォルト値は以下になります。
+>   
+> * `Int`: `0`。
+> * `Float`: Flashでは`NaN`。その他の静的ターゲットでは`0.0`。
+> * `Bool`: `false`。
 > 
 > 
 
-As a consequence, the Haxe Compiler does not allow the assignment of `null` to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as `Null<T>`:
+その結果、Haxeコンパイラは静的ターゲットでは基本型に対する`null`を代入することはできません。`null`を代入するためには、以下のように基本型を`Null<T>`で囲う必要があります。
 
 ```haxe
 // error on static platforms
@@ -35,7 +33,7 @@ var a:Int = null;
 var b:Null<Int> = null; // allowed
 ```
 
-Similarly, basic types cannot be compared to `null` unless wrapped:
+同じように、基本型は`Null<T>`で囲わなければ`null`と比較することはできません。
 
 ```haxe
 var a : Int = 0;
@@ -45,13 +43,13 @@ var b : Null<Int> = 0;
 if( b != null ) { ... } // allowed
 ```
 
-This restriction extends to all situations where [unification](type-system-unification.md) is performed.
+この制限は[unification](type-system-unification.md)が動作するすべての状況でかかります。
 
 > ##### Define: `Null<T>`
 >
-> On static targets the types `Null<Int>`, `Null<Float>` and `Null<Bool>` can be used to allow `null` as a value. On dynamic targets this has no effect. `Null<T>` can also be used with other types in order to document that `null` is an allowed value.
+> 静的ターゲットでは、`Null<Int>`、`Null<Float>`、`Null<Bool>`の型で`null`を許容することが可能になります。動的ターゲットでは`Null<T>`に効果はありません。また、`Null<T>`はその型が`null`を持つことを表すドキュメントとしても使うことができます。
 
-If a `null`-value is "hidden" in `Null<T>` or `Dynamic` and assigned to a basic type, the default value is used:
+nullの値は隠匿されます。つまり、`Null<T>`や`Dynamic`のnullの値を基本型に代入した場合には、デフォルト値が使用されます。
 
 ```haxe
 var n : Null<Int> = null;
@@ -63,4 +61,4 @@ trace(a); // 0 on static platforms
 
 Previous section: [Void](types-void.md)
 
-Next section: [Optional Arguments and Nullability](types-nullability-optional-arguments.md)
+Next section: [オプション引数とnull許容](types-nullability-optional-arguments.md)

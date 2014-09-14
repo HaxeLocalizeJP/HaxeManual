@@ -178,7 +178,7 @@ var x:Void;
 
 \define{Nullable}{define-nullable}{Haxeでは、ある型が値として\expr{null}をとる場合に\emph{Nullable}(null許容型)であるとみなす。}
 
-プログラミング言語には、Nullableについてなにか1つ明確な定義を持つのが一般的です。ですが、Haxeではターゲットとなる言語のもともとの挙動に従うことで妥協しています。ターゲット言語のうちのいくつかは全てがデフォルト値として\expr{null}をとり、その他は特定の型では\expr{null}を許容しません。つまり、以下の2種類の言語を区別しなくてはいけません。
+プログラミング言語は、Nullableについてなにか1つ明確な定義を持つのが一般的です。ですが、Haxeではターゲットとなる言語のもともとの挙動に従うことで妥協しています。ターゲット言語のうちのいくつかは全てがデフォルト値として\expr{null}をとり、その他は特定の型では\expr{null}を許容しません。つまり、以下の2種類の言語を区別しなくてはいけません。
 
 \define{静的ターゲット}{define-static-target}{静的ターゲットでは、その言語自体が基本型が\expr{null}を許容しないような型システムを持っています。この性質は\target{Flash}、\target{C++}、\target{Java}、\target{C\#}ターゲットに当てはまります。}
 \define{動的ターゲット}{define-dynamic-target}{動的ターゲットはもっと型に関して寛容で、基本型が\expr{null}を許容します。これは\target{JavaScript}と\target{PHP}、\target{Neko}、\target{Flash 6-8}ターゲットが当てはまります。}

@@ -38,6 +38,6 @@ There is a special type in Haxe which is compatible with all classes:
 
 ---
 
-Previous section: [Optional Arguments and Nullability](types-nullability-optional-arguments.md)
+Previous section: [オプション引数とnull許容](types-nullability-optional-arguments.md)
 
 Next section: [Class constructor](types-class-constructor.md)

@@ -7,8 +7,8 @@ Todo:
 2.1.3 - 数値の演算子: While introducing the different operations, we should include that information as well, including how they differ with the "C" standard, see http://haxe.org/manual/operators
 2.1.5 - Void: please review, doubled content
 2.1.5 - Void: review please, sounds weird
-2.2 - Nullability: for starters...please review
-2.2.1 - Optional Arguments and Nullability: Is there a difference between `?y : Int` and `y : Null<Int>` or can you even do the latter? Some more explanation and examples with native optional and Haxe optional arguments and how they relate to nullability would be nice.
+2.2 - Nullable(null許容型): for starters...please review
+2.2.1 - オプション引数とnull許容: Is there a difference between `?y : Int` and `y : Null<Int>` or can you even do the latter? Some more explanation and examples with native optional and Haxe optional arguments and how they relate to nullability would be nice.
 2.3 - Class Instance: please review future tense
 2.4 - Enum Instance: Same as in 2.2, what is `Enum<T>` syntax?
 2.4.1 - Enum Constructor: list arguments
@@ -69,8 +69,8 @@ Unreviewed:
 2.1.3 - 数値の演算子
 2.1.4 - Bool(真偽値)
 2.1.5 - Void
-2.2 - Nullability
-2.2.1 - Optional Arguments and Nullability
+2.2 - Nullable(null許容型)
+2.2.1 - オプション引数とnull許容
 2.3 - Class Instance
 2.3.1 - Class constructor
 2.3.2 - Inheritance

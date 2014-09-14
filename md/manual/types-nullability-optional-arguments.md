@@ -1,8 +1,8 @@
-## 2.2.1 Optional Arguments and Nullability
+## 2.2.1 オプション引数とnull許容
 
-Optional arguments also have to be accounted for when considering nullability.
+null許容について考える場合、オプション引数についても考慮しなくてはいけません。
 
-In particular, there must be a distinction between **native** optional arguments which are not nullable and Haxe-specific optional arguments which might be. The distinction is made by using the question-mark optional argument:
+特に、null許容ではない**ネイティブ**のオプション引数と、それとは異なる、null許容であるHaxe特有のオプション引数があることです。この違いは以下のように、オプション引数にクエスチョンマークを付けることで作ります。
 
 ```haxe
 // x is a native Int (not nullable)
@@ -13,12 +13,12 @@ function bar( ?y : Int) {...}
 function opt( ?z : Int = -1) {...}
 ```
 
-> ##### Trivia: Argument vs. Parameter
+> ##### Trivia: アーギュメント(Argument)とパラメータ(Parameter)
 >
-> In some other programming languages, **argument** and **parameter** are used interchangeably.  In Haxe, **argument** is used when referring to methods and **parameter** refers to [Type Parameters](type-system-type-parameters.md).
+> 他のプログラミング言語では、よく**アーギュメント**と**パラメータ**は同様の意味として使われます。Haxeでは、関数に関連する場合に**アーギュメント**を、[Type Parameters](type-system-type-parameters.md)と関連する場合に**パラメータ**を使います。
 
 ---
 
-Previous section: [Nullability](types-nullability.md)
+Previous section: [Nullable(null許容型)](types-nullability.md)
 
 Next section: [Class Instance](types-class-instance.md)
