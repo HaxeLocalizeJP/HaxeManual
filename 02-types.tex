@@ -38,18 +38,18 @@ Haxeの型システムは、以下の7つの型を認識します。
 複合型というのは、従属する型を持つ型です。\tref{型パラメータ}{type-system-type-parameters}を持つ型や、\tref{関数}{types-function}型がこれに当たります。
 }
 
-\section{Basic Types}
+\section{基本型}
 \label{types-basic-types}
 
-\emph{Basic types} are \type{Bool}, \type{Float} and \type{Int}. They can easily be identified in the syntax by values such as
+\emph{基本型}は\type{Bool}と\type{Float}と\type{Int}です。文法上、これらの値は以下のように簡単に識別可能です。
 
 \begin{itemize}
-	\item \expr{true} and \expr{false} for \type{Bool},
-	\item \expr{1}, \expr{0}, \expr{-1} and \expr{0xFF0000} for \type{Int} and
-	\item \expr{1.0}, \expr{0.0}, \expr{-1.0}, \expr{1e10} for \type{Float}.
+	\item \expr{true}と\expr{false}は\type{Bool}。
+	\item \expr{1}、\expr{0}、\expr{-1}、\expr{0xFF0000}は\type{Int}。
+	\item \expr{1.0}、\expr{0.0}、\expr{-1.0}、\expr{1e10}は\type{Float}。
 \end{itemize}
 
-Basic types are not \tref{classes}{types-class-instance} in Haxe. They are implemented as \tref{abstract types}{types-abstract} and are tied to the compiler's internal operator-handling as described in the following sections.
+Haxeでは基本型は\tref{クラス}{types-class-instance}ではありません。これらは\tref{抽象型}{types-abstract}として実装されており、以降の節で解説するコンパイラ内部の演算処理に結び付けられています。
 
 \subsection{Numeric types}
 \label{types-numeric-types}
