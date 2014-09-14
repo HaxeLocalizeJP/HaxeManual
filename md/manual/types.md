@@ -5,10 +5,8 @@ Haxeコンパイラは豊かな型システムを持っており、これがコ�
 いくつかの言語では、この安全性を得るためには各構文での明示的な型の宣言が強いられるので、コストがかかります。
 
 ```haxe
-var myButton:MySpecialButton =
-  new MySpecialButton(); // As3
-MySpecialButton* myButton =
-  new MySpecialButton(); // C++ 
+var myButton:MySpecialButton = new MySpecialButton(); // AS3
+MySpecialButton* myButton = new MySpecialButton(); // C++ 
 ```
 
 一方、Haxeではコンパイラが型を**推論**できるため、この明示的な型注釈は必要ではありません。

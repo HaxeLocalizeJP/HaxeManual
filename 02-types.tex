@@ -61,11 +61,11 @@ Haxeでは基本型は\tref{クラス}{types-class-instance}ではありませ�
 \subsection{オーバーフロー}
 \label{types-overflow}
 
-パフォーマンスのため、Haxeコンパイラはオーバーフローに対する挙動を矯正しません。オーバーフローに対する挙動は、ターゲットのプラットフォームが責任を持ちます。いくつかのプラットフォームごとのオーバーフローの挙動を以下にまとめています。
+パフォーマンスのためにHaxeコンパイラはオーバーフローに対する挙動を矯正しません。オーバーフローに対する挙動は、ターゲットのプラットフォームが責任を持ちます。各プラットフォームごとのオーバーフローの挙動を以下にまとめています。
 
 \begin{description}
- \item[C++, Java, C\#, Neko, Flash:] 一般的な挙動をもつ32Bit符号付き整数
- \item[PHP, JS, Flash 8:] ネイティブの\emph{Int}型を持たない。Floatの上限(2\textsuperscript{52})を超えた場合に精度を失う。
+	\item[C++, Java, C\#, Neko, Flash:] 一般的な挙動をもつ32Bit符号付き整数。
+	\item[PHP, JS, Flash 8:] ネイティブの\emph{Int}型を持たない。Floatの上限(2\textsuperscript{52})を超えた場合に精度を失う。
 \end{description}
 
 代替手段として、プラットフォームごとの追加の計算を行う代わりに、正しいオーバーフローの挙動を持つ\emph{haxe.Int32}と\emph{haxe.Int64}クラスが用意されています。
@@ -130,7 +130,7 @@ Haxeでは基本型は\tref{クラス}{types-class-instance}ではありませ�
 
 \define[Type]{Bool}{define-bool}{真(\emph{true})または、偽(\emph{false})のどちらかになる値を表す。}
 
-\type{Bool}型の値は、\tref{\expr{if}}{expression-if}や\tref{\expr{while}}{expression-while}のような\emph{条件分岐}によく表れます。以下の演算子は、\type{Bool}値を受け取って\type{Bool}値を返します。
+\type{Bool}型の値は、\tref{\expr{if}}{expression-if}や\tref{\expr{while}}{expression-while}のような\emph{条件文}によく表れます。以下の演算子は、\type{Bool}値を受け取って\type{Bool}値を返します。
 
 \begin{itemize}
 	\item \expr{\&\&} (and)
