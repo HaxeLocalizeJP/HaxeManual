@@ -1,9 +1,9 @@
-\chapter{Types}
+\chapter{型}
 \label{types}
 
-The Haxe Compiler employs a rich type system which helps detecting type-related errors in a program at compile-time. A type error is an invalid operation on a given type such as dividing by a String, trying to access a field of an Integer or calling a function with not enough (or too many) arguments.
+Haxeコンパイラは豊かな型システムを持っており、これがコンパイル時に型エラーを検出することを手助けします。型エラーとは、文字列による割り算や、整数のフィールドへのアクセス、不十分な(あるいは多すぎる)引数での関数呼び出し、といった型が不正である演算のことです。
 
-In some languages this additional safety comes at a price because programmers are forced to explicitly assign types to syntactic constructs:
+いくつかの言語では安全性を得るために各構文での明示的な型の宣言が強いられるので、コストがかかります。
 
 \begin{lstlisting}
 var myButton:MySpecialButton =
@@ -11,29 +11,32 @@ var myButton:MySpecialButton =
 MySpecialButton* myButton =
   new MySpecialButton(); // C++ 
 \end{lstlisting}
-The explicit type annotations are not required in Haxe, because the compiler can \emph{infer} the type:
+
+一方、Haxeではコンパイラが型を\emph{推論}できるため、この明示的な型注釈は必要ではありません。
 
 \begin{lstlisting}
 var myButton = new MySpecialButton(); // Haxe
 \end{lstlisting}
-We will explore type inference in detail later in \Fullref{type-system-type-inference}. For now, it is sufficient to say that the variable \expr{myButton} in the above code is known to be an \emph{instance of class} \type{MySpecialButton}. 
 
-The Haxe type system knows seven type groups:
+型推論の詳細については\Fullref{type-system-type-inference}で説明します。今のところは、上のコードの変数\expr{myButton}は\type{MySpecialButton}の\emph{クラスインスタンス}とわかると言っておけば十分でしょう。
+
+Haxeの型システムは、以下の7つの型を認識します。
 
 \begin{description}
- \item[\emph{Class instance}:] an object of a given class or interface
- \item[\emph{Enum instance}:] a value of a Haxe enumeration
- \item[\emph{Structure}:] an anonymous structure, i.e. a collection of named fields
- \item[\emph{Function}:] a compound type of several arguments and one return
- \item[\emph{Dynamic}:] a wildcard type which is compatible with any type
- \item[\emph{Abstract}:] a compile-time type which is represented by a different type at runtime
- \item[\emph{Monomorph}:] an unknown type which may later become a different type
+ \item[\emph{クラスインスタンス}:] クラスかインスタンスのオブジェクト
+ \item[\emph{列挙インスタンス}:] Haxeの列挙型(enum)の値
+ \item[\emph{構造体}:] 匿名の構造体。例えば、連想配列。
+ \item[\emph{関数}:] 引数と戻り値1つの型の複合型。
+ \item[\emph{ダイナミック}:] あらゆる型に一致する、なんでも型。
+ \item[\emph{抽象}:] 実行時には別の型となる、コンパイル時の型。
+ \item[\emph{単態}:] 後で別の型が付けられる未知(Unknown)の型。
 \end{description}
 
-We will describe each of these type groups and how they relate to each other in the next chapters.
+ここからの節で、それぞれの型のグループとこれらがどうかかわっているのかについて解説していきます。
 
-\define{Compound Type}{define-compound-type}{A compound type is a type which has sub-types. This includes any type with \tref{type parameters}{type-system-type-parameters} and the \tref{function}{types-function} type.}
-
+\define{複合型(Compound Type)}{define-compound-type}{
+複合型というのは、従属する型を持つ型です。\tref{型パラメータ}{type-system-type-parameters}を持つ型や、\tref{関数}{types-function}型がこれに当たります。
+}
 
 \section{Basic Types}
 \label{types-basic-types}
