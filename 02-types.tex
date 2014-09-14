@@ -3,13 +3,11 @@
 
 Haxeコンパイラは豊かな型システムを持っており、これがコンパイル時に型エラーを検出することを手助けします。型エラーとは、文字列による割り算や、整数のフィールドへのアクセス、不十分な(あるいは多すぎる)引数での関数呼び出し、といった型が不正である演算のことです。
 
-いくつかの言語では安全性を得るために各構文での明示的な型の宣言が強いられるので、コストがかかります。
+いくつかの言語では、この安全性を得るためには各構文での明示的な型の宣言が強いられるので、コストがかかります。
 
 \begin{lstlisting}
-var myButton:MySpecialButton =
-  new MySpecialButton(); // As3
-MySpecialButton* myButton =
-  new MySpecialButton(); // C++ 
+var myButton:MySpecialButton = new MySpecialButton(); // AS3
+MySpecialButton* myButton = new MySpecialButton(); // C++ 
 \end{lstlisting}
 
 一方、Haxeではコンパイラが型を\emph{推論}できるため、この明示的な型注釈は必要ではありません。
@@ -28,8 +26,8 @@ Haxeの型システムは、以下の7つの型を認識します。
  \item[\emph{構造体}:] 匿名の構造体。例えば、連想配列。
  \item[\emph{関数}:] 引数と戻り値1つの型の複合型。
  \item[\emph{ダイナミック}:] あらゆる型に一致する、なんでも型。
- \item[\emph{抽象}:] 実行時には別の型となる、コンパイル時の型。
- \item[\emph{単態}:] 後で別の型が付けられる未知(Unknown)の型。
+ \item[\emph{抽象(abstract)}:] 実行時には別の型となる、コンパイル時の型。
+ \item[\emph{単態(monomorph)}:] 後で別の型が付けられる未知(Unknown)の型。
 \end{description}
 
 ここからの節で、それぞれの型のグループとこれらがどうかかわっているのかについて解説していきます。
@@ -49,29 +47,30 @@ Haxeの型システムは、以下の7つの型を認識します。
 	\item \expr{1.0}、\expr{0.0}、\expr{-1.0}、\expr{1e10}は\type{Float}。
 \end{itemize}
 
-Haxeでは基本型は\tref{クラス}{types-class-instance}ではありません。これらは\tref{抽象型}{types-abstract}として実装されており、以降の節で解説するコンパイラ内部の演算処理に結び付けられています。
+Haxeでは基本型は\tref{クラス}{types-class-instance}ではありません。これらは\tref{抽象型}{types-abstract}として実装されており、以降の項で解説するコンパイラ内部の演算処理に結び付けられています。
 
-\subsection{Numeric types}
+\subsection{数値型}
 \label{types-numeric-types}
 
-\define[Type]{Float}{define-float}{Represents a double-precision IEEE 64-bit floating point number.}
+\define[Type]{Float}{define-float}{IEEEの64bit倍精度浮動小数点数を表します。}
 
-\define[Type]{Int}{define-int}{Represents an integral number.}
-While every \type{Int} can be used where a \type{Float} is expected (that is, \type{Int} \emph{is assignable to} or \emph{unifies with} \type{Float}), the reverse is not true: Assigning a \type{Float} to an \type{Int} might lose precision and is not allowed implicitly.
+\define[Type]{Int}{define-int}{整数を表します。}
 
-\subsection{Overflow}
+\type{Int}は\type{Float}が期待されるすべての場所で使用することが可能です (IntはFloatへの代入が可能で、Floatとして表現可能です)。ですが、逆はできません。 \type{Float}から\type{Int}への代入は精度を失ってしまう場合があり、信頼できません。
+
+\subsection{オーバーフロー}
 \label{types-overflow}
 
-For performance reasons, the Haxe Compiler does not enforce any overflow behavior. The burden of checking for overflows falls to the target platform. Here are some platform specific notes on overflow behavior:
+パフォーマンスのため、Haxeコンパイラはオーバーフローに対する挙動を矯正しません。オーバーフローに対する挙動は、ターゲットのプラットフォームが責任を持ちます。いくつかのプラットフォームごとのオーバーフローの挙動を以下にまとめています。
 
 \begin{description}
- \item[C++, Java, C\#, Neko, Flash:] 32-bit signed integers with usual overflow practices 
- \item[PHP, JS, Flash 8:] No native \emph{Int} type, loss of precision will occur if they reach their float limit (2\textsuperscript{52})
+ \item[C++, Java, C\#, Neko, Flash:] 一般的な挙動をもつ32Bit符号付き整数
+ \item[PHP, JS, Flash 8:] ネイティブの\emph{Int}型を持たない。Floatの上限(2\textsuperscript{52})を超えた場合に精度を失う。
 \end{description}
 
-Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used to ensure correct overflow behavior regardless of the platform at the cost of additional computations depending on the platform.
+代替手段として、プラットフォームごとの追加の計算を行う代わりに、正しいオーバーフローの挙動を持つ\emph{haxe.Int32}と\emph{haxe.Int64}クラスが用意されています。
 
-\subsection{Numeric Operators}
+\subsection{数値の演算子}
 \label{types-numeric-operators}
 
 \todo{make sure the types are right for inc, dec, negate, and bitwise negate}
@@ -80,58 +79,58 @@ Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used t
 \begin{center}
 \begin{tabular}{| l | l | l | l | l |}
 	\hline
-	\multicolumn{5}{|c|}{Arithmetic} \\ \hline
-	Operator & Operation & Argument 1 & Argument 2 & Return \\ \hline
-	\expr{++}& increment & \type{Int} & N/A & \type{Int}\\
-	& & \type{Float} & N/A & \type{Float}\\
-	\expr{--} & decrement & \type{Int} & N/A & \type{Int}\\
-	& & \type{Float} & N/A & \type{Float}\\
-	\expr{+} & addition & \type{Float} & \type{Float} & \type{Float} \\
+	\multicolumn{5}{|c|}{算術演算} \\ \hline
+	演算子 & 演算 & 引数1 & 引数2 & 戻り値 \\ \hline
+	\expr{++} & 1増加 & \type{Int} & なし & \type{Int}\\
+	& & \type{Float} & なし & \type{Float}\\
+	\expr{--} & 1減少 & \type{Int} & なし & \type{Int}\\
+	& & \type{Float} & なし & \type{Float}\\
+	\expr{+} & 加算 & \type{Float} & \type{Float} & \type{Float} \\
 	& & \type{Float} & \type{Int} & \type{Float} \\
 	& & \type{Int} & \type{Float} & \type{Float} \\
 	& & \type{Int} & \type{Int} & \type{Int} \\
-	\expr{-} & subtraction & \type{Float} & \type{Float} & \type{Float} \\
+	\expr{-} & 減算 & \type{Float} & \type{Float} & \type{Float} \\
 	& & \type{Float} & \type{Int} & \type{Float} \\
 	& & \type{Int} & \type{Float} & \type{Float} \\
 	& & \type{Int} & \type{Int} & \type{Int} \\
-	\expr{*} & multiplication & \type{Float} & \type{Float} & \type{Float} \\
+	\expr{*} & 乗算 & \type{Float} & \type{Float} & \type{Float} \\
 	& & \type{Float} & \type{Int} & \type{Float} \\
 	& & \type{Int} & \type{Float} & \type{Float} \\
 	& & \type{Int} & \type{Int} & \type{Int} \\	
-	\expr{/} & division & \type{Float} & \type{Float} & \type{Float} \\
+	\expr{/} & 除算 & \type{Float} & \type{Float} & \type{Float} \\
 	& & \type{Float} & \type{Int} & \type{Float} \\
 	& & \type{Int} & \type{Float} & \type{Float} \\
 	& & \type{Int} & \type{Int} & \type{Float} \\
-	\expr{\%} & modulo & \type{Float} & \type{Float} & \type{Float} \\
+	\expr{\%} & 剰余 & \type{Float} & \type{Float} & \type{Float} \\
 	& & \type{Float} & \type{Int} & \type{Float} \\
 	& & \type{Int} & \type{Float} & \type{Float} \\
 	& & \type{Int} & \type{Int} & \type{Int} \\	 \hline
-	\multicolumn{5}{|c|}{Comparison} \\ \hline
-	Operator & Operation & Argument 1 & Argument 2 & Return \\ \hline
-	\expr{==} & equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
-	\expr{!=} & not equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
-	\expr{<} & less than & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
-	\expr{<=} & less than or equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
-	\expr{>} & greater than & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
-	\expr{>=} & great than or equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\ \hline
-	\multicolumn{5}{|c|}{Bitwise} \\ \hline
-	Operator & Operation & Argument 1 & Argument 2 & Return \\ \hline
-	\expr{\textasciitilde} & bitwise negation & \type{Int} & N/A & \type{Int} \\	
-	\expr{\&} & bitwise and & \type{Int} & \type{Int} & \type{Int} \\	
-	\expr{|} & bitwise or & \type{Int} & \type{Int} & \type{Int} \\	
-	\expr{\^} & bitwise xor & \type{Int} & \type{Int} & \type{Int} \\	
-	\expr{<<} & shift left & \type{Int} & \type{Int} & \type{Int} \\
-	\expr{>>} & shift right & \type{Int} & \type{Int} & \type{Int} \\
-	\expr{>>>} & unsigned shift right & \type{Int} & \type{Int} & \type{Int} \\ \hline
+	\multicolumn{5}{|c|}{比較演算} \\ \hline
+	演算子 & 演算 & 引数1 & 引数2 & 戻り値 \\ \hline
+	\expr{==} & 等価 & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
+	\expr{!=} & 不等価 & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
+	\expr{<} & より小さい & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
+	\expr{<=} & より小さいか等しい & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
+	\expr{>} & より大きい & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
+	\expr{>=} & より大きいか等しい & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\ \hline
+	\multicolumn{5}{|c|}{ビット演算} \\ \hline
+	演算子 & 演算 & 引数1 & 引数2 & 戻り値 \\ \hline
+	\expr{\textasciitilde} & ビット単位の否定(NOT) & \type{Int} & なし & \type{Int} \\	
+	\expr{\&} & ビット単位の論理積(AND) & \type{Int} & \type{Int} & \type{Int} \\	
+	\expr{|} & ビット単位の論理和(OR) & \type{Int} & \type{Int} & \type{Int} \\	
+	\expr{\^} & ビット単位の排他的論理和(XOR) & \type{Int} & \type{Int} & \type{Int} \\	
+	\expr{<<} & 左シフト & \type{Int} & \type{Int} & \type{Int} \\
+	\expr{>>} & 右シフト & \type{Int} & \type{Int} & \type{Int} \\
+	\expr{>>>} & 符号なしの右シフト & \type{Int} & \type{Int} & \type{Int} \\ \hline
 \end{tabular}
 \end{center}
 
-\subsection{Bool}
+\subsection{Bool(真偽値)}
 \label{types-bool}
 
-\define[Type]{Bool}{define-bool}{Represents a value which can be either \emph{true} or \emph{false}.}
+\define[Type]{Bool}{define-bool}{真(\emph{true})または、偽(\emph{false})のどちらかになる値を表す。}
 
-Values of type \type{Bool} are a common occurence in \emph{conditions} such as \tref{\expr{if}}{expression-if} and \tref{\expr{while}}{expression-while}. The following \emph{operators} accept and return \type{Bool} values:
+\type{Bool}型の値は、\tref{\expr{if}}{expression-if}や\tref{\expr{while}}{expression-while}のような\emph{条件分岐}によく表れます。以下の演算子は、\type{Bool}値を受け取って\type{Bool}値を返します。
 
 \begin{itemize}
 	\item \expr{\&\&} (and)
@@ -139,31 +138,31 @@ Values of type \type{Bool} are a common occurence in \emph{conditions} such as \
 	\item \expr{!} (not)
 \end{itemize}
 
-Haxe guarantees that compound boolean expressions are evaluated from left to right and only as far as necessary at run-time. For instance, an expression like \expr{A \&\& B} will evaluate \expr{A} first and evaluate \expr{B} only if the evaluation of \expr{A} yielded \expr{true}. Likewise, the expressions \expr{A || B} will not evaluate \expr{B} if the evaluation of \expr{A} yielded \expr{true}, because the value of \expr{B} is irrelevant in that case. This is important in cases such as this:
+Haxeは、Bool値の2項演算は、実行時に左から右へ必要な分だけ評価することを保証します。例えば、\expr{A \&\& B}という式は、まず\expr{A}を評価して\expr{A}が\expr{true}だった場合のみ\expr{B}が評価されます。同じように、\expr{A || B}では\expr{A}が\expr{true}だった場合は、\expr{B}の値は意味を持たないので評価されません。
+
+これは、以下のような場合に重要です。
 
 \begin{lstlisting}
-if (object != null && object.field == 1)
-  { ... }
+if (object != null && object.field == 1) {
+  ...
+}
 \end{lstlisting}
 
-Accessing \expr{object.field} if \expr{object} is \expr{null} would lead to a run-time error, but the check for \expr{object != null} guards against it.
-
-
-
+\expr{object}が\expr{null}の場合に\expr{object.field}にアクセスするとランタイムエラーになりますが、事前に\expr{object != null}のチェックをすることでエラーから守ることができます。
 
 \subsection{Void}
 \label{types-void}
 
-\define[Type]{Void}{define-void}{Void denotes the absence of a type. It is used to express that something (usually a function) has no value.}
+\define[Type]{Void}{define-void}{Voidは型が存在しないことを表します。特定の場面(主に関数)で値を持たないことを表現するのに使います。}
 
-\type{Void} is a special case in the type system because it is not actually a type. It is used to express the absence of a type, which applies mostly to function arguments and return types.
-We have already ``seen'' Void in the initial ``Hello World'' example:
+Voidは型システムにおける特殊な場合です。Voidは実際には型ではありません。Voidは特に関数の引数と戻り値で型が存在しないことを表現するのに使います。私たちはすでに最初の``Hello World''の例でVoidを使用しています。
 \todo{please review, doubled content}
 
 \haxe{assets/HelloWorld.hx}
 
-The function type will be explored in detail in the section \Fullref{types-function} but a quick preview helps here: The type of the function \expr{main} in the example above is \type{Void->Void}, which reads as ``it has no arguments and returns nothing''.
-Haxe does not allow fields and variables of type \type{Void} and will complain if an attempt at declaring such is made:
+関数型について詳しくは\Fullref{types-function}で解説しますが、ここで軽く予習をしておきましょう。上の例の\expr{main}関数は\type{Void->Void}型です。これは``引数は無く、戻り値も無い''という意味です。
+
+Haxeでは、フィールドや変数に対してVoidを指定することはできません。以下のように書こうとするとエラーが発生します。
 \todo{review please, sounds weird}
 
 \begin{lstlisting}
