@@ -173,30 +173,27 @@ var x:Void;
 
 
 
-\section{Nullability}
+\section{Nullable(null許容型)}
 \label{types-nullability}
 
-\define{nullable}{define-nullable}{A type in Haxe is considered \emph{nullable} if \expr{null} is a valid value for it.}
+\define{Nullable}{define-nullable}{Haxeでは、ある型が値として\expr{null}をとる場合に\emph{Nullable}(null許容型)であるとみなす。}
 
-It is common for programming languages to have a single, clean definition for nullability. However, Haxe has to find a compromise in this regard due to the nature of Haxe's target languages: While some of them allow and; in fact, default to \expr{null} for anything, others do not even allow \expr{null} for certain types. This necessitates the distinction of two types of target languages:
+プログラミング言語には、Nullableについてなにか1つ明確な定義を持つのが一般的です。ですが、Haxeではターゲットとなる言語のもともとの挙動に従うことで妥協しています。ターゲット言語のうちのいくつかは全てがデフォルト値として\expr{null}をとり、その他は特定の型では\expr{null}を許容しません。つまり、以下の2種類の言語を区別しなくてはいけません。
 
-\define{Static target}{define-static-target}{Static targets employ their own type system where \expr{null} is not a valid value for basic types. This is true for the \target{Flash}, \target{C++}, \target{Java} and \target{C\#} targets.}
-
-\define{Dynamic target}{define-dynamic-target}{Dynamic targets are more lenient with their types and allow \expr{null} values for basic types. This applies to the \target{JavaScript}, \target{PHP}, \target{Neko} and \target{Flash 6-8} targets.}
-
-There is nothing to worry about when working with \expr{null} on dynamic targets; however, static ones may require some thought. For starters, basic types are initialized to their default values.
+\define{静的ターゲット}{define-static-target}{静的ターゲットでは、その言語自体が基本型が\expr{null}を許容しないような型システムを持っています。この性質は\target{Flash}、\target{C++}、\target{Java}、\target{C\#}ターゲットに当てはまります。}
+\define{動的ターゲット}{define-dynamic-target}{動的ターゲットはもっと型に関して寛容で、基本型が\expr{null}を許容します。これは\target{JavaScript}と\target{PHP}、\target{Neko}、\target{Flash 6-8}ターゲットが当てはまります。}
 \todo{for starters...please review}
 
-\define{Default values}{define-default-value}{
-	Basic types have the following default values on static targets:
-	\begin{description}
-		\item[\type{Int}:] \expr{0}
-		\item[\type{Float}:] \expr{NaN} on \target{Flash}, \expr{0.0} on other static targets
-		\item[\type{Bool}:] \expr{false}
+\define{デフォルト値}{define-default-value}{
+  基本型は、静的ターゲットではデフォルト値は以下になります。
+  \begin{description}
+		\item[\type{Int}:] \expr{0}。
+		\item[\type{Float}:] \target{Flash}では\expr{NaN}。その他の静的ターゲットでは\expr{0.0}。
+		\item[\type{Bool}:] \expr{false}。
 	\end{description}
 }
 
-As a consequence, the Haxe Compiler does not allow the assignment of \expr{null} to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as \type{Null$<$T$>$}:
+その結果、Haxeコンパイラは静的ターゲットでは基本型に対する\expr{null}を代入することはできません。\expr{null}を代入するためには、以下のように基本型を\type{Null$<$T$>$}で囲う必要があります。
 
 \begin{lstlisting}
 // error on static platforms
@@ -204,7 +201,7 @@ var a:Int = null;
 var b:Null<Int> = null; // allowed
 \end{lstlisting}
 
-Similarly, basic types cannot be compared to \expr{null} unless wrapped:
+同じように、基本型は\type{Null$<$T$>$}で囲わなければ\expr{null}と比較することはできません。
 
 \begin{lstlisting}
 var a : Int = 0;
@@ -214,11 +211,11 @@ var b : Null<Int> = 0;
 if( b != null ) { ... } // allowed
 \end{lstlisting}
 
-This restriction extends to all situations where \tref{unification}{type-system-unification} is performed.
+この制限は\tref{unification}{type-system-unification}が動作するすべての状況でかかります。
 
-\define[Type]{\expr{Null<T>}}{define-null-t}{On static targets the types \type{Null<Int>}, \type{Null<Float>} and \type{Null<Bool>} can be used to allow \expr{null} as a value. On dynamic targets this has no effect. \type{Null<T>} can also be used with other types in order to document that \expr{null} is an allowed value.}
+\define[Type]{\expr{Null<T>}}{define-null-t}{静的ターゲットでは、\type{Null<Int>}、\type{Null<Float>}、\type{Null<Bool>}の型で\expr{null}を許容することが可能になります。動的ターゲットでは\expr{Null<T>}に効果はありません。また、\expr{Null<T>}はその型が\expr{null}を持つことを表すドキュメントとしても使うことができます。}
 
-If a \expr{null}-value is ``hidden'' in \type{Null$<$T$>$} or \type{Dynamic} and assigned to a basic type, the default value is used:
+nullの値は隠匿されます。つまり、\type{Null$<$T$>$}や\type{Dynamic}のnullの値を基本型に代入した場合には、デフォルト値が使用されます。
 
 \begin{lstlisting}
 var n : Null<Int> = null;
@@ -228,12 +225,12 @@ trace(a); // 0 on static platforms
 
 
 
-\subsection{Optional Arguments and Nullability}
+\subsection{オプション引数とnull許容}
 \label{types-nullability-optional-arguments}
 
-Optional arguments also have to be accounted for when considering nullability.
+null許容について考える場合、オプション引数についても考慮しなくてはいけません。
 
-In particular, there must be a distinction between \emph{native} optional arguments which are not nullable and Haxe-specific optional arguments which might be. The distinction is made by using the question-mark optional argument:
+特に、null許容ではない\emph{ネイティブ}のオプション引数と、それとは異なる、null許容であるHaxe特有のオプション引数があることです。この違いは以下のように、オプション引数にクエスチョンマークを付けることで作ります。
 
 \begin{lstlisting}
 // x is a native Int (not nullable)
@@ -245,7 +242,7 @@ function opt( ?z : Int = -1) {...}
 \end{lstlisting}
 \todo{Is there a difference between \type{?y : Int} and \type{y : Null$<$Int$>$} or can you even do the latter? Some more explanation and examples with native optional and Haxe optional arguments and how they relate to nullability would be nice.}
 
-\trivia{Argument vs. Parameter}{In some other programming languages, \emph{argument} and \emph{parameter} are used interchangeably.  In Haxe, \emph{argument} is used when referring to methods and \emph{parameter} refers to \Fullref{type-system-type-parameters}.}
+\trivia{アーギュメント(Argument)とパラメータ(Parameter)}{他のプログラミング言語では、よく\emph{アーギュメント}と\emph{パラメータ}は同様の意味として使われます。Haxeでは、関数に関連する場合に\emph{アーギュメント}を、\Fullref{type-system-type-parameters}と関連する場合に\emph{パラメータ}を使います。}
 
 \section{Class Instance}
 \label{types-class-instance}
