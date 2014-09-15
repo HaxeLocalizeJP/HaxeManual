@@ -9,7 +9,7 @@
 
 この型はすべてのクラスの型と一致します。つまり、すべてのクラス(インスタンスではなくクラス)をこれに代入することができます。コンパイル時に、`Class<T>`は全てのクラスの型の共通の親の型となります。しかし、この関係性は生成されたコードに影響を与えません。
 
-この型は、任意のクラスを要求するようなAPIで有用です。例えば、[HaxeリフレクションAPI](std-reflection.md)のいくつかのメソッドがこれに当てはまります。
+この型は、任意のクラスを要求するようなAPIで役立ちます。例えば、[HaxeリフレクションAPI](std-reflection.md)のいくつかのメソッドがこれに当てはまります。
 
 
 <a name="define-enum-t" class="anch"></a>
@@ -197,7 +197,7 @@ A write access to a field occurs when a [field access expression](expression-fie
 <a name="define-dynamic-target" class="anch"></a>
 
 ##### 動的ターゲット
-動的ターゲットはもっと型に関して寛容で、基本型が`null`を許容します。これはJavaScriptとPHP、Neko、Flash 6-8ターゲットが当てはまります。
+動的ターゲットは型に関して寛容で、基本型が`null`を許容します。これはJavaScriptとPHP、Neko、Flash 6-8ターゲットが当てはまります。
 
 <a name="define-definition" class="anch"></a>
 

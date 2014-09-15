@@ -22,12 +22,12 @@ class Point implements Printable { }
 `implements`キーワードの記述により、"`Point`は`Printable`である(is-a)"の関係性が生まれます。つまり、すべての`Point`のインスタンスは、`Printable`のインスタンスでもあります。クラスは親のクラスを1つしか持てませんが、以下のように複数の`implements`キーワードを使用することで複数のインターフェースを実装(implements)することが可能です。
 
 ```haxe
-class Point implements Printable　implements Serializable
+class Point implements Printable implements Serializable
 ```
 
-コンパイラは実装が条件を満たしているかの確認を行います。つまり、クラスが実際にインターフェースで要求されるフィールドを実装しているか確かめられるということです。フィールドの実装は、そのクラス自体と、その親となるいづれかのクラスの実装が考慮されます。
+コンパイラは実装が条件を満たしているかの確認を行います。つまり、クラスが実際にインターフェースで要求されるフィールドを実装しているかを確めます。フィールドの実装は、そのクラス自体と、その親となるいずれかのクラスの実装が考慮されます。
 
-インターフェースフィールドは、変数とプロパティのどちらであるかに対する制限は与えません:
+インターフェースのフィールドは、変数とプロパティのどちらであるかに対する制限は与えません:
 
 ```haxe
 interface Placeable {
