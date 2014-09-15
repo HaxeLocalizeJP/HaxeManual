@@ -6,4 +6,4 @@
 
 Previous section: [構造体の型のクラス記法](types-structure-class-notation.md)
 
-Next section: [Function Type](types-function.md)
+Next section: [関数型](types-function.md)

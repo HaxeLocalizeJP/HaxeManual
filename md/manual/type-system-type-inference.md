@@ -12,7 +12,7 @@ class TypeInference {
   }
 }
 ```
-The special construct `$type` was previously mentioned in order to simplify the explanation of the [Function Type](types-function.md) type, so let us introduce it officially now:
+The special construct `$type` was previously mentioned in order to simplify the explanation of the [関数型](types-function.md) type, so let us introduce it officially now:
 
 > ##### Define: `$type`
 >

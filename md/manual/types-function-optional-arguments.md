@@ -1,6 +1,6 @@
-## 2.6.1 Optional Arguments
+## 2.6.1 オプション引数
 
-Optional arguments are declared by prefixing an argument identifier with a question mark `?`:
+オプション引数は、引数の識別子の直前にクエスチョンマーク(`?`)を付けることで表現できます。
 
 ```haxe
 class OptionalArguments {
@@ -18,20 +18,22 @@ class OptionalArguments {
   }
 }
 ```
-Function `test` has two optional arguments: `i` of type `Int` and `s` of `String`. This is directly reflected in the function type output by line 3. 
-This example program calls `test` four times and prints its return value.
 
-1. The first call is made without any arguments.
-2. The second call is made with a singular argument `1`.
-3. The third call is made with two arguments `1` and `"foo"`.
-4. The fourth call is made with a singular argument `"foo"`.
+`test`関数は、2つのオプション引数を持ちます。`Int`型の`i`と`String`型の`s`です。これは3行目の関数型の出力に直接反映されています。
 
-The output shows that optional arguments which are omitted from the call have a value of `null`. This implies that the type of these arguments must admit `null` as value, which raises the question of its [nullability](types-nullability.md). The Haxe Compiler ensures that optional basic type arguments are nullable by inferring their type as `Null<T>` when compiling to a [static target](dictionary.md#define-static-target).
+この例では、関数を4回呼び出しその結果を出力しています。
 
-While the first three calls are intuitive, the fourth one might come as a surprise: It is indeed allowed to skip optional arguments if the supplied value is assignable to a later argument.
+1. 初めの呼び出しは引数無し。
+2. 2番目の呼び出しは`1`のみの引数。
+3. 3番目の呼び出しは`1`と`"foo"`の2つの引数。
+4. 4番目の呼び出しは`"foo"`のみの引数。
+
+この出力を見ると、オプション引数が呼び出し時に省略されると`null`になることがわかります。つまり、これらの引数は`null`が入る型でなくてはいけないことになり、ここで[null許容](types-nullability.md)に関する疑問が浮かび上がります。Haxeのコンパイラは[静的ターゲット](dictionary.md#define-static-target)に出力する場合に、オプションの基本型の引数の型を`Null<T>`であると推論することで、オプション引数の型がnull許容であることを保証してます。
+
+初めの3つの呼び出しは直観的なものですが、4つ目の呼び出しには驚くかもしれません。後の引数に代入可能な値が渡された場合に、オプション引数はスキップされてしまいます。
 
 ---
 
-Previous section: [Function Type](types-function.md)
+Previous section: [関数型](types-function.md)
 
-Next section: [Default values](types-function-default-values.md)
+Next section: [デフォルト値](types-function-default-values.md)

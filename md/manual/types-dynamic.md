@@ -47,6 +47,6 @@ Although the return type of `Json.parse` is `Dynamic`, the type of local variabl
 
 ---
 
-Previous section: [Default values](types-function-default-values.md)
+Previous section: [デフォルト値](types-function-default-values.md)
 
 Next section: [Dynamic with Type Parameter](types-dynamic-with-type-parameter.md)
