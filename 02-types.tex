@@ -286,22 +286,25 @@ var p = new Point(-1, 65);
 この例で、変数\expr{p}に代入されたのが\type{Point}クラスのインスタンスです。\type{Point}のコンストラクタは\expr{-1}と\expr{65}の2つの引数を受け取り、これらをそれぞれインスタンスの\expr{x}と\expr{y}の変数に代入しています(\Fullref{types-class-instance}で、定義を確認してください)。\expr{new}の正確な意味については、後の\ref{expression-new}の節で再習します。現時点では、\expr{new}はクラスのコンストラクタを呼び、適切なオブジェクトを返すものと考えておきましょう。
 
 
-\subsection{Inheritance}
+\subsection{継承}
 \label{types-class-inheritance}
 
-Classes may inherit from other classes, which in Haxe is denoted by the \expr{extends} keyword:
+クラスは他のクラスから継承ができます。Haxeでは、継承は\expr{extends}キーワードを使って行います。
 
 \haxe{assets/Point3.hx}
-This relation is often described as "is-a": Any instance of class \type{Point3} is also an instance of \type{Point}. \type{Point} is then known as the \emph{parent class} of \type{Point3}, which is a \emph{child class} of \type{Point}. A class may have many child classes, but only one parent class. The term ``a parent class of class X'' usually refers to its direct parent class, the parent class of its parent class and so on.
 
-The code above is very similar to the original \type{Point} class, with two new constructs being shown:
+この関係は、よく"BはAである(is-a)"の関係とよく言われます。つまり、すべての\type{Point3}クラスのインスタンスは、同時に\type{Point}のインスタンスである、ということです。\type{Point}は\type{Point3}の\emph{親クラス}であると言い、\type{Point3}は\type{Point}の\emph{子クラス}であると言います。1つのクラスはたくさんの子クラスを持つことができますが、親クラスは1つしか持つことができません。ただし、``クラスXの親クラス''というのは、直接の親クラスだけでなく、親クラスの親クラスや、そのまた親、また親のクラスなどを指すこともよくあります。
+
+上記のクラスは\type{Point}コンストラクタによく似ていますが、2つの新しい構文が登場しています。
+
 \begin{itemize}
- \item \expr{extends Point} denotes that this class inherits from class \type{Point}
- \item \expr{super(x, y)} is the call to the constructor of the parent class, in this case \expr{Point.new}
+	\item \expr{extends Point}　は\type{Point}からの継承を意味します。
+	\item \expr{super(x, y)}　は親クラスのコンストラクタを呼び出します。この場合は\expr{Point.new}です。
 \end{itemize}
-It is not necessary for child classes to define their own constructors, but if they do, a call to \expr{super()} is mandatory. Unlike some other object-oriented languages, this call can appear anywhere in the constructor code and does not have to be the first expression.
 
-A class may override \tref{methods}{class-field-method} of its parent class, which requires the explicit \expr{override} keyword. The effects and restrictions of this are detailed in \Fullref{class-field-overriding}.
+上の例ではコンストラクタを定義していますが、子クラスで自分自身のコンストラクタを定義する必要はありません。ただし、コンストラクタを定義する場合\expr{super()}の呼び出しが必須になります。他のよくあるオブジェクト指向言語とは異なり、\expr{super()}はコンストラクタの最初である必要はなく、どこで呼び出しても構いません。
+
+また、クラスはその親クラスの\tref{メソッド}{class-field-method}を\expr{override}キーワードを明示して記述することで上書きすることができます。その効果と制限について詳しくは\Fullref{class-field-overriding}であつかいます。
 
 
 \subsection{Interfaces}
