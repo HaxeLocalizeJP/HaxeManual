@@ -38,4 +38,4 @@ class Main {
 
 Previous section: [列挙型のコンストラクタ](types-enum-constructor.md)
 
-Next section: [Anonymous Structure](types-anonymous-structure.md)
+Next section: [匿名の構造体](types-anonymous-structure.md)

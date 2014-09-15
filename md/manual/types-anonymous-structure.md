@@ -1,6 +1,6 @@
-## 2.5 Anonymous Structure
+## 2.5 匿名の構造体
 
-Anonymous structures can be used to group data without explicitly creating a type. The following example creates a structure with two fields `x` and `name`, and initializes their values to `12` and `"foo"` respectively:
+匿名の構造体は、型を明示せずに利用できるデータの集まりです。以下の例では、`x`と`name`の2つのフィールドを持つ構造体を生成して、それぞれを`12`と`"foo"`の値で初期化しています。
 
 ```haxe
 class Structure {
@@ -9,14 +9,15 @@ class Structure {
   }
 }
 ```
-The general syntactic rules follow:
 
-1. A structure is enclosed in curly braces `{}` and
-2. Has a **comma-separated** list of key-value-pairs.
-3. A **colon** separates the key, which must be a valid [identifier](dictionary.md#define-identifier), from the value.
-4. The value can be any Haxe expression.
+構文のルールは以下の通りです :
 
-Rule 4 implies that structures can be nested and complex, e.g.:
+1. 構造体は中カッコ `{}` で囲う。
+2. **カンマで区切られた** キーと値のペアのリストを持つ。
+3. [識別子](dictionary.md#define-identifier)の条件を満たすカギと、値が**コロン**で区切られる。
+4. 値には、Haxeのあらゆる式が当てはまる。
+
+ルール4 は複雑にネストした構造体を含む。例えば、以下のような。
 
 ```haxe
 var user = {
@@ -28,7 +29,7 @@ var user = {
   ],
 };
 ```
-Fields of structures, like classes, are accessed using a **dot** (`.`) like so:
+構造体のフィールドは、クラスと同じように、**ドット**(`.`)を使ってアクセスします。
 
 ```haxe
 // get value of name, which is "Nicolas"
@@ -36,7 +37,7 @@ user.name;
 // set value of age to 33
 user.age = 33;
 ```
-It is worth noting that using anonymous structures does not subvert the typing system. The compiler ensures that only available fields are accessed, which means the following program does not compile:
+特筆すべきは、匿名の構造体の使用は型システムを崩壊させないことです。コンパイラは、実際に利用可能なフィールドにしかアクセスを許しません。つまり、以下のようなコードはコンパイルできません。
 
 ```haxe
 class Test {
@@ -47,8 +48,8 @@ class Test {
   }
 }
 ```
-The error message indicates that the compiler knows the type of `point`: It is a structure with fields `x` and `y` of type `Float`. Since it has no field `z`, the access fails.
-The type of `point` is known through [type inference](type-system-type-inference.md), which thankfully saves us from using explicit types for local variables. However, if `point` was a field, explicit typing would be necessary:
+このエラーメッセージはコンパイラが`point`の型を知っていることを表します。この`point`の型は、`x`と`y`の`Float`型のフィールドを持つ構造体であり、`z`というフィールドは持たないのでアクセスに失敗しました。
+この`point`の型は[型推論](type-system-type-inference.md)により識別され、そのおかげでローカル変数では型を明示しなくて済みます。ただし、`point`が、クラスやインスタンスのフィールドだった場合、以下のように型の明示が必要になります。
 
 ```haxe
 class Path {
@@ -57,7 +58,8 @@ class Path {
     var current : { x : Int, y : Int };
 }
 ```
-To avoid this kind of redundant type declaration, especially for more complex structures, it is advised to use a [typedef](type-system-typedef.md):
+
+このような冗長な型の宣言をさけるため、特にもっと複雑な構造体の場合、以下のように[typedef](type-system-typedef.md)を使うことをお勧めします。
 
 ```haxe
 typedef Point = { x : Int, y : Int }
@@ -73,4 +75,4 @@ class Path {
 
 Previous section: [列挙型を使う](types-enum-using.md)
 
-Next section: [JSON for Structure Values](types-structure-json.md)
+Next section: [JSONで構造体を書く](types-structure-json.md)

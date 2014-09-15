@@ -27,6 +27,6 @@ If a function type has other function types as argument or return type, parenthe
 
 ---
 
-Previous section: [Impact on Performance](types-structure-performance.md)
+Previous section: [パフォーマンスへの影響](types-structure-performance.md)
 
 Next section: [Optional Arguments](types-function-optional-arguments.md)

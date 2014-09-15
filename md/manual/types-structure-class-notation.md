@@ -1,6 +1,6 @@
-## 2.5.2 Class Notation for Structure Types
+## 2.5.2 構造体の型のクラス記法
 
-When defining a structure type, Haxe allows using the same syntax as described in [Class Fields](class-field.md). The following [typedef](type-system-typedef.md) declares a `Point` type with variable fields `x` and `y` of type `Int`:
+構造体の型を書く場合に、Haxeでは[Class Fields](class-field.md)を書くときと同じ構文が使用できます。以下の[typedef](type-system-typedef.md)では、`Int`型の`x`の`y`変数フィールドを持つ`Point`型を定義しています。
 
 ```haxe
 typedef Point = {
@@ -11,6 +11,6 @@ typedef Point = {
 
 ---
 
-Previous section: [JSON for Structure Values](types-structure-json.md)
+Previous section: [JSONで構造体を書く](types-structure-json.md)
 
-Next section: [Impact on Performance](types-structure-performance.md)
+Next section: [パフォーマンスへの影響](types-structure-performance.md)

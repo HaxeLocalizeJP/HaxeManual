@@ -1,14 +1,15 @@
-## 2.5.1 JSON for Structure Values
+## 2.5.1 JSONで構造体を書く
 
-It is also possible to use **JavaScript Object Notation** for structures by using **string literals** for the keys:
+以下のように、**文字列の定数値**をキーに使う**JavaScript Object Notation(JSON)**の構文を構造体に使うこともできます。
 
 ```haxe
 var point = { "x" : 1, "y" : -5 };
 ```
-While any string literal is allowed, the field is only considered part of the type if it is a valid [Haxe identifier](dictionary.md#define-identifier). Otherwise, Haxe syntax does not allow expressing access to such a field, and [reflection](std-reflection.md) has to be employed through the use of `Reflect.field` and `Reflect.setField`.
+
+**文字列の定数値**すべてが許容されるますが、フィールドが[Haxeの識別子](dictionary.md#define-identifier)として有効である場合のみ型の一部として認識されます。そして、Haxeの構文では識別子として無効なフィールドにはアクセスできないため、[リフレクション](std-reflection.md)の`Reflect.field`と`Reflect.setField`を使わなくてはいけません。
 
 ---
 
-Previous section: [Anonymous Structure](types-anonymous-structure.md)
+Previous section: [匿名の構造体](types-anonymous-structure.md)
 
-Next section: [Class Notation for Structure Types](types-structure-class-notation.md)
+Next section: [構造体の型のクラス記法](types-structure-class-notation.md)
