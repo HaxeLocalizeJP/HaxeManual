@@ -1,14 +1,15 @@
-## 2.3.1 Class constructor
+## 2.3.1 クラスのコンストラクタ
 
-Instances of classes are created by calling the class constructor - a process commonly referred to as **instantiation**. Another name for class instances is **object**. Nevertheless, we prefer the term class instance to emphasize the analogy between classes/class instances and [enums/enum instances](types-enum-instance.md). 
+クラスのインスタンスは、クラスのコンストラクタを呼び出すことで生成されます。この過程は一般的に**インスタンス化**と呼ばれます。クラスインスタンスは、別名として**オブジェクト**と呼ぶこともあります。ですが、クラス/クラスインスタンスと、列挙型/列挙型インスタンスという似た概念を区別するために、クラスインスタンスと呼ぶことが好まれます。
 
 ```haxe
 var p = new Point(-1, 65);
 ```
-This will yield an instance of class `Point`, which is assigned to a variable named `p`. The constructor of `Point` receives the two arguments `-1` and `65` and assigns them to the instance variables `x` and `y` respectively (compare its definition in [Class Instance](types-class-instance.md)). We will revisit the exact meaning of the `new` expression later in the section [new](expression-new.md). For now, we just think of it as calling the class constructor and returning the appropriate object.
+
+この例で、変数`p`に代入されたのが`Point`クラスのインスタンスです。`Point`のコンストラクタは`-1`と`65`の2つの引数を受け取り、これらをそれぞれインスタンスの`x`と`y`の変数に代入しています([クラスインスタンス](types-class-instance.md)で、定義を確認してください)。`new`の正確な意味については、後の[new](expression-new.md)の節で再習します。現時点では、`new`はクラスのコンストラクタを呼び、適切なオブジェクトを返すものと考えておきましょう。
 
 ---
 
-Previous section: [Class Instance](types-class-instance.md)
+Previous section: [クラスインスタンス](types-class-instance.md)
 
-Next section: [Inheritance](types-class-inheritance.md)
+Next section: [継承](types-class-inheritance.md)

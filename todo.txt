@@ -9,7 +9,7 @@ Todo:
 2.1.5 - Void: review please, sounds weird
 2.2 - Nullable(null許容型): for starters...please review
 2.2.1 - オプション引数とnull許容: Is there a difference between `?y : Int` and `y : Null<Int>` or can you even do the latter? Some more explanation and examples with native optional and Haxe optional arguments and how they relate to nullability would be nice.
-2.3 - Class Instance: please review future tense
+2.3 - クラスインスタンス: please review future tense
 2.4 - Enum Instance: Same as in 2.2, what is `Enum<T>` syntax?
 2.4.1 - Enum Constructor: list arguments
 2.5 - Anonymous Structure: please reformat
@@ -71,9 +71,9 @@ Unreviewed:
 2.1.5 - Void
 2.2 - Nullable(null許容型)
 2.2.1 - オプション引数とnull許容
-2.3 - Class Instance
-2.3.1 - Class constructor
-2.3.2 - Inheritance
+2.3 - クラスインスタンス
+2.3.1 - クラスのコンストラクタ
+2.3.2 - 継承
 2.3.3 - Interfaces
 2.4 - Enum Instance
 2.4.1 - Enum Constructor

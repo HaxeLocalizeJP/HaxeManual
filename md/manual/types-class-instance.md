@@ -1,8 +1,8 @@
-## 2.3 Class Instance
+## 2.3 クラスインスタンス
 
-Similar to many object-oriented languages, classes are the primary data structure for the majority of programs in Haxe. Each Haxe class has an explicit name, an implied path and zero or more class fields. Here we will focus on the general structure of classes and their relations, while leaving the details of class fields for [Class Fields](class-field.md).
+多くのオブジェクト指向言語と同じように、Haxeでも大抵のプログラムではクラスが最も重要なデータ構造です。Haxeのすべてのクラスは、明示された名前と、クラスの配置されたパスと、0個以上のクラスフィールドを持ちます。ここではクラスの一般的な構造とその関わり合いについて焦点を当てていきます。クラスフィールドの詳細については後で[Class Fields](class-field.md)の章で解説をします。
 
-The following code example serves as basis for the remainder of this section:
+以下のサンプルコードが、この節で学ぶ基本になります。
 
 ```haxe
 class Point {
@@ -18,26 +18,27 @@ class Point {
 }
 ```
 
-Semantically, this class represents a point in discrete 2-dimensional space - but this is not important here. Let us instead describe the structure:
+意味的にはこれは不連続の2次元空間上の点を表現するものですが、このことはあまり重要ではありません。代わりにその構造に注目しましょう。
 
-* The keyword `class` denotes that we are declaring a class.
-* `Point` is the name of the class and could be anything conforming to the [rules for type identifiers](dictionary.md#define-identifier).
-* Enclosed in curly braces `{}` are the class fields,
-* Which consist of two **variable** fields `x` and `y` of type `Int`,
-* followed by a special **function** field named `new`, which is the **constructor** of the class,
-* as well as a normal function `toString`.
+* `class`のキーワードは、クラスを宣言していることを示すものです。
+* `Point`はクラス名です。[型の識別子のルール](dictionary.md#define-identifier)に従っているものが使用できます。
+* クラスフィールドは`{}`で囲われます。
+* `Int`型の`x`と`y`の2つの**変数**フィールドと、
+* クラスの**コンストラクタ**となる特殊な**関数**フィールド`new`と、
+* 通常の関数`toString`でクラスフィールドが構成されています。
 
-There is a special type in Haxe which is compatible with all classes:
+また、Haxeにはすべてのクラスと一致する特殊な型があります。
 
 > ##### Define: `Class<T>`
 >
-> This type is compatible with all class types which means that all classes (not their instances) can be assigned to it. At compile-time, `Class<T>` is the common base type of all class types. However, this relation is not reflected in generated code.
 > 
-> This type is useful when an API requires a value to be **a** class, but not a specific one. This applies to several methods of the [Haxe reflection API](std-reflection.md).
-.
+> この型はすべてのクラスの型と一致します。つまり、すべてのクラス(インスタンスではなくクラス)をこれに代入することができます。コンパイル時に、`Class<T>`は全てのクラスの型の共通の親の型となります。しかし、この関係性は生成されたコードに影響を与えません。
+> 
+> この型は、任意のクラスを要求するようなAPIで有用です。例えば、[HaxeリフレクションAPI](std-reflection.md)のいくつかのメソッドがこれに当てはまります。
+>
 
 ---
 
 Previous section: [オプション引数とnull許容](types-nullability-optional-arguments.md)
 
-Next section: [Class constructor](types-class-constructor.md)
+Next section: [クラスのコンストラクタ](types-class-constructor.md)

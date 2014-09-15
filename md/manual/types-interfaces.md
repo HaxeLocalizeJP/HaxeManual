@@ -48,6 +48,6 @@ class Main implements Placeable {
 
 ---
 
-Previous section: [Inheritance](types-class-inheritance.md)
+Previous section: [継承](types-class-inheritance.md)
 
 Next section: [Enum Instance](types-enum-instance.md)

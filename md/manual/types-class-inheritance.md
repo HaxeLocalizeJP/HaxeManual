@@ -1,6 +1,6 @@
-## 2.3.2 Inheritance
+## 2.3.2 継承
 
-Classes may inherit from other classes, which in Haxe is denoted by the `extends` keyword:
+クラスは他のクラスから継承ができます。Haxeでは、継承は`extends`キーワードを使って行います。
 
 ```haxe
 class Point3 extends Point {
@@ -11,19 +11,20 @@ class Point3 extends Point {
   }
 }
 ```
-This relation is often described as "is-a": Any instance of class `Point3` is also an instance of `Point`. `Point` is then known as the **parent class** of `Point3`, which is a **child class** of `Point`. A class may have many child classes, but only one parent class. The term "a parent class of class X" usually refers to its direct parent class, the parent class of its parent class and so on.
 
-The code above is very similar to the original `Point` class, with two new constructs being shown:
+この関係は、よく"BはAである(is-a)"の関係とよく言われます。つまり、すべての`Point3`クラスのインスタンスは、同時に`Point`のインスタンスである、ということです。`Point`は`Point3`の**親クラス**であると言い、`Point3`は`Point`の**子クラス**であると言います。1つのクラスはたくさんの子クラスを持つことができますが、親クラスは1つしか持つことができません。ただし、"クラスXの親クラス"というのは、直接の親クラスだけでなく、親クラスの親クラスや、そのまた親、また親のクラスなどを指すこともよくあります。
 
- * `extends Point` denotes that this class inherits from class `Point` 
-* `super(x, y)` is the call to the constructor of the parent class, in this case `Point.new`
+上記のクラスは`Point`コンストラクタによく似ていますが、2つの新しい構文が登場しています。
 
-It is not necessary for child classes to define their own constructors, but if they do, a call to `super()` is mandatory. Unlike some other object-oriented languages, this call can appear anywhere in the constructor code and does not have to be the first expression.
+* `extends Point`　は`Point`からの継承を意味します。
+* `super(x, y)`　は親クラスのコンストラクタを呼び出します。この場合は`Point.new`です。
 
-A class may override [methods](class-field-method.md) of its parent class, which requires the explicit `override` keyword. The effects and restrictions of this are detailed in [Overriding Methods](class-field-overriding.md).
+上の例ではコンストラクタを定義していますが、子クラスで自分自身のコンストラクタを定義する必要はありません。ただし、コンストラクタを定義する場合`super()`の呼び出しが必須になります。他のよくあるオブジェクト指向言語とは異なり、`super()`はコンストラクタの最初である必要はなく、どこで呼び出しても構いません。
+
+また、クラスはその親クラスの[メソッド](class-field-method.md)を`override`キーワードを明示して記述することで上書きすることができます。その効果と制限について詳しくは[Overriding Methods](class-field-overriding.md)であつかいます。
 
 ---
 
-Previous section: [Class constructor](types-class-constructor.md)
+Previous section: [クラスのコンストラクタ](types-class-constructor.md)
 
 Next section: [Interfaces](types-interfaces.md)
