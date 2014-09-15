@@ -412,22 +412,22 @@ var c = Rgb(255, 255, 0);
 \expr{switch}の使い方について、より高度な情報は後の\tref{パターンマッチング}{lf-pattern-matching}の節でお話します。
 
 
-\section{Anonymous Structure}
+\section{匿名の構造体}
 \label{types-anonymous-structure}
 
-Anonymous structures can be used to group data without explicitly creating a type. The following example creates a structure with two fields \expr{x} and \expr{name}, and initializes their values to \expr{12} and \expr{"foo"} respectively:
+匿名の構造体は、型を明示せずに利用できるデータの集まりです。以下の例では、\expr{x}と\expr{name}の2つのフィールドを持つ構造体を生成して、それぞれを\expr{12}と\expr{"foo"}の値で初期化しています。
 
 \haxe{assets/Structure.hx}
-The general syntactic rules follow:
+
+構文のルールは以下の通りです :
 
 \begin{enumerate}
-	\item A structure is enclosed in curly braces \expr{$\left\{\right\}$} and
-	\item Has a \emph{comma-separated} list of key-value-pairs.
-	\item A \emph{colon} separates the key, which must be a valid \tref{identifier}{define-identifier}, from the value.
-	\item\label{valueanytype} The value can be any Haxe expression.
+	\item 構造体は中カッコ \expr{$\left\{\right\}$} で囲う。
+	\item \emph{カンマで区切られた} キーと値のペアのリストを持つ。
+	\item \tref{識別子}{define-identifier}の条件を満たすカギと、値が\emph{コロン}で区切られる。
+	\item\label{valueanytype} 値には、Haxeのあらゆる式が当てはまる。
 \end{enumerate}
-Rule \ref{valueanytype} implies that structures can be nested and complex, e.g.:
-
+ルール\ref{valueanytype} は複雑にネストした構造体を含む。例えば、以下のような。
 \todo{please reformat}
 
 \begin{lstlisting}
@@ -440,7 +440,7 @@ var user = {
   ],
 };
 \end{lstlisting}
-Fields of structures, like classes, are accessed using a \emph{dot} (\expr{.}) like so:
+構造体のフィールドは、クラスと同じように、\emph{ドット}(\expr{.})を使ってアクセスします。
 
 \begin{lstlisting}
 // get value of name, which is "Nicolas"
@@ -448,7 +448,7 @@ user.name;
 // set value of age to 33
 user.age = 33;
 \end{lstlisting}
-It is worth noting that using anonymous structures does not subvert the typing system. The compiler ensures that only available fields are accessed, which means the following program does not compile:
+特筆すべきは、匿名の構造体の使用は型システムを崩壊させないことです。コンパイラは、実際に利用可能なフィールドにしかアクセスを許しません。つまり、以下のようなコードはコンパイルできません。
 
 \begin{lstlisting}
 class Test {
@@ -459,8 +459,8 @@ class Test {
   }
 }
 \end{lstlisting}
-The error message indicates that the compiler knows the type of \expr{point}: It is a structure with fields \expr{x} and \expr{y} of type \type{Float}. Since it has no field \expr{z}, the access fails.
-The type of \expr{point} is known through \tref{type inference}{type-system-type-inference}, which thankfully saves us from using explicit types for local variables. However, if \expr{point} was a field, explicit typing would be necessary:
+このエラーメッセージはコンパイラが\expr{point}の型を知っていることを表します。この\expr{point}の型は、\expr{x}と\expr{y}の\type{Float}型のフィールドを持つ構造体であり、\expr{z}というフィールドは持たないのでアクセスに失敗しました。
+この\expr{point}の型は\tref{型推論}{type-system-type-inference}により識別され、そのおかげでローカル変数では型を明示しなくて済みます。ただし、\expr{point}が、クラスやインスタンスのフィールドだった場合、以下のように型の明示が必要になります。
 
 \begin{lstlisting}
 class Path {
@@ -469,7 +469,8 @@ class Path {
     var current : { x : Int, y : Int };
 }
 \end{lstlisting}
-To avoid this kind of redundant type declaration, especially for more complex structures, it is advised to use a \tref{typedef}{type-system-typedef}:
+
+このような冗長な型の宣言をさけるため、特にもっと複雑な構造体の場合、以下のように\tref{typedef}{type-system-typedef}を使うことをお勧めします。
 
 \begin{lstlisting}
 typedef Point = { x : Int, y : Int }
@@ -482,20 +483,21 @@ class Path {
 \end{lstlisting}
 
 
-\subsection{JSON for Structure Values}
+\subsection{JSONで構造体を書く}
 \label{types-structure-json}
 
-It is also possible to use \emph{JavaScript Object Notation} for structures by using \emph{string literals} for the keys:
+以下のように、\emph{文字列の定数値}をキーに使う\emph{JavaScript Object Notation(JSON)}の構文を構造体に使うこともできます。
 
 \begin{lstlisting}
 var point = { "x" : 1, "y" : -5 };
 \end{lstlisting}
-While any string literal is allowed, the field is only considered part of the type if it is a valid \tref{Haxe identifier}{define-identifier}. Otherwise, Haxe syntax does not allow expressing access to such a field, and \tref{reflection}{std-reflection} has to be employed through the use of \expr{Reflect.field} and \expr{Reflect.setField}.
 
-\subsection{Class Notation for Structure Types}
+\emph{文字列の定数値}すべてが許容されるますが、フィールドが\tref{Haxeの識別子}{define-identifier}として有効である場合のみ型の一部として認識されます。そして、Haxeの構文では識別子として無効なフィールドにはアクセスできないため、\tref{リフレクション}{std-reflection}の\expr{Reflect.field}と\expr{Reflect.setField}を使わなくてはいけません。
+
+\subsection{構造体の型のクラス記法}
 \label{types-structure-class-notation}
 
-When defining a structure type, Haxe allows using the same syntax as described in \Fullref{class-field}. The following \tref{typedef}{type-system-typedef} declares a \type{Point} type with variable fields \expr{x} and \expr{y} of type \type{Int}:
+構造体の型を書く場合に、Haxeでは\Fullref{class-field}を書くときと同じ構文が使用できます。以下の\tref{typedef}{type-system-typedef}では、\type{Int}型の\expr{x}の\expr{y}変数フィールドを持つ\type{Point}型を定義しています。
 
 \begin{lstlisting}
 typedef Point = {
@@ -504,15 +506,15 @@ typedef Point = {
 }
 \end{lstlisting}
 
-\subsection{Optional Fields}
+\subsection{オプションのフィールド}
 \label{types-structure-optional-fields}
 
 \todo{I don't really know how these work yet.}
 
-\subsection{Impact on Performance}
+\subsection{パフォーマンスへの影響}
 \label{types-structure-performance}
 
-Using structures and, by extension,\tref{structural subtyping}{type-system-structural-subtyping} has no impact on performance when compiling to \tref{dynamic targets}{define-dynamic-target}. However, on \tref{static targets}{define-static-target} a dynamic lookup has to be performed which is typically slower than a static field access.
+構造体をつかって、さらに\tref{構造的部分型付け}{type-system-structural-subtyping}を使った場合、\tref{動的ターゲット}{define-dynamic-target}ではパフォーマンスに影響はありません。しかし、\tref{静的ターゲット}{define-static-target}では、動的な検査が発生するので通常は静的なフィールドアクセスよりも遅くなります。
 
 
 
