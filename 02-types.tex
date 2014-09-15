@@ -244,42 +244,46 @@ function opt( ?z : Int = -1) {...}
 
 \trivia{アーギュメント(Argument)とパラメータ(Parameter)}{他のプログラミング言語では、よく\emph{アーギュメント}と\emph{パラメータ}は同様の意味として使われます。Haxeでは、関数に関連する場合に\emph{アーギュメント}を、\Fullref{type-system-type-parameters}と関連する場合に\emph{パラメータ}を使います。}
 
-\section{Class Instance}
+\section{クラスインスタンス}
 \label{types-class-instance}
 
-Similar to many object-oriented languages, classes are the primary data structure for the majority of programs in Haxe. Each Haxe class has an explicit name, an implied path and zero or more class fields. Here we will focus on the general structure of classes and their relations, while leaving the details of class fields for \Fullref{class-field}.
+
+多くのオブジェクト指向言語と同じように、Haxeでも大抵のプログラムではクラスが最も重要なデータ構造です。Haxeのすべてのクラスは、明示された名前と、クラスの配置されたパスと、0個以上のクラスフィールドを持ちます。ここではクラスの一般的な構造とその関わり合いについて焦点を当てていきます。クラスフィールドの詳細については後で\Fullref{class-field}の章で解説をします。
 \todo{please review future tense}
 
-The following code example serves as basis for the remainder of this section:
+以下のサンプルコードが、この節で学ぶ基本になります。
 
 \haxe{assets/Point.hx}
 
-Semantically, this class represents a point in discrete 2-dimensional space - but this is not important here. Let us instead describe the structure:
+意味的にはこれは不連続の2次元空間上の点を表現するものですが、このことはあまり重要ではありません。代わりにその構造に注目しましょう。
 
 \begin{itemize}
-	\item The keyword \expr{class} denotes that we are declaring a class.
-	\item \type{Point} is the name of the class and could be anything conforming to the \tref{rules for type identifiers}{define-identifier}.
-	\item Enclosed in curly braces \expr{$\left\{\right\}$} are the class fields,
-	\item Which consist of two \emph{variable} fields \expr{x} and \expr{y} of type \type{Int},
-	\item followed by a special \emph{function} field named \expr{new}, which is the \emph{constructor} of the class,
-	\item as well as a normal function \expr{toString}.
+	\item \expr{class}のキーワードは、クラスを宣言していることを示すものです。
+	\item \type{Point}はクラス名です。\tref{型の識別子のルール}{define-identifier}に従っているものが使用できます。
+	\item クラスフィールドは\expr{$\left\{\right\}$}で囲われます。
+	\item \type{Int}型の\expr{x}と\expr{y}の2つの\emph{変数}フィールドと、
+	\item クラスの\emph{コンストラクタ}となる特殊な\emph{関数}フィールド\expr{new}と、
+	\item 通常の関数\expr{toString}でクラスフィールドが構成されています。
 \end{itemize}
-There is a special type in Haxe which is compatible with all classes:
 
-\define[Type]{\expr{Class$<$T$>$}}{define-class-t}{This type is compatible with all class types which means that all classes (not their instances) can be assigned to it. At compile-time, \type{Class<T>} is the common base type of all class types. However, this relation is not reflected in generated code.
+また、Haxeにはすべてのクラスと一致する特殊な型があります。
 
-This type is useful when an API requires a value to be \emph{a} class, but not a specific one. This applies to several methods of the \tref{Haxe reflection API}{std-reflection}.}.
+\define[Type]{\expr{Class$<$T$>$}}{define-class-t}{
+この型はすべてのクラスの型と一致します。つまり、すべてのクラス(インスタンスではなくクラス)をこれに代入することができます。コンパイル時に、\type{Class<T>}は全てのクラスの型の共通の親の型となります。しかし、この関係性は生成されたコードに影響を与えません。
 
-\subsection{Class constructor}
+この型は、任意のクラスを要求するようなAPIで有用です。例えば、\tref{HaxeリフレクションAPI}{std-reflection}のいくつかのメソッドがこれに当てはまります。
+}
+
+\subsection{クラスのコンストラクタ}
 \label{types-class-constructor}
 
-Instances of classes are created by calling the class constructor - a process commonly referred to as \emph{instantiation}. Another name for class instances is \emph{object}. Nevertheless, we prefer the term class instance to emphasize the analogy between classes/class instances and \tref{enums/enum instances}{types-enum-instance}. 
+クラスのインスタンスは、クラスのコンストラクタを呼び出すことで生成されます。この過程は一般的に\emph{インスタンス化}と呼ばれます。クラスインスタンスは、別名として\emph{オブジェクト}と呼ぶこともあります。ですが、クラス/クラスインスタンスと、列挙型/列挙型インスタンスという似た概念を区別するために、クラスインスタンスと呼ぶことが好まれます。
 
 \begin{lstlisting}
 var p = new Point(-1, 65);
 \end{lstlisting}
-This will yield an instance of class \type{Point}, which is assigned to a variable named \expr{p}. The constructor of \type{Point} receives the two arguments \expr{-1} and \expr{65} and assigns them to the instance variables \expr{x} and \expr{y} respectively (compare its definition in \Fullref{types-class-instance}). We will revisit the exact meaning of the \expr{new} expression later in the section \ref{expression-new}. For now, we just think of it as calling the class constructor and returning the appropriate object.
 
+この例で、変数\expr{p}に代入されたのが\type{Point}クラスのインスタンスです。\type{Point}のコンストラクタは\expr{-1}と\expr{65}の2つの引数を受け取り、これらをそれぞれインスタンスの\expr{x}と\expr{y}の変数に代入しています(\Fullref{types-class-instance}で、定義を確認してください)。\expr{new}の正確な意味については、後の\ref{expression-new}の節で再習します。現時点では、\expr{new}はクラスのコンストラクタを呼び、適切なオブジェクトを返すものと考えておきましょう。
 
 
 \subsection{Inheritance}
