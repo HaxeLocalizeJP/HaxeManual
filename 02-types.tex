@@ -307,102 +307,109 @@ var p = new Point(-1, 65);
 また、クラスはその親クラスの\tref{メソッド}{class-field-method}を\expr{override}キーワードを明示して記述することで上書きすることができます。その効果と制限について詳しくは\Fullref{class-field-overriding}であつかいます。
 
 
-\subsection{Interfaces}
+\subsection{インターフェース}
 \label{types-interfaces}
 
-An interface can be understood as the signature of a class because it describes the public fields of a class. Interfaces do not provide implementations but pure structural information:
+インターフェースはクラスのパブリックフィールドを記述するもので、クラスの署名ともいうべきものです。インターフェースは実装を持たず、構造に関する情報のみを与えます。
 
 \begin{lstlisting}
 interface Printable {
 	public function toString():String;
 }
 \end{lstlisting}
-The syntax is similar to classes, with the following exceptions:
+この構文は以下の点をのぞいて、クラスによく似ています。
 
 \begin{itemize}
-	\item \expr{interface} keyword is used instead of \expr{class} keyword
-	\item functions do not have any \tref{expressions}{expression}
-	\item every field must have an explicit type
+	\item \expr{interface}キーワードを\expr{class}キーワードの代わりに使う。
+	\item 関数が\tref{式}{expression}を持たない。
+	\item すべてのフィールドが型を明示する必要がある。
 \end{itemize}
-Interfaces, unlike \tref{structural subtyping}{type-system-structural-subtyping}, describe a \emph{static relation} between classes. A given class is only considered to be compatible to an interface if it explicitly states so:
+
+インタフェースは、\tref{構造的部分型}{type-system-structural-subtyping}とは異なり、クラス間の\emph{静的な関係性}について記述します。以下のように明示的に宣言した場合にのみ、クラスはインターフェースと一致します。
 
 \begin{lstlisting}
 class Point implements Printable { }
 \end{lstlisting}
-Here, the \expr{implements} keyword denotes that \type{Point} has a "is-a" relationship to \type{Printable}, i.e. each instance of \type{Point} is also an instance of \type{Printable}. While a class may only have one parent class, it may implement multiple interfaces through multiple \expr{implements} keywords:
+
+\expr{implements}キーワードの記述により、"\type{Point}は\type{Printable}である(is-a)"の関係性が生まれます。つまり、すべての\type{Point}のインスタンスは、\type{Printable}のインスタンスでもあります。クラスは親のクラスを1つしか持てませんが、以下のように複数の\expr{implements}キーワードを使用することで複数のインターフェースを実装(implements)することが可能です。
 
 \begin{lstlisting}
-class Point implements Printable
-  implements Serializable
+class Point implements Printable　implements Serializable
 \end{lstlisting}
 
-The compiler checks if the \expr{implements} assumption holds. That is, it makes sure the class actually does implement all the fields required by the interface. A field is considered implemented if the class or any of its parent classes provide an implementation.
+コンパイラは実装が条件を満たしているかの確認を行います。つまり、クラスが実際にインターフェースで要求されるフィールドを実装しているか確かめられるということです。フィールドの実装は、そのクラス自体と、その親となるいづれかのクラスの実装が考慮されます。
 
-Interface fields are not limited to methods. They can be variables and properties as well:
+インターフェースフィールドは、変数とプロパティのどちらであるかに対する制限は与えません:
 
 \haxe{assets/InterfaceWithVariables.hx}
 
-\trivia{Implements Syntax}{Haxe versions prior to 3.0 required multiple \expr{implements} keywords to be separated by a comma. We decided to adhere to the de-facto standard of Java and got rid of the comma. This was one of the breaking changes between Haxe 2 and 3.}
+\trivia{Implementsの構文}{Haxeの3.0よりも前のバージョンでは、\expr{implements}キーワードはカンマで区切られていました。Javaのデファクトスタンダードに合わせるため、私たちはカンマを取り除くことに決定しました。これが、Haxe2と3の間の破壊的な変更の1つです。}
 
 
-\section{Enum Instance}
+\section{列挙型インスタンス}
 \label{types-enum-instance}
 
-Haxe provides powerful enumeration (short: enum) types, which are actually an \emph{algebraic data type} (ADT)\footnote{\url{http://en.wikipedia.org/wiki/Algebraic_data_type}}. While they cannot have any \tref{expressions}{expression}, they are very useful for describing data structures:
+Haxeには強力な列挙型(enum)をもっています。この列挙型は実際には\emph{代数的データ型} (ADT)\footnote{\url{http://en.wikipedia.org/wiki/Algebraic_data_type}}に当たります。列挙型は\tref{式}{expression}を持つことはできませんが、データ構造を表現するのに非常に役に立ちます。
 
 \haxe{assets/Color.hx}
-Semantically, this enum describes a color which is either red, green, blue or a specified RGB value. The syntactic structure is as follows:
-\begin{itemize}
-	\item The keyword \expr{enum} denotes that we are declaring an enum.
-	\item \type{Color} is the name of the enum and could be anything conforming to the rules for \tref{type identifiers}{define-identifier}.
-	\item Enclosed in curly braces \expr{$\left\{\right\}$} are the \emph{enum constructors},
-	\item which are \expr{Red}, \expr{Green} and \expr{Blue} taking no arguments,
-	\item as well as \expr{Rgb} taking three \type{Int} arguments named \expr{r}, \expr{g} and \expr{b}.
-\end{itemize}
-The Haxe type system provides a type which unifies with all enum types:
 
-\define[Type]{\expr{Enum$<$T$>$}}{define-enum-t}{This type is compatible with all enum types. At compile-time, \type{Enum<T>} can bee seen as the common base type of all enum types. However, this relation is not reflected in generated code.} 
+このコードでは、enumは、赤、緑、青のいづれかか、またはRGB値で表現した色、を書き表しています。この文法の構造は以下の通りです。
+
+\begin{itemize}
+	\item \expr{enum}キーワードが、列挙型について定義することを宣言しています。
+	\item \type{Color}が列挙型の名前です。\tref{型の識別子のルール}{define-identifier}に従うすべてのものが使用できます。
+	\item 中カッコ \expr{$\left\{\right\}$} で囲んだ中に\emph{列挙型のコンストラクタ}を記述します。
+	\item \expr{Red}と\expr{Green}と\expr{Blue}には引数がありません。
+	\item \expr{Rgb}は、\expr{r}、\expr{g}、\expr{b}の3つの\type{Int}型の引数を持ちます。
+\end{itemize}
+
+Haxの型システムには、すべての列挙型を統合する型があります。
+
+\define[Type]{\expr{Enum$<$T$>$}}{define-enum-t}{すべての列挙型と一致する型です。コンパイル時に、\type{Enum<T>}は全ての列挙型の共通の親の型となります。しかし、この関係性は生成されたコードに影響を与えません。} 
 \todo{Same as in 2.2, what is \type{Enum$<$T$>$} syntax?}
 
-\subsection{Enum Constructor}
+\subsection{列挙型のコンストラクタ}
 \label{types-enum-constructor}
 
-Similar to classes and their constructors, enums provide a way of instantiating them by using one of their constructors. However, unlike classes, enums provide multiple constructors which can easily be used through their name:
+クラスと同じように、列挙型もそのコンストラクタを使うことでインスタンス化を行います。しかし、クラスとは異なり列挙型は複数のコンストラクタを持ち、以下のようにそのコンストラクタの名前を使って呼び出します。
 
 \begin{lstlisting}
 var a = Red;
 var b = Green;
 var c = Rgb(255, 255, 0);
 \end{lstlisting}
-In this code the type of variables \expr{a}, \expr{b} and \expr{c} is \type{Color}. Variable \expr{c} is initialized using the \expr{Rgb} constructor with arguments.
+このコードでは変数\expr{a}、\expr{b}、\expr{c}の型は\type{Color}です。変数\expr{c}は\expr{Rgb}コンストラクタと引数を使って初期化されています。
 \todo{list arguments}
 
-All enum instances can be assigned to a special type named \type{EnumValue}.
+すべての列挙型のインスタンスは\type{EnumValue}という特別な型に対して代入が可能です。
 
-\define[Type]{EnumValue}{define-enumvalue}{EnumValue is a special type which unifies with all enum instances. It is used by the Haxe Standard Library to provide certain operations for all enum instances and can be employed in user-code accordingly in cases where an API requires \emph{an} enum instance, but not a specific one.}
+\define[Type]{EnumValue}{define-enumvalue}{EnumValueはすべての列挙型のインスタンスと一致する特別な型です。この型はHaxeの標準ライブラリでは、すべての列挙型に対して可能な操作を提供するのに使われます。またユーザーのコードでは、特定の列挙型ではなく任意の列挙型のインスタンスを要求するAPIで利用できます。}
 
-It is important to distinguish enum types and enum constructors, as this example demonstrates:
+以下の例からわかるように、列挙型とそのインスタンスを区別することは大切です。
 
 \haxe{assets/EnumUnification.hx}
 
-If the commented line is uncommented, the program does not compile because \expr{Red} (an enum constructor) cannot be assigned to a variable of type \type{Enum<Color>} (an enum type). The relation is analogous to a class and its instance.
+もし、上でコメント化されている行のコメント化が解除された場合、このコードはコンパイルできなくなります。これは、列挙型のインスタンスである\expr{Red}は、列挙型である\type{Enum<Color>}型の変数には代入できなくなるためです。
 
-\trivia{Concrete type parameter for \type{Enum$<$T$>$}}{One of the reviewers of this manual was confused about the difference between \type{Color} and \type{Enum<Color>} in the example above. Indeed, using a concrete type parameter there is pointless and only serves the purpose of demonstration. Usually we would omit the type there and let \tref{type inference}{type-system-type-inference} deal with it.
+この関係性は、クラスとそのインスタンスの関係性に似ています。
 
-However, the inferred type would be different from \type{Enum<Color>}. The compiler infers a pseudo-type which has the enum constructors as ``fields''. As of Haxe 3.2.0, it is not possible to express this type in syntax but also, it is never necessary to do so.}
+\trivia{\type{Enum$<$T$>$の型パラメータを具体化する}}{このマニュアルのレビューアの一人は上のサンプルコードの\type{Color}と\type{Enum<Color>}の違いについて困惑しました。実際、型パラメータの具体化は意味のないもので、デモンストレーションのためのものでしかありませんでした。私たちはよく型を書くのを省いて、型についてあつかうのを\tref{型推論}{type-system-type-inference}にまかせてしまいます。
+
+しかし、型推論では\type{Enum<Color>}ではないものが推論されるでしょう。コンパイラは、列挙型のコンストラクタをフィールドとしてみなした、仮の型を推論します。現在のHaxe3.2.0では、この仮の型について表現することは不可能であり、また表現する必要もありません。}
 
 
-
-\subsection{Using enums}
+\subsection{列挙型を使う}
 \label{types-enum-using}
 
-Enums are a good choice if only a finite set of values should be allowed. The individual \tref{constructors}{types-enum-constructor} then represent the allowed variants and enable the compiler to check if all possible values are respected. This can be seen here:
+列挙型は、有限の種類の値のセットが許されることを表現するだけでも有用です。それぞれのコンストラクタについて多様性が示されるので、コンパイラはありうる全ての値が考慮されていることをチェックすることを可能です。これは、例えば、以下のような場合です。
 
 \haxe{assets/Color2.hx}
 
-After retrieving the value of \expr{color} by assigning the return value of \expr{getColor()} to it, a \tref{\expr{switch} expression}{expression-switch} is used to branch depending on the value. The first three cases \expr{Red}, \expr{Green} and \expr{Blue} are trivial and correspond to the constructors of \type{Color} that have no arguments. The final case \expr{Rgb(r, g, b)} shows how the argument values of a constructor can be extracted: they are available as local variables within the case body expression, just as if a \tref{\expr{var} expression}{expression-var} had been used.
+\expr{getColor()}の戻り値を\expr{color}に代入し、その値で\tref{\expr{switch}式}{expression-switch}の分岐を行います。
 
-Advanced information on using the \expr{switch} expression will be explored later in the section on \tref{pattern matching}{lf-pattern-matching}.
+初めの\expr{Red}、\expr{Green}、\expr{Blue}の3ケースについては些細な内容で、ただColorの引数無しのコンストラクタとの一致するか調べています。最後の\expr{Rgb(r, g, b)}のケースでは、コンストラクタの引数の値をどうやって利用するのかがわかります。引数の値はケースの式の中で出てきたローカル変数として、\tref{\expr{var}の式}{expression-var}を使った場合と同じように、利用可能です。
+
+\expr{switch}の使い方について、より高度な情報は後の\tref{パターンマッチング}{lf-pattern-matching}の節でお話します。
 
 
 \section{Anonymous Structure}
