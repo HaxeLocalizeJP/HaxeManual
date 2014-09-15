@@ -518,59 +518,60 @@ typedef Point = {
 
 
 
-\section{Function Type}
+\section{関数型}
 \label{types-function}
 
 \todo{It seems a bit convoluted explanations. Should we maybe start by "decoding" the meaning of  Void -> Void, then Int -> Bool -> Float, then maybe have samples using \$type}
 
-The function type, along with the \tref{monomorph}{types-monomorph}, is a type which is usually well-hidden from Haxe users, yet present everywhere. We can make it surface by using \expr{\$type}, a special Haxe identifier which outputs the type its expression has during compilation :
+関数型に、\tref{monomorph}{types-monomorph}と共に、Haxeのユーザーからよく隠れている型の1つです。コンパイル時に式の型を出力させる\expr{\$type}という特殊な識別子を使えば、この型を以下のように浮かび上がらせることが可能です。
 
 \haxe{assets/FunctionType.hx}
 
-There is a strong resemblance between the declaration of function \expr{test} and the output of the first \expr{\$type} expression, yet also a subtle difference:
+初めの\expr{\$type}の出力は、test関数の定義と強い類似性があります。では、その相違点を見てみます。
 
 \begin{itemize}
-	\item \emph{Function arguments} are separated by the special arrow token \expr{->} instead of commas, and
-	\item the \emph{function return type} appears at the end after another \expr{->}.
+	\item \emph{関数の引数}では、カンマではなく\expr{->}で区切られる。
+	\item \emph{引数の戻り値の型}は、もう一つ\expr{->}を付けた後に書かれる。
 \end{itemize}
 
-In either notation it is obvious that the function \expr{test} accepts a first argument of type \type{Int}, a second argument of type \type{String} and returns a value of type \type{Bool}. If a call to this function, such as \expr{test(1, "foo")}, is made within the second \expr{\$type} expression, the Haxe typer checks if \expr{1} can be assigned to \type{Int} and if \expr{"foo"} can be assigned to \type{String}. The type of the call is then equal to the type of the value \expr{test} returns, which is \type{Bool}.
+どちらの表記でも、\expr{test}関数が1つ目の引数として\type{Int}を受け取り、2つ目の引数として\type{String型}を受け取り、Bool型の値を返すことはよくわかります。2つ目の\expr{\$type}式の\expr{test(1, "foo")}のようにこの関数を呼び出すと、Haxeの型検査は\expr{1}が\type{Int}に代入可能か、\expr{"foo"}が\type{String}に代入可能かをチェックします。そして、その呼び出し後の型は、\expr{test}の戻り値の型の\type{Bool}となります。
 
-If a function type has other function types as argument or return type, parentheses can be used to group them correctly. For example, \type{Int -> (Int -> Void) -> Void} represents a function which has a first argument of type \type{Int}, a second argument of function type \type{Int -> Void} and a return of \type{Void}.
+もし、ある関数の型が、別の関数の型を引数か戻り値に含む場合、丸かっこをグループ化に使うことができます。例えば、\type{Int -> (Int -> Void) -> Void}は初めの引数の型が\type{Int}、2番目の引数が\type{Int -> Void}で、戻り値が\type{Void}の関数を表します。
 
-
-
-\subsection{Optional Arguments}
+\subsection{オプション引数}
 \label{types-function-optional-arguments}
 
-Optional arguments are declared by prefixing an argument identifier with a question mark \expr{?}:
+オプション引数は、引数の識別子の直前にクエスチョンマーク(\expr{?})を付けることで表現できます。
 
 \haxe[label=assets/OptionalArguments.hx]{assets/OptionalArguments.hx}
-Function \expr{test} has two optional arguments: \expr{i} of type \type{Int} and \expr{s} of \type{String}. This is directly reflected in the function type output by line 3. 
-This example program calls \expr{test} four times and prints its return value.
+
+\expr{test}関数は、2つのオプション引数を持ちます。\type{Int}型の\expr{i}と\type{String}型の\expr{s}です。これは3行目の関数型の出力に直接反映されています。
+
+この例では、関数を4回呼び出しその結果を出力しています。
 
 \begin{enumerate}
-	\item The first call is made without any arguments.
-	\item The second call is made with a singular argument \expr{1}.
-	\item The third call is made with two arguments \expr{1} and \expr{"foo"}.
-	\item The fourth call is made with a singular argument \expr{"foo"}.
+	\item 初めの呼び出しは引数無し。
+	\item 2番目の呼び出しは\expr{1}のみの引数。
+	\item 3番目の呼び出しは\expr{1}と\expr{"foo"}の2つの引数。
+	\item 4番目の呼び出しは\expr{"foo"}のみの引数。
 \end{enumerate}
-The output shows that optional arguments which are omitted from the call have a value of \expr{null}. This implies that the type of these arguments must admit \expr{null} as value, which raises the question of its \tref{nullability}{types-nullability}. The Haxe Compiler ensures that optional basic type arguments are nullable by inferring their type as \type{Null<T>} when compiling to a \tref{static target}{define-static-target}.
 
-While the first three calls are intuitive, the fourth one might come as a surprise: It is indeed allowed to skip optional arguments if the supplied value is assignable to a later argument.
+この出力を見ると、オプション引数が呼び出し時に省略されると\expr{null}になることがわかります。つまり、これらの引数は\expr{null}が入る型でなくてはいけないことになり、ここで\tref{null許容}{types-nullability}に関する疑問が浮かび上がります。Haxeのコンパイラは\tref{静的ターゲット}{define-static-target}に出力する場合に、オプションの基本型の引数の型を\type{Null<T>}であると推論することで、オプション引数の型がnull許容であることを保証してます。
 
+初めの3つの呼び出しは直観的なものですが、4つ目の呼び出しには驚くかもしれません。後の引数に代入可能な値が渡された場合に、オプション引数はスキップされてしまいます。
 
-\subsection{Default values}
+\subsection{デフォルト値}
 \label{types-function-default-values}
 
-Haxe allows default values for arguments by assigning a \emph{constant value} to them:
+Haxeでは、引数のデフォルト値として定数値を割り当てることが可能です。
 
 \haxe{assets/DefaultValues.hx}
-This example is very similar to the one from \Fullref{types-function-optional-arguments}, with the only difference being that the values \expr{12} and \expr{"bar"} are assigned to the function arguments \expr{i} and \expr{s} respectively. The effect is that the default values are used instead of \expr{null} should an argument be omitted from the call.
+この例は、\Fullref{types-function-optional-arguments}のものとよく似ています。違いは、関数の引数の\expr{i}と\expr{s}それぞれに\expr{12}と\expr{"bar"}を代入していることだけです。これにより、引数が省略された場合に\expr{null}ではなく、このデフォルト値が使われるようになります。
 
 %TODO: Default values do not imply nullability, even if the value is \expr{null}. 
 
-Default values in Haxe are not part of the type and are not replaced at call-site (unless the function is \tref{inlined}{class-field-inline}, which can be considered as a more typical approach. On some targets the compiler may still pass \expr{null} for omitted argument values and generate code similar to this into the function:
+Haxeでのデフォルト値は、型の一部では無いので、呼び出し側で置き換えられるわけではありません(ただし、特有の動作を行う\tref{インライン}{class-field-inline}の関数を除く)。いくつかのターゲットでは、無視された引数に対してやはり\expr{null}を渡して、以下の関数と同じようなコードを生成します。
+
 \begin{lstlisting}
 	static function test(i = 12, s = "bar") {
 		if (i == null) i = 12;
@@ -578,7 +579,7 @@ Default values in Haxe are not part of the type and are not replaced at call-sit
 		return "i: " +i + ", s: " +s;
 	}
 \end{lstlisting}
-This should be considered in performance-critical code where a solution without default values may sometimes be more viable.
+つまり、パフォーマンスが要求されるコードでは、デフォルト値を使わない書き方をすることが重要だと考えてください。
 
 
 
