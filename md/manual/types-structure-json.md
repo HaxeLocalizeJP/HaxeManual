@@ -6,7 +6,7 @@
 var point = { "x" : 1, "y" : -5 };
 ```
 
-**文字列の定数値**すべてが許容されるますが、フィールドが[Haxeの識別子](dictionary.md#define-identifier)として有効である場合のみ型の一部として認識されます。そして、Haxeの構文では識別子として無効なフィールドにはアクセスできないため、[リフレクション](std-reflection.md)の`Reflect.field`と`Reflect.setField`を使わなくてはいけません。
+キーには**文字列の定数値**すべてが使えますが、フィールドが[Haxeの識別子](dictionary.md#define-identifier)として有効である場合のみ型の一部として認識されます。そして、Haxeの構文では識別子として無効なフィールドにはアクセスできないため、[リフレクション](std-reflection.md)の`Reflect.field`と`Reflect.setField`を使ってアクセスしなくてはいけません。
 
 ---
 

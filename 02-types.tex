@@ -427,16 +427,16 @@ var c = Rgb(255, 255, 0);
 	\item \tref{識別子}{define-identifier}の条件を満たすカギと、値が\emph{コロン}で区切られる。
 	\item\label{valueanytype} 値には、Haxeのあらゆる式が当てはまる。
 \end{enumerate}
-ルール\ref{valueanytype} は複雑にネストした構造体を含む。例えば、以下のような。
+ルール\ref{valueanytype}は複雑にネストした構造体を含みます。例えば、以下のような。
 \todo{please reformat}
 
 \begin{lstlisting}
 var user = {
   name : "Nicolas",
-	age : 32,
-	pos : [
-	  { x : 0, y : 0 },
-		{ x : 1, y : -1 }
+  age : 32,
+  pos : [
+    { x : 0, y : 0 },
+    { x : 1, y : -1 }
   ],
 };
 \end{lstlisting}
@@ -448,7 +448,7 @@ user.name;
 // set value of age to 33
 user.age = 33;
 \end{lstlisting}
-特筆すべきは、匿名の構造体の使用は型システムを崩壊させないことです。コンパイラは、実際に利用可能なフィールドにしかアクセスを許しません。つまり、以下のようなコードはコンパイルできません。
+特筆すべきは、匿名の構造体の使用は型システムを崩壊させないことです。コンパイラは実際に利用可能なフィールドにしかアクセスを許しません。つまり、以下のようなコードはコンパイルできません。
 
 \begin{lstlisting}
 class Test {
@@ -492,7 +492,7 @@ class Path {
 var point = { "x" : 1, "y" : -5 };
 \end{lstlisting}
 
-\emph{文字列の定数値}すべてが許容されるますが、フィールドが\tref{Haxeの識別子}{define-identifier}として有効である場合のみ型の一部として認識されます。そして、Haxeの構文では識別子として無効なフィールドにはアクセスできないため、\tref{リフレクション}{std-reflection}の\expr{Reflect.field}と\expr{Reflect.setField}を使わなくてはいけません。
+キーには\emph{文字列の定数値}すべてが使えますが、フィールドが\tref{Haxeの識別子}{define-identifier}として有効である場合のみ型の一部として認識されます。そして、Haxeの構文では識別子として無効なフィールドにはアクセスできないため、\tref{リフレクション}{std-reflection}の\expr{Reflect.field}と\expr{Reflect.setField}を使ってアクセスしなくてはいけません。
 
 \subsection{構造体の型のクラス記法}
 \label{types-structure-class-notation}
