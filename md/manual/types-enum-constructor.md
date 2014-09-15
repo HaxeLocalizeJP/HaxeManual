@@ -1,21 +1,21 @@
-## 2.4.1 Enum Constructor
+## 2.4.1 列挙型のコンストラクタ
 
-Similar to classes and their constructors, enums provide a way of instantiating them by using one of their constructors. However, unlike classes, enums provide multiple constructors which can easily be used through their name:
+クラスと同じように、列挙型もそのコンストラクタを使うことでインスタンス化を行います。しかし、クラスとは異なり列挙型は複数のコンストラクタを持ち、以下のようにそのコンストラクタの名前を使って呼び出します。
 
 ```haxe
 var a = Red;
 var b = Green;
 var c = Rgb(255, 255, 0);
 ```
-In this code the type of variables `a`, `b` and `c` is `Color`. Variable `c` is initialized using the `Rgb` constructor with arguments.
+このコードでは変数`a`、`b`、`c`の型は`Color`です。変数`c`は`Rgb`コンストラクタと引数を使って初期化されています。
 
-All enum instances can be assigned to a special type named `EnumValue`.
+すべての列挙型のインスタンスは`EnumValue`という特別な型に対して代入が可能です。
 
 > ##### Define: EnumValue
 >
-> EnumValue is a special type which unifies with all enum instances. It is used by the Haxe Standard Library to provide certain operations for all enum instances and can be employed in user-code accordingly in cases where an API requires **an** enum instance, but not a specific one.
+> EnumValueはすべての列挙型のインスタンスと一致する特別な型です。この型はHaxeの標準ライブラリでは、すべての列挙型に対して可能な操作を提供するのに使われます。またユーザーのコードでは、特定の列挙型ではなく任意の列挙型のインスタンスを要求するAPIで利用できます。
 
-It is important to distinguish enum types and enum constructors, as this example demonstrates:
+以下の例からわかるように、列挙型とそのインスタンスを区別することは大切です。
 
 ```haxe
 enum Color {
@@ -36,16 +36,18 @@ class Main {
 
 ```
 
-If the commented line is uncommented, the program does not compile because `Red` (an enum constructor) cannot be assigned to a variable of type `Enum<Color>` (an enum type). The relation is analogous to a class and its instance.
+もし、上でコメント化されている行のコメント化が解除された場合、このコードはコンパイルできなくなります。これは、列挙型のインスタンスである`Red`は、列挙型である`Enum<Color>`型の変数には代入できなくなるためです。
 
-> ##### Trivia: Concrete type parameter for `Enum<T>`
+この関係性は、クラスとそのインスタンスの関係性に似ています。
+
+> ##### Trivia: `Enum<T>の型パラメータを具体化する`
 >
-> One of the reviewers of this manual was confused about the difference between `Color` and `Enum<Color>` in the example above. Indeed, using a concrete type parameter there is pointless and only serves the purpose of demonstration. Usually we would omit the type there and let [type inference](type-system-type-inference.md) deal with it.
+> このマニュアルのレビューアの一人は上のサンプルコードの`Color`と`Enum<Color>`の違いについて困惑しました。実際、型パラメータの具体化は意味のないもので、デモンストレーションのためのものでしかありませんでした。私たちはよく型を書くのを省いて、型についてあつかうのを[型推論](type-system-type-inference.md)にまかせてしまいます。
 > 
-> However, the inferred type would be different from `Enum<Color>`. The compiler infers a pseudo-type which has the enum constructors as "fields". As of Haxe 3.2.0, it is not possible to express this type in syntax but also, it is never necessary to do so.
+> しかし、型推論では`Enum<Color>`ではないものが推論されるでしょう。コンパイラは、列挙型のコンストラクタをフィールドとしてみなした、仮の型を推論します。現在のHaxe3.2.0では、この仮の型について表現することは不可能であり、また表現する必要もありません。
 
 ---
 
-Previous section: [Enum Instance](types-enum-instance.md)
+Previous section: [列挙型インスタンス](types-enum-instance.md)
 
-Next section: [Using enums](types-enum-using.md)
+Next section: [列挙型を使う](types-enum-using.md)

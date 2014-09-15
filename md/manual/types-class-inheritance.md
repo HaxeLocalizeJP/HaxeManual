@@ -27,4 +27,4 @@ class Point3 extends Point {
 
 Previous section: [クラスのコンストラクタ](types-class-constructor.md)
 
-Next section: [Interfaces](types-interfaces.md)
+Next section: [インターフェース](types-interfaces.md)

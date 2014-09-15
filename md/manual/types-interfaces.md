@@ -1,33 +1,33 @@
-## 2.3.3 Interfaces
+## 2.3.3 インターフェース
 
-An interface can be understood as the signature of a class because it describes the public fields of a class. Interfaces do not provide implementations but pure structural information:
+インターフェースはクラスのパブリックフィールドを記述するもので、クラスの署名ともいうべきものです。インターフェースは実装を持たず、構造に関する情報のみを与えます。
 
 ```haxe
 interface Printable {
 	public function toString():String;
 }
 ```
-The syntax is similar to classes, with the following exceptions:
+この構文は以下の点をのぞいて、クラスによく似ています。
 
-* `interface` keyword is used instead of `class` keyword
-* functions do not have any [expressions](expression.md)
-* every field must have an explicit type
+* `interface`キーワードを`class`キーワードの代わりに使う。
+* 関数が[式](expression.md)を持たない。
+* すべてのフィールドが型を明示する必要がある。
 
-Interfaces, unlike [structural subtyping](type-system-structural-subtyping.md), describe a **static relation** between classes. A given class is only considered to be compatible to an interface if it explicitly states so:
+インタフェースは、[構造的部分型](type-system-structural-subtyping.md)とは異なり、クラス間の**静的な関係性**について記述します。以下のように明示的に宣言した場合にのみ、クラスはインターフェースと一致します。
 
 ```haxe
 class Point implements Printable { }
 ```
-Here, the `implements` keyword denotes that `Point` has a "is-a" relationship to `Printable`, i.e. each instance of `Point` is also an instance of `Printable`. While a class may only have one parent class, it may implement multiple interfaces through multiple `implements` keywords:
+
+`implements`キーワードの記述により、"`Point`は`Printable`である(is-a)"の関係性が生まれます。つまり、すべての`Point`のインスタンスは、`Printable`のインスタンスでもあります。クラスは親のクラスを1つしか持てませんが、以下のように複数の`implements`キーワードを使用することで複数のインターフェースを実装(implements)することが可能です。
 
 ```haxe
-class Point implements Printable
-  implements Serializable
+class Point implements Printable　implements Serializable
 ```
 
-The compiler checks if the `implements` assumption holds. That is, it makes sure the class actually does implement all the fields required by the interface. A field is considered implemented if the class or any of its parent classes provide an implementation.
+コンパイラは実装が条件を満たしているかの確認を行います。つまり、クラスが実際にインターフェースで要求されるフィールドを実装しているか確かめられるということです。フィールドの実装は、そのクラス自体と、その親となるいづれかのクラスの実装が考慮されます。
 
-Interface fields are not limited to methods. They can be variables and properties as well:
+インターフェースフィールドは、変数とプロパティのどちらであるかに対する制限は与えません:
 
 ```haxe
 interface Placeable {
@@ -42,12 +42,12 @@ class Main implements Placeable {
 }
 ```
 
-> ##### Trivia: Implements Syntax
+> ##### Trivia: Implementsの構文
 >
-> Haxe versions prior to 3.0 required multiple `implements` keywords to be separated by a comma. We decided to adhere to the de-facto standard of Java and got rid of the comma. This was one of the breaking changes between Haxe 2 and 3.
+> Haxeの3.0よりも前のバージョンでは、`implements`キーワードはカンマで区切られていました。Javaのデファクトスタンダードに合わせるため、私たちはカンマを取り除くことに決定しました。これが、Haxe2と3の間の破壊的な変更の1つです。
 
 ---
 
 Previous section: [継承](types-class-inheritance.md)
 
-Next section: [Enum Instance](types-enum-instance.md)
+Next section: [列挙型インスタンス](types-enum-instance.md)

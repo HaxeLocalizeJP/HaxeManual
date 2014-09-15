@@ -71,6 +71,6 @@ class Path {
 
 ---
 
-Previous section: [Using enums](types-enum-using.md)
+Previous section: [列挙型を使う](types-enum-using.md)
 
 Next section: [JSON for Structure Values](types-structure-json.md)

@@ -1,6 +1,6 @@
-## 2.4 Enum Instance
+## 2.4 列挙型インスタンス
 
-Haxe provides powerful enumeration (short: enum) types, which are actually an **algebraic data type** (ADT). While they cannot have any [expressions](expression.md), they are very useful for describing data structures:
+Haxeには強力な列挙型(enum)をもっています。この列挙型は実際には**代数的データ型** (ADT)に当たります。列挙型は[式](expression.md)を持つことはできませんが、データ構造を表現するのに非常に役に立ちます。
 
 ```haxe
 enum Color {
@@ -10,22 +10,23 @@ enum Color {
   Rgb(r:Int, g:Int, b:Int);
 }
 ```
-Semantically, this enum describes a color which is either red, green, blue or a specified RGB value. The syntactic structure is as follows:
 
-* The keyword `enum` denotes that we are declaring an enum.
-* `Color` is the name of the enum and could be anything conforming to the rules for [type identifiers](dictionary.md#define-identifier).
-* Enclosed in curly braces `{}` are the **enum constructors**,
-* which are `Red`, `Green` and `Blue` taking no arguments,
-* as well as `Rgb` taking three `Int` arguments named `r`, `g` and `b`.
+このコードでは、enumは、赤、緑、青のいづれかか、またはRGB値で表現した色、を書き表しています。この文法の構造は以下の通りです。
 
-The Haxe type system provides a type which unifies with all enum types:
+* `enum`キーワードが、列挙型について定義することを宣言しています。
+* `Color`が列挙型の名前です。[型の識別子のルール](dictionary.md#define-identifier)に従うすべてのものが使用できます。
+* 中カッコ `{}` で囲んだ中に**列挙型のコンストラクタ**を記述します。
+* `Red`と`Green`と`Blue`には引数がありません。
+* `Rgb`は、`r`、`g`、`b`の3つの`Int`型の引数を持ちます。
+
+Haxの型システムには、すべての列挙型を統合する型があります。
 
 > ##### Define: `Enum<T>`
 >
-> This type is compatible with all enum types. At compile-time, `Enum<T>` can bee seen as the common base type of all enum types. However, this relation is not reflected in generated code.
+> すべての列挙型と一致する型です。コンパイル時に、`Enum<T>`は全ての列挙型の共通の親の型となります。しかし、この関係性は生成されたコードに影響を与えません。
 
 ---
 
-Previous section: [Interfaces](types-interfaces.md)
+Previous section: [インターフェース](types-interfaces.md)
 
-Next section: [Enum Constructor](types-enum-constructor.md)
+Next section: [列挙型のコンストラクタ](types-enum-constructor.md)

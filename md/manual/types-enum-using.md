@@ -1,6 +1,6 @@
-## 2.4.2 Using enums
+## 2.4.2 列挙型を使う
 
-Enums are a good choice if only a finite set of values should be allowed. The individual [constructors](types-enum-constructor.md) then represent the allowed variants and enable the compiler to check if all possible values are respected. This can be seen here:
+列挙型は、有限の種類の値のセットが許されることを表現するだけでも有用です。それぞれのコンストラクタについて多様性が示されるので、コンパイラはありうる全ての値が考慮されていることをチェックすることを可能です。これは、例えば、以下のような場合です。
 
 ```haxe
 enum Color {
@@ -28,12 +28,14 @@ class Main {
 }
 ```
 
-After retrieving the value of `color` by assigning the return value of `getColor()` to it, a [`switch` expression](expression-switch.md) is used to branch depending on the value. The first three cases `Red`, `Green` and `Blue` are trivial and correspond to the constructors of `Color` that have no arguments. The final case `Rgb(r, g, b)` shows how the argument values of a constructor can be extracted: they are available as local variables within the case body expression, just as if a [`var` expression](expression-var.md) had been used.
+`getColor()`の戻り値を`color`に代入し、その値で[`switch`式](expression-switch.md)の分岐を行います。
 
-Advanced information on using the `switch` expression will be explored later in the section on [pattern matching](lf-pattern-matching.md).
+初めの`Red`、`Green`、`Blue`の3ケースについては些細な内容で、ただColorの引数無しのコンストラクタとの一致するか調べています。最後の`Rgb(r, g, b)`のケースでは、コンストラクタの引数の値をどうやって利用するのかがわかります。引数の値はケースの式の中で出てきたローカル変数として、[`var`の式](expression-var.md)を使った場合と同じように、利用可能です。
+
+`switch`の使い方について、より高度な情報は後の[パターンマッチング](lf-pattern-matching.md)の節でお話します。
 
 ---
 
-Previous section: [Enum Constructor](types-enum-constructor.md)
+Previous section: [列挙型のコンストラクタ](types-enum-constructor.md)
 
 Next section: [Anonymous Structure](types-anonymous-structure.md)

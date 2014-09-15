@@ -15,7 +15,7 @@
 <a name="define-enum-t" class="anch"></a>
 
 ##### `Enum<T>`
-This type is compatible with all enum types. At compile-time, `Enum<T>` can bee seen as the common base type of all enum types. However, this relation is not reflected in generated code.
+すべての列挙型と一致する型です。コンパイル時に、`Enum<T>`は全ての列挙型の共通の親の型となります。しかし、この関係性は生成されたコードに影響を与えません。
 
 <a name="define-null-t" class="anch"></a>
 
@@ -60,7 +60,7 @@ A [compound type](dictionary.md#define-compound-type) is considered covariant if
 <a name="define-enumvalue" class="anch"></a>
 
 ##### EnumValue
-EnumValue is a special type which unifies with all enum instances. It is used by the Haxe Standard Library to provide certain operations for all enum instances and can be employed in user-code accordingly in cases where an API requires **an** enum instance, but not a specific one.
+EnumValueはすべての列挙型のインスタンスと一致する特別な型です。この型はHaxeの標準ライブラリでは、すべての列挙型に対して可能な操作を提供するのに使われます。またユーザーのコードでは、特定の列挙型ではなく任意の列挙型のインスタンスを要求するAPIで利用できます。
 
 <a name="define-expected-type" class="anch"></a>
 
