@@ -530,11 +530,11 @@ typedef Point = {
 初めの\expr{\$type}の出力は、test関数の定義と強い類似性があります。では、その相違点を見てみます。
 
 \begin{itemize}
-	\item \emph{関数の引数}では、カンマではなく\expr{->}で区切られる。
-	\item \emph{引数の戻り値の型}は、もう一つ\expr{->}を付けた後に書かれる。
+	\item \emph{関数の引数}は、カンマではなく\expr{->}で区切られる。
+	\item \emph{引数の戻り値}の型は、もう一つ\expr{->}を付けた後に書かれる。
 \end{itemize}
 
-どちらの表記でも、\expr{test}関数が1つ目の引数として\type{Int}を受け取り、2つ目の引数として\type{String型}を受け取り、Bool型の値を返すことはよくわかります。2つ目の\expr{\$type}式の\expr{test(1, "foo")}のようにこの関数を呼び出すと、Haxeの型検査は\expr{1}が\type{Int}に代入可能か、\expr{"foo"}が\type{String}に代入可能かをチェックします。そして、その呼び出し後の型は、\expr{test}の戻り値の型の\type{Bool}となります。
+どちらの表記でも、\expr{test}関数が1つ目の引数として\type{Int}を受け取り、2つ目の引数として\type{String型}を受け取り、\type{Bool型}の値を返すことはよくわかります。2つ目の\expr{\$type}式の\expr{test(1, "foo")}のようにこの関数を呼び出すと、Haxeの型検査は\expr{1}が\type{Int}に代入可能か、\expr{"foo"}が\type{String}に代入可能かをチェックします。そして、その呼び出し後の型は、\expr{test}の戻り値の型の\type{Bool}となります。
 
 もし、ある関数の型が、別の関数の型を引数か戻り値に含む場合、丸かっこをグループ化に使うことができます。例えば、\type{Int -> (Int -> Void) -> Void}は初めの引数の型が\type{Int}、2番目の引数が\type{Int -> Void}で、戻り値が\type{Void}の関数を表します。
 
@@ -558,7 +558,7 @@ typedef Point = {
 
 この出力を見ると、オプション引数が呼び出し時に省略されると\expr{null}になることがわかります。つまり、これらの引数は\expr{null}が入る型でなくてはいけないことになり、ここで\tref{null許容}{types-nullability}に関する疑問が浮かび上がります。Haxeのコンパイラは\tref{静的ターゲット}{define-static-target}に出力する場合に、オプションの基本型の引数の型を\type{Null<T>}であると推論することで、オプション引数の型がnull許容であることを保証してます。
 
-初めの3つの呼び出しは直観的なものですが、4つ目の呼び出しには驚くかもしれません。後の引数に代入可能な値が渡された場合に、オプション引数はスキップされてしまいます。
+初めの3つの呼び出しは直観的なものですが、4つ目の呼び出しには驚くかもしれません。後の引数に代入可能な値が渡されたため、オプション引数はスキップされています。
 
 \subsection{デフォルト値}
 \label{types-function-default-values}
@@ -570,7 +570,7 @@ Haxeでは、引数のデフォルト値として定数値を割り当てるこ�
 
 %TODO: Default values do not imply nullability, even if the value is \expr{null}. 
 
-Haxeでのデフォルト値は、型の一部では無いので、呼び出し側で置き換えられるわけではありません(ただし、特有の動作を行う\tref{インライン}{class-field-inline}の関数を除く)。いくつかのターゲットでは、無視された引数に対してやはり\expr{null}を渡して、以下の関数と同じようなコードを生成します。
+Haxeでのデフォルト値は、型の一部では無いので、出力時に呼び出し元で置き換えられるわけではありません(ただし、特有の動作を行う\tref{インライン}{class-field-inline}の関数を除く)。いくつかのターゲットでは、無視された引数に対してやはり\expr{null}を渡して、以下の関数と同じようなコードを生成します。
 
 \begin{lstlisting}
 	static function test(i = 12, s = "bar") {
