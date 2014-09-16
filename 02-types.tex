@@ -584,42 +584,43 @@ Haxeでのデフォルト値は、型の一部では無いので、出力時に�
 
 
 
-\section{Dynamic}
+\section{ダイナミック}
 \label{types-dynamic}
 
-While Haxe has a static type system, this type system can, in effect, be turned off by using the \type{Dynamic} type. A \emph{dynamic value} can be assigned to anything; and anything can be assigned to it. This has several drawbacks:
+Haxeは静的な型システムを持っていますが、この型システムは\type{Dynamic}型を使うことで事実上offにすることが可能です。\emph{Dynamicな値}は、あらゆるものに割り当て可能です。逆に、Dynamicに対してはあらゆる値を割り当て可能です。これにはいくつかの弱点があります。
 
 \begin{itemize}
-	\item The compiler can no longer type-check assignments, function calls and other constructs where specific types are expected.
-	\item Certain optimizations, in particular when compiling to static targets, can no longer be employed.
-	\item Some common errors, e.g. a typo in a field access, can not be caught at compile-time and likely cause an error at runtime.
-	\item \Fullref{cr-dce} cannot detect used fields if they are used through \type{Dynamic}.
+	\item 代入、関数呼び出しなど、特定の型を要求される場面でコンパイラが型チェックをしなくなります。
+	\item 特定の最適化が、特に静的ターゲットにコンパイルする場合に、効かなくなります。
+	\item よくある間違い(フィールド名のタイポなど)がコンパイル時に検出できなくなって、実行時のエラーが起きやすくなります。
+	\item \Fullref{cr-dce}は、\type{Dynamic}を通じて使用しているフィールドを検出できません。
 \end{itemize}
-It is very easy to come up with examples where the usage of \type{Dynamic} can cause problems at runtime. Consider compiling the following two lines to a static target:
+
+\type{Dynamic}が実行時に問題を起こすような例を考えるのはとても簡単です。以下の2行を静的ターゲットへコンパイルすることを考えてください。
 
 \begin{lstlisting}
 var d:Dynamic = 1;
 d.foo;
 \end{lstlisting}
 
-Trying to run a compiled program in the Flash Player yields an error \texttt{Property foo not found on Number and there is no default value}. Without \type{Dynamic}, this would have been detected at compile-time.
+これをコンパイルしたプログラムを、Flash Playerで実行した場合、\texttt{Number にプロパティ foo が見つからず、デフォルト値もありません。}というエラーが発生します。\type{Dynamic}を使わなければ、このエラーはコンパイル時に検出できます。
 
-\trivia{Dynamic Inference before Haxe 3}{The Haxe 3 compiler never infers a type to \type{Dynamic}, so users must be explicit about it. Previous Haxe versions used to infer arrays of mixed types, e.g. \expr{[1, true, "foo"]}, as \type{Array<Dynamic>}. We found that this behavior introduced too many type problems and thus removed it for Haxe 3.}
+\trivia{Haxe3より前のDynamicの推論}{Haxe3のコンパイラは型を\type{Dynamic}として推論することはないので、\type{Dynamic}を使いたい場合はそのことを明示しなければ行きません。以前のHaxeのバージョンでは、混ざった型のArrayを\type{Array<Dynamic>}として推論してました(例えば、\expr{[1, true, "foo"]})。私たちはこの挙動はたくさんの型の問題を生み出すことに気づき、この仕様をHaxe3で取り除きました。}
 
-Use of \type{Dynamic} should be minimized as there are better options in many situations but sometimes it is just practical to use it. Parts of the Haxe \Fullref{std-reflection} API use it and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
+実際のところ\type{Dynamic}は使ってしまいますが、多くの場面では他のもっと良い選択肢があるので\type{Dynamic}の使用は最低限にすべきです。例えば、Haxeの\Fullref{std-reflection}APIは、コンパイル時には構造のわからないカスタムのデータ構造をあつかう際に最も良い選択肢になりえます。
 
-\type{Dynamic} behaves in a special way when being \tref{unified}{type-system-unification} with a \tref{monomorph}{types-monomorph}. Monomorphs are never bound to \type{Dynamic} which can have surprising results in examples such as this:
+\type{Dynamic}は、\tref{単相(monomorph)}{types-monomorph}を\tref{単一化}{type-system-unification}する場合に、特殊な挙動をします。以下のような場合に、とんでもない結果を生んでしまうので、単相が\type{Dynamic}に拘束されることはありません。
 
 \haxe{assets/DynamicInferenceIssue.hx}
 
-Although the return type of \expr{Json.parse} is \type{Dynamic}, the type of local variable \expr{json} is not bound to it and remains a monomorph. It is then inferred as an \tref{anonymous structure}{types-anonymous-structure} upon the \expr{json.length} field access, which causes the following \expr{json[0]} array access to fail. In order to avoid this, the variable \expr{json} can be explicitly typed as \type{Dynamic} by using \expr{var json:Dynamic}.
+\expr{Json.parse}の戻り値は\type{Dynamic}ですが、ローカル変数のjsonの型は\type{Dynamic}に拘束されません。単相のままです。そして、\expr{json.length}のフィールドにアクセスした時に\tref{匿名の構造体}{types-anonymous-structure}として推論されて、それにより\expr{json[0]}の配列アクセスでエラーになっています。これは、\expr{json}に対して、\expr{var json:Dynamic}というように明示的に\type{Dynamic}の型付けをすることで避けることができます。
 
-\trivia{Dynamic in the Standard Library}{Dynamic was quite frequent in the Haxe Standard Library before Haxe 3. With the continuous improvements of the Haxe type system the occurences of Dynamic were reduced over the releases leading to Haxe 3.}
+\trivia{標準ライブラリでのDynamic}{DynamicはHaxe3より前の標準ライブラリではかなり頻繁に表れていましたが、Haxe3までの継続的な型システムの改善によってDynamicの出現頻度を減らすことができました。}
 
-\subsection{Dynamic with Type Parameter}
+\subsection{型パラメータ付きのダイナミック}
 \label{types-dynamic-with-type-parameter}
 
-\type{Dynamic} is a special type because it allows explicit declaration with and without a \tref{type parameter}{type-system-type-parameters}. If such a type parameter is provided, the semantics described in \Fullref{types-dynamic} are constrained to all fields being compatible with the parameter type:
+\type{Dynamic}は、\tref{型パラメータ}{type-system-type-parameters}を付けても付けなくても良いという点でも特殊な型です。型パラメータを付けた場合、\Fullref{types-dynamic}のすべてのフィールドがパラメータの型であることが強制されます。
 
 \begin{lstlisting}
 var att : Dynamic<String> = xml.attributes;
@@ -632,16 +633,17 @@ att.income = 0;
 \end{lstlisting}
 
 
-\subsection{Implementing Dynamic}
+\subsection{ダイナミックを実装(implements)する}
 \label{types-dynamic-implemented}
 
-Classes can \tref{implement}{types-interfaces} \type{Dynamic} and \type{Dynamic$<$T$>$} which enables arbitrary field access. In the former case, fields can have any type, in the latter, they are constrained to be compatible with the parameter type:
+クラスは\type{Dynamic}と\type{Dynamic$<$T$>$}を\tref{実装}{types-interfaces}することができます。
+これにより任意のフィールドへのアクセスが可能になります。\type{Dynamic}の場合、フィールドはあらゆる型になる可能性があり、\type{Dynamic$<$T$>$}の場合、フィールドはパラメータの型と矛盾しない型のみに強制されます。
 
 \haxe{assets/ImplementsDynamic.hx}
 
-Implementing \type{Dynamic} does not satisfy the requirements of other implemented interfaces. The expected fields still have to be implemented explicitly.
+\type{Dynamic}を実装しても、 他のインターフェースが要求する実装を満たすことにはなりません。明示的な実装が必要です。
 
-Classes that implement \type{Dynamic} (with or without type parameter) can also utilize a special method named \expr{resolve}. If a \tref{read access}{define-read-access} is made and the field in question does not exist, the \expr{resolve} method is called with the field name as argument:
+型パラメータなしの\type{Dynamic}を実装したクラスでは、特殊なメソッド\expr{resolve}を利用することができます。\tref{読み込みアクセス}{define-read-access}がありフィールドが存在しなかった場合、\expr{resolve}メソッドが以下のように呼び出されます。
 
 \haxe{assets/DynamicResolve.hx}
 
