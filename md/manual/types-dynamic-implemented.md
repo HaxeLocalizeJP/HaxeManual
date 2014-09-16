@@ -1,6 +1,7 @@
-## 2.7.2 Implementing Dynamic
+## 2.7.2 ダイナミックを実装(implements)する
 
-Classes can [implement](types-interfaces.md) `Dynamic` and `Dynamic<T>` which enables arbitrary field access. In the former case, fields can have any type, in the latter, they are constrained to be compatible with the parameter type:
+クラスは`Dynamic`と`Dynamic<T>`を[実装](types-interfaces.md)することができます。
+これにより任意のフィールドへのアクセスが可能になります。`Dynamic`の場合、フィールドはあらゆる型になる可能性があり、`Dynamic<T>`の場合、フィールドはパラメータの型と矛盾しない型のみに強制されます。
 
 ```haxe
 class ImplementsDynamic
@@ -22,9 +23,9 @@ class Main {
 }
 ```
 
-Implementing `Dynamic` does not satisfy the requirements of other implemented interfaces. The expected fields still have to be implemented explicitly.
+`Dynamic`を実装しても、 他のインターフェースが要求する実装を満たすことにはなりません。明示的な実装が必要です。
 
-Classes that implement `Dynamic` (with or without type parameter) can also utilize a special method named `resolve`. If a [read access](dictionary.md#define-read-access) is made and the field in question does not exist, the `resolve` method is called with the field name as argument:
+型パラメータなしの`Dynamic`を実装したクラスでは、特殊なメソッド`resolve`を利用することができます。[読み込みアクセス](dictionary.md#define-read-access)がありフィールドが存在しなかった場合、`resolve`メソッドが以下のように呼び出されます。
 
 ```haxe
 class Resolve implements Dynamic<String> {
@@ -47,6 +48,6 @@ class Main {
 
 ---
 
-Previous section: [Dynamic with Type Parameter](types-dynamic-with-type-parameter.md)
+Previous section: [型パラメータ付きのダイナミック](types-dynamic-with-type-parameter.md)
 
 Next section: [Abstract](types-abstract.md)

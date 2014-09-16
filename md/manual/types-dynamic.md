@@ -1,28 +1,28 @@
-## 2.7 Dynamic
+## 2.7 ダイナミック
 
-While Haxe has a static type system, this type system can, in effect, be turned off by using the `Dynamic` type. A **dynamic value** can be assigned to anything; and anything can be assigned to it. This has several drawbacks:
+Haxeは静的な型システムを持っていますが、この型システムは`Dynamic`型を使うことで事実上offにすることが可能です。**Dynamicな値**は、あらゆるものに割り当て可能です。逆に、Dynamicに対してはあらゆる値を割り当て可能です。これにはいくつかの弱点があります。
 
-* The compiler can no longer type-check assignments, function calls and other constructs where specific types are expected.
-* Certain optimizations, in particular when compiling to static targets, can no longer be employed.
-* Some common errors, e.g. a typo in a field access, can not be caught at compile-time and likely cause an error at runtime.
-* [Dead Code Elimination](cr-dce.md) cannot detect used fields if they are used through `Dynamic`.
+* 代入、関数呼び出しなど、特定の型を要求される場面でコンパイラが型チェックをしなくなります。
+* 特定の最適化が、特に静的ターゲットにコンパイルする場合に、効かなくなります。
+* よくある間違い(フィールド名のタイポなど)がコンパイル時に検出できなくなって、実行時のエラーが起きやすくなります。
+* [Dead Code Elimination](cr-dce.md)は、`Dynamic`を通じて使用しているフィールドを検出できません。
 
-It is very easy to come up with examples where the usage of `Dynamic` can cause problems at runtime. Consider compiling the following two lines to a static target:
+`Dynamic`が実行時に問題を起こすような例を考えるのはとても簡単です。以下の2行を静的ターゲットへコンパイルすることを考えてください。
 
 ```haxe
 var d:Dynamic = 1;
 d.foo;
 ```
 
-Trying to run a compiled program in the Flash Player yields an error `Property foo not found on Number and there is no default value`. Without `Dynamic`, this would have been detected at compile-time.
+これをコンパイルしたプログラムを、Flash Playerで実行した場合、`Number にプロパティ foo が見つからず、デフォルト値もありません。`というエラーが発生します。`Dynamic`を使わなければ、このエラーはコンパイル時に検出できます。
 
-> ##### Trivia: Dynamic Inference before Haxe 3
+> ##### Trivia: Haxe3より前のDynamicの推論
 >
-> The Haxe 3 compiler never infers a type to `Dynamic`, so users must be explicit about it. Previous Haxe versions used to infer arrays of mixed types, e.g. `[1, true, "foo"]`, as `Array<Dynamic>`. We found that this behavior introduced too many type problems and thus removed it for Haxe 3.
+> Haxe3のコンパイラは型を`Dynamic`として推論することはないので、`Dynamic`を使いたい場合はそのことを明示しなければ行きません。以前のHaxeのバージョンでは、混ざった型のArrayを`Array<Dynamic>`として推論してました(例えば、`[1, true, "foo"]`)。私たちはこの挙動はたくさんの型の問題を生み出すことに気づき、この仕様をHaxe3で取り除きました。
 
-Use of `Dynamic` should be minimized as there are better options in many situations but sometimes it is just practical to use it. Parts of the Haxe [Reflection](std-reflection.md) API use it and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
+実際のところ`Dynamic`は使ってしまいますが、多くの場面では他のもっと良い選択肢があるので`Dynamic`の使用は最低限にすべきです。例えば、Haxeの[Reflection](std-reflection.md)APIは、コンパイル時には構造のわからないカスタムのデータ構造をあつかう際に最も良い選択肢になりえます。
 
-`Dynamic` behaves in a special way when being [unified](type-system-unification.md) with a [monomorph](types-monomorph.md). Monomorphs are never bound to `Dynamic` which can have surprising results in examples such as this:
+`Dynamic`は、[単相(monomorph)](types-monomorph.md)を[単一化](type-system-unification.md)する場合に、特殊な挙動をします。以下のような場合に、とんでもない結果を生んでしまうので、単相が`Dynamic`に拘束されることはありません。
 
 ```haxe
 class Main {
@@ -39,14 +39,14 @@ class Main {
 }
 ```
 
-Although the return type of `Json.parse` is `Dynamic`, the type of local variable `json` is not bound to it and remains a monomorph. It is then inferred as an [anonymous structure](types-anonymous-structure.md) upon the `json.length` field access, which causes the following `json[0]` array access to fail. In order to avoid this, the variable `json` can be explicitly typed as `Dynamic` by using `var json:Dynamic`.
+`Json.parse`の戻り値は`Dynamic`ですが、ローカル変数のjsonの型は`Dynamic`に拘束されません。単相のままです。そして、`json.length`のフィールドにアクセスした時に[匿名の構造体](types-anonymous-structure.md)として推論されて、それにより`json[0]`の配列アクセスでエラーになっています。これは、`json`に対して、`var json:Dynamic`というように明示的に`Dynamic`の型付けをすることで避けることができます。
 
-> ##### Trivia: Dynamic in the Standard Library
+> ##### Trivia: 標準ライブラリでのDynamic
 >
-> Dynamic was quite frequent in the Haxe Standard Library before Haxe 3. With the continuous improvements of the Haxe type system the occurences of Dynamic were reduced over the releases leading to Haxe 3.
+> DynamicはHaxe3より前の標準ライブラリではかなり頻繁に表れていましたが、Haxe3までの継続的な型システムの改善によってDynamicの出現頻度を減らすことができました。
 
 ---
 
 Previous section: [デフォルト値](types-function-default-values.md)
 
-Next section: [Dynamic with Type Parameter](types-dynamic-with-type-parameter.md)
+Next section: [型パラメータ付きのダイナミック](types-dynamic-with-type-parameter.md)

@@ -49,6 +49,6 @@ A good question at this point is "What happens if a member function is not decla
 
 ---
 
-Previous section: [Implementing Dynamic](types-dynamic-implemented.md)
+Previous section: [ダイナミックを実装(implements)する](types-dynamic-implemented.md)
 
 Next section: [Implicit Casts](types-abstract-implicit-casts.md)

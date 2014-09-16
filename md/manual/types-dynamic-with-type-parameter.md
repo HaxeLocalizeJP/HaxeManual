@@ -1,6 +1,6 @@
-## 2.7.1 Dynamic with Type Parameter
+## 2.7.1 型パラメータ付きのダイナミック
 
-`Dynamic` is a special type because it allows explicit declaration with and without a [type parameter](type-system-type-parameters.md). If such a type parameter is provided, the semantics described in [Dynamic](types-dynamic.md) are constrained to all fields being compatible with the parameter type:
+`Dynamic`は、[型パラメータ](type-system-type-parameters.md)を付けても付けなくても良いという点でも特殊な型です。型パラメータを付けた場合、[ダイナミック](types-dynamic.md)のすべてのフィールドがパラメータの型であることが強制されます。
 
 ```haxe
 var att : Dynamic<String> = xml.attributes;
@@ -14,6 +14,6 @@ att.income = 0;
 
 ---
 
-Previous section: [Dynamic](types-dynamic.md)
+Previous section: [ダイナミック](types-dynamic.md)
 
-Next section: [Implementing Dynamic](types-dynamic-implemented.md)
+Next section: [ダイナミックを実装(implements)する](types-dynamic-implemented.md)

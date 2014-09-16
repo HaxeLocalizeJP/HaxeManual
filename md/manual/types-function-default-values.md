@@ -35,4 +35,4 @@ Haxeでのデフォルト値は、型の一部では無いので、出力時に�
 
 Previous section: [オプション引数](types-function-optional-arguments.md)
 
-Next section: [Dynamic](types-dynamic.md)
+Next section: [ダイナミック](types-dynamic.md)

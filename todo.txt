@@ -85,9 +85,9 @@ Unreviewed:
 2.6 - 関数型
 2.6.1 - オプション引数
 2.6.2 - デフォルト値
-2.7 - Dynamic
-2.7.1 - Dynamic with Type Parameter
-2.7.2 - Implementing Dynamic
+2.7 - ダイナミック
+2.7.1 - 型パラメータ付きのダイナミック
+2.7.2 - ダイナミックを実装(implements)する
 2.8 - Abstract
 2.8.1 - Implicit Casts
 2.8.2 - Operator Overloading

@@ -20,7 +20,7 @@ The special construct `$type` was previously mentioned in order to simplify the 
 
 In the example above, the first `$type` prints `Unknown<0>`. This is a [monomorph](types-monomorph.md), a type that is not yet known. The next line `x = "foo"` assigns a `String` literal to `x`, which causes the [unification](type-system-unification.md) of the monomorph with `String`. We then see that the type of `x` indeed has changed to `String`.
 
-Whenever a type other than [Dynamic](types-dynamic.md) is unified with a monomorph, that monomorph **becomes** that type: it **morphs** into that type. Therefore it cannot morph into a different type afterwards, a property expressed in the **mono** part of its name.
+Whenever a type other than [ダイナミック](types-dynamic.md) is unified with a monomorph, that monomorph **becomes** that type: it **morphs** into that type. Therefore it cannot morph into a different type afterwards, a property expressed in the **mono** part of its name.
 
 Following the rules of unification, type inference can occur in compound types:
 
