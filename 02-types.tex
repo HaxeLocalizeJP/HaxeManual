@@ -523,7 +523,7 @@ typedef Point = {
 
 \todo{It seems a bit convoluted explanations. Should we maybe start by "decoding" the meaning of  Void -> Void, then Int -> Bool -> Float, then maybe have samples using \$type}
 
-関数型に、\tref{monomorph}{types-monomorph}と共に、Haxeのユーザーからよく隠れている型の1つです。コンパイル時に式の型を出力させる\expr{\$type}という特殊な識別子を使えば、この型を以下のように浮かび上がらせることが可能です。
+関数型は、\tref{単相}{types-monomorph}と共に、Haxeのユーザーからよく隠れている型の1つです。コンパイル時に式の型を出力させる\expr{\$type}という特殊な識別子を使えば、この型を以下のように浮かび上がらせることが可能です。
 
 \haxe{assets/FunctionType.hx}
 
@@ -587,7 +587,7 @@ Haxeでのデフォルト値は、型の一部では無いので、出力時に�
 \section{ダイナミック}
 \label{types-dynamic}
 
-Haxeは静的な型システムを持っていますが、この型システムは\type{Dynamic}型を使うことで事実上offにすることが可能です。\emph{Dynamicな値}は、あらゆるものに割り当て可能です。逆に、Dynamicに対してはあらゆる値を割り当て可能です。これにはいくつかの弱点があります。
+Haxeは静的な型システムを持っていますが、この型システムは\type{Dynamic}型を使うことで事実上オフにすることが可能です。\emph{Dynamicな値}は、あらゆるものに割り当て可能です。逆に、\type{Dynamic}に対してはあらゆる値を割り当て可能です。これにはいくつかの弱点があります。
 
 \begin{itemize}
 	\item 代入、関数呼び出しなど、特定の型を要求される場面でコンパイラが型チェックをしなくなります。
@@ -649,44 +649,46 @@ att.income = 0;
 
 
 
-\section{Abstract}
+\section{抽象型(abstract)}
 \label{types-abstract}
 
-An abstract type is a type which is actually a different type at run-time. It is a compile-time feature which defines types ``over'' concrete types in order to modify or augment their behavior:
+抽象(abstract)型は、実行時には別の型になる型です。抽象型は挙動を編集したり強化したりするために、具体型(=抽象型でない型)を``おおう''型を定義するコンパイル時の機能です。
 
 \haxe[firstline=1,lastline=5]{assets/MyAbstract.hx}
-We can derive the following from this example:
+
+上記のコードからは以下を学ぶことができます。
 
 \begin{itemize}
-	\item The keyword \expr{abstract} denotes that we are declaring an abstract type.
-	\item \type{Abstract} is the name of the abstract and could be anything conforming to the rules for type identifiers.
-	\item Enclosed in parenthesis \expr{()} is the \emph{underlying type} \type{Int}.
-	\item Enclosed in curly braces \expr{$\left\{\right\}$} are the fields,
-	\item which are a constructor function \expr{new} accepting one argument \expr{i} of type \type{Int}.
+	\item \expr{abstract}キーワードは、抽象型を定義していることを宣言している。
+	\item \type{AbstractInt}は抽象型の名前であり、型の識別子のルールを満たすものなら何でも使える。
+	\item 丸かっこ\expr{()}の中は、その\emph{基底型}の\type{Int}である。
+	\item 中カッコ\expr{$\left\{\right\}$}の中はフィールドで、
+	\item \type{Int}型の\expr{i}のみを引数とするコンストラクタの\expr{new}関数がある。
 \end{itemize}
 
-\define{Underlying Type}{define-underlying-type}{The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type but could be another abstract type as well.}
+\define{基底型}{define-underlying-type}{
+抽象型の基底型は、実行時にその抽象型を表すために使われる型です。基底型はたいていの場合は具体型(抽象型でない型)ですが、別の抽象型である場合もあります。
+}
 
-The syntax is reminiscent of classes and the semantics are indeed similar. In fact, everything in the ``body'' of an abstract (that is everything after the opening curly brace) is parsed as class fields. Abstracts may have \tref{method}{class-field-method} fields and non-\tref{physical}{define-physical-field} \tref{property}{class-field-property} fields.
+構文はクラスを連想させるもので、意味合いもよく似ています。実際、抽象型のボディ部分(中カッコの開始以降)は、クラスフィールドとして構文解析することが可能です。抽象型は\tref{メソッド}{class-field-method}と、\tref{実体}{define-physical-field}の無い\tref{プロパティ}{class-field-property}フィールドを持つことが可能です。
 
-Furthermore, abstracts can be instantiated and used just like classes:
+さらに、抽象型は以下のように、クラスと同じようにインスタンス化して使用することができます
 
 \haxe[firstline=7,lastline=12]{assets/MyAbstract.hx}
-As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is \target{Javascript}, which tends to generate concise and clean code. Compiling the above (using \texttt{haxe -main MyAbstract -js myabstract.js}) shows this \target{Javascript} code:
+
+はじめに書いたとおり、抽象型はコンパイル時の機能ですから、見るべきは上記のコードの実際の出力です。この出力例としては、簡潔できれいなコードが出力される\target{JavaScript}が良いでしょう。上記のコードを\texttt{haxe -main MyAbstract -js myabstract.js}でコンパイルすると以下のような\target{JavaScript}が出力されます。
 
 \begin{lstlisting}
 var a = 12;
 console.log(a);
 \end{lstlisting}
-The abstract type \type{Abstract} completely disappeared from the output and all that is left is a value of its underlying type, \type{Int}. This is because the constructor of \type{Abstract} is inlined - something we shall learn about later in the section \Fullref{class-field-inline} - and its inlined expression assigns a value to \expr{this}. This might be surprising when thinking in terms of classes. However, it is precisely what we want to express in the context of abstracts. Any \emph{inlined member method} of an abstract can assign to \expr{this}, and thus modify the ``internal value''.
 
+抽象型の\type{AbstractInt}は出力から完全に消えてしまい、その基底型の\type{Int}の値のみが残っています。これは、\type{AbstractInt}のコンストラクタがインライン化されて、そのインラインの式が値を\expr{this}に代入します(インライン化については後の\Fullref{class-field-inline}で学びます)。これは、クラスのように考えていた場合、驚くべきことかもしれません。しかし、これこそが抽象型を使って表現したいことそのものです。
+抽象型のすべての\emph{インラインのメンバメソッド}では\expr{this}への代入が可能で、これにより``内部の値''が編集できます。
 
-A good question at this point is ``What happens if a member function is not declared inline'' because the code obviously has to go somewhere. Haxe creates a private class, known to be the \emph{implementation class}, which has all the abstract member functions as static functions accepting an additional first argument \expr{this} of the underlying type. While technically this is an implementation detail, it can be used for \tref{selective functions}{types-abstract-selective-functions}.
+``もしメンバ関数でinlineが宣言されていなかった場合、何が起こるのか？''というのは良い疑問です。そのようなコードははっきりと成立します。その場合、Haxeは実装クラスとして知られるprivateのクラスを生成します。この実装クラスは抽象型のメンバ関数を、最初の引数としてその基底型の\expr{this}を加えたstaticな関数で持ちます。技術的にはこれ実装の詳細ですが、\tref{selective functions}{types-abstract-selective-functions}を使うことも可能です。
 
-
-
-\trivia{Basic Types and abstracts}{Before the advent of abstract types, all basic types were implemented as extern classes or enums. While this nicely took care of some aspects such as \type{Int} being a ``child class'' of \type{Float}, it caused issues elsewhere. For instance, with \type{Float} being an extern class, it would unify with the empty structure \expr{\{\}}, making it impossible to constrain a type to accepting only real objects.}
-
+\trivia{基本型と抽象型}{抽象型が生まれる前には、基本型はexternクラスと列挙型で実装されていました。\type{Int}型を\type{Float}型の``子クラス''としてあつかうなどのいくつかの面では便利でしたが、一方で問題も引き起こしました。例えば、\type{Float}がexternクラスなので、実際のオブジェクトしか受け入れないはずの空の構造体の型\expr{\{\}}として単一化できました。}
 
 
 
