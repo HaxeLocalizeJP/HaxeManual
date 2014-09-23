@@ -686,36 +686,40 @@ console.log(a);
 抽象型の\type{AbstractInt}は出力から完全に消えてしまい、その基底型の\type{Int}の値のみが残っています。これは、\type{AbstractInt}のコンストラクタがインライン化されて、そのインラインの式が値を\expr{this}に代入します(インライン化については後の\Fullref{class-field-inline}で学びます)。これは、クラスのように考えていた場合、驚くべきことかもしれません。しかし、これこそが抽象型を使って表現したいことそのものです。
 抽象型のすべての\emph{インラインのメンバメソッド}では\expr{this}への代入が可能で、これにより``内部の値''が編集できます。
 
-``もしメンバ関数でinlineが宣言されていなかった場合、何が起こるのか？''というのは良い疑問です。そのようなコードははっきりと成立します。その場合、Haxeは実装クラスとして知られるprivateのクラスを生成します。この実装クラスは抽象型のメンバ関数を、最初の引数としてその基底型の\expr{this}を加えたstaticな関数で持ちます。技術的にはこれ実装の詳細ですが、\tref{selective functions}{types-abstract-selective-functions}を使うことも可能です。
+``もしメンバ関数でinlineが宣言されていなかった場合、何が起こるのか？''というのは良い疑問です。そのようなコードははっきりと成立します。その場合、Haxeは実装クラスと呼ばれるprivateのクラスを生成します。この実装クラスは抽象型のメンバ関数を、最初の引数としてその基底型の\expr{this}を加えたstaticな関数で持ちます。技術的にはこれ実装の詳細ですが、\tref{selective functions}{types-abstract-selective-functions}を使うことも可能です。
 
 \trivia{基本型と抽象型}{抽象型が生まれる前には、基本型はexternクラスと列挙型で実装されていました。\type{Int}型を\type{Float}型の``子クラス''としてあつかうなどのいくつかの面では便利でしたが、一方で問題も引き起こしました。例えば、\type{Float}がexternクラスなので、実際のオブジェクトしか受け入れないはずの空の構造体の型\expr{\{\}}として単一化できました。}
 
 
 
-\subsection{Implicit Casts}
+\subsection{暗黙のキャスト}
 \label{types-abstract-implicit-casts}
 
-Unlike classes, abstracts allow defining implicit casts. There are two kinds of implicit casts:
+クラスとは異なり抽象型は暗黙のキャストを許します。抽象型には2種類の暗黙のキャストがあります。
 
 \begin{description}
-	\item[Direct:] Allows direct casting of the abstract type to or from another type. This is defined by adding \expr{to} and \expr{from} rules to the abstract type and is only allowed for types which unify with the underlying type of the abstract.
-	\item[Class field:] Allows casting via calls to special cast functions. These functions are defined using \expr{@:to} and \expr{@:from} metadata. This kind of cast is allowed for all types.
+	\item[直接:] 他の型から抽象型への直接のキャストを許します。これは\expr{to}と\expr{from}のルールを抽象型に設定することでできます。 これはその抽象型の基底型に単一化可能な型のみで利用可能です。
+	\item[クラスフィールド:] 特殊なキャスト関数を呼び出すことによるキャストを許します。この関数は\expr{@:to}と\expr{@:from}のメタデータを使って定義されます。この種類のキャストは全ての型で利用可能です。
 \end{description}
-The following code example shows an example of \emph{direct} casting:
+
+下のコードは、直接キャストの例です。
 
 \haxe{assets/ImplicitCastDirect.hx}
-We declare \type{MyAbstract} as being \expr{from Int} and \expr{to Int}, meaning it can be assigned from \type{Int} and assigned to \type{Int}. This is shown in lines 9 and 10, where we first assign the \type{Int} \expr{12} to variable \expr{a} of type \type{MyAbstract} (this works due to the \expr{from Int} declaration) and then that abstract back to variable \expr{b} of type \type{Int} (this works due to the \expr{to Int} declaration).
 
-Class field casts have the same semantics, but are defined completely differently:
+\expr{from Int}かつ\expr{to Int}の\type{MyAbstract}を定義しました。これは\type{Int}を代入することが可能で、かつ\type{Int}に代入することが可能だという意味です。このことは、9、10行目に表れています。まず、\type{Int}の12を\type{MyAbstract}型の変数\expr{a}に代入しています(これは\expr{from Int}の宣言により可能になります)。そして次に、\type{Int}型の変数\expr{b}に、抽象型のインスタンスを代入しています(これは\expr{to Int}の宣言により可能になります)。
+
+クラスフィールドのキャストも同じ意味を持ちますが、定義の仕方はまったく異なります。
 
 \haxe{assets/ImplicitCastField.hx}
-By adding \expr{@:from} to a static function, that function qualifies as implicit cast function from its argument type to the abstract. These functions must return a value of the abstract type. They must also be declared \expr{static}.
 
-Similarly, adding \expr{@:to} to a function qualifies it as implicit cast function from the abstract to its return type. These functions are typically member-functions but they can be made \expr{static} and then serve as \tref{selective function}{types-abstract-selective-functions}.
+静的な関数に\expr{@:from}を付けることで、その引数の型からその抽象型への暗黙のキャストを行う関数として判断されます。この関数はその抽象型の値を返す必要があります。\expr{static}を宣言する必要もあります。
 
-In the example the method \expr{fromString} allows the assignment of value \expr{"3"} to variable \expr{a} of type \type{MyAbstract} while the method \expr{toArray} allows assigning that abstract to variable \expr{b} of type \type{Array<Int>}.
+同じように関数に\expr{@:to}を付けることで、その抽象型からその戻り値の型への暗黙のキャストを行う関数として判断されます。この関数は普通はメンバ関数ですが、\expr{static}でも構いません。そして、これは\tref{選択的関数}{types-abstract-selective-functions}として働きます。
 
-When using this kind of cast, calls to the cast-functions are inserted where required. This becomes obvious when looking at the \target{Javascript} output:
+上の例では、\expr{fromString}メソッドが\expr{"3"}の値を\type{MyAbstract}型の変数\expr{a}への代入を可能にし、
+\expr{toArray}メソッドがその抽象型インスタンスを\type{Array<Int>}型の変数\expr{b}への代入を可能にします。
+
+この種類のキャストを使った場合、必要な場所でキャスト関数の呼び出しが発生します。このことは\target{JavaScript}出力を見ると明らかです。
 
 \begin{lstlisting}
 var a = _ImplicitCastField.MyAbstract_Impl_
@@ -723,30 +727,33 @@ var a = _ImplicitCastField.MyAbstract_Impl_
 var b = _ImplicitCastField.MyAbstract_Impl_
   .toArray(a);
 \end{lstlisting}
-This can be further optimized by \tref{inlining}{class-field-inline} both cast functions, turning the output into the following:
-\todo{please review your use of ``this'' and try to vary somewhat to avoid too much word repetition}
+
+これは2つのキャスト関数で\tref{インライン化}{class-field-inline}を行うことでさらなる最適化を行うことができます。これにより出力は以下のように変わります。
 
 \begin{lstlisting}
 var a = Std.parseInt("3");
 var b = [a];
 \end{lstlisting}
-The \emph{selection algorithm} when assigning a type \expr{A} to a type \expr{B} with at least one of them being an abstract is simple:
+
+
+型\expr{A}から時の型\expr{B}への代入の時にどちらかまたは両方が抽象型である場合に使われるキャストの\emph{選択アルゴリズム}は簡単です。
 
 \begin{enumerate}
-	\item If \expr{A} is not an abstract, go to 3.
-	\item If \expr{A} defines a \emph{to}-conversions that admits \expr{B}, go to 6.
-	\item If \expr{B} is not an abstract, go to 5.
-	\item If \expr{B} defines a \emph{from}-conversions that admits \expr{A}, go to 6.
-	\item Stop, unification fails.
-	\item Stop, unification succeeds.
+	\item \expr{A}が抽象型でない場合は3へ。
+	\item \expr{A}が、\expr{B}\emph{への}変換を持っている場合、これを適用して6へ。
+	\item \expr{B}が抽象型でない場合は5へ。
+	\item \expr{B}が、\expr{A}\emph{からの}変換を持っている場合、これを適用して6へ。
+	\item 単一化失敗で、終了。
+	\item 単一化成功で、終了。
 \end{enumerate}
 
 \input{assets/tikz/abstract-selection.tex}
 
-By design, implicit casts are \emph{not transitive}, as the following example shows:
+意図的に暗黙のキャストは連鎖的ではありません。これは以下の例でわかります。
 
 \haxe{assets/ImplicitTransitiveCast.hx}
-While the individual casts from \type{A} to \type{B} and from \type{B} to \type{C} are allowed, a transitive cast from \type{A} to \type{C} is not. This is to avoid ambiguous cast-paths and retain a simple selection algorithm. 
+
+\type{A}から\type{B}、\type{B}から\type{C}への個々のキャストは可能ですが、\type{A}から\type{C}への連鎖的なキャストはできません。これは、キャスト方法が複数生まれてしまうことは避けて、選択アルゴリズムの簡潔さを保つためです。
 
 
 
