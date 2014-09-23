@@ -758,30 +758,32 @@ var b = [a];
 
 
 
-\subsection{Operator Overloading}
+\subsection{演算子オーバーロード}
 \label{types-abstract-operator-overloading}
 
-Abstracts allow overloading of unary and binary operators by adding the \expr{@:op} metadata to class fields:
+抽象型ではクラスフィールドに\expr{@:op}メタデータを付けることで、単項演算子と2項演算子のオーバーロードが可能です。
 
 \haxe{assets/AbstractOperatorOverload.hx}
-By defining \expr{@:op(A * B)}, the function \expr{repeat} serves as operator method for the multiplication \expr{*} operator when the type of the left value is \type{MyAbstract} and the type of the right value is \type{Int}. The usage is shown in line 17, which turns into this when compiled to \target{Javascript}:
+
+\expr{@:op(A * B)}を宣言することで、\expr{repeat}関数は、左辺が\type{MyAbstract}で右辺が\type{Int}の場合の\expr{*}演算子による乗算の関数として利用されます。これは18行目で利用されています。この部分は\target{JavaScript}にコンパイルすると以下のようになります。
 
 \begin{lstlisting}
 console.log(_AbstractOperatorOverload.
   MyAbstract_Impl_.repeat(a,3));
 \end{lstlisting}
-Similar to \tref{implicit casts with class fields}{types-abstract-implicit-casts}, a call to the overload method is inserted where required.
 
-The example \expr{repeat} function is not commutative: While \expr{MyAbstract * Int} works, \expr{Int * MyAbstract} does not. If this should be allowed as well, the \expr{@:commutative} metadata can be added. If it should work \emph{only} for \expr{Int * MyAbstract}, but not for \expr{MyAbstract * Int}, the overload method can be made static, accepting \type{Int} and \type{MyAbstract} as first and second type respectively.
 
-Overloading unary operators is analogous:
+\tref{クラスフィールドによる暗黙の型変換}{types-abstract-implicit-casts}と同様に、オーバーロードメソッドも要求された場所で呼び出しが発生します。上記の例の\expr{repeat}関数は可換ではありません。\expr{MyAbstract * Int}は動作しますが、\expr{Int * MyAbstract}では動作しません。\expr{Int * MyAbstract}でも動作させたい場合は\expr{@:commutative}のメタデータが使えます。逆に、\expr{MyAbstract * Int}ではなく\expr{Int * MyAbstract}でのみ動作させてたい場合、1つ目の引数で\type{Int}型、2つ目の引数で\type{MyAbstract}型を受け取る静的な関数をオーバーロードメソッドにすることができます。
+
+単項演算子の場合もこれによく似ています。
 
 \haxe{assets/AbstractUnopOverload.hx}
-Both binary and unary operator overloads can return any type.
 
-It is also possible to omit the method body of a \expr{@:op} function, but only if the underlying type of the abstract allows the operation in question and if the resulting type can be assigned back to the abstract.
+2項演算子と単項演算子の両方とも、戻り値の型は何でも構いません。
+
+基底型が抽象型でそこで許容されている演算子で戻り値を元の抽象型に代入可能なものについては、\expr{@:op}関数のボディを省略することが可能です。
+
 \todo{please review for correctness}
-
 
 \subsection{Array Access}
 \label{types-abstract-array-access}
