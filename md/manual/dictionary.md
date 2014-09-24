@@ -162,11 +162,6 @@ Structural subtyping defines an implicit relation between types that have the sa
 ##### Type path
 The (dot-)path to a type consists of the package, the module name and the type name. Its general form is `pack1.pack2.packN.ModuleName.TypeName`.
 
-<a name="define-underlying-type" class="anch"></a>
-
-##### Underlying Type
-The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type but could be another abstract type as well.
-
 <a name="define-unification" class="anch"></a>
 
 ##### Unification
@@ -198,6 +193,13 @@ A write access to a field occurs when a [field access expression](expression-fie
 
 ##### 動的ターゲット
 動的ターゲットは型に関して寛容で、基本型が`null`を許容します。これはJavaScriptとPHP、Neko、Flash 6-8ターゲットが当てはまります。
+
+<a name="define-underlying-type" class="anch"></a>
+
+##### 基底型
+
+抽象型の基底型は、実行時にその抽象型を表すために使われる型です。基底型はたいていの場合は具体型ですが、別の抽象型である場合もあります。
+
 
 <a name="define-definition" class="anch"></a>
 

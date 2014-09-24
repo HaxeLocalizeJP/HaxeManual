@@ -8,6 +8,6 @@ All types are organized in **modules** and can be addressed through **paths**. [
 
 ---
 
-Previous section: [Monomorph](types-monomorph.md)
+Previous section: [単相型](types-monomorph.md)
 
 Next section: [Typedef](type-system-typedef.md)

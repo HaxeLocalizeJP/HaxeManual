@@ -1,6 +1,6 @@
-## 2.8.2 Operator Overloading
+## 2.8.2 演算子オーバーロード
 
-Abstracts allow overloading of unary and binary operators by adding the `@:op` metadata to class fields:
+抽象型ではクラスフィールドに`@:op`メタデータを付けることで、単項演算子と2項演算子のオーバーロードが可能です。
 
 ```haxe
 abstract MyAbstract(String) {
@@ -24,17 +24,17 @@ class AbstractOperatorOverload {
   }
 }
 ```
-By defining `@:op(A * B)`, the function `repeat` serves as operator method for the multiplication `*` operator when the type of the left value is `MyAbstract` and the type of the right value is `Int`. The usage is shown in line 17, which turns into this when compiled to Javascript:
+
+`@:op(A * B)`を宣言することで、`repeat`関数は、左辺が`MyAbstract`で右辺が`Int`の場合の`*`演算子による乗算の関数として利用されます。これは18行目で利用されています。この部分はJavaScriptにコンパイルすると以下のようになります。
 
 ```haxe
 console.log(_AbstractOperatorOverload.
   MyAbstract_Impl_.repeat(a,3));
 ```
-Similar to [implicit casts with class fields](types-abstract-implicit-casts.md), a call to the overload method is inserted where required.
 
-The example `repeat` function is not commutative: While `MyAbstract * Int` works, `Int * MyAbstract` does not. If this should be allowed as well, the `@:commutative` metadata can be added. If it should work **only** for `Int * MyAbstract`, but not for `MyAbstract * Int`, the overload method can be made static, accepting `Int` and `MyAbstract` as first and second type respectively.
+[クラスフィールドによる暗黙の型変換](types-abstract-implicit-casts.md)と同様に、オーバーロードメソッドも要求された場所で呼び出しが発生します。上記の例の`repeat`関数は可換ではありません。`MyAbstract * Int`は動作しますが、`Int * MyAbstract`では動作しません。`Int * MyAbstract`でも動作させたい場合は`@:commutative`のメタデータが使えます。逆に、`MyAbstract * Int`ではなく`Int * MyAbstract`でのみ動作させてたい場合、1つ目の引数で`Int`型、2つ目の引数で`MyAbstract`型を受け取る静的な関数をオーバーロードメソッドにすることができます。
 
-Overloading unary operators is analogous:
+単項演算子の場合もこれによく似ています。
 
 ```haxe
 abstract MyAbstract(String) {
@@ -56,12 +56,13 @@ class AbstractUnopOverload {
   }
 }
 ```
-Both binary and unary operator overloads can return any type.
 
-It is also possible to omit the method body of a `@:op` function, but only if the underlying type of the abstract allows the operation in question and if the resulting type can be assigned back to the abstract.
+2項演算子と単項演算子の両方とも、戻り値の型は何でも構いません。
+
+基底型が抽象型でそこで許容されている演算子でかつ戻り値を元の抽象型に代入可能なものについては、`@:op`関数のボディを省略することが可能です。
 
 ---
 
-Previous section: [Implicit Casts](types-abstract-implicit-casts.md)
+Previous section: [暗黙のキャスト](types-abstract-implicit-casts.md)
 
-Next section: [Array Access](types-abstract-array-access.md)
+Next section: [配列アクセス](types-abstract-array-access.md)

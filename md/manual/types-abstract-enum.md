@@ -1,8 +1,8 @@
-## 2.8.5 Enum abstracts
+## 2.8.5 抽象型列挙体
 
 ##### since Haxe 3.1.0
 
-By adding the `:enum` metadata to an abstract definition, that abstract can be used to define finite value sets:
+抽象型の宣言に`@:enum`のメタデータを追加することで、その値を有限の値のセットを定義して使うことができます。
 
 ```haxe
 @:enum
@@ -29,7 +29,7 @@ class Main {
 }
 ```
 
-The Haxe Compiler replaces all field access to the `HttpStatus` abstract with their values, as evident in the Javascript output:
+以下のJavaScriptへの出力を見ても明らかなように、Haxeは抽象型`HttpStatus`の全てのフィールドへのアクセスをその値に変換します。
 
 ```haxe
 Main.main = function() {
@@ -46,14 +46,14 @@ Main.printStatus = function(status) {
 };
 ```
 
-This is similar to accessing [variables declared as inline](class-field-inline.md), but has several advantages:
+これは[インライン変数](class-field-inline.md)によく似ていますが、いくつかの利点があります。
 
-* The typer can ensure that all values of the set are typed correctly.
-* The pattern matcher checks for [exhaustiveness](lf-pattern-matching-exhaustiveness.md) when [matching](lf-pattern-matching.md) an enum abstract.
-* Defining fields requires less syntax.
+* コンパイラがそのセットのすべての値が正しく型付けされていることを保証できます。
+* パターンマッチで、抽象型列挙体への[マッチング](lf-pattern-matching.md)を行う場合に[網羅性](lf-pattern-matching-exhaustiveness.md)がチェックされます。
+* 少ない構文でフィールドを定義できます。
 
 ---
 
-Previous section: [Selective Functions](types-abstract-selective-functions.md)
+Previous section: [選択的関数](types-abstract-selective-functions.md)
 
-Next section: [Forwarding abstract fields](types-abstract-forward.md)
+Next section: [抽象型フィールドの繰り上げ](types-abstract-forward.md)

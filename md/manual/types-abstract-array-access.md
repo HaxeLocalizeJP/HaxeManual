@@ -1,6 +1,6 @@
-## 2.8.3 Array Access
+## 2.8.3 配列アクセス
 
-Array access describes the particular syntax traditionally used to access the value in an array at a certain offset. This is usually only allowed with arguments of type `Int`. Nevertheless, with abstracts it is possible to define custom array access methods. The [Haxe Standard Library](std.md) uses this in its `Map` type, where the following two methods can be found:
+配列アクセスは、配列の特定の位置の値にアクセスするのに伝統的に使われている特殊な構文です。これは大抵の場合、`Int`のみを引数としますが、抽象型の場合はカスタムの配列アクセスを定義することが可能です。[Haxeの標準ライブラリ](std.md)では、これを`Map`型に使っており、これには以下の2つのメソッドがあります。
 
 ```haxe
 @:arrayAccess public inline function
@@ -11,12 +11,13 @@ arrayWrite(k:K, v:V):V {
 	return v;
 }
 ```
-There are two kinds of array access methods:
 
-* If an `@:arrayAccess` method accepts one argument, it is a getter.
-* If an `@:arrayAccess` method accepts two arguments, it is a setter.
+配列アクセスのメソッドは以下の2種類があります。
 
-The methods `get` and `arrayWrite` seen above then allow the following usage:
+* `@:arrayAccess`メソッドが1つの引数を受け取る場合、それは読み取り用です。
+* `@:arrayAccess`メソッドが2つの引数を受け取る場合、それは書き込み用です。
+
+上記のコードの`get`メソッドと`arrayWrite`メソッドは、以下のように使われます。
 
 ```haxe
 class Main {
@@ -28,7 +29,7 @@ class Main {
 }
 ```
 
-At this point it should not be surprising to see that calls to the array access fields are inserted in the output:
+ここでは以下のように出力に配列アクセスのフィールドの呼び出しが入ることになりますが、驚かないでください。
 
 ```haxe
 map.set("foo",1);
@@ -38,6 +39,6 @@ console.log(map.get("foo"));
 
 ---
 
-Previous section: [Operator Overloading](types-abstract-operator-overloading.md)
+Previous section: [演算子オーバーロード](types-abstract-operator-overloading.md)
 
-Next section: [Selective Functions](types-abstract-selective-functions.md)
+Next section: [選択的関数](types-abstract-selective-functions.md)

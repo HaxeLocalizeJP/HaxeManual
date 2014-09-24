@@ -1,11 +1,11 @@
-## 2.8.1 Implicit Casts
+## 2.8.1 暗黙のキャスト
 
-Unlike classes, abstracts allow defining implicit casts. There are two kinds of implicit casts:
+クラスとは異なり抽象型は暗黙のキャストを許します。抽象型には2種類の暗黙のキャストがあります。
 
-* Direct: Allows direct casting of the abstract type to or from another type. This is defined by adding `to` and `from` rules to the abstract type and is only allowed for types which unify with the underlying type of the abstract.
-* Class field: Allows casting via calls to special cast functions. These functions are defined using `@:to` and `@:from` metadata. This kind of cast is allowed for all types.
+* 直接: 他の型から抽象型への直接のキャストを許します。これは`to`と`from`のルールを抽象型に設定することでできます。 これは、その抽象型の基底型に単一化可能な型のみで利用可能です。
+* クラスフィールド: 特殊なキャスト関数を呼び出すことによるキャストを許します。この関数は`@:to`と`@:from`のメタデータを使って定義されます。この種類のキャストは全ての型で利用可能です。
 
-The following code example shows an example of **direct** casting:
+下のコードは、直接キャストの例です。
 
 ```haxe
 abstract MyAbstract(Int) from Int to Int {
@@ -21,9 +21,10 @@ class ImplicitCastDirect {
   }
 }
 ```
-We declare `MyAbstract` as being `from Int` and `to Int`, meaning it can be assigned from `Int` and assigned to `Int`. This is shown in lines 9 and 10, where we first assign the `Int` `12` to variable `a` of type `MyAbstract` (this works due to the `from Int` declaration) and then that abstract back to variable `b` of type `Int` (this works due to the `to Int` declaration).
 
-Class field casts have the same semantics, but are defined completely differently:
+`from Int`かつ`to Int`の`MyAbstract`を定義しました。これは`Int`を代入することが可能で、かつ`Int`に代入することが可能だという意味です。このことは、9、10行目に表れています。まず、`Int`の12を`MyAbstract`型の変数`a`に代入しています(これは`from Int`の宣言により可能になります)。そして次に、`Int`型の変数`b`に、抽象型のインスタンスを代入しています(これは`to Int`の宣言により可能になります)。
+
+クラスフィールドのキャストも同じ意味を持ちますが、定義の仕方はまったく異なります。
 
 ```haxe
 abstract MyAbstract(Int) {
@@ -50,13 +51,15 @@ class ImplicitCastField {
   }
 }
 ```
-By adding `@:from` to a static function, that function qualifies as implicit cast function from its argument type to the abstract. These functions must return a value of the abstract type. They must also be declared `static`.
 
-Similarly, adding `@:to` to a function qualifies it as implicit cast function from the abstract to its return type. These functions are typically member-functions but they can be made `static` and then serve as [selective function](types-abstract-selective-functions.md).
+静的な関数に`@:from`を付けることで、その引数の型からその抽象型への暗黙のキャストを行う関数として判断されます。この関数はその抽象型の値を返す必要があります。`static`を宣言する必要もあります。
 
-In the example the method `fromString` allows the assignment of value `"3"` to variable `a` of type `MyAbstract` while the method `toArray` allows assigning that abstract to variable `b` of type `Array<Int>`.
+同じように関数に`@:to`を付けることで、その抽象型からその戻り値の型への暗黙のキャストを行う関数として判断されます。この関数は普通はメンバ関数ですが、`static`でも構いません。そして、これは[選択的関数](types-abstract-selective-functions.md)として働きます。
 
-When using this kind of cast, calls to the cast-functions are inserted where required. This becomes obvious when looking at the Javascript output:
+上の例では、`fromString`メソッドが`"3"`の値を`MyAbstract`型の変数`a`への代入を可能にし、
+`toArray`メソッドがその抽象型インスタンスを`Array<Int>`型の変数`b`への代入を可能にします。
+
+この種類のキャストを使った場合、必要な場所でキャスト関数の呼び出しが発生します。このことはJavaScript出力を見ると明らかです。
 
 ```haxe
 var a = _ImplicitCastField.MyAbstract_Impl_
@@ -64,26 +67,28 @@ var a = _ImplicitCastField.MyAbstract_Impl_
 var b = _ImplicitCastField.MyAbstract_Impl_
   .toArray(a);
 ```
-This can be further optimized by [inlining](class-field-inline.md) both cast functions, turning the output into the following:
+
+これは2つのキャスト関数で[インライン化](class-field-inline.md)を行うことでさらなる最適化を行うことができます。これにより出力は以下のように変わります。
 
 ```haxe
 var a = Std.parseInt("3");
 var b = [a];
 ```
-The **selection algorithm** when assigning a type `A` to a type `B` with at least one of them being an abstract is simple:
 
-1. If `A` is not an abstract, go to 3.
-2. If `A` defines a **to**-conversions that admits `B`, go to 6.
-3. If `B` is not an abstract, go to 5.
-4. If `B` defines a **from**-conversions that admits `A`, go to 6.
-5. Stop, unification fails.
-6. Stop, unification succeeds.
+型`A`から時の型`B`への代入の時にどちらかまたは両方が抽象型である場合に使われるキャストの**選択アルゴリズム**は簡単です。
 
-<img src="../../assets/graphics/generated/types-abstract-implicit-casts-selection-algorithm.png" alt="Selection algorithm flow chart." title="Selection algorithm flow chart." />
+1. `A`が抽象型でない場合は3へ。
+2. `A`が、`B`**への**変換を持っている場合、これを適用して6へ。
+3. `B`が抽象型でない場合は5へ。
+4. `B`が、`A`**からの**変換を持っている場合、これを適用して6へ。
+5. 単一化失敗で、終了。
+6. 単一化成功で、終了。
 
-_Figure: Selection algorithm flow chart._
+<img src="../../assets/graphics/generated/types-abstract-implicit-casts-selection-algorithm.png" alt="選択アルゴリズムのフローチャート" title="選択アルゴリズムのフローチャート" />
 
-By design, implicit casts are **not transitive**, as the following example shows:
+_Figure: 選択アルゴリズムのフローチャート_
+
+意図的に暗黙のキャストは連鎖的ではありません。これは以下の例でわかります。
 
 ```haxe
 abstract A(Int) {
@@ -109,10 +114,11 @@ class Main {
   }
 }
 ```
-While the individual casts from `A` to `B` and from `B` to `C` are allowed, a transitive cast from `A` to `C` is not. This is to avoid ambiguous cast-paths and retain a simple selection algorithm.
+
+`A`から`B`、`B`から`C`への個々のキャストは可能ですが、`A`から`C`への連鎖的なキャストはできません。これは、キャスト方法が複数生まれてしまうことは避けて、選択アルゴリズムの簡潔さを保つためです。
 
 ---
 
-Previous section: [Abstract](types-abstract.md)
+Previous section: [抽象型(abstract)](types-abstract.md)
 
-Next section: [Operator Overloading](types-abstract-operator-overloading.md)
+Next section: [演算子オーバーロード](types-abstract-operator-overloading.md)

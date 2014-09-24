@@ -1,9 +1,9 @@
-## 2.9 Monomorph
+## 2.9 単相型
 
-A monomorph is a type which may, through [unification](type-system-unification.md), morph into a different type later. We shall see details about this type when talking about [type inference](type-system-type-inference.md).
+単相型は、[単一化](type-system-unification.md)の過程で、他の異なる型へと形を変える型です。これについて詳しくは[型推論](type-system-type-inference.md)の節で話します。
 
 ---
 
-Previous section: [Core-type abstracts](types-abstract-core-type.md)
+Previous section: [コアタイプの抽象型](types-abstract-core-type.md)
 
 Next section: [Type System](type-system.md)

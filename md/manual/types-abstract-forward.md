@@ -1,8 +1,8 @@
-## 2.8.6 Forwarding abstract fields
+## 2.8.6 抽象型フィールドの繰り上げ
 
 ##### since Haxe 3.1.0
 
-When wrapping an underlying type, it is sometimes desirable to "keep" parts of its functionality. Because writing forwarding functions by hand is cumbersome, Haxe allows adding the `:forward` metadata to an abstract type:
+基底型をラップした場合、その機能性のを"保ちたい"場合があります。繰り上がりの関数を手で書くのは面倒なので、Haxeでは`@:forward`メタデータを利用できるようにしています。
 
 ```haxe
 @:forward(push, pop)
@@ -23,9 +23,9 @@ class Main {
 }
 ```
 
-The `MyArray` abstract in this example wraps `Array`. Its `:forward` metadata has two arguments which correspond to the field names to be forwarded to the underlying type. In this example, the `main` method instantiates `MyArray` and accesses its `push` and `pop` methods. The commented line demonstrates that the `length` field is not available.
+この例では、抽象型の`MyArray`が`Array`をラップしています。この`@:forward`メタデータは、基底型から繰り上がらせるフィールド2つを引数として与えられています。上記の例の`main`関数は、`MyArray`をインスタンス化して、その`push`と`pop`のメソッドにアクセスしています。コメント化されている行は、`length`フィールドは利用できないことを実演するものです。
 
-As usual we can look at the Javascript output to see how the code is being generated:
+ではどのようなコードが出力されるのか、いつものようにJavaScriptへの出力を見てみましょう。
 
 ```haxe
 Main.main = function() {
@@ -35,14 +35,14 @@ Main.main = function() {
 };
 ```
 
-It is also possible to use `:forward` without any arguments in order to forward all fields. Of course the Haxe Compiler still ensures that the field actually exists on the underlying type.
+全てのフィールドを繰り上げる場合は、引数なしの`@:forward`を利用できます。もちろんこの場合でも、Haxeコンパイラは基底型にそのフィールドが存在していることを保証します。
 
-> ##### Trivia: Implemented as macro
+> ##### Trivia: マクロとして実装
 >
-> Both the `:enum` and `:forward` functionality were originally implemented using [build macros](macro-type-building.md). While this worked nicely in non-macro code, it caused issues if these features were used from within macros. The implementation was subsequently moved to the compiler.
+> `@:enum`と`@:forward`の両機能は、もともとは[ビルドマクロ](macro-type-building.md)を利用して実装していました。この実装はマクロなしのコードから使う場合はうまく動作していましたが、マクロからこれらの機能を使った場合に問題を起こしました。このため、これらの機能はコンパイラへと移されました。
 
 ---
 
-Previous section: [Enum abstracts](types-abstract-enum.md)
+Previous section: [抽象型列挙体](types-abstract-enum.md)
 
-Next section: [Core-type abstracts](types-abstract-core-type.md)
+Next section: [コアタイプの抽象型](types-abstract-core-type.md)

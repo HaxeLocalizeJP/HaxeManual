@@ -50,4 +50,4 @@ class Main {
 
 Previous section: [型パラメータ付きのダイナミック](types-dynamic-with-type-parameter.md)
 
-Next section: [Abstract](types-abstract.md)
+Next section: [抽象型(abstract)](types-abstract.md)

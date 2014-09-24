@@ -1,18 +1,19 @@
-## 2.8.7 Core-type abstracts
+## 2.8.7 コアタイプの抽象型
 
-The Haxe Standard Library defines a set of basic types as core-type abstracts. They are identified by the `:coreType` metadata and the lack of an underlying type declaration. These abstracts can still be understood to represent a different type. Still, that type is native to the Haxe target. 
+Haxeの標準ライブラリは、基本型のセットをコアタイプの抽象型として定義しています。これらは`@:coreType`メタデータを付けることで識別されて、基底型の定義を欠きます。これらの抽象型もまた異なる型の表現として考えることができます。
+そして、その型はHaxeのターゲットのネイティブの型です。
 
-Introducing custom core-type abstracts is rarely necessary in user code as it requires the Haxe target to be able to make sense of it. However, there could be interesting use-cases for authors of macros and new Haxe targets.
+カスタムのコアタイプの抽象型の導入は、Haxeのターゲットにその意味を理解させる必要があり、ほとんどのユーザーのコードで必要ないでしょう。ですが、マクロを使いたい人や、新しいHaxeのターゲットを作りたい人にとっては興味深い利用例があります
 
-In contrast to opaque abstracts, core-type abstracts have the following properties:
+コアタイプの抽象型は、不透過の抽象型(他の型をラップする抽象型のこと)とは異なる以下の性質をもちます。
 
-* They have no underlying type.
-* They are considered nullable unless they are annotated with `:notNull` metadata.
-* They are allowed to declare [array access](types-abstract-array-access.md) functions without expressions.
-* [Operator overloading fields](types-abstract-operator-overloading.md) that have no expression are not forced to adhere to the Haxe type semantics.
+* 基底型を持たない。
+* `@:notNull`メタデータの注釈を付けない限り、null許容としてあつかわれる。
+* 式の無い[配列アクセス](types-abstract-array-access.md)関数を定義できる。
+* Haxeの制限から離れた、式を持たない[演算子オーバーロードのフィールド](types-abstract-operator-overloading.md)が可能。
 
 ---
 
-Previous section: [Forwarding abstract fields](types-abstract-forward.md)
+Previous section: [抽象型フィールドの繰り上げ](types-abstract-forward.md)
 
-Next section: [Monomorph](types-monomorph.md)
+Next section: [単相型](types-monomorph.md)

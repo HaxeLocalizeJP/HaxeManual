@@ -1,6 +1,6 @@
-## 2.8.4 Selective Functions
+## 2.8.4 選択的関数
 
-Since the compiler promotes abstract member functions to static functions, it is possible to define static functions by hand and use them on an abstract instance. The semantics here are similar to those of [static extensions](lf-static-extension.md), where the type of the first function argument determines for which types a function is defined:
+コンパイラは抽象型のメンバ関数を静的な(static)関数へと変化させるので、手で静的な関数を記述してそれを抽象型のインスタンスで使うことができます。この意味は、関数の最初の引数の型で、その関数が使えるようになる[静的拡張](lf-static-extension.md)に似ています。
 
 ```haxe
 abstract MyAbstract<T>(T) from T {
@@ -24,14 +24,16 @@ class SelectiveFunction {
   }
 }
 ```
-The method `getString` of abstract `MyAbstract` is defined to accept a first argument of `MyAbstract<String>`. This causes it to be available on variable `a` on line 14 (because the type of `a` is `MyAbstract<String>`), but not on variable `b` whose type is `MyAbstract<Int>`.
 
-> ##### Trivia: Accidental Feature
+抽象型の`MyAbstract`の`getString`のメソッドは、最初の引数として`MyAbstract<String>`を受け取ります。これにより、14行目の変数`a`の関数呼び出しが可能になります(`a`の型が`MyAbstract<String>`なので)。しかし、`MyAbstract<Int>`の変数`b`では使えません。
+
+> ##### Trivia: 偶然の機能
 >
->  Rather than having actually been designed, selective functions were discovered. After the idea was first mentioned, it required only minor adjustments in the compiler to make them work. Their discovery also lead to the introduction of multi-type abstracts, such as Map.
+> 
+> 実際のところ選択的関数は意図して作られたというよりも、発見された機能です。この機能について初めて言及されてから実際に動作せせるまでに必要だったのは軽微な修正のみでした。この発見が、Mapのような複数の型の抽象型にもつながっています。
 
 ---
 
-Previous section: [Array Access](types-abstract-array-access.md)
+Previous section: [配列アクセス](types-abstract-array-access.md)
 
-Next section: [Enum abstracts](types-abstract-enum.md)
+Next section: [抽象型列挙体](types-abstract-enum.md)
