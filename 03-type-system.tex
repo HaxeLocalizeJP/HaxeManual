@@ -1,23 +1,24 @@
-\chapter{Type System}
+\chapter{型システム}
 \label{type-system}
 
-We learned about the different kinds of types in \Fullref{types} and it is now time to see how they interact with each other. We start off easy by introducing \tref{typedef}{type-system-typedef}, a mechanism to give a name (or alias) to a more complex type. Among other things, this will come in handy when working with types having \tref{type parameters}{type-system-type-parameters}.
+私たちは\Fullref{types}の章でさまざまな種類の型について学んできました。ここからはそれらがお互いにどう関連しあっているかを見ていく時間です。まず、複雑な型に対して名前(別名)を与える仕組みである\tref{Typedef}{type-system-typedef}の紹介から簡単に始めます。typedefは特に、\tref{型パラメータ}{type-system-type-parameters}を持つ型で役に立ちます。
 
-A lot of type-safety is achieved by checking if two given types of above type groups are compatible. That is, the compiler tries to perform \emph{unification} between them, as detailed in \Fullref{type-system-unification}.
+任意の2つの型について、その上位にある型のグループが矛盾しないかをチェックすることで多くの型安全性が得られます。これがコンパイラが試みる\emph{単一化}であり、\Fullref{type-system-unification}の節で詳しく説明します。
 
-All types are organized in \emph{modules} and can be addressed through \emph{paths}. \Fullref{type-system-modules-and-paths} will give a detailed explanation of the related mechanics.
+すべての型は\emph{モジュール}に所属し、\emph{パス}を通して呼び出されます。\Fullref{type-system-modules-and-paths}では、これらに関連した仕組みについて詳しい説明を行います。
 
 \section{Typedef}
 \label{type-system-typedef}
 
-We briefly looked at typedefs while talking about \tref{anonymous structures}{types-anonymous-structure} and saw how we could shorten a complex structure type by giving it a name. This is precisely what typedefs are good for, and giving names to structure types might even be considered their primary use. In fact, it is so common that the distinction appears somewhat blurry and many Haxe users consider typedefs to actually \emph{be} the structure.
+typedefは\tref{匿名構造体}{types-anonymous-structure}の節で、すでに登場しています。そこでは複雑な構造体の型について名前を与えて簡潔にあつかう方法を見ています。この利用法はtypedefが一体なにに良いのかを的確に表しています。構造体の型に対して名前を与えるのは、typedefの主たる用途かもしれません。実際のところ、この用途が一般的すぎて、多くのHaxeユーザーがtypdefを構造体のためのものだと思ってしまっています。
 
-A typedef can give a name to any other type:
+typedefは他のあらゆる型に対して名前を与えることが可能です。
 
 \begin{lstlisting}
 typedef IA = Array<Int>;
 \end{lstlisting}
-This enables us to use \expr{IA} in places where we would normally use \expr{Array$<$Int$>$}. While this saves only a few keystrokes in this particular case, it can make a difference for more complex, compound types. Again, this is why typedef and structures seem so connected:
+
+これにより\expr{Array$<$Int$>$}が使われる場所で、代わりに\expr{IA}を使うことが可能になります。この場合、はほんの数回のタイプ数しか減らせませんが、より複雑な複合型の場合は違います。これこそが、typedefと構造体が強く結びついて見える理由です。
 
 \begin{lstlisting}
 typedef User = {
@@ -25,7 +26,8 @@ typedef User = {
     var name : String;
 }
 \end{lstlisting}
-A typedef is not a textual replacement, but actually a real type. It can even have \tref{type parameters}{type-system-type-parameters} as the \type{Iterable} type from the Haxe Standard Library demonstrates:
+
+typedefはテキスト上の置き換えではなく、実は本物の型です。Haxe標準ライブラリの\type{Iterable}のように\tref{型パラメータ}{type-system-type-parameters}を持つことができます。
 
 \begin{lstlisting}
 typedef Iterable<T> = {
@@ -33,91 +35,91 @@ typedef Iterable<T> = {
 }
 \end{lstlisting}
 
-
-
-\subsection{Extensions}
+\subsection{拡張}
 \label{type-system-extensions}
 
 % TODO: move to structures? %
-Extensions are used to express that a structure has all the fields of a given type in addition to some more:
+
+拡張は、構造体が与えられた型のフィールドすべてと、加えていくつかのフィールドを持っていることを表すために使われます。
 
 \haxe{assets/Extension.hx}
-The greater-than operator \expr{>} denotes that an extension of \type{Iterable$<$T$>$} is being created, with the additional class fields following. In this case, a read-only \tref{property}{class-field-property} \expr{length} of type \type{Int} is required.
+大なりの演算子を使うことで、追加のクラスフィールドを持つ\type{Iterable$<$T$>$}の拡張が作成されました。このケースでは、読み込み専用の\tref{プロパティ}{class-field-property} である\type{Int}型の\expr{length}が要求されます。 
 
-In order to be compatible with \type{IterableWithLength$<$T$>$}, a type then must be compatible with \type{Iterable$<$T$>$} and also provide a read-only \expr{length} property of type \type{Int}. The example assigns an \type{Array}, which happens to fulfill these requirements.
+\type{IterableWithLength$<$T$>$}に適合するためには、\type{Iterable$<$T$>$}にも適合してさらに読み込み専用の\type{Int}型のプロパティ\expr{length}を持ってなきゃいけません。例では、Arrayが割り当てられており、これはこれらの条件をすべて満たしています。
 
 \since{3.1.0}
 
-It is also possible to extend multiple structures:
+複数の構造体を拡張することもできます。
 
 \haxe{assets/Extension2.hx}
 
-
-
-\section{Type Parameters}
+\section{型パラメータ}
 \label{type-system-type-parameters}
 
-Haxe allows parametrization of a number of types, as well as \tref{class fields}{class-field} and \tref{enum constructors}{types-enum-constructor}. Type parameters are defined by enclosing comma-separated type parameter names in angle brackets \expr{$<>$}. A simple example from the Haxe Standard Library is \type{Array}:
+\tref{クラスフィールド}{class-field}や\tref{列挙型コンストラクタ}{types-enum-constructor}のように、Haxeではいくつかの型についてパラメータ化を行うことができます。型パラメータは山カッコ\expr{$<>$}内にカンマ区切りで記述することで、定義することができます。シンプルな例は、Haxe標準ライブラリの\type{Array}です。
 
 \begin{lstlisting}
 class Array<T> {
 	function push(x : T) : Int;
 }
 \end{lstlisting}
-Whenever an instance of \type{Array} is created, its type parameter \type{T} becomes a \tref{monomorph}{types-monomorph}. That is, it can be bound to any type, but only one at a time. This binding can happen
+\type{Array}のインスタンスが作られると、型パラメータ\type{T}は単相となります。つまり、1度に1つの型であれば、あらゆる型を適用することができます。この適用は以下の方法で行います
 
 \begin{description}
-	\item[explicitly] by invoking the constructor with explicit types (\expr{new Array$<$String$>$()}) or
-	\item[implicitly] by \tref{type inference}{type-system-type-inference}, e.g. when invoking \expr{arrayInstance.push("foo")}.
+	\item[明示的に、]\expr{new Array$<$String$>$()}のように型を記述してコンストラクタを呼び出して適用する。
+	\item[暗黙に]、\tref{型推論}{type-system-type-inference}で適用する。例えば、\expr{arrayInstance.push("foo")}を呼び出す。
 \end{description}
-Inside the definition of a class with type parameters, these type parameters are an unspecific type. Unless \tref{constraints}{type-system-type-parameter-constraints} are added, the compiler has to assume that the type parameters could be used with any type. As a consequence, it is not possible to access fields of type parameters or \tref{cast}{expression-cast} to a type parameter type. It is also not possible to create a new instance of a type parameter type, unless the type parameter is \tref{generic}{type-system-generic} and constrained accordingly. 
 
-The following table shows where type parameters are allowed:
+型パラメータが付くクラスの定義の内部では、その型パラメータは不定の型となります。\tref{制約}{type-system-type-parameter-constraints}が追加されない限り、コンパイラはその型パラメータはあらゆる型になりうるものと決めつけることになります。その結果、型パラメータの\tref{cast}{expression-cast}を使わなければ、その型のフィールドにアクセスできなくなります。また、\tref{一般化}{type-system-generic}をして適切な制約をつけない限り、その型パラメータの型の新しいインスタンスを生成することもできません。
+
+以下は、型パラメータが使用できる場所についての表です。
 
 \begin{center}
 \begin{tabular}{| l | l | l |}
 	\hline
-	Parameter on & Bound upon & Notes \\ \hline
-	Class & instantiation & Can also be bound upon member field access. \\
-	Enum & instantiation & \\
-	Enum Constructor & instantiation & \\
-	Function & invocation & Allowed for methods and named local lvalue functions. \\
-	Structure & instantiation & \\ \hline
+	パラメータが付く場所 & 型を適用する場所 & 備考 \\ \hline
+	Class & インスタンス作成時 & メンバフィールドにアクセスする際に型を適用することもできる \\
+	Enum & インスタンス作成時 & \\
+	Enumコンストラクタ & インスタンス作成時 & \\
+	関数 & 呼び出し時 & メソッドと名前付きのローカル関数で利用可能	\\
+	構造体 & インスタンス作成時 & \\ \hline
 \end{tabular}
 \end{center}
-With function type parameters being bound upon invocation, such a type parameter (if unconstrained) accepts any type. However, only one type per invocation is accepted, which can be utilized if a function has multiple arguments:
+
+関数の型パラメータは呼び出し時に適用される、この型パラメータは（制約をつけない限り）あらゆる型を許容します。しかし、一回の呼び出しにつき適用は1つの型のみ可能です。このことは関数が複数の引数を持つ場合に役立ちます。
 
 \haxe{assets/FunctionTypeParameter.hx}
 
-Both arguments \expr{expected} and \expr{actual} of the \expr{equals} function have type \type{T}. This implies that for each invocation of \expr{equals}, the two arguments must be of the same type. The compiler admits the first call (both arguments being of \type{Int}) and the second call (both arguments being of \type{String}), but the third attempt causes a compiler error.
+\expr{equals}関数の\expr{expected}と\expr{actual}の引数両方が、\type{T}型になっています。これはすべての\expr{equals}の呼び出しで、2つの引数の型が同じでなければならないことを表しています。コンパイラは最初(両方の引数が\type{Int}型)と2つめ(両方の引数が\type{String}型)の呼び出しは認めていますが、3つ目の呼び出しはコンパイルエラーにします。
 
-\trivia{Type parameters in expression syntax}{We often get the question why a method with type parameters cannot be called as \expr{method<String>(x)}. The error messages the compiler gives are not quite helpful, but there is a simple reason for that: The above code is parsed as if both \expr{<} and \expr{>} were binary operators, yielding \expr{(method < String) > (x)}.}
+\trivia{式の構文内での型パラメータ}{なぜ、\expr{method<String>(x)}のようにメソッドに型パラメータをつけた呼び出しができないのか？という質問をよくいただきます。このときのエラーメッセージはあまり参考になりませんが、これには単純な理由があります。それは、このコードでは、\expr{<}と\expr{>}の両方が2項演算子として構文解析されて、\expr{(method < String) > (x)}と見なされるからです。}
 
-\subsection{Constraints}
+\subsection{制約}
 \label{type-system-type-parameter-constraints}
 
-Type parameters can be constrained to multiple types:
+型パラメータは複数の型で制約を与えることができます。
 
 \haxe{assets/Constraints.hx}
-Type parameter \type{T} of method \expr{test} is constrained to the types \type{Iterable$<$String$>$} and \type{Measurable}. The latter is defined using a \tref{typedef}{type-system-typedef} for convenience and requires compatible types to have a read-only \tref{property}{class-field-property} named \expr{length} of type \type{Int}. The constraints then say that a type is compatible if
+
+\expr{test}メソッドの型パラメータ\type{T}は、\type{Iterable$<$String$>$}と\type{Measurable}の型に制約されます。\type{Measurable}の方は、便宜上\tref{typedef}{type-system-typedef}を使って、\type{Int}型の読み込み専用\tref{プロパティ}{class-field-property}\expr{length}を要求しています。つまり、以下の条件を満たせば、これらの制約と矛盾しません。
 
 \begin{itemize}
-	\item it is compatible with \type{Iterable$<$String$>$} and
-	\item has a \expr{length}-property of type \type{Int}.
+	\item \type{Iterable$<$String$>$}である
+	\item かつ、\type{Int}型の\expr{length}を持つ
 \end{itemize}
-We can see that invoking \expr{test} with an empty array in line 7 and an \type{Array$<$String$>$} in line 8 works fine. This is because \type{Array} has both a \expr{length}-property and an \expr{iterator}-method. However, passing a \type{String} as argument in line 9 fails the constraint check, because \type{String} is not compatible with \type{Iterable$<$T$>$}. 
 
+7行目では空の配列で、8行目では\type{Array$<$String$>$}で\expr{test}関数を呼び出すことができることを確認しました。しかし、10行目の\type{String}の引数では制約チェックで失敗しています。これは、\type{String}は\type{Iterable$<$T$>$}と矛盾するからです。
 
-\section{Generic}
+\section{ジェネリック}
 \label{type-system-generic}
 
-Usually, the Haxe Compiler generates only a single class or function, even if it has type parameters. This results in a natural abstraction, where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks, which can be detrimental to performance.
+大抵の場合、Haxeコンパイラは型パラメータが付けられていた場合でも、1つのクラスや関数を生成します。これにより自然な抽象化が行われて、ターゲット言語のコードジェネレータは出力先の型パラメータはあらゆる型になりえると思い込むことになります。つまり、生成されたコードで型チェックが働き、動作が邪魔されることがあります。
 
-A class or function can be made \emph{generic} by attributing it with the \expr{:generic} \tref{metadata}{lf-metadata}. This causes the compiler to emit a distinct class/function per type parameter combination with mangled names. A specification like this can yield a boost in performance-critical code portions on \tref{static targets}{define-static-target} at the cost of a larger output size:
+クラスや関数は、\expr{:generic} \tref{メタデータ}{lf-metadata}で\emph{ジェネリック}属性をつけることで一般化することができます。これにより、コンパイラは型パラメータの組み合わせごとのクラスまたは関数を修飾された名前で書き出します。このような設計は\tref{静的ターゲット}{define-static-target}で出力サイズの巨大化と引き換えに、パフォーマンスが重要なコード部位での速度を得られます。
 
 \haxe{assets/GenericClass.hx}
 
-It seems unusual to see the explicit type \type{MyArray<String>} here as we usually let \tref{type inference}{type-system-type-inference} deal with this, but here it is indeed required. The compiler has to know the exact type of a generic class upon construction. The \target{Javascript} output shows the result:
+あまり使わない明示的な\type{MyArray<String>}の型宣言があり、よく使う\tref{型推論}{type-system-type-inference}であつかわせていますが、これが重要です。コンパイラは、コンストラクタの呼び出し時にジェネリッククラスの正確な型な型を知っている必要があります。この\target{JavaScript}出力は以下のような結果になります。
 
 \begin{lstlisting}
 (function () { "use strict";
@@ -134,11 +136,11 @@ Main.main();
 })();
 \end{lstlisting}
 
-We can identify that \type{MyArray<String>} and \type{MyArray<Int>} have become \type{MyArray_String} and \type{MyArray_Int} respectively. This is similar for generic functions:
+\type{MyArray<String>}と\type{MyArray<Int>}は、それぞれ\type{MyArray_String}と\type{MyArray_Int}になっています。これはジェネリック関数でも同じです。
 
 \haxe{assets/GenericFunction.hx}
 
-Again, the \target{Javascript} output makes it obvious:
+\target{JavaScript}出力を見れば明白です。
 
 \begin{lstlisting}
 (function () { "use strict";
@@ -156,23 +158,23 @@ Main.main();
 \end{lstlisting}
 
 
-\subsection{Construction of generic type parameters}
+\subsection{ジェネリック型パラメータのコンストラクト}
 \label{type-system-generic-type-parameter-construction}
 
-\define{Generic Type Parameter}{define-generic-type-parameter}{A type parameter is said to be generic if its containing class or method is generic.}
+\define{ジェネリック型パラメータ}{define-generic-type-parameter}{型パラメータを持っているクラスまたはメソッドがジェネリックであるとき、その型パラメータもジェネリックであるという。}
 
-With normal type parameter, it is not possible to construct them, i.e. \expr{new T()} is a compiler error. This is because Haxe generates only a single function and the construct then makes no sense. This is different when the type parameter is generic: Since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the \type{T} \expr{new T()} with the real type.
+普通の型パラメータでは、\expr{new T()}のようにその型をコンストラクトすることはできません。これは、Haxeが1つの関数を生成するために、そのコンストラクトが意味をなさないからです。しかし、型パラメータがジェネリックの場合は違います。これは、コンパイラはすべての型パラメータの組み合わせに対して別々の関数を生成しています。このため\expr{new T()}の\type{T}を実際の型に置き換えることができます。
 
 \haxe{assets/GenericTypeParameter.hx}
 
-It should be noted that \tref{top-down inference}{type-system-top-down-inference} is used here to determine the actual type of \type{T}. There are two requirements for this kind of type parameter construction to work. The constructed type parameter must be
+ここでは、\type{T}の実際の型の決定には、\tref{トップダウンの推論}{type-system-top-down-inference}が行われることに注意してください。この方法での型パラメータのコンストラクトを行うには2つの必須事項があります。
 
 \begin{enumerate}
-	\item generic and
-	\item be explicitly \tref{constrained}{type-system-type-parameter-constraints} to having a \tref{constructor}{types-class-constructor}.
+	\item ジェネリックであること
+	\item 明示的に、\tref{コンストラクタ}{types-class-constructor}を持つように\tref{制約}{type-system-type-parameter-constraints}されていること
 \end{enumerate}
 
-Here, 1. is given by \expr{make} having the \expr{@:generic} metadata, and 2. by \type{T} being constrained to \type{Constructible}. The constraint holds for both \type{String} and \type{haxe.Template} as both have a constructor accepting a singular \type{String} argument. Sure enough, the relevant \target{Javascript} output looks as expected:
+先ほどの例は、1つ目は\expr{make}が\expr{@:generic}メタデータを持っており、2つ目\type{T}が\type{Constructible}に制約されています。\type{String}と\type{haxe.Template}の両方とも1つ\type{String}の引数のコンストラクタを持つのでこの制約に当てはまります。確かにJavascript出力は予測通りのものになっています。
 
 \begin{lstlisting}
 var Main = function() { }
