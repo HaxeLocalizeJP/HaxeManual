@@ -1,13 +1,13 @@
 \chapter{型システム}
 \label{type-system}
 
-私たちは\Fullref{types}の章でさまざまな種類の型について学んできました。ここからはそれらがお互いにどう関連しあっているかを見ていく時間です。まず、複雑な型に対して名前(別名)を与える仕組みである\tref{Typedef}{type-system-typedef}の紹介から簡単に始めます。typedefは特に、\tref{型パラメータ}{type-system-type-parameters}を持つ型で役に立ちます。
+私たちは\Fullref{types}の章でさまざまな種類の型について学んできました。ここからはそれらがお互いにどう関連しあっているかを見ていきます。まず、複雑な型に対して名前(別名)を与える仕組みである\tref{Typedef}{type-system-typedef}の紹介から簡単に始めます。typedefは特に、\tref{型パラメータ}{type-system-type-parameters}を持つ型で役に立ちます。
 
-任意の2つの型について、その上位にある型のグループが矛盾しないかをチェックすることで多くの型安全性が得られます。これがコンパイラが試みる\emph{単一化}であり、\Fullref{type-system-unification}の節で詳しく説明します。
+任意の2つの型について、その上位の型のグループが矛盾しないかをチェックすることで多くの型安全性が得られます。これがコンパイラが試みる\emph{単一化}であり、\Fullref{type-system-unification}の節で詳しく説明します。
 
 すべての型は\emph{モジュール}に所属し、\emph{パス}を通して呼び出されます。\Fullref{type-system-modules-and-paths}では、これらに関連した仕組みについて詳しい説明を行います。
 
-\section{Typedef}
+\section{typedef}
 \label{type-system-typedef}
 
 typedefは\tref{匿名構造体}{types-anonymous-structure}の節で、すでに登場しています。そこでは複雑な構造体の型について名前を与えて簡潔にあつかう方法を見ています。この利用法はtypedefが一体なにに良いのかを的確に表しています。構造体の型に対して名前を与えるのは、typedefの主たる用途かもしれません。実際のところ、この用途が一般的すぎて、多くのHaxeユーザーがtypdefを構造体のためのものだと思ってしまっています。
@@ -48,7 +48,6 @@ typedef Iterable<T> = {
 \type{IterableWithLength$<$T$>$}に適合するためには、\type{Iterable$<$T$>$}にも適合してさらに読み込み専用の\type{Int}型のプロパティ\expr{length}を持ってなきゃいけません。例では、Arrayが割り当てられており、これはこれらの条件をすべて満たしています。
 
 \since{3.1.0}
-
 複数の構造体を拡張することもできます。
 
 \haxe{assets/Extension2.hx}
@@ -63,14 +62,14 @@ class Array<T> {
 	function push(x : T) : Int;
 }
 \end{lstlisting}
-\type{Array}のインスタンスが作られると、型パラメータ\type{T}は単相となります。つまり、1度に1つの型であれば、あらゆる型を適用することができます。この適用は以下の方法で行います
+\type{Array}のインスタンスが作られると、型パラメータ\type{T}は\tref{単相}{types-monomorph}となります。つまり、1度に1つの型であれば、あらゆる型を適用することができます。この適用は以下のどちらか方法で行います
 
 \begin{description}
 	\item[明示的に、]\expr{new Array$<$String$>$()}のように型を記述してコンストラクタを呼び出して適用する。
 	\item[暗黙に]、\tref{型推論}{type-system-type-inference}で適用する。例えば、\expr{arrayInstance.push("foo")}を呼び出す。
 \end{description}
 
-型パラメータが付くクラスの定義の内部では、その型パラメータは不定の型となります。\tref{制約}{type-system-type-parameter-constraints}が追加されない限り、コンパイラはその型パラメータはあらゆる型になりうるものと決めつけることになります。その結果、型パラメータの\tref{cast}{expression-cast}を使わなければ、その型のフィールドにアクセスできなくなります。また、\tref{一般化}{type-system-generic}をして適切な制約をつけない限り、その型パラメータの型の新しいインスタンスを生成することもできません。
+型パラメータが付くクラスの定義の内部では、その型パラメータは不定の型です。\tref{制約}{type-system-type-parameter-constraints}が追加されない限り、コンパイラはその型パラメータはあらゆる型になりうるものと決めつけることになります。その結果、型パラメータの\tref{cast}{expression-cast}を使わなければ、その型のフィールドにアクセスできなくなります。また、\tref{ジェネリック}{type-system-generic}にして適切な制約をつけない限り、その型パラメータの型のインスタンスを新しく生成することもできません。
 
 以下は、型パラメータが使用できる場所についての表です。
 
@@ -90,7 +89,7 @@ class Array<T> {
 
 \haxe{assets/FunctionTypeParameter.hx}
 
-\expr{equals}関数の\expr{expected}と\expr{actual}の引数両方が、\type{T}型になっています。これはすべての\expr{equals}の呼び出しで、2つの引数の型が同じでなければならないことを表しています。コンパイラは最初(両方の引数が\type{Int}型)と2つめ(両方の引数が\type{String}型)の呼び出しは認めていますが、3つ目の呼び出しはコンパイルエラーにします。
+\expr{equals}関数の\expr{expected}と\expr{actual}の引数両方が、\type{T}型になっています。これは\expr{equals}の呼び出しで2つの引数の型が同じでなければならないことを表しています。コンパイラは最初(両方の引数が\type{Int}型)と2つめ(両方の引数が\type{String}型)の呼び出しは認めていますが、3つ目の呼び出しはコンパイルエラーにします。
 
 \trivia{式の構文内での型パラメータ}{なぜ、\expr{method<String>(x)}のようにメソッドに型パラメータをつけた呼び出しができないのか？という質問をよくいただきます。このときのエラーメッセージはあまり参考になりませんが、これには単純な理由があります。それは、このコードでは、\expr{<}と\expr{>}の両方が2項演算子として構文解析されて、\expr{(method < String) > (x)}と見なされるからです。}
 
@@ -115,11 +114,11 @@ class Array<T> {
 
 大抵の場合、Haxeコンパイラは型パラメータが付けられていた場合でも、1つのクラスや関数を生成します。これにより自然な抽象化が行われて、ターゲット言語のコードジェネレータは出力先の型パラメータはあらゆる型になりえると思い込むことになります。つまり、生成されたコードで型チェックが働き、動作が邪魔されることがあります。
 
-クラスや関数は、\expr{:generic} \tref{メタデータ}{lf-metadata}で\emph{ジェネリック}属性をつけることで一般化することができます。これにより、コンパイラは型パラメータの組み合わせごとのクラスまたは関数を修飾された名前で書き出します。このような設計は\tref{静的ターゲット}{define-static-target}で出力サイズの巨大化と引き換えに、パフォーマンスが重要なコード部位での速度を得られます。
+クラスや関数は、\expr{:generic} \tref{メタデータ}{lf-metadata}で\emph{ジェネリック}属性をつけることで一般化することができます。これにより、コンパイラは型パラメータの組み合わせごとのクラスまたは関数を修飾された名前で書き出します。このような設計により\tref{静的ターゲット}{define-static-target}のパフォーマンスに直結するコード部位では、出力サイズの巨大化と引き換えに、速度を得られます。
 
 \haxe{assets/GenericClass.hx}
 
-あまり使わない明示的な\type{MyArray<String>}の型宣言があり、よく使う\tref{型推論}{type-system-type-inference}であつかわせていますが、これが重要です。コンパイラは、コンストラクタの呼び出し時にジェネリッククラスの正確な型な型を知っている必要があります。この\target{JavaScript}出力は以下のような結果になります。
+あまり使わない明示的な\type{MyArray<String>}の型宣言があり、よく使う\tref{型推論}{type-system-type-inference}であつかっていますが、これが重要です。コンパイラは、コンストラクタの呼び出し時にジェネリッククラスの正確な型な型を知っている必要があります。この\target{JavaScript}出力は以下のような結果になります。
 
 \begin{lstlisting}
 (function () { "use strict";
@@ -167,7 +166,7 @@ Main.main();
 
 \haxe{assets/GenericTypeParameter.hx}
 
-ここでは、\type{T}の実際の型の決定には、\tref{トップダウンの推論}{type-system-top-down-inference}が行われることに注意してください。この方法での型パラメータのコンストラクトを行うには2つの必須事項があります。
+ここでは、\type{T}の実際の型の決定は、\tref{トップダウンの推論}{type-system-top-down-inference}で行われることに注意してください。この方法での型パラメータのコンストラクトを行うには2つの必須事項があります。
 
 \begin{enumerate}
 	\item ジェネリックであること
