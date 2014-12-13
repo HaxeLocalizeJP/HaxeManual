@@ -79,6 +79,6 @@ With `b` being typed as `MyArray<Base>` and `MyArray` only having a `pop()` meth
 
 ---
 
-Previous section: [Construction of generic type parameters](type-system-generic-type-parameter-construction.md)
+Previous section: [ジェネリック型パラメータのコンストラクト](type-system-generic-type-parameter-construction.md)
 
 Next section: [Unification](type-system-unification.md)

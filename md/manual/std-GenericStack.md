@@ -19,7 +19,7 @@ class GenericStackExample {
 > ##### Trivia: FastList
 >
 > In Haxe 2, the GenericStack class was known as FastList.  Since its behavior more closely resembled a typical stack, the name was changed for Haxe 3.
-The **Generic** in `GenericStack` is literal.  It is attributed with the `:generic` metadata.  Depending on the target, this can lead to improved performance on static targets.  See [Generic](type-system-generic.md) for more details.
+The **Generic** in `GenericStack` is literal.  It is attributed with the `:generic` metadata.  Depending on the target, this can lead to improved performance on static targets.  See [ジェネリック](type-system-generic.md) for more details.
 
 ---
 

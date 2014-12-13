@@ -1,31 +1,31 @@
-## 3.2 Type Parameters
+## 3.2 型パラメータ
 
-Haxe allows parametrization of a number of types, as well as [class fields](class-field.md) and [enum constructors](types-enum-constructor.md). Type parameters are defined by enclosing comma-separated type parameter names in angle brackets `<>`. A simple example from the Haxe Standard Library is `Array`:
+[クラスフィールド](class-field.md)や[列挙型コンストラクタ](types-enum-constructor.md)のように、Haxeではいくつかの型についてパラメータ化を行うことができます。型パラメータは山カッコ`<>`内にカンマ区切りで記述することで、定義することができます。シンプルな例は、Haxe標準ライブラリの`Array`です。
 
 ```haxe
 class Array<T> {
 	function push(x : T) : Int;
 }
 ```
-Whenever an instance of `Array` is created, its type parameter `T` becomes a [monomorph](types-monomorph.md). That is, it can be bound to any type, but only one at a time. This binding can happen
+`Array`のインスタンスが作られると、型パラメータ`T`は[単相](types-monomorph.md)となります。つまり、1度に1つの型であれば、あらゆる型を適用することができます。この適用は以下のどちらか方法で行います
 
-* explicitly by invoking the constructor with explicit types (`new Array<String>()`) or
-* implicitly by [type inference](type-system-type-inference.md), e.g. when invoking `arrayInstance.push("foo")`.
+* 明示的に、`new Array<String>()`のように型を記述してコンストラクタを呼び出して適用する。
+* 暗黙に、[型推論](type-system-type-inference.md)で適用する。例えば、`arrayInstance.push("foo")`を呼び出す。
 
-Inside the definition of a class with type parameters, these type parameters are an unspecific type. Unless [constraints](type-system-type-parameter-constraints.md) are added, the compiler has to assume that the type parameters could be used with any type. As a consequence, it is not possible to access fields of type parameters or [cast](expression-cast.md) to a type parameter type. It is also not possible to create a new instance of a type parameter type, unless the type parameter is [generic](type-system-generic.md) and constrained accordingly. 
+型パラメータが付くクラスの定義の内部では、その型パラメータは不定の型です。[制約](type-system-type-parameter-constraints.md)が追加されない限り、コンパイラはその型パラメータはあらゆる型になりうるものと決めつけることになります。その結果、型パラメータの[cast](expression-cast.md)を使わなければ、その型のフィールドにアクセスできなくなります。また、[ジェネリック](type-system-generic.md)にして適切な制約をつけない限り、その型パラメータの型のインスタンスを新しく生成することもできません。
 
-The following table shows where type parameters are allowed:
+以下は、型パラメータが使用できる場所についての表です。
 
-Parameter on  | Bound upon  | Notes 
+パラメータが付く場所  | 型を適用する場所  | 備考 
  --- | --- | ---
-Class  | instantiation  | Can also be bound upon member field access. 
-Enum  | instantiation  | 
-Enum Constructor  | instantiation  | 
-Function  | invocation  | Allowed for methods and named local lvalue functions. 
-Structure  | instantiation  | 
+Class  | インスタンス作成時  | メンバフィールドにアクセスする際に型を適用することもできる 
+Enum  | インスタンス作成時  | 
+Enumコンストラクタ  | インスタンス作成時  | 
+関数  | 呼び出し時  | メソッドと名前付きのローカル関数で利用可能
+構造体  | インスタンス作成時  | 
  
 
-With function type parameters being bound upon invocation, such a type parameter (if unconstrained) accepts any type. However, only one type per invocation is accepted, which can be utilized if a function has multiple arguments:
+関数の型パラメータは呼び出し時に適用される、この型パラメータは（制約をつけない限り）あらゆる型を許容します。しかし、一回の呼び出しにつき適用は1つの型のみ可能です。このことは関数が複数の引数を持つ場合に役立ちます。
 
 ```haxe
 class FunctionTypeParameter {
@@ -46,14 +46,14 @@ class FunctionTypeParameter {
 }
 ```
 
-Both arguments `expected` and `actual` of the `equals` function have type `T`. This implies that for each invocation of `equals`, the two arguments must be of the same type. The compiler admits the first call (both arguments being of `Int`) and the second call (both arguments being of `String`), but the third attempt causes a compiler error.
+`equals`関数の`expected`と`actual`の引数両方が、`T`型になっています。これは`equals`の呼び出しで2つの引数の型が同じでなければならないことを表しています。コンパイラは最初(両方の引数が`Int`型)と2つめ(両方の引数が`String`型)の呼び出しは認めていますが、3つ目の呼び出しはコンパイルエラーにします。
 
-> ##### Trivia: Type parameters in expression syntax
+> ##### Trivia: 式の構文内での型パラメータ
 >
-> We often get the question why a method with type parameters cannot be called as `method<String>(x)`. The error messages the compiler gives are not quite helpful, but there is a simple reason for that: The above code is parsed as if both `<` and `>` were binary operators, yielding `(method < String) > (x)`.
+> なぜ、`method<String>(x)`のようにメソッドに型パラメータをつけた呼び出しができないのか？という質問をよくいただきます。このときのエラーメッセージはあまり参考になりませんが、これには単純な理由があります。それは、このコードでは、`<`と`>`の両方が2項演算子として構文解析されて、`(method < String) > (x)`と見なされるからです。
 
 ---
 
-Previous section: [Extensions](type-system-extensions.md)
+Previous section: [拡張](type-system-extensions.md)
 
-Next section: [Constraints](type-system-type-parameter-constraints.md)
+Next section: [制約](type-system-type-parameter-constraints.md)

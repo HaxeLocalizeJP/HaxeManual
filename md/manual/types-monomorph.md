@@ -6,4 +6,4 @@
 
 Previous section: [コアタイプの抽象型](types-abstract-core-type.md)
 
-Next section: [Type System](type-system.md)
+Next section: [型システム](type-system.md)

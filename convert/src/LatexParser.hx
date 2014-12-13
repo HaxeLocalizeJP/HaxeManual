@@ -1,6 +1,9 @@
 import haxe.ds.GenericStack;
 
-import hxparse.LexerTokenSource;
+import hxparse.LexerTokenSource
+
+
+;
 import hxparse.Parser;
 import LatexToken;
 import LatexCommand;

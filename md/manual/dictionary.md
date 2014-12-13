@@ -72,11 +72,6 @@ Expected types occur when the type of an expression is known before that express
 ##### Float
 IEEEの64bit倍精度浮動小数点数を表します。
 
-<a name="define-generic-type-parameter" class="anch"></a>
-
-##### Generic Type Parameter
-A type parameter is said to be generic if its containing class or method is generic.
-
 <a name="define-identifier" class="anch"></a>
 
 ##### Identifier
@@ -176,6 +171,11 @@ Voidは型が存在しないことを表します。特定の場面(主に関数
 
 ##### Write Access
 A write access to a field occurs when a [field access expression](expression-field-access.md) is assigned a value in the form of `obj.field = value`. It may also occur in combination with [read access](dictionary.md#define-read-access) for special assignment operators such as `+=` in expressions like `obj.field += value`.
+
+<a name="define-generic-type-parameter" class="anch"></a>
+
+##### ジェネリック型パラメータ
+型パラメータを持っているクラスまたはメソッドがジェネリックであるとき、その型パラメータもジェネリックであるという。
 
 <a name="define-default-value" class="anch"></a>
 

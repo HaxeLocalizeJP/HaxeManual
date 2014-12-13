@@ -1,6 +1,6 @@
-## 3.2.1 Constraints
+## 3.2.1 制約
 
-Type parameters can be constrained to multiple types:
+型パラメータは複数の型で制約を与えることができます。
 
 ```haxe
 typedef Measurable = {
@@ -22,15 +22,16 @@ class Constraints {
   }
 }
 ```
-Type parameter `T` of method `test` is constrained to the types `Iterable<String>` and `Measurable`. The latter is defined using a [typedef](type-system-typedef.md) for convenience and requires compatible types to have a read-only [property](class-field-property.md) named `length` of type `Int`. The constraints then say that a type is compatible if
 
-* it is compatible with `Iterable<String>` and
-* has a `length`-property of type `Int`.
+`test`メソッドの型パラメータ`T`は、`Iterable<String>`と`Measurable`の型に制約されます。`Measurable`の方は、便宜上[typedef](type-system-typedef.md)を使って、`Int`型の読み込み専用[プロパティ](class-field-property.md)`length`を要求しています。つまり、以下の条件を満たせば、これらの制約と矛盾しません。
 
-We can see that invoking `test` with an empty array in line 7 and an `Array<String>` in line 8 works fine. This is because `Array` has both a `length`-property and an `iterator`-method. However, passing a `String` as argument in line 9 fails the constraint check, because `String` is not compatible with `Iterable<T>`.
+* `Iterable<String>`である
+* かつ、`Int`型の`length`を持つ
+
+7行目では空の配列で、8行目では`Array<String>`で`test`関数を呼び出すことができることを確認しました。しかし、10行目の`String`の引数では制約チェックで失敗しています。これは、`String`は`Iterable<T>`と矛盾するからです。
 
 ---
 
-Previous section: [Type Parameters](type-system-type-parameters.md)
+Previous section: [型パラメータ](type-system-type-parameters.md)
 
-Next section: [Generic](type-system-generic.md)
+Next section: [ジェネリック](type-system-generic.md)

@@ -96,13 +96,13 @@ Unreviewed:
 2.8.6 - 抽象型フィールドの繰り上げ
 2.8.7 - コアタイプの抽象型
 2.9 - 単相型
-3 - Type System
-3.1 - Typedef
-3.1.1 - Extensions
-3.2 - Type Parameters
-3.2.1 - Constraints
-3.3 - Generic
-3.3.1 - Construction of generic type parameters
+3 - 型システム
+3.1 - typedef
+3.1.1 - 拡張
+3.2 - 型パラメータ
+3.2.1 - 制約
+3.3 - ジェネリック
+3.3.1 - ジェネリック型パラメータのコンストラクト
 3.4 - Variance
 3.5 - Unification
 3.5.1 - Between Class/Interface

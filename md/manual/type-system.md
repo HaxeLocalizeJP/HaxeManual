@@ -1,13 +1,13 @@
-## 3 Type System
+## 3 型システム
 
-We learned about the different kinds of types in [型](types.md) and it is now time to see how they interact with each other. We start off easy by introducing [typedef](type-system-typedef.md), a mechanism to give a name (or alias) to a more complex type. Among other things, this will come in handy when working with types having [type parameters](type-system-type-parameters.md).
+私たちは[型](types.md)の章でさまざまな種類の型について学んできました。ここからはそれらがお互いにどう関連しあっているかを見ていきます。まず、複雑な型に対して名前(別名)を与える仕組みである[Typedef](type-system-typedef.md)の紹介から簡単に始めます。typedefは特に、[型パラメータ](type-system-type-parameters.md)を持つ型で役に立ちます。
 
-A lot of type-safety is achieved by checking if two given types of above type groups are compatible. That is, the compiler tries to perform **unification** between them, as detailed in [Unification](type-system-unification.md).
+任意の2つの型について、その上位の型のグループが矛盾しないかをチェックすることで多くの型安全性が得られます。これがコンパイラが試みる**単一化**であり、[Unification](type-system-unification.md)の節で詳しく説明します。
 
-All types are organized in **modules** and can be addressed through **paths**. [Modules and Paths](type-system-modules-and-paths.md) will give a detailed explanation of the related mechanics.
+すべての型は**モジュール**に所属し、**パス**を通して呼び出されます。[Modules and Paths](type-system-modules-and-paths.md)では、これらに関連した仕組みについて詳しい説明を行います。
 
 ---
 
 Previous section: [単相型](types-monomorph.md)
 
-Next section: [Typedef](type-system-typedef.md)
+Next section: [typedef](type-system-typedef.md)

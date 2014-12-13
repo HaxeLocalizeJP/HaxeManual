@@ -1,8 +1,8 @@
-## 3.3 Generic
+## 3.3 ジェネリック
 
-Usually, the Haxe Compiler generates only a single class or function, even if it has type parameters. This results in a natural abstraction, where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks, which can be detrimental to performance.
+大抵の場合、Haxeコンパイラは型パラメータが付けられていた場合でも、1つのクラスや関数を生成します。これにより自然な抽象化が行われて、ターゲット言語のコードジェネレータは出力先の型パラメータはあらゆる型になりえると思い込むことになります。つまり、生成されたコードで型チェックが働き、動作が邪魔されることがあります。
 
-A class or function can be made **generic** by attributing it with the `:generic` [metadata](lf-metadata.md). This causes the compiler to emit a distinct class/function per type parameter combination with mangled names. A specification like this can yield a boost in performance-critical code portions on [static targets](dictionary.md#define-static-target) at the cost of a larger output size:
+クラスや関数は、`:generic` [メタデータ](lf-metadata.md)で**ジェネリック**属性をつけることで一般化することができます。これにより、コンパイラは型パラメータの組み合わせごとのクラスまたは関数を修飾された名前で書き出します。このような設計により[静的ターゲット](dictionary.md#define-static-target)のパフォーマンスに直結するコード部位では、出力サイズの巨大化と引き換えに、速度を得られます。
 
 ```haxe
 @:generic
@@ -18,7 +18,7 @@ class Main {
 }
 ```
 
-It seems unusual to see the explicit type `MyArray<String>` here as we usually let [type inference](type-system-type-inference.md) deal with this, but here it is indeed required. The compiler has to know the exact type of a generic class upon construction. The Javascript output shows the result:
+あまり使わない明示的な`MyArray<String>`の型宣言があり、よく使う[型推論](type-system-type-inference.md)であつかっていますが、これが重要です。コンパイラは、コンストラクタの呼び出し時にジェネリッククラスの正確な型な型を知っている必要があります。このJavaScript出力は以下のような結果になります。
 
 ```haxe
 (function () { "use strict";
@@ -35,7 +35,7 @@ Main.main();
 })();
 ```
 
-We can identify that `MyArray<String>` and `MyArray<Int>` have become `MyArray_String` and `MyArray_Int` respectively. This is similar for generic functions:
+`MyArray<String>`と`MyArray<Int>`は、それぞれ`MyArray_String`と`MyArray_Int`になっています。これはジェネリック関数でも同じです。
 
 ```haxe
 class Main {
@@ -48,7 +48,7 @@ class Main {
 }
 ```
 
-Again, the Javascript output makes it obvious:
+JavaScript出力を見れば明白です。
 
 ```haxe
 (function () { "use strict";
@@ -67,6 +67,6 @@ Main.main();
 
 ---
 
-Previous section: [Constraints](type-system-type-parameter-constraints.md)
+Previous section: [制約](type-system-type-parameter-constraints.md)
 
-Next section: [Construction of generic type parameters](type-system-generic-type-parameter-construction.md)
+Next section: [ジェネリック型パラメータのコンストラクト](type-system-generic-type-parameter-construction.md)

@@ -1,6 +1,6 @@
-## 3.1.1 Extensions
+## 3.1.1 拡張
 
-Extensions are used to express that a structure has all the fields of a given type in addition to some more:
+拡張は、構造体が与えられた型のフィールドすべてと、加えていくつかのフィールドを持っていることを表すために使われます。
 
 ```haxe
 typedef IterableWithLength<T> = {
@@ -16,13 +16,13 @@ class Extension {
   }
 }
 ```
-The greater-than operator `>` denotes that an extension of `Iterable<T>` is being created, with the additional class fields following. In this case, a read-only [property](class-field-property.md) `length` of type `Int` is required.
+大なりの演算子を使うことで、追加のクラスフィールドを持つ`Iterable<T>`の拡張が作成されました。このケースでは、読み込み専用の[プロパティ](class-field-property.md) である`Int`型の`length`が要求されます。 
 
-In order to be compatible with `IterableWithLength<T>`, a type then must be compatible with `Iterable<T>` and also provide a read-only `length` property of type `Int`. The example assigns an `Array`, which happens to fulfill these requirements.
+`IterableWithLength<T>`に適合するためには、`Iterable<T>`にも適合してさらに読み込み専用の`Int`型のプロパティ`length`を持ってなきゃいけません。例では、Arrayが割り当てられており、これはこれらの条件をすべて満たしています。
 
 ##### since Haxe 3.1.0
 
-It is also possible to extend multiple structures:
+複数の構造体を拡張することもできます。
 
 ```haxe
 typedef WithLength = {
@@ -46,6 +46,6 @@ class Extension2 {
 
 ---
 
-Previous section: [Typedef](type-system-typedef.md)
+Previous section: [typedef](type-system-typedef.md)
 
-Next section: [Type Parameters](type-system-type-parameters.md)
+Next section: [型パラメータ](type-system-type-parameters.md)
