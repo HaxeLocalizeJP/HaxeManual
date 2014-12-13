@@ -1,6 +1,6 @@
-## 3.5.5 Common Base Type
+## 3.5.5 共通の基底型
 
-Given a set of multiple types, a **common base type** is a type which all types of the set unify against:
+複数の型の組み合わせが与えられたとき、そのすべての型が**共通の基底型**で単一化されます。
 
 ```haxe
 class Base {
@@ -17,14 +17,15 @@ class UnifyMin {
   }
 }
 ```
-Although `Base` is not mentioned, the Haxe Compiler manages to infer it as the common type of `Child1` and `Child2`. The Haxe Compiler employs this kind of unification in the following situations:
 
-* array declarations
+`Base`とは書かれていないにも関わらず、Haxeコンパイラは`Child1`と`Child2`の共通の型として`Base`を推論しています。Haxeコンパイラはこの方法の単一化を以下の場面で採用しています。
+
+* 配列の宣言
 * `if`/`else`
-* cases of a `switch`
+* `switch`のケース
 
 ---
 
-Previous section: [Function Return](type-system-unification-function-return.md)
+Previous section: [関数の戻り値](type-system-unification-function-return.md)
 
 Next section: [Type Inference](type-system-type-inference.md)

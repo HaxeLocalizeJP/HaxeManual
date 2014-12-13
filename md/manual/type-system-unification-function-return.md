@@ -1,16 +1,17 @@
-## 3.5.4 Function Return
+## 3.5.4 関数の戻り値
 
-Unification of function return types may involve the [`Void`-type](types-void.md) and require a clear definition of what unifies with `Void`. With `Void` describing the absence of a type, it is not assignable to any other type, not even `Dynamic`. This means that if a function is explicitly declared as returning `Dynamic`, it must not return `Void`.
+関数の戻り値の型の単一化では[`Void`型](types-void.md)も関連しており、`Void`型での単一化のはっきりとした定義が必要です。`Void`型は型の不在を表し、あらゆる型が代入できません。`Dynamic`でさえも代入できません。つまり、関数が明示的に`Dynamic`を返すと定義されている場合、`Void`を返してはいけません。
 
-The opposite applies as well: If a function declares a return type of `Void`, it cannot return `Dynamic` or any other type. However, this direction of unification is allowed when assigning function types:
+その逆も同じです。関数の戻り値が`Void`であると宣言しているなら、`Dynamic`やその他すべての型は返すことができません。しかし、関数の型を代入する時のこの方向の単一化は許可されています。
 
 ```haxe
 var func:Void->Void = function() return "foo";
 ```
-The right-hand function clearly is of type `Void->String`, yet we can assign it to variable `func` of type `Void->Void`. This is because the compiler can safely assume that the return type is irrelevant, given that it could not be assigned to any non-`Void` type.
+
+右辺の関数ははっきりと`Void->String`型ですが、これを`Void->Void`型の`func`変数に代入することができます。これはコンパイラが戻り値は無関係だと安全に判断できるからで、その結果`Void`ではないあらゆる型を代入できるようになります。
 
 ---
 
-Previous section: [Monomorphs](type-system-monomorphs.md)
+Previous section: [単相](type-system-monomorphs.md)
 
-Next section: [Common Base Type](type-system-unification-common-base-type.md)
+Next section: [共通の基底型](type-system-unification-common-base-type.md)

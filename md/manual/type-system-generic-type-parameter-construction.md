@@ -50,4 +50,4 @@ Main.main = function() {
 
 Previous section: [ジェネリック](type-system-generic.md)
 
-Next section: [Variance](type-system-variance.md)
+Next section: [変性(バリアンス)](type-system-variance.md)

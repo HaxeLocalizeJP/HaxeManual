@@ -1,23 +1,21 @@
-## 3.5.2 Structural Subtyping
+## 3.5.2 構造的部分型付け
 
-> ##### Define: Structural Subtyping
+> ##### Define: 構造的部分型付け
 >
-> Structural subtyping defines an implicit relation between types that have the same structure.
+> 構造的部分型付けは、同じ構造を持つ型の暗黙の関係を示します。
 
-In Haxe, structural subtyping is only possible when assigning a class instance to a structure. The following example is part of the `Lambda` class of the [Haxe Standard Library](std.md):
+Haxeでは、構造的部分型付けはクラスインスタンスを構造体に代入するときのみ可能です。以下に、[Haxe標準ライブラリ](std.md)の`Lambda`の一部の例を挙げます。
 
 ```haxe
-public static function
-empty<T>(it : Iterable<T>):Bool {
+public static function empty<T>(it : Iterable<T>):Bool {
 	return !it.iterator().hasNext();
 }
 ```
-The `empty`-method checks if an `Iterable` has an element. For this purpose, it is not necessary to know anything about the argument type other than the fact that it is considered an iterable. This allows calling the `empty`-method with any type that unifies with `Iterable<T>`, which applies to a lot of types in the Haxe Standard Library.
 
-This kind of typing can be very convenient, but extensive use may be detrimental to performance on static targets, which is detailed in [パフォーマンスへの影響](types-structure-performance.md).
+`empty`メソッドは、`Iterable`が要素を持つかをチェックします。この目的では、引数の型について、それが列挙可能(Iterable)であること以外に何も知る必要がありません。Haxe標準ライブラリにはたくさんある`Iterable<T>`で単一化できる型すべてで、これを呼び出すことができるわけです。この種の型付けは非常に便利ですが、静的ターゲットでは大量に使うとパフォーマンスの低下を招くことがあります。詳しくは[パフォーマンスへの影響](types-structure-performance.md)に書かれています。
 
 ---
 
-Previous section: [Between Class/Interface](type-system-unification-between-classes-and-interfaces.md)
+Previous section: [クラスとインターフェースの単一化](type-system-unification-between-classes-and-interfaces.md)
 
-Next section: [Monomorphs](type-system-monomorphs.md)
+Next section: [単相](type-system-monomorphs.md)

@@ -47,16 +47,6 @@ A class field is a variable, property or method of a class which can either be s
 ##### Compiler Flag
 A compiler flag is a configurable value which may influence the compilation process. Such a flag can be set by invoking the command line with `-D key=value` or just `-D key`, in which case the value defaults to `"1"`. The compiler also sets several flags internally to pass information between different compilation steps.
 
-<a name="define-contravariance" class="anch"></a>
-
-##### Contravariance
-A [compound type](dictionary.md#define-compound-type) is considered contravariant if its component types can be assigned to less generic components, i.e. if they are only written, but never read.
-
-<a name="define-covariance" class="anch"></a>
-
-##### Covariance
-A [compound type](dictionary.md#define-compound-type) is considered covariant if its component types can be assigned to less specific components, i.e. if they are only read, but never written.
-
 <a name="define-enumvalue" class="anch"></a>
 
 ##### EnumValue
@@ -147,20 +137,10 @@ A static extension allows pseudo-extending existing types without modifying thei
 ##### String
 A String is a sequence of characters.
 
-<a name="define-structural-subtyping" class="anch"></a>
-
-##### Structural Subtyping
-Structural subtyping defines an implicit relation between types that have the same structure.
-
 <a name="define-type-path" class="anch"></a>
 
 ##### Type path
 The (dot-)path to a type consists of the package, the module name and the type name. Its general form is `pack1.pack2.packN.ModuleName.TypeName`.
-
-<a name="define-unification" class="anch"></a>
-
-##### Unification
-Unification between two types A and B is a directional process which answers the question if A **can be assigned to** B. It may **mutate** either type if it is or has a [monomorph](types-monomorph.md).
 
 <a name="define-void" class="anch"></a>
 
@@ -189,10 +169,25 @@ A write access to a field occurs when a [field access expression](expression-fie
 
 
 
+<a name="define-covariance" class="anch"></a>
+
+##### 共変性
+[複合型](dictionary.md#define-compound-type)がそれを構成する型よりも一般な型で構成される複合型に代入できる場合に、共変であるという。 つまり、読み込みのみが許されて書き込みができない場合です。
+
 <a name="define-dynamic-target" class="anch"></a>
 
 ##### 動的ターゲット
 動的ターゲットは型に関して寛容で、基本型が`null`を許容します。これはJavaScriptとPHP、Neko、Flash 6-8ターゲットが当てはまります。
+
+<a name="define-unification" class="anch"></a>
+
+##### 単一化
+型Aの型Bでの単一化というのは、AがBに代入可能かを調べる指向性を持つプロセスです。型が[単相](types-monomorph.md)の場合または単相を含む場合は、それを変化させることができます。
+
+<a name="define-contravariance" class="anch"></a>
+
+##### 反変性
+[複合型](dictionary.md#define-compound-type)がそれを構成する型よりも特殊な型で構成される複合型に代入できる場合に、反変であるという。 つまり、書き込みのみが許されて読み込みができない場合です。
 
 <a name="define-underlying-type" class="anch"></a>
 
@@ -205,6 +200,11 @@ A write access to a field occurs when a [field access expression](expression-fie
 
 ##### 定義の名前
 定義の説明
+
+<a name="define-structural-subtyping" class="anch"></a>
+
+##### 構造的部分型付け
+構造的部分型付けは、同じ構造を持つ型の暗黙の関係を示します。
 
 <a name="define-compound-type" class="anch"></a>
 

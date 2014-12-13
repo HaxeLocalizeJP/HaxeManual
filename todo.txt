@@ -17,8 +17,8 @@ Todo:
 2.6 - 関数型: It seems a bit convoluted explanations. Should we maybe start by "decoding" the meaning of  Void -> Void, then Int -> Bool -> Float, then maybe have samples using $type
 2.8.2 - 演算子オーバーロード: please review for correctness
 2.8.3 - 配列アクセス: You have marked "Map" for some reason
-3.5 - Unification: Mention toString()/String conversion somewhere in this chapter.
-3.5.1 - Between Class/Interface: "parent class" should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.
+3.5 - 単一化(ユニフィケーション): Mention toString()/String conversion somewhere in this chapter.
+3.5.1 - クラスとインターフェースの単一化: "parent class" should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.
 3.7.2 - Import: Describe import a.*
 3.7.3 - Resolution Order: proper label and caption + code/identifier styling for diagram
 6.4.10 - Exhaustiveness checks: Figure out wtf our rules are now for when this is checked.
@@ -103,13 +103,13 @@ Unreviewed:
 3.2.1 - 制約
 3.3 - ジェネリック
 3.3.1 - ジェネリック型パラメータのコンストラクト
-3.4 - Variance
-3.5 - Unification
-3.5.1 - Between Class/Interface
-3.5.2 - Structural Subtyping
-3.5.3 - Monomorphs
-3.5.4 - Function Return
-3.5.5 - Common Base Type
+3.4 - 変性(バリアンス)
+3.5 - 単一化(ユニフィケーション)
+3.5.1 - クラスとインターフェースの単一化
+3.5.2 - 構造的部分型付け
+3.5.3 - 単相
+3.5.4 - 関数の戻り値
+3.5.5 - 共通の基底型
 3.6 - Type Inference
 3.6.1 - Top-down Inference
 3.6.2 - Limitations

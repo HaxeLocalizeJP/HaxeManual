@@ -38,6 +38,6 @@ Variable `x` is first initialized to an empty `Array`. At this point we can tell
 
 ---
 
-Previous section: [Common Base Type](type-system-unification-common-base-type.md)
+Previous section: [共通の基底型](type-system-unification-common-base-type.md)
 
 Next section: [Top-down Inference](type-system-top-down-inference.md)

@@ -1,9 +1,9 @@
-## 3.5.3 Monomorphs
+## 3.5.3 単相
 
-Unification of types having or being a [monomorph](types-monomorph.md) is detailed in [Type Inference](type-system-type-inference.md).
+[単相](types-monomorph.md)である、あるいは単相を含む型についての単一化は[Type Inference](type-system-type-inference.md)で詳しくあつかいます。
 
 ---
 
-Previous section: [Structural Subtyping](type-system-structural-subtyping.md)
+Previous section: [構造的部分型付け](type-system-structural-subtyping.md)
 
-Next section: [Function Return](type-system-unification-function-return.md)
+Next section: [関数の戻り値](type-system-unification-function-return.md)
