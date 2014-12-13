@@ -190,42 +190,39 @@ Main.main = function() {
 }
 \end{lstlisting}
 
-\section{Variance}
+\section{変性(バリアンス)}
 \label{type-system-variance}
 
-While variance is relevant in other places, it occurs particularly often with type parameters and often comes as a surprise in this context. It is also very easy to trigger variance errors:
+変性とは他のものとの関連を表すもので、特に型パラメータに関するものが連想されます。そして、この文脈では驚くようなことがよく起こります。変性のエラーを起こすことはとても簡単です。
 
 \haxe{assets/Variance.hx}
 
-Apparently, an \type{Array<Child>} cannot be assigned to an \type{Array<Base>}, even though \type{Child} can be assigned to \type{Base}. The reason for this might be somewhat unexpected: It is not allowed because arrays can be written to, e.g. via their \expr{push()} method. It is easy to generate problems by ignoring variance errors:
+見てわかるとおり、\type{Child}は\type{Base}に代入できるにもかかわらず、\type{Array<Child>}を\type{Array<Base>}に代入することはできません。この理由は少々予想外のものかもしれません。それはこの配列への書き込みが可能だからです。例えば、\expr{push()}メソッドです。この変性のエラーを無視してしまうことは簡単です。
 
 \haxe{assets/Variance2.hx}
 
-What happens here is that we subvert the type checker by using a \tref{cast}{expression-cast}, thus allowing the assignment in line 12. With that we hold a reference \expr{bases} to the original array, typed as \type{Array<Base>}. This allows pushing another type compatible with \type{Base}, \type{OtherChild}, onto that array. However, our original reference \expr{children} is still of type \type{Array<Child>}, and things go bad when we encounter the \type{OtherChild} instance in one of its elements while iterating.
+ここでは\tref{cast}{expression-cast}を使って型チェッカーを破壊して、12行目の代入を可能にしてしまっています。\expr{bases}は元々の配列への参照を持っており、\type{Array<Base>}の型付けをされています。このため、\type{Base}に適合する別の型の\type{OtherChild}を配列に追加できます。しかし、元々の\expr{children}の参照は\type{Array<Child>}のままです。そのため良くないことに繰り返し処理の中で\type{OtherChild}のインスタンスに出くわします。
 
-If \type{Array} had no \expr{push()} method and no other means of modification, the assignment would be safe because no incompatible type could be added to it. We can achieve this in Haxe by restricting the type accordingly using \tref{structural subtyping}{type-system-structural-subtyping}:
+もし\type{Array}が\expr{push()}メソッドを持っておらず、他の編集方法も無かったならば、適合しない型を追加することができなくなるのでこの代入は安全になります。Haxeでは\tref{構造的部分型付け}{type-system-structural-subtyping}を使って型を適切に制限することでこれを実現できます。
 
 \haxe{assets/Variance3.hx}
 
-With \expr{b} being typed as \type{MyArray<Base>} and \type{MyArray} only having a \expr{pop()} method, we can safely assign. There is no method defined on \type{MyArray} which could be used to add incompatible types, it is thus said to be \emph{covariant}.
+\expr{b}は\type{MyArray<Base>}として型付けされており、\type{MyArray}は\expr{pop()}メソッドしか持たないため、安全に代入することができます。\type{MyArray}には適合しない型を追加できるメソッドを持っておらず、このことは\emph{共変性}と呼ばれます。
 
-\define{Covariance}{define-covariance}{A \tref{compound type}{define-compound-type} is considered covariant if its component types can be assigned to less specific components, i.e. if they are only read, but never written.}
+\define{共変性}{define-covariance}{\tref{複合型}{define-compound-type}がそれを構成する型よりも一般な型で構成される複合型に代入できる場合に、共変であるという。 つまり、読み込みのみが許されて書き込みができない場合です。}
 
-\define{Contravariance}{define-contravariance}{A \tref{compound type}{define-compound-type} is considered contravariant if its component types can be assigned to less generic components, i.e. if they are only written, but never read.}
+\define{反変性}{define-contravariance}{\tref{複合型}{define-compound-type}がそれを構成する型よりも特殊な型で構成される複合型に代入できる場合に、反変であるという。 つまり、書き込みのみが許されて読み込みができない場合です。}
 
-
-
-
-\section{Unification}
+\section{単一化(ユニフィケーション)}
 \label{type-system-unification}
 
 \todo{Mention toString()/String conversion somewhere in this chapter.}
 
-Unification is the heart of the type system and contributes immensely to the robustness of Haxe programs. It describes the process of checking if a type is compatible to another type.
+単一化は型システムの要であり、Haxeの堅牢さに大きく貢献しています。この節ではある型が他の型と適合するかどうかをチェックする過程を説明していきます。
 
-\define{Unification}{define-unification}{Unification between two types A and B is a directional process which answers the question if A \emph{can be assigned to} B. It may \emph{mutate} either type if it is or has a \tref{monomorph}{types-monomorph}.}
+\define{単一化}{define-unification}{型Aの型Bでの単一化というのは、AがBに代入可能かを調べる指向性を持つプロセスです。型が\tref{単相}{types-monomorph}の場合または単相を含む場合は、それを変化させることができます。}
 
-Unification errors are very easy to trigger:
+単一化のエラーは簡単に起こすことができます。
 
 \begin{lstlisting}
 class Main {
@@ -235,87 +232,86 @@ class Main {
 	}
 }
 \end{lstlisting}
-We try to assign a value of type \type{Int} to a variable of type \type{String}, which causes the compiler to try and \emph{unify Int with String}. This is, of course, not allowed and makes the compiler emit the error \expr{Int should be String}.
 
-In this particular case, the unification is triggered by an \emph{assignment}, a context in which the ``is assignable to'' definition is intuitive. It is one of several cases where unification is performed:
+\type{Int}型の値を\type{String}型の変数に代入しようとしたので、コンパイラは\emph{IntをStringで単一化}しようと試みます。これはもちろん許可されておらず、コンパイラは\expr{"Int should be String"}というエラーを出力します。
+
+このケースでは単一化は\emph{代入}によって引き起こされており、この文脈は「代入可能」という定義に対して直感的です。ただ、これは単一化が働くケースのうちの1つでしかありません。
 
 \begin{description}
-	\item[Assignment:] If \expr{a} is assigned to \expr{b}, the type of \expr{a} is unified with the type of \expr{b}.
-	\item[Function call:] We have briefly seen this one while introducing the \tref{function}{types-function} type. In general, the compiler tries to unify the first given argument type with the first expected argument type, the second given argument type with the second expected argument type and so on until all argument types are handled.
-	\item[Function return:] Whenever a function has a \expr{return e} expression, the type of \expr{e} is unified with the function return type. If the function has no explicit return type, it is infered to the type of \expr{e} and subsequent \expr{return} expressions are infered against it.
-	\item[Array declaration:] The compiler tries to find a minimal type between all given types in an array declaration. Refer to \Fullref{type-system-unification-common-base-type} for details.
-	\item[Object declaration:] If an object is declared ``against'' a given type, the compiler unifies each given field type with each expected field type.
-	\item[Operator unification:] Certain operators expect certain types which given types are unified against. For instance, the expression \expr{a \&\& b} unifies both \expr{a} and \expr{b} with \type{Bool} and the expression \expr{a == b} unifies \expr{a} with \expr{b}.
+	\item[代入:] \expr{a}が\expr{b}に代入された場合、\expr{a}の型は\expr{b}で単一化されます。
+	\item[関数呼び出し:] \tref{関数}{types-function}の型の紹介ですでに触れています。一般的に言うと、コンパイラは渡された最初の引数の型を要求される最初の引数の型で単一化し、渡された二番目の引数の型を要求される二番目の引数の型で単一化するということを、すべての引数で行います。
+	\item[関数のreturn:] 関数が\expr{return e}の式をもつ場合は常に\expr{e}の型は関数の戻り値の型で単一化されます。もし関数の戻り値の型が明示されていなければ、\expr{e}の型に型推論されて、それ以降の\expr{return}式は\expr{e}の型に推論されます。
+	\item[配列の宣言:] コンパイラは、配列の宣言では与えられたすべての型に共通する最小の型を見つけようとします。詳細は\Fullref{type-system-unification-common-base-type}を参照してください。
+	\item[オブジェクトの宣言:] オブジェクトを指定された型に対して宣言する場合、コンパイラは与えられたフィールドすべての型を要求されるフィールドの型で単一化します。
+	\item[演算子の単一化:] 特定の型を要求する特定の演算子は、与えられた型をその型で単一化します。例えば、\expr{a \&\& b}という式は\expr{a}と\expr{b}両方を\type{Bool}で単一化します。式\expr{a == b}は\expr{a}を\expr{b}で単一化します。
 \end{description}
 
 
-\subsection{Between Class/Interface}
+\subsection{クラスとインターフェースの単一化}
 \label{type-system-unification-between-classes-and-interfaces}
 
-When defining unification behavior between classes, it is important to remember that unification is directional: We can assign a more specialized class (e.g. a child class) to a generic class (e.g. a parent class), but the reverse is not valid.
+クラスの間の単一化について定義を行う場合、単一化が指向性を持つことを心に留めておくべきです。より特殊なクラス(例えば、子クラス)を一般的なクラス(例えば、親クラス)に対して代入することはできますが、逆はできません。
 
-The following assignments are allowed:
+以下のような、代入が許可されます。
 
 \begin{itemize}
-	\item child class to parent class
-	\item class to implementing interface
-	\item interface to base interface
+	\item 子クラスの親クラスへの代入
+	\item クラスの実装済みのインターフェースへの代入
+	\item インターフェースの親インターフェースへの代入
 \end{itemize}
-These rules are transitive, meaning that a child class can also be assigned to the base class of its base class, an interface its base class implements, the base interface of an implementing interface and so on.
+
+これらのルールは連結可能です。つまり、子クラスをその親クラスの親クラスへ代入可能であり、さらに親クラスが実装しているインターフェースへ代入可能であり、そのインターフェースの親インターフェースへ代入可能であるということです。
+
 \todo{''parent class'' should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.}
 
-\subsection{Structural Subtyping}
+\subsection{構造的部分型付け}
 \label{type-system-structural-subtyping}
 
-\define{Structural Subtyping}{define-structural-subtyping}{Structural subtyping defines an implicit relation between types that have the same structure.}
+\define{構造的部分型付け}{define-structural-subtyping}{構造的部分型付けは、同じ構造を持つ型の暗黙の関係を示します。}
 
-In Haxe, structural subtyping is only possible when assigning a class instance to a structure. The following example is part of the \type{Lambda} class of the \tref{Haxe Standard Library}{std}:
+Haxeでは、構造的部分型付けはクラスインスタンスを構造体に代入するときのみ可能です。以下に、\tref{Haxe標準ライブラリ}{std}の\type{Lambda}の一部の例を挙げます。
 
 \begin{lstlisting}
-public static function
-empty<T>(it : Iterable<T>):Bool {
+public static function empty<T>(it : Iterable<T>):Bool {
 	return !it.iterator().hasNext();
 }
 \end{lstlisting}
-The \expr{empty}-method checks if an \type{Iterable} has an element. For this purpose, it is not necessary to know anything about the argument type other than the fact that it is considered an iterable. This allows calling the \expr{empty}-method with any type that unifies with \type{Iterable$<$T$>$}, which applies to a lot of types in the Haxe Standard Library.
 
-This kind of typing can be very convenient, but extensive use may be detrimental to performance on static targets, which is detailed in \Fullref{types-structure-performance}.
+\expr{empty}メソッドは、\type{Iterable}が要素を持つかをチェックします。この目的では、引数の型について、それが列挙可能(Iterable)であること以外に何も知る必要がありません。Haxe標準ライブラリにはたくさんある\type{Iterable$<$T$>$}で単一化できる型すべてで、これを呼び出すことができるわけです。この種の型付けは非常に便利ですが、静的ターゲットでは大量に使うとパフォーマンスの低下を招くことがあります。詳しくは\Fullref{types-structure-performance}に書かれています。
 
 
-\subsection{Monomorphs}
+\subsection{単相}
 \label{type-system-monomorphs}
 
-Unification of types having or being a \tref{monomorph}{types-monomorph} is detailed in \Fullref{type-system-type-inference}.
+\tref{単相}{types-monomorph}である、あるいは単相を含む型についての単一化は\Fullref{type-system-type-inference}で詳しくあつかいます。
 
-
-\subsection{Function Return}
+\subsection{関数の戻り値}
 \label{type-system-unification-function-return}
 
-Unification of function return types may involve the \tref{\type{Void}-type}{types-void} and require a clear definition of what unifies with \type{Void}. With \type{Void} describing the absence of a type, it is not assignable to any other type, not even \type{Dynamic}. This means that if a function is explicitly declared as returning \type{Dynamic}, it must not return \type{Void}.
+関数の戻り値の型の単一化では\tref{\type{Void}型}{types-void}も関連しており、\type{Void}型での単一化のはっきりとした定義が必要です。\type{Void}型は型の不在を表し、あらゆる型が代入できません。\type{Dynamic}でさえも代入できません。つまり、関数が明示的に\type{Dynamic}を返すと定義されている場合、\type{Void}を返してはいけません。
 
-The opposite applies as well: If a function declares a return type of \type{Void}, it cannot return \type{Dynamic} or any other type. However, this direction of unification is allowed when assigning function types:
+その逆も同じです。関数の戻り値が\type{Void}であると宣言しているなら、\type{Dynamic}やその他すべての型は返すことができません。しかし、関数の型を代入する時のこの方向の単一化は許可されています。
 
 \begin{lstlisting}
 var func:Void->Void = function() return "foo";
 \end{lstlisting}
-The right-hand function clearly is of type \type{Void->String}, yet we can assign it to variable \expr{func} of type \type{Void->Void}. This is because the compiler can safely assume that the return type is irrelevant, given that it could not be assigned to any non-\type{Void} type.
 
+右辺の関数ははっきりと\type{Void->String}型ですが、これを\type{Void->Void}型の\expr{func}変数に代入することができます。これはコンパイラが戻り値は無関係だと安全に判断できるからで、その結果\type{Void}ではないあらゆる型を代入できるようになります。
 
-\subsection{Common Base Type}
+\subsection{共通の基底型}
 \label{type-system-unification-common-base-type}
 
-Given a set of multiple types, a \emph{common base type} is a type which all types of the set unify against:
+複数の型の組み合わせが与えられたとき、そのすべての型が\emph{共通の基底型}で単一化されます。
 
 \haxe{assets/UnifyMin.hx}
-Although \type{Base} is not mentioned, the Haxe Compiler manages to infer it as the common type of \type{Child1} and \type{Child2}. The Haxe Compiler employs this kind of unification in the following situations:
+
+\type{Base}とは書かれていないにも関わらず、Haxeコンパイラは\type{Child1}と\type{Child2}の共通の型として\type{Base}を推論しています。Haxeコンパイラはこの方法の単一化を以下の場面で採用しています。
 
 \begin{itemize}
-	\item array declarations
+	\item 配列の宣言
 	\item \expr{if}/\expr{else}
-	\item cases of a \expr{switch}
+	\item \expr{switch}のケース
 \end{itemize}
-
-
 
 
 \section{Type Inference}
