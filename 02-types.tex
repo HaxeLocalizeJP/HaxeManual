@@ -27,7 +27,7 @@ Haxeの型システムは、以下の7つの型を認識します。
  \item[\emph{関数}:] 引数と戻り値1つの型の複合型。
  \item[\emph{ダイナミック}:] あらゆる型に一致する、なんでも型。
  \item[\emph{抽象(abstract)}:] 実行時には別の型となる、コンパイル時の型。
- \item[\emph{単態(monomorph)}:] 後で別の型が付けられる未知(Unknown)の型。
+ \item[\emph{単相}:] 後で別の型が付けられる未知(Unknown)の型。
 \end{description}
 
 ここからの節で、それぞれの型のグループとこれらがどうかかわっているのかについて解説していきます。
@@ -518,12 +518,12 @@ typedef Point = {
 
 
 
-\section{関数型}
+\section{関数}
 \label{types-function}
 
 \todo{It seems a bit convoluted explanations. Should we maybe start by "decoding" the meaning of  Void -> Void, then Int -> Bool -> Float, then maybe have samples using \$type}
 
-関数型は、\tref{単相}{types-monomorph}と共に、Haxeのユーザーからよく隠れている型の1つです。コンパイル時に式の型を出力させる\expr{\$type}という特殊な識別子を使えば、この型を以下のように浮かび上がらせることが可能です。
+関数の型は、\tref{単相}{types-monomorph}と共に、Haxeのユーザーからよく隠れている型の1つです。コンパイル時に式の型を出力させる\expr{\$type}という特殊な識別子を使えば、この型を以下のように浮かび上がらせることが可能です。
 
 \haxe{assets/FunctionType.hx}
 
@@ -913,7 +913,7 @@ Haxeの標準ライブラリは、基本型のセットをコアタイプの抽�
 
 
 
-\section{単相型}
+\section{単相(モノモーフ)}
 \label{types-monomorph}
 
-単相型は、\tref{単一化}{type-system-unification}の過程で、他の異なる型へと形を変える型です。これについて詳しくは\tref{型推論}{type-system-type-inference}の節で話します。
+単相は、\tref{単一化}{type-system-unification}の過程で、他の異なる型へと形を変える型です。これについて詳しくは\tref{型推論}{type-system-type-inference}の節で話します。

@@ -314,45 +314,46 @@ var func:Void->Void = function() return "foo";
 \end{itemize}
 
 
-\section{Type Inference}
+\section{型推論}
 \label{type-system-type-inference}
 
-The effects of type inference have been seen throughout this document and will continue to be important. A simple example shows type inference at work:
+型推論はこのドキュメントで何度も出てきており、これ以降でも重要です。型推論の動作の簡単なサンプルをお見せします。
 
 \haxe{assets/TypeInference.hx}
-The special construct \expr{\$type} was previously mentioned in order to simplify the explanation of the \Fullref{types-function} type, so let us introduce it officially now:
+
+この特殊な構文\expr{\$type}は、\Fullref{types-function}の型の説明をわかりやすくするためにも使っていました。それではここで公式な説明をしましょう。
 
 %TODO: $type
-\define[Construct]{\expr{\$type}}{define-dollar-type}{\expr{\$type} is a compile-time mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.}
+\define[Construct]{\expr{\$type}}{define-dollar-type}{\expr{\$type}は関数のように呼び出せるコンパイル時の仕組みで、一つの引数を持ちます。コンパイラは引数の式を評価し、そしてその式の型を出力します。}
 
-In the example above, the first \expr{\$type} prints \expr{Unknown<0>}. This is a \tref{monomorph}{types-monomorph}, a type that is not yet known. The next line \expr{x = "foo"} assigns a \type{String} literal to \expr{x}, which causes the \tref{unification}{type-system-unification} of the monomorph with \type{String}. We then see that the type of \expr{x} indeed has changed to \type{String}.
+上記の例では、最初の\expr{\$type}では\expr{Unknown<0>}が表示されます。これは\tref{単相}{types-monomorph}で、未知の型です。次の行の\expr{x = "foo"}で定数値の\type{String}を\expr{x}に代入しており、\type{String}の単相での\tref{単一化}{type-system-unification}が起こります。そして、\expr{x}がこのとき\type{String}に変わったことがわかります。
 
-Whenever a type other than \Fullref{types-dynamic} is unified with a monomorph, that monomorph \emph{becomes} that type: it \emph{morphs} into that type. Therefore it cannot morph into a different type afterwards, a property expressed in the \emph{mono} part of its name.
+\Fullref{types-dynamic}以外の型が、単相での単一化を行うと単相はその型になります(その型に変形(\emph{morph})します)。このため、この型はもう別の型には変形できません。これが単相(monomorph)の\emph{mono}の部分です。
 
-Following the rules of unification, type inference can occur in compound types:
+以下が単一化のルールです。型推論は複合型でも起こります。
 
 \haxe{assets/TypeInference2.hx}
-Variable \expr{x} is first initialized to an empty \type{Array}. At this point we can tell that the type of \expr{x} is an array, but we do not yet know the type of the array elements. Consequentially, the type of \expr{x} is \type{Array<Unknown<0>>}. It is only after pushing a \type{String} onto the array that we know the type to be \type{Array<String>}.
 
+変数\expr{x}は初め空の\type{Array}で初期化されています。この時点で\expr{x}の型は配列であると言えますが、配列の要素の型については未知です。その結果\expr{x}の型は、\type{Array<Unknown<0>>}となります。この配列が\type{Array<String>}だとわかるには、\type{String}をこの配列にプッシュするだけで十分です。
 
-\subsection{Top-down Inference}
+\subsection{トップダウンの推論}
 \label{type-system-top-down-inference}
 
-Most of the time, types are inferred on their own and may then be unified with an expected type. In a few places, however, an expected type may be used to influence inference. We then speak of \emph{top-down inference}.
+多くの場合、ある型はその型で要求される型を推論します。しかし一部では、要求される型で型を推論します。これを\emph{トップダウンの推論}と呼びます。
 
-\define{Expected Type}{define-expected-type}{Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is argument to a function call. They can influence typing of that expression through what is called \tref{top-down inference}{type-system-top-down-inference}.}
+\define{要求される型}{define-expected-type}{要求される型は、式の型が式が型付けされるより前にわかっている場合に現れます。例えば、式が関数の呼び出しの引数の場合です。この場合、\tref{トップダウンの推論}{type-system-top-down-inference}と呼ばれる方法で、式に型が伝搬します。}
 
-A good example are arrays of mixed types. As mentioned in \Fullref{types-dynamic}, the compiler refuses \expr{[1, "foo"]} because it cannot determine an element type. Employing top-down inference, this can be overcome:
+良い例は型の混ざった配列です。\Fullref{types-dynamic}で書いた通り、\expr{[1, "foo"]}は要素の型を決定できないので、コンパイラはこれを拒絶します。これはトップダウンの推論を使えば解決します。
 
 \haxe{assets/TopDownInference.hx}
 
-Here, the compiler knows while typing \expr{[1, "foo"]} that the expected type is \type{Array<Dynamic>}, so the element type is \type{Dynamic}. Instead of the usual unification behavior where the compiler would attempt (and fail) to determine a \tref{common base type}{type-system-unification-common-base-type}, the individual elements are typed against and unified with \type{Dynamic}.
+ここでは、\expr{[1, "foo"]}に型付けするとき、要求される型が\type{Array<Dynamic>}であり、その要素は\type{Dynamic}であるとわかります。コンパイラが\tref{共通の基底型}{type-system-unification-common-base-type}を探す(そして失敗する)通常の単一化の挙動の代わりに、個々の要素が\type{Dynamic}で単一化され、型付けされます。
 
-We have seen another interesting use of top-down inference when \tref{construction of generic type parameters}{type-system-generic-type-parameter-construction} was introduced:
+\tref{ジェネリック型パラメータのコンスラクト}{type-system-generic-type-parameter-construction}の紹介で、もう一つトップダウンの推論の面白い利用例を見ています。
 
 \haxe{assets/GenericTypeParameter.hx}
 
-The explicit types \type{String} and \type{haxe.Template} are used here to determine the return type of \expr{make}. This works because the method is invoked as \expr{make()}, so we know the return type will be assigned to the variables. Utilizing this information, it is possible to bind the unknown type \type{T} to \type{String} and \type{haxe.Template} respectively.
+\type{String}と\type{haxe.Template}の明示された型が、\expr{make}の戻り値の型の決定に使われています。これは、\expr{make()}の戻り値が変数へ代入されるのがわかっているので動作します。この方法を使うと、未知の型\type{T}をそれぞれ\type{String}と\type{haxe.Template}に紐づけることが可能です。
 
 % this is not really top down inference
 %Top-down inference is also utilized when dealing with \tref{enum constructors}{types-enum-constructor}:
@@ -362,47 +363,47 @@ The explicit types \type{String} and \type{haxe.Template} are used here to deter
 %The constructors \expr{TObject} and \expr{TFunction} of type \expr{ValueType} are recognized even though their containing module \type{Type} is not \tref{imported}{Import}. This is possible because the return type of \expr{Type.typeof("foo")} is known to be \expr{ValueType}.
 
 
-\subsection{Limitations}
+\subsection{制限}
 \label{type-system-inference-limitations}
 
-Type inference saves a lot of manual type hints when working with local variables, but sometimes the type system still needs some help. In fact, it does not even try to infer the type of a \tref{variable}{class-field-variable} or \tref{property}{class-field-property} field unless it has a direct initialization.
+ローカル変数をあつかう場合、型推論のおかげで多くの手動の型付けを省略できますが、型システムが助けを必要とする場面もあります。実際、\tref{変数フィールド}{class-field-variable}や\tref{プロパティ}{class-field-property}では、直接の初期化をしていない限りは型推論されません。
 
-There are also some cases involving recursion where type inference has limitations. If a function calls itself recursively while its type is not (completely) known yet, type inference may infer a wrong, too specialized type.
+また、再帰的な関数呼び出しでも型推論が制限される場面があります。型がまだ(完全に)わかっていない場合、型推論が間違って特殊すぎる型を推論する場合があります。
 
-
-
-
-\section{Modules and Paths}
+\section{モジュールとパス}
 \label{type-system-modules-and-paths}
 
-\define{Module}{define-module}{All Haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types. A type may be \expr{private}, in which case only its containing module can access it.}
+\define{モジュール}{define-module}{
+すべてのHaxeのコードはモジュールに属しており、パスを使って指定されます。要するに、.hxファイルそれぞれが一つのモジュールを表し、その中にいくつか型を置くことができます。型は\expr{private}にすることが可能で、その場合はその型の属するモジュールからしかアクセスできません。}
 
-The distinction of a module and its containing type of the same name is blurry by design. In fact, addressing \expr{haxe.ds.StringMap<Int>} can be considered shorthand for \expr{haxe.ds.StringMap.StringMap<Int>}. The latter version consists of four parts:
+モジュールとそれに含まれる型との区別は意図的に不明瞭です。実際、\expr{haxe.ds.StringMap<Int>}の指定は、\expr{haxe.ds.StringMap.StringMap<Int>}の省略形とも考えられます。後者は4つ部位で構成されています。
 
 \begin{enumerate}
-	\item the package \expr{haxe.ds}
-	\item the module name \expr{StringMap}
-	\item the type name \type{StringMap}
-	\item the type parameter \type{Int}
+	\item パッケージ \expr{haxe.ds}
+	\item モジュール名 \expr{StringMap}
+	\item 型名 \type{StringMap}
+	\item 型パラメータ \type{Int}
 \end{enumerate}
-If the module and type name are equal, the duplicate can be removed, leading to the \expr{haxe.ds.StringMap<Int>} short version. However, knowing about the extended version helps with understanding how \tref{module sub-types}{type-system-module-sub-types} are addressed.
 
-Paths can be shortened further by using an \tref{import}{type-system-import}, which typically allows omitting the package part of a path. This may lead to usage of unqualified identifiers, for which understanding the \tref{resolution order}{type-system-resolution-order} is required.
+モジュールと型の名前が同じの場合、重複を取り除くことが可能で、これで\expr{haxe.ds.StringMap<Int>}という省略形が使えます。しかし、長い記述について知っていれば、\tref{モジュールの従属型}{type-system-module-sub-types}の指定の仕方の理解しやすくなります。
 
-\define{Type path}{define-type-path}{The (dot-)path to a type consists of the package, the module name and the type name. Its general form is \expr{pack1.pack2.packN.ModuleName.TypeName}.} 
+パスは、\tref{import}{type-system-import}を使ってパッケージの部分を省略することで、さらに短くすることができます。importの利用は不適切な識別子を作ってしまう場合があるので、\tref{解決順序}{type-system-resolution-order}についての理解が必要です。
+
+\define{型のパス}{define-type-path}{(ドット区切りの)型のパスはパッケージ、モジュール名、型名から成ります。この一般的な形は\expr{pack1.pack2.packN.ModuleName.TypeName}です。} 
 
 
-\subsection{Module Sub-Types}
+\subsection{モジュールの従属型}
 \label{type-system-module-sub-types}
 
-A module sub-type is a type declared in a module with a different name than that module. This allows a single .hx file to contain multiple types, which can be accessed unqualified from within the module, and by using \expr{package.Module.Type} from other modules:
+モジュール従属型とは、その型を定義しているモジュールの名前と異なる名前の型です。これにより、一つの.hxファイルに複数の型の定義が可能になり、これらの型はモジュール内では無条件でアクセス可能で、ほかのモジュールからも\expr{package.Module.Type}の形式でアクセスできます。
 
 \begin{lstlisting}
 var e:haxe.macro.Expr.ExprDef;
 \end{lstlisting}
 
-Here the sub-type \type{ExprDef} within module \expr{haxe.macro.Expr} is accessed. 
+ここでは\expr{haxe.macro.Expr}の従属型\type{ExprDef}にアクセスしています。
 
+従属型の関係は、実行時には影響を与えません。publicの従属型はそのパッケージのメンバーになります。このため、同じパッケージの別々のモジュールで同じ従属型を定義した場合に衝突を起こします。
 The sub-type relation is not reflected at runtime. That is, public sub-types become a member of their containing package, which could lead to conflicts if two modules within the same package try to define the same sub-type. Naturally the Haxe compiler detects these cases and reports them accordingly. In the example above, \type{ExprDef} is generated as \type{haxe.macro.ExprDef}.
 
 Sub-types can also be made private:
