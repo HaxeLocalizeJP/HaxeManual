@@ -1,0 +1,143 @@
+\chapter{導入}
+\label{introduction}
+\state{NoContent}
+
+\section{Haxeって何?}
+\label{introduction-what-is-haxe}
+
+\todo{Could we have a big Haxe logo in the First Manual Page (Introduction) under the menu (a bit like a book cover ?) It looks a bit empty now and is a landing page for "Manual"}
+
+Haxeはオープンソースの高級プログラミング言語とコンパイラで構成されており、ECMAScript\footnote{http://www.ecma-international.org/publications/standards/Ecma-327.htm}を元にした構文で書いて、さまざまなターゲットの言語へとコンパイルすることを可能です。適度な抽象化を行うため、1つのコードベースから複数のターゲットへコンパイルすることも可能です。
+
+<<<<<<< HEAD:01-introduction.tex
+Haxeは強く型付けされている一方で、必要に応じて型付けを弱めることも可能です。型情報を活用すれば、ターゲットの言語では実行時にしか発見できないようなエラーをコンパイル時に検出することができます。さらには、ターゲットへの変換時に最適化や堅牢なコードを生成するためにも使用されます。
+=======
+Haxe is strongly typed but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect errors at compile-time which would only be noticeable at run-time in the target language. Furthermore, type information can be used by the target generators to generate optimized and robust code.
+>>>>>>> english/master:HaxeManual/01-introduction.tex
+
+現在、Haxeには9つのターゲット言語があり、さまざまな用途に利用できます。
+
+\begin{center}
+\begin{tabular}{| l | l | l |}
+	\hline
+	名前 & 出力形式 & 主な用途 \\ \hline
+	JavaScript & ソースコード & ブラウザ, デスクトップ, モバイル, サーバー \\
+	Neko & バイトコード & デスクトップ, サーバー \\
+	PHP & ソースコード & サーバー \\
+	Python & ソースコード & デスクトップ, サーバー \\
+	C++ & ソースコード & デスクトップ, モバイル, サーバー \\
+	ActionScript 3 & ソースコード & ブラウザ, デスクトップ, モバイル \\
+	Flash & バイトコード & ブラウザ, デスクトップ, モバイル \\ 
+	Java & ソースコード & デスクトップ, サーバー \\
+	C\# & ソースコード & デスクトップ, モバイル, サーバー \\ \hline
+\end{tabular}
+\end{center}
+
+この\Fullref{introduction}の残りでは、Haxeのプログラムがどのようなものなのか、Haxeはが2005年に生まれてからどのように進化してきたのか、を概要でお送りします。
+
+\Fullref{types}では、Haxeの7種類の異なる型についてとそれらがどう関わりあっているのかについて紹介します。型に関する話は、\Fullref{type-system}へと続き、\emph{単一化(Unification)}、\emph{型パラメータ}、\emph{型推論}についての解説がされます。
+
+\Fullref{class-field}では、Haxeのクラスの構造に関する全てをあつかいます。加えて、\emph{プロパティ}、\emph{インラインフィールド}、\emph{ジェネリック関数}についてもあつかいます。
+
+\Fullref{expression}では、\emph{式}を使用して実際にいくつかの動作をさせる方法をお見せします。
+
+\Fullref{lf}では、\emph{パターンマッチング}、\emph{文字列補間}、\emph{デッドコード削除}のようなHaxeの詳細の機能について記述しています。ここで、Haxeの言語リファレンスは終わりです。
+
+<<<<<<< HEAD:01-introduction.tex
+そして、Haxeのコンパイラリファレンスへと続きます。まずは\Fullref{compiler-reference}で基本的な内容を、そして、\Fullref{cr-features}で高度な機能をあつかいます。最後に\Fullref{macro}で、ありふれたタスクを\emph{Haxeマクロ}がどのように単純かするのかを見ながら、刺激的なマクロの世界に挑んでいきます。
+=======
+We continue with the Haxe compiler reference, which first handles the basics in \Fullref{compiler-usage} before getting into the advanced features in \Fullref{cr-features}. Finally, we will venture into the exciting land of \emph{haxe macros} in \Fullref{macro} to see how some common tasks can be greatly simplified.
+>>>>>>> english/master:HaxeManual/01-introduction.tex
+
+次の\Fullref{std}のでは、Haxeの標準ライブラリに含まれる主要な型や概念を一つ一つ見ていきます。そして、\Fullref{haxelib}でHaxeのパッケージマネージャであるHaxelibについて学びます。
+
+Haxeは様々なターゲット間の差を吸収してくれますが、場合によってはターゲットを直接的にあつかうことが重要になります。これが、\Fullref{target-details}の話題です。
+
+\section{このドキュメントについて}
+\label{introduction-about-this-document}
+
+このドキュメントは、Haxe3の公式マニュアル（の非公式日本語訳）です。そのため、初心者向けののチュートリアルではなく、プログラミングは教えません。しかし、項目は大まかに前から順番に読めるように並べてあり、前に出てきた項目と、次に出てくる項目との関連づけがされています。先の項目で後の項目でててくる情報に触れた方が説明しやすい場所では、先にその情報に触れています。そのような場面ではリンクがされています。リンク先は、ほとんどの場合で先に読むべき内容ではありません。
+
+このドキュメントでは、理論的な要素を実物としてつなげるために、たくさんのHaxeのソースコードを使います。これらのコードのほとんどはmain関数を含む完全なコードでありそのままコンパイルが可能ですが、いくつかはそうではなくコードの重要な部分の抜き出しです。
+
+ソースコードは以下のように示されます：
+
+\begin{lstlisting}
+Haxe code here
+\end{lstlisting}
+
+時々、Haxeがどのようなコードを出力をするかを見せるため、ターゲットの\target{JavaScript}などのコードも示します。
+
+さらに、このドキュメントではいくつかの単語の定義を行います。定義は主に、新しい型やHaxe特有の単語を紹介するときに行われます。私たちが紹介するすべての新しい内容に対して定義をするわけではありません(例えば、クラスの定義など)。
+
+定義は以下のように示されます。
+
+\define{定義の名前}{define-definition}{定義の説明}
+
+また、いくつかの場所には\emph{トリビア}欄を用意してます。トリビア欄では、Haxeの開発過程でどうしてそのような決定がなされたのか、なぜその機能が過去のHaxeのバージョンから変更されたのかなど非公開の情報をお届けします。この情報は一般的には重要ではない、些細な内容なので読み飛ばしても構いません。
+
+\trivia{トリビアについて}{これはトリビアです}
+
+\subsection{著者と貢献者}
+\label{introduction-authors-and-contributions}
+
+このドキュメントの大半の内容は、Haxe Foundationで働くSimon Krajewskiによって書かれました。そして、このドキュメントの貢献者である以下の方々に感謝の意を表します。
+
+\begin{itemize}
+	\item Dan Korostelev: 追加の内容と編集
+	\item Caleb Harper: 追加の内容と編集
+	\item Josefiene Pertosa: 編集
+	\item Miha Lunar: 編集
+	\item Nicolas Cannasse: Haxe創始者
+\end{itemize}
+
+\subsection{License}
+\label{introduction-license}
+
+The Haxe Manual by \href{http://haxe.org/foundation}{Haxe Foundation} is licensed under a \href{http://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License}.
+
+Based on a work at \href{https://github.com/HaxeFoundation/HaxeManual}{https://github.com/HaxeFoundation/HaxeManual}.
+
+\section{Hello World}
+\label{introduction-hello-world}
+
+次のプログラムはコンパイルして実行をすると``Hello World''と表示します:
+
+\haxe{assets/HelloWorld.hx}
+
+上記のコードは、\ic{HelloWorld.hx}という名前で保存して、\ic{haxe -main HelloWorld --interp}というコマンドでHaxeコンパイラを呼び出すと実際に動作させることが可能です。これで\ic{HelloWorld.hx:3: Hello world}という出力がされるはずです。このことから以下のいくつかのことを学ぶことができます。
+
+\todo{This generates the following output: too many 'this'. You may like a passive sentence: the following output will be generated...though this is to be avoided, generally}
+
+\begin{itemize}
+<<<<<<< HEAD:01-introduction.tex
+	\item Haxeのコードは\ic{.hx}という拡張子で保存する。
+	\item Haxeのコンパイラはコマンドラインツールであり、\ic{-main HelloWorld}や\ic{--interp}のようなパラメータをつけて呼び出すことができる。
+	\item Haxeのプログラムにはクラスがあり(\type{HelloWorld}、大文字から始まる)、クラスには関数がある(\expr{main}、小文字からはじまる)。
+=======
+	\item Haxe programs are saved in files with an extension of \ic{.hx}.
+	\item The Haxe Compiler is a command-line tool which can be invoked with parameters such as \ic{-main HelloWorld} and \ic{--interp}.
+	\item Haxe programs have classes (\type{HelloWorld}, upper-case), which have functions (\expr{main}, lower-case). 
+	\item The name of the file containing main Haxe class is the same as name of the class itself (in this case \type{HelloWorld.hx}). 
+>>>>>>> english/master:HaxeManual/01-introduction.tex
+\end{itemize}
+
+\section{歴史}
+\label{introduction-haxe-history}
+\state{Reviewed}
+
+Haxeのプロジェクトは、2005年10月22日にフランスの開発者の\emph{Nicolas Cannasse}によって、オープンソースのActionScript2コンパイラである\emph{MTASC}(Motion-Twin Action Script Compiler)と、Motion-Twinの社内言語であり、実験的に型推論をオブジェクト指向に取り入れた\emph{MTypes}の後継として始まりました。Nicolasのプログラミング言語の設計に対する長年の情熱と、\emph{Motion-Twin}でゲーム開発者として働くことで異なる技術が混ざり合う機会を得たことが、まったく新しい言語の作成に結び付いたのです。
+
+そのころのつづりは\emph{haXe}で、2006年の2月にAVMのバイトコードとNicolas自身が作成した\emph{Neko}バーチャルマシン\footnote{http://nekovm.org}への出力をサポートするベータ版がリリースされました。
+
+この日からHaxeプロジェクトのリーダーであり続けるNicolas Cannasseは明確なビジョンをもってHaxeの設計を続け、そして2006年5月のHaxe1.0のリリースに導きました。この最初のメジャーリリースから\target{Javascript}のコード生成をサポートの始まり、型推論や構造的部分型などの現在のHaxeの機能のいくつかはすでにこのころからありました。
+
+Haxe1では、2年間いくつかのマイナーリリースを行い、2006年8月に\target{Flash AVM2}ターゲットと\emph{haxelib}ツール、2007年3月に\target{ActionScript3}ターゲットを追加しました。この時期は安定性の改善に強く焦点が当てられ、その結果、数回のマイナーリリースが行われました。
+
+Haxe2.0は2008年7月にリリースされました。\emph{Franco Ponticelli}の好意により、このリリースには\target{PHP}ターゲットが含まれました。同様に、\emph{Hugh Sanderson}の貢献により、2009年7月のHaxe2.04リリースで\target{C++}ターゲットが追加されました。
+
+Haxe1と同じように、以降の数か月で安定性のためのリリースを行いました。そして2011年1月、\emph{macros}をサポートするHaxe2.07がリリースされました。このころに、\emph{Bruno Garcia}が\target{JavaScript}ターゲットのメンテナとしてチームに加わり、 2.08と2.09のリリースで劇的な改善が行われました。
+
+2.09のリリース後、\emph{Simon Krajewski}がチームに加わり、Haxe3の出発に向けて働き始めました。さらに\emph{Cau\^{e} Waneck}の\target{Java}と\target{C\#}のターゲットがHaxeのビルドに取り込まれました。そしてHaxe2は次で最後のリリースとなることが決まり、2012年1月にHaxe2.10がリリースされました。
+
+2012年の終盤、Haxe3にスイッチを切り替えて、Haxeコンパイラチームは、新しく設立された\emph{Haxe Foundation}\footnote{http://haxe-foundation.org}の援助を受けながら、次のメジャーバージョンに向かっていきました。そして、Haxe3は2013年の5月にリリースされました。

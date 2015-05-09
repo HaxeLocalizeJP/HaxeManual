@@ -34,6 +34,7 @@ typedef Section = {
 	label: String,
 	content: String,
 	sub: Array<Section>,
+	parent: Null<Section>,
 	index: Int,
 	id: String,
 	state: State,
@@ -71,8 +72,6 @@ typedef Definition = {
 
 class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> implements hxparse.ParserBuilder {
 
-	static public inline var linkPrefix = #if epub "#" #else "" #end;
-
 	public var labelMap:Map<String, Label>;
 	public var definitions:Array<Definition>;
 	public var todos:Array<String>;
@@ -88,12 +87,14 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 	var listMode:Array<ListMode>;
 	var lastLabelTarget:LabelKind;
 	var input:byte.ByteData;
+	var config:Config;
 
-	public function new(input, sourceName) {
+	public function new(input, sourceName, config:Config) {
 		var lexer = new LatexLexer(input, sourceName);
 		var source = new hxparse.LexerTokenSource(lexer, LatexLexer.tok);
 		super(source);
 		this.input = input;
+		this.config = config;
 		buffer = new StringBuf();
 		todos = [];
 		sections = [];
@@ -141,6 +142,8 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				case [TCommand(CClearpage)]:
 				case [TCommand(CTableofcontents)]:
 				case [TCommand(CMaketitle)]:
+				case [TCommand(CNoindent)]:
+				case [TCommand(CMbox), s = inBraces(text)]:
 				case [TCustomCommand("todototoc")]:
 				case [TCustomCommand("listoftodos")]:
 
@@ -242,12 +245,18 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					lastSection.state = state;
 				case [TCustomCommand("flag"), key = inBraces(text), value = inBraces(text)]:
 					lastSection.flags[key] = value;
+				case [TCustomCommand("maintainer"), s = inBraces(text)]:
+					buffer.add('Written and maintained by $s');
+				case [TCustomCommand("subtoc")]:
+					buffer.add("~subtoc~");
 				// section
 				case [TCommand(CPart), s = inBraces(text)]:
 					// TODO: handle this
 				case [TCommand(CChapter), s = inBraces(text)]:
 					sections.push(mkSection(s, null, sections.length + 1));
-				case [TCommand(CSection), s = inBraces(text)]:
+				case [TCustomCommand("article"), s = inBraces(text)]:
+					sections.push(mkSection(s, null, sections.length + 1));
+				case [TCommand(CSection), _ = popt(star), s = inBraces(text)]:
 					var sec = sections[sections.length - 1];
 					sec.sub.push(mkSection(s, sec, sec.sub.length + 1));
 				case [TCommand(CSubsection), s = inBraces(text)]:
@@ -290,7 +299,8 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					"&";
 				}
 			case [TCommand(CTextasciitilde)]: "~";
-			case [TCommand(CTextbackslash)]: "\\\\";
+			case [TCommand(CTextbackslash)]: "\\";
+			case [TCommand(CSlash)]: "/";
 			case [TCommand(CEmph), s = inBraces(text)]: '**$s**';
 			case [TCommand(CTextwidth)]: "";
 			case [TCommand(CTextsuperscript), s = inBraces(text)]:'<sup>$s</sup>';
@@ -301,7 +311,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 			case [TCommand(CLeft)]: "";
 			case [TCommand(CRight)]: "";
 			case [TCustomCommand("target"), s = inBraces(text)]: s;
-			case [TCustomCommand("expr")]:
+			case [TCustomCommand("expr" | "ic")]:
 				exprMode = true;
 				var s = switch stream {
 					case [TBrOpen, s = text(), TBrClose]:
@@ -317,10 +327,9 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				s;
 			case [TCommand(CTexttt), s = inBraces(text)]: '`$s`';
 			case [TCustomCommand("type"), s = inBraces(text)]: '`$s`';
-			case [TCustomCommand("ic"), s = inBraces(text)]: '`$s`';
 			case [s = ref()]: s;
 			case [TCustomCommand("href"), s1 = inBraces(text), s2 = inBraces(text)]: '[$s2]($s1)';
-			case [TCommand(CUrl), s = inBraces(text)]: '[$s]($s)';
+			case [TCommand(CUrl), s = inBraces(text)]: '<$s>';
 			case [TCommand(CLabel), s = inBraces(text)]:
 				var name = switch(lastLabelTarget) {
 					case Section(sec):
@@ -349,6 +358,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 			case [TNewline]: tableMode || listMode.length > 0 ? "" : "\n";
 			case [TDoubleBackslash]: "\n";
 			case [TCommand(CTextasciicircum)]: "^";
+			case [s = inBraces(text)]: s;
 		}
 	}
 
@@ -405,7 +415,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 		return switch stream {
 			case [TCommand(CRef), TBrOpen, s = text(), TBrClose]: '~~~$s~~~';
 			case [TCustomCommand("Fullref"), TBrOpen, s = text(), TBrClose]: '~~~$s~~~';
-			case [TCustomCommand("tref"), TBrOpen, s1 = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]: '[$s1]($linkPrefix~~$s2~~)';
+			case [TCustomCommand("tref"), TBrOpen, s1 = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]: '[$s1](~~$s2~~)';
 		}
 	}
 
@@ -428,9 +438,20 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 		}
 	}
 
-	function inBraces<T>(f:Void->T) {
+	function inBraces(f:Void->String) {
 		return switch stream {
-			case [TBrOpen, r = f(), TBrClose]: r;
+			case [TBrOpen]:
+				switch stream {
+					case [r = f(), TBrClose]: r;
+					case [TBrClose]: "";
+				}
+		}
+	}
+
+	function star() {
+		return switch stream {
+			case [TText("*")]:
+				true;
 		}
 	}
 
@@ -446,7 +467,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 			lastSection.content = getBuffer();
 			buffer = new StringBuf();
 		}
-		var id = (parent != null ? parent.id + "." : "") + index;
+		var id = config.omitIds ? "" : (parent != null ? parent.id + "." : "") + index;
 		var source = {
 			file: stream.curPos().psource,
 			lineMin: stream.curPos().getLinePosition(input).lineMin,
@@ -457,7 +478,8 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 			label: null,
 			content: "",
 			sub: [],
-			index:index,
+			parent: parent,
+			index: index,
 			id: id,
 			state: New,
 			source: source,
@@ -475,10 +497,10 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 	}
 
 	function testCompile(path:String) {
-		var path = new haxe.io.Path(path);
-		var p = new sys.io.Process("haxe", ["-main", path.file, "-cp", "assets", "-x", "test"]);
-		p.stdout.readAll();
-		var err = p.stderr.readAll();
-		if (p.exitCode() != 0) trace('Failed: $path\n$err');
+		var bytes = sys.io.File.getBytes(path);
+		var result = HaxeCompiler.parse(bytes);
+		if (!result.success) {
+			trace(path + ": " +result.stderr);
+		}
 	}
 }
