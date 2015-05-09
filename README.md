@@ -3,7 +3,7 @@ HaxeManual 日本語版
 
 このプロジェクトは[Haxeマニュアル]( https://github.com/HaxeFoundation/HaxeManual/ )の日本語訳です。
 
-このプロジェクトに貢献するには.texファイルを編集してください。 (.mdファイルは、.texから生成されます)
+貢献するには.texファイルを編集してください。 (.mdファイルは、.texから生成されます)
 
 コマンドラインから .pdf をビルドするには、 `latexmk -xelatex HaxeDoc.tex` を実行してください。
 最新版の[TeX Live]にlatexmkは含まれるはずです。必要なパッケージは以下の通りです。
@@ -49,7 +49,12 @@ LaTeXのコンパイル時の一時フォルダを消去せずに残します。
 
 `compileEnv`での書き出しには、以下が必要になります。
 
-- `xelatex` にパスを通す。[Tex Live](http://www.tug.org/texlive/) のバージョン2013を使えば良いです。カスタムしたLaTeXの環境の断片を、PDFに変換します。
-- `mudraw` にパスを通す。[MuPDF](http://www.mupdf.com/)に含まれます。PDFをpngの画像に変換するのに使われます。
-- [Source Sans Pro](http://sourceforge.net/projects/sourcesans.adobe/) と [Source Code Pro](http://sourceforge.net/projects/sourcecodepro.adobe/) のインストール。
-- 日本語用に[IPAフォント](http://ipafont.ipa.go.jp/ipafont/download.html)のインストール。
+- `xelatex` にパスを通す。[Tex Live]のバージョン2013を使えば良いです。カスタムしたLaTeXの環境の断片を、PDFに変換します。
+- `mudraw` にパスを通す。[MuPDF]に含まれます。PDFをpngの画像に変換するのに使われます。
+- [Source Sans Pro]と[Source Code Pro]のインストール。
+- 日本語用に[IPAフォント]のインストール。
+
+[TeX Live]:http://www.tug.org/texlive/
+[MuPDF]:http://www.mupdf.com/
+[Source Sans Pro]:http://sourceforge.net/projects/sourcesans.adobe/
+[Source Code Pro]:http://sourceforge.net/projects/sourcecodepro.adobe/
