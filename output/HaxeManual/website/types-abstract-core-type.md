@@ -16,4 +16,4 @@ Haxeの標準ライブラリは、基本型のセットをコアタイプの抽�
 
 Previous section: [抽象型フィールドの繰り上げ](types-abstract-forward.md)
 
-Next section: [単相型](types-monomorph.md)
+Next section: [単相(モノモーフ)](types-monomorph.md)

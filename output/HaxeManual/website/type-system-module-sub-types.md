@@ -1,13 +1,14 @@
-## 3.7.1 Module Sub-Types
+## 3.7.1 モジュールの従属型
 
-A module sub-type is a type declared in a module with a different name than that module. This allows a single .hx file to contain multiple types, which can be accessed unqualified from within the module, and by using `package.Module.Type` from other modules:
+モジュール従属型とは、その型を定義しているモジュールの名前と異なる名前の型です。これにより、一つの.hxファイルに複数の型の定義が可能になり、これらの型はモジュール内では無条件でアクセス可能で、ほかのモジュールからも`package.Module.Type`の形式でアクセスできます。
 
 ```haxe
 var e:haxe.macro.Expr.ExprDef;
 ```
 
-Here the sub-type `ExprDef` within module `haxe.macro.Expr` is accessed. 
+ここでは`haxe.macro.Expr`の従属型`ExprDef`にアクセスしています。
 
+従属型の関係は、実行時には影響を与えません。publicの従属型はそのパッケージのメンバーになります。このため、同じパッケージの別々のモジュールで同じ従属型を定義した場合に衝突を起こします。
 The sub-type relation is not reflected at run-time. That is, public sub-types become a member of their containing package, which could lead to conflicts if two modules within the same package tried to define the same sub-type. Naturally, the Haxe compiler detects these cases and reports them accordingly. In the example above `ExprDef` is generated as `haxe.macro.ExprDef`.
 
 Sub-types can also be made private:
@@ -29,6 +30,6 @@ The accessibility of types can be controlled more fine-grained by using [access 
 
 ---
 
-Previous section: [Modules and Paths](type-system-modules-and-paths.md)
+Previous section: [モジュールとパス](type-system-modules-and-paths.md)
 
 Next section: [Import](type-system-import.md)

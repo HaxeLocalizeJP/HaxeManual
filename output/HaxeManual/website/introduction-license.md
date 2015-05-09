@@ -6,6 +6,6 @@ Based on a work at [https://github.com/HaxeFoundation/HaxeManual](https://github
 
 ---
 
-Previous section: [Authors and contributions](introduction-authors-and-contributions.md)
+Previous section: [著者と貢献者](introduction-authors-and-contributions.md)
 
 Next section: [Hello World](introduction-hello-world.md)

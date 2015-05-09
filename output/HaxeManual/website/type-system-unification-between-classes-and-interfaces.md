@@ -1,10 +1,6 @@
 ## 3.5.1 クラスとインターフェースの単一化
 
-<<<<<<< HEAD:md/manual/type-system-unification-between-classes-and-interfaces.md
 クラスの間の単一化について定義を行う場合、単一化が指向性を持つことを心に留めておくべきです。より特殊なクラス(例えば、子クラス)を一般的なクラス(例えば、親クラス)に対して代入することはできますが、逆はできません。
-=======
-When defining unification behavior between classes, it is important to remember that unification is directional: We can assign a more specialized class (e.g. a child class) to a generic class (e.g. a parent class) but the reverse is not valid.
->>>>>>> english/master:output/HaxeManual/website/type-system-unification-between-classes-and-interfaces.md
 
 以下のような、代入が許可されます。
 

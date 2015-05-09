@@ -1,6 +1,6 @@
-## 3.6 Type Inference
+## 3.6 型推論
 
-The effects of type inference have been seen throughout this document and will continue to be important. A simple example shows type inference at work:
+型推論はこのドキュメントで何度も出てきており、これ以降でも重要です。型推論の動作の簡単なサンプルをお見せします。
 
 ```haxe
 class TypeInference {
@@ -12,21 +12,17 @@ class TypeInference {
   }
 }
 ```
-<<<<<<< HEAD:md/manual/type-system-type-inference.md
-The special construct `$type` was previously mentioned in order to simplify the explanation of the [関数型](types-function.md) type, so let us introduce it officially now:
-=======
-The special construct `$type` was previously mentioned in order to simplify the explanation of the [Function Type](types-function.md) type, so let us now introduce it officially:
->>>>>>> english/master:output/HaxeManual/website/type-system-type-inference.md
+この特殊な構文`$type`は、[関数](types-function.md)の型の説明をわかりやすくするためにも使っていました。それではここで公式な説明をしましょう。
 
 > ##### Define: `$type`
 >
-> `$type` is a compile-time mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.
+> `$type`は関数のように呼び出せるコンパイル時の仕組みで、一つの引数を持ちます。コンパイラは引数の式を評価し、そしてその式の型を出力します。
 
-In the example above, the first `$type` prints `Unknown<0>`. This is a [monomorph](types-monomorph.md), a type that is not yet known. The next line `x = "foo"` assigns a `String` literal to `x`, which causes the [unification](type-system-unification.md) of the monomorph with `String`. We then see that the type of `x` indeed has changed to `String`.
+上記の例では、最初の`$type`では`Unknown<0>`が表示されます。これは[単相](types-monomorph.md)で、未知の型です。次の行の`x = "foo"`で定数値の`String`を`x`に代入しており、`String`の単相での[単一化](type-system-unification.md)が起こります。そして、`x`がこのとき`String`に変わったことがわかります。
 
-Whenever a type other than [ダイナミック](types-dynamic.md) is unified with a monomorph, that monomorph **becomes** that type: it **morphs** into that type. Therefore it cannot morph into a different type afterwards, a property expressed in the **mono** part of its name.
+[ダイナミック](types-dynamic.md)以外の型が、単相での単一化を行うと単相はその型になります(その型に変形(**morph**)します)。このため、この型はもう別の型には変形できません。これが単相(monomorph)の**mono**の部分です。
 
-Following the rules of unification, type inference can occur in compound types:
+以下が単一化のルールです。型推論は複合型でも起こります。
 
 ```haxe
 class TypeInference2 {
@@ -38,10 +34,11 @@ class TypeInference2 {
   }
 }
 ```
-Variable `x` is first initialized to an empty `Array`. At this point we can tell that the type of `x` is an array, but we do not yet know the type of the array elements. Consequentially, the type of `x` is `Array<Unknown<0>>`. It is only after pushing a `String` onto the array that we know the type to be `Array<String>`.
+
+変数`x`は初め空の`Array`で初期化されています。この時点で`x`の型は配列であると言えますが、配列の要素の型については未知です。その結果`x`の型は、`Array<Unknown<0>>`となります。この配列が`Array<String>`だとわかるには、`String`をこの配列にプッシュするだけで十分です。
 
 ---
 
 Previous section: [共通の基底型](type-system-unification-common-base-type.md)
 
-Next section: [Top-down Inference](type-system-top-down-inference.md)
+Next section: [トップダウンの推論](type-system-top-down-inference.md)

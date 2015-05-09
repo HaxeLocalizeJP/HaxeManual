@@ -5,11 +5,7 @@ Haxeコンパイラは豊かな型システムを持っており、これがコ�
 いくつかの言語では、この安全性を得るためには各構文での明示的な型の宣言が強いられるので、コストがかかります。
 
 ```haxe
-<<<<<<< HEAD:md/manual/types.md
 var myButton:MySpecialButton = new MySpecialButton(); // AS3
-=======
-var myButton:MySpecialButton = new MySpecialButton(); // As3
->>>>>>> english/master:output/HaxeManual/website/types.md
 MySpecialButton* myButton = new MySpecialButton(); // C++ 
 ```
 
@@ -19,7 +15,7 @@ MySpecialButton* myButton = new MySpecialButton(); // C++
 var myButton = new MySpecialButton(); // Haxe
 ```
 
-型推論の詳細については[Type Inference](type-system-type-inference.md)で説明します。今のところは、上のコードの変数`myButton`は`MySpecialButton`の**クラスインスタンス**とわかると言っておけば十分でしょう。
+型推論の詳細については[型推論](type-system-type-inference.md)で説明します。今のところは、上のコードの変数`myButton`は`MySpecialButton`の**クラスインスタンス**とわかると言っておけば十分でしょう。
 
 Haxeの型システムは、以下の7つの型を認識します。
 
@@ -29,7 +25,7 @@ Haxeの型システムは、以下の7つの型を認識します。
 * **関数**: 引数と戻り値1つの型の複合型。 
 * **ダイナミック**: あらゆる型に一致する、なんでも型。 
 * **抽象(abstract)**: 実行時には別の型となる、コンパイル時の型。 
-* **単態(monomorph)**: 後で別の型が付けられる未知(Unknown)の型。
+* **単相**: 後で別の型が付けられる未知(Unknown)の型。
 
 ここからの節で、それぞれの型のグループとこれらがどうかかわっているのかについて解説していきます。
 

@@ -32,14 +32,10 @@ class Point {
 > ##### Define: `Class<T>`
 >
 > 
-<<<<<<< HEAD:md/manual/types-class-instance.md
 > この型はすべてのクラスの型と一致します。つまり、すべてのクラス(インスタンスではなくクラス)をこれに代入することができます。コンパイル時に、`Class<T>`は全てのクラスの型の共通の親の型となります。しかし、この関係性は生成されたコードに影響を与えません。
 > 
 > この型は、任意のクラスを要求するようなAPIで役立ちます。例えば、[HaxeリフレクションAPI](std-reflection.md)のいくつかのメソッドがこれに当てはまります。
 >
-=======
-> This type is useful when an API requires a value to be **a** class, but not a specific one. This applies to several methods of the [Haxe reflection API](std-reflection.md).
->>>>>>> english/master:output/HaxeManual/website/types-class-instance.md
 
 ---
 

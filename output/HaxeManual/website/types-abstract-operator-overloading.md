@@ -57,15 +57,11 @@ class AbstractUnopOverload {
 }
 ```
 
-<<<<<<< HEAD:md/manual/types-abstract-operator-overloading.md
 2項演算子と単項演算子の両方とも、戻り値の型は何でも構いません。
 
-基底型が抽象型でそこで許容されている演算子でかつ戻り値を元の抽象型に代入可能なものについては、`@:op`関数のボディを省略することが可能です。
-=======
 ###### Exposing underlying type operations
 
-It is also possible to omit the method body of a `@:op` function, but only if the underlying type of the abstract allows the operation in question and if the resulting type can be assigned back to the abstract.
->>>>>>> english/master:output/HaxeManual/website/types-abstract-operator-overloading.md
+基底型が抽象型でそこで許容されている演算子でかつ戻り値を元の抽象型に代入可能なものについては、`@:op`関数のボディを省略することが可能です。
 
 ```haxe
 abstract MyAbstractInt(Int) from Int to Int {

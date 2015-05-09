@@ -92,6 +92,6 @@ Haxe also allows the more natural `as` in place of `in`.
 
 ---
 
-Previous section: [Module Sub-Types](type-system-module-sub-types.md)
+Previous section: [モジュールの従属型](type-system-module-sub-types.md)
 
 Next section: [Resolution Order](type-system-resolution-order.md)

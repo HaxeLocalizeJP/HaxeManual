@@ -2,11 +2,7 @@
 
 ##### 算術演算
  
-<<<<<<< HEAD:md/manual/types-numeric-operators.md
  演算子  | 演算  | 引数1  | 引数2  | 戻り値 
-=======
- Operator  | Operation  | Operand 1  | Operand 2  | Return 
->>>>>>> english/master:output/HaxeManual/website/types-numeric-operators.md
  --- | --- | --- | --- | ---
 <code>++</code>  | 1増加  | `Int`  | なし  | `Int`
  |  | `Float`  | なし  | `Float`
@@ -35,11 +31,7 @@
  
 ##### 比較演算
  
-<<<<<<< HEAD:md/manual/types-numeric-operators.md
  演算子  | 演算  | 引数1  | 引数2  | 戻り値 
-=======
- Operator  | Operation  | Operand 1  | Operand 2  | Return 
->>>>>>> english/master:output/HaxeManual/website/types-numeric-operators.md
  --- | --- | --- | --- | --- | --- | --- | --- | ---
 <code>==</code>  | 等価  | `Float/Int`  | `Float/Int`  | `Bool` 
 <code>!=</code>  | 不等価  | `Float/Int`  | `Float/Int`  | `Bool` 
@@ -50,11 +42,7 @@
  
 ##### ビット演算
  
-<<<<<<< HEAD:md/manual/types-numeric-operators.md
  演算子  | 演算  | 引数1  | 引数2  | 戻り値 
-=======
- Operator  | Operation  | Operand 1  | Operand 2  | Return 
->>>>>>> english/master:output/HaxeManual/website/types-numeric-operators.md
  --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---
 <code>~</code>  | ビット単位の否定(NOT)  | `Int`  | なし  | `Int` 
 <code>&amp;</code>  | ビット単位の論理積(AND)  | `Int`  | `Int`  | `Int` 
@@ -62,7 +50,9 @@
 <code>^</code>  | ビット単位の排他的論理和(XOR)  | `Int`  | `Int`  | `Int` 
 <code>&lt;&lt;</code>  | 左シフト  | `Int`  | `Int`  | `Int` 
 <code>&gt;&gt;</code>  | 右シフト  | `Int`  | `Int`  | `Int` 
-<code>&gt;&gt;&gt;</code>  | 符号なしの右シフト  | `Int`  | `Int`  | `Int`
+<code>&gt;&gt;&gt;</code>  | 符号なしの右シフト  | `Int`  | `Int`  | `Int` 
+ 
+##### Comparison
 
 ---
 

@@ -1,87 +1,91 @@
 <a id="introduction"></a>
-## 1 Introduction
+## 1 導入
 
-1.1: [What is Haxe?](introduction-what-is-haxe)
+1.1: [Haxeって何?](introduction-what-is-haxe)
 
-1.2: [About this Document](introduction-about-this-document)
+1.2: [このドキュメントについて](introduction-about-this-document)
 
 1.3: [Hello World](introduction-hello-world)
 
-1.4: [History](introduction-haxe-history)
+1.4: [歴史](introduction-haxe-history)
 
 <a id="introduction-what-is-haxe"></a>
-## 1.1 What is Haxe?
+## 1.1 Haxeって何?
 
-Haxe consists of a high-level, open source programming language and a compiler. It allows compilation of programs, written using an ECMAScript-oriented syntax, to multiple target languages. Employing proper abstraction, it is possible to maintain a single code-base which compiles to multiple targets.
+Haxeはオープンソースの高級プログラミング言語とコンパイラで構成されており、ECMAScriptを元にした構文で書いて、さまざまなターゲットの言語へとコンパイルすることを可能です。適度な抽象化を行うため、1つのコードベースから複数のターゲットへコンパイルすることも可能です。
 
-Haxe is strongly typed but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect errors at compile-time which would only be noticeable at run-time in the target language. Furthermore, type information can be used by the target generators to generate optimized and robust code.
+Haxeは強く型付けされている一方で、必要に応じて型付けを弱めることも可能です。型情報を活用すれば、ターゲットの言語では実行時にしか発見できないようなエラーをコンパイル時に検出することができます。さらに型情報は、ターゲットへの変換時に最適化や堅牢なコードを生成するためにも使用されます。
 
-Currently, there are nine supported target languages which allow for different use-cases:
+現在、Haxeには9つのターゲット言語があり、さまざまな用途に利用できます。
 
-Name  | Output type  | Main usages 
+名前  | 出力形式  | 主な用途 
  --- | --- | ---
-Javascript  | Sourcecode  | Browser, Desktop, Mobile, Server 
-Neko  | Bytecode  | Desktop, Server 
-PHP  | Sourcecode  | Server 
-Python  | Sourcecode  | Desktop, Server 
-C++  | Sourcecode  | Desktop, Mobile, Server 
-Actionscript 3  | Sourcecode  | Browser, Desktop, Mobile 
-Flash  | Bytecode  | Browser, Desktop, Mobile 
- Java  | Sourcecode  | Desktop, Server 
-C#  | Sourcecode  | Desktop, Mobile, Server 
+JavaScript  | ソースコード  | ブラウザ, デスクトップ, モバイル, サーバー 
+Neko  | バイトコード  | デスクトップ, サーバー 
+PHP  | ソースコード  | サーバー 
+Python  | ソースコード  | デスクトップ, サーバー 
+C++  | ソースコード  | デスクトップ, モバイル, サーバー 
+ActionScript 3  | ソースコード  | ブラウザ, デスクトップ, モバイル 
+Flash  | バイトコード  | ブラウザ, デスクトップ, モバイル 
+ Java  | ソースコード  | デスクトップ, サーバー 
+C#  | ソースコード  | デスクトップ, モバイル, サーバー 
  
 
-The remainder of section [Introduction](introduction) gives a brief overview of what a Haxe program looks like and how Haxe evolved since its inception in 2005.
+この[導入](introduction)の残りでは、Haxeのプログラムがどのようなものなのか、Haxeはが2005年に生まれてからどのように進化してきたのか、を概要でお送りします。
 
-[Types](types) introduces the seven different kinds of types in Haxe and how they interact with each other. The discussion of types is continued in [Type System](type-system), where features like **unification**, **type parameters** and **type inference** are explained.
+[型](types)では、Haxeの7種類の異なる型についてとそれらがどう関わりあっているのかについて紹介します。型に関する話は、[型システム](type-system)へと続き、**単一化(Unification)**、**型パラメータ**、**型推論**についての解説がされます。
 
-[Class Fields](class-field) is all about the structure of Haxe classes and, among other topics, deals with **properties**, **inline fields** and **generic functions**.
+[Class Fields](class-field)では、Haxeのクラスの構造に関する全てをあつかいます。加えて、**プロパティ**、**インラインフィールド**、**ジェネリック関数**についてもあつかいます。
 
-In [Expressions](expression) we see how to actually get programs to do something by using **expressions**.
+[Expressions](expression)では、**式**を使用して実際にいくつかの動作をさせる方法をお見せします。
 
-[Language Features](lf) describes some of the Haxe features in detail such as **pattern matching**, **string interpolation** and **dead code elimination**. This concludes the Haxe language reference.
+[Language Features](lf)では、**パターンマッチング**、**文字列補間**、**デッドコード削除**のようなHaxeの詳細の機能について記述しています。ここで、Haxeの言語リファレンスは終わりです。
 
-We continue with the Haxe compiler reference, which first handles the basics in [Compiler Usage](compiler-usage) before getting into the advanced features in [Compiler Features](cr-features). Finally, we will venture into the exciting land of **haxe macros** in [Macros](macro) to see how some common tasks can be greatly simplified.
+そして、Haxeのコンパイラリファレンスへと続きます。まずは[Compiler Usage](compiler-usage)で基本的な内容を、そして、[Compiler Features](cr-features)で高度な機能をあつかいます。最後に[Macros](macro)で、ありふれたタスクを**Haxeマクロ**がどのように単純かするのかを見ながら、刺激的なマクロの世界に挑んでいきます。
 
-In the following chapter, [Standard Library](std), we explore important types and concepts from the Haxe Standard Library. We then learn about Haxe's package manager Haxelib in [Haxelib](haxelib).
+次の[Standard Library](std)のでは、Haxeの標準ライブラリに含まれる主要な型や概念を一つ一つ見ていきます。そして、[Haxelib](haxelib)でHaxeのパッケージマネージャであるHaxelibについて学びます。
 
-Haxe abstracts away many target differences, but sometimes it is important to interact with a target directly, which is the subject of [Target Details](target-details).
+Haxeは様々なターゲット間の差を吸収してくれますが、場合によってはターゲットを直接的にあつかうことが重要になります。これが、[Target Details](target-details)の話題です。
 
 <a id="introduction-about-this-document"></a>
-## 1.2 About this Document
+## 1.2 このドキュメントについて
 
-This document is the official manual for Haxe 3. As such, it is not a beginner's tutorial and does not teach programming. However, the topics are roughly designed to be read in order and there are references to topics "previously seen" and topics "yet to come". In some cases, an earlier section makes use of the information of a later section if it simplifies the explanation. These references are linked accordingly and it should generally not be a problem to read ahead on other topics.
+このドキュメントは、Haxe3の公式マニュアル（の非公式日本語訳）です。そのため、初心者向けののチュートリアルではなく、プログラミングは教えません。しかし、項目は大まかに前から順番に読めるように並べてあり、前に出てきた項目と、次に出てくる項目との関連づけがされています。先の項目で後の項目でててくる情報に触れた方が説明しやすい場所では、先にその情報に触れています。そのような場面ではリンクがされています。リンク先は、ほとんどの場合で先に読むべき内容ではありません。
 
-We use a lot of Haxe source code to keep a practical connection of theoretical matters. These code examples are often complete programs that come with a main function and can be compiled as-is. However, sometimes only the most important parts are shown.
-Source code looks like this:
+このドキュメントでは、理論的な要素を実物としてつなげるために、たくさんのHaxeのソースコードを使います。これらのコードのほとんどはmain関数を含む完全なコードでありそのままコンパイルが可能ですが、いくつかはそうではなくコードの重要な部分の抜き出しです。
+
+ソースコードは以下のように示されます：
 
 ```haxe
 Haxe code here
 ```
-Occasionally, we demonstrate how Haxe code is generated, for which we usually show the Javascript target.
 
-Furthermore, we define a set of terms in this document. Predominantly, this is done when introducing a new type or when a term is specific to Haxe. We do not define every new aspect we introduce, e.g. what a class is, to avoid cluttering the text. A definition looks like this:
+時々、Haxeがどのようなコードを出力をするかを見せるため、ターゲットのJavaScriptなどのコードも示します。
 
-> ##### Define: Definition name
+さらに、このドキュメントではいくつかの単語の定義を行います。定義は主に、新しい型やHaxe特有の単語を紹介するときに行われます。私たちが紹介するすべての新しい内容に対して定義をするわけではありません(例えば、クラスの定義など)。
+
+定義は以下のように示されます。
+
+> ##### Define: 定義の名前
 >
-> Definition description
+> 定義の説明
 
-In a few places, this document has **trivia**-boxes. These include off-the-record information such as why certain decisions were made during Haxe's development or how a particular feature has been changed in past Haxe versions. This information is generally not important and can be skipped as it is only meant to convey trivia:
+また、いくつかの場所には**トリビア**欄を用意してます。トリビア欄では、Haxeの開発過程でどうしてそのような決定がなされたのか、なぜその機能が過去のHaxeのバージョンから変更されたのかなど非公開の情報をお届けします。この情報は一般的には重要ではない、些細な内容なので読み飛ばしても構いません。
 
-> ##### Trivia: About Trivia
+> ##### Trivia: トリビアについて
 >
-> This is trivia.
+> これはトリビアです
 
 <a id="introduction-authors-and-contributions"></a>
-## 1.2.1 Authors and contributions
+## 1.2.1 著者と貢献者
 
-Most of this document's content was written by Simon Krajewski while working for the Haxe Foundation. We would like to thank these people for their contributions:
+このドキュメントの大半の内容は、Haxe Foundationで働くSimon Krajewskiによって書かれました。そして、このドキュメントの貢献者である以下の方々に感謝の意を表します。
 
-* Dan Korostelev: Additional content and editing
-* Caleb Harper: Additional content and editing
-* Josefiene Pertosa: Editing
-* Miha Lunar: Editing
-* Nicolas Cannasse: Haxe creator
+* Dan Korostelev: 追加の内容と編集
+* Caleb Harper: 追加の内容と編集
+* Josefiene Pertosa: 編集
+* Miha Lunar: 編集
+* Nicolas Cannasse: Haxe創始者
 
 <a id="introduction-license"></a>
 ## 1.2.2 License
@@ -93,7 +97,7 @@ Based on a work at [https://github.com/HaxeFoundation/HaxeManual](https://github
 <a id="introduction-hello-world"></a>
 ## 1.3 Hello World
 
-The following program prints "Hello World" after being compiled and run:
+次のプログラムはコンパイルして実行をすると"Hello World"と表示します:
 
 ```haxe
 class HelloWorld {
@@ -102,185 +106,193 @@ class HelloWorld {
   }
 }
 ```
-This can be tested by saving the above code to a file named `HelloWorld.hx` and invoking the Haxe Compiler like so: `haxe -main HelloWorld --interp`. It then generates the following output: `HelloWorld.hx:3: Hello world`. There are several things to learn from this:
 
-* Haxe programs are saved in files with an extension of `.hx`.
-* The Haxe Compiler is a command-line tool which can be invoked with parameters such as `-main HelloWorld` and `--interp`.
-* Haxe programs have classes (`HelloWorld`, upper-case), which have functions (`main`, lower-case). 
-* The name of the file containing main Haxe class is the same as name of the class itself (in this case `HelloWorld.hx`).
+上記のコードは、`HelloWorld.hx`という名前で保存して、`haxe -main HelloWorld --interp`というコマンドでHaxeコンパイラを呼び出すと実際に動作させることが可能です。これで`HelloWorld.hx:3: Hello world`という出力がされるはずです。このことから以下のいくつかのことを学ぶことができます。
+
+* Haxeのコードは`.hx`という拡張子で保存する。
+* Haxeのコンパイラはコマンドラインツールであり、`-main HelloWorld`や`--interp`のようなパラメータをつけて呼び出すことができる。
+* Haxeのプログラムにはクラスがあり(`HelloWorld`、大文字から始まる)、クラスには関数がある(`main`、小文字からはじまる)。 
+* Haxeのmainクラスをふくむファイルは、そのクラス名と同じ名前です(この場合だと、`HelloWorld.hx`)。
 
 <a id="introduction-haxe-history"></a>
-## 1.4 History
+## 1.4 歴史
 
-The Haxe project was started on 22 October 2005 by French developer **Nicolas Cannasse** as a successor to the popular open-source ActionScript 2 compiler **MTASC** (Motion-Twin Action Script Compiler) and the in-house **MTypes** language, which experimented with the application of type inference to an object oriented language. Nicolas' long-time passion for programming language design and the rise of new opportunies to mix different technologies as part of his game developer work at **Motion-Twin** led to the creation of a whole new language.
+Haxeのプロジェクトは、2005年10月22日にフランスの開発者の**Nicolas Cannasse**によって、オープンソースのActionScript2コンパイラである**MTASC**(Motion-Twin Action Script Compiler)と、Motion-Twinの社内言語であり、実験的に型推論をオブジェクト指向に取り入れた**MTypes**の後継として始まりました。Nicolasのプログラミング言語の設計に対する長年の情熱と、**Motion-Twin**でゲーム開発者として働くことで異なる技術が混ざり合う機会を得たことが、まったく新しい言語の作成に結び付いたのです。
 
-Being spelled **haXe** back then, its beta version was released in February 2006 with the first supported targets being AVM-bytecode and Nicolas' own **Neko** virtual machine.
+そのころのつづりは**haXe**で、2006年の2月にAVMのバイトコードとNicolas自身が作成した**Neko**バーチャルマシンへの出力をサポートするベータ版がリリースされました。
 
-Nicolas Cannasse, who remains leader of the Haxe project to this date, kept on designing Haxe with a clear vision, subsequently leading to the Haxe 1.0 release in May 2006. This first major release came with support for Javascript code generation and already had some of the features that define Haxe today such as type inference and structural sub-typing.
+この日からHaxeプロジェクトのリーダーであり続けるNicolas Cannasseは明確なビジョンをもってHaxeの設計を続け、そして2006年5月のHaxe1.0のリリースに導きました。この最初のメジャーリリースからJavascriptのコード生成をサポートの始まり、型推論や構造的部分型などの現在のHaxeの機能のいくつかはすでにこのころからありました。
 
-Haxe 1 saw several minor releases over the course of two years, adding the Flash AVM2 target along with the **haxelib**-tool in August 2006 and the Actionscript 3 target in March 2007. During these months, there was a strong focus on improving stability, which resulted in several minor bug-fix releases.
+Haxe1では、2年間いくつかのマイナーリリースを行い、2006年8月にFlash AVM2ターゲットと**haxelib**ツール、2007年3月にActionScript3ターゲットを追加しました。この時期は安定性の改善に強く焦点が当てられ、その結果、数回のマイナーリリースが行われました。
 
-Haxe 2.0 was released in July 2008, including the PHP target, courtesy of **Franco Ponticelli**. A similar effort by **Hugh Sanderson** lead to the addition of the C++ target in July 2009 with the Haxe 2.04 release.
+Haxe2.0は2008年7月にリリースされました。**Franco Ponticelli**の好意により、このリリースにはPHPターゲットが含まれました。同様に、**Hugh Sanderson**の貢献により、2009年7月のHaxe2.04リリースでC++ターゲットが追加されました。
 
-Just as with Haxe 1, what followed were several months of stability releases. In January 2011, Haxe 2.07 was released with the support of **macros**. Around that time, **Bruno Garcia** joined the team as maintainer of the Javascript target, which saw vast improvements in the subsequent 2.08 and 2.09 releases.
+Haxe1と同じように、以降の数か月で安定性のためのリリースを行いました。そして2011年1月、**macros**をサポートするHaxe2.07がリリースされました。このころに、**Bruno Garcia**がJavaScriptターゲットのメンテナとしてチームに加わり、 2.08と2.09のリリースで劇的な改善が行われました。
 
-After the release of 2.09, **Simon Krajewski** joined the team and work towards Haxe 3 began. Furthermore, **Cauê Waneck**'s Java and C# targets found their way into the Haxe builds. It was then decided to make one final Haxe 2 release, which happened in July 2012 with the release of Haxe 2.10.
+2.09のリリース後、**Simon Krajewski**がチームに加わり、Haxe3の出発に向けて働き始めました。さらに**Cauê Waneck**のJavaとC#のターゲットがHaxeのビルドに取り込まれました。そしてHaxe2は次で最後のリリースとなることが決まり、2012年1月にHaxe2.10がリリースされました。
 
-In late 2012, the Haxe 3 switch was flipped and the Haxe Compiler team, now backed by the newly established **Haxe Foundation**, focused on this next major version. Haxe 3 was subsequently released in May 2013.
+2012年の終盤、Haxe3にスイッチを切り替えて、Haxeコンパイラチームは、新しく設立された**Haxe Foundation**の援助を受けながら、次のメジャーバージョンに向かっていきました。そして、Haxe3は2013年の5月にリリースされました。
 
 <a id="types"></a>
-## 2 Types
+## 2 型
 
-The Haxe Compiler employs a rich type system which helps detecting type-related errors in a program at compile-time. A type error is an invalid operation on a given type such as dividing by a String, trying to access a field of an Integer or calling a function with not enough (or too many) arguments.
+Haxeコンパイラは豊かな型システムを持っており、これがコンパイル時に型エラーを検出することを手助けします。型エラーとは、文字列による割り算や、整数のフィールドへのアクセス、不十分な(あるいは多すぎる)引数での関数呼び出し、といった型が不正である演算のことです。
 
-In some languages this additional safety comes at a price because programmers are forced to explicitly assign types to syntactic constructs:
+いくつかの言語では、この安全性を得るためには各構文での明示的な型の宣言が強いられるので、コストがかかります。
 
 ```haxe
-var myButton:MySpecialButton = new MySpecialButton(); // As3
+var myButton:MySpecialButton = new MySpecialButton(); // AS3
 MySpecialButton* myButton = new MySpecialButton(); // C++ 
 ```
-The explicit type annotations are not required in Haxe, because the compiler can **infer** the type:
+
+一方、Haxeではコンパイラが型を**推論**できるため、この明示的な型注釈は必要ではありません。
 
 ```haxe
 var myButton = new MySpecialButton(); // Haxe
 ```
-We will explore type inference in detail later in [Type Inference](type-system-type-inference). For now, it is sufficient to say that the variable `myButton` in the above code is known to be an **instance of class** `MySpecialButton`. 
 
-The Haxe type system knows seven type groups:
+型推論の詳細については[型推論](type-system-type-inference)で説明します。今のところは、上のコードの変数`myButton`は`MySpecialButton`の**クラスインスタンス**とわかると言っておけば十分でしょう。
 
- * **Class instance**: an object of a given class or interface 
-* **Enum instance**: a value of a Haxe enumeration 
-* **Structure**: an anonymous structure, i.e. a collection of named fields 
-* **Function**: a compound type of several arguments and one return 
-* **Dynamic**: a wildcard type which is compatible with any type 
-* **Abstract**: a compile-time type which is represented by a different type at runtime 
-* **Monomorph**: an unknown type which may later become a different type
+Haxeの型システムは、以下の7つの型を認識します。
 
-We will describe each of these type groups and how they relate to each other in the next chapters.
+ * **クラスインスタンス**: クラスかインスタンスのオブジェクト 
+* **列挙型インスタンス**: Haxeの列挙型(enum)の値 
+* **構造体**: 匿名の構造体。例えば、連想配列。 
+* **関数**: 引数と戻り値1つの型の複合型。 
+* **ダイナミック**: あらゆる型に一致する、なんでも型。 
+* **抽象(abstract)**: 実行時には別の型となる、コンパイル時の型。 
+* **単相**: 後で別の型が付けられる未知(Unknown)の型。
 
-> ##### Define: Compound Type
+ここからの節で、それぞれの型のグループとこれらがどうかかわっているのかについて解説していきます。
+
+> ##### Define: 複合型(Compound Type)
 >
-> A compound type is a type which has sub-types. This includes any type with [type parameters](type-system-type-parameters) and the [function](types-function) type.
+> 
+> 複合型というのは、従属する型を持つ型です。[型パラメータ](type-system-type-parameters)を持つ型や、[関数](types-function)型がこれに当たります。
+>
 
 <a id="types-basic-types"></a>
-## 2.1 Basic Types
+## 2.1 基本型
 
-**Basic types** are `Bool`, `Float` and `Int`. They can easily be identified in the syntax by values such as
+**基本型**は`Bool`と`Float`と`Int`です。文法上、これらの値は以下のように簡単に識別可能です。
 
-* `true` and `false` for `Bool`,
-* `1`, `0`, `-1` and `0xFF0000` for `Int` and
-* `1.0`, `0.0`, `-1.0`, `1e10` for `Float`.
+* `true`と`false`は`Bool`。
+* `1`、`0`、`-1`、`0xFF0000`は`Int`。
+* `1.0`、`0.0`、`-1.0`、`1e10`は`Float`。
 
-Basic types are not [classes](types-class-instance) in Haxe. They are implemented as [abstract types](types-abstract) and are tied to the compiler's internal operator-handling as described in the following sections.
+Haxeでは基本型は[クラス](types-class-instance)ではありません。これらは[抽象型](types-abstract)として実装されており、以降の項で解説するコンパイラ内部の演算処理に結び付けられています。
 
 <a id="types-numeric-types"></a>
-## 2.1.1 Numeric types
+## 2.1.1 数値型
 
 > ##### Define: Float
 >
-> Represents a double-precision IEEE 64-bit floating point number.
+> IEEEの64bit倍精度浮動小数点数を表します。
 
 > ##### Define: Int
 >
-> Represents an integral number.
+> 整数を表します。
 
-While every `Int` can be used where a `Float` is expected (that is, `Int` **is assignable to** or **unifies with** `Float`), the reverse is not true: Assigning a `Float` to an `Int` might lose precision and is not allowed implicitly.
+`Int`は`Float`が期待されるすべての場所で使用することが可能です (IntはFloatへの代入が可能で、Floatとして表現可能です)。ですが、逆はできません。 `Float`から`Int`への代入は精度を失ってしまう場合があり、信頼できません。
 
 <a id="types-overflow"></a>
-## 2.1.2 Overflow
+## 2.1.2 オーバーフロー
 
-For performance reasons, the Haxe Compiler does not enforce any overflow behavior. The burden of checking for overflows falls to the target platform. Here are some platform specific notes on overflow behavior:
+パフォーマンスのためにHaxeコンパイラはオーバーフローに対する挙動を矯正しません。オーバーフローに対する挙動は、ターゲットのプラットフォームが責任を持ちます。各プラットフォームごとのオーバーフローの挙動を以下にまとめています。
 
- * C++, Java, C#, Neko, Flash: 32-bit signed integers with usual overflow practices  
-* PHP, JS, Flash 8: No native **Int** type, loss of precision will occur if they reach their float limit (2<sup>52</sup>)
+* C++, Java, C#, Neko, Flash: 一般的な挙動をもつ32Bit符号付き整数。
+* PHP, JS, Flash 8: ネイティブの**Int**型を持たない。Floatの上限(2<sup>52</sup>)を超えた場合に精度を失う。
 
-Alternatively, the **haxe.Int32** and **haxe.Int64** classes can be used to ensure correct overflow behavior regardless of the platform at the cost of additional computations depending on the platform.
+代替手段として、プラットフォームごとの追加の計算を行う代わりに、正しいオーバーフローの挙動を持つ**haxe.Int32**と**haxe.Int64**クラスが用意されています。
 
 <a id="types-numeric-operators"></a>
-## 2.1.3 Numeric Operators
+## 2.1.3 数値の演算子
 
-##### Arithmetic
+##### 算術演算
  
- Operator  | Operation  | Operand 1  | Operand 2  | Return 
+ 演算子  | 演算  | 引数1  | 引数2  | 戻り値 
  --- | --- | --- | --- | ---
-<code>++</code> | increment  | `Int`  | N/A  | `Int`
- |  | `Float`  | N/A  | `Float`
-<code>--</code>  | decrement  | `Int`  | N/A  | `Int`
- |  | `Float`  | N/A  | `Float`
-<code>+</code>  | addition  | `Float`  | `Float`  | `Float` 
+<code>++</code>  | 1増加  | `Int`  | なし  | `Int`
+ |  | `Float`  | なし  | `Float`
+<code>--</code>  | 1減少  | `Int`  | なし  | `Int`
+ |  | `Float`  | なし  | `Float`
+<code>+</code>  | 加算  | `Float`  | `Float`  | `Float` 
  |  | `Float`  | `Int`  | `Float` 
  |  | `Int`  | `Float`  | `Float` 
  |  | `Int`  | `Int`  | `Int` 
-<code>-</code>  | subtraction  | `Float`  | `Float`  | `Float` 
+<code>-</code>  | 減算  | `Float`  | `Float`  | `Float` 
  |  | `Float`  | `Int`  | `Float` 
  |  | `Int`  | `Float`  | `Float` 
  |  | `Int`  | `Int`  | `Int` 
-<code>*</code>  | multiplication  | `Float`  | `Float`  | `Float` 
+<code>*</code>  | 乗算  | `Float`  | `Float`  | `Float` 
  |  | `Float`  | `Int`  | `Float` 
  |  | `Int`  | `Float`  | `Float` 
  |  | `Int`  | `Int`  | `Int` 
-<code>/</code>  | division  | `Float`  | `Float`  | `Float` 
+<code>/</code>  | 除算  | `Float`  | `Float`  | `Float` 
  |  | `Float`  | `Int`  | `Float` 
  |  | `Int`  | `Float`  | `Float` 
  |  | `Int`  | `Int`  | `Float` 
-<code>%</code>  | modulo  | `Float`  | `Float`  | `Float` 
+<code>%</code>  | 剰余  | `Float`  | `Float`  | `Float` 
  |  | `Float`  | `Int`  | `Float` 
  |  | `Int`  | `Float`  | `Float` 
  |  | `Int`  | `Int`  | `Int` 
  
-##### Comparison
+##### 比較演算
  
- Operator  | Operation  | Operand 1  | Operand 2  | Return 
+ 演算子  | 演算  | 引数1  | 引数2  | 戻り値 
  --- | --- | --- | --- | --- | --- | --- | --- | ---
-<code>==</code>  | equal  | `Float/Int`  | `Float/Int`  | `Bool` 
-<code>!=</code>  | not equal  | `Float/Int`  | `Float/Int`  | `Bool` 
-<code>&lt;</code>  | less than  | `Float/Int`  | `Float/Int`  | `Bool` 
-<code>&lt;=</code>  | less than or equal  | `Float/Int`  | `Float/Int`  | `Bool` 
-<code>&gt;</code>  | greater than  | `Float/Int`  | `Float/Int`  | `Bool` 
-<code>&gt;=</code>  | great than or equal  | `Float/Int`  | `Float/Int`  | `Bool` 
+<code>==</code>  | 等価  | `Float/Int`  | `Float/Int`  | `Bool` 
+<code>!=</code>  | 不等価  | `Float/Int`  | `Float/Int`  | `Bool` 
+<code>&lt;</code>  | より小さい  | `Float/Int`  | `Float/Int`  | `Bool` 
+<code>&lt;=</code>  | より小さいか等しい  | `Float/Int`  | `Float/Int`  | `Bool` 
+<code>&gt;</code>  | より大きい  | `Float/Int`  | `Float/Int`  | `Bool` 
+<code>&gt;=</code>  | より大きいか等しい  | `Float/Int`  | `Float/Int`  | `Bool` 
  
-##### Bitwise
+##### ビット演算
  
- Operator  | Operation  | Operand 1  | Operand 2  | Return 
+ 演算子  | 演算  | 引数1  | 引数2  | 戻り値 
  --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---
-<code>~</code>  | bitwise negation  | `Int`  | N/A  | `Int` 
-<code>&amp;</code>  | bitwise and  | `Int`  | `Int`  | `Int` 
-<code>&#124;</code>  | bitwise or  | `Int`  | `Int`  | `Int` 
-<code>^</code>  | bitwise xor  | `Int`  | `Int`  | `Int` 
-<code>&lt;&lt;</code>  | shift left  | `Int`  | `Int`  | `Int` 
-<code>&gt;&gt;</code>  | shift right  | `Int`  | `Int`  | `Int` 
-<code>&gt;&gt;&gt;</code>  | unsigned shift right  | `Int`  | `Int`  | `Int`
+<code>~</code>  | ビット単位の否定(NOT)  | `Int`  | なし  | `Int` 
+<code>&amp;</code>  | ビット単位の論理積(AND)  | `Int`  | `Int`  | `Int` 
+<code>&#124;</code>  | ビット単位の論理和(OR)  | `Int`  | `Int`  | `Int` 
+<code>^</code>  | ビット単位の排他的論理和(XOR)  | `Int`  | `Int`  | `Int` 
+<code>&lt;&lt;</code>  | 左シフト  | `Int`  | `Int`  | `Int` 
+<code>&gt;&gt;</code>  | 右シフト  | `Int`  | `Int`  | `Int` 
+<code>&gt;&gt;&gt;</code>  | 符号なしの右シフト  | `Int`  | `Int`  | `Int` 
+ 
+##### Comparison
 
 <a id="types-bool"></a>
-## 2.1.4 Bool
+## 2.1.4 Bool(真偽値)
 
 > ##### Define: Bool
 >
-> Represents a value which can be either **true** or **false**.
+> 真(**true**)または、偽(**false**)のどちらかになる値を表す。
 
-Values of type `Bool` are a common occurence in **conditions** such as [`if`](expression-if) and [`while`](expression-while). The following **operators** accept and return `Bool` values:
+`Bool`型の値は、[`if`](expression-if)や[`while`](expression-while)のような**条件文**によく表れます。以下の演算子は、`Bool`値を受け取って`Bool`値を返します。
 
 * `&&` (and)
 * `||` (or)
 * `!` (not)
 
-Haxe guarantees that compound boolean expressions are evaluated from left to right and only as far as necessary at run-time. For instance, an expression like `A && B` will evaluate `A` first and evaluate `B` only if the evaluation of `A` yielded `true`. Likewise, the expressions `A || B` will not evaluate `B` if the evaluation of `A` yielded `true`, because the value of `B` is irrelevant in that case. This is important in cases such as this:
+Haxeは、Bool値の2項演算は、実行時に左から右へ必要な分だけ評価することを保証します。例えば、`A && B`という式は、まず`A`を評価して`A`が`true`だった場合のみ`B`が評価されます。同じように、`A || B`では`A`が`true`だった場合は、`B`の値は意味を持たないので評価されません。
+
+これは、以下のような場合に重要です。
 
 ```haxe
 if (object != null && object.field == 1) { }
 ```
 
-Accessing `object.field` if `object` is `null` would lead to a run-time error, but the check for `object != null` guards against it.
+`object`が`null`の場合に`object.field`にアクセスするとランタイムエラーになりますが、事前に`object != null`のチェックをすることでエラーから守ることができます。
 
 <a id="types-void"></a>
 ## 2.1.5 Void
 
 > ##### Define: Void
 >
-> Void denotes the absence of a type. It is used to express that something (usually a function) has no value.
+> Voidは型が存在しないことを表します。特定の場面(主に関数)で値を持たないことを表現するのに使います。
 
-`Void` is a special case in the type system because it is not actually a type. It is used to express the absence of a type, which applies mostly to function arguments and return types.
-We have already "seen" Void in the initial "Hello World" example:
+Voidは型システムにおける特殊な場合です。Voidは実際には型ではありません。Voidは特に関数の引数と戻り値で型が存在しないことを表現するのに使います。私たちはすでに最初の"Hello World"の例でVoidを使用しています。
 
 ```haxe
 class HelloWorld {
@@ -290,8 +302,9 @@ class HelloWorld {
 }
 ```
 
-The function type will be explored in detail in the section [Function Type](types-function) but a quick preview helps here: The type of the function `main` in the example above is `Void->Void`, which reads as "it has no arguments and returns nothing".
-Haxe does not allow fields and variables of type `Void` and will complain if an attempt at declaring such is made:
+関数型について詳しくは[関数](types-function)で解説しますが、ここで軽く予習をしておきましょう。上の例の`main`関数は`Void->Void`型です。これは"引数は無く、戻り値も無い"という意味です。
+
+Haxeでは、フィールドや変数に対してVoidを指定することはできません。以下のように書こうとするとエラーが発生します。
 
 ```haxe
 // Arguments and variables of type Void are not allowed
@@ -299,36 +312,34 @@ var x:Void;
 ```
 
 <a id="types-nullability"></a>
-## 2.2 Nullability
+## 2.2 Nullable(null許容型)
 
-> ##### Define: nullable
+> ##### Define: Nullable
 >
-> A type in Haxe is considered **nullable** if `null` is a valid value for it.
+> Haxeでは、ある型が値として`null`をとる場合に**Nullable**(null許容型)であるとみなす。
 
-It is common for programming languages to have a single, clean definition for nullability. However, Haxe has to find a compromise in this regard due to the nature of Haxe's target languages: While some of them allow and; in fact, default to `null` for anything, others do not even allow `null` for certain types. This necessitates the distinction of two types of target languages:
+プログラミング言語は、Nullableについてなにか1つ明確な定義を持つのが一般的です。ですが、Haxeではターゲットとなる言語のもともとの挙動に従うことで妥協しています。ターゲット言語のうちのいくつかは全てがデフォルト値として`null`をとり、その他は特定の型では`null`を許容しません。つまり、以下の2種類の言語を区別しなくてはいけません。
 
-> ##### Define: Static target
+> ##### Define: 静的ターゲット
 >
-> Static targets employ their own type system where `null` is not a valid value for basic types. This is true for the Flash, C++, Java and C# targets.
+> 静的ターゲットでは、その言語自体が基本型が`null`を許容しないような型システムを持っています。この性質はFlash、C++、Java、C#ターゲットに当てはまります。
 
-> ##### Define: Dynamic target
+> ##### Define: 動的ターゲット
 >
-> Dynamic targets are more lenient with their types and allow `null` values for basic types. This applies to the JavaScript, PHP, Neko and Flash 6-8 targets.
+> 動的ターゲットは型に関して寛容で、基本型が`null`を許容します。これはJavaScriptとPHP、Neko、Flash 6-8ターゲットが当てはまります。
 
-There is nothing to worry about when working with `null` on dynamic targets; however, static ones may require some thought. For starters, basic types are initialized to their default values.
-
-> ##### Define: Default values
+> ##### Define: デフォルト値
 >
 > 
-> Basic types have the following default values on static targets:
-> 
-> * `Int`: `0`
-> * `Float`: `NaN` on Flash, `0.0` on other static targets
-> * `Bool`: `false`
+>   基本型は、静的ターゲットではデフォルト値は以下になります。
+>   
+> * `Int`: `0`。
+> * `Float`: Flashでは`NaN`。その他の静的ターゲットでは`0.0`。
+> * `Bool`: `false`。
 > 
 > 
 
-As a consequence, the Haxe Compiler does not allow the assignment of `null` to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as `Null<T>`:
+その結果、Haxeコンパイラは静的ターゲットでは基本型に対する`null`を代入することはできません。`null`を代入するためには、以下のように基本型を`Null<T>`で囲う必要があります。
 
 ```haxe
 // error on static platforms
@@ -336,7 +347,7 @@ var a:Int = null;
 var b:Null<Int> = null; // allowed
 ```
 
-Similarly, basic types cannot be compared to `null` unless wrapped:
+同じように、基本型は`Null<T>`で囲わなければ`null`と比較することはできません。
 
 ```haxe
 var a : Int = 0;
@@ -346,13 +357,13 @@ var b : Null<Int> = 0;
 if( b != null ) { ... } // allowed
 ```
 
-This restriction extends to all situations where [unification](type-system-unification) is performed.
+この制限は[unification](type-system-unification)が動作するすべての状況でかかります。
 
 > ##### Define: `Null<T>`
 >
-> On static targets the types `Null<Int>`, `Null<Float>` and `Null<Bool>` can be used to allow `null` as a value. On dynamic targets this has no effect. `Null<T>` can also be used with other types in order to document that `null` is an allowed value.
+> 静的ターゲットでは、`Null<Int>`、`Null<Float>`、`Null<Bool>`の型で`null`を許容することが可能になります。動的ターゲットでは`Null<T>`に効果はありません。また、`Null<T>`はその型が`null`を持つことを表すドキュメントとしても使うことができます。
 
-If a `null`-value is "hidden" in `Null<T>` or `Dynamic` and assigned to a basic type, the default value is used:
+nullの値は隠匿されます。つまり、`Null<T>`や`Dynamic`のnullの値を基本型に代入した場合には、デフォルト値が使用されます。
 
 ```haxe
 var n : Null<Int> = null;
@@ -361,11 +372,11 @@ trace(a); // 0 on static platforms
 ```
 
 <a id="types-nullability-optional-arguments"></a>
-## 2.2.1 Optional Arguments and Nullability
+## 2.2.1 オプション引数とnull許容
 
-Optional arguments also have to be accounted for when considering nullability.
+null許容について考える場合、オプション引数についても考慮しなくてはいけません。
 
-In particular, there must be a distinction between **native** optional arguments which are not nullable and Haxe-specific optional arguments which might be. The distinction is made by using the question-mark optional argument:
+特に、null許容ではない**ネイティブ**のオプション引数と、それとは異なる、null許容であるHaxe特有のオプション引数があることです。この違いは以下のように、オプション引数にクエスチョンマークを付けることで作ります。
 
 ```haxe
 // x is a native Int (not nullable)
@@ -376,16 +387,16 @@ function bar( ?y : Int) {}
 function opt( ?z : Int = -1) {}
 ```
 
-> ##### Trivia: Argument vs. Parameter
+> ##### Trivia: アーギュメント(Argument)とパラメータ(Parameter)
 >
-> In some other programming languages, **argument** and **parameter** are used interchangeably.  In Haxe, **argument** is used when referring to methods and **parameter** refers to [Type Parameters](type-system-type-parameters).
+> 他のプログラミング言語では、よく**アーギュメント**と**パラメータ**は同様の意味として使われます。Haxeでは、関数に関連する場合に**アーギュメント**を、[型パラメータ](type-system-type-parameters)と関連する場合に**パラメータ**を使います。
 
 <a id="types-class-instance"></a>
-## 2.3 Class Instance
+## 2.3 クラスインスタンス
 
-Similar to many object-oriented languages, classes are the primary data structure for the majority of programs in Haxe. Each Haxe class has an explicit name, an implied path and zero or more class fields. Here we will focus on the general structure of classes and their relations, while leaving the details of class fields for [Class Fields](class-field).
+多くのオブジェクト指向言語と同じように、Haxeでも大抵のプログラムではクラスが最も重要なデータ構造です。Haxeのすべてのクラスは、明示された名前と、クラスの配置されたパスと、0個以上のクラスフィールドを持ちます。ここではクラスの一般的な構造とその関わり合いについて焦点を当てていきます。クラスフィールドの詳細については後で[Class Fields](class-field)の章で解説をします。
 
-The following code example serves as basis for the remainder of this section:
+以下のサンプルコードが、この節で学ぶ基本になります。
 
 ```haxe
 class Point {
@@ -401,37 +412,40 @@ class Point {
 }
 ```
 
-Semantically, this class represents a point in discrete 2-dimensional space - but this is not important here. Let us instead describe the structure:
+意味的にはこれは不連続の2次元空間上の点を表現するものですが、このことはあまり重要ではありません。代わりにその構造に注目しましょう。
 
-* The keyword `class` denotes that we are declaring a class.
-* `Point` is the name of the class and could be anything conforming to the [rules for type identifiers](dictionary.md-define-identifier).
-* Enclosed in curly braces `{}` are the class fields,
-* Which consist of two **variable** fields `x` and `y` of type `Int`,
-* followed by a special **function** field named `new`, which is the **constructor** of the class,
-* as well as a normal function `toString`.
+* `class`のキーワードは、クラスを宣言していることを示すものです。
+* `Point`はクラス名です。[型の識別子のルール](dictionary.md-define-identifier)に従っているものが使用できます。
+* クラスフィールドは`{}`で囲われます。
+* `Int`型の`x`と`y`の2つの**変数**フィールドと、
+* クラスの**コンストラクタ**となる特殊な**関数**フィールド`new`と、
+* 通常の関数`toString`でクラスフィールドが構成されています。
 
-There is a special type in Haxe which is compatible with all classes:
+また、Haxeにはすべてのクラスと一致する特殊な型があります。
 
 > ##### Define: `Class<T>`
 >
-> This type is compatible with all class types which means that all classes (not their instances) can be assigned to it. At compile-time, `Class<T>` is the common base type of all class types. However, this relation is not reflected in generated code.
 > 
-> This type is useful when an API requires a value to be **a** class, but not a specific one. This applies to several methods of the [Haxe reflection API](std-reflection).
+> この型はすべてのクラスの型と一致します。つまり、すべてのクラス(インスタンスではなくクラス)をこれに代入することができます。コンパイル時に、`Class<T>`は全てのクラスの型の共通の親の型となります。しかし、この関係性は生成されたコードに影響を与えません。
+> 
+> この型は、任意のクラスを要求するようなAPIで役立ちます。例えば、[HaxeリフレクションAPI](std-reflection)のいくつかのメソッドがこれに当てはまります。
+>
 
 <a id="types-class-constructor"></a>
-## 2.3.1 Class constructor
+## 2.3.1 クラスのコンストラクタ
 
-Instances of classes are created by calling the class constructor - a process commonly referred to as **instantiation**. Another name for class instances is **object**. Nevertheless, we prefer the term class instance to emphasize the analogy between classes/class instances and [enums/enum instances](types-enum-instance). 
+クラスのインスタンスは、クラスのコンストラクタを呼び出すことで生成されます。この過程は一般的に**インスタンス化**と呼ばれます。クラスインスタンスは、別名として**オブジェクト**と呼ぶこともあります。ですが、クラス/クラスインスタンスと、列挙型/列挙型インスタンスという似た概念を区別するために、クラスインスタンスと呼ぶことが好まれます。
 
 ```haxe
 var p = new Point(-1, 65);
 ```
-This will yield an instance of class `Point`, which is assigned to a variable named `p`. The constructor of `Point` receives the two arguments `-1` and `65` and assigns them to the instance variables `x` and `y` respectively (compare its definition in [Class Instance](types-class-instance)). We will revisit the exact meaning of the `new` expression later in the section [new](expression-new). For now, we just think of it as calling the class constructor and returning the appropriate object.
+
+この例で、変数`p`に代入されたのが`Point`クラスのインスタンスです。`Point`のコンストラクタは`-1`と`65`の2つの引数を受け取り、これらをそれぞれインスタンスの`x`と`y`の変数に代入しています([クラスインスタンス](types-class-instance)で、定義を確認してください)。`new`の正確な意味については、後の[new](expression-new)の節で再習します。現時点では、`new`はクラスのコンストラクタを呼び、適切なオブジェクトを返すものと考えておきましょう。
 
 <a id="types-class-inheritance"></a>
-## 2.3.2 Inheritance
+## 2.3.2 継承
 
-Classes may inherit from other classes, which in Haxe is denoted by the `extends` keyword:
+クラスは他のクラスから継承ができます。Haxeでは、継承は`extends`キーワードを使って行います。
 
 ```haxe
 class Point3 extends Point {
@@ -442,48 +456,49 @@ class Point3 extends Point {
   }
 }
 ```
-This relation is often described as "is-a": Any instance of class `Point3` is also an instance of `Point`. `Point` is then known as the **parent class** of `Point3`, which is a **child class** of `Point`. A class may have many child classes, but only one parent class. The term "a parent class of class X" usually refers to its direct parent class, the parent class of its parent class and so on.
 
-The code above is very similar to the original `Point` class, with two new constructs being shown:
+この関係は、よく"BはAである(is-a)"の関係とよく言われます。つまり、すべての`Point3`クラスのインスタンスは、同時に`Point`のインスタンスである、ということです。`Point`は`Point3`の**親クラス**であると言い、`Point3`は`Point`の**子クラス**であると言います。1つのクラスはたくさんの子クラスを持つことができますが、親クラスは1つしか持つことができません。ただし、"クラスXの親クラス"というのは、直接の親クラスだけでなく、親クラスの親クラスや、そのまた親、また親のクラスなどを指すこともよくあります。
 
- * `extends Point` denotes that this class inherits from class `Point` 
-* `super(x, y)` is the call to the constructor of the parent class, in this case `Point.new`
+上記のクラスは`Point`コンストラクタによく似ていますが、2つの新しい構文が登場しています。
 
-It is not necessary for child classes to define their own constructors, but if they do, a call to `super()` is mandatory. Unlike some other object-oriented languages, this call can appear anywhere in the constructor code and does not have to be the first expression.
+* `extends Point`　は`Point`からの継承を意味します。
+* `super(x, y)`　は親クラスのコンストラクタを呼び出します。この場合は`Point.new`です。
 
-A class may override [methods](class-field-method) of its parent class, which requires the explicit `override` keyword. The effects and restrictions of this are detailed in [Overriding Methods](class-field-overriding).
+上の例ではコンストラクタを定義していますが、子クラスで自分自身のコンストラクタを定義する必要はありません。ただし、コンストラクタを定義する場合`super()`の呼び出しが必須になります。他のよくあるオブジェクト指向言語とは異なり、`super()`はコンストラクタの最初である必要はなく、どこで呼び出しても構いません。
+
+また、クラスはその親クラスの[メソッド](class-field-method)を`override`キーワードを明示して記述することで上書きすることができます。その効果と制限について詳しくは[Overriding Methods](class-field-overriding)であつかいます。
 
 <a id="types-interfaces"></a>
-## 2.3.3 Interfaces
+## 2.3.3 インターフェース
 
-An interface can be understood as the signature of a class because it describes the public fields of a class. Interfaces do not provide implementations but pure structural information:
+インターフェースはクラスのパブリックフィールドを記述するもので、クラスの署名ともいうべきものです。インターフェースは実装を持たず、構造に関する情報のみを与えます。
 
 ```haxe
 interface Printable {
 	public function toString():String;
 }
 ```
-The syntax is similar to classes, with the following exceptions:
+この構文は以下の点をのぞいて、クラスによく似ています。
 
-* `interface` keyword is used instead of `class` keyword
-* functions do not have any [expressions](expression)
-* every field must have an explicit type
+* `interface`キーワードを`class`キーワードの代わりに使う。
+* 関数が[式](expression)を持たない。
+* すべてのフィールドが型を明示する必要がある。
 
-Interfaces, unlike [structural subtyping](type-system-structural-subtyping), describe a **static relation** between classes. A given class is only considered to be compatible to an interface if it explicitly states so:
+インタフェースは、[構造的部分型](type-system-structural-subtyping)とは異なり、クラス間の**静的な関係性**について記述します。以下のように明示的に宣言した場合にのみ、クラスはインターフェースと一致します。
 
 ```haxe
 class Point implements Printable { }
 ```
-Here, the `implements` keyword denotes that `Point` has a "is-a" relationship to `Printable`, i.e. each instance of `Point` is also an instance of `Printable`. While a class may only have one parent class, it may implement multiple interfaces through multiple `implements` keywords:
+
+`implements`キーワードの記述により、"`Point`は`Printable`である(is-a)"の関係性が生まれます。つまり、すべての`Point`のインスタンスは、`Printable`のインスタンスでもあります。クラスは親のクラスを1つしか持てませんが、以下のように複数の`implements`キーワードを使用することで複数のインターフェースを実装(implements)することが可能です。
 
 ```haxe
-class Point implements Printable
-  implements Serializable
+class Point implements Printable implements Serializable
 ```
 
-The compiler checks if the `implements` assumption holds. That is, it makes sure the class actually does implement all the fields required by the interface. A field is considered implemented if the class or any of its parent classes provide an implementation.
+コンパイラは実装が条件を満たしているかの確認を行います。つまり、クラスが実際にインターフェースで要求されるフィールドを実装しているかを確めます。フィールドの実装は、そのクラス自体と、その親となるいずれかのクラスの実装が考慮されます。
 
-Interface fields are not limited to methods. They can be variables and properties as well:
+インターフェースのフィールドは、変数とプロパティのどちらであるかに対する制限は与えません:
 
 ```haxe
 interface Placeable {
@@ -498,14 +513,14 @@ class Main implements Placeable {
 }
 ```
 
-> ##### Trivia: Implements Syntax
+> ##### Trivia: Implementsの構文
 >
-> Haxe versions prior to 3.0 required multiple `implements` keywords to be separated by a comma. We decided to adhere to the de-facto standard of Java and got rid of the comma. This was one of the breaking changes between Haxe 2 and 3.
+> Haxeの3.0よりも前のバージョンでは、`implements`キーワードはカンマで区切られていました。Javaのデファクトスタンダードに合わせるため、私たちはカンマを取り除くことに決定しました。これが、Haxe2と3の間の破壊的な変更の1つです。
 
 <a id="types-enum-instance"></a>
-## 2.4 Enum Instance
+## 2.4 列挙型インスタンス
 
-Haxe provides powerful enumeration (short: enum) types, which are actually an **algebraic data type** (ADT). While they cannot have any [expressions](expression), they are very useful for describing data structures:
+Haxeには強力な列挙型(enum)をもっています。この列挙型は実際には**代数的データ型** (ADT)に当たります。列挙型は[式](expression)を持つことはできませんが、データ構造を表現するのに非常に役に立ちます。
 
 ```haxe
 enum Color {
@@ -515,39 +530,40 @@ enum Color {
   Rgb(r:Int, g:Int, b:Int);
 }
 ```
-Semantically, this enum describes a color which is either red, green, blue or a specified RGB value. The syntactic structure is as follows:
 
-* The keyword `enum` denotes that we are declaring an enum.
-* `Color` is the name of the enum and could be anything conforming to the rules for [type identifiers](dictionary.md-define-identifier).
-* Enclosed in curly braces `{}` are the **enum constructors**,
-* which are `Red`, `Green` and `Blue` taking no arguments,
-* as well as `Rgb` taking three `Int` arguments named `r`, `g` and `b`.
+このコードでは、enumは、赤、緑、青のいずれかか、またはRGB値で表現した色、を書き表しています。この文法の構造は以下の通りです。
 
-The Haxe type system provides a type which unifies with all enum types:
+* `enum`キーワードが、列挙型について定義することを宣言しています。
+* `Color`が列挙型の名前です。[型の識別子のルール](dictionary.md-define-identifier)に従うすべてのものが使用できます。
+* 中カッコ `{}` で囲んだ中に**列挙型のコンストラクタ**を記述します。
+* `Red`と`Green`と`Blue`には引数がありません。
+* `Rgb`は、`r`、`g`、`b`の3つの`Int`型の引数を持ちます。
+
+Haxの型システムには、すべての列挙型を統合する型があります。
 
 > ##### Define: `Enum<T>`
 >
-> This type is compatible with all enum types. At compile-time, `Enum<T>` can bee seen as the common base type of all enum types. However, this relation is not reflected in generated code.
+> すべての列挙型と一致する型です。コンパイル時に、`Enum<T>`は全ての列挙型の共通の親の型となります。しかし、この関係性は生成されたコードに影響を与えません。
 
 <a id="types-enum-constructor"></a>
-## 2.4.1 Enum Constructor
+## 2.4.1 列挙型のコンストラクタ
 
-Similar to classes and their constructors, enums provide a way of instantiating them by using one of their constructors. However, unlike classes, enums provide multiple constructors which can easily be used through their name:
+クラスと同じように、列挙型もそのコンストラクタを使うことでインスタンス化を行います。しかし、クラスとは異なり列挙型は複数のコンストラクタを持ち、以下のようにコンストラクタの名前を使って呼び出します。
 
 ```haxe
 var a = Red;
 var b = Green;
 var c = Rgb(255, 255, 0);
 ```
-In this code the type of variables `a`, `b` and `c` is `Color`. Variable `c` is initialized using the `Rgb` constructor with arguments.
+このコードでは変数`a`、`b`、`c`の型は`Color`です。変数`c`は`Rgb`コンストラクタと引数を使って初期化されています。
 
-All enum instances can be assigned to a special type named `EnumValue`.
+すべての列挙型のインスタンスは`EnumValue`という特別な型に対して代入が可能です。
 
 > ##### Define: EnumValue
 >
-> EnumValue is a special type which unifies with all enum instances. It is used by the Haxe Standard Library to provide certain operations for all enum instances and can be employed in user-code accordingly in cases where an API requires **an** enum instance, but not a specific one.
+> EnumValueはすべての列挙型のインスタンスと一致する特別な型です。この型はHaxeの標準ライブラリでは、すべての列挙型に対して可能な操作を提供するのに使われます。またユーザーのコードでは、特定の列挙型ではなく任意の列挙型のインスタンスを要求するAPIで利用できます。
 
-It is important to distinguish enum types and enum constructors, as this example demonstrates:
+以下の例からわかるように、列挙型とそのインスタンスを区別することは大切です。
 
 ```haxe
 enum Color {
@@ -568,18 +584,20 @@ class Main {
 
 ```
 
-If the commented line is uncommented, the program does not compile because `Red` (an enum constructor) cannot be assigned to a variable of type `Enum<Color>` (an enum type). The relation is analogous to a class and its instance.
+もし、上でコメント化されている行のコメント化が解除された場合、このコードはコンパイルできなくなります。これは、列挙型のインスタンスである`Red`は、列挙型である`Enum<Color>`型の変数には代入できないためです。
 
-> ##### Trivia: Concrete type parameter for `Enum<T>`
+この関係性は、クラスとそのインスタンスの関係性に似ています。
+
+> ##### Trivia: `Enum<T>の型パラメータを具体化する`
 >
-> One of the reviewers of this manual was confused about the difference between `Color` and `Enum<Color>` in the example above. Indeed, using a concrete type parameter there is pointless and only serves the purpose of demonstration. Usually we would omit the type there and let [type inference](type-system-type-inference) deal with it.
+> このマニュアルのレビューアの一人は上のサンプルコードの`Color`と`Enum<Color>`の違いについて困惑しました。実際、型パラメータの具体化は意味のないもので、デモンストレーションのためのものでしかありませんでした。私たちはよく型を書くのを省いて、型についてあつかうのを[型推論](type-system-type-inference)にまかせてしまいます。
 > 
-> However, the inferred type would be different from `Enum<Color>`. The compiler infers a pseudo-type which has the enum constructors as "fields". As of Haxe 3.2.0, it is not possible to express this type in syntax but also, it is never necessary to do so.
+> しかし、型推論では`Enum<Color>`ではないものが推論されます。コンパイラは、列挙型のコンストラクタをフィールドとしてみなした、仮の型を推論します。現在のHaxe3.2.0では、この仮の型について表現することは不可能であり、また表現する必要もありません。
 
 <a id="types-enum-using"></a>
-## 2.4.2 Using enums
+## 2.4.2 列挙型を使う
 
-Enums are a good choice if only a finite set of values should be allowed. The individual [constructors](types-enum-constructor) then represent the allowed variants and enable the compiler to check if all possible values are respected. This can be seen here:
+列挙型は、有限の種類の値のセットが許されることを表現するだけでも有用です。それぞれのコンストラクタについて多様性が示されるので、コンパイラはありうる全ての値が考慮されていることをチェックすることが可能です。これは、例えば以下のような場合です。
 
 ```haxe
 enum Color {
@@ -606,14 +624,16 @@ class Main {
 }
 ```
 
-After retrieving the value of `color` by assigning the return value of `getColor()` to it, a [`switch` expression](expression-switch) is used to branch depending on the value. The first three cases `Red`, `Green` and `Blue` are trivial and correspond to the constructors of `Color` that have no arguments. The final case `Rgb(r, g, b)` shows how the argument values of a constructor can be extracted: they are available as local variables within the case body expression, just as if a [`var` expression](expression-var) had been used.
+`getColor()`の戻り値を`color`に代入し、その値で[`switch`式](expression-switch)の分岐を行います。
 
-Advanced information on using the `switch` expression will be explored later in the section on [pattern matching](lf-pattern-matching).
+初めの`Red`、`Green`、`Blue`の3ケースについては些細な内容で、ただColorの引数無しのコンストラクタとの一致するか調べています。最後の`Rgb(r, g, b)`のケースでは、コンストラクタの引数の値をどうやって利用するのかがわかります。引数の値はケースの式の中で出てきたローカル変数として、[`var`の式](expression-var)を使った場合と同じように、利用可能です。
+
+`switch`の使い方について、より高度な情報は後の[パターンマッチング](lf-pattern-matching)の節でお話します。
 
 <a id="types-anonymous-structure"></a>
-## 2.5 Anonymous Structure
+## 2.5 匿名の構造体
 
-Anonymous structures can be used to group data without explicitly creating a type. The following example creates a structure with two fields `x` and `name`, and initializes their values to `12` and `"foo"` respectively:
+匿名の構造体は、型を明示せずに利用できるデータの集まりです。以下の例では、`x`と`name`の2つのフィールドを持つ構造体を生成して、それぞれを`12`と`"foo"`の値で初期化しています。
 
 ```haxe
 class Structure {
@@ -622,26 +642,27 @@ class Structure {
   }
 }
 ```
-The general syntactic rules follow:
 
-1. A structure is enclosed in curly braces `{}` and
-2. Has a **comma-separated** list of key-value-pairs.
-3. A **colon** separates the key, which must be a valid [identifier](dictionary.md-define-identifier), from the value.
-4. The value can be any Haxe expression.
+構文のルールは以下の通りです :
 
-Rule 4 implies that structures can be nested and complex, e.g.:
+1. 構造体は中カッコ `{}` で囲う。
+2. **カンマで区切られた** キーと値のペアのリストを持つ。
+3. [識別子](dictionary.md-define-identifier)の条件を満たすカギと、値が**コロン**で区切られる。
+4. 値には、Haxeのあらゆる式が当てはまる。
+
+ルール4は複雑にネストした構造体を含みます。例えば、以下のような。
 
 ```haxe
 var user = {
   name : "Nicolas",
-	age : 32,
-	pos : [
-	  { x : 0, y : 0 },
-		{ x : 1, y : -1 }
+  age : 32,
+  pos : [
+    { x : 0, y : 0 },
+    { x : 1, y : -1 }
   ],
 };
 ```
-Fields of structures, like classes, are accessed using a **dot** (`.`) like so:
+構造体のフィールドは、クラスと同じように、**ドット**(`.`)を使ってアクセスします。
 
 ```haxe
 // get value of name, which is "Nicolas"
@@ -649,7 +670,7 @@ user.name;
 // set value of age to 33
 user.age = 33;
 ```
-It is worth noting that using anonymous structures does not subvert the typing system. The compiler ensures that only available fields are accessed, which means the following program does not compile:
+特筆すべきは、匿名の構造体の使用は型システムを崩壊させないことです。コンパイラは実際に利用可能なフィールドにしかアクセスを許しません。つまり、以下のようなコードはコンパイルできません。
 
 ```haxe
 class Test {
@@ -660,8 +681,8 @@ class Test {
   }
 }
 ```
-The error message indicates that the compiler knows the type of `point`: It is a structure with fields `x` and `y` of type `Float`. Since it has no field `z`, the access fails.
-The type of `point` is known through [type inference](type-system-type-inference), which thankfully saves us from using explicit types for local variables. However, if `point` was a field, explicit typing would be necessary:
+このエラーメッセージはコンパイラが`point`の型を知っていることを表します。この`point`の型は、`x`と`y`の`Float`型のフィールドを持つ構造体であり、`z`というフィールドは持たないのでアクセスに失敗しました。
+この`point`の型は[型推論](type-system-type-inference)により識別され、そのおかげでローカル変数では型を明示しなくて済みます。ただし、`point`が、クラスやインスタンスのフィールドだった場合、以下のように型の明示が必要になります。
 
 ```haxe
 class Path {
@@ -670,7 +691,8 @@ class Path {
     var current : { x : Int, y : Int };
 }
 ```
-To avoid this kind of redundant type declaration, especially for more complex structures, it is advised to use a [typedef](type-system-typedef):
+
+このような冗長な型の宣言をさけるため、特にもっと複雑な構造体の場合、以下のように[typedef](type-system-typedef)を使うことをお勧めします。
 
 ```haxe
 typedef Point = { x : Int, y : Int }
@@ -683,19 +705,20 @@ class Path {
 ```
 
 <a id="types-structure-json"></a>
-## 2.5.1 JSON for Structure Values
+## 2.5.1 JSONで構造体を書く
 
-It is also possible to use **JavaScript Object Notation** for structures by using **string literals** for the keys:
+以下のように、**文字列の定数値**をキーに使う**JavaScript Object Notation(JSON)**の構文を構造体に使うこともできます。
 
 ```haxe
 var point = { "x" : 1, "y" : -5 };
 ```
-While any string literal is allowed, the field is only considered part of the type if it is a valid [Haxe identifier](dictionary.md-define-identifier). Otherwise, Haxe syntax does not allow expressing access to such a field, and [reflection](std-reflection) has to be employed through the use of `Reflect.field` and `Reflect.setField`.
+
+キーには**文字列の定数値**すべてが使えますが、フィールドが[Haxeの識別子](dictionary.md-define-identifier)として有効である場合のみ型の一部として認識されます。そして、Haxeの構文では識別子として無効なフィールドにはアクセスできないため、[リフレクション](std-reflection)の`Reflect.field`と`Reflect.setField`を使ってアクセスしなくてはいけません。
 
 <a id="types-structure-class-notation"></a>
-## 2.5.2 Class Notation for Structure Types
+## 2.5.2 構造体の型のクラス記法
 
-When defining a structure type, Haxe allows using the same syntax as described in [Class Fields](class-field). The following [typedef](type-system-typedef) declares a `Point` type with variable fields `x` and `y` of type `Int`:
+構造体の型を書く場合に、Haxeでは[Class Fields](class-field)を書くときと同じ構文が使用できます。以下の[typedef](type-system-typedef)では、`Int`型の`x`の`y`変数フィールドを持つ`Point`型を定義しています。
 
 ```haxe
 typedef Point = {
@@ -705,14 +728,14 @@ typedef Point = {
 ```
 
 <a id="types-structure-performance"></a>
-## 2.5.4 Impact on Performance
+## 2.5.4 パフォーマンスへの影響
 
-Using structures and, by extension, [structural subtyping](type-system-structural-subtyping) has no impact on performance when compiling to [dynamic targets](dictionary.md-define-dynamic-target). However, on [static targets](dictionary.md-define-static-target) a dynamic lookup has to be performed which is typically slower than a static field access.
+構造体をつかって、さらに[構造的部分型付け](type-system-structural-subtyping)を使った場合、[動的ターゲット](dictionary.md-define-dynamic-target)ではパフォーマンスに影響はありません。しかし、[静的ターゲット](dictionary.md-define-static-target)では、動的な検査が発生するので通常は静的なフィールドアクセスよりも遅くなります。
 
 <a id="types-function"></a>
-## 2.6 Function Type
+## 2.6 関数
 
-The function type, along with the [monomorph](types-monomorph), is a type which is usually well-hidden from Haxe users, yet present everywhere. We can make it surface by using `$type`, a special Haxe identifier which outputs the type its expression has during compilation :
+関数の型は、[単相](types-monomorph)と共に、Haxeのユーザーからよく隠れている型の1つです。コンパイル時に式の型を出力させる`$type`という特殊な識別子を使えば、この型を以下のように浮かび上がらせることが可能です。
 
 ```haxe
 class FunctionType {
@@ -728,19 +751,19 @@ class FunctionType {
 }
 ```
 
-There is a strong resemblance between the declaration of function `test` and the output of the first `$type` expression, yet also a subtle difference:
+初めの`$type`の出力は、test関数の定義と強い類似性があります。では、その相違点を見てみます。
 
-* **Function arguments** are separated by the special arrow token `->` instead of commas, and
-* the **function return type** appears at the end after another `->`.
+* **関数の引数**は、カンマではなく`->`で区切られる。
+* **引数の戻り値**の型は、もう一つ`->`を付けた後に書かれる。
 
-In either notation it is obvious that the function `test` accepts a first argument of type `Int`, a second argument of type `String` and returns a value of type `Bool`. If a call to this function, such as `test(1, "foo")`, is made within the second `$type` expression, the Haxe typer checks if `1` can be assigned to `Int` and if `"foo"` can be assigned to `String`. The type of the call is then equal to the type of the value `test` returns, which is `Bool`.
+どちらの表記でも、`test`関数が1つ目の引数として`Int`を受け取り、2つ目の引数として`String型`を受け取り、`Bool型`の値を返すことはよくわかります。2つ目の`$type`式の`test(1, "foo")`のようにこの関数を呼び出すと、Haxeの型検査は`1`が`Int`に代入可能か、`"foo"`が`String`に代入可能かをチェックします。そして、その呼び出し後の型は、`test`の戻り値の型の`Bool`となります。
 
-If a function type has other function types as argument or return type, parentheses can be used to group them correctly. For example, `Int -> (Int -> Void) -> Void` represents a function which has a first argument of type `Int`, a second argument of function type `Int -> Void` and a return of `Void`.
+もし、ある関数の型が、別の関数の型を引数か戻り値に含む場合、丸かっこをグループ化に使うことができます。例えば、`Int -> (Int -> Void) -> Void`は初めの引数の型が`Int`、2番目の引数が`Int -> Void`で、戻り値が`Void`の関数を表します。
 
 <a id="types-function-optional-arguments"></a>
-## 2.6.1 Optional Arguments
+## 2.6.1 オプション引数
 
-Optional arguments are declared by prefixing an argument identifier with a question mark `?`:
+オプション引数は、引数の識別子の直前にクエスチョンマーク(`?`)を付けることで表現できます。
 
 ```haxe
 class OptionalArguments {
@@ -758,22 +781,24 @@ class OptionalArguments {
   }
 }
 ```
-Function `test` has two optional arguments: `i` of type `Int` and `s` of `String`. This is directly reflected in the function type output by line 3. 
-This example program calls `test` four times and prints its return value.
 
-1. The first call is made without any arguments.
-2. The second call is made with a singular argument `1`.
-3. The third call is made with two arguments `1` and `"foo"`.
-4. The fourth call is made with a singular argument `"foo"`.
+`test`関数は、2つのオプション引数を持ちます。`Int`型の`i`と`String`型の`s`です。これは3行目の関数型の出力に直接反映されています。
 
-The output shows that optional arguments which are omitted from the call have a value of `null`. This implies that the type of these arguments must admit `null` as value, which raises the question of its [nullability](types-nullability). The Haxe Compiler ensures that optional basic type arguments are nullable by inferring their type as `Null<T>` when compiling to a [static target](dictionary.md-define-static-target).
+この例では、関数を4回呼び出しその結果を出力しています。
 
-While the first three calls are intuitive, the fourth one might come as a surprise: It is indeed allowed to skip optional arguments if the supplied value is assignable to a later argument.
+1. 初めの呼び出しは引数無し。
+2. 2番目の呼び出しは`1`のみの引数。
+3. 3番目の呼び出しは`1`と`"foo"`の2つの引数。
+4. 4番目の呼び出しは`"foo"`のみの引数。
+
+この出力を見ると、オプション引数が呼び出し時に省略されると`null`になることがわかります。つまり、これらの引数は`null`が入る型でなくてはいけないことになり、ここで[null許容](types-nullability)に関する疑問が浮かび上がります。Haxeのコンパイラは[静的ターゲット](dictionary.md-define-static-target)に出力する場合に、オプションの基本型の引数の型を`Null<T>`であると推論することで、オプション引数の型がnull許容であることを保証してます。
+
+初めの3つの呼び出しは直観的なものですが、4つ目の呼び出しには驚くかもしれません。後の引数に代入可能な値が渡されたため、オプション引数はスキップされています。
 
 <a id="types-function-default-values"></a>
-## 2.6.2 Default values
+## 2.6.2 デフォルト値
 
-Haxe allows default values for arguments by assigning a **constant value** to them:
+Haxeでは、引数のデフォルト値として定数値を割り当てることが可能です。
 
 ```haxe
 class DefaultValues {
@@ -791,9 +816,10 @@ class DefaultValues {
   }
 }
 ```
-This example is very similar to the one from [Optional Arguments](types-function-optional-arguments), with the only difference being that the values `12` and `"bar"` are assigned to the function arguments `i` and `s` respectively. The effect is that the default values are used instead of `null` should an argument be omitted from the call.
+この例は、[オプション引数](types-function-optional-arguments)のものとよく似ています。違いは、関数の引数の`i`と`s`それぞれに`12`と`"bar"`を代入していることだけです。これにより、引数が省略された場合に`null`ではなく、このデフォルト値が使われるようになります。
 
-Default values in Haxe are not part of the type and are not replaced at call-site (unless the function is [inlined](class-field-inline), which can be considered as a more typical approach. On some targets the compiler may still pass `null` for omitted argument values and generate code similar to this into the function:
+Haxeでのデフォルト値は、型の一部では無いので、出力時に呼び出し元で置き換えられるわけではありません(ただし、特有の動作を行う[インライン](class-field-inline)の関数を除く)。いくつかのターゲットでは、無視された引数に対してやはり`null`を渡して、以下の関数と同じようなコードを生成します。
+
 ```haxe
 	static function test(i = 12, s = "bar") {
 		if (i == null) i = 12;
@@ -801,34 +827,34 @@ Default values in Haxe are not part of the type and are not replaced at call-sit
 		return "i: " +i + ", s: " +s;
 	}
 ```
-This should be considered in performance-critical code where a solution without default values may sometimes be more viable.
+つまり、パフォーマンスが要求されるコードでは、デフォルト値を使わない書き方をすることが重要だと考えてください。
 
 <a id="types-dynamic"></a>
-## 2.7 Dynamic
+## 2.7 ダイナミック
 
-While Haxe has a static type system, this type system can, in effect, be turned off by using the `Dynamic` type. A **dynamic value** can be assigned to anything; and anything can be assigned to it. This has several drawbacks:
+Haxeは静的な型システムを持っていますが、この型システムは`Dynamic`型を使うことで事実上オフにすることが可能です。**Dynamicな値**は、あらゆるものに割り当て可能です。逆に、`Dynamic`に対してはあらゆる値を割り当て可能です。これにはいくつかの弱点があります。
 
-* The compiler can no longer type-check assignments, function calls and other constructs where specific types are expected.
-* Certain optimizations, in particular when compiling to static targets, can no longer be employed.
-* Some common errors, e.g. a typo in a field access, can not be caught at compile-time and likely cause an error at runtime.
-* [Dead Code Elimination](cr-dce) cannot detect used fields if they are used through `Dynamic`.
+* 代入、関数呼び出しなど、特定の型を要求される場面でコンパイラが型チェックをしなくなります。
+* 特定の最適化が、特に静的ターゲットにコンパイルする場合に、効かなくなります。
+* よくある間違い(フィールド名のタイポなど)がコンパイル時に検出できなくなって、実行時のエラーが起きやすくなります。
+* [Dead Code Elimination](cr-dce)は、`Dynamic`を通じて使用しているフィールドを検出できません。
 
-It is very easy to come up with examples where the usage of `Dynamic` can cause problems at runtime. Consider compiling the following two lines to a static target:
+`Dynamic`が実行時に問題を起こすような例を考えるのはとても簡単です。以下の2行を静的ターゲットへコンパイルすることを考えてください。
 
 ```haxe
 var d:Dynamic = 1;
 d.foo;
 ```
 
-Trying to run a compiled program in the Flash Player yields an error `Property foo not found on Number and there is no default value`. Without `Dynamic`, this would have been detected at compile-time.
+これをコンパイルしたプログラムを、Flash Playerで実行した場合、`Number にプロパティ foo が見つからず、デフォルト値もありません。`というエラーが発生します。`Dynamic`を使わなければ、このエラーはコンパイル時に検出できます。
 
-> ##### Trivia: Dynamic Inference before Haxe 3
+> ##### Trivia: Haxe3より前のDynamicの推論
 >
-> The Haxe 3 compiler never infers a type to `Dynamic`, so users must be explicit about it. Previous Haxe versions used to infer arrays of mixed types, e.g. `[1, true, "foo"]`, as `Array<Dynamic>`. We found that this behavior introduced too many type problems and thus removed it for Haxe 3.
+> Haxe3のコンパイラは型を`Dynamic`として推論することはないので、`Dynamic`を使いたい場合はそのことを明示しなければ行きません。以前のHaxeのバージョンでは、混ざった型のArrayを`Array<Dynamic>`として推論してました(例えば、`[1, true, "foo"]`)。私たちはこの挙動はたくさんの型の問題を生み出すことに気づき、この仕様をHaxe3で取り除きました。
 
-Use of `Dynamic` should be minimized as there are better options in many situations but sometimes it is just practical to use it. Parts of the Haxe [Reflection](std-reflection) API use it and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
+実際のところ`Dynamic`は使ってしまいますが、多くの場面では他のもっと良い選択肢があるので`Dynamic`の使用は最低限にすべきです。例えば、Haxeの[Reflection](std-reflection)APIは、コンパイル時には構造のわからないカスタムのデータ構造をあつかう際に最も良い選択肢になりえます。
 
-`Dynamic` behaves in a special way when being [unified](type-system-unification) with a [monomorph](types-monomorph). Monomorphs are never bound to `Dynamic` which can have surprising results in examples such as this:
+`Dynamic`は、[単相(monomorph)](types-monomorph)を[単一化](type-system-unification)する場合に、特殊な挙動をします。以下のような場合に、とんでもない結果を生んでしまうので、単相が`Dynamic`に拘束されることはありません。
 
 ```haxe
 class Main {
@@ -845,16 +871,16 @@ class Main {
 }
 ```
 
-Although the return type of `Json.parse` is `Dynamic`, the type of local variable `json` is not bound to it and remains a monomorph. It is then inferred as an [anonymous structure](types-anonymous-structure) upon the `json.length` field access, which causes the following `json[0]` array access to fail. In order to avoid this, the variable `json` can be explicitly typed as `Dynamic` by using `var json:Dynamic`.
+`Json.parse`の戻り値は`Dynamic`ですが、ローカル変数のjsonの型は`Dynamic`に拘束されません。単相のままです。そして、`json.length`のフィールドにアクセスした時に[匿名の構造体](types-anonymous-structure)として推論されて、それにより`json[0]`の配列アクセスでエラーになっています。これは、`json`に対して、`var json:Dynamic`というように明示的に`Dynamic`の型付けをすることで避けることができます。
 
-> ##### Trivia: Dynamic in the Standard Library
+> ##### Trivia: 標準ライブラリでのDynamic
 >
-> Dynamic was quite frequent in the Haxe Standard Library before Haxe 3. With the continuous improvements of the Haxe type system the occurences of Dynamic were reduced over the releases leading to Haxe 3.
+> DynamicはHaxe3より前の標準ライブラリではかなり頻繁に表れていましたが、Haxe3までの継続的な型システムの改善によってDynamicの出現頻度を減らすことができました。
 
 <a id="types-dynamic-with-type-parameter"></a>
-## 2.7.1 Dynamic with Type Parameter
+## 2.7.1 型パラメータ付きのダイナミック
 
-`Dynamic` is a special type because it allows explicit declaration with and without a [type parameter](type-system-type-parameters). If such a type parameter is provided, the semantics described in [Dynamic](types-dynamic) are constrained to all fields being compatible with the parameter type:
+`Dynamic`は、[型パラメータ](type-system-type-parameters)を付けても付けなくても良いという点でも特殊な型です。型パラメータを付けた場合、[ダイナミック](types-dynamic)のすべてのフィールドがパラメータの型であることが強制されます。
 
 ```haxe
 var att : Dynamic<String> = xml.attributes;
@@ -867,9 +893,10 @@ att.income = 0;
 ```
 
 <a id="types-dynamic-implemented"></a>
-## 2.7.2 Implementing Dynamic
+## 2.7.2 ダイナミックを実装(implements)する
 
-Classes can [implement](types-interfaces) `Dynamic` and `Dynamic<T>` which enables arbitrary field access. In the former case, fields can have any type, in the latter, they are constrained to be compatible with the parameter type:
+クラスは`Dynamic`と`Dynamic<T>`を[実装](types-interfaces)することができます。
+これにより任意のフィールドへのアクセスが可能になります。`Dynamic`の場合、フィールドはあらゆる型になる可能性があり、`Dynamic<T>`の場合、フィールドはパラメータの型と矛盾しない型のみに強制されます。
 
 ```haxe
 class ImplementsDynamic
@@ -891,9 +918,9 @@ class Main {
 }
 ```
 
-Implementing `Dynamic` does not satisfy the requirements of other implemented interfaces. The expected fields still have to be implemented explicitly.
+`Dynamic`を実装しても、 他のインターフェースが要求する実装を満たすことにはなりません。明示的な実装が必要です。
 
-Classes that implement `Dynamic` (with or without type parameter) can also utilize a special method named `resolve`. If a [read access](dictionary.md-define-read-access) is made and the field in question does not exist, the `resolve` method is called with the field name as argument:
+型パラメータなしの`Dynamic`を実装したクラスでは、特殊なメソッド`resolve`を利用することができます。[読み込みアクセス](dictionary.md-define-read-access)がありフィールドが存在しなかった場合、`resolve`メソッドが以下のように呼び出されます。
 
 ```haxe
 class Resolve implements Dynamic<String> {
@@ -915,9 +942,9 @@ class Main {
 ```
 
 <a id="types-abstract"></a>
-## 2.8 Abstract
+## 2.8 抽象型(abstract)
 
-An abstract type is a type which is actually a different type at run-time. It is a compile-time feature which defines types "over" concrete types in order to modify or augment their behavior:
+抽象(abstract)型は、実行時には別の型になる型です。抽象型は挙動を編集したり強化したりするために、具体型(=抽象型でない型)を"おおう"型を定義するコンパイル時の機能です。
 
 ```haxe
 abstract AbstractInt(Int) {
@@ -926,21 +953,24 @@ abstract AbstractInt(Int) {
   }
 }
 ```
-We can derive the following from this example:
 
-* The keyword `abstract` denotes that we are declaring an abstract type.
-* `AbstractInt` is the name of the abstract and could be anything conforming to the rules for type identifiers.
-* Enclosed in parenthesis `()` is the **underlying type** `Int`.
-* Enclosed in curly braces `{}` are the fields,
-* which are a constructor function `new` accepting one argument `i` of type `Int`.
+上記のコードからは以下を学ぶことができます。
 
-> ##### Define: Underlying Type
+* `abstract`キーワードは、抽象型を定義することを宣言している。
+* `AbstractInt`は抽象型の名前であり、型の識別子のルールを満たすものなら何でも使える。
+* 丸かっこ`()`の中は、その**基底型**の`Int`である。
+* 中カッコ`{}`の中はフィールドで、
+* `Int`型の`i`のみを引数とするコンストラクタの`new`関数がある。
+
+> ##### Define: 基底型
 >
-> The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type but could be another abstract type as well.
+> 
+> 抽象型の基底型は、実行時にその抽象型を表すために使われる型です。基底型はたいていの場合は具体型ですが、別の抽象型である場合もあります。
+> 
 
-The syntax is reminiscent of classes and the semantics are indeed similar. In fact, everything in the "body" of an abstract (that is everything after the opening curly brace) is parsed as class fields. Abstracts may have [method](class-field-method) fields and non-[physical](dictionary.md-define-physical-field) [property](class-field-property) fields.
+構文はクラスを連想させるもので、意味合いもよく似ています。実際、抽象型のボディ部分(中カッコの開始以降)は、クラスフィールドとして構文解析することが可能です。抽象型は[メソッド](class-field-method)と、[実体](dictionary.md-define-physical-field)の無い[プロパティ](class-field-property)フィールドを持つことが可能です。
 
-Furthermore, abstracts can be instantiated and used just like classes:
+さらに、抽象型は以下のように、クラスと同じようにインスタンス化して使用することができます
 
 ```haxe
 class MyAbstract {
@@ -950,29 +980,32 @@ class MyAbstract {
   }
 }
 ```
-As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is Javascript, which tends to generate concise and clean code. Compiling the above (using `haxe -main MyAbstract -js myabstract.js`) shows this Javascript code:
+
+はじめに書いたとおり、抽象型はコンパイル時の機能ですから、見るべきは上記のコードの実際の出力です。この出力例としては、簡潔なコードが出力されるJavaScriptが良いでしょう。上記のコードを`haxe -main MyAbstract -js myabstract.js`でコンパイルすると以下のようなJavaScriptが出力されます。
 
 ```haxe
 var a = 12;
 console.log(a);
 ```
-The abstract type `Abstract` completely disappeared from the output and all that is left is a value of its underlying type, `Int`. This is because the constructor of `Abstract` is inlined - something we shall learn about later in the section [Inline](class-field-inline) - and its inlined expression assigns a value to `this`. This might be surprising when thinking in terms of classes. However, it is precisely what we want to express in the context of abstracts. Any **inlined member method** of an abstract can assign to `this`, and thus modify the "internal value".
 
-A good question at this point is "What happens if a member function is not declared inline" because the code obviously has to go somewhere. Haxe creates a private class, known to be the **implementation class**, which has all the abstract member functions as static functions accepting an additional first argument `this` of the underlying type. While technically this is an implementation detail, it can be used for [selective functions](types-abstract-selective-functions).
+抽象型の`AbstractInt`は出力から完全に消えてしまい、その基底型の`Int`の値のみが残っています。これは、`AbstractInt`のコンストラクタがインライン化されて、そのインラインの式が値を`this`に代入します(インライン化については後の[Inline](class-field-inline)で学びます)。これは、クラスのように考えていた場合、驚くべきことかもしれません。しかし、これこそが抽象型を使って表現したいことそのものです。
+抽象型のすべての**インラインのメンバメソッド**では`this`への代入が可能で、これにより"内部の値"が編集できます。
 
-> ##### Trivia: Basic Types and abstracts
+"もしメンバ関数でinlineが宣言されていなかった場合、何が起こるのか？"というのは良い疑問です。そのようなコードははっきりと成立します。その場合、Haxeは実装クラスと呼ばれるprivateのクラスを生成します。この実装クラスは抽象型のメンバ関数を、最初の引数としてその基底型の`this`を加えた静的な(static)関数で持ちます。さらに実装の詳細の話をすると、この実装クラスは[選択的関数](types-abstract-selective-functions)でも使われます。
+
+> ##### Trivia: 基本型と抽象型
 >
-> Before the advent of abstract types, all basic types were implemented as extern classes or enums. While this nicely took care of some aspects such as `Int` being a "child class" of `Float`, it caused issues elsewhere. For instance, with `Float` being an extern class, it would unify with the empty structure `{}`, making it impossible to constrain a type to accepting only real objects.
+> 抽象型が生まれる前には、基本型はexternクラスと列挙型で実装されていました。`Int`型を`Float`型の"子クラス"としてあつかうなどのいくつかの面では便利でしたが、一方で問題も引き起こしました。例えば、`Float`がexternクラスなので、実際のオブジェクトしか受け入れないはずの空の構造体の型`{}`として単一化できました。
 
 <a id="types-abstract-implicit-casts"></a>
-## 2.8.1 Implicit Casts
+## 2.8.1 暗黙のキャスト
 
-Unlike classes, abstracts allow defining implicit casts. There are two kinds of implicit casts:
+クラスとは異なり抽象型は暗黙のキャストを許します。抽象型には2種類の暗黙のキャストがあります。
 
-* Direct: Allows direct casting of the abstract type to or from another type. This is defined by adding `to` and `from` rules to the abstract type and is only allowed for types which unify with the underlying type of the abstract.
-* Class field: Allows casting via calls to special cast functions. These functions are defined using `@:to` and `@:from` metadata. This kind of cast is allowed for all types.
+* 直接: 他の型から抽象型への直接のキャストを許します。これは`to`と`from`のルールを抽象型に設定することでできます。 これは、その抽象型の基底型に単一化可能な型のみで利用可能です。
+* クラスフィールド: 特殊なキャスト関数を呼び出すことによるキャストを許します。この関数は`@:to`と`@:from`のメタデータを使って定義されます。この種類のキャストは全ての型で利用可能です。
 
-The following code example shows an example of **direct** casting:
+下のコードは、直接キャストの例です。
 
 ```haxe
 abstract MyAbstract(Int) from Int to Int {
@@ -988,9 +1021,10 @@ class ImplicitCastDirect {
   }
 }
 ```
-We declare `MyAbstract` as being `from Int` and `to Int`, meaning it can be assigned from `Int` and assigned to `Int`. This is shown in lines 9 and 10, where we first assign the `Int` `12` to variable `a` of type `MyAbstract` (this works due to the `from Int` declaration) and then that abstract back to variable `b` of type `Int` (this works due to the `to Int` declaration).
 
-Class field casts have the same semantics, but are defined completely differently:
+`from Int`かつ`to Int`の`MyAbstract`を定義しました。これは`Int`を代入することが可能で、かつ`Int`に代入することが可能だという意味です。このことは、9、10行目に表れています。まず、`Int`の12を`MyAbstract`型の変数`a`に代入しています(これは`from Int`の宣言により可能になります)。そして次に、`Int`型の変数`b`に、抽象型のインスタンスを代入しています(これは`to Int`の宣言により可能になります)。
+
+クラスフィールドのキャストも同じ意味を持ちますが、定義の仕方はまったく異なります。
 
 ```haxe
 abstract MyAbstract(Int) {
@@ -1017,36 +1051,40 @@ class ImplicitCastField {
   }
 }
 ```
-By adding `@:from` to a static function, that function qualifies as implicit cast function from its argument type to the abstract. These functions must return a value of the abstract type. They must also be declared `static`.
 
-Similarly, adding `@:to` to a function qualifies it as implicit cast function from the abstract to its return type. These functions are typically member-functions but they can be made `static` and then serve as [selective function](types-abstract-selective-functions).
+静的な関数に`@:from`を付けることで、その引数の型からその抽象型への暗黙のキャストを行う関数として判断されます。この関数はその抽象型の値を返す必要があります。`static`を宣言する必要もあります。
 
-In the example the method `fromString` allows the assignment of value `"3"` to variable `a` of type `MyAbstract` while the method `toArray` allows assigning that abstract to variable `b` of type `Array<Int>`.
+同じように関数に`@:to`を付けることで、その抽象型からその戻り値の型への暗黙のキャストを行う関数として判断されます。この関数は普通はメンバ関数ですが、`static`でも構いません。そして、これは[選択的関数](types-abstract-selective-functions)として働きます。
 
-When using this kind of cast, calls to the cast-functions are inserted where required. This becomes obvious when looking at the Javascript output:
+上の例では、`fromString`メソッドが`"3"`の値を`MyAbstract`型の変数`a`への代入を可能にし、
+`toArray`メソッドがその抽象型インスタンスを`Array<Int>`型の変数`b`への代入を可能にします。
+
+この種類のキャストを使った場合、必要な場所でキャスト関数の呼び出しが発生します。このことはJavaScript出力を見ると明らかです。
 
 ```haxe
 var a = _ImplicitCastField.MyAbstract_Impl_.fromString("3");
 var b = _ImplicitCastField.MyAbstract_Impl_.toArray(a);
 ```
-This can be further optimized by [inlining](class-field-inline) both cast functions, turning the output into the following:
+
+これは2つのキャスト関数で[インライン化](class-field-inline)を行うことでさらなる最適化を行うことができます。これにより出力は以下のように変わります。
 
 ```haxe
 var a = Std.parseInt("3");
 var b = [a];
 ```
-The **selection algorithm** when assigning a type `A` to a type `B` with at least one of them being an abstract is simple:
 
-1. If `A` is not an abstract, go to 3.
-2. If `A` defines a **to**-conversions that admits `B`, go to 6.
-3. If `B` is not an abstract, go to 5.
-4. If `B` defines a **from**-conversions that admits `A`, go to 6.
-5. Stop, unification fails.
-6. Stop, unification succeeds.
+型`A`から時の型`B`への代入の時にどちらかまたは両方が抽象型である場合に使われるキャストの**選択アルゴリズム**は簡単です。
 
-![Selection algorithm flow chart.](assets/graphics/generated/types-abstract-implicit-casts-selection-algorithm.png)
+1. `A`が抽象型でない場合は3へ。
+2. `A`が、`B`**への**変換を持っている場合、これを適用して6へ。
+3. `B`が抽象型でない場合は5へ。
+4. `B`が、`A`**からの**変換を持っている場合、これを適用して6へ。
+5. 単一化失敗で、終了。
+6. 単一化成功で、終了。
 
-By design, implicit casts are **not transitive**, as the following example shows:
+![選択アルゴリズムのフローチャート](assets/graphics/generated/types-abstract-implicit-casts-selection-algorithm.png)
+
+意図的に暗黙のキャストは連鎖的ではありません。これは以下の例でわかります。
 
 ```haxe
 abstract A(Int) {
@@ -1072,12 +1110,13 @@ class Main {
   }
 }
 ```
-While the individual casts from `A` to `B` and from `B` to `C` are allowed, a transitive cast from `A` to `C` is not. This is to avoid ambiguous cast-paths and retain a simple selection algorithm.
+
+`A`から`B`、`B`から`C`への個々のキャストは可能ですが、`A`から`C`への連鎖的なキャストはできません。これは、キャスト方法が複数生まれてしまうことは避けて、選択アルゴリズムの簡潔さを保つためです。
 
 <a id="types-abstract-operator-overloading"></a>
-## 2.8.2 Operator Overloading
+## 2.8.2 演算子オーバーロード
 
-Abstracts allow overloading of unary and binary operators by adding the `@:op` metadata to class fields:
+抽象型ではクラスフィールドに`@:op`メタデータを付けることで、単項演算子と2項演算子のオーバーロードが可能です。
 
 ```haxe
 abstract MyAbstract(String) {
@@ -1101,17 +1140,17 @@ class AbstractOperatorOverload {
   }
 }
 ```
-By defining `@:op(A * B)`, the function `repeat` serves as operator method for the multiplication `*` operator when the type of the left value is `MyAbstract` and the type of the right value is `Int`. The usage is shown in line 17, which turns into this when compiled to Javascript:
+
+`@:op(A * B)`を宣言することで、`repeat`関数は、左辺が`MyAbstract`で右辺が`Int`の場合の`*`演算子による乗算の関数として利用されます。これは18行目で利用されています。この部分はJavaScriptにコンパイルすると以下のようになります。
 
 ```haxe
 console.log(_AbstractOperatorOverload.
   MyAbstract_Impl_.repeat(a,3));
 ```
-Similar to [implicit casts with class fields](types-abstract-implicit-casts), a call to the overload method is inserted where required.
 
-The example `repeat` function is not commutative: While `MyAbstract * Int` works, `Int * MyAbstract` does not. If this should be allowed as well, the `@:commutative` metadata can be added. If it should work **only** for `Int * MyAbstract`, but not for `MyAbstract * Int`, the overload method can be made static, accepting `Int` and `MyAbstract` as first and second type respectively.
+[クラスフィールドによる暗黙の型変換](types-abstract-implicit-casts)と同様に、オーバーロードメソッドも要求された場所で呼び出しが発生します。上記の例の`repeat`関数は可換ではありません。`MyAbstract * Int`は動作しますが、`Int * MyAbstract`では動作しません。`Int * MyAbstract`でも動作させたい場合は`@:commutative`のメタデータが使えます。逆に、`MyAbstract * Int`ではなく`Int * MyAbstract`でのみ動作させてたい場合、1つ目の引数で`Int`型、2つ目の引数で`MyAbstract`型を受け取る静的な関数をオーバーロードメソッドにすることができます。
 
-Overloading unary operators is analogous:
+単項演算子の場合もこれによく似ています。
 
 ```haxe
 abstract MyAbstract(String) {
@@ -1133,11 +1172,12 @@ class AbstractUnopOverload {
   }
 }
 ```
-Both binary and unary operator overloads can return any type.
+
+2項演算子と単項演算子の両方とも、戻り値の型は何でも構いません。
 
 ###### Exposing underlying type operations
 
-It is also possible to omit the method body of a `@:op` function, but only if the underlying type of the abstract allows the operation in question and if the resulting type can be assigned back to the abstract.
+基底型が抽象型でそこで許容されている演算子でかつ戻り値を元の抽象型に代入可能なものについては、`@:op`関数のボディを省略することが可能です。
 
 ```haxe
 abstract MyAbstractInt(Int) from Int to Int {
@@ -1160,9 +1200,9 @@ class Main {
 ```
 
 <a id="types-abstract-array-access"></a>
-## 2.8.3 Array Access
+## 2.8.3 配列アクセス
 
-Array access describes the particular syntax traditionally used to access the value in an array at a certain offset. This is usually only allowed with arguments of type `Int`. Nevertheless, with abstracts it is possible to define custom array access methods. The [Haxe Standard Library](std) uses this in its `Map` type, where the following two methods can be found:
+配列アクセスは、配列の特定の位置の値にアクセスするのに伝統的に使われている特殊な構文です。これは大抵の場合、`Int`のみを引数としますが、抽象型の場合はカスタムの配列アクセスを定義することが可能です。[Haxeの標準ライブラリ](std)では、これを`Map`型に使っており、これには以下の2つのメソッドがあります。
 
 ```haxe
 @:arrayAccess
@@ -1175,12 +1215,13 @@ public inline function arrayWrite(k:K, v:V):V {
 	return v;
 }
 ```
-There are two kinds of array access methods:
 
-* If an `@:arrayAccess` method accepts one argument, it is a getter.
-* If an `@:arrayAccess` method accepts two arguments, it is a setter.
+配列アクセスのメソッドは以下の2種類があります。
 
-The methods `get` and `arrayWrite` seen above then allow the following usage:
+* `@:arrayAccess`メソッドが1つの引数を受け取る場合、それは読み取り用です。
+* `@:arrayAccess`メソッドが2つの引数を受け取る場合、それは書き込み用です。
+
+上記のコードの`get`メソッドと`arrayWrite`メソッドは、以下のように使われます。
 
 ```haxe
 class Main {
@@ -1192,7 +1233,7 @@ class Main {
 }
 ```
 
-At this point it should not be surprising to see that calls to the array access fields are inserted in the output:
+ここでは以下のように出力に配列アクセスのフィールドの呼び出しが入ることになりますが、驚かないでください。
 
 ```haxe
 map.set("foo",1);
@@ -1227,9 +1268,9 @@ The array access `a[0]` is resolved to the `getInt1` field, leading to lower cas
 Fields which are defined earlier take priority even if they require an [implicit cast](types-abstract-implicit-casts).
 
 <a id="types-abstract-selective-functions"></a>
-## 2.8.4 Selective Functions
+## 2.8.4 選択的関数
 
-Since the compiler promotes abstract member functions to static functions, it is possible to define static functions by hand and use them on an abstract instance. The semantics here are similar to those of [static extensions](lf-static-extension), where the type of the first function argument determines for which types a function is defined:
+コンパイラは抽象型のメンバ関数を静的な(static)関数へと変化させるので、手で静的な関数を記述してそれを抽象型のインスタンスで使うことができます。この意味は、関数の最初の引数の型で、その関数が使えるようになる[静的拡張](lf-static-extension)に似ています。
 
 ```haxe
 abstract MyAbstract<T>(T) from T {
@@ -1252,18 +1293,20 @@ class SelectiveFunction {
   }
 }
 ```
-The method `getString` of abstract `MyAbstract` is defined to accept a first argument of `MyAbstract<String>`. This causes it to be available on variable `a` on line 14 (because the type of `a` is `MyAbstract<String>`), but not on variable `b` whose type is `MyAbstract<Int>`.
 
-> ##### Trivia: Accidental Feature
+抽象型の`MyAbstract`の`getString`のメソッドは、最初の引数として`MyAbstract<String>`を受け取ります。これにより、14行目の変数`a`の関数呼び出しが可能になります(`a`の型が`MyAbstract<String>`なので)。しかし、`MyAbstract<Int>`の変数`b`では使えません。
+
+> ##### Trivia: 偶然の機能
 >
->  Rather than having actually been designed, selective functions were discovered. After the idea was first mentioned, it required only minor adjustments in the compiler to make them work. Their discovery also lead to the introduction of multi-type abstracts, such as Map.
+> 
+> 実際のところ選択的関数は意図して作られたというよりも、発見された機能です。この機能について初めて言及されてから実際に動作せせるまでに必要だったのは軽微な修正のみでした。この発見が、Mapのような複数の型の抽象型にもつながっています。
 
 <a id="types-abstract-enum"></a>
-## 2.8.5 Enum abstracts
+## 2.8.5 抽象型列挙体
 
 ##### since Haxe 3.1.0
 
-By adding the `:enum` metadata to an abstract definition, that abstract can be used to define finite value sets:
+抽象型の宣言に`@:enum`のメタデータを追加することで、その値を有限の値のセットを定義して使うことができます。
 
 ```haxe
 @:enum
@@ -1289,7 +1332,7 @@ class Main {
 }
 ```
 
-The Haxe Compiler replaces all field access to the `HttpStatus` abstract with their values, as evident in the Javascript output:
+以下のJavaScriptへの出力を見ても明らかなように、Haxeは抽象型`HttpStatus`の全てのフィールドへのアクセスをその値に変換します。
 
 ```haxe
 Main.main = function() {
@@ -1306,18 +1349,18 @@ Main.printStatus = function(status) {
 };
 ```
 
-This is similar to accessing [variables declared as inline](class-field-inline), but has several advantages:
+これは[インライン変数](class-field-inline)によく似ていますが、いくつかの利点があります。
 
-* The typer can ensure that all values of the set are typed correctly.
-* The pattern matcher checks for [exhaustiveness](lf-pattern-matching-exhaustiveness) when [matching](lf-pattern-matching) an enum abstract.
-* Defining fields requires less syntax.
+* コンパイラがそのセットのすべての値が正しく型付けされていることを保証できます。
+* パターンマッチで、抽象型列挙体への[マッチング](lf-pattern-matching)を行う場合に[網羅性](lf-pattern-matching-exhaustiveness)がチェックされます。
+* 少ない構文でフィールドを定義できます。
 
 <a id="types-abstract-forward"></a>
-## 2.8.6 Forwarding abstract fields
+## 2.8.6 抽象型フィールドの繰り上げ
 
 ##### since Haxe 3.1.0
 
-When wrapping an underlying type, it is sometimes desirable to "keep" parts of its functionality. Because writing forwarding functions by hand is cumbersome, Haxe allows adding the `:forward` metadata to an abstract type:
+基底型をラップした場合、その機能性のを"保ちたい"場合があります。繰り上がりの関数を手で書くのは面倒なので、Haxeでは`@:forward`メタデータを利用できるようにしています。
 
 ```haxe
 @:forward(push, pop)
@@ -1338,9 +1381,9 @@ class Main {
 }
 ```
 
-The `MyArray` abstract in this example wraps `Array`. Its `:forward` metadata has two arguments which correspond to the field names to be forwarded to the underlying type. In this example, the `main` method instantiates `MyArray` and accesses its `push` and `pop` methods. The commented line demonstrates that the `length` field is not available.
+この例では、抽象型の`MyArray`が`Array`をラップしています。この`@:forward`メタデータは、基底型から繰り上がらせるフィールド2つを引数として与えられています。上記の例の`main`関数は、`MyArray`をインスタンス化して、その`push`と`pop`のメソッドにアクセスしています。コメント化されている行は、`length`フィールドは利用できないことを実演するものです。
 
-As usual we can look at the Javascript output to see how the code is being generated:
+ではどのようなコードが出力されるのか、いつものようにJavaScriptへの出力を見てみましょう。
 
 ```haxe
 Main.main = function() {
@@ -1350,51 +1393,53 @@ Main.main = function() {
 };
 ```
 
-It is also possible to use `:forward` without any arguments in order to forward all fields. Of course the Haxe Compiler still ensures that the field actually exists on the underlying type.
+全てのフィールドを繰り上げる場合は、引数なしの`@:forward`を利用できます。もちろんこの場合でも、Haxeコンパイラは基底型にそのフィールドが存在していることを保証します。
 
-> ##### Trivia: Implemented as macro
+> ##### Trivia: マクロとして実装
 >
-> Both the `:enum` and `:forward` functionality were originally implemented using [build macros](macro-type-building). While this worked nicely in non-macro code, it caused issues if these features were used from within macros. The implementation was subsequently moved to the compiler.
+> `@:enum`と`@:forward`の両機能は、もともとは[ビルドマクロ](macro-type-building)を利用して実装していました。この実装はマクロなしのコードから使う場合はうまく動作していましたが、マクロからこれらの機能を使った場合に問題を起こしました。このため、これらの機能はコンパイラへと移されました。
 
 <a id="types-abstract-core-type"></a>
-## 2.8.7 Core-type abstracts
+## 2.8.7 コアタイプの抽象型
 
-The Haxe Standard Library defines a set of basic types as core-type abstracts. They are identified by the `:coreType` metadata and the lack of an underlying type declaration. These abstracts can still be understood to represent a different type. Still, that type is native to the Haxe target. 
+Haxeの標準ライブラリは、基本型のセットをコアタイプの抽象型として定義しています。これらは`@:coreType`メタデータを付けることで識別されて、基底型の定義を欠きます。これらの抽象型もまた異なる型の表現として考えることができます。
+そして、その型はHaxeのターゲットのネイティブの型です。
 
-Introducing custom core-type abstracts is rarely necessary in user code as it requires the Haxe target to be able to make sense of it. However, there could be interesting use-cases for authors of macros and new Haxe targets.
+カスタムのコアタイプの抽象型の導入は、Haxeのターゲットにその意味を理解させる必要があり、ほとんどのユーザーのコードで必要ないでしょう。ですが、マクロを使いたい人や、新しいHaxeのターゲットを作りたい人にとっては興味深い利用例があります
 
-In contrast to opaque abstracts, core-type abstracts have the following properties:
+コアタイプの抽象型は、不透過の抽象型(他の型をラップする抽象型のこと)とは異なる以下の性質をもちます。
 
-* They have no underlying type.
-* They are considered nullable unless they are annotated with `:notNull` metadata.
-* They are allowed to declare [array access](types-abstract-array-access) functions without expressions.
-* [Operator overloading fields](types-abstract-operator-overloading) that have no expression are not forced to adhere to the Haxe type semantics.
+* 基底型を持たない。
+* `@:notNull`メタデータの注釈を付けない限り、null許容としてあつかわれる。
+* 式の無い[配列アクセス](types-abstract-array-access)関数を定義できる。
+* Haxeの制限から離れた、式を持たない[演算子オーバーロードのフィールド](types-abstract-operator-overloading)が可能。
 
 <a id="types-monomorph"></a>
-## 2.9 Monomorph
+## 2.9 単相(モノモーフ)
 
-A monomorph is a type which may, through [unification](type-system-unification), morph into a different type later. We shall see details about this type when talking about [type inference](type-system-type-inference).
+単相は、[単一化](type-system-unification)の過程で、他の異なる型へと形を変える型です。これについて詳しくは[型推論](type-system-type-inference)の節で話します。
 
 <a id="type-system"></a>
-## 3 Type System
+## 3 型システム
 
-We learned about the different kinds of types in [Types](types) and it is now time to see how they interact with each other. We start off easy by introducing [typedef](type-system-typedef), a mechanism to give a name (or alias) to a more complex type. Among other things, this will come in handy when working with types having [type parameters](type-system-type-parameters).
+私たちは[型](types)の章でさまざまな種類の型について学んできました。ここからはそれらがお互いにどう関連しあっているかを見ていきます。まず、複雑な型に対して名前(別名)を与える仕組みである[Typedef](type-system-typedef)の紹介から簡単に始めます。typedefは特に、[型パラメータ](type-system-type-parameters)を持つ型で役に立ちます。
 
-A lot of type-safety is achieved by checking if two given types of the type groups above are compatible. Meaning, the compiler tries to perform **unification** between them as detailed in [Unification](type-system-unification).
+任意の2つの型について、その上位の型のグループが矛盾しないかをチェックすることで多くの型安全性が得られます。これがコンパイラが試みる**単一化**であり、[単一化(ユニフィケーション)](type-system-unification)の節で詳しく説明します。
 
-All types are organized in **modules** and can be addressed through **paths**. [Modules and Paths](type-system-modules-and-paths) will give a detailed explanation of the related mechanics.
+すべての型は**モジュール**に所属し、**パス**を通して呼び出されます。[モジュールとパス](type-system-modules-and-paths)では、これらに関連した仕組みについて詳しい説明を行います。
 
 <a id="type-system-typedef"></a>
-## 3.1 Typedef
+## 3.1 typedef
 
-We briefly looked at typedefs while talking about [anonymous structures](types-anonymous-structure) and saw how we could shorten a complex [structure type](types-anonymous-structure) by giving it a name. This is precisely what typedefs are good for. Giving names to structure types might even be considered their primary use. In fact, it is so common that the distinction appears somewhat blurry and many Haxe users consider typedefs to actually **be** the structure.
+typedefは[匿名構造体](types-anonymous-structure)の節で、すでに登場しています。そこでは複雑な構造体の型について名前を与えて簡潔にあつかう方法を見ています。この利用法はtypedefが一体なにに良いのかを的確に表しています。[構造体の型](types-anonymous-structure)に対して名前を与えるのは、typedefの主たる用途かもしれません。実際のところ、この用途が一般的すぎて、多くのHaxeユーザーがtypdefを構造体のためのものだと思ってしまっています。
 
-A typedef can give a name to any other type:
+typedefは他のあらゆる型に対して名前を与えることが可能です。
 
 ```haxe
 typedef IA = Array<Int>;
 ```
-This enables us to use `IA` in places where we would normally use `Array<Int>`. While this saves only a few keystrokes in this particular case, it can make a much bigger difference for more complex, compound types. Again, this is why typedef and structures seem so connected:
+
+これにより`Array<Int>`が使われる場所で、代わりに`IA`を使うことが可能になります。この場合、はほんの数回のタイプ数しか減らせませんが、より複雑な複合型の場合は違います。これこそが、typedefと構造体が強く結びついて見える理由です。
 
 ```haxe
 typedef User = {
@@ -1402,7 +1447,8 @@ typedef User = {
     var name : String;
 }
 ```
-A typedef is not a textual replacement but actually a real type. It can even have [type parameters](type-system-type-parameters) as the `Iterable` type from the Haxe Standard Library demonstrates:
+
+typedefはテキスト上の置き換えではなく、実は本物の型です。Haxe標準ライブラリの`Iterable`のように[型パラメータ](type-system-type-parameters)を持つことができます。
 
 ```haxe
 typedef Iterable<T> = {
@@ -1411,9 +1457,9 @@ typedef Iterable<T> = {
 ```
 
 <a id="type-system-extensions"></a>
-## 3.1.1 Extensions
+## 3.1.1 拡張
 
-Extensions are used to express that a structure has all the fields of a given type as well as some additional fields of its own:
+拡張は、構造体が与えられた型のフィールドすべてと、加えていくつかのフィールドを持っていることを表すために使われます。
 
 ```haxe
 typedef IterableWithLength<T> = {
@@ -1429,13 +1475,13 @@ class Extension {
   }
 }
 ```
-The greater-than operator `>` denotes that an extension of `Iterable<T>` is being created, with the additional class fields following. In this case, a read-only [property](class-field-property) `length` of type `Int` is required.
+大なりの演算子を使うことで、追加のクラスフィールドを持つ`Iterable<T>`の拡張が作成されました。このケースでは、読み込み専用の[プロパティ](class-field-property) である`Int`型の`length`が要求されます。 
 
-In order to be compatible with `IterableWithLength<T>`, a type then must be compatible with `Iterable<T>` and also provide a read-only `length` property of type `Int`. The example assigns an `Array`, which happens to fulfill these requirements.
+`IterableWithLength<T>`に適合するためには、`Iterable<T>`にも適合してさらに読み込み専用の`Int`型のプロパティ`length`を持ってなきゃいけません。例では、Arrayが割り当てられており、これはこれらの条件をすべて満たしています。
 
 ##### since Haxe 3.1.0
 
-It is also possible to extend multiple structures:
+複数の構造体を拡張することもできます。
 
 ```haxe
 typedef WithLength = {
@@ -1457,34 +1503,34 @@ class Extension2 {
 ```
 
 <a id="type-system-type-parameters"></a>
-## 3.2 Type Parameters
+## 3.2 型パラメータ
 
-Haxe allows parametrization of a number of types, as well as [class fields](class-field) and [enum constructors](types-enum-constructor). Type parameters are defined by enclosing comma-separated type parameter names in angle brackets `<>`. A simple example from the Haxe Standard Library is `Array`:
+[クラスフィールド](class-field)や[列挙型コンストラクタ](types-enum-constructor)のように、Haxeではいくつかの型についてパラメータ化を行うことができます。型パラメータは山カッコ`<>`内にカンマ区切りで記述することで、定義することができます。シンプルな例は、Haxe標準ライブラリの`Array`です。
 
 ```haxe
 class Array<T> {
 	function push(x : T) : Int;
 }
 ```
-Whenever an instance of `Array` is created, its type parameter `T` becomes a [monomorph](types-monomorph). That is, it can be bound to any type, but only one at a time. This binding can happen
+`Array`のインスタンスが作られると、型パラメータ`T`は[単相](types-monomorph)となります。つまり、1度に1つの型であれば、あらゆる型を適用することができます。この適用は以下のどちらか方法で行います
 
-* explicitly by invoking the constructor with explicit types (`new Array<String>()`) or
-* implicitly by [type inference](type-system-type-inference), e.g. when invoking `arrayInstance.push("foo")`.
+* 明示的に、`new Array<String>()`のように型を記述してコンストラクタを呼び出して適用する。
+* 暗黙に、[型推論](type-system-type-inference)で適用する。例えば、`arrayInstance.push("foo")`を呼び出す。
 
-Inside the definition of a class with type parameters, these type parameters are an unspecific type. Unless [constraints](type-system-type-parameter-constraints) are added, the compiler has to assume that the type parameters could be used with any type. As a consequence, it is not possible to access fields of type parameters or [cast](expression-cast) to a type parameter type. It is also not possible to create a new instance of a type parameter type, unless the type parameter is [generic](type-system-generic) and constrained accordingly. 
+型パラメータが付くクラスの定義の内部では、その型パラメータは不定の型です。[制約](type-system-type-parameter-constraints)が追加されない限り、コンパイラはその型パラメータはあらゆる型になりうるものと決めつけることになります。その結果、型パラメータの[cast](expression-cast)を使わなければ、その型のフィールドにアクセスできなくなります。また、[ジェネリック](type-system-generic)にして適切な制約をつけない限り、その型パラメータの型のインスタンスを新しく生成することもできません。
 
-The following table shows where type parameters are allowed:
+以下は、型パラメータが使用できる場所についての表です。
 
-Parameter on  | Bound upon  | Notes 
+パラメータが付く場所  | 型を適用する場所  | 備考 
  --- | --- | ---
-Class  | instantiation  | Can also be bound upon member field access. 
-Enum  | instantiation  | 
-Enum Constructor  | instantiation  | 
-Function  | invocation  | Allowed for methods and named local lvalue functions. 
-Structure  | instantiation  | 
+Class  | インスタンス作成時  | メンバフィールドにアクセスする際に型を適用することもできる 
+Enum  | インスタンス作成時  | 
+Enumコンストラクタ  | インスタンス作成時  | 
+関数  | 呼び出し時  | メソッドと名前付きのローカル関数で利用可能
+構造体  | インスタンス作成時  | 
  
 
-With function type parameters being bound upon invocation, such a type parameter (if unconstrained) accepts any type. However, only one type per invocation is accepted. This can be utilized if a function has multiple arguments:
+関数の型パラメータは呼び出し時に適用される、この型パラメータは（制約をつけない限り）あらゆる型を許容します。しかし、一回の呼び出しにつき適用は1つの型のみ可能です。このことは関数が複数の引数を持つ場合に役立ちます。
 
 ```haxe
 class FunctionTypeParameter {
@@ -1504,16 +1550,16 @@ class FunctionTypeParameter {
 }
 ```
 
-Both arguments `expected` and `actual` of the `equals` function have type `T`. This implies that for each invocation of `equals` the two arguments must be of the same type. The compiler admits the first call (both arguments being of `Int`) and the second call (both arguments being of `String`) but the third attempt causes a compiler error.
+`equals`関数の`expected`と`actual`の引数両方が、`T`型になっています。これは`equals`の呼び出しで2つの引数の型が同じでなければならないことを表しています。コンパイラは最初(両方の引数が`Int`型)と2つめ(両方の引数が`String`型)の呼び出しは認めていますが、3つ目の呼び出しはコンパイルエラーにします。
 
-> ##### Trivia: Type parameters in expression syntax
+> ##### Trivia: 式の構文内での型パラメータ
 >
-> We often get the question why a method with type parameters cannot be called as `method<String>(x)`. The error messages the compiler gives are not very helpful. However, there is a simple reason for that: The above code is parsed as if both `<` and `>` were binary operators, yielding `(method < String) > (x)`.
+> なぜ、`method<String>(x)`のようにメソッドに型パラメータをつけた呼び出しができないのか？という質問をよくいただきます。このときのエラーメッセージはあまり参考になりませんが、これには単純な理由があります。それは、このコードでは、`<`と`>`の両方が2項演算子として構文解析されて、`(method < String) > (x)`と見なされるからです。
 
 <a id="type-system-type-parameter-constraints"></a>
-## 3.2.1 Constraints
+## 3.2.1 制約
 
-Type parameters can be constrained to multiple types:
+型パラメータは複数の型で制約を与えることができます。
 
 ```haxe
 typedef Measurable = {
@@ -1534,19 +1580,20 @@ class Constraints {
   }
 }
 ```
-Type parameter `T` of method `test` is constrained to the types `Iterable<String>` and `Measurable`. The latter is defined using a [typedef](type-system-typedef) for convenience and requires compatible types to have a read-only [property](class-field-property) named `length` of type `Int`. The constraints then say that a type is compatible if
 
-* it is compatible with `Iterable<String>` and
-* has a `length`-property of type `Int`.
+`test`メソッドの型パラメータ`T`は、`Iterable<String>`と`Measurable`の型に制約されます。`Measurable`の方は、便宜上[typedef](type-system-typedef)を使って、`Int`型の読み込み専用[プロパティ](class-field-property)`length`を要求しています。つまり、以下の条件を満たせば、これらの制約と矛盾しません。
 
-We can see that invoking `test` with an empty array in line 7 and an `Array<String>` in line 8 works fine. This is because `Array` has both a `length`-property and an `iterator`-method. However, passing a `String` as argument in line 9 fails the constraint check because `String` is not compatible with `Iterable<T>`.
+* `Iterable<String>`である
+* かつ、`Int`型の`length`を持つ
+
+7行目では空の配列で、8行目では`Array<String>`で`test`関数を呼び出すことができることを確認しました。しかし、10行目の`String`の引数では制約チェックで失敗しています。これは、`String`は`Iterable<T>`と矛盾するからです。
 
 <a id="type-system-generic"></a>
-## 3.3 Generic
+## 3.3 ジェネリック
 
-Usually, the Haxe Compiler generates only a single class or function even if it has type parameters. This results in a natural abstraction where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks which can be detrimental to performance.
+大抵の場合、Haxeコンパイラは型パラメータが付けられていた場合でも、1つのクラスや関数を生成します。これにより自然な抽象化が行われて、ターゲット言語のコードジェネレータは出力先の型パラメータはあらゆる型になりえると思い込むことになります。つまり、生成されたコードで型チェックが働き、動作が邪魔されることがあります。
 
-A class or function can be made **generic** by attributing it with the `:generic` [metadata](lf-metadata). This causes the compiler to emit a distinct class/function per type parameter combination with mangled names. A specification like this can yield a boost in performance-critical code portions on [static targets](dictionary.md-define-static-target) at the cost of a larger output size:
+クラスや関数は、`:generic` [メタデータ](lf-metadata)で**ジェネリック**属性をつけることで一般化することができます。これにより、コンパイラは型パラメータの組み合わせごとのクラスまたは関数を修飾された名前で書き出します。このような設計により[静的ターゲット](dictionary.md-define-static-target)のパフォーマンスに直結するコード部位では、出力サイズの巨大化と引き換えに、速度を得られます。
 
 ```haxe
 @:generic
@@ -1566,7 +1613,7 @@ class Main {
 
 ```
 
-It seems unusual to see the explicit type `MyArray<String>` here as we usually let [type inference](type-system-type-inference) deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The Javascript output shows the result:
+あまり使わない明示的な`MyArray<String>`の型宣言があり、よく使う[型推論](type-system-type-inference)であつかっていますが、これが重要です。コンパイラは、コンストラクタの呼び出し時にジェネリッククラスの正確な型な型を知っている必要があります。このJavaScript出力は以下のような結果になります。
 
 ```haxe
 (function () { "use strict";
@@ -1585,7 +1632,7 @@ Test.main();
 })();
 ```
 
-We can identify that `MyArray<String>` and `MyArray<Int>` have become `MyArray_String` and `MyArray_Int` respectively. This is similar for generic functions:
+`MyArray<String>`と`MyArray<Int>`は、それぞれ`MyArray_String`と`MyArray_Int`になっています。これはジェネリック関数でも同じです。
 
 ```haxe
 class Main {
@@ -1598,7 +1645,7 @@ class Main {
 }
 ```
 
-Again, the Javascript output makes it obvious:
+JavaScript出力を見れば明白です。
 
 ```haxe
 (function () { "use strict";
@@ -1616,13 +1663,13 @@ Main.main();
 ```
 
 <a id="type-system-generic-type-parameter-construction"></a>
-## 3.3.1 Construction of generic type parameters
+## 3.3.1 ジェネリック型パラメータのコンストラクト
 
-> ##### Define: Generic Type Parameter
+> ##### Define: ジェネリック型パラメータ
 >
-> A type parameter is said to be generic if its containing class or method is generic.
+> 型パラメータを持っているクラスまたはメソッドがジェネリックであるとき、その型パラメータもジェネリックであるという。
 
-It is not possible to construct normal type parameters, e.g. `new T()` is a compiler error. The reason for this is that Haxe generates only a single function and the construct makes no sense in that case. This is different when the type parameter is generic: Since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the `T` `new T()` with the real type.
+普通の型パラメータでは、`new T()`のようにその型をコンストラクトすることはできません。これは、Haxeが1つの関数を生成するために、そのコンストラクトが意味をなさないからです。しかし、型パラメータがジェネリックの場合は違います。これは、コンパイラはすべての型パラメータの組み合わせに対して別々の関数を生成しています。このため`new T()`の`T`を実際の型に置き換えることができます。
 
 ```haxe
 typedef Constructible = {
@@ -1642,12 +1689,12 @@ class Main {
 }
 ```
 
-It should be noted that [top-down inference](type-system-top-down-inference) is used here to determine the actual type of `T`. There are two requirements for this kind of type parameter construction to work: The constructed type parameter must be
+ここでは、`T`の実際の型の決定は、[トップダウンの推論](type-system-top-down-inference)で行われることに注意してください。この方法での型パラメータのコンストラクトを行うには2つの必須事項があります。
 
-1. generic and
-2. be explicitly [constrained](type-system-type-parameter-constraints) to having a [constructor](types-class-constructor).
+1. ジェネリックであること
+2. 明示的に、[コンストラクタ](types-class-constructor)を持つように[制約](type-system-type-parameter-constraints)されていること
 
-Here, 1. is given by `make` having the `@:generic` metadata, and 2. by `T` being constrained to `Constructible`. The constraint holds for both `String` and `haxe.Template` as both have a constructor accepting a singular `String` argument. Sure enough, the relevant Javascript output looks as expected:
+先ほどの例は、1つ目は`make`が`@:generic`メタデータを持っており、2つ目`T`が`Constructible`に制約されています。`String`と`haxe.Template`の両方とも1つ`String`の引数のコンストラクタを持つのでこの制約に当てはまります。確かにJavascript出力は予測通りのものになっています。
 
 ```haxe
 var Main = function() { }
@@ -1665,9 +1712,9 @@ Main.main = function() {
 ```
 
 <a id="type-system-variance"></a>
-## 3.4 Variance
+## 3.4 変性(バリアンス)
 
-While variance is also relevant in other places, it occurs particularly often with type parameters and comes as a surprise in this context. Additionally, it is very easy to trigger variance errors:
+変性とは他のものとの関連を表すもので、特に型パラメータに関するものが連想されます。そして、この文脈では驚くようなことがよく起こります。変性のエラーを起こすことはとても簡単です。
 
 ```haxe
 class Base {
@@ -1687,7 +1734,7 @@ class Main {
 }
 ```
 
-Apparently, an `Array<Child>` cannot be assigned to an `Array<Base>`, even though `Child` can be assigned to `Base`. The reason for this might be somewhat unexpected: It is not allowed because arrays can be written to, e.g. via their `push()` method. It is easy to generate problems by ignoring variance errors:
+見てわかるとおり、`Child`は`Base`に代入できるにもかかわらず、`Array<Child>`を`Array<Base>`に代入することはできません。この理由は少々予想外のものかもしれません。それはこの配列への書き込みが可能だからです。例えば、`push()`メソッドです。この変性のエラーを無視してしまうことは簡単です。
 
 ```haxe
 class Base {
@@ -1711,9 +1758,9 @@ class Main {
 }
 ```
 
-Here we subvert the type checker by using a [cast](expression-cast), thus allowing the assignment after the commented line. With that we hold a reference `bases` to the original array, typed as `Array<Base>`. This allows pushing another type compatible with `Base` (`OtherChild`) onto that array. However, our original reference `children` is still of type `Array<Child>` and things go bad when we encounter the `OtherChild` instance in one of its elements while iterating.
+[cast](expression-cast)を使って型チェッカーを破壊して、12行目の代入を可能にしてしまっています。`bases`は元々の配列への参照を持っており、`Array<Base>`の型付けをされています。このため、`Base`に適合する別の型の`OtherChild`を配列に追加できます。しかし、元々の`children`の参照は`Array<Child>`のままです。そのため良くないことに繰り返し処理の中で`OtherChild`のインスタンスに出くわします。
 
-If `Array` had no `push()` method and no other means of modification, the assignment would be safe because no incompatible type could be added to it. In Haxe, we can achieve this by restricting the type accordingly using [structural subtyping](type-system-structural-subtyping):
+もし`Array`が`push()`メソッドを持っておらず、他の編集方法も無かったならば、適合しない型を追加することができなくなるのでこの代入は安全になります。Haxeでは[構造的部分型付け](type-system-structural-subtyping)を使って型を適切に制限することでこれを実現できます。
 
 ```haxe
 class Base {
@@ -1734,26 +1781,26 @@ class Main {
 }
 ```
 
-We can safely assign with `b` being typed as `MyArray<Base>` and `MyArray` only having a `pop()` method. There is no method defined on `MyArray` which could be used to add incompatible types, it is thus said to be **covariant**.
+`b`は`MyArray<Base>`として型付けされており、`MyArray`は`pop()`メソッドしか持たないため、安全に代入することができます。`MyArray`には適合しない型を追加できるメソッドを持っておらず、このことは**共変性**と呼ばれます。
 
-> ##### Define: Covariance
+> ##### Define: 共変性
 >
-> A [compound type](dictionary.md-define-compound-type) is considered covariant if its component types can be assigned to less specific components, i.e. if they are only read, but never written.
+> [複合型](dictionary.md-define-compound-type)がそれを構成する型よりも一般な型で構成される複合型に代入できる場合に、共変であるという。 つまり、読み込みのみが許されて書き込みができない場合です。
 
-> ##### Define: Contravariance
+> ##### Define: 反変性
 >
-> A [compound type](dictionary.md-define-compound-type) is considered contravariant if its component types can be assigned to less generic components, i.e. if they are only written, but never read.
+> [複合型](dictionary.md-define-compound-type)がそれを構成する型よりも特殊な型で構成される複合型に代入できる場合に、反変であるという。 つまり、書き込みのみが許されて読み込みができない場合です。
 
 <a id="type-system-unification"></a>
-## 3.5 Unification
+## 3.5 単一化(ユニフィケーション)
 
-Unification is the heart of the type system and contributes immensely to the robustness of Haxe programs. It describes the process of checking if a type is compatible to another type.
+単一化は型システムの要であり、Haxeの堅牢さに大きく貢献しています。この節ではある型が他の型と適合するかどうかをチェックする過程を説明していきます。
 
-> ##### Define: Unification
+> ##### Define: 単一化
 >
-> Unification between two types A and B is a directional process which answers the question if A **can be assigned to** B. It may **mutate** either type if it is or has a [monomorph](types-monomorph).
+> 型Aの型Bでの単一化というのは、AがBに代入可能かを調べる指向性を持つプロセスです。型が[単相](types-monomorph)の場合または単相を含む場合は、それを変化させることができます。
 
-Unification errors are very easy to trigger:
+単一化のエラーは簡単に起こすことができます。
 
 ```haxe
 class Main {
@@ -1763,75 +1810,75 @@ class Main {
 	}
 }
 ```
-We try to assign a value of type `Int` to a variable of type `String`, which causes the compiler to try and **unify Int with String**. This is, of course, not allowed and makes the compiler emit the error `Int should be String`.
 
-In this particular case, the unification is triggered by an **assignment**, a context in which the "is assignable to" definition is intuitive. It is one of several cases where unification is performed:
+`Int`型の値を`String`型の変数に代入しようとしたので、コンパイラは**IntをStringで単一化**しようと試みます。これはもちろん許可されておらず、コンパイラは`"Int should be String"`というエラーを出力します。
 
-* Assignment: If `a` is assigned to `b`, the type of `a` is unified with the type of `b`.
-* Function call: We have briefly seen this one while introducing the [function](types-function) type. In general, the compiler tries to unify the first given argument type with the first expected argument type, the second given argument type with the second expected argument type and so on until all argument types are handled.
-* Function return: Whenever a function has a `return e` expression, the type of `e` is unified with the function return type. If the function has no explicit return type, it is inferred to the type of `e` and subsequent `return` expressions are inferred against it.
-* Array declaration: The compiler tries to find a minimal type between all given types in an array declaration. Refer to [Common Base Type](type-system-unification-common-base-type) for details.
-* Object declaration: If an object is declared "against" a given type, the compiler unifies each given field type with each expected field type.
-* Operator unification: Certain operators expect certain types which the given types are unified against. For instance, the expression `a && b` unifies both `a` and `b` with `Bool` and the expression `a == b` unifies `a` with `b`.
+このケースでは単一化は**代入**によって引き起こされており、この文脈は「代入可能」という定義に対して直感的です。ただ、これは単一化が働くケースのうちの1つでしかありません。
+
+* 代入: `a`が`b`に代入された場合、`a`の型は`b`で単一化されます。
+* 関数呼び出し: [関数](types-function)の型の紹介ですでに触れています。一般的に言うと、コンパイラは渡された最初の引数の型を要求される最初の引数の型で単一化し、渡された二番目の引数の型を要求される二番目の引数の型で単一化するということを、すべての引数で行います。
+* 関数のreturn: 関数が`return e`の式をもつ場合は常に`e`の型は関数の戻り値の型で単一化されます。もし関数の戻り値の型が明示されていなければ、`e`の型に型推論されて、それ以降の`return`式は`e`の型に推論されます。
+* 配列の宣言: コンパイラは、配列の宣言では与えられたすべての型に共通する最小の型を見つけようとします。詳細は[共通の基底型](type-system-unification-common-base-type)を参照してください。
+* オブジェクトの宣言: オブジェクトを指定された型に対して宣言する場合、コンパイラは与えられたフィールドすべての型を要求されるフィールドの型で単一化します。
+* 演算子の単一化: 特定の型を要求する特定の演算子は、与えられた型をその型で単一化します。例えば、`a && b`という式は`a`と`b`両方を`Bool`で単一化します。式`a == b`は`a`を`b`で単一化します。
 
 <a id="type-system-unification-between-classes-and-interfaces"></a>
-## 3.5.1 Between Class/Interface
+## 3.5.1 クラスとインターフェースの単一化
 
-When defining unification behavior between classes, it is important to remember that unification is directional: We can assign a more specialized class (e.g. a child class) to a generic class (e.g. a parent class) but the reverse is not valid.
+クラスの間の単一化について定義を行う場合、単一化が指向性を持つことを心に留めておくべきです。より特殊なクラス(例えば、子クラス)を一般的なクラス(例えば、親クラス)に対して代入することはできますが、逆はできません。
 
-The following assignments are allowed:
+以下のような、代入が許可されます。
 
-* child class to parent class
-* class to implementing interface
-* interface to base interface
+* 子クラスの親クラスへの代入
+* クラスの実装済みのインターフェースへの代入
+* インターフェースの親インターフェースへの代入
 
-These rules are transitive, meaning that a child class can also be assigned to the base class of its base class, an interface its base class implements, the base interface of an implementing interface and so on.
+これらのルールは連結可能です。つまり、子クラスをその親クラスの親クラスへ代入可能であり、さらに親クラスが実装しているインターフェースへ代入可能であり、そのインターフェースの親インターフェースへ代入可能であるということです。
 
 <a id="type-system-structural-subtyping"></a>
-## 3.5.2 Structural Subtyping
+## 3.5.2 構造的部分型付け
 
-> ##### Define: Structural Subtyping
+> ##### Define: 構造的部分型付け
 >
-> Structural subtyping defines an implicit relation between types that have the same structure.
+> 構造的部分型付けは、同じ構造を持つ型の暗黙の関係を示します。
 
-Structural sub-typing in Haxe is allowed when unifying
+Haxeでは構造的部分型付けは、以下の単一化するときに利用可能です。
 
-* a [class](types-class-instance) with a [structure](types-anonymous-structure) and
-* a structure with another structure.
+* [クラス](types-class-instance)を[構造体](types-anonymous-structure)で単一化
+* 構造体を別の構造体で単一化
 
-The following example is part of the `Lambda` class of the [Haxe Standard Library](std):
+以下のサンプルは、[Haxe標準ライブラリ](std)の`Lambda`のクラスの一部です。
 
 ```haxe
 public static function empty<T>(it : Iterable<T>):Bool {
 	return !it.iterator().hasNext();
 }
 ```
-The `empty`-method checks if an `Iterable` has an element. For this purpose, it is not necessary to know anything about the argument type other than the fact that it is considered an iterable. This allows calling the `empty`-method with any type that unifies with `Iterable<T>` which applies to a lot of types in the Haxe Standard Library.
 
-This kind of typing can be very convenient but extensive use may be detrimental to performance on static targets, which  is detailed in [Impact on Performance](types-structure-performance).
+`empty`メソッドは、`Iterable`が要素を持つかをチェックします。この目的では、引数の型について、それが列挙可能(Iterable)であること以外に何も知る必要がありません。Haxe標準ライブラリにはたくさんある`Iterable<T>`で単一化できる型すべてで、これを呼び出すことができるわけです。この種の型付けは非常に便利ですが、静的ターゲットでは大量に使うとパフォーマンスの低下を招くことがあります。詳しくは[パフォーマンスへの影響](types-structure-performance)に書かれています。
 
 <a id="type-system-monomorphs"></a>
-## 3.5.3 Monomorphs
+## 3.5.3 単相
 
-Unification of types having or being a [monomorph](types-monomorph) is detailed in [Type Inference](type-system-type-inference).
+[単相](types-monomorph)である、あるいは単相を含む型についての単一化は[型推論](type-system-type-inference)で詳しくあつかいます。
 
 <a id="type-system-unification-function-return"></a>
-## 3.5.4 Function Return
+## 3.5.4 関数の戻り値
 
-Unification of function return types may involve the [`Void`-type](types-void) and requires a clear definition of what unifies with `Void`. With `Void` describing the absence of a type, it is not assignable to any other type, not even `Dynamic`. This means that if a function is explicitly declared as returning `Dynamic`, it cannot return `Void`.
+関数の戻り値の型の単一化では[`Void`型](types-void)も関連しており、`Void`型での単一化のはっきりとした定義が必要です。`Void`型は型の不在を表し、あらゆる型が代入できません。`Dynamic`でさえも代入できません。つまり、関数が明示的に`Dynamic`を返すと定義されている場合、`Void`を返してはいけません。
 
-The opposite applies as well: If a function declares a return type of `Void`, it cannot return `Dynamic` or any other type. However, this direction of unification is allowed when assigning function types:
+その逆も同じです。関数の戻り値が`Void`であると宣言しているなら、`Dynamic`やその他すべての型は返すことができません。しかし、関数の型を代入する時のこの方向の単一化は許可されています。
 
 ```haxe
 var func:Void->Void = function() return "foo";
 ```
 
-The right-hand function clearly is of type `Void->String`, yet we can assign it to the variable `func` of type `Void->Void`. This is because the compiler can safely assume that the return type is irrelevant, given that it could not be assigned to any non-`Void` type.
+右辺の関数ははっきりと`Void->String`型ですが、これを`Void->Void`型の`func`変数に代入することができます。これはコンパイラが戻り値は無関係だと安全に判断できるからで、その結果`Void`ではないあらゆる型を代入できるようになります。
 
 <a id="type-system-unification-common-base-type"></a>
-## 3.5.5 Common Base Type
+## 3.5.5 共通の基底型
 
-Given a set of multiple types, a **common base type** is a type which all types of the set unify against:
+複数の型の組み合わせが与えられたとき、そのすべての型が**共通の基底型**で単一化されます。
 
 ```haxe
 class Base {
@@ -1848,16 +1895,17 @@ class UnifyMin {
   }
 }
 ```
-Although `Base` is not mentioned, the Haxe Compiler manages to infer it as the common type of `Child1` and `Child2`. The Haxe Compiler employs this kind of unification in the following situations:
 
-* array declarations
+`Base`とは書かれていないにも関わらず、Haxeコンパイラは`Child1`と`Child2`の共通の型として`Base`を推論しています。Haxeコンパイラはこの方法の単一化を以下の場面で採用しています。
+
+* 配列の宣言
 * `if`/`else`
-* cases of a `switch`
+* `switch`のケース
 
 <a id="type-system-type-inference"></a>
-## 3.6 Type Inference
+## 3.6 型推論
 
-The effects of type inference have been seen throughout this document and will continue to be important. A simple example shows type inference at work:
+型推論はこのドキュメントで何度も出てきており、これ以降でも重要です。型推論の動作の簡単なサンプルをお見せします。
 
 ```haxe
 class TypeInference {
@@ -1869,17 +1917,17 @@ class TypeInference {
   }
 }
 ```
-The special construct `$type` was previously mentioned in order to simplify the explanation of the [Function Type](types-function) type, so let us now introduce it officially:
+この特殊な構文`$type`は、[関数](types-function)の型の説明をわかりやすくするためにも使っていました。それではここで公式な説明をしましょう。
 
 > ##### Define: `$type`
 >
-> `$type` is a compile-time mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.
+> `$type`は関数のように呼び出せるコンパイル時の仕組みで、一つの引数を持ちます。コンパイラは引数の式を評価し、そしてその式の型を出力します。
 
-In the example above, the first `$type` prints `Unknown<0>`. This is a [monomorph](types-monomorph), a type that is not yet known. The next line `x = "foo"` assigns a `String` literal to `x`, which causes the [unification](type-system-unification) of the monomorph with `String`. We then see that the type of `x` indeed has changed to `String`.
+上記の例では、最初の`$type`では`Unknown<0>`が表示されます。これは[単相](types-monomorph)で、未知の型です。次の行の`x = "foo"`で定数値の`String`を`x`に代入しており、`String`の単相での[単一化](type-system-unification)が起こります。そして、`x`がこのとき`String`に変わったことがわかります。
 
-Whenever a type other than [Dynamic](types-dynamic) is unified with a monomorph, that monomorph **becomes** that type: it **morphs** into that type. Therefore it cannot morph into a different type afterwards, a property expressed in the **mono** part of its name.
+[ダイナミック](types-dynamic)以外の型が、単相での単一化を行うと単相はその型になります(その型に変形(**morph**)します)。このため、この型はもう別の型には変形できません。これが単相(monomorph)の**mono**の部分です。
 
-Following the rules of unification, type inference can occur in compound types:
+以下が単一化のルールです。型推論は複合型でも起こります。
 
 ```haxe
 class TypeInference2 {
@@ -1891,18 +1939,19 @@ class TypeInference2 {
   }
 }
 ```
-Variable `x` is first initialized to an empty `Array`. At this point we can tell that the type of `x` is an array, but we do not yet know the type of the array elements. Consequentially, the type of `x` is `Array<Unknown<0>>`. It is only after pushing a `String` onto the array that we know the type to be `Array<String>`.
+
+変数`x`は初め空の`Array`で初期化されています。この時点で`x`の型は配列であると言えますが、配列の要素の型については未知です。その結果`x`の型は、`Array<Unknown<0>>`となります。この配列が`Array<String>`だとわかるには、`String`をこの配列にプッシュするだけで十分です。
 
 <a id="type-system-top-down-inference"></a>
-## 3.6.1 Top-down Inference
+## 3.6.1 トップダウンの推論
 
-Most of the time, types are inferred on their own and may then be unified with an expected type. In a few places, however, an expected type may be used to influence inference. We then speak of **top-down inference**.
+多くの場合、ある型はその型で要求される型を推論します。しかし一部では、要求される型で型を推論します。これを**トップダウンの推論**と呼びます。
 
-> ##### Define: Expected Type
+> ##### Define: 要求される型
 >
-> Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is argument to a function call. They can influence typing of that expression through what is called [top-down inference](type-system-top-down-inference).
+> 要求される型は、式の型が式が型付けされるより前にわかっている場合に現れます。例えば、式が関数の呼び出しの引数の場合です。この場合、[トップダウンの推論](type-system-top-down-inference)と呼ばれる方法で、式に型が伝搬します。
 
-A good example are arrays of mixed types. As mentioned in [Dynamic](types-dynamic), the compiler refuses `[1, "foo"]` because it cannot determine an element type. Employing top-down inference, this can be overcome:
+良い例は型の混ざった配列です。[ダイナミック](types-dynamic)で書いた通り、`[1, "foo"]`は要素の型を決定できないので、コンパイラはこれを拒絶します。これはトップダウンの推論を使えば解決します。
 
 ```haxe
 class Main {
@@ -1912,9 +1961,9 @@ class Main {
 }
 ```
 
-Here, the compiler knows while typing `[1, "foo"]` that the expected type is `Array<Dynamic>`, so the element type is `Dynamic`. Instead of the usual unification behavior where the compiler would attempt (and fail) to determine a [common base type](type-system-unification-common-base-type), the individual elements are typed against and unified with `Dynamic`.
+ここでは、`[1, "foo"]`に型付けするとき、要求される型が`Array<Dynamic>`であり、その要素は`Dynamic`であるとわかります。コンパイラが[共通の基底型](type-system-unification-common-base-type)を探す(そして失敗する)通常の単一化の挙動の代わりに、個々の要素が`Dynamic`で単一化され、型付けされます。
 
-We have seen another interesting use of top-down inference when [construction of generic type parameters](type-system-generic-type-parameter-construction) was introduced:
+[ジェネリック型パラメータのコンスラクト](type-system-generic-type-parameter-construction)の紹介で、もう一つトップダウンの推論の面白い利用例を見ています。
 
 ```haxe
 typedef Constructible = {
@@ -1934,50 +1983,52 @@ class Main {
 }
 ```
 
-The explicit types `String` and `haxe.Template` are used here to determine the return type of `make`. This works because the method is invoked as `make()`, so we know the return type will be assigned to the variables. Utilizing this information, it is possible to bind the unknown type `T` to `String` and `haxe.Template` respectively.
+`String`と`haxe.Template`の明示された型が、`make`の戻り値の型の決定に使われています。これは、`make()`の戻り値が変数へ代入されるのがわかっているので動作します。この方法を使うと、未知の型`T`をそれぞれ`String`と`haxe.Template`に紐づけることが可能です。
 
 <a id="type-system-inference-limitations"></a>
-## 3.6.2 Limitations
+## 3.6.2 制限
 
-Type inference saves a lot of manual type hints when working with local variables, but sometimes the type system still needs some help. In fact, it does not even try to infer the type of a [variable](class-field-variable) or [property](class-field-property) field unless it has a direct initialization.
+ローカル変数をあつかう場合、型推論のおかげで多くの手動の型付けを省略できますが、型システムが助けを必要とする場面もあります。実際、[変数フィールド](class-field-variable)や[プロパティ](class-field-property)では、直接の初期化をしていない限りは型推論されません。
 
-There are also some cases involving recursion where type inference has limitations. If a function calls itself recursively while its type is not (completely) known yet, type inference may infer a wrong, too specialized type.
+また、再帰的な関数呼び出しでも型推論が制限される場面があります。型がまだ(完全に)わかっていない場合、型推論が間違って特殊すぎる型を推論する場合があります。
 
 A different kind of limitation involves the readability of code. If type inference is overused it might be difficult to understand parts of a program due to the lack of visible types. This is particularly true for method signatures. It is recommended to find a good balance between type inference and explicit type hints.
 
 <a id="type-system-modules-and-paths"></a>
-## 3.7 Modules and Paths
+## 3.7 モジュールとパス
 
-> ##### Define: Module
+> ##### Define: モジュール
 >
-> All Haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types. A type may be `private`, in which case only its containing module can access it.
+> 
+> すべてのHaxeのコードはモジュールに属しており、パスを使って指定されます。要するに、.hxファイルそれぞれが一つのモジュールを表し、その中にいくつか型を置くことができます。型は`private`にすることが可能で、その場合はその型の属するモジュールからしかアクセスできません。
 
-The distinction of a module and its containing type of the same name is blurry by design. In fact, addressing `haxe.ds.StringMap<Int>` can be considered shorthand for `haxe.ds.StringMap.StringMap<Int>`. The latter version consists of four parts:
+モジュールとそれに含まれる型との区別は意図的に不明瞭です。実際、`haxe.ds.StringMap<Int>`の指定は、`haxe.ds.StringMap.StringMap<Int>`の省略形とも考えられます。後者は4つ部位で構成されています。
 
-1. the package `haxe.ds`
-2. the module name `StringMap`
-3. the type name `StringMap`
-4. the type parameter `Int`
+1. パッケージ `haxe.ds`
+2. モジュール名 `StringMap`
+3. 型名 `StringMap`
+4. 型パラメータ `Int`
 
-If the module and type name are equal, the duplicate can be removed, leading to the `haxe.ds.StringMap<Int>` short version. However, knowing about the extended version helps with understanding how [module sub-types](type-system-module-sub-types) are addressed.
+モジュールと型の名前が同じの場合、重複を取り除くことが可能で、これで`haxe.ds.StringMap<Int>`という省略形が使えます。しかし、長い記述について知っていれば、[モジュールの従属型](type-system-module-sub-types)の指定の仕方の理解しやすくなります。
 
-Paths can be shortened further by using an [import](type-system-import), which typically allows omitting the package part of a path. This may lead to usage of unqualified identifiers, for which understanding the [resolution order](type-system-resolution-order) is required.
+パスは、[import](type-system-import)を使ってパッケージの部分を省略することで、さらに短くすることができます。importの利用は不適切な識別子を作ってしまう場合があるので、[解決順序](type-system-resolution-order)についての理解が必要です。
 
-> ##### Define: Type path
+> ##### Define: 型のパス
 >
-> The (dot-)path to a type consists of the package, the module name and the type name. Its general form is `pack1.pack2.packN.ModuleName.TypeName`.
+> (ドット区切りの)型のパスはパッケージ、モジュール名、型名から成ります。この一般的な形は`pack1.pack2.packN.ModuleName.TypeName`です。
 
 <a id="type-system-module-sub-types"></a>
-## 3.7.1 Module Sub-Types
+## 3.7.1 モジュールの従属型
 
-A module sub-type is a type declared in a module with a different name than that module. This allows a single .hx file to contain multiple types, which can be accessed unqualified from within the module, and by using `package.Module.Type` from other modules:
+モジュール従属型とは、その型を定義しているモジュールの名前と異なる名前の型です。これにより、一つの.hxファイルに複数の型の定義が可能になり、これらの型はモジュール内では無条件でアクセス可能で、ほかのモジュールからも`package.Module.Type`の形式でアクセスできます。
 
 ```haxe
 var e:haxe.macro.Expr.ExprDef;
 ```
 
-Here the sub-type `ExprDef` within module `haxe.macro.Expr` is accessed. 
+ここでは`haxe.macro.Expr`の従属型`ExprDef`にアクセスしています。
 
+従属型の関係は、実行時には影響を与えません。publicの従属型はそのパッケージのメンバーになります。このため、同じパッケージの別々のモジュールで同じ従属型を定義した場合に衝突を起こします。
 The sub-type relation is not reflected at run-time. That is, public sub-types become a member of their containing package, which could lead to conflicts if two modules within the same package tried to define the same sub-type. Naturally, the Haxe compiler detects these cases and reports them accordingly. In the example above `ExprDef` is generated as `haxe.macro.ExprDef`.
 
 Sub-types can also be made private:
@@ -2464,7 +2515,7 @@ class Main {
 }
 ```
 
-Arguments are given by an opening parenthesis `(` after the field name, a comma `,` separated list of argument specifications and a closing parenthesis `)`. Additional information on the argument specification is described in [Function Type](types-function).
+Arguments are given by an opening parenthesis `(` after the field name, a comma `,` separated list of argument specifications and a closing parenthesis `)`. Additional information on the argument specification is described in [関数](types-function).
 
 The example demonstrates how [type inference](type-system-type-inference) can be used for both argument and return types. The method `myFunc` has two arguments but only explicitly gives the type of the first one, `f`, as `String`. The second one, `i`, is not type-hinted and it is left to the compiler to infer its type from calls made to it. Likewise, the return type of the method is inferred from the `return true` expression as `Bool`.
 
@@ -3201,27 +3252,170 @@ This has the usual effect of both operations such as the given type being used a
 <a id="lf"></a>
 ## 6 Language Features
 
-6.1: [Conditional Compilation](lf-condition-compilation)
+**[Abstract types](types-abstract):**
 
-6.2: [Externs](lf-externs)
+An abstract type is a compile-time construct which is represented in a different way at runtime. This allows giving a whole new meaning to existing types.
 
-6.3: [Static Extension](lf-static-extension)
+**[Extern classes](lf-externs):**
 
-6.4: [Pattern Matching](lf-pattern-matching)
+Externs can be used to describe target-specific interaction in a type-safe manner.
 
-6.5: [String Interpolation](lf-string-interpolation)
+**[Anonymous structures](types-anonymous-structure):**
 
-6.6: [Array Comprehension](lf-array-comprehension)
+Data can easily be grouped in anonymous structures, minimizing the necessity of small data classes.
 
-6.7: [Iterators](lf-iterators)
+```haxe
+var point = { x: 0, y: 10 };
+point.x += 10;
+```
 
-6.8: [Function Bindings](lf-function-bindings)
+**[Array Comprehension](lf-array-comprehension):**
 
-6.9: [Metadata](lf-metadata)
+Create and populate arrays quickly using for loops and logic.
 
-6.10: [Access Control](lf-access-control)
+```haxe
+var evenNumbers = [ for (i in 0...100) if (i%2==0) i ];
+```
 
-6.11: [Inline constructors](lf-inline-constructor)
+**[Classes, interfaces and inheritance](types-class-instance):**
+
+Haxe allows structuring code in classes, making it an object-oriented language. Common related features known from languages such as Java are supported, including inheritance and interfaces.
+
+**[Conditional compilation](lf-condition-compilation):**
+
+Conditional Compilation allows compiling specific code depending on compilation parameters. This is instrumental for abstracting target-specific differences, but can also be used for other purposes, such as more detailed debugging.
+
+```haxe
+#if js
+    js.Lib.alert("Hello");
+#elseif sys
+    Sys.println("Hello");
+#end
+```
+
+**[(Generalized) Algebraic Data Types](types-enum-instance):**
+
+Structure can be expressed through algebraic data types (ADT), which are known as enums in the Haxe Language. Furthermore, Haxe supports their generalized variant known as GADT.
+
+```haxe
+enum Result {
+    Success(data:Array<Int>);
+    UserError(msg:String);
+    SystemError(msg:String, position:PosInfos);
+}
+```
+
+**[Inlined calls](class-field-inline):**
+
+Functions can be designed as being inline, allowing their code to be inserted at call-site. This can yield significant performance benefits without resorting to code duplication via manual inlining.
+
+**[Iterators](lf-iterators):**
+
+Iterating over a set of values, e.g. the elements of an array, is very easy in Haxe courtesy of iterators. Custom classes can quickly implement iterator functionality to allow iteration.
+
+```haxe
+for (i in [1, 2, 3]) {
+    trace(i);
+}
+```
+
+**[Local functions and closures](expression-function):**
+
+Functions in Haxe are not limited to class fields and can be declared in expressions as well, allowing powerful closures.
+
+```haxe
+var buffer = "";
+function append(s:String) {
+    buffer += s;
+}
+append("foo");
+append("bar");
+trace(buffer); // foobar
+```
+
+**[Metadata](lf-metadata):**
+
+Add metadata to fields, classes or expressions. This can communicate information to the compiler, macros, or runtime classes.
+
+```haxe
+class MyClass {
+    @range(1, 8) var value:Int;
+}
+trace(haxe.rtti.Meta.getFields(MyClass).value.range); // [1,8]
+```
+
+**[Static Extensions](lf-static-extension):**
+
+Existing classes and other types can be augmented with additional functionality through using static extensions.
+
+```haxe
+using StringTools;
+"  Me & You    ".trim().htmlEscape();
+```
+
+**[String Interpolation](lf-string-interpolation):**
+
+Strings declared with a single quotes are able to access variables in the current context.
+
+```haxe
+trace('My name is $name and I work in ${job.industry}');
+```
+
+**[Partial function application](lf-function-bindings):** 
+
+Any function can be applied partially, providing the values of some arguments and leaving the rest to be filled in later.
+
+```haxe
+var map = new haxe.ds.IntMap();
+var setToTwelve = map.set.bind(_, 12);
+setToTwelve(1);
+setToTwelve(2);
+```
+
+**[Pattern Matching](lf-pattern-matching):** 
+
+Complex structures can be matched against patterns, extracting information from an enum or a structure and defining specific operations for specific value combination.
+
+```haxe
+var a = { foo: 12 };
+switch (a) {
+    case { foo: i }: trace(i);
+    default:
+}
+```
+
+**[Properties](class-field-property):**
+
+Variable class fields can be designed as properties with custom read and write access, allowing fine grained access control.
+```haxe
+public var color(get,set);
+function get_color() {
+    return element.style.backgroundColor;
+}
+function set_color(c:String) {
+    trace('Setting background of element to $c');
+    return element.style.backgroundColor = c;
+}
+```
+
+**[Access control](lf-access-control):**
+
+The access control language feature uses the Haxe metadata syntax to force or allow access classes or fields.
+
+**[Type Parameters, Constraints and Variance](type-system-type-parameters):**
+
+Types can be parametrized with type parameters, allowing typed containers and other complex data structures. Type parameters can also be constrained to certain types and respect variance rules.
+
+```haxe
+class Main<A> {
+    static function main() {
+        new Main<String>("foo");
+        new Main(12); // use type inference
+    }
+
+    function new(a:A) { }
+}
+```
 
 <a id="lf-condition-compilation"></a>
 ## 6.1 Conditional Compilation
@@ -3448,7 +3642,7 @@ Clearly, `Int` does not natively provide a `triple` method, yet this program com
 
 Static extensions are usually considered syntactic sugar and indeed they are, but it is worth noting that they can have a dramatic effect on code readability: Instead of nested calls in the form of `f1(f2(f3(f4(x))))`, chained calls in the form of `x.f4().f3().f2().f1()` can be used.
 
-Following the rules previously described in [Resolution Order](type-system-resolution-order), multiple `using` expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see [Modules and Paths](type-system-modules-and-paths)) as static extension brings all its types into context.
+Following the rules previously described in [Resolution Order](type-system-resolution-order), multiple `using` expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see [モジュールとパス](type-system-modules-and-paths)) as static extension brings all its types into context.
 
 <a id="lf-static-extension-in-std"></a>
 ## 6.3.1 In the Haxe Standard Library
@@ -4241,9 +4435,9 @@ The second question usually comes down to providing an argument specifying the d
 
 Starting from Haxe 3.0, you can get the list of defined compiler metadata by running `haxe --help-metas`
 
-##### Global metatags
+##### Global metadata
  
- Metatag  |  Description   |  Platform 
+ Metadata  |  Description   |  Platform 
  --- | --- | ---
 @:abstract  |  Sets the underlying class implementation as [abstract type](types-abstract)   |  cs  java 
 @:access _(Target path)_   |   Forces private access to package  type or field,  see [Access Control](lf-access-control)   |  all 
@@ -5609,7 +5803,7 @@ class Main {
 
 ```
 
-`haxe.ds.Vector` is implemented as an abstract type ([Abstract](types-abstract)) over a native array implementation for given target and can be faster for fixed-size collections, because the memory for storing its elements is pre-allocated.
+`haxe.ds.Vector` is implemented as an abstract type ([抽象型(abstract)](types-abstract)) over a native array implementation for given target and can be faster for fixed-size collections, because the memory for storing its elements is pre-allocated.
 
 <a id="std-List"></a>
 ## 10.2.3 List
@@ -5657,7 +5851,7 @@ class GenericStackExample {
 > ##### Trivia: FastList
 >
 > In Haxe 2, the GenericStack class was known as FastList.  Since its behavior more closely resembled a typical stack, the name was changed for Haxe 3.
-The **Generic** in `GenericStack` is literal.  It is attributed with the `:generic` metadata.  Depending on the target, this can lead to improved performance on static targets.  See [Generic](type-system-generic) for more details.
+The **Generic** in `GenericStack` is literal.  It is attributed with the `:generic` metadata.  Depending on the target, this can lead to improved performance on static targets.  See [ジェネリック](type-system-generic) for more details.
 
 <a id="std-Map"></a>
 ## 10.2.5 Map
@@ -5969,7 +6163,7 @@ Regular Expressions are implemented:
 <a id="std-math"></a>
 ## 10.4 Math
 
-Haxe includes a floating point math library for some common mathematical operations. Most of the functions operate on and return `floats`. However, an `Int` can be used where a `Float` is expected, and Haxe also converts `Int` to `Float` during most numeric operations  (see [Numeric Operators](types-numeric-operators) for more details).
+Haxe includes a floating point math library for some common mathematical operations. Most of the functions operate on and return `floats`. However, an `Int` can be used where a `Float` is expected, and Haxe also converts `Int` to `Float` during most numeric operations  (see [数値の演算子](types-numeric-operators) for more details).
 
 Here are some example uses of the math library.  See the [Math API](http://api.haxe.org/Math.html) for all available functions.
 
@@ -6934,7 +7128,7 @@ The following commands are available:
 
 12.1.2: [Using external Javascript libraries](target-javascript-external-libraries)
 
-12.1.3: [Javascript target Metatags](target-javascript-metatags)
+12.1.3: [Javascript target Metadata](target-javascript-metadata)
 
 12.1.4: [Exposing Haxe classes for Javascript](target-javascript-expose)
 
@@ -7021,7 +7215,7 @@ extern class JQuery implements ArrayAccess<Element> {
 ..
 ```
 
-Note that functions can be overloaded to accept different types of arguments and return values, using the `@:overload` metatag. Function overloading works only in extern classes.
+Note that functions can be overloaded to accept different types of arguments and return values, using the `@:overload` metadata. Function overloading works only in extern classes.
 Using this extern, we can use jQuery like this:
 
 ```haxe
@@ -7059,14 +7253,14 @@ The standard compilation options also provide more Haxe sources to be added to t
 * To add another class path, use `-cp <directory>`.
 * To force a whole package to be included in the project, use `--macro include('mypackage')` which will include all the classes declared in the given package and subpackages.
 
-<a id="target-javascript-metatags"></a>
-## 12.1.3 Javascript target Metatags
+<a id="target-javascript-metadata"></a>
+## 12.1.3 Javascript target Metadata
 
-This is the list of Javascript specific metatags. For more information, see also the complete list of all [Haxe built-in metatags](cr-metadata).
+This is the list of Javascript specific metadata. For more information, see also the complete list of all [Haxe built-in metadata](cr-metadata).
 
-##### Javascript metatags
+##### Javascript metadata
  
- Metatag  |  Description  | Target 
+ Metadata  |  Description  | Target 
  --- | --- | ---
 @:expose _(?Name=Class path)_   |  Makes the class available on the <code>window</code> object or <code>exports</code> for node.js   | js
 
@@ -7184,7 +7378,7 @@ If we need to load custom JavaScript objects in runtime, a `js.Lib.require` func
 
 12.2.3: [Using external Flash libraries](target-flash-external-libraries)
 
-12.2.4: [Flash target Metatags](target-flash-metatags)
+12.2.4: [Flash target Metadata](target-flash-metadata)
 
 <a id="target-flash-getting-started"></a>
 ## 12.2.1 Getting started with Haxe/Flash
@@ -7253,7 +7447,7 @@ To display the output in a browser using the Flash-plugin, create an HTML-docume
 <a id="target-flash-resources"></a>
 ## 12.2.2 Embedding resources
 
-Embedding resources is different in Haxe compared to Actionscript 3. Instead of using `[embed]` (AS3-metatag) use [Flash specific compiler metatags](target-flash-metatags) like `@:bitmap`, `@:font`, `@:sound` or `@:file`.
+Embedding resources is different in Haxe compared to Actionscript 3. Instead of using `[embed]` (AS3-metadata) use [Flash specific compiler metadata](target-flash-metadata) like `@:bitmap`, `@:font`, `@:sound` or `@:file`.
 
 ```haxe
 import flash.Lib;
@@ -7285,14 +7479,14 @@ The standard compilation options also provide more Haxe sources to be added to t
 * To add a [Haxelib library](haxelib) use `-lib <library-name>`.
 * To force a whole package to be included in the project, use `--macro include('mypackage')` which will include all the classes declared in the given package and subpackages.
 
-<a id="target-flash-metatags"></a>
-## 12.2.4 Flash target Metatags
+<a id="target-flash-metadata"></a>
+## 12.2.4 Flash target Metadata
 
-This is the list of Flash specific metatags. For a complete list see [Haxe built-in metatags](cr-metadata).
+This is the list of Flash specific metadata. For a complete list see [Haxe built-in metadata](cr-metadata).
 
-##### Flash metatags
+##### Flash metadata
  
- Metatag  |  Description   |  Target 
+ Metadata  |  Description   |  Target 
  --- | --- | ---
 @:bind   |  Override Swf class declaration   |  flash 
 @:bitmap _(Bitmap file path)_   |  _Embeds given bitmap data into the class (must extend <code>flash.display.BitmapData</code>)    |  flash 

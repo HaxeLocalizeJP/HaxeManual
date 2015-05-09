@@ -1,12 +1,12 @@
-## 3.6.1 Top-down Inference
+## 3.6.1 トップダウンの推論
 
-Most of the time, types are inferred on their own and may then be unified with an expected type. In a few places, however, an expected type may be used to influence inference. We then speak of **top-down inference**.
+多くの場合、ある型はその型で要求される型を推論します。しかし一部では、要求される型で型を推論します。これを**トップダウンの推論**と呼びます。
 
-> ##### Define: Expected Type
+> ##### Define: 要求される型
 >
-> Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is argument to a function call. They can influence typing of that expression through what is called [top-down inference](type-system-top-down-inference.md).
+> 要求される型は、式の型が式が型付けされるより前にわかっている場合に現れます。例えば、式が関数の呼び出しの引数の場合です。この場合、[トップダウンの推論](type-system-top-down-inference.md)と呼ばれる方法で、式に型が伝搬します。
 
-A good example are arrays of mixed types. As mentioned in [ダイナミック](types-dynamic.md), the compiler refuses `[1, "foo"]` because it cannot determine an element type. Employing top-down inference, this can be overcome:
+良い例は型の混ざった配列です。[ダイナミック](types-dynamic.md)で書いた通り、`[1, "foo"]`は要素の型を決定できないので、コンパイラはこれを拒絶します。これはトップダウンの推論を使えば解決します。
 
 ```haxe
 class Main {
@@ -16,9 +16,9 @@ class Main {
 }
 ```
 
-Here, the compiler knows while typing `[1, "foo"]` that the expected type is `Array<Dynamic>`, so the element type is `Dynamic`. Instead of the usual unification behavior where the compiler would attempt (and fail) to determine a [common base type](type-system-unification-common-base-type.md), the individual elements are typed against and unified with `Dynamic`.
+ここでは、`[1, "foo"]`に型付けするとき、要求される型が`Array<Dynamic>`であり、その要素は`Dynamic`であるとわかります。コンパイラが[共通の基底型](type-system-unification-common-base-type.md)を探す(そして失敗する)通常の単一化の挙動の代わりに、個々の要素が`Dynamic`で単一化され、型付けされます。
 
-We have seen another interesting use of top-down inference when [construction of generic type parameters](type-system-generic-type-parameter-construction.md) was introduced:
+[ジェネリック型パラメータのコンスラクト](type-system-generic-type-parameter-construction.md)の紹介で、もう一つトップダウンの推論の面白い利用例を見ています。
 
 ```haxe
 typedef Constructible = {
@@ -38,10 +38,10 @@ class Main {
 }
 ```
 
-The explicit types `String` and `haxe.Template` are used here to determine the return type of `make`. This works because the method is invoked as `make()`, so we know the return type will be assigned to the variables. Utilizing this information, it is possible to bind the unknown type `T` to `String` and `haxe.Template` respectively.
+`String`と`haxe.Template`の明示された型が、`make`の戻り値の型の決定に使われています。これは、`make()`の戻り値が変数へ代入されるのがわかっているので動作します。この方法を使うと、未知の型`T`をそれぞれ`String`と`haxe.Template`に紐づけることが可能です。
 
 ---
 
-Previous section: [Type Inference](type-system-type-inference.md)
+Previous section: [型推論](type-system-type-inference.md)
 
-Next section: [Limitations](type-system-inference-limitations.md)
+Next section: [制限](type-system-inference-limitations.md)

@@ -1,10 +1,6 @@
 ## 3.1.1 拡張
 
-<<<<<<< HEAD:md/manual/type-system-extensions.md
 拡張は、構造体が与えられた型のフィールドすべてと、加えていくつかのフィールドを持っていることを表すために使われます。
-=======
-Extensions are used to express that a structure has all the fields of a given type as well as some additional fields of its own:
->>>>>>> english/master:output/HaxeManual/website/type-system-extensions.md
 
 ```haxe
 typedef IterableWithLength<T> = {

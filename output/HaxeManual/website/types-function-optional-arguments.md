@@ -34,6 +34,6 @@ class OptionalArguments {
 
 ---
 
-Previous section: [関数型](types-function.md)
+Previous section: [関数](types-function.md)
 
 Next section: [デフォルト値](types-function-default-values.md)

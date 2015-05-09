@@ -1,13 +1,14 @@
-## 3.1 Typedef
+## 3.1 typedef
 
-We briefly looked at typedefs while talking about [anonymous structures](types-anonymous-structure.md) and saw how we could shorten a complex [structure type](types-anonymous-structure.md) by giving it a name. This is precisely what typedefs are good for. Giving names to structure types might even be considered their primary use. In fact, it is so common that the distinction appears somewhat blurry and many Haxe users consider typedefs to actually **be** the structure.
+typedefは[匿名構造体](types-anonymous-structure.md)の節で、すでに登場しています。そこでは複雑な構造体の型について名前を与えて簡潔にあつかう方法を見ています。この利用法はtypedefが一体なにに良いのかを的確に表しています。[構造体の型](types-anonymous-structure.md)に対して名前を与えるのは、typedefの主たる用途かもしれません。実際のところ、この用途が一般的すぎて、多くのHaxeユーザーがtypdefを構造体のためのものだと思ってしまっています。
 
-A typedef can give a name to any other type:
+typedefは他のあらゆる型に対して名前を与えることが可能です。
 
 ```haxe
 typedef IA = Array<Int>;
 ```
-This enables us to use `IA` in places where we would normally use `Array<Int>`. While this saves only a few keystrokes in this particular case, it can make a much bigger difference for more complex, compound types. Again, this is why typedef and structures seem so connected:
+
+これにより`Array<Int>`が使われる場所で、代わりに`IA`を使うことが可能になります。この場合、はほんの数回のタイプ数しか減らせませんが、より複雑な複合型の場合は違います。これこそが、typedefと構造体が強く結びついて見える理由です。
 
 ```haxe
 typedef User = {
@@ -15,7 +16,8 @@ typedef User = {
     var name : String;
 }
 ```
-A typedef is not a textual replacement but actually a real type. It can even have [type parameters](type-system-type-parameters.md) as the `Iterable` type from the Haxe Standard Library demonstrates:
+
+typedefはテキスト上の置き換えではなく、実は本物の型です。Haxe標準ライブラリの`Iterable`のように[型パラメータ](type-system-type-parameters.md)を持つことができます。
 
 ```haxe
 typedef Iterable<T> = {
@@ -25,6 +27,6 @@ typedef Iterable<T> = {
 
 ---
 
-Previous section: [Type System](type-system.md)
+Previous section: [型システム](type-system.md)
 
-Next section: [Extensions](type-system-extensions.md)
+Next section: [拡張](type-system-extensions.md)

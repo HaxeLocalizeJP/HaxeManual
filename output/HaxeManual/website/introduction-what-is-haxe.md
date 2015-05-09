@@ -1,12 +1,8 @@
 ## 1.1 Haxeって何?
 
-Haxeはオープンソースの高級プログラミング言語とコンパイラで構成されており、ECMAScriptをもとにした構文で書いたプログラムをさまざまなターゲットの言語へとコンパイルすることを可能にします。適度な抽象化を行うため、複数のターゲットへコンパイル可能な1つのコードベースも作成できます。
+Haxeはオープンソースの高級プログラミング言語とコンパイラで構成されており、ECMAScriptを元にした構文で書いて、さまざまなターゲットの言語へとコンパイルすることを可能です。適度な抽象化を行うため、1つのコードベースから複数のターゲットへコンパイルすることも可能です。
 
-<<<<<<< HEAD:md/manual/introduction-what-is-haxe.md
-Haxeは強く型付けされている一方で、必要に応じて型付けを弱めることも可能です。型情報を活用すれば、ターゲットの言語では実行時にしか発見できないようなエラーをコンパイル時に検出することができます。さらには、ターゲットへの変換時に最適化や堅牢なコードを生成するためにも使用されます。
-=======
-Haxe is strongly typed but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect errors at compile-time which would only be noticeable at run-time in the target language. Furthermore, type information can be used by the target generators to generate optimized and robust code.
->>>>>>> english/master:output/HaxeManual/website/introduction-what-is-haxe.md
+Haxeは強く型付けされている一方で、必要に応じて型付けを弱めることも可能です。型情報を活用すれば、ターゲットの言語では実行時にしか発見できないようなエラーをコンパイル時に検出することができます。さらに型情報は、ターゲットへの変換時に最適化や堅牢なコードを生成するためにも使用されます。
 
 現在、Haxeには9つのターゲット言語があり、さまざまな用途に利用できます。
 
@@ -33,19 +29,11 @@ C#  | ソースコード  | デスクトップ, モバイル, サーバー
 
 [Language Features](lf.md)では、**パターンマッチング**、**文字列補間**、**デッドコード削除**のようなHaxeの詳細の機能について記述しています。ここで、Haxeの言語リファレンスは終わりです。
 
-<<<<<<< HEAD:md/manual/introduction-what-is-haxe.md
-そして、Haxeのコンパイラリファレンスへと続きます。まずは[Compiler Reference](#)で基本的な内容を、そして、[Compiler Features](cr-features.md)で高度な機能をあつかいます。最後に[Macros](macro.md)で、ありふれたタスクを**Haxeマクロ**がどのように単純かするのかを見ながら、刺激的なマクロの世界に挑んでいきます。
-=======
-We continue with the Haxe compiler reference, which first handles the basics in [Compiler Usage](compiler-usage.md) before getting into the advanced features in [Compiler Features](cr-features.md). Finally, we will venture into the exciting land of **haxe macros** in [Macros](macro.md) to see how some common tasks can be greatly simplified.
->>>>>>> english/master:output/HaxeManual/website/introduction-what-is-haxe.md
+そして、Haxeのコンパイラリファレンスへと続きます。まずは[Compiler Usage](compiler-usage.md)で基本的な内容を、そして、[Compiler Features](cr-features.md)で高度な機能をあつかいます。最後に[Macros](macro.md)で、ありふれたタスクを**Haxeマクロ**がどのように単純かするのかを見ながら、刺激的なマクロの世界に挑んでいきます。
 
 次の[Standard Library](std.md)のでは、Haxeの標準ライブラリに含まれる主要な型や概念を一つ一つ見ていきます。そして、[Haxelib](haxelib.md)でHaxeのパッケージマネージャであるHaxelibについて学びます。
 
-<<<<<<< HEAD:md/manual/introduction-what-is-haxe.md
-Haxeは様々なターゲット間の差を吸収してくれますが、場合によってはターゲットを直接的にあつかうことが重要になります。これが、[Target Details](#)の話題です。
-=======
-Haxe abstracts away many target differences, but sometimes it is important to interact with a target directly, which is the subject of [Target Details](target-details.md).
->>>>>>> english/master:output/HaxeManual/website/introduction-what-is-haxe.md
+Haxeは様々なターゲット間の差を吸収してくれますが、場合によってはターゲットを直接的にあつかうことが重要になります。これが、[Target Details](target-details.md)の話題です。
 
 ---
 

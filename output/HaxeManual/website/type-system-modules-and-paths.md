@@ -1,26 +1,27 @@
-## 3.7 Modules and Paths
+## 3.7 モジュールとパス
 
-> ##### Define: Module
+> ##### Define: モジュール
 >
-> All Haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types. A type may be `private`, in which case only its containing module can access it.
+> 
+> すべてのHaxeのコードはモジュールに属しており、パスを使って指定されます。要するに、.hxファイルそれぞれが一つのモジュールを表し、その中にいくつか型を置くことができます。型は`private`にすることが可能で、その場合はその型の属するモジュールからしかアクセスできません。
 
-The distinction of a module and its containing type of the same name is blurry by design. In fact, addressing `haxe.ds.StringMap<Int>` can be considered shorthand for `haxe.ds.StringMap.StringMap<Int>`. The latter version consists of four parts:
+モジュールとそれに含まれる型との区別は意図的に不明瞭です。実際、`haxe.ds.StringMap<Int>`の指定は、`haxe.ds.StringMap.StringMap<Int>`の省略形とも考えられます。後者は4つ部位で構成されています。
 
-1. the package `haxe.ds`
-2. the module name `StringMap`
-3. the type name `StringMap`
-4. the type parameter `Int`
+1. パッケージ `haxe.ds`
+2. モジュール名 `StringMap`
+3. 型名 `StringMap`
+4. 型パラメータ `Int`
 
-If the module and type name are equal, the duplicate can be removed, leading to the `haxe.ds.StringMap<Int>` short version. However, knowing about the extended version helps with understanding how [module sub-types](type-system-module-sub-types.md) are addressed.
+モジュールと型の名前が同じの場合、重複を取り除くことが可能で、これで`haxe.ds.StringMap<Int>`という省略形が使えます。しかし、長い記述について知っていれば、[モジュールの従属型](type-system-module-sub-types.md)の指定の仕方の理解しやすくなります。
 
-Paths can be shortened further by using an [import](type-system-import.md), which typically allows omitting the package part of a path. This may lead to usage of unqualified identifiers, for which understanding the [resolution order](type-system-resolution-order.md) is required.
+パスは、[import](type-system-import.md)を使ってパッケージの部分を省略することで、さらに短くすることができます。importの利用は不適切な識別子を作ってしまう場合があるので、[解決順序](type-system-resolution-order.md)についての理解が必要です。
 
-> ##### Define: Type path
+> ##### Define: 型のパス
 >
-> The (dot-)path to a type consists of the package, the module name and the type name. Its general form is `pack1.pack2.packN.ModuleName.TypeName`.
+> (ドット区切りの)型のパスはパッケージ、モジュール名、型名から成ります。この一般的な形は`pack1.pack2.packN.ModuleName.TypeName`です。
 
 ---
 
-Previous section: [Limitations](type-system-inference-limitations.md)
+Previous section: [制限](type-system-inference-limitations.md)
 
-Next section: [Module Sub-Types](type-system-module-sub-types.md)
+Next section: [モジュールの従属型](type-system-module-sub-types.md)

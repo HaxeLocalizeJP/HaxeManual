@@ -10,15 +10,7 @@ abstract AbstractInt(Int) {
 }
 ```
 
-<<<<<<< HEAD:md/manual/types-abstract.md
 上記のコードからは以下を学ぶことができます。
-=======
-* The keyword `abstract` denotes that we are declaring an abstract type.
-* `AbstractInt` is the name of the abstract and could be anything conforming to the rules for type identifiers.
-* Enclosed in parenthesis `()` is the **underlying type** `Int`.
-* Enclosed in curly braces `{}` are the fields,
-* which are a constructor function `new` accepting one argument `i` of type `Int`.
->>>>>>> english/master:output/HaxeManual/website/types-abstract.md
 
 * `abstract`キーワードは、抽象型を定義することを宣言している。
 * `AbstractInt`は抽象型の名前であり、型の識別子のルールを満たすものなら何でも使える。

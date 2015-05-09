@@ -28,4 +28,4 @@ class UnifyMin {
 
 Previous section: [関数の戻り値](type-system-unification-function-return.md)
 
-Next section: [Type Inference](type-system-type-inference.md)
+Next section: [型推論](type-system-type-inference.md)

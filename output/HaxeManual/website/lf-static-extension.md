@@ -30,7 +30,7 @@ Clearly, `Int` does not natively provide a `triple` method, yet this program com
 
 Static extensions are usually considered syntactic sugar and indeed they are, but it is worth noting that they can have a dramatic effect on code readability: Instead of nested calls in the form of `f1(f2(f3(f4(x))))`, chained calls in the form of `x.f4().f3().f2().f1()` can be used.
 
-Following the rules previously described in [Resolution Order](type-system-resolution-order.md), multiple `using` expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see [Modules and Paths](type-system-modules-and-paths.md)) as static extension brings all its types into context.
+Following the rules previously described in [Resolution Order](type-system-resolution-order.md), multiple `using` expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see [モジュールとパス](type-system-modules-and-paths.md)) as static extension brings all its types into context.
 
 ---
 
