@@ -9,11 +9,7 @@
 
 Haxeはオープンソースの高級プログラミング言語とコンパイラで構成されており、ECMAScript\footnote{http://www.ecma-international.org/publications/standards/Ecma-327.htm}を元にした構文で書いて、さまざまなターゲットの言語へとコンパイルすることを可能です。適度な抽象化を行うため、1つのコードベースから複数のターゲットへコンパイルすることも可能です。
 
-<<<<<<< HEAD:01-introduction.tex
-Haxeは強く型付けされている一方で、必要に応じて型付けを弱めることも可能です。型情報を活用すれば、ターゲットの言語では実行時にしか発見できないようなエラーをコンパイル時に検出することができます。さらには、ターゲットへの変換時に最適化や堅牢なコードを生成するためにも使用されます。
-=======
-Haxe is strongly typed but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect errors at compile-time which would only be noticeable at run-time in the target language. Furthermore, type information can be used by the target generators to generate optimized and robust code.
->>>>>>> english/master:HaxeManual/01-introduction.tex
+Haxeは強く型付けされている一方で、必要に応じて型付けを弱めることも可能です。型情報を活用すれば、ターゲットの言語では実行時にしか発見できないようなエラーをコンパイル時に検出することができます。さらに型情報は、ターゲットへの変換時に最適化や堅牢なコードを生成するためにも使用されます。
 
 現在、Haxeには9つのターゲット言語があり、さまざまな用途に利用できます。
 
@@ -43,11 +39,7 @@ Haxe is strongly typed but the typing system can be subverted where required. Ut
 
 \Fullref{lf}では、\emph{パターンマッチング}、\emph{文字列補間}、\emph{デッドコード削除}のようなHaxeの詳細の機能について記述しています。ここで、Haxeの言語リファレンスは終わりです。
 
-<<<<<<< HEAD:01-introduction.tex
-そして、Haxeのコンパイラリファレンスへと続きます。まずは\Fullref{compiler-reference}で基本的な内容を、そして、\Fullref{cr-features}で高度な機能をあつかいます。最後に\Fullref{macro}で、ありふれたタスクを\emph{Haxeマクロ}がどのように単純かするのかを見ながら、刺激的なマクロの世界に挑んでいきます。
-=======
-We continue with the Haxe compiler reference, which first handles the basics in \Fullref{compiler-usage} before getting into the advanced features in \Fullref{cr-features}. Finally, we will venture into the exciting land of \emph{haxe macros} in \Fullref{macro} to see how some common tasks can be greatly simplified.
->>>>>>> english/master:HaxeManual/01-introduction.tex
+そして、Haxeのコンパイラリファレンスへと続きます。まずは\Fullref{compiler-usage}で基本的な内容を、そして、\Fullref{cr-features}で高度な機能をあつかいます。最後に\Fullref{macro}で、ありふれたタスクを\emph{Haxeマクロ}がどのように単純かするのかを見ながら、刺激的なマクロの世界に挑んでいきます。
 
 次の\Fullref{std}のでは、Haxeの標準ライブラリに含まれる主要な型や概念を一つ一つ見ていきます。そして、\Fullref{haxelib}でHaxeのパッケージマネージャであるHaxelibについて学びます。
 
@@ -110,16 +102,10 @@ Based on a work at \href{https://github.com/HaxeFoundation/HaxeManual}{https://g
 \todo{This generates the following output: too many 'this'. You may like a passive sentence: the following output will be generated...though this is to be avoided, generally}
 
 \begin{itemize}
-<<<<<<< HEAD:01-introduction.tex
 	\item Haxeのコードは\ic{.hx}という拡張子で保存する。
 	\item Haxeのコンパイラはコマンドラインツールであり、\ic{-main HelloWorld}や\ic{--interp}のようなパラメータをつけて呼び出すことができる。
-	\item Haxeのプログラムにはクラスがあり(\type{HelloWorld}、大文字から始まる)、クラスには関数がある(\expr{main}、小文字からはじまる)。
-=======
-	\item Haxe programs are saved in files with an extension of \ic{.hx}.
-	\item The Haxe Compiler is a command-line tool which can be invoked with parameters such as \ic{-main HelloWorld} and \ic{--interp}.
-	\item Haxe programs have classes (\type{HelloWorld}, upper-case), which have functions (\expr{main}, lower-case). 
-	\item The name of the file containing main Haxe class is the same as name of the class itself (in this case \type{HelloWorld.hx}). 
->>>>>>> english/master:HaxeManual/01-introduction.tex
+	\item Haxeのプログラムにはクラスがあり(\type{HelloWorld}、大文字から始まる)、クラスには関数がある(\expr{main}、小文字からはじまる)。 
+	\item Haxeのmainクラスをふくむファイルは、そのクラス名と同じ名前です(この場合だと、\type{HelloWorld.hx})。
 \end{itemize}
 
 \section{歴史}

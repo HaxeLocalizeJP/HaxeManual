@@ -6,11 +6,7 @@ Haxeコンパイラは豊かな型システムを持っており、これがコ�
 いくつかの言語では、この安全性を得るためには各構文での明示的な型の宣言が強いられるので、コストがかかります。
 
 \begin{lstlisting}
-<<<<<<< HEAD:02-types.tex
 var myButton:MySpecialButton = new MySpecialButton(); // AS3
-=======
-var myButton:MySpecialButton = new MySpecialButton(); // As3
->>>>>>> english/master:HaxeManual/02-types.tex
 MySpecialButton* myButton = new MySpecialButton(); // C++ 
 \end{lstlisting}
 
@@ -83,7 +79,6 @@ Haxeでは基本型は\tref{クラス}{types-class-instance}ではありませ�
 \begin{center}
 \begin{tabular}{| l | l | l | l | l |}
 	\hline
-<<<<<<< HEAD:02-types.tex
 	\multicolumn{5}{|c|}{算術演算} \\ \hline
 	演算子 & 演算 & 引数1 & 引数2 & 戻り値 \\ \hline
 	\expr{++} & 1増加 & \type{Int} & なし & \type{Int}\\
@@ -91,15 +86,6 @@ Haxeでは基本型は\tref{クラス}{types-class-instance}ではありませ�
 	\expr{--} & 1減少 & \type{Int} & なし & \type{Int}\\
 	& & \type{Float} & なし & \type{Float}\\
 	\expr{+} & 加算 & \type{Float} & \type{Float} & \type{Float} \\
-=======
-	\multicolumn{5}{|c|}{Arithmetic} \\ \hline
-	Operator & Operation & Operand 1 & Operand 2 & Return \\ \hline
-	\expr{++}& increment & \type{Int} & N/A & \type{Int}\\
-	& & \type{Float} & N/A & \type{Float}\\
-	\expr{--} & decrement & \type{Int} & N/A & \type{Int}\\
-	& & \type{Float} & N/A & \type{Float}\\
-	\expr{+} & addition & \type{Float} & \type{Float} & \type{Float} \\
->>>>>>> english/master:HaxeManual/02-types.tex
 	& & \type{Float} & \type{Int} & \type{Float} \\
 	& & \type{Int} & \type{Float} & \type{Float} \\
 	& & \type{Int} & \type{Int} & \type{Int} \\
@@ -119,7 +105,6 @@ Haxeでは基本型は\tref{クラス}{types-class-instance}ではありませ�
 	& & \type{Float} & \type{Int} & \type{Float} \\
 	& & \type{Int} & \type{Float} & \type{Float} \\
 	& & \type{Int} & \type{Int} & \type{Int} \\	 \hline
-<<<<<<< HEAD:02-types.tex
 	\multicolumn{5}{|c|}{比較演算} \\ \hline
 	演算子 & 演算 & 引数1 & 引数2 & 戻り値 \\ \hline
 	\expr{==} & 等価 & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
@@ -137,25 +122,7 @@ Haxeでは基本型は\tref{クラス}{types-class-instance}ではありませ�
 	\expr{<<} & 左シフト & \type{Int} & \type{Int} & \type{Int} \\
 	\expr{>>} & 右シフト & \type{Int} & \type{Int} & \type{Int} \\
 	\expr{>>>} & 符号なしの右シフト & \type{Int} & \type{Int} & \type{Int} \\ \hline
-=======
 	\multicolumn{5}{|c|}{Comparison} \\ \hline
-	Operator & Operation & Operand 1 & Operand 2 & Return \\ \hline
-	\expr{==} & equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
-	\expr{!=} & not equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
-	\expr{<} & less than & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
-	\expr{<=} & less than or equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
-	\expr{>} & greater than & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
-	\expr{>=} & great than or equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\ \hline
-	\multicolumn{5}{|c|}{Bitwise} \\ \hline
-	Operator & Operation & Operand 1 & Operand 2 & Return \\ \hline
-	\expr{\textasciitilde} & bitwise negation & \type{Int} & N/A & \type{Int} \\	
-	\expr{\&} & bitwise and & \type{Int} & \type{Int} & \type{Int} \\	
-	\expr{|} & bitwise or & \type{Int} & \type{Int} & \type{Int} \\	
-	\expr{\^} & bitwise xor & \type{Int} & \type{Int} & \type{Int} \\	
-	\expr{<<} & shift left & \type{Int} & \type{Int} & \type{Int} \\
-	\expr{>>} & shift right & \type{Int} & \type{Int} & \type{Int} \\
-	\expr{>>>} & unsigned shift right & \type{Int} & \type{Int} & \type{Int} \\ \hline
->>>>>>> english/master:HaxeManual/02-types.tex
 \end{tabular}
 \end{center}
 
@@ -177,13 +144,7 @@ Haxeは、Bool値の2項演算は、実行時に左から右へ必要な分だ�
 これは、以下のような場合に重要です。
 
 \begin{lstlisting}
-<<<<<<< HEAD:02-types.tex
-if (object != null && object.field == 1) {
-  ...
-}
-=======
 if (object != null && object.field == 1) { }
->>>>>>> english/master:HaxeManual/02-types.tex
 \end{lstlisting}
 
 \expr{object}が\expr{null}の場合に\expr{object.field}にアクセスするとランタイムエラーになりますが、事前に\expr{object != null}のチェックをすることでエラーから守ることができます。
@@ -305,12 +266,8 @@ function opt( ?z : Int = -1) {}
 
 また、Haxeにはすべてのクラスと一致する特殊な型があります。
 
-<<<<<<< HEAD:02-types.tex
 \define[Type]{\expr{Class$<$T$>$}}{define-class-t}{
 この型はすべてのクラスの型と一致します。つまり、すべてのクラス(インスタンスではなくクラス)をこれに代入することができます。コンパイル時に、\type{Class<T>}は全てのクラスの型の共通の親の型となります。しかし、この関係性は生成されたコードに影響を与えません。
-=======
-This type is useful when an API requires a value to be \emph{a} class, but not a specific one. This applies to several methods of the \tref{Haxe reflection API}{std-reflection}.}
->>>>>>> english/master:HaxeManual/02-types.tex
 
 この型は、任意のクラスを要求するようなAPIで役立ちます。例えば、\tref{HaxeリフレクションAPI}{std-reflection}のいくつかのメソッドがこれに当てはまります。
 }
@@ -555,13 +512,7 @@ typedef Point = {
 \subsection{パフォーマンスへの影響}
 \label{types-structure-performance}
 
-<<<<<<< HEAD:02-types.tex
 構造体をつかって、さらに\tref{構造的部分型付け}{type-system-structural-subtyping}を使った場合、\tref{動的ターゲット}{define-dynamic-target}ではパフォーマンスに影響はありません。しかし、\tref{静的ターゲット}{define-static-target}では、動的な検査が発生するので通常は静的なフィールドアクセスよりも遅くなります。
-=======
-Using structures and, by extension, \tref{structural subtyping}{type-system-structural-subtyping} has no impact on performance when compiling to \tref{dynamic targets}{define-dynamic-target}. However, on \tref{static targets}{define-static-target} a dynamic lookup has to be performed which is typically slower than a static field access.
->>>>>>> english/master:HaxeManual/02-types.tex
-
-
 
 \section{関数}
 \label{types-function}
@@ -704,19 +655,11 @@ att.income = 0;
 上記のコードからは以下を学ぶことができます。
 
 \begin{itemize}
-<<<<<<< HEAD:02-types.tex
 	\item \expr{abstract}キーワードは、抽象型を定義することを宣言している。
 	\item \type{AbstractInt}は抽象型の名前であり、型の識別子のルールを満たすものなら何でも使える。
 	\item 丸かっこ\expr{()}の中は、その\emph{基底型}の\type{Int}である。
 	\item 中カッコ\expr{$\left\{\right\}$}の中はフィールドで、
 	\item \type{Int}型の\expr{i}のみを引数とするコンストラクタの\expr{new}関数がある。
-=======
-	\item The keyword \expr{abstract} denotes that we are declaring an abstract type.
-	\item \type{AbstractInt} is the name of the abstract and could be anything conforming to the rules for type identifiers.
-	\item Enclosed in parenthesis \expr{()} is the \emph{underlying type} \type{Int}.
-	\item Enclosed in curly braces \expr{$\left\{\right\}$} are the fields,
-	\item which are a constructor function \expr{new} accepting one argument \expr{i} of type \type{Int}.
->>>>>>> english/master:HaxeManual/02-types.tex
 \end{itemize}
 
 \define{基底型}{define-underlying-type}{
@@ -830,19 +773,13 @@ console.log(_AbstractOperatorOverload.
 
 \haxe{assets/AbstractUnopOverload.hx}
 
-<<<<<<< HEAD:02-types.tex
 2項演算子と単項演算子の両方とも、戻り値の型は何でも構いません。
 
-基底型が抽象型でそこで許容されている演算子でかつ戻り値を元の抽象型に代入可能なものについては、\expr{@:op}関数のボディを省略することが可能です。
-=======
 \paragraph{Exposing underlying type operations}
 
-It is also possible to omit the method body of a \expr{@:op} function, but only if the underlying type of the abstract allows the operation in question and if the resulting type can be assigned back to the abstract.
+基底型が抽象型でそこで許容されている演算子でかつ戻り値を元の抽象型に代入可能なものについては、\expr{@:op}関数のボディを省略することが可能です。
 
 \haxe{assets/AbstractExposeTypeOperations.hx}
-
-\todo{please review for correctness}
->>>>>>> english/master:HaxeManual/02-types.tex
 
 \todo{please review for correctness}
 

@@ -3,34 +3,22 @@
 
 私たちは\Fullref{types}の章でさまざまな種類の型について学んできました。ここからはそれらがお互いにどう関連しあっているかを見ていきます。まず、複雑な型に対して名前(別名)を与える仕組みである\tref{Typedef}{type-system-typedef}の紹介から簡単に始めます。typedefは特に、\tref{型パラメータ}{type-system-type-parameters}を持つ型で役に立ちます。
 
-<<<<<<< HEAD:03-type-system.tex
 任意の2つの型について、その上位の型のグループが矛盾しないかをチェックすることで多くの型安全性が得られます。これがコンパイラが試みる\emph{単一化}であり、\Fullref{type-system-unification}の節で詳しく説明します。
-=======
-A lot of type-safety is achieved by checking if two given types of the type groups above are compatible. Meaning, the compiler tries to perform \emph{unification} between them as detailed in \Fullref{type-system-unification}.
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 すべての型は\emph{モジュール}に所属し、\emph{パス}を通して呼び出されます。\Fullref{type-system-modules-and-paths}では、これらに関連した仕組みについて詳しい説明を行います。
 
 \section{typedef}
 \label{type-system-typedef}
 
-<<<<<<< HEAD:03-type-system.tex
-typedefは\tref{匿名構造体}{types-anonymous-structure}の節で、すでに登場しています。そこでは複雑な構造体の型について名前を与えて簡潔にあつかう方法を見ています。この利用法はtypedefが一体なにに良いのかを的確に表しています。構造体の型に対して名前を与えるのは、typedefの主たる用途かもしれません。実際のところ、この用途が一般的すぎて、多くのHaxeユーザーがtypdefを構造体のためのものだと思ってしまっています。
-=======
-We briefly looked at typedefs while talking about \tref{anonymous structures}{types-anonymous-structure} and saw how we could shorten a complex \tref{structure type}{types-anonymous-structure} by giving it a name. This is precisely what typedefs are good for. Giving names to structure types might even be considered their primary use. In fact, it is so common that the distinction appears somewhat blurry and many Haxe users consider typedefs to actually \emph{be} the structure.
->>>>>>> english/master:HaxeManual/03-type-system.tex
+typedefは\tref{匿名構造体}{types-anonymous-structure}の節で、すでに登場しています。そこでは複雑な構造体の型について名前を与えて簡潔にあつかう方法を見ています。この利用法はtypedefが一体なにに良いのかを的確に表しています。\tref{構造体の型}{types-anonymous-structure}に対して名前を与えるのは、typedefの主たる用途かもしれません。実際のところ、この用途が一般的すぎて、多くのHaxeユーザーがtypdefを構造体のためのものだと思ってしまっています。
 
 typedefは他のあらゆる型に対して名前を与えることが可能です。
 
 \begin{lstlisting}
 typedef IA = Array<Int>;
 \end{lstlisting}
-<<<<<<< HEAD:03-type-system.tex
 
 これにより\expr{Array$<$Int$>$}が使われる場所で、代わりに\expr{IA}を使うことが可能になります。この場合、はほんの数回のタイプ数しか減らせませんが、より複雑な複合型の場合は違います。これこそが、typedefと構造体が強く結びついて見える理由です。
-=======
-This enables us to use \expr{IA} in places where we would normally use \expr{Array$<$Int$>$}. While this saves only a few keystrokes in this particular case, it can make a much bigger difference for more complex, compound types. Again, this is why typedef and structures seem so connected:
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 \begin{lstlisting}
 typedef User = {
@@ -38,12 +26,8 @@ typedef User = {
     var name : String;
 }
 \end{lstlisting}
-<<<<<<< HEAD:03-type-system.tex
 
 typedefはテキスト上の置き換えではなく、実は本物の型です。Haxe標準ライブラリの\type{Iterable}のように\tref{型パラメータ}{type-system-type-parameters}を持つことができます。
-=======
-A typedef is not a textual replacement but actually a real type. It can even have \tref{type parameters}{type-system-type-parameters} as the \type{Iterable} type from the Haxe Standard Library demonstrates:
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 \begin{lstlisting}
 typedef Iterable<T> = {
@@ -55,12 +39,8 @@ typedef Iterable<T> = {
 \label{type-system-extensions}
 
 % TODO: move to structures? %
-<<<<<<< HEAD:03-type-system.tex
 
 拡張は、構造体が与えられた型のフィールドすべてと、加えていくつかのフィールドを持っていることを表すために使われます。
-=======
-Extensions are used to express that a structure has all the fields of a given type as well as some additional fields of its own:
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 \haxe{assets/Extension.hx}
 大なりの演算子を使うことで、追加のクラスフィールドを持つ\type{Iterable$<$T$>$}の拡張が作成されました。このケースでは、読み込み専用の\tref{プロパティ}{class-field-property} である\type{Int}型の\expr{length}が要求されます。 
@@ -104,7 +84,6 @@ class Array<T> {
 	構造体 & インスタンス作成時 & \\ \hline
 \end{tabular}
 \end{center}
-<<<<<<< HEAD:03-type-system.tex
 
 関数の型パラメータは呼び出し時に適用される、この型パラメータは（制約をつけない限り）あらゆる型を許容します。しかし、一回の呼び出しにつき適用は1つの型のみ可能です。このことは関数が複数の引数を持つ場合に役立ちます。
 
@@ -113,15 +92,7 @@ class Array<T> {
 \expr{equals}関数の\expr{expected}と\expr{actual}の引数両方が、\type{T}型になっています。これは\expr{equals}の呼び出しで2つの引数の型が同じでなければならないことを表しています。コンパイラは最初(両方の引数が\type{Int}型)と2つめ(両方の引数が\type{String}型)の呼び出しは認めていますが、3つ目の呼び出しはコンパイルエラーにします。
 
 \trivia{式の構文内での型パラメータ}{なぜ、\expr{method<String>(x)}のようにメソッドに型パラメータをつけた呼び出しができないのか？という質問をよくいただきます。このときのエラーメッセージはあまり参考になりませんが、これには単純な理由があります。それは、このコードでは、\expr{<}と\expr{>}の両方が2項演算子として構文解析されて、\expr{(method < String) > (x)}と見なされるからです。}
-=======
-With function type parameters being bound upon invocation, such a type parameter (if unconstrained) accepts any type. However, only one type per invocation is accepted. This can be utilized if a function has multiple arguments:
 
-\haxe{assets/FunctionTypeParameter.hx}
-
-Both arguments \expr{expected} and \expr{actual} of the \expr{equals} function have type \type{T}. This implies that for each invocation of \expr{equals} the two arguments must be of the same type. The compiler admits the first call (both arguments being of \type{Int}) and the second call (both arguments being of \type{String}) but the third attempt causes a compiler error.
-
-\trivia{Type parameters in expression syntax}{We often get the question why a method with type parameters cannot be called as \expr{method<String>(x)}. The error messages the compiler gives are not very helpful. However, there is a simple reason for that: The above code is parsed as if both \expr{<} and \expr{>} were binary operators, yielding \expr{(method < String) > (x)}.}
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 \subsection{制約}
 \label{type-system-type-parameter-constraints}
@@ -136,31 +107,19 @@ Both arguments \expr{expected} and \expr{actual} of the \expr{equals} function h
 	\item \type{Iterable$<$String$>$}である
 	\item かつ、\type{Int}型の\expr{length}を持つ
 \end{itemize}
-<<<<<<< HEAD:03-type-system.tex
-=======
-We can see that invoking \expr{test} with an empty array in line 7 and an \type{Array$<$String$>$} in line 8 works fine. This is because \type{Array} has both a \expr{length}-property and an \expr{iterator}-method. However, passing a \type{String} as argument in line 9 fails the constraint check because \type{String} is not compatible with \type{Iterable$<$T$>$}. 
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 7行目では空の配列で、8行目では\type{Array$<$String$>$}で\expr{test}関数を呼び出すことができることを確認しました。しかし、10行目の\type{String}の引数では制約チェックで失敗しています。これは、\type{String}は\type{Iterable$<$T$>$}と矛盾するからです。
 
 \section{ジェネリック}
 \label{type-system-generic}
 
-<<<<<<< HEAD:03-type-system.tex
 大抵の場合、Haxeコンパイラは型パラメータが付けられていた場合でも、1つのクラスや関数を生成します。これにより自然な抽象化が行われて、ターゲット言語のコードジェネレータは出力先の型パラメータはあらゆる型になりえると思い込むことになります。つまり、生成されたコードで型チェックが働き、動作が邪魔されることがあります。
-=======
-Usually, the Haxe Compiler generates only a single class or function even if it has type parameters. This results in a natural abstraction where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks which can be detrimental to performance.
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 クラスや関数は、\expr{:generic} \tref{メタデータ}{lf-metadata}で\emph{ジェネリック}属性をつけることで一般化することができます。これにより、コンパイラは型パラメータの組み合わせごとのクラスまたは関数を修飾された名前で書き出します。このような設計により\tref{静的ターゲット}{define-static-target}のパフォーマンスに直結するコード部位では、出力サイズの巨大化と引き換えに、速度を得られます。
 
 \haxe{assets/GenericClass.hx}
 
-<<<<<<< HEAD:03-type-system.tex
 あまり使わない明示的な\type{MyArray<String>}の型宣言があり、よく使う\tref{型推論}{type-system-type-inference}であつかっていますが、これが重要です。コンパイラは、コンストラクタの呼び出し時にジェネリッククラスの正確な型な型を知っている必要があります。この\target{JavaScript}出力は以下のような結果になります。
-=======
-It seems unusual to see the explicit type \type{MyArray<String>} here as we usually let \tref{type inference}{type-system-type-inference} deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The \target{Javascript} output shows the result:
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 \begin{lstlisting}
 (function () { "use strict";
@@ -206,19 +165,11 @@ Main.main();
 
 \define{ジェネリック型パラメータ}{define-generic-type-parameter}{型パラメータを持っているクラスまたはメソッドがジェネリックであるとき、その型パラメータもジェネリックであるという。}
 
-<<<<<<< HEAD:03-type-system.tex
 普通の型パラメータでは、\expr{new T()}のようにその型をコンストラクトすることはできません。これは、Haxeが1つの関数を生成するために、そのコンストラクトが意味をなさないからです。しかし、型パラメータがジェネリックの場合は違います。これは、コンパイラはすべての型パラメータの組み合わせに対して別々の関数を生成しています。このため\expr{new T()}の\type{T}を実際の型に置き換えることができます。
 
 \haxe{assets/GenericTypeParameter.hx}
 
 ここでは、\type{T}の実際の型の決定は、\tref{トップダウンの推論}{type-system-top-down-inference}で行われることに注意してください。この方法での型パラメータのコンストラクトを行うには2つの必須事項があります。
-=======
-It is not possible to construct normal type parameters, e.g. \expr{new T()} is a compiler error. The reason for this is that Haxe generates only a single function and the construct makes no sense in that case. This is different when the type parameter is generic: Since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the \type{T} \expr{new T()} with the real type.
-
-\haxe{assets/GenericTypeParameter.hx}
-
-It should be noted that \tref{top-down inference}{type-system-top-down-inference} is used here to determine the actual type of \type{T}. There are two requirements for this kind of type parameter construction to work: The constructed type parameter must be
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 \begin{enumerate}
 	\item ジェネリックであること
@@ -245,11 +196,7 @@ Main.main = function() {
 \section{変性(バリアンス)}
 \label{type-system-variance}
 
-<<<<<<< HEAD:03-type-system.tex
 変性とは他のものとの関連を表すもので、特に型パラメータに関するものが連想されます。そして、この文脈では驚くようなことがよく起こります。変性のエラーを起こすことはとても簡単です。
-=======
-While variance is also relevant in other places, it occurs particularly often with type parameters and comes as a surprise in this context. Additionally, it is very easy to trigger variance errors:
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 \haxe{assets/Variance.hx}
 
@@ -257,27 +204,13 @@ While variance is also relevant in other places, it occurs particularly often wi
 
 \haxe{assets/Variance2.hx}
 
-<<<<<<< HEAD:03-type-system.tex
-ここでは\tref{cast}{expression-cast}を使って型チェッカーを破壊して、12行目の代入を可能にしてしまっています。\expr{bases}は元々の配列への参照を持っており、\type{Array<Base>}の型付けをされています。このため、\type{Base}に適合する別の型の\type{OtherChild}を配列に追加できます。しかし、元々の\expr{children}の参照は\type{Array<Child>}のままです。そのため良くないことに繰り返し処理の中で\type{OtherChild}のインスタンスに出くわします。
+\tref{cast}{expression-cast}を使って型チェッカーを破壊して、12行目の代入を可能にしてしまっています。\expr{bases}は元々の配列への参照を持っており、\type{Array<Base>}の型付けをされています。このため、\type{Base}に適合する別の型の\type{OtherChild}を配列に追加できます。しかし、元々の\expr{children}の参照は\type{Array<Child>}のままです。そのため良くないことに繰り返し処理の中で\type{OtherChild}のインスタンスに出くわします。
 
 もし\type{Array}が\expr{push()}メソッドを持っておらず、他の編集方法も無かったならば、適合しない型を追加することができなくなるのでこの代入は安全になります。Haxeでは\tref{構造的部分型付け}{type-system-structural-subtyping}を使って型を適切に制限することでこれを実現できます。
 
 \haxe{assets/Variance3.hx}
 
 \expr{b}は\type{MyArray<Base>}として型付けされており、\type{MyArray}は\expr{pop()}メソッドしか持たないため、安全に代入することができます。\type{MyArray}には適合しない型を追加できるメソッドを持っておらず、このことは\emph{共変性}と呼ばれます。
-=======
-Here we subvert the type checker by using a \tref{cast}{expression-cast}, thus allowing the assignment after the commented line. With that we hold a reference \expr{bases} to the original array, typed as \type{Array<Base>}. This allows pushing another type compatible with \type{Base} (\type{OtherChild}) onto that array. However, our original reference \expr{children} is still of type \type{Array<Child>} and things go bad when we encounter the \type{OtherChild} instance in one of its elements while iterating.
-
-If \type{Array} had no \expr{push()} method and no other means of modification, the assignment would be safe because no incompatible type could be added to it. In Haxe, we can achieve this by restricting the type accordingly using \tref{structural subtyping}{type-system-structural-subtyping}:
-
-\haxe{assets/Variance3.hx}
-
-We can safely assign with \expr{b} being typed as \type{MyArray<Base>} and \type{MyArray} only having a \expr{pop()} method. There is no method defined on \type{MyArray} which could be used to add incompatible types, it is thus said to be \emph{covariant}.
-
-\define{Covariance}{define-covariance}{A \tref{compound type}{define-compound-type} is considered covariant if its component types can be assigned to less specific components, i.e. if they are only read, but never written.}
-
-\define{Contravariance}{define-contravariance}{A \tref{compound type}{define-compound-type} is considered contravariant if its component types can be assigned to less generic components, i.e. if they are only written, but never read.}
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 \define{共変性}{define-covariance}{\tref{複合型}{define-compound-type}がそれを構成する型よりも一般な型で構成される複合型に代入できる場合に、共変であるという。 つまり、読み込みのみが許されて書き込みができない場合です。}
 
@@ -308,32 +241,19 @@ class Main {
 このケースでは単一化は\emph{代入}によって引き起こされており、この文脈は「代入可能」という定義に対して直感的です。ただ、これは単一化が働くケースのうちの1つでしかありません。
 
 \begin{description}
-<<<<<<< HEAD:03-type-system.tex
 	\item[代入:] \expr{a}が\expr{b}に代入された場合、\expr{a}の型は\expr{b}で単一化されます。
 	\item[関数呼び出し:] \tref{関数}{types-function}の型の紹介ですでに触れています。一般的に言うと、コンパイラは渡された最初の引数の型を要求される最初の引数の型で単一化し、渡された二番目の引数の型を要求される二番目の引数の型で単一化するということを、すべての引数で行います。
 	\item[関数のreturn:] 関数が\expr{return e}の式をもつ場合は常に\expr{e}の型は関数の戻り値の型で単一化されます。もし関数の戻り値の型が明示されていなければ、\expr{e}の型に型推論されて、それ以降の\expr{return}式は\expr{e}の型に推論されます。
 	\item[配列の宣言:] コンパイラは、配列の宣言では与えられたすべての型に共通する最小の型を見つけようとします。詳細は\Fullref{type-system-unification-common-base-type}を参照してください。
 	\item[オブジェクトの宣言:] オブジェクトを指定された型に対して宣言する場合、コンパイラは与えられたフィールドすべての型を要求されるフィールドの型で単一化します。
 	\item[演算子の単一化:] 特定の型を要求する特定の演算子は、与えられた型をその型で単一化します。例えば、\expr{a \&\& b}という式は\expr{a}と\expr{b}両方を\type{Bool}で単一化します。式\expr{a == b}は\expr{a}を\expr{b}で単一化します。
-=======
-	\item[Assignment:] If \expr{a} is assigned to \expr{b}, the type of \expr{a} is unified with the type of \expr{b}.
-	\item[Function call:] We have briefly seen this one while introducing the \tref{function}{types-function} type. In general, the compiler tries to unify the first given argument type with the first expected argument type, the second given argument type with the second expected argument type and so on until all argument types are handled.
-	\item[Function return:] Whenever a function has a \expr{return e} expression, the type of \expr{e} is unified with the function return type. If the function has no explicit return type, it is inferred to the type of \expr{e} and subsequent \expr{return} expressions are inferred against it.
-	\item[Array declaration:] The compiler tries to find a minimal type between all given types in an array declaration. Refer to \Fullref{type-system-unification-common-base-type} for details.
-	\item[Object declaration:] If an object is declared ``against'' a given type, the compiler unifies each given field type with each expected field type.
-	\item[Operator unification:] Certain operators expect certain types which the given types are unified against. For instance, the expression \expr{a \&\& b} unifies both \expr{a} and \expr{b} with \type{Bool} and the expression \expr{a == b} unifies \expr{a} with \expr{b}.
->>>>>>> english/master:HaxeManual/03-type-system.tex
 \end{description}
 
 
 \subsection{クラスとインターフェースの単一化}
 \label{type-system-unification-between-classes-and-interfaces}
 
-<<<<<<< HEAD:03-type-system.tex
 クラスの間の単一化について定義を行う場合、単一化が指向性を持つことを心に留めておくべきです。より特殊なクラス(例えば、子クラス)を一般的なクラス(例えば、親クラス)に対して代入することはできますが、逆はできません。
-=======
-When defining unification behavior between classes, it is important to remember that unification is directional: We can assign a more specialized class (e.g. a child class) to a generic class (e.g. a parent class) but the reverse is not valid.
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 以下のような、代入が許可されます。
 
@@ -352,32 +272,22 @@ When defining unification behavior between classes, it is important to remember 
 
 \define{構造的部分型付け}{define-structural-subtyping}{構造的部分型付けは、同じ構造を持つ型の暗黙の関係を示します。}
 
-<<<<<<< HEAD:03-type-system.tex
-Haxeでは、構造的部分型付けはクラスインスタンスを構造体に代入するときのみ可能です。以下に、\tref{Haxe標準ライブラリ}{std}の\type{Lambda}の一部の例を挙げます。
-=======
-Structural sub-typing in Haxe is allowed when unifying
+Haxeでは構造的部分型付けは、以下の単一化するときに利用可能です。
 
 \begin{itemize}
-	\item a \tref{class}{types-class-instance} with a \tref{structure}{types-anonymous-structure} and
-	\item a structure with another structure.
+	\item \tref{クラス}{types-class-instance}を\tref{構造体}{types-anonymous-structure}で単一化
+	\item 構造体を別の構造体で単一化
 \end{itemize}
 
-The following example is part of the \type{Lambda} class of the \tref{Haxe Standard Library}{std}:
->>>>>>> english/master:HaxeManual/03-type-system.tex
+以下のサンプルは、\tref{Haxe標準ライブラリ}{std}の\type{Lambda}のクラスの一部です。
 
 \begin{lstlisting}
 public static function empty<T>(it : Iterable<T>):Bool {
 	return !it.iterator().hasNext();
 }
 \end{lstlisting}
-<<<<<<< HEAD:03-type-system.tex
 
 \expr{empty}メソッドは、\type{Iterable}が要素を持つかをチェックします。この目的では、引数の型について、それが列挙可能(Iterable)であること以外に何も知る必要がありません。Haxe標準ライブラリにはたくさんある\type{Iterable$<$T$>$}で単一化できる型すべてで、これを呼び出すことができるわけです。この種の型付けは非常に便利ですが、静的ターゲットでは大量に使うとパフォーマンスの低下を招くことがあります。詳しくは\Fullref{types-structure-performance}に書かれています。
-=======
-The \expr{empty}-method checks if an \type{Iterable} has an element. For this purpose, it is not necessary to know anything about the argument type other than the fact that it is considered an iterable. This allows calling the \expr{empty}-method with any type that unifies with \type{Iterable$<$T$>$} which applies to a lot of types in the Haxe Standard Library.
-
-This kind of typing can be very convenient but extensive use may be detrimental to performance on static targets, which  is detailed in \Fullref{types-structure-performance}.
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 
 \subsection{単相}
@@ -388,22 +298,13 @@ This kind of typing can be very convenient but extensive use may be detrimental 
 \subsection{関数の戻り値}
 \label{type-system-unification-function-return}
 
-<<<<<<< HEAD:03-type-system.tex
 関数の戻り値の型の単一化では\tref{\type{Void}型}{types-void}も関連しており、\type{Void}型での単一化のはっきりとした定義が必要です。\type{Void}型は型の不在を表し、あらゆる型が代入できません。\type{Dynamic}でさえも代入できません。つまり、関数が明示的に\type{Dynamic}を返すと定義されている場合、\type{Void}を返してはいけません。
-=======
-Unification of function return types may involve the \tref{\type{Void}-type}{types-void} and requires a clear definition of what unifies with \type{Void}. With \type{Void} describing the absence of a type, it is not assignable to any other type, not even \type{Dynamic}. This means that if a function is explicitly declared as returning \type{Dynamic}, it cannot return \type{Void}.
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 その逆も同じです。関数の戻り値が\type{Void}であると宣言しているなら、\type{Dynamic}やその他すべての型は返すことができません。しかし、関数の型を代入する時のこの方向の単一化は許可されています。
 
 \begin{lstlisting}
 var func:Void->Void = function() return "foo";
 \end{lstlisting}
-<<<<<<< HEAD:03-type-system.tex
-=======
-
-The right-hand function clearly is of type \type{Void->String}, yet we can assign it to the variable \expr{func} of type \type{Void->Void}. This is because the compiler can safely assume that the return type is irrelevant, given that it could not be assigned to any non-\type{Void} type.
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 右辺の関数ははっきりと\type{Void->String}型ですが、これを\type{Void->Void}型の\expr{func}変数に代入することができます。これはコンパイラが戻り値は無関係だと安全に判断できるからで、その結果\type{Void}ではないあらゆる型を代入できるようになります。
 
@@ -429,12 +330,7 @@ The right-hand function clearly is of type \type{Void->String}, yet we can assig
 型推論はこのドキュメントで何度も出てきており、これ以降でも重要です。型推論の動作の簡単なサンプルをお見せします。
 
 \haxe{assets/TypeInference.hx}
-<<<<<<< HEAD:03-type-system.tex
-
 この特殊な構文\expr{\$type}は、\Fullref{types-function}の型の説明をわかりやすくするためにも使っていました。それではここで公式な説明をしましょう。
-=======
-The special construct \expr{\$type} was previously mentioned in order to simplify the explanation of the \Fullref{types-function} type, so let us now introduce it officially:
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 %TODO: $type
 \define[Construct]{\expr{\$type}}{define-dollar-type}{\expr{\$type}は関数のように呼び出せるコンパイル時の仕組みで、一つの引数を持ちます。コンパイラは引数の式を評価し、そしてその式の型を出力します。}
@@ -481,16 +377,12 @@ The special construct \expr{\$type} was previously mentioned in order to simplif
 
 ローカル変数をあつかう場合、型推論のおかげで多くの手動の型付けを省略できますが、型システムが助けを必要とする場面もあります。実際、\tref{変数フィールド}{class-field-variable}や\tref{プロパティ}{class-field-property}では、直接の初期化をしていない限りは型推論されません。
 
-<<<<<<< HEAD:03-type-system.tex
 また、再帰的な関数呼び出しでも型推論が制限される場面があります。型がまだ(完全に)わかっていない場合、型推論が間違って特殊すぎる型を推論する場合があります。
 
-\section{モジュールとパス}
-=======
 A different kind of limitation involves the readability of code. If type inference is overused it might be difficult to understand parts of a program due to the lack of visible types. This is particularly true for method signatures. It is recommended to find a good balance between type inference and explicit type hints.
 
 
-\section{Modules and Paths}
->>>>>>> english/master:HaxeManual/03-type-system.tex
+\section{モジュールとパス}
 \label{type-system-modules-and-paths}
 
 \define{モジュール}{define-module}{
@@ -523,12 +415,8 @@ var e:haxe.macro.Expr.ExprDef;
 
 ここでは\expr{haxe.macro.Expr}の従属型\type{ExprDef}にアクセスしています。
 
-<<<<<<< HEAD:03-type-system.tex
 従属型の関係は、実行時には影響を与えません。publicの従属型はそのパッケージのメンバーになります。このため、同じパッケージの別々のモジュールで同じ従属型を定義した場合に衝突を起こします。
-The sub-type relation is not reflected at runtime. That is, public sub-types become a member of their containing package, which could lead to conflicts if two modules within the same package try to define the same sub-type. Naturally the Haxe compiler detects these cases and reports them accordingly. In the example above, \type{ExprDef} is generated as \type{haxe.macro.ExprDef}.
-=======
 The sub-type relation is not reflected at run-time. That is, public sub-types become a member of their containing package, which could lead to conflicts if two modules within the same package tried to define the same sub-type. Naturally, the Haxe compiler detects these cases and reports them accordingly. In the example above \type{ExprDef} is generated as \type{haxe.macro.ExprDef}.
->>>>>>> english/master:HaxeManual/03-type-system.tex
 
 Sub-types can also be made private:
 
