@@ -5,14 +5,14 @@ This haxe program parses the contents of *HaxeDoc.tex* and generates MarkDown (*
 
 `../md/manual`
 
-The *.md* files are broken out and named by subsection and title 
+The *.md* files are broken out and named by subsection and title
 
 Generating MarkDown
 -------------------
 
 make sure the library hxparse is installed. If not:
 
-`haxelib install hxparse`
+`haxelib git https://github.com/Simn/hxparse.git`
 
 then just run the .hxml file
 
