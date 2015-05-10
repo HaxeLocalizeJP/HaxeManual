@@ -58,3 +58,4 @@ LaTeXのコンパイル時の一時フォルダを消去せずに残します。
 [MuPDF]:http://www.mupdf.com/
 [Source Sans Pro]:http://sourceforge.net/projects/sourcesans.adobe/
 [Source Code Pro]:http://sourceforge.net/projects/sourcecodepro.adobe/
+[IPAフォント]:http://ipafont.ipa.go.jp/ipafont/download.html
