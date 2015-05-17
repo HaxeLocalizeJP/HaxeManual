@@ -10,12 +10,12 @@
 % ...are at home や "the structural part"の日本語訳をもう少し練る予定です
 %So far we have seen how types and Haxe programs in general are structured. This section about class fields concludes the structural part and at the same time bridges to the behavioral part of Haxe. This is because class fields are the place where \tref{expressions}{expression} are at home.
 
-There are three kinds of class fields:
+クラスフィールドには3種類あります:
 
 \begin{description}
-	\item[Variable:] A \tref{variable}{class-field-variable} class field holds a value of a certain type, which can be read or written.
-	\item[Property:] A \tref{property}{class-field-property} class field defines a custom access behavior for something that, outside the class, looks like a variable field.
-	\item[Method:] A \tref{method}{class-field-method} is a function which can be called to execute code.
+	\item[変数:] \tref{変数}{class-field-variable}クラスフィールドにはある型の値が入っていて、参照、または代入することがができます。
+	\item[プロパティ:] \tref{プロパティ}{class-field-property}クラスフィールドはアクセスされた時の独自の動作を定義します。クラスの外からは変数のフィールドのように見えます。
+	\item[メソッド:] A \tref{メソッド}{class-field-method}はコードを実行するために呼び出すことのできる関数です。
 \end{description}
 Strictly speaking, a variable could be considered to be a property with certain access modifiers. Indeed, the Haxe Compiler does not distinguish variables and properties during its typing phase, but they remain separated at syntax level.
 
