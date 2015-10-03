@@ -12,7 +12,7 @@
 <a id="introduction-what-is-haxe"></a>
 ## 1.1 Haxeって何?
 
-Haxeはオープンソースの高級プログラミング言語とコンパイラで構成されており、ECMAScriptを元にした構文で書いて、さまざまなターゲットの言語へとコンパイルすることを可能です。適度な抽象化を行うため、1つのコードベースから複数のターゲットへコンパイルすることも可能です。
+Haxeはオープンソースの高級プログラミング言語とコンパイラから成り、ECMAScriptを元にした構文のコードさまざまなターゲットの言語へとコンパイルすることを可能にします。適度な抽象化を行うため、1つのコードベースから複数のターゲットへコンパイルすることも可能です。
 
 Haxeは強く型付けされている一方で、必要に応じて型付けを弱めることも可能です。型情報を活用すれば、ターゲットの言語では実行時にしか発見できないようなエラーをコンパイル時に検出することができます。さらに型情報は、ターゲットへの変換時に最適化や堅牢なコードを生成するためにも使用されます。
 
@@ -50,7 +50,7 @@ Haxeは様々なターゲット間の差を吸収してくれますが、場合�
 <a id="introduction-about-this-document"></a>
 ## 1.2 このドキュメントについて
 
-このドキュメントは、Haxe3の公式マニュアル（の非公式日本語訳）です。そのため、初心者向けののチュートリアルではなく、プログラミングは教えません。しかし、項目は大まかに前から順番に読めるように並べてあり、前に出てきた項目と、次に出てくる項目との関連づけがされています。先の項目で後の項目でててくる情報に触れた方が説明しやすい場所では、先にその情報に触れています。そのような場面ではリンクがされています。リンク先は、ほとんどの場合で先に読むべき内容ではありません。
+このドキュメントは、Haxe3の公式マニュアル（の日本語訳）です。そのため、初心者向けののチュートリアルではなく、プログラミングは教えません。しかし、項目は大まかに前から順番に読めるように並べてあり、前に出てきた項目と、次に出てくる項目との関連づけがされています。先の項目で後の項目でててくる情報に触れた方が説明しやすい場所では、先にその情報に触れています。そのような場面ではリンクがされています。リンク先は、ほとんどの場合で先に読むべき内容ではありません。
 
 このドキュメントでは、理論的な要素を実物としてつなげるために、たくさんのHaxeのソースコードを使います。これらのコードのほとんどはmain関数を含む完全なコードでありそのままコンパイルが可能ですが、いくつかはそうではなくコードの重要な部分の抜き出しです。
 
@@ -79,7 +79,7 @@ Haxe code here
 <a id="introduction-authors-and-contributions"></a>
 ## 1.2.1 著者と貢献者
 
-このドキュメントの大半の内容は、Haxe Foundationで働くSimon Krajewskiによって書かれました。そして、このドキュメントの貢献者である以下の方々に感謝の意を表します。
+このドキュメントの大半の内容は、Haxe Foundation所属のSimon Krajewskiによって書かれました。そして、このドキュメントの貢献者である以下の方々に感謝の意を表します。
 
 * Dan Korostelev: 追加の内容と編集
 * Caleb Harper: 追加の内容と編集
@@ -88,11 +88,13 @@ Haxe code here
 * Nicolas Cannasse: Haxe創始者
 
 <a id="introduction-license"></a>
-## 1.2.2 License
+## 1.2.2 ライセンス
 
-The Haxe Manual by [Haxe Foundation](http://haxe.org/foundation) is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+[Haxe Foundation](http://haxe.org/foundation)制作のHaxeマニュアルは、[クリエイティブコモンズ 表示-4.0-国際 ライセンス](http://creativecommons.org/licenses/by/4.0/)で提供されています。元データは、[https://github.com/HaxeFoundation/HaxeManual](https://github.com/HaxeFoundation/HaxeManual)で管理されています。
 
-Based on a work at [https://github.com/HaxeFoundation/HaxeManual](https://github.com/HaxeFoundation/HaxeManual).
+###### 日本語訳のライセンス（訳注）
+
+日本語訳も、[クリエイティブコモンズ 表示-4.0-国際 ライセンス](http://creativecommons.org/licenses/by/4.0/)で提供しています。元データは、[https://github.com/HaxeLocalizeJP/HaxeManual](https://github.com/HaxeLocalizeJP/HaxeManual)で管理されています。
 
 <a id="introduction-hello-world"></a>
 ## 1.3 Hello World
@@ -112,7 +114,7 @@ class HelloWorld {
 * Haxeのコードは`.hx`という拡張子で保存する。
 * Haxeのコンパイラはコマンドラインツールであり、`-main HelloWorld`や`--interp`のようなパラメータをつけて呼び出すことができる。
 * Haxeのプログラムにはクラスがあり(`HelloWorld`、大文字から始まる)、クラスには関数がある(`main`、小文字からはじまる)。 
-* Haxeのmainクラスをふくむファイルは、そのクラス名と同じ名前です(この場合だと、`HelloWorld.hx`)。
+* Haxeのmainクラスをふくむファイルは、そのクラス名と同じ名前を使う(この場合だと、`HelloWorld.hx`)。
 
 <a id="introduction-haxe-history"></a>
 ## 1.4 歴史
@@ -1175,7 +1177,7 @@ class AbstractUnopOverload {
 
 2項演算子と単項演算子の両方とも、戻り値の型は何でも構いません。
 
-###### Exposing underlying type operations
+###### 基底型の演算を公開する
 
 基底型が抽象型でそこで許容されている演算子でかつ戻り値を元の抽象型に代入可能なものについては、`@:op`関数のボディを省略することが可能です。
 
@@ -1240,9 +1242,9 @@ map.set("foo",1);
 console.log(map.get("foo")); // 1
 ```
 
-###### Order of array access resolving
+###### 配列アクセスの解決順序
 
-Due to a bug in Haxe versions before 3.2 the order of checked `:arrayAccess` fields was undefined. This was fixed for Haxe 3.2 so that the fields are now consistently checked from top to bottom:
+Haxe3.2以前では、バグのため`:arrayAccess`のフィールドがチェックされる順序は定義されていませんでした。これは、Haxe　3.2では修正されて一貫して上から下へと確認が行われるようになりました。
 
 ```haxe
 abstract AString(String) {
@@ -1263,9 +1265,9 @@ class Main {
 }
 ```
 
-The array access `a[0]` is resolved to the `getInt1` field, leading to lower case `f` being returned. The result might be different in Haxe versions before 3.2.
+`a[0]`の配列アクセスは、`getInt1`のフィールドとして解決されて、小文字の`f`が返ります。バージョン3.2以前のHaxeでは、結果が異なる場合があります。
 
-Fields which are defined earlier take priority even if they require an [implicit cast](types-abstract-implicit-casts).
+[暗黙のキャスト](types-abstract-implicit-casts)が必要な場合であっても、先に定義されている方が優先されます。
 
 <a id="types-abstract-selective-functions"></a>
 ## 2.8.4 選択的関数
@@ -1422,16 +1424,16 @@ Haxeの標準ライブラリは、基本型のセットをコアタイプの抽�
 <a id="type-system"></a>
 ## 3 型システム
 
-私たちは[型](types)の章でさまざまな種類の型について学んできました。ここからはそれらがお互いにどう関連しあっているかを見ていきます。まず、複雑な型に対して名前(別名)を与える仕組みである[Typedef](type-system-typedef)の紹介から簡単に始めます。typedefは特に、[型パラメータ](type-system-type-parameters)を持つ型で役に立ちます。
+私たちは[型](types)の章でさまざまな種類の型について学んできました。ここからはそれらがお互いにどう関連しあっているかを見ていきます。まず、複雑な型に対して別名を与える仕組みである[Typedef](type-system-typedef)の紹介から簡単に始めます。typedefは特に、[型パラメータ](type-system-type-parameters)を持つ型で役に立ちます。
 
 任意の2つの型について、その上位の型のグループが矛盾しないかをチェックすることで多くの型安全性が得られます。これがコンパイラが試みる**単一化**であり、[単一化(ユニフィケーション)](type-system-unification)の節で詳しく説明します。
 
-すべての型は**モジュール**に所属し、**パス**を通して呼び出されます。[モジュールとパス](type-system-modules-and-paths)では、これらに関連した仕組みについて詳しい説明を行います。
+すべての型は**モジュール**に所属し、**パス**を通して呼び出されます。[モジュールとパス](type-system-modules-and-paths)では、これらに関連した仕組みについて詳しく説明します。
 
 <a id="type-system-typedef"></a>
 ## 3.1 typedef
 
-typedefは[匿名構造体](types-anonymous-structure)の節で、すでに登場しています。そこでは複雑な構造体の型について名前を与えて簡潔にあつかう方法を見ています。この利用法はtypedefが一体なにに良いのかを的確に表しています。[構造体の型](types-anonymous-structure)に対して名前を与えるのは、typedefの主たる用途かもしれません。実際のところ、この用途が一般的すぎて、多くのHaxeユーザーがtypdefを構造体のためのものだと思ってしまっています。
+typedefは[匿名構造体](types-anonymous-structure)の節で、すでに登場しています。そこでは複雑な構造体の型について名前を与えて簡潔にあつかう方法を見ています。この利用法はtypedefが一体なにに良いのかを的確に表しています。[構造体の型](types-anonymous-structure)に対して名前を与えるのは、typedefの主たる用途かもしれません。実際のところ、この用途が一般的すぎて多くのHaxeユーザーがtypdefを構造体のためのものだと思ってしまっています。
 
 typedefは他のあらゆる型に対して名前を与えることが可能です。
 
@@ -1439,7 +1441,7 @@ typedefは他のあらゆる型に対して名前を与えることが可能で�
 typedef IA = Array<Int>;
 ```
 
-これにより`Array<Int>`が使われる場所で、代わりに`IA`を使うことが可能になります。この場合、はほんの数回のタイプ数しか減らせませんが、より複雑な複合型の場合は違います。これこそが、typedefと構造体が強く結びついて見える理由です。
+これにより`Array<Int>`が使われる場所で、代わりに`IA`を使うことが可能になります。この場合はほんの数回のタイプ数しか減らせませんが、より複雑な複合型の場合は違います。これこそが、typedefと構造体が強く結びついて見える理由です。
 
 ```haxe
 typedef User = {
@@ -1477,7 +1479,7 @@ class Extension {
 ```
 大なりの演算子を使うことで、追加のクラスフィールドを持つ`Iterable<T>`の拡張が作成されました。このケースでは、読み込み専用の[プロパティ](class-field-property) である`Int`型の`length`が要求されます。 
 
-`IterableWithLength<T>`に適合するためには、`Iterable<T>`にも適合してさらに読み込み専用の`Int`型のプロパティ`length`を持ってなきゃいけません。例では、Arrayが割り当てられており、これはこれらの条件をすべて満たしています。
+`IterableWithLength<T>`に適合するためには、`Iterable<T>`にも適合してさらに読み込み専用の`Int`型のプロパティ`length`が必要です。例では、Arrayが割り当てられており、これはこれらの条件をすべて満たしています。
 
 ##### since Haxe 3.1.0
 
@@ -1530,7 +1532,7 @@ Enumコンストラクタ  | インスタンス作成時  |
 構造体  | インスタンス作成時  | 
  
 
-関数の型パラメータは呼び出し時に適用される、この型パラメータは（制約をつけない限り）あらゆる型を許容します。しかし、一回の呼び出しにつき適用は1つの型のみ可能です。このことは関数が複数の引数を持つ場合に役立ちます。
+関数の型パラメータは呼び出し時に適用される、この型パラメータは(制約をつけない限り)あらゆる型を許容します。しかし、一回の呼び出しにつき適用は1つの型のみ可能です。このことは関数が複数の引数を持つ場合に役立ちます。
 
 ```haxe
 class FunctionTypeParameter {
@@ -1613,7 +1615,7 @@ class Main {
 
 ```
 
-あまり使わない明示的な`MyArray<String>`の型宣言があり、よく使う[型推論](type-system-type-inference)であつかっていますが、これが重要です。コンパイラは、コンストラクタの呼び出し時にジェネリッククラスの正確な型な型を知っている必要があります。このJavaScript出力は以下のような結果になります。
+めずらしく型の明示をしている`MyValue<String>`があり、それをいつもの[型推論](type-system-type-inference)であつかっていますが、これが重要です。コンパイラはコンストラクタの呼び出し時にジェネリッククラスの正確な型な型を知っている必要があります。このJavaScript出力は以下のような結果になります。
 
 ```haxe
 (function () { "use strict";
@@ -1632,7 +1634,7 @@ Test.main();
 })();
 ```
 
-`MyArray<String>`と`MyArray<Int>`は、それぞれ`MyArray_String`と`MyArray_Int`になっています。これはジェネリック関数でも同じです。
+`MyValue<String>`と`MyValue<Int>`は、それぞれ`MyValue_String`と`MyValue_Int`になっています。これはジェネリック関数でも同じです。
 
 ```haxe
 class Main {
@@ -1794,11 +1796,11 @@ class Main {
 <a id="type-system-unification"></a>
 ## 3.5 単一化(ユニフィケーション)
 
-単一化は型システムの要であり、Haxeの堅牢さに大きく貢献しています。この節ではある型が他の型と適合するかどうかをチェックする過程を説明していきます。
+単一化は型システムのかなめであり、Haxeの堅牢さに大きく貢献しています。この節ではある型が他の型と適合するかどうかをチェックする過程を説明していきます。
 
 > ##### Define: 単一化
 >
-> 型Aの型Bでの単一化というのは、AがBに代入可能かを調べる指向性を持つプロセスです。型が[単相](types-monomorph)の場合または単相を含む場合は、それを変化させることができます。
+> 型Aの型Bでの単一化というのは、AがBに代入可能かを調べる指向性を持つプロセスです。型が[単相](types-monomorph)の場合または単相をふくむ場合は、それを変化させることができます。
 
 単一化のエラーは簡単に起こすことができます。
 
@@ -1860,7 +1862,7 @@ public static function empty<T>(it : Iterable<T>):Bool {
 <a id="type-system-monomorphs"></a>
 ## 3.5.3 単相
 
-[単相](types-monomorph)である、あるいは単相を含む型についての単一化は[型推論](type-system-type-inference)で詳しくあつかいます。
+[単相](types-monomorph)である、あるいは単相をふくむ型についての単一化は[型推論](type-system-type-inference)で詳しくあつかいます。
 
 <a id="type-system-unification-function-return"></a>
 ## 3.5.4 関数の戻り値
@@ -1990,9 +1992,9 @@ class Main {
 
 ローカル変数をあつかう場合、型推論のおかげで多くの手動の型付けを省略できますが、型システムが助けを必要とする場面もあります。実際、[変数フィールド](class-field-variable)や[プロパティ](class-field-property)では、直接の初期化をしていない限りは型推論されません。
 
-また、再帰的な関数呼び出しでも型推論が制限される場面があります。型がまだ(完全に)わかっていない場合、型推論が間違って特殊すぎる型を推論する場合があります。
+再帰的な関数呼び出しでも型推論が制限される場面があります。型がまだ(完全に)わかっていない場合、型推論が間違って特殊すぎる型を推論することがあります。
 
-A different kind of limitation involves the readability of code. If type inference is overused it might be difficult to understand parts of a program due to the lack of visible types. This is particularly true for method signatures. It is recommended to find a good balance between type inference and explicit type hints.
+コードの可読性について、違った意味での制限もあります。型推論を乱用すれば、明示的な型が無くなってプログラムが理解しにくなることもあります。特にメソッドを定義する場合です。型推論と明示的な型注釈のバランスはうまくとるようにしてください。
 
 <a id="type-system-modules-and-paths"></a>
 ## 3.7 モジュールとパス
@@ -2002,14 +2004,14 @@ A different kind of limitation involves the readability of code. If type inferen
 > 
 > すべてのHaxeのコードはモジュールに属しており、パスを使って指定されます。要するに、.hxファイルそれぞれが一つのモジュールを表し、その中にいくつか型を置くことができます。型は`private`にすることが可能で、その場合はその型の属するモジュールからしかアクセスできません。
 
-モジュールとそれに含まれる型との区別は意図的に不明瞭です。実際、`haxe.ds.StringMap<Int>`の指定は、`haxe.ds.StringMap.StringMap<Int>`の省略形とも考えられます。後者は4つ部位で構成されています。
+モジュールとそれにふくまれる型との区別は意図的に不明瞭です。実際、`haxe.ds.StringMap<Int>`の指定は、`haxe.ds.StringMap.StringMap<Int>`の省略形とも考えられます。後者は4つ部位で構成されています。
 
 1. パッケージ `haxe.ds`
 2. モジュール名 `StringMap`
 3. 型名 `StringMap`
 4. 型パラメータ `Int`
 
-モジュールと型の名前が同じの場合、重複を取り除くことが可能で、これで`haxe.ds.StringMap<Int>`という省略形が使えます。しかし、長い記述について知っていれば、[モジュールの従属型](type-system-module-sub-types)の指定の仕方の理解しやすくなります。
+モジュールと型の名前が同じの場合、重複を取り除くことが可能で、これで`haxe.ds.StringMap<Int>`という省略形が使えます。しかし、長い記述について知っていれば、[モジュールのサブタイプ](type-system-module-sub-types)の指定の仕方の理解しやすくなります。
 
 パスは、[import](type-system-import)を使ってパッケージの部分を省略することで、さらに短くすることができます。importの利用は不適切な識別子を作ってしまう場合があるので、[解決順序](type-system-resolution-order)についての理解が必要です。
 
@@ -2018,20 +2020,19 @@ A different kind of limitation involves the readability of code. If type inferen
 > (ドット区切りの)型のパスはパッケージ、モジュール名、型名から成ります。この一般的な形は`pack1.pack2.packN.ModuleName.TypeName`です。
 
 <a id="type-system-module-sub-types"></a>
-## 3.7.1 モジュールの従属型
+## 3.7.1 モジュールのサブタイプ(従属型)
 
-モジュール従属型とは、その型を定義しているモジュールの名前と異なる名前の型です。これにより、一つの.hxファイルに複数の型の定義が可能になり、これらの型はモジュール内では無条件でアクセス可能で、ほかのモジュールからも`package.Module.Type`の形式でアクセスできます。
+モジュールサブタイプとは、その型を定義しているモジュールの名前と異なる名前の型です。これにより、一つの.hxファイルに複数の型の定義が可能になり、これらの型はモジュール内では無条件でアクセス可能で、ほかのモジュールからも`package.Module.Type`の形式でアクセスできます。
 
 ```haxe
 var e:haxe.macro.Expr.ExprDef;
 ```
 
-ここでは`haxe.macro.Expr`の従属型`ExprDef`にアクセスしています。
+ここでは`haxe.macro.Expr`のサブタイプ`ExprDef`にアクセスしています。
 
-従属型の関係は、実行時には影響を与えません。publicの従属型はそのパッケージのメンバーになります。このため、同じパッケージの別々のモジュールで同じ従属型を定義した場合に衝突を起こします。
-The sub-type relation is not reflected at run-time. That is, public sub-types become a member of their containing package, which could lead to conflicts if two modules within the same package tried to define the same sub-type. Naturally, the Haxe compiler detects these cases and reports them accordingly. In the example above `ExprDef` is generated as `haxe.macro.ExprDef`.
+この従属関係は、実行時には影響を与えません。このため、publicなサブタイプはパッケージのメンバーになり、同じパッケージの別々のモジュールで同じサブタイプを定義した場合に衝突を起こします。当然、Haxeコンパイラはこれを検出して適切に報告します。上記の例では`ExprDef`は`haxe.macro.ExprDef`として出力されます。
 
-Sub-types can also be made private:
+サブタイプは以下のように`private`にすることが可能です。
 
 ```haxe
 private class C { ... }
@@ -2040,18 +2041,18 @@ private typedef T { ... }
 private abstract A { ... }
 ```
 
-> ##### Define: Private type
+> ##### Define: private型
 >
-> A type can be made private by using the `private` modifier. As a result, the type can only be directly accessed from within the [module](dictionary.md-define-module) it is defined in.
+> 型は`private`の修飾子を使って可視性を下げることが可能です。`private`修飾子をつけると、その型を定義している[モジュール](dictionary.md-define-module)以外からは、直接アクセスできなくなります。
 > 
-> Private types, unlike public ones, do not become a member of their containing package.
+> `private`な型は`public`な型とは異なり、パッケージにはふくまれません。
 
-The accessibility of types can be controlled more fine-grained by using [access control](lf-access-control).
+型の可視性は、[アクセスコントーロル](lf-access-control)を使うことでより細かく制御することができます。
 
 <a id="type-system-import"></a>
-## 3.7.2 Import
+## 3.7.2 インポート(import)
 
-If a type path is used multiple times in a .hx file, it might make sense to use an `import` to shorten it. This allows omitting the package when using the type:
+型のパスが一つの.hxファイルで複数回使われる場合、`import`を使ってそれを短縮するのが効果的でしょう。`import`は、以下のように型の使用時のパッケージの省略を可能にします。
 
 ```haxe
 import haxe.ds.StringMap;
@@ -2064,9 +2065,9 @@ class Main {
 }
 ```
 
-With `haxe.ds.StringMap` being imported in the first line, the compiler is able to resolve the unqualified identifier `StringMap` in the `main` function to this package. The module `StringMap` is said to be **imported** into the current file.
+`haxe.ds.StringMap`を1行目でインポートをすることで、 コンパイラは`main`関数の`StringMap`を`haxe.ds`パッケージのものとして解決することができます。これを、`StringMap`が現在のファイルに**インポート**されていると言います。
 
-In this example, we are actually importing a **module**, not just a specific type within that module. This means that all types defined within the imported module are available:
+上記の例では、1つの**モジュール**をインポートしていますが、インポートされる型は1つとは限りません。つまり、インポートしたモジュールにふくまれるすべての型が利用可能になります。
 
 ```haxe
 import haxe.macro.Expr;
@@ -2078,15 +2079,15 @@ class Main {
 }
 ```
 
-The type `Binop` is an [enum](types-enum-instance) declared in the module `haxe.macro.Expr`, and thus available after the import of said module. If we were to import only a specific type of that module, e.g. `import haxe.macro.Expr.ExprDef`, the program would fail to compile with `Class not found : Binop`.
+`Binop`型は、`haxe.macro.Expr`モジュールで定義されている[enum](types-enum-instance)で、このモジュールのインポートで利用可能になりました。もし、モジュール内の特定の型のみを指定してインポート(例えば、`import haxe.macro.Expr.ExprDef`)した場合、プログラムは`Class not found : Binop`でコンパイルが失敗します。
 
-There are several aspects worth knowing about importing:
+インポートには、いくつかの知っておくべきポイントがあります。
 
-* The bottommost import takes priority (detailed in [Resolution Order](type-system-resolution-order)).
-* The [static extension](lf-static-extension) keyword `using` implies the effect of `import`.
-* If an enum is imported (directly or as part of a module import), all its [enum constructors](types-enum-constructor) are also imported (this is what allows the `OpAdd` usage in the above example).
+*　より後に書かれたインポートが優先されます。(詳しくは、[解決順序](type-system-resolution-order))
+* [静的拡張](lf-static-extension)のキーワードの`using`は`import`の効果をふくみます。
+* `enum`がインポートされると、(直接か、モジュールの一部としてかを問わず)、その[enumコンストラクタ](types-enum-constructor)のすべてもインポートされます。(上述の例、`OpAdd`の利用例をみてください)
 
-Furthermore, it is also possible to import [static fields](class-field) of a class and use them unqualified:
+さらに、クラスの[静的フィールド](class-field)をインポートして使うこともできます。
 
 ```haxe
 import Math.random;
@@ -2098,11 +2099,11 @@ class Main {
 }
 ```
 
-Special care has to be taken with field names or local variable names that conflict with a package name: Since they take priority over packages, a local variable named `haxe` blocks off usage the entire `haxe` package.
+フィールド名やローカル変数名と、パッケージ名は衝突するので、特別な気づかいが必要です。このとき、フィールド名やローカル変数は、パッケージ名よりも優先されます。`haxe`と命名された変数名は、haxeというパッケージの使用を妨害します。
 
-###### Wildcard import
+###### ワイルドカードインポート
 
-Haxe allows using `.*` to allow import of all modules in a package, all types in a module or all static fields in a type. It is important to understand that this kind of import only crosses a single level as we can see in the following example:
+Haxeでは`.*`を使用することで、パッケージにふくまれるすべてのモジュール、またはモジュールにふくまれるすべての型、あるいは型が持つすべてのフィールドをインポートすることができます。この種類のインポートは、以下のように一段階しか適用されないことに気をつけてください。
 
 ```haxe
 import haxe.macro.*;
@@ -2115,13 +2116,13 @@ class Main {
 }
 ```
 
-Using the wildcard import on `haxe.macro` allows accessing `Expr` which is a module in this package, but it does not allow accessing `ExprDef` which is a sub-type of the `Expr` module. This rule extends to static fields when a module is imported.
+`haxe.macro`のワイルドカードインポートを使うことで、このパッケージにふくまれる`Expr`モジュールにアクセスできるようになりましたが、`Expr`モジュールのサブタイプの`ExprDef`にはアクセスできません。このルールは、モジュールをインポートしたときの静的フィールドに対しても同じです。
 
-When using wildcard imports on a package the compiler does not eagerly process all modules in that package. This means that these modules are never actually seen by the compiler unless used explicitly and are then not part of the generated output.
+パッケージに対するワイルドカードインポートでは、コンパイラはそのパッケージにふくまれるモジュールを貪欲にコンパイルするわけではありません。つまり、これらのモジュールは明示的に使用されない限り、コンパイラが認識することはなく、生成された出力の中にはふくまれません。
 
-###### Import with alias
+###### 別名(エイリアス)を使ったインポート
 
-If a type or static field is used a lot in an importing module it might help to alias it to a shorter name. This can also be used to disambiguate conflicting names by giving them a unique identifier.
+型や静的フィールドをインポートしたモジュール内で大量につかう場合、短い別名をつけるのが有効かもしれません。別名は衝突した名前に対して、ユニークな名前をあたえて区別するのにも役立ちます。
 
 ```haxe
 import String.fromCharCode in f;
@@ -2135,60 +2136,61 @@ class Main {
 }
 ```
 
-Here we import `String.fromCharCode` as `f` which allows us to use `f(65)` and `f(66)`. While the same could be achieved with a local variable, this method is compile-time exclusive and guaranteed to have no run-time overhead.
+ここでは`String.fromCharCode`を`f`としてインポートしたので、`f(65)`や`f(66)`といった使い方ができます。同じことはローカル変数でもできますが、別名を使う方法はコンパイル時のみのものなので実行時のオーバーヘッドが発生しません。
 
 ##### since Haxe 3.2.0
 
-Haxe also allows the more natural `as` in place of `in`.
+Haxeでは、`as`の代わりにより自然な`in`キーワードを使うことも可能です。
 
 <a id="type-system-resolution-order"></a>
-## 3.7.3 Resolution Order
+## 3.7.3 解決順序
 
-Resolution order comes into play as soon as unqualified identifiers are involved. These are [expressions](expression) in the form of `foo()`, `foo = 1` and `foo.field`. The last one in particular includes module paths such as `haxe.ds.StringMap`, where `haxe` is an unqualified identifier.  
+不適切な識別子が入り組んでいる場合には、解決順序があらわれます。[式](expression)には、`foo()`、`foo = 1`、`foo.field`の形があり、とくに最後の形では、`haxe`が不適切な識別子な場合の`haxe.ds.StringMap`のようなモジュールのパスの可能性もふくんでいます。
 
-We describe the resolution order algorithm here, which depends on the following state:
+これがその解決順序のアルゴリズムです。以下の各状態が影響しています。
 
-* the declared [local variables](expression-var) (including function arguments)
-* the [imported](type-system-import) modules, types and statics
-* the available [static extensions](lf-static-extension)
-* the kind (static or member) of the current field
-* the declared member fields on the current class and its parent classes
-* the declared static fields on the current class
-* the [expected type](dictionary.md-define-expected-type)
-* the expression being `untyped` or not
+* 宣言されている[ローカル変数](expression-var) (関数の引数もふくむ)
+* [インポート](type-system-import) されたモジュール、型、静的フィールド。
+* 利用可能な[静的拡張](lf-static-extension)
+* 現在のフィールドの種類(静的フィールドなのか、メンバフィールドなのか) 
+* 現在のクラスと親クラスで定義されている、メンバフィールド
+* 現在のクラスで定義されている、静的フィールド
+* [期待される型](dictionary.md-define-expected-type)
+* `untyped`中の式か、そうでないか
 
 ![Resolution order of identifier `i'](assets/graphics/generated/type-system-resolution-order-diagram.png)
 
-Given an identifier `i`, the algorithm is as follows:
+`i`を例にすると、このアルゴリズムは以下のようなものです。
 
-1. If i is `true`, `false`, `this`, `super` or `null`, resolve to the matching constant and halt.
-2. If a local variable named `i` is accessible, resolve to it and halt.
-3. If the current field is static, go to 6.
-4. If the current class or any of its parent classes has a field named `i`, resolve to it and halt.
-5. If a static extension with a first argument of the type of the current class is available, resolve to it and halt.
-6. If the current class has a static field named `i`, resolve to it and halt.
-7. If an enum constructor named `i` is declared on an imported enum, resolve to it and halt.
-8. If a static named `i` is explicitly imported, resolve to it and halt.
-9. If `i` starts with a lower-case character, go to 11.
-10. If a type named `i` is available, resolve to it and halt.
-11. If the expression is not in untyped mode, go to 14
-12. If `i` equals `__this__`, resolve to the `this` constant and halt.
-13. Generate a local variable named `i`, resolve to it and halt.
-14. Fail
+1. `i`が`true`、`false`、`this`、`super`、`null`のいずれかの場合、その定数として解決されて終了。
+2. `i`というローカル変数があった場合、それに解決されて終了。
+3. 現在いるフィールドが、静的フィールドであれば、6に進む。
+4. 現在のクラスか、いずれかの親クラスで`i`のメンバフィールドが定義されている場合、それに解決されて終了。
+5. 静的拡張の第1引数として現在のクラスのインスタンスが利用可能な場合、それに解決されて終了。
+6. 現在のクラスが`i`という静的フィールドを持っている場合、それに解決されて終了。
+7. インポート済みのenumに`i`というコンストラクタがあった場合、それに解決されて終了。
+8. `i`という名前の静的フィールドが明示的にインポートされていた場合 それに解決されて終了。
+9. `i`が小文字から始まる場合、11に進む。
+10. `i`という型が利用可能な場合、それに解決されて進む。
+11. 式が`untyped`中にいない場合、14に進む。
+12. `i`が`__this__`の場合、`this`として解決されて終了。
+13. ローカル変数の`i`を生成し、それに解決されて終了。
+14. 失敗
 
-For step 10, it is also necessary to define the resolution order of types:
+10のステップについて、型の解決順序の定義も必要です。
 
-1. If a type named `i` is imported (directly or as part of a module), resolve to it and halt.
-2. If the current package contains a module named `i` with a type named `i`, resolve to it and halt.
-3. If a type named `i` is available at top-level, resolve to it and halt.
-4. Fail
+1. `i`がインポートされている場合(直接か、モジュールの一部としてか、にかかわらず)、それに解決されて終了。
+2. 現在のパッケージが`i`という名前モジュールの`i`という型をふくんでいる場合、それに解決されて終了。
+3. `i`がトップレベルで利用可能な場合、それに解決されて終了。
+4. 失敗
 
-For step 1 of this algorithm as well as steps 5 and 7 of the previous one, the order of import resolution is important:
+このアルゴリズムの1のステップと、式の場合の5と7
+のステップでは、以下のインポートの解決順序も重要です。
 
-* Imported modules and static extensions are checked from bottom to top with the first match being picked.
-* Within a given module, types are checked from top to bottom.
-* For imports, a match is made if the name equals.
-* For [static extensions](lf-static-extension), a match is made if the name equals and the first argument [unifies](type-system-unification). Within a given type being used as static extension, the fields are checked from top to bottom.
+* インポートしたモジュールと静的拡張は、下から上へとチェックされて最初にマッチしたものが使われます。
+* 一つのモジュールの中では、型は上から下へとチェックされていきます。
+* インポートでは、名前が一致した場合ににマッチしたものとなります。
+* [静的拡張](lf-static-extension)では、名前が一致して、なおかつ最初の引数が[単一化](type-system-unification)できると、マッチが成立します。静的拡張として使われる一つの型の中では、フィールドは上から下へとチェックされます
 
 <a id="class-field"></a>
 ## 4 Class Fields
@@ -3642,7 +3644,7 @@ Clearly, `Int` does not natively provide a `triple` method, yet this program com
 
 Static extensions are usually considered syntactic sugar and indeed they are, but it is worth noting that they can have a dramatic effect on code readability: Instead of nested calls in the form of `f1(f2(f3(f4(x))))`, chained calls in the form of `x.f4().f3().f2().f1()` can be used.
 
-Following the rules previously described in [Resolution Order](type-system-resolution-order), multiple `using` expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see [モジュールとパス](type-system-modules-and-paths)) as static extension brings all its types into context.
+Following the rules previously described in [解決順序](type-system-resolution-order), multiple `using` expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see [モジュールとパス](type-system-modules-and-paths)) as static extension brings all its types into context.
 
 <a id="lf-static-extension-in-std"></a>
 ## 6.3.1 In the Haxe Standard Library

@@ -15,10 +15,10 @@ class HelloWorld {
 * Haxeのコードは`.hx`という拡張子で保存する。
 * Haxeのコンパイラはコマンドラインツールであり、`-main HelloWorld`や`--interp`のようなパラメータをつけて呼び出すことができる。
 * Haxeのプログラムにはクラスがあり(`HelloWorld`、大文字から始まる)、クラスには関数がある(`main`、小文字からはじまる)。 
-* Haxeのmainクラスをふくむファイルは、そのクラス名と同じ名前です(この場合だと、`HelloWorld.hx`)。
+* Haxeのmainクラスをふくむファイルは、そのクラス名と同じ名前を使う(この場合だと、`HelloWorld.hx`)。
 
 ---
 
-Previous section: [License](introduction-license.md)
+Previous section: [ライセンス](introduction-license.md)
 
 Next section: [歴史](introduction-haxe-history.md)

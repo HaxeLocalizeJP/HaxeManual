@@ -2,9 +2,9 @@
 
 ローカル変数をあつかう場合、型推論のおかげで多くの手動の型付けを省略できますが、型システムが助けを必要とする場面もあります。実際、[変数フィールド](class-field-variable.md)や[プロパティ](class-field-property.md)では、直接の初期化をしていない限りは型推論されません。
 
-また、再帰的な関数呼び出しでも型推論が制限される場面があります。型がまだ(完全に)わかっていない場合、型推論が間違って特殊すぎる型を推論する場合があります。
+再帰的な関数呼び出しでも型推論が制限される場面があります。型がまだ(完全に)わかっていない場合、型推論が間違って特殊すぎる型を推論することがあります。
 
-A different kind of limitation involves the readability of code. If type inference is overused it might be difficult to understand parts of a program due to the lack of visible types. This is particularly true for method signatures. It is recommended to find a good balance between type inference and explicit type hints.
+コードの可読性について、違った意味での制限もあります。型推論を乱用すれば、明示的な型が無くなってプログラムが理解しにくなることもあります。特にメソッドを定義する場合です。型推論と明示的な型注釈のバランスはうまくとるようにしてください。
 
 ---
 

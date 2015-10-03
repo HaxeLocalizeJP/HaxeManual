@@ -22,7 +22,7 @@ class Main {
 
 ```
 
-あまり使わない明示的な`MyArray<String>`の型宣言があり、よく使う[型推論](type-system-type-inference.md)であつかっていますが、これが重要です。コンパイラは、コンストラクタの呼び出し時にジェネリッククラスの正確な型な型を知っている必要があります。このJavaScript出力は以下のような結果になります。
+めずらしく型の明示をしている`MyValue<String>`があり、それをいつもの[型推論](type-system-type-inference.md)であつかっていますが、これが重要です。コンパイラはコンストラクタの呼び出し時にジェネリッククラスの正確な型な型を知っている必要があります。このJavaScript出力は以下のような結果になります。
 
 ```haxe
 (function () { "use strict";
@@ -41,7 +41,7 @@ Test.main();
 })();
 ```
 
-`MyArray<String>`と`MyArray<Int>`は、それぞれ`MyArray_String`と`MyArray_Int`になっています。これはジェネリック関数でも同じです。
+`MyValue<String>`と`MyValue<Int>`は、それぞれ`MyValue_String`と`MyValue_Int`になっています。これはジェネリック関数でも同じです。
 
 ```haxe
 class Main {

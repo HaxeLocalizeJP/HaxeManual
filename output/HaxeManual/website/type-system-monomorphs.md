@@ -1,6 +1,6 @@
 ## 3.5.3 単相
 
-[単相](types-monomorph.md)である、あるいは単相を含む型についての単一化は[型推論](type-system-type-inference.md)で詳しくあつかいます。
+[単相](types-monomorph.md)である、あるいは単相をふくむ型についての単一化は[型推論](type-system-type-inference.md)で詳しくあつかいます。
 
 ---
 

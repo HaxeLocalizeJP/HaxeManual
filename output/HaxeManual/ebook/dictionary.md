@@ -112,10 +112,10 @@ A field is considered to be **physical** if it is either
 
 <a id="dictionary.md-define-private-type" class="anch"></a>
 
-##### Private type
-A type can be made private by using the `private` modifier. As a result, the type can only be directly accessed from within the [module](dictionary.md-define-module) it is defined in.
+##### private型
+型は`private`の修飾子を使って可視性を下げることが可能です。`private`修飾子をつけると、その型を定義している[モジュール](dictionary.md-define-module)以外からは、直接アクセスできなくなります。
 
-Private types, unlike public ones, do not become a member of their containing package.
+`private`な型は`public`な型とは異なり、パッケージにはふくまれません。
 
 <a id="dictionary.md-define-read-access" class="anch"></a>
 
@@ -178,7 +178,7 @@ A write access to a field occurs when a [field access expression](expression-fie
 <a id="dictionary.md-define-unification" class="anch"></a>
 
 ##### 単一化
-型Aの型Bでの単一化というのは、AがBに代入可能かを調べる指向性を持つプロセスです。型が[単相](types-monomorph)の場合または単相を含む場合は、それを変化させることができます。
+型Aの型Bでの単一化というのは、AがBに代入可能かを調べる指向性を持つプロセスです。型が[単相](types-monomorph)の場合または単相をふくむ場合は、それを変化させることができます。
 
 <a id="dictionary.md-define-contravariance" class="anch"></a>
 

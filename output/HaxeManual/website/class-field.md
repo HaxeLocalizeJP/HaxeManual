@@ -18,6 +18,6 @@ Regarding terminology, a method is a (static or non-static) function belonging t
 
 ---
 
-Previous section: [Resolution Order](type-system-resolution-order.md)
+Previous section: [解決順序](type-system-resolution-order.md)
 
 Next section: [Variable](class-field-variable.md)

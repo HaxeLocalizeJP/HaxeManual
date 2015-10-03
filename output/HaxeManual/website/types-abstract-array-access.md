@@ -38,9 +38,9 @@ map.set("foo",1);
 console.log(map.get("foo")); // 1
 ```
 
-###### Order of array access resolving
+###### 配列アクセスの解決順序
 
-Due to a bug in Haxe versions before 3.2 the order of checked `:arrayAccess` fields was undefined. This was fixed for Haxe 3.2 so that the fields are now consistently checked from top to bottom:
+Haxe3.2以前では、バグのため`:arrayAccess`のフィールドがチェックされる順序は定義されていませんでした。これは、Haxe　3.2では修正されて一貫して上から下へと確認が行われるようになりました。
 
 ```haxe
 abstract AString(String) {
@@ -61,9 +61,9 @@ class Main {
 }
 ```
 
-The array access `a[0]` is resolved to the `getInt1` field, leading to lower case `f` being returned. The result might be different in Haxe versions before 3.2.
+`a[0]`の配列アクセスは、`getInt1`のフィールドとして解決されて、小文字の`f`が返ります。バージョン3.2以前のHaxeでは、結果が異なる場合があります。
 
-Fields which are defined earlier take priority even if they require an [implicit cast](types-abstract-implicit-casts.md).
+[暗黙のキャスト](types-abstract-implicit-casts.md)が必要な場合であっても、先に定義されている方が優先されます。
 
 ---
 

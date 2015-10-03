@@ -1,55 +1,56 @@
-## 3.7.3 Resolution Order
+## 3.7.3 解決順序
 
-Resolution order comes into play as soon as unqualified identifiers are involved. These are [expressions](expression.md) in the form of `foo()`, `foo = 1` and `foo.field`. The last one in particular includes module paths such as `haxe.ds.StringMap`, where `haxe` is an unqualified identifier.  
+不適切な識別子が入り組んでいる場合には、解決順序があらわれます。[式](expression.md)には、`foo()`、`foo = 1`、`foo.field`の形があり、とくに最後の形では、`haxe`が不適切な識別子な場合の`haxe.ds.StringMap`のようなモジュールのパスの可能性もふくんでいます。
 
-We describe the resolution order algorithm here, which depends on the following state:
+これがその解決順序のアルゴリズムです。以下の各状態が影響しています。
 
-* the declared [local variables](expression-var.md) (including function arguments)
-* the [imported](type-system-import.md) modules, types and statics
-* the available [static extensions](lf-static-extension.md)
-* the kind (static or member) of the current field
-* the declared member fields on the current class and its parent classes
-* the declared static fields on the current class
-* the [expected type](dictionary.md#define-expected-type)
-* the expression being `untyped` or not
+* 宣言されている[ローカル変数](expression-var.md) (関数の引数もふくむ)
+* [インポート](type-system-import.md) されたモジュール、型、静的フィールド。
+* 利用可能な[静的拡張](lf-static-extension.md)
+* 現在のフィールドの種類(静的フィールドなのか、メンバフィールドなのか) 
+* 現在のクラスと親クラスで定義されている、メンバフィールド
+* 現在のクラスで定義されている、静的フィールド
+* [期待される型](dictionary.md#define-expected-type)
+* `untyped`中の式か、そうでないか
 
 <img src="../../assets/graphics/generated/type-system-resolution-order-diagram.png" alt="Resolution order of identifier `i'" title="Resolution order of identifier `i'" />
 
 _Figure: Resolution order of identifier `i'_
 
-Given an identifier `i`, the algorithm is as follows:
+`i`を例にすると、このアルゴリズムは以下のようなものです。
 
-1. If i is `true`, `false`, `this`, `super` or `null`, resolve to the matching constant and halt.
-2. If a local variable named `i` is accessible, resolve to it and halt.
-3. If the current field is static, go to 6.
-4. If the current class or any of its parent classes has a field named `i`, resolve to it and halt.
-5. If a static extension with a first argument of the type of the current class is available, resolve to it and halt.
-6. If the current class has a static field named `i`, resolve to it and halt.
-7. If an enum constructor named `i` is declared on an imported enum, resolve to it and halt.
-8. If a static named `i` is explicitly imported, resolve to it and halt.
-9. If `i` starts with a lower-case character, go to 11.
-10. If a type named `i` is available, resolve to it and halt.
-11. If the expression is not in untyped mode, go to 14
-12. If `i` equals `__this__`, resolve to the `this` constant and halt.
-13. Generate a local variable named `i`, resolve to it and halt.
-14. Fail
+1. `i`が`true`、`false`、`this`、`super`、`null`のいずれかの場合、その定数として解決されて終了。
+2. `i`というローカル変数があった場合、それに解決されて終了。
+3. 現在いるフィールドが、静的フィールドであれば、6に進む。
+4. 現在のクラスか、いずれかの親クラスで`i`のメンバフィールドが定義されている場合、それに解決されて終了。
+5. 静的拡張の第1引数として現在のクラスのインスタンスが利用可能な場合、それに解決されて終了。
+6. 現在のクラスが`i`という静的フィールドを持っている場合、それに解決されて終了。
+7. インポート済みのenumに`i`というコンストラクタがあった場合、それに解決されて終了。
+8. `i`という名前の静的フィールドが明示的にインポートされていた場合 それに解決されて終了。
+9. `i`が小文字から始まる場合、11に進む。
+10. `i`という型が利用可能な場合、それに解決されて進む。
+11. 式が`untyped`中にいない場合、14に進む。
+12. `i`が`__this__`の場合、`this`として解決されて終了。
+13. ローカル変数の`i`を生成し、それに解決されて終了。
+14. 失敗
 
-For step 10, it is also necessary to define the resolution order of types:
+10のステップについて、型の解決順序の定義も必要です。
 
-1. If a type named `i` is imported (directly or as part of a module), resolve to it and halt.
-2. If the current package contains a module named `i` with a type named `i`, resolve to it and halt.
-3. If a type named `i` is available at top-level, resolve to it and halt.
-4. Fail
+1. `i`がインポートされている場合(直接か、モジュールの一部としてか、にかかわらず)、それに解決されて終了。
+2. 現在のパッケージが`i`という名前モジュールの`i`という型をふくんでいる場合、それに解決されて終了。
+3. `i`がトップレベルで利用可能な場合、それに解決されて終了。
+4. 失敗
 
-For step 1 of this algorithm as well as steps 5 and 7 of the previous one, the order of import resolution is important:
+このアルゴリズムの1のステップと、式の場合の5と7
+のステップでは、以下のインポートの解決順序も重要です。
 
-* Imported modules and static extensions are checked from bottom to top with the first match being picked.
-* Within a given module, types are checked from top to bottom.
-* For imports, a match is made if the name equals.
-* For [static extensions](lf-static-extension.md), a match is made if the name equals and the first argument [unifies](type-system-unification.md). Within a given type being used as static extension, the fields are checked from top to bottom.
+* インポートしたモジュールと静的拡張は、下から上へとチェックされて最初にマッチしたものが使われます。
+* 一つのモジュールの中では、型は上から下へとチェックされていきます。
+* インポートでは、名前が一致した場合ににマッチしたものとなります。
+* [静的拡張](lf-static-extension.md)では、名前が一致して、なおかつ最初の引数が[単一化](type-system-unification.md)できると、マッチが成立します。静的拡張として使われる一つの型の中では、フィールドは上から下へとチェックされます
 
 ---
 
-Previous section: [Import](type-system-import.md)
+Previous section: [インポート(import)](type-system-import.md)
 
 Next section: [Class Fields](class-field.md)

@@ -19,7 +19,7 @@ Todo:
 2.8.3 - 配列アクセス: You have marked "Map" for some reason
 3.5 - 単一化(ユニフィケーション): Mention toString()/String conversion somewhere in this chapter.
 3.5.1 - クラスとインターフェースの単一化: "parent class" should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.
-3.7.3 - Resolution Order: proper label and caption + code/identifier styling for diagram
+3.7.3 - 解決順序: proper label and caption + code/identifier styling for diagram
 6.4.10 - Exhaustiveness checks: Figure out wtf our rules are now for when this is checked.
 6.6 - Array Comprehension: Comprehensions are only listing Arrays, not Maps
 8.4.1 - Embedding resources: what to use for listing of non-haxe code like hxml?
@@ -44,7 +44,7 @@ Unreviewed:
 1.1 - Haxeって何?
 1.2 - このドキュメントについて
 1.2.1 - 著者と貢献者
-1.2.2 - License
+1.2.2 - ライセンス
 1.3 - Hello World
 2 - 型
 2.1 - 基本型
@@ -99,9 +99,9 @@ Unreviewed:
 3.6.1 - トップダウンの推論
 3.6.2 - 制限
 3.7 - モジュールとパス
-3.7.1 - モジュールの従属型
-3.7.2 - Import
-3.7.3 - Resolution Order
+3.7.1 - モジュールのサブタイプ(従属型)
+3.7.2 - インポート(import)
+3.7.3 - 解決順序
 4 - Class Fields
 4.1 - Variable
 4.2 - Property

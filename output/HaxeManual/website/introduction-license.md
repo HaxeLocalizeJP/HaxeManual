@@ -1,8 +1,10 @@
-## 1.2.2 License
+## 1.2.2 ライセンス
 
-The Haxe Manual by [Haxe Foundation](http://haxe.org/foundation) is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+[Haxe Foundation](http://haxe.org/foundation)制作のHaxeマニュアルは、[クリエイティブコモンズ 表示-4.0-国際 ライセンス](http://creativecommons.org/licenses/by/4.0/)で提供されています。元データは、[https://github.com/HaxeFoundation/HaxeManual](https://github.com/HaxeFoundation/HaxeManual)で管理されています。
 
-Based on a work at [https://github.com/HaxeFoundation/HaxeManual](https://github.com/HaxeFoundation/HaxeManual).
+###### 日本語訳のライセンス（訳注）
+
+日本語訳も、[クリエイティブコモンズ 表示-4.0-国際 ライセンス](http://creativecommons.org/licenses/by/4.0/)で提供しています。元データは、[https://github.com/HaxeLocalizeJP/HaxeManual](https://github.com/HaxeLocalizeJP/HaxeManual)で管理されています。
 
 ---
 
