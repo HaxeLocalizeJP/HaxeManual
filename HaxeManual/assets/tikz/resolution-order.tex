@@ -1,4 +1,4 @@
-\begin{flowchart}{type-system-resolution-order-diagram}{Resolution order of identifier `i'}
+\begin{flowchart}{type-system-resolution-order-diagram}{識別子 `i'　の解決順序}
 
 \tikzset {
 	level distance = 1.4cm,
@@ -16,65 +16,65 @@
 ]
 
 \Tree
-[.\node [decisionc] (dec1) {'i' == 'true', 'false', 'this', 'super' or 'null'};
+[.\node [decisionc] (dec1) {'i' == 'true'または'false'、'this'、'super'、'null'};
 \edge [noEdge] node {No};
-[.\node [decisionc] (dec2) {Local variable 'i' exists};
+[.\node [decisionc] (dec2) {ローカル変数'i'が存在する};
 \edge [noEdge] node {No};
-[.\node [decisionc] (dec3) {Current field is static?};
+[.\node [decisionc] (dec3) {現在のフィールドが静的フィールドである};
 \edge [noEdge] node {No};
-[.\node [decisionc] (dec4) {Current class or parent class have field 'i'};
+[.\node [decisionc] (dec4) {現在のクラス、親クラスのいずれかにフィールド'i'が存在する};
 \edge [noEdge] node {No};
-[.\node [decisionc] (dec5) {Static extension with 'this'-type};
+[.\node [decisionc] (dec5) {'this'の型の静的拡張があるか};
 \edge [noEdge] node {No};
-[.\node [decisionc] (dec6) {Current class has static field 'i'};
+[.\node [decisionc] (dec6) {現在のクラスに静的フィールド'i'があるか};
 \edge [noEdge] node {No};
-[.\node [decisionc] (dec7) {Imported enum has constructor `i'};
+[.\node [decisionc] (dec7) {インポートされたenumにコンストラクタ`i'があるか};
 \edge [noEdge] node {No};
-[.\node [decisionc] (dec8) {Static `i' imported};
+[.\node [decisionc] (dec8) {静的フィールド`i'がインポートされているか};
 \edge [noEdge] node {No};
-[.\node [decisionc] (dec9) {`i' starts with lower-case character};
+[.\node [decisionc] (dec9) {`i'が小文字から始まるか};
 \edge [noEdge] node {No};
-[.\node [decisionc] (dec10) {Type `i' imported};
+[.\node [decisionc] (dec10) {型`i'がインポートされているか};
 \edge [noEdge] node {No};
-[.\node [decisionc] (dec11) {Current package contains module `i' with type `i'};
+[.\node [decisionc] (dec11) {現在のパッケージが型`i'をふくむモジュール`i'を持つか};
 \edge [noEdge] node {No};
-[.\node [decisionc] (dec12) {Top-level type `i' exists};
+[.\node [decisionc] (dec12) {トップレベルの型`i'が存在するか};
 \edge [noEdge] node {No};
-[.\node [decisionc] (dec13) {Untyped mode};
+[.\node [decisionc] (dec13) {untypedモードか};
 \edge [noEdge] node {Yes};
 [.\node [decisionc] (dec14) {`i' == `__this__'};
 \edge [noEdge] node {No};
-[.\node [decisionc] (dec15) {Generate local variable `i'};
+[.\node [decisionc] (dec15) {ローカル変数`i'を生成する};
 ]]]]]]]]]]]]]]]
 
 
-\node [startstop, fill = green!70, xshift = 5cm] (resolve) at (dec15.east) {Resolve};
+\node [startstop, fill = green!70, xshift = 5cm] (resolve) at (dec15.east) {解決};
 
 \tikzstyle{yesNode} = [above right, at start]
 
 \coordinate (yesAnchor) at (resolve.north);
 
-\draw [flowchartArrow] (dec1) -| (yesAnchor) node [yesNode] {Yes};
-\draw [flowchartArrow] (dec2) -| (yesAnchor) node [yesNode] {Yes};
-\draw [flowchartArrow] (dec4) -| (yesAnchor) node [yesNode] {Yes};
-\draw [flowchartArrow] (dec5) -| (yesAnchor) node [yesNode] {Yes};
-\draw [flowchartArrow] (dec6) -| (yesAnchor) node [yesNode] {Yes};
-\draw [flowchartArrow] (dec7) -| (yesAnchor) node [yesNode] {Yes};
-\draw [flowchartArrow] (dec8) -| (yesAnchor) node [yesNode] {Yes};
-\draw [flowchartArrow] (dec10) -| (yesAnchor) node [yesNode] {Yes};
-\draw [flowchartArrow] (dec11) -| (yesAnchor) node [yesNode] {Yes};
-\draw [flowchartArrow] (dec12) -| (yesAnchor) node [yesNode] {Yes};
-\draw [flowchartArrow] (dec14) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec1) -| (yesAnchor) node [yesNode] {はい};
+\draw [flowchartArrow] (dec2) -| (yesAnchor) node [yesNode] {はい};
+\draw [flowchartArrow] (dec4) -| (yesAnchor) node [yesNode] {はい};
+\draw [flowchartArrow] (dec5) -| (yesAnchor) node [yesNode] {はい};
+\draw [flowchartArrow] (dec6) -| (yesAnchor) node [yesNode] {はい};
+\draw [flowchartArrow] (dec7) -| (yesAnchor) node [yesNode] {はい};
+\draw [flowchartArrow] (dec8) -| (yesAnchor) node [yesNode] {はい};
+\draw [flowchartArrow] (dec10) -| (yesAnchor) node [yesNode] {はい};
+\draw [flowchartArrow] (dec11) -| (yesAnchor) node [yesNode] {はい};
+\draw [flowchartArrow] (dec12) -| (yesAnchor) node [yesNode] {はい};
+\draw [flowchartArrow] (dec14) -| (yesAnchor) node [yesNode] {はい};
 \draw [flowchartArrow] (dec15) -- (resolve.west);
 
 \draw [flowchartArrow] (dec3) to [out = 180, in = 180, distance = 3cm] (dec6);
-\draw (dec3.west) node [above left] {Yes};
+\draw (dec3.west) node [above left] {はい};
 
 \draw [flowchartArrow] (dec9) to [out = 180, in = 180, distance = 3cm] (dec13);
-\draw (dec9.west) node [above left] {Yes};
+\draw (dec9.west) node [above left] {はい};
 
-\node [startstop, fill = red!70, xshift = 2cm] (fail) at (dec13.east) {Fail};
-\draw [flowchartArrow] (dec13.east) -- (fail.west) node [above right, at start] {No};
+\node [startstop, fill = red!70, xshift = 2cm] (fail) at (dec13.east) {失敗};
+\draw [flowchartArrow] (dec13.east) -- (fail.west) node [above right, at start] {いいえ};
 
 
 \end{flowchart}
