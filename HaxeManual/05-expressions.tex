@@ -1,40 +1,46 @@
-\chapter{Expressions}
+\chapter{式}
 \label{expression}
 
-Expressions in Haxe define what a program \emph{does}. Most expressions are found in the body of a \tref{method}{class-field-method}, where they are combined to express what that method should do. This section explains the different kinds of expressions. Some definitions help here:
+Haxeの式は、プログラムが\emph{何をするか}を決定します。ほとんどの式は\tref{メソッド}{class-field-method}に書かれ、そのメソッドが何をすべきかをその式の合わせによって表現します。この章では、さまざまな種類の式を説明していきます。
 
-\define{Name}{define-name}{A general name may refer to
+ここに、いくつか定義を示しておきます。
+
+\define{名前}{define-name}{
+名前は次のいずれかにひもづきます。
 \begin{itemize}
-	\item a type,
-	\item a local variable,
-	\item a local function or
-	\item a field.
+	\item 型
+	\item ローカル変数
+	\item ローカル関数
+	\item フィールド
 \end{itemize}}
 
-\define{Identifier}{define-identifier}{Haxe identifiers start with an underscore \expr{_}, a dollar \expr{\$}, a lower-case character \expr{a-z} or an upper-case character \expr{A-Z}. After that, any combination and number of \expr{_}, \expr{A-Z}, \expr{a-z} and \expr{0-9} may follow.\\
-Further limitations follow from the usage context, which are checked upon typing:
+\define{識別子}{define-identifier}{
+Haxeの識別子は、アンダースコア\expr{_}、ドル\expr{\$}、小文字\expr{a-z}、大文字\expr{A-Z}のいずれかから始まり、任意の\expr{_}、\expr{A-Z}、\expr{a-z}、\expr{0-9}のつなぎ合わせが続きます。
+
+さらに使用する状況によって以下の制限が加わります。これらは、型付けの時にチェックされます。
 \begin{itemize}
-	\item Type names must start with an upper-case letter \expr{A-Z} or an underscore \expr{_}.
-	\item Leading dollars are not allowed for any kind of \tref{name}{define-name} (dollar-names are mostly used for \tref{macro reification}{macro-reification}).
+	\item 型の名前は大文字\expr{A-Z}か、アンダースコア\expr{_}で始まる。
+	\item \tref{名前}{define-name}では、先頭にドル記号は使えません。(ドル記号はほとんどの場合、\tref{マクロの実体化}{macro-reification}に使われます)
 \end{itemize}}
 
 
-\section{Blocks}
+\section{ブロック}
 \label{expression-block}
 
-A block in Haxe starts with an opening curly brace \expr{\{} and ends with a closing curly brace \expr{\}}. A block may contain several expressions, each of which is followed by a semicolon \expr{;}. The general syntax is thus:
+Haxeのブロックは中かっこで\expr{\{}から始まり、\expr{\}}で終わります。ブロックはいくつかの式をふくみ、各式はセミコロンで終わります。一般の構文としては以下のとおりです。
 
 \begin{lstlisting}
 {
-	expr1;
-	expr2;
+	式1;
+	式2;
 	...
-	exprN;
+	式N;
 }
 \end{lstlisting}
-The value and by extension the type of a block-expression is equal to the value and the type of the last sub-expression.
 
-Blocks can contain local variables declared by \tref{\expr{var} expression}{expression-var}, as well as local functions declared by \tref{\expr{function} expressions}{expression-function}. These are available within the block and within sub-blocks, but not outside the block. Also, they are available only after their declaration. The following example uses \expr{var}, but the same rules apply to \expr{function} usage:
+ブロック式の値とその型は、ブロック式がふくむ最後の式の値と型と同じになります。
+
+ブロック内では、\tref{\expr{var}式}{expression-var}を使ったローカル変数の定義と\tref{\expr{function}式}{expression-function}を使ったローカル関数の定義が可能です。これらのローカル変数とローカル関数は、そのブロックとさらに入れ子のブロックの中では使用することができますが、ブロックの外では利用できません。また、定義よりも後でしか使えません。次の例では\expr{var}を使っていますが、同じルールが\expr{function}の場合でも使用されます。
 
 \begin{lstlisting}
 {
@@ -50,38 +56,36 @@ Blocks can contain local variables declared by \tref{\expr{var} expression}{expr
 }
 a; // error, a is not available outside
 \end{lstlisting}
-At runtime, blocks are evaluated from top to bottom. Control flow (e.g. \tref{exceptions}{expression-try-catch} or \tref{return expressions}{expression-return}) may leave a block before all expressions
-are evaluated.
 
+実行時には、ブロックは上から下へと評価されていきます。フロー制御(例えば、\tref{例外}{expression-try-catch}や\tref{return式}{expression-return}など)によって、すべての式が評価される前に中断されることもあります。
 
-\section{Constants}
+\section{定数値}
 \label{expression-constants}
 
-The Haxe syntax supports the following constants:
+Haxeの構文では以下の定数値をサポートしています。
 
 \begin{description}
-	\item[Int:] An \tref{integer}{define-int}, such as \expr{0}, \expr{1}, \expr{97121}, \expr{-12}, \expr{0xFF0000}.
-	\item[Float:] A \tref{floating point number}{define-float}, such as \expr{0.0}, \expr{1.}, \expr{.3}, \expr{-93.2}.
-	\item[String:] A \tref{string of characters}{define-string}, such as \expr{""}, \expr{"foo"}, \expr{''}, \expr{'bar'}.
-	\item[true,false:] A \tref{boolean}{define-bool} value.
-	\item[null:] The null value.
+	\item[Int:] \expr{0}、\expr{1}、\expr{97121}、\expr{-12}、\expr{0xFF0000}といった、\tref{整数}{define-int}
+	\item[Float:] \expr{0.0}、\expr{1.}、\expr{.3}、\expr{-93.2}といった\tref{浮動小数点数}{define-float}
+	\item[String:] \expr{""}、\expr{"foo"}、\expr{''}、\expr{'bar'}といった\tref{文字列}{define-string}
+	\item[true,false:] \tref{真偽値}{define-bool}
+	\item[null:] null値
 \end{description}
 
-Furthermore, the internal syntax structure treats \tref{identifiers}{define-identifier} as constants, which may be relevant when working with \tref{macros}{macro}.
+また内部の構文木では、\tref{識別子}{define-identifier}は定数値としてあつかわれます。これは、\tref{マクロ}{macro}を使っているときに関係してくる話題です。
 
-
-\section{Binary Operators}
+\section{2項演算子}
 \label{expression-binops}
 
-\section{Unary Operators}
+\section{単項演算子}
 \label{expression-unops}
 
-\section{Array Declaration}
+\section{配列の宣言}
 \label{expression-array-declaration}
 
-Arrays are initialized by enclosing comma \expr{,} separated values in brackets \expr{[]}. A plain \expr{[]} represents the empty array, whereas \expr{[1, 2, 3]} initializes an array with three elements \expr{1}, \expr{2} and \expr{3}.
+配列は\expr{,}で区切った値を、大かっこ\expr{[]}で囲んで初期化します。空の\expr{[]}は空の配列を表し、\expr{[1, 2, 3]}は\expr{1}、\expr{2}、\expr{3}の3つの要素を持つ配列になります。
 
-The generated code may be less concise on platforms that do not support array initialization. Essentially, such initialization code then looks like this:
+配列の初期化をサポートしていないプラットフォームでは、生成されたコードはあまり簡潔ではないかもしれません。本質的には以下のようなコードに見えるでしょう。
 
 \begin{lstlisting}
 var a = new Array();
@@ -89,15 +93,15 @@ a.push(1);
 a.push(2);
 a.push(3);
 \end{lstlisting}
-This should be considered when deciding if a function should be \tref{inlined}{class-field-inline} as it may inline more code than visible in the syntax.
 
-Advanced initialization techniques are described in \Fullref{lf-array-comprehension}.
+つまり、関数を\tref{インライン化}{class-field-inline}するかを決める場合には、この構文で見えているよりも多くのコードがインライン化されることがあることを考慮すべきです。
 
+より高度な初期化方法は、\Fullref{lf-array-comprehension}で説明します。
 
-\section{Object Declaration}
+\section{オブジェクトの宣言}
 \label{expression-object-declaration}
 
-Object declaration begins with an opening curly brace \expr{\{} after which \expr{key:value}-pairs separated by comma \expr{,} follow, and which ends in a closing curly brace \expr{\}}.
+オブジェクトの宣言は、中かっこ\expr{\{}で始まり、\expr{キー:値}のペアがカンマ\expr{,}で区切られながら続いて、中かっこ\expr{\}}で終わります。
 
 \begin{lstlisting}
 {
@@ -107,44 +111,41 @@ Object declaration begins with an opening curly brace \expr{\{} after which \exp
 	keyN:valueN
 }
 \end{lstlisting}
-Further details of object declaration are described in the section about \tref{anonymous structures}{types-anonymous-structure}.
+さらに詳しいオブジェクトの宣言については\tref{匿名構造体}{types-anonymous-structure}の節で書かれています。
 
-
-\section{Field Access}
+\section{フィールドへのアクセス}
 \label{expression-field-access}
 
-Field access is expressed by using the dot \expr{.} followed by the name of the field.
+フィールドへのアクセスは、ドット\expr{.}の後にフィールドの名前を続けることで表現します。
 
 \begin{lstlisting}
 object.fieldName
 \end{lstlisting}
 
-This syntax is also used to access types within packages in the form of \expr{pack.Type}.
+この構文は\expr{pack.Type}の形でパッケージ内の型にアクセスするのにも使われます。
 
-The typer ensures that an accessed field actually exist and may apply transformations depending on the nature of the field. If a field access is ambiguous, understanding the \tref{resolution order}{type-system-resolution-order} may help.
+型付け機は、アクセスされたフィールドが本当に存在するかを確認し、フィールドの種類に依存した変更を適用します。もしフィールドへのアクセスが複数の意味にとれる場合は、\tref{解決順序}{type-system-resolution-order}の理解が役に立つでしょう。
 
-
-\section{Array Access}
+\section{配列アクセス}
 \label{expression-array-access}
 
-Array access is expressed by using an opening bracket \expr{[} followed by the index expression and a closing bracket \expr{]}.
+配列アクセスは、大かっこ\expr{[}で始まり、インデックスを表す式が続き、大かっこ\expr{]}で閉じます。
 
 \begin{lstlisting}
 expr[indexExpr]
 \end{lstlisting}
 
-This notation is allowed with arbitrary expressions, but at typing level only certain combinations are admitted:
+この記法については任意の式で許可されていますが、型付けの段階では以下の特定の組み合わせのみが許可されます。
 
 \begin{itemize}
-	\item \expr{expr} is of \type{Array} or \type{Dynamic} and \expr{indexExpr} is of \type{Int}
-	\item \expr{expr} is an \tref{abstract type}{types-abstract} which defines a matching \tref{array access}{types-abstract-array-access}
+	\item \expr{expr}は\type{Array}か\type{Dynamic}であり、\expr{indexExpr}が\type{Int}である。
+	\item \expr{expr}は\tref{抽象型}{types-abstract}であり、マッチする\tref{配列アクセス}{types-abstract-array-access}が定義されている。
 \end{itemize}
 
-
-\section{Function Call}
+\section{関数呼び出し}
 \label{expression-function-call}
 
-Functions calls consist of an arbitrary subject expression followed by an opening parenthesis \expr{(}, a comma \expr{,} separated list of expressions as arguments and a closing parenthesis \expr{)}.
+関数呼び出しは、任意の式を対象として、小かっこ\expr{(}を続け、引数の式のリストを\expr{,}で区切って並べて、小かっこ\expr{)}で閉じることで行います。
 
 \begin{lstlisting}
 subject(); // call with no arguments
@@ -154,11 +155,10 @@ subject(e1, e2); // call with two arguments
 subject(e1, ..., eN);
 \end{lstlisting}
 
-
-\section{var}
+\section{var(変数宣言)}
 \label{expression-var}
 
-The \expr{var} keyword allows declaring multiple variables, separated by comma \expr{,}. Each variable has a valid \tref{identifier}{define-identifier} and optionally a value assignment following the assignment operator \expr{=}. Variables can also have an explicit type-hint.
+\expr{var}キーワードは、カンマ\expr{,}で区切って、複数の変数を宣言することができます。すべての変数は、正当な\tref{識別子}{define-identifier}を持ち、オプションとして\expr{=}を続けて値の代入を行うこともできます。また変数に明示的な型注釈をあたえることもできます。
 
 \begin{lstlisting}
 var a; // declare local a
@@ -170,114 +170,110 @@ var c = 1;
 var d,e = 2;
 \end{lstlisting}
 
-The scoping behavior of local variables is described in \Fullref{expression-block}.
+ローカル変数のスコープについての挙動は\Fullref{expression-block}に書かれています。
 
-
-\section{Local functions}
+\section{ローカル関数}
 \label{expression-function}
 
-Haxe supports first-class functions and allows declaring local functions in expressions. The syntax follows \tref{class field methods}{class-field-method}:
+Haxeはファーストクラス関数をサポートしており、式の中でローカル関数を宣言することができます。この構文は\tref{クラスフィールドメソッド}{class-field-method}にならいます。
 
 \haxe{assets/LocalFunction.hx}
 
-We declare \expr{myLocalFunction} inside the \tref{block expression}{expression-block} of the \expr{main} class field. It takes one argument \expr{i} and adds it to \expr{value}, which is defined in the outside scope.
+\expr{myLocalFunction}を、\expr{main}クラスフィールドの\tref{ブロック式}{expression-block}の中で宣言しました。このローカル関数は1つの引数\expr{i}を取り、それをスコープの外のvalueに足しています。
 
-The scoping is equivalent to that of \tref{variables}{expression-var} and for the most part writing a named local function can be considered equal to assigning an unnamed local function to a local variable:
+スコープについては、\tref{変数の場合}{expression-var}と同じで、多くの面で名前を持つローカル関数は、ローカル変数に対する匿名関数の代入と同じです。
 
 \begin{lstlisting}
 var myLocalFunction = function(a) { }
 \end{lstlisting}
 
-However, there are some differences related to type parameters and the position of the function. We speak of a ``lvalue'' function if it is not assigned to anything upon its declaration, and an ``rvalue'' function otherwise.
+しかしながら、関数の場所による型パラメータに関する違いがあります。これは定義時に何にも代入されていない「左辺値」の関数と、それ以外の「右辺値」の関数についての違いで、以下の通りです。
 
 \begin{itemize}
-	\item Lvalue functions require a name and can have \tref{type parameters}{type-system-type-parameters}.
-	\item Rvalue functions may have a name, but cannot have type parameters.
+	\item 左辺値の関数は名前が必要で、\tref{型パラメータ}{type-system-type-parameters}を持ちます。
+	\item 右辺値の関数については名前はあってもなくてもかまいませんが、型パラメータを使うことができません。
 \end{itemize}
 
-
-\section{new}
+\section{new(インスタンス化)}
 \label{expression-new}
 
-The \expr{new} keyword signals that a \tref{class}{types-class-instance} or an \tref{abstract}{types-abstract} is being instantiated. It is followed by the \tref{type path}{define-type-path} of the type which is to be instantiated. It may also list explicit \tref{type parameters}{type-system-type-parameters} enclosed in \expr{<>} and separated by comma \expr{,}. After an opening parenthesis \expr{()} follow the constructor arguments, again separated by comma \expr{,}, with a closing parenthesis \expr{)} at the end.
+\expr{new}キーワードは、\tref{クラス}{types-class-instance}と\tref{抽象型}{types-abstract}のインスタンス化を行います。\expr{new}の後にはインスタンス化される\tref{型のパス}{define-type-path}が続きます。場合によっては、\expr{<>}で囲んでカンマ\expr{,}で区切った、\tref{型パラメータ}{type-system-type-parameters}の記述がされます。その後に、小かっこ\expr{(}、カンマ\expr{,}区切りのコンストラクタの引数が続き、小かっこ\expr{)}で閉じます。
 
 \haxe{assets/New.hx}
 
-Within the \expr{main} method we instantiate an instance of \type{Main} itself, with an explicit type parameter \type{Int} and the arguments \expr{12} and \expr{"foo"}. As we can see, the syntax is very similar to the \tref{function call syntax}{expression-function-call} and it is common to speak of ``constructor calls''.
-
-
+\expr{main}メソッドの中では、型パラメータ\type{Int}の明示付き、引数が\expr{12}と\expr{"foo"}で、\type{Main}クラス自身のインスタンス化を行っています。私たちが知っているように、この構文は、\tref{関数呼び出し}{expression-function-call}とよく似ており、「コンストラクタ呼び出し」と呼ぶことが多いです。
 
 \section{for}
 \label{expression-for}
 
-Haxe does not support traditional for-loops known from C. Its \expr{for} keyword expects an opening parenthesis \expr{(}, then a variable identifier followed by the keyword \expr{in} and an arbitrary expression used as iterating collection. After the closing parenthesis \expr{)} follows an arbitrary loop body expression.
+Haxeは、C言語で知られる伝統的なforループはサポートしていません。\expr{for}キーワードの後には、小かっこ\expr{(}、変数の識別子、\expr{in}キーワード、くり返しの処理を行うコレクションの任意の式が続き、小かっこ\expr{)}で閉じられて、最後にくり返しの本体の任意の式で終わります。
 
 \begin{lstlisting}
 for (v in e1) e2;
 \end{lstlisting}
 
-The typer ensures that the type of \expr{e1} can be iterated over, which is typically the case if it has an \expr{iterator} method returning an \type{Iterator<T>}, or if it is an \type{Iterator<T>} itself.
+型付け機は、\expr{e1}の型がくり返し可能であるかを確認します。くり返し可能というのは、\expr{iterator}メソッドが\type{Iterator<T>}を返すか、\type{Iterator<T>}自身である場合です。
 
-Variable \expr{v} is then available within loop body \expr{e2} and holds the value of the individual elements of collection \expr{e1}.
+変数vは、ループ本体の\expr{e2}の中で利用可能で、コレクション\expr{e1}の個々の要素の値が保持されます。
 
-Haxe has a special range operator to iterate over intervals. It is a binary operator taking two \type{Int} operands: \expr{min...max} returns an \expr{IntIterator} instance that iterates from \expr{min} (inclusive) to \expr{max} (exclusive). Note that \expr{max} may not be smaller than \expr{min}.
+Haxeには、ある範囲のくり返しを表す特殊な範囲演算子があります。これは、\expr{min...max}といった2つの\type{Int}をとり、\expr{min}(自身をふくむ)から\expr{max}の一つ前までをくり返す\expr{IntIterator}を返す2項演算子です。\expr{max}が\expr{min}より小さくしないように気をつけてください。
 
 \begin{lstlisting}
 for (i in 0...10) trace(i); // 0 to 9
 \end{lstlisting}
 
-The type of a \expr{for} expression is always \type{Void}, meaning it has no value and cannot be used as right-side expression.
+\expr{for}式の型は常に\type{Void}です。つまり、値は持たず、右辺の式としては使えません。
 
-The control flow of loops can be affected by \tref{\expr{break}}{expression-break} and \tref{\expr{continue}}{expression-continue} expressions.
+ループは、\tref{\expr{break}}{expression-break}と、\tref{\expr{continue}}{expression-continue}の式を使って、フロー制御が行えます。
 
-\section{while}
+\section{whileループ}
 \label{expression-while}
 
-A normal while loop starts with the \expr{while} keyword, followed by an opening parenthesis \expr{(}, the condition expression and a closing paranthesis \expr{)}. After that follows the loop body expression:
+通常の\expr{while}ループは、\expr{while}キーワードから始まり、小かっこ\expr{(}、条件式が続き、小かっこ\expr{)}を閉じて、ループ本体の式で終わります。
 
 \begin{lstlisting}
 while(condition) expression;
 \end{lstlisting}
 
-The condition expression has to be of type \type{Bool}.
+条件式は\type{Bool}型でなくてはいけません。
 
-Upon each iteration, the condition expression is evaluated. If it evaluates to \expr{false}, the loop stops, otherwise it evaluates the loop body expression.
+各くり返しで条件式は評価されます。\expr{false}と評価された場合ループは終了します。そうでない場合、ループ本体の式が評価されます。
 
 \haxe{assets/While.hx}
 
-This kind of while-loop is not guaranteed to evaluate the loop body expression at all: If the condition does not hold from the start, it is never evaluated. This is different for \tref{do-while loops}{expression-do-while}.
+この種類の\expr{while}ループは、ループ本体が一度も評価されないことがあります。条件式が最初から\expr{false}だった場合です。この点が\tref{do-whileループ}{expression-do-while}との違いです。
 
-\section{do-while}
+\section{do-whileループ}
 \label{expression-do-while}
 
-A do-while loop starts with the \expr{do} keyword followed by the loop body expression. After that follows the \expr{while} keyword, an opening parenthesis \expr{(}, the condition expression and a closing parenthesis \expr{)}:
+do-whileループは、\expr{do}キーワードから始まり、次にループ本体の式が来ます。その後に\expr{while}、小かっこ\expr{(}、条件式、小かっこ\expr{)}となります。
 
 \begin{lstlisting}
 do expression while(condition);
 \end{lstlisting}
 
-The condition expression has to be of type \type{Bool}.
+条件式は\type{Bool}型でなくてはいけません。
 
-As the syntax suggests, the loop body expression is always evaluated at least once, unlike \tref{while}{expression-while} loops.
+この構文を見てわかるとおり、\tref{while}{expression-while}ループの場合とは違ってループ本体の式は少なくとも一度は評価をされます。
 
 \section{if}
 \label{expression-if}
 
-Conditional expressions come in the form of a leading \expr{if} keyword, a condition expression enclosed in parentheses \expr{()} and a expression to be evaluated in case the condition holds:
+条件分岐式は、\expr{if}キーワードから始まり、小かっこ\expr{()}で囲んだ条件式、条件が真だった場合に評価される式となります。
 
 \begin{lstlisting}
 if (condition) expression;
 \end{lstlisting}
 
-The condition expression has to be of type \type{Bool}.
+条件式は\type{Bool}型でなくてはいけません。
 
-Optionally, \expr{expression} may be followed by the \expr{else} keyword as well as another expression to be evaluated if the condition does not hold:
+オプションとして、\expr{else}キーワードを続けて、その後に、元の条件が偽だった場合に実行される式を記述することができます。
 
 \begin{lstlisting}
 if (condition) expression1 else expression2;
 \end{lstlisting}
 
-Here, \expr{expression2} may consist of another \expr{if} expression:
+\expr{expression2}は以下のように、また別の\expr{if}式を持つかもしれません。
 
 \begin{lstlisting}
 if (condition1) expression1
@@ -285,13 +281,12 @@ else if(condition2) expression2
 else expression3
 \end{lstlisting}
 
-If the value of an \expr{if} expression is required, e.g. for \expr{var x = if(condition) expression1 else expression2}, the typer ensures that the types of \expr{expression1} and \expr{expression2} \tref{unify}{type-system-unification}. If no \expr{else} expression is given, the type is inferred to be \type{Void}.
-
+\expr{if}式に値が要求される場合（たとえば、\expr{var x = if(condition) expression1 else expression2}という風に）、型付け機は\expr{expression1}と\expr{expression2}の型を\tref{単一化}{type-system-unification}します。\expr{else}式がなかった場合、型は\type{Void}であると推論されます。
 
 \section{switch}
 \label{expression-switch}
 
-A basic switch expression starts with the \expr{switch} keyword and the switch subject expression, as well as the case expressions between curly braces \expr{\{\}}. Case expressions either start with the \expr{case} keyword and are followed by a pattern expression, or consist of the \expr{default} keyword. In both cases a colon \expr{:} and an optional case body expression follows:
+基本的なスイッチ式は、\expr{switch}キーワードと、その分岐対象の式から始まり、中かっこ\expr{\{\}}にはさまれてケース式が並びます。各ケース式は、\expr{case}キーワードからのパターン式か、\expr{default}キーワードで始まります。どちらの場合も、コロンが続き、オプショナルなケース本体の式が来ます。
 
 \begin{lstlisting}
 switch subject {
@@ -301,16 +296,16 @@ switch subject {
 }
 \end{lstlisting}
 
-Case body expressions never ``fall through'', so the \tref{\expr{break}}{expression-break} keyword is not supported in Haxe.
+ケース本体の式に、「フォールスルー」は起きません。このため、Haxeでは\tref{\expr{break}}{expression-break}キーワードは使用しません。
 
-Switch expressions can be used as value; in that case the types of all case body expressions and the default expression must \tref{unify}{type-system-unification}.
+スイッチ式は値としてあつかうことができます。その場合、すべてのケース本体の式の型は\tref{単一化}{type-system-unification}できなくてはいけません。
 
-Further details on syntax of pattern expressions are detailed in \Fullref{lf-pattern-matching}.
+パターン式については、\Fullref{lf-pattern-matching}で詳しく説明されています。
 
 \section{try/catch}
 \label{expression-try-catch}
 
-Haxe allows catching values using its \expr{try/catch} syntax:
+Haxeでは、\expr{try/catch}構文を使うことで値を捕捉することができます。
 
 \begin{lstlisting}
 try try-expr
@@ -318,36 +313,34 @@ catch(varName1:Type1) catch-expr-1
 catch(varName2:Type2) catch-expr-2
 \end{lstlisting}
 
-If during runtime the evaluation of \expr{try-expression} causes a \tref{\expr{throw}}{expression-throw}, it can be caught by any subsequent \expr{catch} block. These blocks consist of
+実行時に、\expr{try-expression}の評価が、\tref{\expr{throw}}{expression-throw}を引き起こすと、後に続く\expr{catch}ブロックのいずれかに捕捉されます。これらのブロックは以下から構成されます
 
 \begin{itemize}
-	\item a variable name which holds the thrown value,
-	\item an explicit type annotation which determines which types of values to catch, and
-	\item the expression to execute in that case.
+	\item \expr{throw}された値を割り当てる変数の名前。
+	\item 捕捉する値の型を決める、明示的な型注釈
+	\item 捕捉したときに実行される式
 \end{itemize}
 
-Haxe allows throwing and catching any kind of value, it is not limited to types inheriting from a specific exception or error class. Catch blocks are checked from top to bottom with the first one whose type is compatible with the thrown value being picked.
+Haxeでは、あらゆる種類の値を\expr{throw}して、\expr{catch}することができます。その型は特定の例外やエラークラスに限定されません。\expr{catch}ブロックは上から下へとチェックされていき、投げられた値と型が適合する最初のブロックが実行されます。
 
-This process has many similarities to the compile-time \tref{unification}{type-system-unification} behavior. However, since the check has to be done at runtime there are several restrictions:
+この過程は、コンパイル時の\tref{単一化}{type-system-unification}に似ています。しかし、この判定は実行時に行われるものでいくつかの制限があります。
 
 \begin{itemize}
-	\item The type must exist at runtime: \tref{Class instances}{types-class-instance}, \tref{enum instances}{types-enum-instance}, \tref{abstract core types}{types-abstract-core-type} and \tref{Dynamic}{types-dynamic}.
-	\item Type parameters can only be \tref{Dynamic}{types-dynamic}.
+	\item 型は実行時に存在するものでなければならない。\tref{クラスインスタンス}{types-class-instance}、\tref{列挙型インスタンス}{types-enum-instance}、\tref{コアタイプ抽象型}{types-abstract-core-type}、\tref{Dynamic}{types-dynamic}.
+	\item 型パラメータは、\tref{Dynamic}{types-dynamic}でなければならない。
 \end{itemize}
-
-
 
 \section{return}
 \label{expression-return}
 
-A \expr{return} expression can come with or without an value expression:
+\expr{return}式は、値をとるものと、とらないものの両方があります。
 
 \begin{lstlisting}
 return;
 return expression;
 \end{lstlisting}
 
-It leaves the control-flow of the innermost function it is declared in, which has to be distinguished when \tref{local functions}{expression-function} are involved:
+\expr{return}式は、最も内側に定義されている関数のフロー制御からぬけ出します。最も内側というのは\tref{ローカル関数}{expression-function}の場合での特徴です。
 
 \begin{lstlisting}
 function f1() {
@@ -359,15 +352,14 @@ function f1() {
 }
 \end{lstlisting}
 
-The \expr{return} leaves local function \expr{f2}, but not \expr{f1}, meaning \expr{expression} is still evaluated.
+\expr{return}により、ローカル関数\expr{f2}からはぬけ出しますが、\expr{f1}からはぬけ出しません。つまり、\expr{expression}は評価されます。
 
-If \expr{return} is used without a value expression, the typer ensures that the return type of the function it returns from is of \type{Void}. If it has a value expression, the typer \tref{unifies}{type-system-unification} its type with the return type (explicitly given or inferred by previous \expr{return} expressions) of the function it returns from.
-
+\expr{return}が、値の式なしで使用された場合、型付け機はその関数の戻り値が\type{Void}型であることを確認します。\expr{return}が値の式を持つ場合、型付け機はその関数の戻り値の型(明示的に与えられているか、前のreturnによって推論されている場合)と、\expr{return}している値の型を\tref{単一化}{type-system-unification}します。
 
 \section{break}
 \label{expression-break}
 
-The \expr{break} keyword leaves the control flow of the innermost loop (\expr{for} or \expr{while}) it is declared in, stopping further iterations:
+\expr{break}キーワードは、そのキーワードをふくむ最も内側にあるループ(\expr{for}でも、\expr{while}でも)の制御フローからぬけ出して、くり返し処理を終了させます。
 
 \begin{lstlisting}
 while(true) {
@@ -377,15 +369,14 @@ while(true) {
 }
 \end{lstlisting}
 
-Here, \expr{expression1} is evaluated for each iteration, but as soon as \expr{condition} holds, \expr{expression2} is not evaluated anymore.
+\expr{expression1}はすべてのくり返しで評価されますが、\expr{condition}が偽になると\expr{expression2}は、実行されません。
 
-The typer ensures that it appears only within a loop. The \expr{break} keyword in \tref{\expr{switch} cases}{expression-switch} is not supported in Haxe.
-
+型付け機は\expr{break}がループの内部のみで使用されていることを確認します。\tref{\expr{switch}のケース}{expression-switch}に対する\expr{break}は、Haxeではサポートしていません。
 
 \section{continue}
 \label{expression-continue}
 
-The \expr{continue} keyword ends the current iteration of the innermost loop (\expr{for} or \expr{while}) it is declared in, causing the loop condition to be checked for the next iteration:
+\expr{continue}キーワードは、そのキーワードをふくむ最も内側にあるループ(\expr{for}でも、\expr{while}でも)の現在のくり返しを終了します。そして、次のくり返しのためのループ条件チェックが行われます。
 
 \begin{lstlisting}
 while(true) {
@@ -395,77 +386,74 @@ while(true) {
 }
 \end{lstlisting}
 
-Here, \expr{expression1} is evaluated for each iteration, but if \expr{condition} holds, \expr{expression2} is not evaluated for the current iteration. Unlike \expr{break}, iterations continue.
+\expr{expression1}は、各くり返しすべてで評価されますが、\expr{condition}が偽の時は、その回のくり返しについては評価がされません。\expr{break}は異なりループ処理自体は続きます。
 
-The typer ensures that it appears only within a loop.
-
+型付け機は\expr{continue}がループの内部のみで使用されていることを確認します。
 
 \section{throw}
 \label{expression-throw}
 
-Haxe allows throwing any kind of value using its \expr{throw} syntax:
+Haxeでは、以下の構文で、値の\expr{throw}をすることができます。
 
 \begin{lstlisting}
 throw expr
 \end{lstlisting}
 
-A value which is thrown like this can be caught by \tref{\expr{catch} blocks}{expression-try-catch}. If no such block catches it, the behavior is target-dependent.
-
+\expr{throw}された値は、\tref{\expr{catch}ブロック}{expression-try-catch}で捕捉できます。捕捉されなかった場合の挙動はターゲット依存です。
 
 \section{cast}
 \label{expression-cast}
 
-Haxe allows two kinds of casts:
+Haxeには、以下の2種類のキャストがあります。
 
 \begin{lstlisting}
 cast expr; // unsafe cast
 cast (expr, Type); // safe cast
 \end{lstlisting}
 
-\subsection{unsafe cast}
+\subsection{非セーフキャスト}
 \label{expression-cast-unsafe}
 
-Unsafe casts are useful to subvert the type system. The compiler types \expr{expr} as usual and then wraps it in a \tref{monomorph}{types-monomorph}. This allows the expression to be assigned to anything.
+非セーフキャストは型システムを無力化するのに役立ちます。コンパイラは\expr{expr}を通常通りに型付けを行い、それを\tref{単相}{types-monomorph}としてつつみ込みます。これにより、その式をあらゆるものに割り当てすることが可能です。
 
-Unsafe casts do not introduce any \tref{dynamic}{types-dynamic} types, as the following example shows:
+非セーフキャストは、以下の例が示すように、\tref{Dynamic}{types-dynamic}への型変更ではありません。
 
 \haxe{assets/UnsafeCast.hx}
 
-Variable \expr{i} is typed as \type{Int} and then assigned to variable \expr{s} using the unsafe cast \expr{cast i}. This causes \expr{s} to be of an unknown type, a monomorph. Following the usual rules of \tref{unification}{type-system-unification}, it can then be bound to any type, such as \type{String} in this example.
+変数\expr{i}は\type{Int}と型付けされて、非セーフキャスト\expr{cast i}を使って変数\expr{s}に代入しました。\expr{s}は、\type{Unknown}型、つまり単相となりました。その後は、通常の\tref{単一化}{type-system-unification}のルールに従って、あらゆる型へと結びつけることが可能です。例では、\type{String}型となりました。
 
-These casts are called "unsafe" because the runtime behavior for invalid casts is not defined. While most \tref{dynamic targets}{define-dynamic-target} are likely to work, it might lead to undefined errors on \tref{static targets}{define-static-target}.
+これらのキャストは「非セーフ」と呼ばれます。これは、実行時の不正なキャストが定義されてないためです。 ほとんどの\tref{動的ターゲット}{define-dynamic-target}では動作する可能性が高いですが、\tref{静的ターゲット}{define-static-target}では未知のエラーの原因になりえます。
 
-Unsafe casts have little to no runtime overhead.
+非セーフキャストは実行時のオーバーヘッドは、ほぼ、または全くありません。
 
-\subsection{safe cast}
+\subsection{セーフキャスト}
 \label{expression-cast-safe}
 
-Unlike \tref{unsafe casts}{expression-cast-unsafe}, the runtime behavior in case of a failing cast is defined for safe casts:
+\tref{非セーフキャスト}{expression-cast-unsafe}とは異なり、実行時のキャスト失敗の挙動を持つのがセーフキャストです。
 
 \haxe{assets/SafeCast.hx}
 
-In this example we first cast a class instance of type \type{Child1} to \type{Base}, which succeeds because \type{Child1} is a \tref{child class}{types-class-inheritance} of \type{Base}. We then try to cast the same class instance to \type{Child2}, which is not allowed because instances of \type{Child2} are not instances of \type{Child1}.
+この例では、最初に\type{Child1}から\type{Base}へとキャストしています。これは、\type{Child1}が\type{Base}型の\tref{子クラス}{types-class-inheritance}なので、成功しています。次に\type{Child2}へキャストしていますが、\type{Child1}のインスタンスは\type{Child2}ではないので失敗しています。
 
-The Haxe compiler guarantees that an exception of type \type{String} is \tref{thrown}{expression-throw} in this case. This exception can be caught using a \tref{\expr{try/catch} block}{expression-try-catch}.
+Haxeコンパイラは、この場合\type{String}型の\tref{例外を投げます}{expression-throw}。この例外は、\tref{\expr{try/catch}ブロック}{expression-try-catch}を使って捕捉できます。
 
-Safe casts have a runtime overhead. It is important to understand that the compiler already generates type checks, so it is redundant to add manual checks, e.g. using \expr{Std.is}. The intended usage is to try the safe cast and catch the \type{String} exception.
+セーフキャストは実行時のオーバーヘッドがあります。重要なのは、コンパイラがすでにチェックを行っているので、\expr{Std.is}のようなチェックを自分で入れるのは、余分だということです。\type{String}型の例外を捕捉する、try-catchを行うのがセーフキャストで意図された用途です。
 
-
-\section{type check}
+\section{型チェック}
 \label{expression-type-check}
 \since{3.1.0}
 
-It is possible to employ compile-time type checks using the following syntax:
+以下の構文でコンパイルタイムの型チェックをつけることが可能です。
 
 \begin{lstlisting}
 (expr : type)
 \end{lstlisting}
 
-The parentheses are mandatory. Unlike \tref{safe casts}{expression-cast-safe} this construct has no run-time impact. It has two compile-time implications:
+小かっこは必須です。\tref{セーフキャスト}{expression-cast-safe}とは異なり、実行時に影響はありません。これは、コンパイル時の以下の2つの挙動を持ちます。
 
 \begin{enumerate}
-\item \tref{Top-down inference}{type-system-top-down-inference} is used to type \expr{expr} with type \expr{type}.
-\item The resulting typed expression is \tref{unified}{type-system-unification} with type \expr{type}.
+\item \tref{トップダウンの型推論}{type-system-top-down-inference}が\expr{expr}に対して\expr{type}の型で適用されます。
+\item その結果、\expr{type}の型との\tref{単一化}{type-system-unification}がされます。
 \end{enumerate}
 
-This has the usual effect of both operations such as the given type being used as expected type when performing \tref{unqualified identifier resolution}{type-system-resolution-order} and the unification checking for \tref{abstract casts}{types-abstract-implicit-casts}.
+この2つの操作には、\tref{解決順序}{type-system-resolution-order}が発生している場合や、\tref{抽象型キャスト}{types-abstract-implicit-casts}で、期待する型へと変化させる、便利な効果があります。
