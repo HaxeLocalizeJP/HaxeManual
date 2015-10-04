@@ -81,4 +81,4 @@ class Main {
 
 Previous section: [ジェネリック型パラメータのコンストラクト](type-system-generic-type-parameter-construction.md)
 
-Next section: [単一化(ユニフィケーション)](type-system-unification.md)
+Next section: [単一化(ユニファイ)](type-system-unification.md)

@@ -1,6 +1,6 @@
 ## 2.1.3 数値の演算子
 
-This the list of numeric operators in Haxe, grouped by descending priority.
+以下は、Haxeの数値演算子です。優先度が降順になるようにグループ化して並べています。
 
 ##### 算術演算
  

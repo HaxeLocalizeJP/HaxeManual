@@ -17,7 +17,7 @@ Todo:
 2.6 - 関数: It seems a bit convoluted explanations. Should we maybe start by "decoding" the meaning of  Void -> Void, then Int -> Bool -> Float, then maybe have samples using $type
 2.8.2 - 演算子オーバーロード: please review for correctness
 2.8.3 - 配列アクセス: You have marked "Map" for some reason
-3.5 - 単一化(ユニフィケーション): Mention toString()/String conversion somewhere in this chapter.
+3.5 - 単一化(ユニファイ): Mention toString()/String conversion somewhere in this chapter.
 3.5.1 - クラスとインターフェースの単一化: "parent class" should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.
 3.7.3 - 解決順序: proper label and caption + code/identifier styling for diagram
 6.4.10 - Exhaustiveness checks: Figure out wtf our rules are now for when this is checked.
@@ -88,7 +88,7 @@ Unreviewed:
 3.3 - ジェネリック
 3.3.1 - ジェネリック型パラメータのコンストラクト
 3.4 - 変性(バリアンス)
-3.5 - 単一化(ユニフィケーション)
+3.5 - 単一化(ユニファイ)
 3.5.1 - クラスとインターフェースの単一化
 3.5.2 - 構造的部分型付け
 3.5.3 - 単相

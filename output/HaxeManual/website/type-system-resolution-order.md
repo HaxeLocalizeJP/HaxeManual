@@ -13,9 +13,9 @@
 * [期待される型](dictionary.md#define-expected-type)
 * `untyped`中の式か、そうでないか
 
-<img src="../../../HaxeManual/assets/graphics/generated/type-system-resolution-order-diagram.png" alt="識別子 `i'　の解決順序" title="識別子 `i'　の解決順序" />
+<img src="../../../HaxeManual/assets/graphics/generated/type-system-resolution-order-diagram.png" alt="識別子`i'の解決順序" title="識別子`i'の解決順序" />
 
-_Figure: 識別子 `i'　の解決順序_
+_Figure: 識別子`i'の解決順序_
 
 `i`を例にすると、このアルゴリズムは以下のようなものです。
 

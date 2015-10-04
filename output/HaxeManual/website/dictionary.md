@@ -35,7 +35,7 @@ An **accessor method** (or short **accessor**) for a field named `field` of type
 <a id="define-bool" class="anch"></a>
 
 ##### Bool
-真(**true**)または、偽(**false**)のどちらかになる値を表す。
+真(**true**)または、偽(**false**)のどちらかになる値を表します。
 
 <a id="define-class-field" class="anch"></a>
 

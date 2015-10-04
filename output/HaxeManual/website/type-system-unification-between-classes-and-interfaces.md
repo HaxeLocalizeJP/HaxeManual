@@ -12,6 +12,6 @@
 
 ---
 
-Previous section: [単一化(ユニフィケーション)](type-system-unification.md)
+Previous section: [単一化(ユニファイ)](type-system-unification.md)
 
 Next section: [構造的部分型付け](type-system-structural-subtyping.md)
