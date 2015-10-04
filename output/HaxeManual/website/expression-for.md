@@ -1,27 +1,27 @@
 ## 5.13 for
 
-Haxe does not support traditional for-loops known from C. Its `for` keyword expects an opening parenthesis `(`, then a variable identifier followed by the keyword `in` and an arbitrary expression used as iterating collection. After the closing parenthesis `)` follows an arbitrary loop body expression.
+Haxeは、C言語で知られる伝統的なforループはサポートしていません。`for`キーワードの後には、小かっこ`(`、変数の識別子、`in`キーワード、くり返しの処理を行うコレクションの任意の式が続き、小かっこ`)`で閉じられて、最後にくり返しの本体の任意の式で終わります。
 
 ```haxe
 for (v in e1) e2;
 ```
 
-The typer ensures that the type of `e1` can be iterated over, which is typically the case if it has an `iterator` method returning an `Iterator<T>`, or if it is an `Iterator<T>` itself.
+型付け機は、`e1`の型がくり返し可能であるかを確認します。くり返し可能というのは、`iterator`メソッドが`Iterator<T>`を返すか、`Iterator<T>`自身である場合です。
 
-Variable `v` is then available within loop body `e2` and holds the value of the individual elements of collection `e1`.
+変数vは、ループ本体の`e2`の中で利用可能で、コレクション`e1`の個々の要素の値が保持されます。
 
-Haxe has a special range operator to iterate over intervals. It is a binary operator taking two `Int` operands: `min...max` returns an `IntIterator` instance that iterates from `min` (inclusive) to `max` (exclusive). Note that `max` may not be smaller than `min`.
+Haxeには、ある範囲のくり返しを表す特殊な範囲演算子があります。これは、`min...max`といった2つの`Int`をとり、`min`(自身をふくむ)から`max`の一つ前までをくり返す`IntIterator`を返す2項演算子です。`max`が`min`より小さくしないように気をつけてください。
 
 ```haxe
 for (i in 0...10) trace(i); // 0 to 9
 ```
 
-The type of a `for` expression is always `Void`, meaning it has no value and cannot be used as right-side expression.
+`for`式の型は常に`Void`です。つまり、値は持たず、右辺の式としては使えません。
 
-The control flow of loops can be affected by [`break`](expression-break.md) and [`continue`](expression-continue.md) expressions.
+ループは、[`break`](expression-break.md)と、[`continue`](expression-continue.md)の式を使って、フロー制御が行えます。
 
 ---
 
-Previous section: [new](expression-new.md)
+Previous section: [new(インスタンス化)](expression-new.md)
 
-Next section: [while](expression-while.md)
+Next section: [whileループ](expression-while.md)

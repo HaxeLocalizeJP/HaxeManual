@@ -1,29 +1,33 @@
-## 5 Expressions
+## 5 式
 
-Expressions in Haxe define what a program **does**. Most expressions are found in the body of a [method](class-field-method.md), where they are combined to express what that method should do. This section explains the different kinds of expressions. Some definitions help here:
+Haxeの式は、プログラムが**何をするか**を決定します。ほとんどの式は[メソッド](class-field-method.md)に書かれ、そのメソッドが何をすべきかをその式の合わせによって表現します。この章では、さまざまな種類の式を説明していきます。
 
-> ##### Define: Name
+ここに、いくつか定義を示しておきます。
+
+> ##### Define: 名前
 >
-> A general name may refer to
 > 
-> * a type,
-> * a local variable,
-> * a local function or
-> * a field.
+> 名前は次のいずれかにひもづきます。
+> 
+> * 型
+> * ローカル変数
+> * ローカル関数
+> * フィールド
 > 
 
-> ##### Define: Identifier
+> ##### Define: 識別子
 >
-> Haxe identifiers start with an underscore `_`, a dollar `$`, a lower-case character `a-z` or an upper-case character `A-Z`. After that, any combination and number of `_`, `A-Z`, `a-z` and `0-9` may follow.
 > 
-> Further limitations follow from the usage context, which are checked upon typing:
+> Haxeの識別子は、アンダースコア`_`、ドル`$`、小文字`a-z`、大文字`A-Z`のいずれかから始まり、任意の`_`、`A-Z`、`a-z`、`0-9`のつなぎ合わせが続きます。
 > 
-> * Type names must start with an upper-case letter `A-Z` or an underscore `_`.
-> * Leading dollars are not allowed for any kind of [name](dictionary.md#define-name) (dollar-names are mostly used for [macro reification](macro-reification.md)).
+> さらに使用する状況によって以下の制限が加わります。これらは、型付けの時にチェックされます。
+> 
+> * 型の名前は大文字`A-Z`か、アンダースコア`_`で始まる。
+> * [名前](dictionary.md#define-name)では、先頭にドル記号は使えません。(ドル記号はほとんどの場合、[マクロの実体化](macro-reification.md)に使われます)
 >
 
 ---
 
 Previous section: [Override](class-field-override.md)
 
-Next section: [Blocks](expression-block.md)
+Next section: [ブロック](expression-block.md)

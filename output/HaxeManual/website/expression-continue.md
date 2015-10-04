@@ -1,6 +1,6 @@
 ## 5.21 continue
 
-The `continue` keyword ends the current iteration of the innermost loop (`for` or `while`) it is declared in, causing the loop condition to be checked for the next iteration:
+`continue`キーワードは、そのキーワードをふくむ最も内側にあるループ(`for`でも、`while`でも)の現在のくり返しを終了します。そして、次のくり返しのためのループ条件チェックが行われます。
 
 ```haxe
 while(true) {
@@ -10,9 +10,9 @@ while(true) {
 }
 ```
 
-Here, `expression1` is evaluated for each iteration, but if `condition` holds, `expression2` is not evaluated for the current iteration. Unlike `break`, iterations continue.
+`expression1`は、各くり返しすべてで評価されますが、`condition`が偽の時は、その回のくり返しについては評価がされません。`break`は異なりループ処理自体は続きます。
 
-The typer ensures that it appears only within a loop.
+型付け機は`continue`がループの内部のみで使用されていることを確認します。
 
 ---
 

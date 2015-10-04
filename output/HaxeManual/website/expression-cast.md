@@ -1,6 +1,6 @@
 ## 5.23 cast
 
-Haxe allows two kinds of casts:
+Haxeには、以下の2種類のキャストがあります。
 
 ```haxe
 cast expr; // unsafe cast
@@ -11,4 +11,4 @@ cast (expr, Type); // safe cast
 
 Previous section: [throw](expression-throw.md)
 
-Next section: [unsafe cast](expression-cast-unsafe.md)
+Next section: [非セーフキャスト](expression-cast-unsafe.md)

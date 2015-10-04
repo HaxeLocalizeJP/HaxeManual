@@ -1,14 +1,14 @@
-## 5.14 while
+## 5.14 whileループ
 
-A normal while loop starts with the `while` keyword, followed by an opening parenthesis `(`, the condition expression and a closing paranthesis `)`. After that follows the loop body expression:
+通常の`while`ループは、`while`キーワードから始まり、小かっこ`(`、条件式が続き、小かっこ`)`を閉じて、ループ本体の式で終わります。
 
 ```haxe
 while(condition) expression;
 ```
 
-The condition expression has to be of type `Bool`.
+条件式は`Bool`型でなくてはいけません。
 
-Upon each iteration, the condition expression is evaluated. If it evaluates to `false`, the loop stops, otherwise it evaluates the loop body expression.
+各くり返しで条件式は評価されます。`false`と評価された場合ループは終了します。そうでない場合、ループ本体の式が評価されます。
 
 ```haxe
 class Main {
@@ -22,10 +22,10 @@ class Main {
 }
 ```
 
-This kind of while-loop is not guaranteed to evaluate the loop body expression at all: If the condition does not hold from the start, it is never evaluated. This is different for [do-while loops](expression-do-while.md).
+この種類の`while`ループは、ループ本体が一度も評価されないことがあります。条件式が最初から`false`だった場合です。この点が[do-whileループ](expression-do-while.md)との違いです。
 
 ---
 
 Previous section: [for](expression-for.md)
 
-Next section: [do-while](expression-do-while.md)
+Next section: [do-whileループ](expression-do-while.md)

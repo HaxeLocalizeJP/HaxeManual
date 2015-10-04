@@ -1,12 +1,12 @@
 ## 5.22 throw
 
-Haxe allows throwing any kind of value using its `throw` syntax:
+Haxeでは、以下の構文で、値の`throw`をすることができます。
 
 ```haxe
 throw expr
 ```
 
-A value which is thrown like this can be caught by [`catch` blocks](expression-try-catch.md). If no such block catches it, the behavior is target-dependent.
+`throw`された値は、[`catch`ブロック](expression-try-catch.md)で捕捉できます。捕捉されなかった場合の挙動はターゲット依存です。
 
 ---
 

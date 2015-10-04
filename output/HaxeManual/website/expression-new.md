@@ -1,6 +1,6 @@
-## 5.12 new
+## 5.12 new(インスタンス化)
 
-The `new` keyword signals that a [class](types-class-instance.md) or an [abstract](types-abstract.md) is being instantiated. It is followed by the [type path](dictionary.md#define-type-path) of the type which is to be instantiated. It may also list explicit [type parameters](type-system-type-parameters.md) enclosed in `<>` and separated by comma `,`. After an opening parenthesis `()` follow the constructor arguments, again separated by comma `,`, with a closing parenthesis `)` at the end.
+`new`キーワードは、[クラス](types-class-instance.md)と[抽象型](types-abstract.md)のインスタンス化を行います。`new`の後にはインスタンス化される[型のパス](dictionary.md#define-type-path)が続きます。場合によっては、`<>`で囲んでカンマ`,`で区切った、[型パラメータ](type-system-type-parameters.md)の記述がされます。その後に、小かっこ`(`、カンマ`,`区切りのコンストラクタの引数が続き、小かっこ`)`で閉じます。
 
 ```haxe
 class Main<T> {
@@ -12,10 +12,10 @@ class Main<T> {
 }
 ```
 
-Within the `main` method we instantiate an instance of `Main` itself, with an explicit type parameter `Int` and the arguments `12` and `"foo"`. As we can see, the syntax is very similar to the [function call syntax](expression-function-call.md) and it is common to speak of "constructor calls".
+`main`メソッドの中では、型パラメータ`Int`の明示付き、引数が`12`と`"foo"`で、`Main`クラス自身のインスタンス化を行っています。私たちが知っているように、この構文は、[関数呼び出し](expression-function-call.md)とよく似ており、「コンストラクタ呼び出し」と呼ぶことが多いです。
 
 ---
 
-Previous section: [Local functions](expression-function.md)
+Previous section: [ローカル関数](expression-function.md)
 
 Next section: [for](expression-for.md)

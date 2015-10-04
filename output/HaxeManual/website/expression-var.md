@@ -1,6 +1,6 @@
-## 5.10 var
+## 5.10 var(変数宣言)
 
-The `var` keyword allows declaring multiple variables, separated by comma `,`. Each variable has a valid [identifier](dictionary.md#define-identifier) and optionally a value assignment following the assignment operator `=`. Variables can also have an explicit type-hint.
+`var`キーワードは、カンマ`,`で区切って、複数の変数を宣言することができます。すべての変数は、正当な[識別子](dictionary.md#define-identifier)を持ち、オプションとして`=`を続けて値の代入を行うこともできます。また変数に明示的な型注釈をあたえることもできます。
 
 ```haxe
 var a; // declare local a
@@ -12,10 +12,10 @@ var c = 1;
 var d,e = 2;
 ```
 
-The scoping behavior of local variables is described in [Blocks](expression-block.md).
+ローカル変数のスコープについての挙動は[ブロック](expression-block.md)に書かれています。
 
 ---
 
-Previous section: [Function Call](expression-function-call.md)
+Previous section: [関数呼び出し](expression-function-call.md)
 
-Next section: [Local functions](expression-function.md)
+Next section: [ローカル関数](expression-function.md)

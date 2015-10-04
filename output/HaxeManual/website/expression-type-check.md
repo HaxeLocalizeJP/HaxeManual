@@ -1,22 +1,22 @@
-## 5.24 type check
+## 5.24 型チェック
 
 ##### since Haxe 3.1.0
 
-It is possible to employ compile-time type checks using the following syntax:
+以下の構文でコンパイルタイムの型チェックをつけることが可能です。
 
 ```haxe
 (expr : type)
 ```
 
-The parentheses are mandatory. Unlike [safe casts](expression-cast-safe.md) this construct has no run-time impact. It has two compile-time implications:
+小かっこは必須です。[セーフキャスト](expression-cast-safe.md)とは異なり、実行時に影響はありません。これは、コンパイル時の以下の2つの挙動を持ちます。
 
-1. [Top-down inference](type-system-top-down-inference.md) is used to type `expr` with type `type`.
-2. The resulting typed expression is [unified](type-system-unification.md) with type `type`.
+1. [トップダウンの型推論](type-system-top-down-inference.md)が`expr`に対して`type`の型で適用されます。
+2. その結果、`type`の型との[単一化](type-system-unification.md)がされます。
 
-This has the usual effect of both operations such as the given type being used as expected type when performing [unqualified identifier resolution](type-system-resolution-order.md) and the unification checking for [abstract casts](types-abstract-implicit-casts.md).
+この2つの操作には、[解決順序](type-system-resolution-order.md)が発生している場合や、[抽象型キャスト](types-abstract-implicit-casts.md)で、期待する型へと変化させる、便利な効果があります。
 
 ---
 
-Previous section: [safe cast](expression-cast-safe.md)
+Previous section: [セーフキャスト](expression-cast-safe.md)
 
 Next section: [Language Features](lf.md)

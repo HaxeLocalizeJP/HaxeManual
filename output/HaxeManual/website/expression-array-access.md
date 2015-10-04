@@ -1,18 +1,18 @@
-## 5.8 Array Access
+## 5.8 配列アクセス
 
-Array access is expressed by using an opening bracket `[` followed by the index expression and a closing bracket `]`.
+配列アクセスは、大かっこ`[`で始まり、インデックスを表す式が続き、大かっこ`]`で閉じます。
 
 ```haxe
 expr[indexExpr]
 ```
 
-This notation is allowed with arbitrary expressions, but at typing level only certain combinations are admitted:
+この記法については任意の式で許可されていますが、型付けの段階では以下の特定の組み合わせのみが許可されます。
 
-* `expr` is of `Array` or `Dynamic` and `indexExpr` is of `Int`
-* `expr` is an [abstract type](types-abstract.md) which defines a matching [array access](types-abstract-array-access.md)
+* `expr`は`Array`か`Dynamic`であり、`indexExpr`が`Int`である。
+* `expr`は[抽象型](types-abstract.md)であり、マッチする[配列アクセス](types-abstract-array-access.md)が定義されている。
 
 ---
 
-Previous section: [Field Access](expression-field-access.md)
+Previous section: [フィールドへのアクセス](expression-field-access.md)
 
-Next section: [Function Call](expression-function-call.md)
+Next section: [関数呼び出し](expression-function-call.md)

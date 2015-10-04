@@ -57,17 +57,6 @@ EnumValueはすべての列挙型のインスタンスと一致する特別な�
 ##### Float
 IEEEの64bit倍精度浮動小数点数を表します。
 
-<a id="define-identifier" class="anch"></a>
-
-##### Identifier
-Haxe identifiers start with an underscore `_`, a dollar `$`, a lower-case character `a-z` or an upper-case character `A-Z`. After that, any combination and number of `_`, `A-Z`, `a-z` and `0-9` may follow.
-
-Further limitations follow from the usage context, which are checked upon typing:
-
-* Type names must start with an upper-case letter `A-Z` or an underscore `_`.
-* Leading dollars are not allowed for any kind of [name](dictionary.md#define-name) (dollar-names are mostly used for [macro reification](macro-reification.md)).
-
-
 <a id="define-int" class="anch"></a>
 
 ##### Int
@@ -82,17 +71,6 @@ Lambda is a functional language concept within Haxe that allows you to apply a f
 
 ##### Macro Context
 The macro context is the environment in which the macro is executed. Depending on the macro type, it can be considered to be a class being built or a function being typed. Contextual information can be obtained through the `haxe.macro.Context` API.
-
-<a id="define-name" class="anch"></a>
-
-##### Name
-A general name may refer to
-
-* a type,
-* a local variable,
-* a local function or
-* a field.
-
 
 <a id="define-nullable" class="anch"></a>
 
@@ -185,6 +163,18 @@ A write access to a field occurs when a [field access expression](expression-fie
 ##### 反変性
 [複合型](dictionary.md#define-compound-type)がそれを構成する型よりも特殊な型で構成される複合型に代入できる場合に、反変であるという。 つまり、書き込みのみが許されて読み込みができない場合です。
 
+<a id="define-name" class="anch"></a>
+
+##### 名前
+
+名前は次のいずれかにひもづきます。
+
+* 型
+* ローカル変数
+* ローカル関数
+* フィールド
+
+
 <a id="define-type-path" class="anch"></a>
 
 ##### 型のパス
@@ -218,6 +208,18 @@ A write access to a field occurs when a [field access expression](expression-fie
 
 ##### 要求される型
 要求される型は、式の型が式が型付けされるより前にわかっている場合に現れます。例えば、式が関数の呼び出しの引数の場合です。この場合、[トップダウンの推論](type-system-top-down-inference.md)と呼ばれる方法で、式に型が伝搬します。
+
+<a id="define-identifier" class="anch"></a>
+
+##### 識別子
+
+Haxeの識別子は、アンダースコア`_`、ドル`$`、小文字`a-z`、大文字`A-Z`のいずれかから始まり、任意の`_`、`A-Z`、`a-z`、`0-9`のつなぎ合わせが続きます。
+
+さらに使用する状況によって以下の制限が加わります。これらは、型付けの時にチェックされます。
+
+* 型の名前は大文字`A-Z`か、アンダースコア`_`で始まる。
+* [名前](dictionary.md#define-name)では、先頭にドル記号は使えません。(ドル記号はほとんどの場合、[マクロの実体化](macro-reification.md)に使われます)
+
 
 <a id="define-static-target" class="anch"></a>
 

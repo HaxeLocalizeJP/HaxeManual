@@ -1,6 +1,6 @@
-## 5.9 Function Call
+## 5.9 関数呼び出し
 
-Functions calls consist of an arbitrary subject expression followed by an opening parenthesis `(`, a comma `,` separated list of expressions as arguments and a closing parenthesis `)`.
+関数呼び出しは、任意の式を対象として、小かっこ`(`を続け、引数の式のリストを`,`で区切って並べて、小かっこ`)`で閉じることで行います。
 
 ```haxe
 subject(); // call with no arguments
@@ -12,6 +12,6 @@ subject(e1, ..., eN);
 
 ---
 
-Previous section: [Array Access](expression-array-access.md)
+Previous section: [配列アクセス](expression-array-access.md)
 
-Next section: [var](expression-var.md)
+Next section: [var(変数宣言)](expression-var.md)

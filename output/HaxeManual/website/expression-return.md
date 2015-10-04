@@ -1,13 +1,13 @@
 ## 5.19 return
 
-A `return` expression can come with or without an value expression:
+`return`式は、値をとるものと、とらないものの両方があります。
 
 ```haxe
 return;
 return expression;
 ```
 
-It leaves the control-flow of the innermost function it is declared in, which has to be distinguished when [local functions](expression-function.md) are involved:
+`return`式は、最も内側に定義されている関数のフロー制御からぬけ出します。最も内側というのは[ローカル関数](expression-function.md)の場合での特徴です。
 
 ```haxe
 function f1() {
@@ -19,9 +19,9 @@ function f1() {
 }
 ```
 
-The `return` leaves local function `f2`, but not `f1`, meaning `expression` is still evaluated.
+`return`により、ローカル関数`f2`からはぬけ出しますが、`f1`からはぬけ出しません。つまり、`expression`は評価されます。
 
-If `return` is used without a value expression, the typer ensures that the return type of the function it returns from is of `Void`. If it has a value expression, the typer [unifies](type-system-unification.md) its type with the return type (explicitly given or inferred by previous `return` expressions) of the function it returns from.
+`return`が、値の式なしで使用された場合、型付け機はその関数の戻り値が`Void`型であることを確認します。`return`が値の式を持つ場合、型付け機はその関数の戻り値の型(明示的に与えられているか、前のreturnによって推論されている場合)と、`return`している値の型を[単一化](type-system-unification.md)します。
 
 ---
 

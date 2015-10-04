@@ -1,18 +1,19 @@
-## 5.1 Blocks
+## 5.1 ブロック
 
-A block in Haxe starts with an opening curly brace `{` and ends with a closing curly brace `}`. A block may contain several expressions, each of which is followed by a semicolon `;`. The general syntax is thus:
+Haxeのブロックは中かっこで`{`から始まり、`}`で終わります。ブロックはいくつかの式をふくみ、各式はセミコロンで終わります。一般の構文としては以下のとおりです。
 
 ```haxe
 {
-	expr1;
-	expr2;
+	式1;
+	式2;
 	...
-	exprN;
+	式N;
 }
 ```
-The value and by extension the type of a block-expression is equal to the value and the type of the last sub-expression.
 
-Blocks can contain local variables declared by [`var` expression](expression-var.md), as well as local functions declared by [`function` expressions](expression-function.md). These are available within the block and within sub-blocks, but not outside the block. Also, they are available only after their declaration. The following example uses `var`, but the same rules apply to `function` usage:
+ブロック式の値とその型は、ブロック式がふくむ最後の式の値と型と同じになります。
+
+ブロック内では、[`var`式](expression-var.md)を使ったローカル変数の定義と[`function`式](expression-function.md)を使ったローカル関数の定義が可能です。これらのローカル変数とローカル関数は、そのブロックとさらに入れ子のブロックの中では使用することができますが、ブロックの外では利用できません。また、定義よりも後でしか使えません。次の例では`var`を使っていますが、同じルールが`function`の場合でも使用されます。
 
 ```haxe
 {
@@ -28,11 +29,11 @@ Blocks can contain local variables declared by [`var` expression](expression-var
 }
 a; // error, a is not available outside
 ```
-At runtime, blocks are evaluated from top to bottom. Control flow (e.g. [exceptions](expression-try-catch.md) or [return expressions](expression-return.md)) may leave a block before all expressions
-are evaluated.
+
+実行時には、ブロックは上から下へと評価されていきます。フロー制御(例えば、[例外](expression-try-catch.md)や[return式](expression-return.md)など)によって、すべての式が評価される前に中断されることもあります。
 
 ---
 
-Previous section: [Expressions](expression.md)
+Previous section: [式](expression.md)
 
-Next section: [Constants](expression-constants.md)
+Next section: [定数値](expression-constants.md)

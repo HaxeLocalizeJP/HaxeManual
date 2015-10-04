@@ -1,20 +1,20 @@
 ## 5.16 if
 
-Conditional expressions come in the form of a leading `if` keyword, a condition expression enclosed in parentheses `()` and a expression to be evaluated in case the condition holds:
+条件分岐式は、`if`キーワードから始まり、小かっこ`()`で囲んだ条件式、条件が真だった場合に評価される式となります。
 
 ```haxe
 if (condition) expression;
 ```
 
-The condition expression has to be of type `Bool`.
+条件式は`Bool`型でなくてはいけません。
 
-Optionally, `expression` may be followed by the `else` keyword as well as another expression to be evaluated if the condition does not hold:
+オプションとして、`else`キーワードを続けて、その後に、元の条件が偽だった場合に実行される式を記述することができます。
 
 ```haxe
 if (condition) expression1 else expression2;
 ```
 
-Here, `expression2` may consist of another `if` expression:
+`expression2`は以下のように、また別の`if`式を持つかもしれません。
 
 ```haxe
 if (condition1) expression1
@@ -22,10 +22,10 @@ else if(condition2) expression2
 else expression3
 ```
 
-If the value of an `if` expression is required, e.g. for `var x = if(condition) expression1 else expression2`, the typer ensures that the types of `expression1` and `expression2` [unify](type-system-unification.md). If no `else` expression is given, the type is inferred to be `Void`.
+`if`式に値が要求される場合（たとえば、`var x = if(condition) expression1 else expression2`という風に）、型付け機は`expression1`と`expression2`の型を[単一化](type-system-unification.md)します。`else`式がなかった場合、型は`Void`であると推論されます。
 
 ---
 
-Previous section: [do-while](expression-do-while.md)
+Previous section: [do-whileループ](expression-do-while.md)
 
 Next section: [switch](expression-switch.md)

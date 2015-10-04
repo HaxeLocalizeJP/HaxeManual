@@ -1,6 +1,6 @@
-## 5.23.2 safe cast
+## 5.23.2 セーフキャスト
 
-Unlike [unsafe casts](expression-cast-unsafe.md), the runtime behavior in case of a failing cast is defined for safe casts:
+[非セーフキャスト](expression-cast-unsafe.md)とは異なり、実行時のキャスト失敗の挙動を持つのがセーフキャストです。
 
 ```haxe
 class Base {
@@ -22,14 +22,14 @@ class Main {
 }
 ```
 
-In this example we first cast a class instance of type `Child1` to `Base`, which succeeds because `Child1` is a [child class](types-class-inheritance.md) of `Base`. We then try to cast the same class instance to `Child2`, which is not allowed because instances of `Child2` are not instances of `Child1`.
+この例では、最初に`Child1`から`Base`へとキャストしています。これは、`Child1`が`Base`型の[子クラス](types-class-inheritance.md)なので、成功しています。次に`Child2`へキャストしていますが、`Child1`のインスタンスは`Child2`ではないので失敗しています。
 
-The Haxe compiler guarantees that an exception of type `String` is [thrown](expression-throw.md) in this case. This exception can be caught using a [`try/catch` block](expression-try-catch.md).
+Haxeコンパイラは、この場合`String`型の[例外を投げます](expression-throw.md)。この例外は、[`try/catch`ブロック](expression-try-catch.md)を使って捕捉できます。
 
-Safe casts have a runtime overhead. It is important to understand that the compiler already generates type checks, so it is redundant to add manual checks, e.g. using `Std.is`. The intended usage is to try the safe cast and catch the `String` exception.
+セーフキャストは実行時のオーバーヘッドがあります。重要なのは、コンパイラがすでにチェックを行っているので、`Std.is`のようなチェックを自分で入れるのは、余分だということです。`String`型の例外を捕捉する、try-catchを行うのがセーフキャストで意図された用途です。
 
 ---
 
-Previous section: [unsafe cast](expression-cast-unsafe.md)
+Previous section: [非セーフキャスト](expression-cast-unsafe.md)
 
-Next section: [type check](expression-type-check.md)
+Next section: [型チェック](expression-type-check.md)

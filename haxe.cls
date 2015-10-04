@@ -83,7 +83,7 @@
 	{\begin{myshaded}\noindent\textbf{トリビア: #1}\par\nobreak\noindent\ignorespaces#2\end{myshaded}}
 
 % Japanese Support
-\renewcommand{\chaptername}{章}
 \renewcommand{\partname}{パート}
-
+\renewcommand{\chaptername}{章}
+\renewcommand{\sectionname}{節}
 

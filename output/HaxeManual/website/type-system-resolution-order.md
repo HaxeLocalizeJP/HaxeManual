@@ -13,9 +13,9 @@
 * [期待される型](dictionary.md#define-expected-type)
 * `untyped`中の式か、そうでないか
 
-<img src="../../assets/graphics/generated/type-system-resolution-order-diagram.png" alt="Resolution order of identifier `i'" title="Resolution order of identifier `i'" />
+<img src="../../assets/graphics/generated/type-system-resolution-order-diagram.png" alt="識別子 `i'　の解決順序" title="識別子 `i'　の解決順序" />
 
-_Figure: Resolution order of identifier `i'_
+_Figure: 識別子 `i'　の解決順序_
 
 `i`を例にすると、このアルゴリズムは以下のようなものです。
 

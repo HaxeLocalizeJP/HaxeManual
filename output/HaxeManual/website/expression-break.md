@@ -1,6 +1,6 @@
 ## 5.20 break
 
-The `break` keyword leaves the control flow of the innermost loop (`for` or `while`) it is declared in, stopping further iterations:
+`break`キーワードは、そのキーワードをふくむ最も内側にあるループ(`for`でも、`while`でも)の制御フローからぬけ出して、くり返し処理を終了させます。
 
 ```haxe
 while(true) {
@@ -10,9 +10,9 @@ while(true) {
 }
 ```
 
-Here, `expression1` is evaluated for each iteration, but as soon as `condition` holds, `expression2` is not evaluated anymore.
+`expression1`はすべてのくり返しで評価されますが、`condition`が偽になると`expression2`は、実行されません。
 
-The typer ensures that it appears only within a loop. The `break` keyword in [`switch` cases](expression-switch.md) is not supported in Haxe.
+型付け機は`break`がループの内部のみで使用されていることを確認します。[`switch`のケース](expression-switch.md)に対する`break`は、Haxeではサポートしていません。
 
 ---
 

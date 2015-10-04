@@ -1,8 +1,8 @@
-## 5.5 Array Declaration
+## 5.5 配列の宣言
 
-Arrays are initialized by enclosing comma `,` separated values in brackets `[]`. A plain `[]` represents the empty array, whereas `[1, 2, 3]` initializes an array with three elements `1`, `2` and `3`.
+配列は`,`で区切った値を、大かっこ`[]`で囲んで初期化します。空の`[]`は空の配列を表し、`[1, 2, 3]`は`1`、`2`、`3`の3つの要素を持つ配列になります。
 
-The generated code may be less concise on platforms that do not support array initialization. Essentially, such initialization code then looks like this:
+配列の初期化をサポートしていないプラットフォームでは、生成されたコードはあまり簡潔ではないかもしれません。本質的には以下のようなコードに見えるでしょう。
 
 ```haxe
 var a = new Array();
@@ -10,12 +10,13 @@ a.push(1);
 a.push(2);
 a.push(3);
 ```
-This should be considered when deciding if a function should be [inlined](class-field-inline.md) as it may inline more code than visible in the syntax.
 
-Advanced initialization techniques are described in [Array Comprehension](lf-array-comprehension.md).
+つまり、関数を[インライン化](class-field-inline.md)するかを決める場合には、この構文で見えているよりも多くのコードがインライン化されることがあることを考慮すべきです。
+
+より高度な初期化方法は、[Array Comprehension](lf-array-comprehension.md)で説明します。
 
 ---
 
-Previous section: [Constants](expression-constants.md)
+Previous section: [定数値](expression-constants.md)
 
-Next section: [Object Declaration](expression-object-declaration.md)
+Next section: [オブジェクトの宣言](expression-object-declaration.md)

@@ -37,7 +37,7 @@ C#  | ソースコード  | デスクトップ, モバイル, サーバー
 
 [Class Fields](class-field)では、Haxeのクラスの構造に関する全てをあつかいます。加えて、**プロパティ**、**インラインフィールド**、**ジェネリック関数**についてもあつかいます。
 
-[Expressions](expression)では、**式**を使用して実際にいくつかの動作をさせる方法をお見せします。
+[式](expression)では、**式**を使用して実際にいくつかの動作をさせる方法をお見せします。
 
 [Language Features](lf)では、**パターンマッチング**、**文字列補間**、**デッドコード削除**のようなHaxeの詳細の機能について記述しています。ここで、Haxeの言語リファレンスは終わりです。
 
@@ -442,7 +442,7 @@ class Point {
 var p = new Point(-1, 65);
 ```
 
-この例で、変数`p`に代入されたのが`Point`クラスのインスタンスです。`Point`のコンストラクタは`-1`と`65`の2つの引数を受け取り、これらをそれぞれインスタンスの`x`と`y`の変数に代入しています([クラスインスタンス](types-class-instance)で、定義を確認してください)。`new`の正確な意味については、後の[new](expression-new)の節で再習します。現時点では、`new`はクラスのコンストラクタを呼び、適切なオブジェクトを返すものと考えておきましょう。
+この例で、変数`p`に代入されたのが`Point`クラスのインスタンスです。`Point`のコンストラクタは`-1`と`65`の2つの引数を受け取り、これらをそれぞれインスタンスの`x`と`y`の変数に代入しています([クラスインスタンス](types-class-instance)で、定義を確認してください)。`new`の正確な意味については、後の[new(インスタンス化)](expression-new)の節で再習します。現時点では、`new`はクラスのコンストラクタを呼び、適切なオブジェクトを返すものと考えておきましょう。
 
 <a id="types-class-inheritance"></a>
 ## 2.3.2 継承
@@ -2158,7 +2158,7 @@ Haxeでは、`as`の代わりにより自然な`in`キーワードを使うこ�
 * [期待される型](dictionary.md-define-expected-type)
 * `untyped`中の式か、そうでないか
 
-![Resolution order of identifier `i'](assets/graphics/generated/type-system-resolution-order-diagram.png)
+![識別子 `i'　の解決順序](assets/graphics/generated/type-system-resolution-order-diagram.png)
 
 `i`を例にすると、このアルゴリズムは以下のようなものです。
 
@@ -2755,46 +2755,51 @@ The access modifier `override` is required when a field is declared which also e
 The effects of overriding fields are detailed in [Overriding Methods](class-field-overriding). This modifier is only allowed on [method](class-field-method) fields.
 
 <a id="expression"></a>
-## 5 Expressions
+## 5 式
 
-Expressions in Haxe define what a program **does**. Most expressions are found in the body of a [method](class-field-method), where they are combined to express what that method should do. This section explains the different kinds of expressions. Some definitions help here:
+Haxeの式は、プログラムが**何をするか**を決定します。ほとんどの式は[メソッド](class-field-method)に書かれ、そのメソッドが何をすべきかをその式の合わせによって表現します。この章では、さまざまな種類の式を説明していきます。
 
-> ##### Define: Name
+ここに、いくつか定義を示しておきます。
+
+> ##### Define: 名前
 >
-> A general name may refer to
 > 
-> * a type,
-> * a local variable,
-> * a local function or
-> * a field.
+> 名前は次のいずれかにひもづきます。
+> 
+> * 型
+> * ローカル変数
+> * ローカル関数
+> * フィールド
 > 
 
-> ##### Define: Identifier
+> ##### Define: 識別子
 >
-> Haxe identifiers start with an underscore `_`, a dollar `$`, a lower-case character `a-z` or an upper-case character `A-Z`. After that, any combination and number of `_`, `A-Z`, `a-z` and `0-9` may follow.
 > 
-> Further limitations follow from the usage context, which are checked upon typing:
+> Haxeの識別子は、アンダースコア`_`、ドル`$`、小文字`a-z`、大文字`A-Z`のいずれかから始まり、任意の`_`、`A-Z`、`a-z`、`0-9`のつなぎ合わせが続きます。
 > 
-> * Type names must start with an upper-case letter `A-Z` or an underscore `_`.
-> * Leading dollars are not allowed for any kind of [name](dictionary.md-define-name) (dollar-names are mostly used for [macro reification](macro-reification)).
+> さらに使用する状況によって以下の制限が加わります。これらは、型付けの時にチェックされます。
+> 
+> * 型の名前は大文字`A-Z`か、アンダースコア`_`で始まる。
+> * [名前](dictionary.md-define-name)では、先頭にドル記号は使えません。(ドル記号はほとんどの場合、[マクロの実体化](macro-reification)に使われます)
 >
 
 <a id="expression-block"></a>
-## 5.1 Blocks
+## 5.1 ブロック
 
-A block in Haxe starts with an opening curly brace `{` and ends with a closing curly brace `}`. A block may contain several expressions, each of which is followed by a semicolon `;`. The general syntax is thus:
+Haxeのブロックは中かっこで`{`から始まり、`}`で終わります。ブロックはいくつかの式をふくみ、各式はセミコロンで終わります。一般の構文としては以下のとおりです。
 
 ```haxe
 {
-	expr1;
-	expr2;
+	式1;
+	式2;
 	...
-	exprN;
+	式N;
 }
 ```
-The value and by extension the type of a block-expression is equal to the value and the type of the last sub-expression.
 
-Blocks can contain local variables declared by [`var` expression](expression-var), as well as local functions declared by [`function` expressions](expression-function). These are available within the block and within sub-blocks, but not outside the block. Also, they are available only after their declaration. The following example uses `var`, but the same rules apply to `function` usage:
+ブロック式の値とその型は、ブロック式がふくむ最後の式の値と型と同じになります。
+
+ブロック内では、[`var`式](expression-var)を使ったローカル変数の定義と[`function`式](expression-function)を使ったローカル関数の定義が可能です。これらのローカル変数とローカル関数は、そのブロックとさらに入れ子のブロックの中では使用することができますが、ブロックの外では利用できません。また、定義よりも後でしか使えません。次の例では`var`を使っていますが、同じルールが`function`の場合でも使用されます。
 
 ```haxe
 {
@@ -2810,28 +2815,28 @@ Blocks can contain local variables declared by [`var` expression](expression-var
 }
 a; // error, a is not available outside
 ```
-At runtime, blocks are evaluated from top to bottom. Control flow (e.g. [exceptions](expression-try-catch) or [return expressions](expression-return)) may leave a block before all expressions
-are evaluated.
+
+実行時には、ブロックは上から下へと評価されていきます。フロー制御(例えば、[例外](expression-try-catch)や[return式](expression-return)など)によって、すべての式が評価される前に中断されることもあります。
 
 <a id="expression-constants"></a>
-## 5.2 Constants
+## 5.2 定数値
 
-The Haxe syntax supports the following constants:
+Haxeの構文では以下の定数値をサポートしています。
 
-* Int: An [integer](dictionary.md-define-int), such as `0`, `1`, `97121`, `-12`, `0xFF0000`.
-* Float: A [floating point number](dictionary.md-define-float), such as `0.0`, `1.`, `.3`, `-93.2`.
-* String: A [string of characters](dictionary.md-define-string), such as `""`, `"foo"`, `"`, `'bar'`.
-* true,false: A [boolean](dictionary.md-define-bool) value.
-* null: The null value.
+* Int: `0`、`1`、`97121`、`-12`、`0xFF0000`といった、[整数](dictionary.md-define-int)
+* Float: `0.0`、`1.`、`.3`、`-93.2`といった[浮動小数点数](dictionary.md-define-float)
+* String: `""`、`"foo"`、`"`、`'bar'`といった[文字列](dictionary.md-define-string)
+* true,false: [真偽値](dictionary.md-define-bool)
+* null: null値
 
-Furthermore, the internal syntax structure treats [identifiers](dictionary.md-define-identifier) as constants, which may be relevant when working with [macros](macro).
+また内部の構文木では、[識別子](dictionary.md-define-identifier)は定数値としてあつかわれます。これは、[マクロ](macro)を使っているときに関係してくる話題です。
 
 <a id="expression-array-declaration"></a>
-## 5.5 Array Declaration
+## 5.5 配列の宣言
 
-Arrays are initialized by enclosing comma `,` separated values in brackets `[]`. A plain `[]` represents the empty array, whereas `[1, 2, 3]` initializes an array with three elements `1`, `2` and `3`.
+配列は`,`で区切った値を、大かっこ`[]`で囲んで初期化します。空の`[]`は空の配列を表し、`[1, 2, 3]`は`1`、`2`、`3`の3つの要素を持つ配列になります。
 
-The generated code may be less concise on platforms that do not support array initialization. Essentially, such initialization code then looks like this:
+配列の初期化をサポートしていないプラットフォームでは、生成されたコードはあまり簡潔ではないかもしれません。本質的には以下のようなコードに見えるでしょう。
 
 ```haxe
 var a = new Array();
@@ -2839,14 +2844,15 @@ a.push(1);
 a.push(2);
 a.push(3);
 ```
-This should be considered when deciding if a function should be [inlined](class-field-inline) as it may inline more code than visible in the syntax.
 
-Advanced initialization techniques are described in [Array Comprehension](lf-array-comprehension).
+つまり、関数を[インライン化](class-field-inline)するかを決める場合には、この構文で見えているよりも多くのコードがインライン化されることがあることを考慮すべきです。
+
+より高度な初期化方法は、[Array Comprehension](lf-array-comprehension)で説明します。
 
 <a id="expression-object-declaration"></a>
-## 5.6 Object Declaration
+## 5.6 オブジェクトの宣言
 
-Object declaration begins with an opening curly brace `{` after which `key:value`-pairs separated by comma `,` follow, and which ends in a closing curly brace `}`.
+オブジェクトの宣言は、中かっこ`{`で始まり、`キー:値`のペアがカンマ`,`で区切られながら続いて、中かっこ`}`で終わります。
 
 ```haxe
 {
@@ -2856,39 +2862,39 @@ Object declaration begins with an opening curly brace `{` after which `key:value
 	keyN:valueN
 }
 ```
-Further details of object declaration are described in the section about [anonymous structures](types-anonymous-structure).
+さらに詳しいオブジェクトの宣言については[匿名構造体](types-anonymous-structure)の節で書かれています。
 
 <a id="expression-field-access"></a>
-## 5.7 Field Access
+## 5.7 フィールドへのアクセス
 
-Field access is expressed by using the dot `.` followed by the name of the field.
+フィールドへのアクセスは、ドット`.`の後にフィールドの名前を続けることで表現します。
 
 ```haxe
 object.fieldName
 ```
 
-This syntax is also used to access types within packages in the form of `pack.Type`.
+この構文は`pack.Type`の形でパッケージ内の型にアクセスするのにも使われます。
 
-The typer ensures that an accessed field actually exist and may apply transformations depending on the nature of the field. If a field access is ambiguous, understanding the [resolution order](type-system-resolution-order) may help.
+型付け機は、アクセスされたフィールドが本当に存在するかを確認し、フィールドの種類に依存した変更を適用します。もしフィールドへのアクセスが複数の意味にとれる場合は、[解決順序](type-system-resolution-order)の理解が役に立つでしょう。
 
 <a id="expression-array-access"></a>
-## 5.8 Array Access
+## 5.8 配列アクセス
 
-Array access is expressed by using an opening bracket `[` followed by the index expression and a closing bracket `]`.
+配列アクセスは、大かっこ`[`で始まり、インデックスを表す式が続き、大かっこ`]`で閉じます。
 
 ```haxe
 expr[indexExpr]
 ```
 
-This notation is allowed with arbitrary expressions, but at typing level only certain combinations are admitted:
+この記法については任意の式で許可されていますが、型付けの段階では以下の特定の組み合わせのみが許可されます。
 
-* `expr` is of `Array` or `Dynamic` and `indexExpr` is of `Int`
-* `expr` is an [abstract type](types-abstract) which defines a matching [array access](types-abstract-array-access)
+* `expr`は`Array`か`Dynamic`であり、`indexExpr`が`Int`である。
+* `expr`は[抽象型](types-abstract)であり、マッチする[配列アクセス](types-abstract-array-access)が定義されている。
 
 <a id="expression-function-call"></a>
-## 5.9 Function Call
+## 5.9 関数呼び出し
 
-Functions calls consist of an arbitrary subject expression followed by an opening parenthesis `(`, a comma `,` separated list of expressions as arguments and a closing parenthesis `)`.
+関数呼び出しは、任意の式を対象として、小かっこ`(`を続け、引数の式のリストを`,`で区切って並べて、小かっこ`)`で閉じることで行います。
 
 ```haxe
 subject(); // call with no arguments
@@ -2899,9 +2905,9 @@ subject(e1, ..., eN);
 ```
 
 <a id="expression-var"></a>
-## 5.10 var
+## 5.10 var(変数宣言)
 
-The `var` keyword allows declaring multiple variables, separated by comma `,`. Each variable has a valid [identifier](dictionary.md-define-identifier) and optionally a value assignment following the assignment operator `=`. Variables can also have an explicit type-hint.
+`var`キーワードは、カンマ`,`で区切って、複数の変数を宣言することができます。すべての変数は、正当な[識別子](dictionary.md-define-identifier)を持ち、オプションとして`=`を続けて値の代入を行うこともできます。また変数に明示的な型注釈をあたえることもできます。
 
 ```haxe
 var a; // declare local a
@@ -2913,12 +2919,12 @@ var c = 1;
 var d,e = 2;
 ```
 
-The scoping behavior of local variables is described in [Blocks](expression-block).
+ローカル変数のスコープについての挙動は[ブロック](expression-block)に書かれています。
 
 <a id="expression-function"></a>
-## 5.11 Local functions
+## 5.11 ローカル関数
 
-Haxe supports first-class functions and allows declaring local functions in expressions. The syntax follows [class field methods](class-field-method):
+Haxeはファーストクラス関数をサポートしており、式の中でローカル関数を宣言することができます。この構文は[クラスフィールドメソッド](class-field-method)にならいます。
 
 ```haxe
 class Main {
@@ -2932,23 +2938,23 @@ class Main {
 }
 ```
 
-We declare `myLocalFunction` inside the [block expression](expression-block) of the `main` class field. It takes one argument `i` and adds it to `value`, which is defined in the outside scope.
+`myLocalFunction`を、`main`クラスフィールドの[ブロック式](expression-block)の中で宣言しました。このローカル関数は1つの引数`i`を取り、それをスコープの外のvalueに足しています。
 
-The scoping is equivalent to that of [variables](expression-var) and for the most part writing a named local function can be considered equal to assigning an unnamed local function to a local variable:
+スコープについては、[変数の場合](expression-var)と同じで、多くの面で名前を持つローカル関数は、ローカル変数に対する匿名関数の代入と同じです。
 
 ```haxe
 var myLocalFunction = function(a) { }
 ```
 
-However, there are some differences related to type parameters and the position of the function. We speak of a "lvalue" function if it is not assigned to anything upon its declaration, and an "rvalue" function otherwise.
+しかしながら、関数の場所による型パラメータに関する違いがあります。これは定義時に何にも代入されていない「左辺値」の関数と、それ以外の「右辺値」の関数についての違いで、以下の通りです。
 
-* Lvalue functions require a name and can have [type parameters](type-system-type-parameters).
-* Rvalue functions may have a name, but cannot have type parameters.
+* 左辺値の関数は名前が必要で、[型パラメータ](type-system-type-parameters)を持ちます。
+* 右辺値の関数については名前はあってもなくてもかまいませんが、型パラメータを使うことができません。
 
 <a id="expression-new"></a>
-## 5.12 new
+## 5.12 new(インスタンス化)
 
-The `new` keyword signals that a [class](types-class-instance) or an [abstract](types-abstract) is being instantiated. It is followed by the [type path](dictionary.md-define-type-path) of the type which is to be instantiated. It may also list explicit [type parameters](type-system-type-parameters) enclosed in `<>` and separated by comma `,`. After an opening parenthesis `()` follow the constructor arguments, again separated by comma `,`, with a closing parenthesis `)` at the end.
+`new`キーワードは、[クラス](types-class-instance)と[抽象型](types-abstract)のインスタンス化を行います。`new`の後にはインスタンス化される[型のパス](dictionary.md-define-type-path)が続きます。場合によっては、`<>`で囲んでカンマ`,`で区切った、[型パラメータ](type-system-type-parameters)の記述がされます。その後に、小かっこ`(`、カンマ`,`区切りのコンストラクタの引数が続き、小かっこ`)`で閉じます。
 
 ```haxe
 class Main<T> {
@@ -2960,43 +2966,43 @@ class Main<T> {
 }
 ```
 
-Within the `main` method we instantiate an instance of `Main` itself, with an explicit type parameter `Int` and the arguments `12` and `"foo"`. As we can see, the syntax is very similar to the [function call syntax](expression-function-call) and it is common to speak of "constructor calls".
+`main`メソッドの中では、型パラメータ`Int`の明示付き、引数が`12`と`"foo"`で、`Main`クラス自身のインスタンス化を行っています。私たちが知っているように、この構文は、[関数呼び出し](expression-function-call)とよく似ており、「コンストラクタ呼び出し」と呼ぶことが多いです。
 
 <a id="expression-for"></a>
 ## 5.13 for
 
-Haxe does not support traditional for-loops known from C. Its `for` keyword expects an opening parenthesis `(`, then a variable identifier followed by the keyword `in` and an arbitrary expression used as iterating collection. After the closing parenthesis `)` follows an arbitrary loop body expression.
+Haxeは、C言語で知られる伝統的なforループはサポートしていません。`for`キーワードの後には、小かっこ`(`、変数の識別子、`in`キーワード、くり返しの処理を行うコレクションの任意の式が続き、小かっこ`)`で閉じられて、最後にくり返しの本体の任意の式で終わります。
 
 ```haxe
 for (v in e1) e2;
 ```
 
-The typer ensures that the type of `e1` can be iterated over, which is typically the case if it has an `iterator` method returning an `Iterator<T>`, or if it is an `Iterator<T>` itself.
+型付け機は、`e1`の型がくり返し可能であるかを確認します。くり返し可能というのは、`iterator`メソッドが`Iterator<T>`を返すか、`Iterator<T>`自身である場合です。
 
-Variable `v` is then available within loop body `e2` and holds the value of the individual elements of collection `e1`.
+変数vは、ループ本体の`e2`の中で利用可能で、コレクション`e1`の個々の要素の値が保持されます。
 
-Haxe has a special range operator to iterate over intervals. It is a binary operator taking two `Int` operands: `min...max` returns an `IntIterator` instance that iterates from `min` (inclusive) to `max` (exclusive). Note that `max` may not be smaller than `min`.
+Haxeには、ある範囲のくり返しを表す特殊な範囲演算子があります。これは、`min...max`といった2つの`Int`をとり、`min`(自身をふくむ)から`max`の一つ前までをくり返す`IntIterator`を返す2項演算子です。`max`が`min`より小さくしないように気をつけてください。
 
 ```haxe
 for (i in 0...10) trace(i); // 0 to 9
 ```
 
-The type of a `for` expression is always `Void`, meaning it has no value and cannot be used as right-side expression.
+`for`式の型は常に`Void`です。つまり、値は持たず、右辺の式としては使えません。
 
-The control flow of loops can be affected by [`break`](expression-break) and [`continue`](expression-continue) expressions.
+ループは、[`break`](expression-break)と、[`continue`](expression-continue)の式を使って、フロー制御が行えます。
 
 <a id="expression-while"></a>
-## 5.14 while
+## 5.14 whileループ
 
-A normal while loop starts with the `while` keyword, followed by an opening parenthesis `(`, the condition expression and a closing paranthesis `)`. After that follows the loop body expression:
+通常の`while`ループは、`while`キーワードから始まり、小かっこ`(`、条件式が続き、小かっこ`)`を閉じて、ループ本体の式で終わります。
 
 ```haxe
 while(condition) expression;
 ```
 
-The condition expression has to be of type `Bool`.
+条件式は`Bool`型でなくてはいけません。
 
-Upon each iteration, the condition expression is evaluated. If it evaluates to `false`, the loop stops, otherwise it evaluates the loop body expression.
+各くり返しで条件式は評価されます。`false`と評価された場合ループは終了します。そうでない場合、ループ本体の式が評価されます。
 
 ```haxe
 class Main {
@@ -3010,39 +3016,39 @@ class Main {
 }
 ```
 
-This kind of while-loop is not guaranteed to evaluate the loop body expression at all: If the condition does not hold from the start, it is never evaluated. This is different for [do-while loops](expression-do-while).
+この種類の`while`ループは、ループ本体が一度も評価されないことがあります。条件式が最初から`false`だった場合です。この点が[do-whileループ](expression-do-while)との違いです。
 
 <a id="expression-do-while"></a>
-## 5.15 do-while
+## 5.15 do-whileループ
 
-A do-while loop starts with the `do` keyword followed by the loop body expression. After that follows the `while` keyword, an opening parenthesis `(`, the condition expression and a closing parenthesis `)`:
+do-whileループは、`do`キーワードから始まり、次にループ本体の式が来ます。その後に`while`、小かっこ`(`、条件式、小かっこ`)`となります。
 
 ```haxe
 do expression while(condition);
 ```
 
-The condition expression has to be of type `Bool`.
+条件式は`Bool`型でなくてはいけません。
 
-As the syntax suggests, the loop body expression is always evaluated at least once, unlike [while](expression-while) loops.
+この構文を見てわかるとおり、[while](expression-while)ループの場合とは違ってループ本体の式は少なくとも一度は評価をされます。
 
 <a id="expression-if"></a>
 ## 5.16 if
 
-Conditional expressions come in the form of a leading `if` keyword, a condition expression enclosed in parentheses `()` and a expression to be evaluated in case the condition holds:
+条件分岐式は、`if`キーワードから始まり、小かっこ`()`で囲んだ条件式、条件が真だった場合に評価される式となります。
 
 ```haxe
 if (condition) expression;
 ```
 
-The condition expression has to be of type `Bool`.
+条件式は`Bool`型でなくてはいけません。
 
-Optionally, `expression` may be followed by the `else` keyword as well as another expression to be evaluated if the condition does not hold:
+オプションとして、`else`キーワードを続けて、その後に、元の条件が偽だった場合に実行される式を記述することができます。
 
 ```haxe
 if (condition) expression1 else expression2;
 ```
 
-Here, `expression2` may consist of another `if` expression:
+`expression2`は以下のように、また別の`if`式を持つかもしれません。
 
 ```haxe
 if (condition1) expression1
@@ -3050,12 +3056,12 @@ else if(condition2) expression2
 else expression3
 ```
 
-If the value of an `if` expression is required, e.g. for `var x = if(condition) expression1 else expression2`, the typer ensures that the types of `expression1` and `expression2` [unify](type-system-unification). If no `else` expression is given, the type is inferred to be `Void`.
+`if`式に値が要求される場合（たとえば、`var x = if(condition) expression1 else expression2`という風に）、型付け機は`expression1`と`expression2`の型を[単一化](type-system-unification)します。`else`式がなかった場合、型は`Void`であると推論されます。
 
 <a id="expression-switch"></a>
 ## 5.17 switch
 
-A basic switch expression starts with the `switch` keyword and the switch subject expression, as well as the case expressions between curly braces `{}`. Case expressions either start with the `case` keyword and are followed by a pattern expression, or consist of the `default` keyword. In both cases a colon `:` and an optional case body expression follows:
+基本的なスイッチ式は、`switch`キーワードと、その分岐対象の式から始まり、中かっこ`{}`にはさまれてケース式が並びます。各ケース式は、`case`キーワードからのパターン式か、`default`キーワードで始まります。どちらの場合も、コロンが続き、オプショナルなケース本体の式が来ます。
 
 ```haxe
 switch subject {
@@ -3065,16 +3071,16 @@ switch subject {
 }
 ```
 
-Case body expressions never "fall through", so the [`break`](expression-break) keyword is not supported in Haxe.
+ケース本体の式に、「フォールスルー」は起きません。このため、Haxeでは[`break`](expression-break)キーワードは使用しません。
 
-Switch expressions can be used as value; in that case the types of all case body expressions and the default expression must [unify](type-system-unification).
+スイッチ式は値としてあつかうことができます。その場合、すべてのケース本体の式の型は[単一化](type-system-unification)できなくてはいけません。
 
-Further details on syntax of pattern expressions are detailed in [Pattern Matching](lf-pattern-matching).
+パターン式については、[Pattern Matching](lf-pattern-matching)で詳しく説明されています。
 
 <a id="expression-try-catch"></a>
 ## 5.18 try/catch
 
-Haxe allows catching values using its `try/catch` syntax:
+Haxeでは、`try/catch`構文を使うことで値を捕捉することができます。
 
 ```haxe
 try try-expr
@@ -3082,30 +3088,30 @@ catch(varName1:Type1) catch-expr-1
 catch(varName2:Type2) catch-expr-2
 ```
 
-If during runtime the evaluation of `try-expression` causes a [`throw`](expression-throw), it can be caught by any subsequent `catch` block. These blocks consist of
+実行時に、`try-expression`の評価が、[`throw`](expression-throw)を引き起こすと、後に続く`catch`ブロックのいずれかに捕捉されます。これらのブロックは以下から構成されます
 
-* a variable name which holds the thrown value,
-* an explicit type annotation which determines which types of values to catch, and
-* the expression to execute in that case.
+* `throw`された値を割り当てる変数の名前。
+* 捕捉する値の型を決める、明示的な型注釈
+* 捕捉したときに実行される式
 
-Haxe allows throwing and catching any kind of value, it is not limited to types inheriting from a specific exception or error class. Catch blocks are checked from top to bottom with the first one whose type is compatible with the thrown value being picked.
+Haxeでは、あらゆる種類の値を`throw`して、`catch`することができます。その型は特定の例外やエラークラスに限定されません。`catch`ブロックは上から下へとチェックされていき、投げられた値と型が適合する最初のブロックが実行されます。
 
-This process has many similarities to the compile-time [unification](type-system-unification) behavior. However, since the check has to be done at runtime there are several restrictions:
+この過程は、コンパイル時の[単一化](type-system-unification)に似ています。しかし、この判定は実行時に行われるものでいくつかの制限があります。
 
-* The type must exist at runtime: [Class instances](types-class-instance), [enum instances](types-enum-instance), [abstract core types](types-abstract-core-type) and [Dynamic](types-dynamic).
-* Type parameters can only be [Dynamic](types-dynamic).
+* 型は実行時に存在するものでなければならない。[クラスインスタンス](types-class-instance)、[列挙型インスタンス](types-enum-instance)、[コアタイプ抽象型](types-abstract-core-type)、[Dynamic](types-dynamic).
+* 型パラメータは、[Dynamic](types-dynamic)でなければならない。
 
 <a id="expression-return"></a>
 ## 5.19 return
 
-A `return` expression can come with or without an value expression:
+`return`式は、値をとるものと、とらないものの両方があります。
 
 ```haxe
 return;
 return expression;
 ```
 
-It leaves the control-flow of the innermost function it is declared in, which has to be distinguished when [local functions](expression-function) are involved:
+`return`式は、最も内側に定義されている関数のフロー制御からぬけ出します。最も内側というのは[ローカル関数](expression-function)の場合での特徴です。
 
 ```haxe
 function f1() {
@@ -3117,14 +3123,14 @@ function f1() {
 }
 ```
 
-The `return` leaves local function `f2`, but not `f1`, meaning `expression` is still evaluated.
+`return`により、ローカル関数`f2`からはぬけ出しますが、`f1`からはぬけ出しません。つまり、`expression`は評価されます。
 
-If `return` is used without a value expression, the typer ensures that the return type of the function it returns from is of `Void`. If it has a value expression, the typer [unifies](type-system-unification) its type with the return type (explicitly given or inferred by previous `return` expressions) of the function it returns from.
+`return`が、値の式なしで使用された場合、型付け機はその関数の戻り値が`Void`型であることを確認します。`return`が値の式を持つ場合、型付け機はその関数の戻り値の型(明示的に与えられているか、前のreturnによって推論されている場合)と、`return`している値の型を[単一化](type-system-unification)します。
 
 <a id="expression-break"></a>
 ## 5.20 break
 
-The `break` keyword leaves the control flow of the innermost loop (`for` or `while`) it is declared in, stopping further iterations:
+`break`キーワードは、そのキーワードをふくむ最も内側にあるループ(`for`でも、`while`でも)の制御フローからぬけ出して、くり返し処理を終了させます。
 
 ```haxe
 while(true) {
@@ -3134,14 +3140,14 @@ while(true) {
 }
 ```
 
-Here, `expression1` is evaluated for each iteration, but as soon as `condition` holds, `expression2` is not evaluated anymore.
+`expression1`はすべてのくり返しで評価されますが、`condition`が偽になると`expression2`は、実行されません。
 
-The typer ensures that it appears only within a loop. The `break` keyword in [`switch` cases](expression-switch) is not supported in Haxe.
+型付け機は`break`がループの内部のみで使用されていることを確認します。[`switch`のケース](expression-switch)に対する`break`は、Haxeではサポートしていません。
 
 <a id="expression-continue"></a>
 ## 5.21 continue
 
-The `continue` keyword ends the current iteration of the innermost loop (`for` or `while`) it is declared in, causing the loop condition to be checked for the next iteration:
+`continue`キーワードは、そのキーワードをふくむ最も内側にあるループ(`for`でも、`while`でも)の現在のくり返しを終了します。そして、次のくり返しのためのループ条件チェックが行われます。
 
 ```haxe
 while(true) {
@@ -3151,25 +3157,25 @@ while(true) {
 }
 ```
 
-Here, `expression1` is evaluated for each iteration, but if `condition` holds, `expression2` is not evaluated for the current iteration. Unlike `break`, iterations continue.
+`expression1`は、各くり返しすべてで評価されますが、`condition`が偽の時は、その回のくり返しについては評価がされません。`break`は異なりループ処理自体は続きます。
 
-The typer ensures that it appears only within a loop.
+型付け機は`continue`がループの内部のみで使用されていることを確認します。
 
 <a id="expression-throw"></a>
 ## 5.22 throw
 
-Haxe allows throwing any kind of value using its `throw` syntax:
+Haxeでは、以下の構文で、値の`throw`をすることができます。
 
 ```haxe
 throw expr
 ```
 
-A value which is thrown like this can be caught by [`catch` blocks](expression-try-catch). If no such block catches it, the behavior is target-dependent.
+`throw`された値は、[`catch`ブロック](expression-try-catch)で捕捉できます。捕捉されなかった場合の挙動はターゲット依存です。
 
 <a id="expression-cast"></a>
 ## 5.23 cast
 
-Haxe allows two kinds of casts:
+Haxeには、以下の2種類のキャストがあります。
 
 ```haxe
 cast expr; // unsafe cast
@@ -3177,11 +3183,11 @@ cast (expr, Type); // safe cast
 ```
 
 <a id="expression-cast-unsafe"></a>
-## 5.23.1 unsafe cast
+## 5.23.1 非セーフキャスト
 
-Unsafe casts are useful to subvert the type system. The compiler types `expr` as usual and then wraps it in a [monomorph](types-monomorph). This allows the expression to be assigned to anything.
+非セーフキャストは型システムを無力化するのに役立ちます。コンパイラは`expr`を通常通りに型付けを行い、それを[単相](types-monomorph)としてつつみ込みます。これにより、その式をあらゆるものに割り当てすることが可能です。
 
-Unsafe casts do not introduce any [dynamic](types-dynamic) types, as the following example shows:
+非セーフキャストは、以下の例が示すように、[Dynamic](types-dynamic)への型変更ではありません。
 
 ```haxe
 class Main {
@@ -3196,16 +3202,16 @@ class Main {
 }
 ```
 
-Variable `i` is typed as `Int` and then assigned to variable `s` using the unsafe cast `cast i`. This causes `s` to be of an unknown type, a monomorph. Following the usual rules of [unification](type-system-unification), it can then be bound to any type, such as `String` in this example.
+変数`i`は`Int`と型付けされて、非セーフキャスト`cast i`を使って変数`s`に代入しました。`s`は、`Unknown`型、つまり単相となりました。その後は、通常の[単一化](type-system-unification)のルールに従って、あらゆる型へと結びつけることが可能です。例では、`String`型となりました。
 
-These casts are called "unsafe" because the runtime behavior for invalid casts is not defined. While most [dynamic targets](dictionary.md-define-dynamic-target) are likely to work, it might lead to undefined errors on [static targets](dictionary.md-define-static-target).
+これらのキャストは「非セーフ」と呼ばれます。これは、実行時の不正なキャストが定義されてないためです。 ほとんどの[動的ターゲット](dictionary.md-define-dynamic-target)では動作する可能性が高いですが、[静的ターゲット](dictionary.md-define-static-target)では未知のエラーの原因になりえます。
 
-Unsafe casts have little to no runtime overhead.
+非セーフキャストは実行時のオーバーヘッドは、ほぼ、または全くありません。
 
 <a id="expression-cast-safe"></a>
-## 5.23.2 safe cast
+## 5.23.2 セーフキャスト
 
-Unlike [unsafe casts](expression-cast-unsafe), the runtime behavior in case of a failing cast is defined for safe casts:
+[非セーフキャスト](expression-cast-unsafe)とは異なり、実行時のキャスト失敗の挙動を持つのがセーフキャストです。
 
 ```haxe
 class Base {
@@ -3227,29 +3233,29 @@ class Main {
 }
 ```
 
-In this example we first cast a class instance of type `Child1` to `Base`, which succeeds because `Child1` is a [child class](types-class-inheritance) of `Base`. We then try to cast the same class instance to `Child2`, which is not allowed because instances of `Child2` are not instances of `Child1`.
+この例では、最初に`Child1`から`Base`へとキャストしています。これは、`Child1`が`Base`型の[子クラス](types-class-inheritance)なので、成功しています。次に`Child2`へキャストしていますが、`Child1`のインスタンスは`Child2`ではないので失敗しています。
 
-The Haxe compiler guarantees that an exception of type `String` is [thrown](expression-throw) in this case. This exception can be caught using a [`try/catch` block](expression-try-catch).
+Haxeコンパイラは、この場合`String`型の[例外を投げます](expression-throw)。この例外は、[`try/catch`ブロック](expression-try-catch)を使って捕捉できます。
 
-Safe casts have a runtime overhead. It is important to understand that the compiler already generates type checks, so it is redundant to add manual checks, e.g. using `Std.is`. The intended usage is to try the safe cast and catch the `String` exception.
+セーフキャストは実行時のオーバーヘッドがあります。重要なのは、コンパイラがすでにチェックを行っているので、`Std.is`のようなチェックを自分で入れるのは、余分だということです。`String`型の例外を捕捉する、try-catchを行うのがセーフキャストで意図された用途です。
 
 <a id="expression-type-check"></a>
-## 5.24 type check
+## 5.24 型チェック
 
 ##### since Haxe 3.1.0
 
-It is possible to employ compile-time type checks using the following syntax:
+以下の構文でコンパイルタイムの型チェックをつけることが可能です。
 
 ```haxe
 (expr : type)
 ```
 
-The parentheses are mandatory. Unlike [safe casts](expression-cast-safe) this construct has no run-time impact. It has two compile-time implications:
+小かっこは必須です。[セーフキャスト](expression-cast-safe)とは異なり、実行時に影響はありません。これは、コンパイル時の以下の2つの挙動を持ちます。
 
-1. [Top-down inference](type-system-top-down-inference) is used to type `expr` with type `type`.
-2. The resulting typed expression is [unified](type-system-unification) with type `type`.
+1. [トップダウンの型推論](type-system-top-down-inference)が`expr`に対して`type`の型で適用されます。
+2. その結果、`type`の型との[単一化](type-system-unification)がされます。
 
-This has the usual effect of both operations such as the given type being used as expected type when performing [unqualified identifier resolution](type-system-resolution-order) and the unification checking for [abstract casts](types-abstract-implicit-casts).
+この2つの操作には、[解決順序](type-system-resolution-order)が発生している場合や、[抽象型キャスト](types-abstract-implicit-casts)で、期待する型へと変化させる、便利な効果があります。
 
 <a id="lf"></a>
 ## 6 Language Features

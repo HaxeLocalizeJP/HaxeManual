@@ -1,17 +1,17 @@
-## 5.15 do-while
+## 5.15 do-whileループ
 
-A do-while loop starts with the `do` keyword followed by the loop body expression. After that follows the `while` keyword, an opening parenthesis `(`, the condition expression and a closing parenthesis `)`:
+do-whileループは、`do`キーワードから始まり、次にループ本体の式が来ます。その後に`while`、小かっこ`(`、条件式、小かっこ`)`となります。
 
 ```haxe
 do expression while(condition);
 ```
 
-The condition expression has to be of type `Bool`.
+条件式は`Bool`型でなくてはいけません。
 
-As the syntax suggests, the loop body expression is always evaluated at least once, unlike [while](expression-while.md) loops.
+この構文を見てわかるとおり、[while](expression-while.md)ループの場合とは違ってループ本体の式は少なくとも一度は評価をされます。
 
 ---
 
-Previous section: [while](expression-while.md)
+Previous section: [whileループ](expression-while.md)
 
 Next section: [if](expression-if.md)

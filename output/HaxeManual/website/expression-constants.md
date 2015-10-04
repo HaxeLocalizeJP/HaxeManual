@@ -1,17 +1,17 @@
-## 5.2 Constants
+## 5.2 定数値
 
-The Haxe syntax supports the following constants:
+Haxeの構文では以下の定数値をサポートしています。
 
-* Int: An [integer](dictionary.md#define-int), such as `0`, `1`, `97121`, `-12`, `0xFF0000`.
-* Float: A [floating point number](dictionary.md#define-float), such as `0.0`, `1.`, `.3`, `-93.2`.
-* String: A [string of characters](dictionary.md#define-string), such as `""`, `"foo"`, `"`, `'bar'`.
-* true,false: A [boolean](dictionary.md#define-bool) value.
-* null: The null value.
+* Int: `0`、`1`、`97121`、`-12`、`0xFF0000`といった、[整数](dictionary.md#define-int)
+* Float: `0.0`、`1.`、`.3`、`-93.2`といった[浮動小数点数](dictionary.md#define-float)
+* String: `""`、`"foo"`、`"`、`'bar'`といった[文字列](dictionary.md#define-string)
+* true,false: [真偽値](dictionary.md#define-bool)
+* null: null値
 
-Furthermore, the internal syntax structure treats [identifiers](dictionary.md#define-identifier) as constants, which may be relevant when working with [macros](macro.md).
+また内部の構文木では、[識別子](dictionary.md#define-identifier)は定数値としてあつかわれます。これは、[マクロ](macro.md)を使っているときに関係してくる話題です。
 
 ---
 
-Previous section: [Blocks](expression-block.md)
+Previous section: [ブロック](expression-block.md)
 
-Next section: [Array Declaration](expression-array-declaration.md)
+Next section: [配列の宣言](expression-array-declaration.md)

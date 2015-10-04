@@ -1,6 +1,6 @@
-## 5.6 Object Declaration
+## 5.6 オブジェクトの宣言
 
-Object declaration begins with an opening curly brace `{` after which `key:value`-pairs separated by comma `,` follow, and which ends in a closing curly brace `}`.
+オブジェクトの宣言は、中かっこ`{`で始まり、`キー:値`のペアがカンマ`,`で区切られながら続いて、中かっこ`}`で終わります。
 
 ```haxe
 {
@@ -10,10 +10,10 @@ Object declaration begins with an opening curly brace `{` after which `key:value
 	keyN:valueN
 }
 ```
-Further details of object declaration are described in the section about [anonymous structures](types-anonymous-structure.md).
+さらに詳しいオブジェクトの宣言については[匿名構造体](types-anonymous-structure.md)の節で書かれています。
 
 ---
 
-Previous section: [Array Declaration](expression-array-declaration.md)
+Previous section: [配列の宣言](expression-array-declaration.md)
 
-Next section: [Field Access](expression-field-access.md)
+Next section: [フィールドへのアクセス](expression-field-access.md)

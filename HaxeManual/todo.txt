@@ -28,8 +28,8 @@ Todo:
 
 Missing Content:
 2.5.3 - オプションのフィールド
-5.3 - Binary Operators
-5.4 - Unary Operators
+5.3 - 2項演算子
+5.4 - 単項演算子
 9.6.1 - Macro-in-Macro
 9.6.4 - Type Parameters
 10.10 - Xml
@@ -115,20 +115,20 @@ Unreviewed:
 4.4.2 - Inline
 4.4.3 - Dynamic
 4.4.4 - Override
-5 - Expressions
-5.1 - Blocks
-5.2 - Constants
-5.5 - Array Declaration
-5.6 - Object Declaration
-5.7 - Field Access
-5.8 - Array Access
-5.9 - Function Call
-5.10 - var
-5.11 - Local functions
-5.12 - new
+5 - 式
+5.1 - ブロック
+5.2 - 定数値
+5.5 - 配列の宣言
+5.6 - オブジェクトの宣言
+5.7 - フィールドへのアクセス
+5.8 - 配列アクセス
+5.9 - 関数呼び出し
+5.10 - var(変数宣言)
+5.11 - ローカル関数
+5.12 - new(インスタンス化)
 5.13 - for
-5.14 - while
-5.15 - do-while
+5.14 - whileループ
+5.15 - do-whileループ
 5.16 - if
 5.17 - switch
 5.18 - try/catch
@@ -137,9 +137,9 @@ Unreviewed:
 5.21 - continue
 5.22 - throw
 5.23 - cast
-5.23.1 - unsafe cast
-5.23.2 - safe cast
-5.24 - type check
+5.23.1 - 非セーフキャスト
+5.23.2 - セーフキャスト
+5.24 - 型チェック
 6 - Language Features
 6.1 - Conditional Compilation
 6.1.1 - Global Compiler Flags

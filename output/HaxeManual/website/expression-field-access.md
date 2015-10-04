@@ -1,17 +1,17 @@
-## 5.7 Field Access
+## 5.7 フィールドへのアクセス
 
-Field access is expressed by using the dot `.` followed by the name of the field.
+フィールドへのアクセスは、ドット`.`の後にフィールドの名前を続けることで表現します。
 
 ```haxe
 object.fieldName
 ```
 
-This syntax is also used to access types within packages in the form of `pack.Type`.
+この構文は`pack.Type`の形でパッケージ内の型にアクセスするのにも使われます。
 
-The typer ensures that an accessed field actually exist and may apply transformations depending on the nature of the field. If a field access is ambiguous, understanding the [resolution order](type-system-resolution-order.md) may help.
+型付け機は、アクセスされたフィールドが本当に存在するかを確認し、フィールドの種類に依存した変更を適用します。もしフィールドへのアクセスが複数の意味にとれる場合は、[解決順序](type-system-resolution-order.md)の理解が役に立つでしょう。
 
 ---
 
-Previous section: [Object Declaration](expression-object-declaration.md)
+Previous section: [オブジェクトの宣言](expression-object-declaration.md)
 
-Next section: [Array Access](expression-array-access.md)
+Next section: [配列アクセス](expression-array-access.md)

@@ -1,6 +1,6 @@
 ## 5.17 switch
 
-A basic switch expression starts with the `switch` keyword and the switch subject expression, as well as the case expressions between curly braces `{}`. Case expressions either start with the `case` keyword and are followed by a pattern expression, or consist of the `default` keyword. In both cases a colon `:` and an optional case body expression follows:
+基本的なスイッチ式は、`switch`キーワードと、その分岐対象の式から始まり、中かっこ`{}`にはさまれてケース式が並びます。各ケース式は、`case`キーワードからのパターン式か、`default`キーワードで始まります。どちらの場合も、コロンが続き、オプショナルなケース本体の式が来ます。
 
 ```haxe
 switch subject {
@@ -10,11 +10,11 @@ switch subject {
 }
 ```
 
-Case body expressions never "fall through", so the [`break`](expression-break.md) keyword is not supported in Haxe.
+ケース本体の式に、「フォールスルー」は起きません。このため、Haxeでは[`break`](expression-break.md)キーワードは使用しません。
 
-Switch expressions can be used as value; in that case the types of all case body expressions and the default expression must [unify](type-system-unification.md).
+スイッチ式は値としてあつかうことができます。その場合、すべてのケース本体の式の型は[単一化](type-system-unification.md)できなくてはいけません。
 
-Further details on syntax of pattern expressions are detailed in [Pattern Matching](lf-pattern-matching.md).
+パターン式については、[Pattern Matching](lf-pattern-matching.md)で詳しく説明されています。
 
 ---
 
