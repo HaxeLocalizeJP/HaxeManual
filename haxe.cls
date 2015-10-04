@@ -85,5 +85,3 @@
 % Japanese Support
 \renewcommand{\partname}{パート}
 \renewcommand{\chaptername}{章}
-\renewcommand{\sectionname}{節}
-
