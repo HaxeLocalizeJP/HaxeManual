@@ -1,12 +1,8 @@
 ## 2.1.3 数値の演算子
 
-<<<<<<< HEAD
-##### 算術演算
-=======
 This the list of numeric operators in Haxe, grouped by descending priority.
 
-##### Arithmetic
->>>>>>> english/master
+##### 算術演算
  
  演算子  | 演算  | 引数1  | 引数2  | 戻り値 
  --- | --- | --- | --- | ---

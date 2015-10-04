@@ -35,11 +35,10 @@ typedef Iterable<T> = {
 }
 \end{lstlisting}
 
-<<<<<<< HEAD
-\subsection{拡張}
-=======
-\paragraph{Optional fields}
-Mark the field of a structure as optional using the \ic{@:optional} metadata.
+\paragraph{オプションのフィールド}
+
+構造体のフィールドは、\ic{@:optional}メタデータを使うことで、オプションのフィールドとして認識させることができます。
+
 \begin{lstlisting}
 typedef User = {
   var age : Int;
@@ -48,8 +47,7 @@ typedef User = {
 }
 \end{lstlisting}
 
-\subsection{Extensions}
->>>>>>> english/master
+\subsection{拡張}
 \label{type-system-extensions}
 
 % TODO: move to structures? %
@@ -133,11 +131,7 @@ class Array<T> {
 
 \haxe{assets/GenericClass.hx}
 
-<<<<<<< HEAD
 めずらしく型の明示をしている\type{MyValue<String>}があり、それをいつもの\tref{型推論}{type-system-type-inference}であつかっていますが、これが重要です。コンパイラはコンストラクタの呼び出し時にジェネリッククラスの正確な型な型を知っている必要があります。この\target{JavaScript}出力は以下のような結果になります。
-=======
-It seems unusual to see the explicit type \type{MyArray<String>} here as we usually let \tref{type inference}{type-system-type-inference} deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The \target{JavaScript} output shows the result:
->>>>>>> english/master
 
 \begin{lstlisting}
 (function () { "use strict";
@@ -160,11 +154,7 @@ Test.main();
 
 \haxe{assets/GenericFunction.hx}
 
-<<<<<<< HEAD
 \target{JavaScript}出力を見れば明白です。
-=======
-Again, the \target{JavaScript} output makes it obvious:
->>>>>>> english/master
 
 \begin{lstlisting}
 (function () { "use strict";
@@ -198,11 +188,7 @@ Main.main();
 	\item 明示的に、\tref{コンストラクタ}{types-class-constructor}を持つように\tref{制約}{type-system-type-parameter-constraints}されていること
 \end{enumerate}
 
-<<<<<<< HEAD
-先ほどの例は、1つ目は\expr{make}が\expr{@:generic}メタデータを持っており、2つ目\type{T}が\type{Constructible}に制約されています。\type{String}と\type{haxe.Template}の両方とも1つ\type{String}の引数のコンストラクタを持つのでこの制約に当てはまります。確かにJavascript出力は予測通りのものになっています。
-=======
-Here, 1. is given by \expr{make} having the \expr{@:generic} metadata, and 2. by \type{T} being constrained to \type{Constructible}. The constraint holds for both \type{String} and \type{haxe.Template} as both have a constructor accepting a singular \type{String} argument. Sure enough, the relevant \target{JavaScript} output looks as expected:
->>>>>>> english/master
+先ほどの例は、1つ目は\expr{make}が\expr{@:generic}メタデータを持っており、2つ目\type{T}が\type{Constructible}に制約されています。\type{String}と\type{haxe.Template}の両方とも1つ\type{String}の引数のコンストラクタを持つのでこの制約に当てはまります。確かに\target{JavaScript}出力は予測通りのものになっています。
 
 \begin{lstlisting}
 var Main = function() { }

@@ -42,16 +42,13 @@ class Main implements Placeable {
 }
 ```
 
-<<<<<<< HEAD
-> ##### Trivia: Implementsの構文
-=======
-Interfaces can extend multiple other interfaces using the `extends` keyword:
+インターフェースは`extends`キーワードで複数のインタフェースを継承することができます。
+
 ```haxe
 interface Debuggable extends Printable extends Serializable
 ```
 
-> ##### Trivia: Implements Syntax
->>>>>>> english/master
+> ##### Trivia: Implementsの構文
 >
 > Haxeの3.0よりも前のバージョンでは、`implements`キーワードはカンマで区切られていました。Javaのデファクトスタンダードに合わせるため、私たちはカンマを取り除くことに決定しました。これが、Haxe2と3の間の破壊的な変更の1つです。
 

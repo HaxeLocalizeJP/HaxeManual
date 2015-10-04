@@ -29,11 +29,7 @@ class Main {
 1. ジェネリックであること
 2. 明示的に、[コンストラクタ](types-class-constructor.md)を持つように[制約](type-system-type-parameter-constraints.md)されていること
 
-<<<<<<< HEAD
-先ほどの例は、1つ目は`make`が`@:generic`メタデータを持っており、2つ目`T`が`Constructible`に制約されています。`String`と`haxe.Template`の両方とも1つ`String`の引数のコンストラクタを持つのでこの制約に当てはまります。確かにJavascript出力は予測通りのものになっています。
-=======
-Here, 1. is given by `make` having the `@:generic` metadata, and 2. by `T` being constrained to `Constructible`. The constraint holds for both `String` and `haxe.Template` as both have a constructor accepting a singular `String` argument. Sure enough, the relevant JavaScript output looks as expected:
->>>>>>> english/master
+先ほどの例は、1つ目は`make`が`@:generic`メタデータを持っており、2つ目`T`が`Constructible`に制約されています。`String`と`haxe.Template`の両方とも1つ`String`の引数のコンストラクタを持つのでこの制約に当てはまります。確かにJavaScript出力は予測通りのものになっています。
 
 ```haxe
 var Main = function() { }

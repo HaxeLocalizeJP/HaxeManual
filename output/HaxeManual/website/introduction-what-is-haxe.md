@@ -8,7 +8,6 @@ Haxeは強く型付けされている一方で、必要に応じて型付けを�
 
 名前  | 出力形式  | 主な用途 
  --- | --- | ---
-<<<<<<< HEAD
 JavaScript  | ソースコード  | ブラウザ, デスクトップ, モバイル, サーバー 
 Neko  | バイトコード  | デスクトップ, サーバー 
 PHP  | ソースコード  | サーバー 
@@ -18,17 +17,6 @@ ActionScript 3  | ソースコード  | ブラウザ, デスクトップ, モバ
 Flash  | バイトコード  | ブラウザ, デスクトップ, モバイル 
  Java  | ソースコード  | デスクトップ, サーバー 
 C#  | ソースコード  | デスクトップ, モバイル, サーバー 
-=======
-JavaScript  | Sourcecode  | Browser, Desktop, Mobile, Server 
-Neko  | Bytecode  | Desktop, Server 
-PHP  | Sourcecode  | Server 
-Python  | Sourcecode  | Desktop, Server 
-C++  | Sourcecode  | Desktop, Mobile, Server 
-ActionScript 3  | Sourcecode  | Browser, Desktop, Mobile 
-Flash  | Bytecode  | Browser, Desktop, Mobile 
- Java  | Sourcecode  | Desktop, Server 
-C#  | Sourcecode  | Desktop, Mobile, Server 
->>>>>>> english/master
  
 
 この[導入](introduction.md)の残りでは、Haxeのプログラムがどのようなものなのか、Haxeはが2005年に生まれてからどのように進化してきたのか、を概要でお送りします。

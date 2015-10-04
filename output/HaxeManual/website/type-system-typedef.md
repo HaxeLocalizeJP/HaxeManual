@@ -25,8 +25,10 @@ typedef Iterable<T> = {
 }
 ```
 
-###### Optional fields
-Mark the field of a structure as optional using the `@:optional` metadata.
+##### オプションのフィールド
+
+構造体のフィールドは、`@:optional`メタデータを使うことで、オプションのフィールドとして認識させることができます。
+
 ```haxe
 typedef User = {
   var age : Int;

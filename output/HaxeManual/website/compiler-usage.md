@@ -1,6 +1,6 @@
 ## 7 Compiler Usage
 
-###### Basic Usage
+##### Basic Usage
 
 The Haxe Compiler is typically invoked from command line with several arguments which have to answer two questions:
 
@@ -11,7 +11,7 @@ To answer the first question, it is usually sufficient to provide a class path v
 
 The second question usually comes down to providing an argument specifying the desired target. Each Haxe target has a dedicated command line switch, such as `-js file_name` for JavaScript and `-php directory` for PHP. Depending on the nature of the target, the argument value is either a file name (for `-js`, `-swf` and `neko`) or a directory path.
 
-###### Common arguments
+##### Common arguments
 
 **Input:**
 

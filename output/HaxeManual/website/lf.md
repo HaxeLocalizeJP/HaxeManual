@@ -55,7 +55,7 @@ enum Result {
 
 **[Inlined calls](class-field-inline.md):**
 
-Functions can be designed as being inline, allowing their code to be inserted at call-site. This can yield significant performance benefits without resorting to code duplication via manual inlining.
+Functions can be designated as being inline, allowing their code to be inserted at call-site. This can yield significant performance benefits without resorting to code duplication via manual inlining.
 
 **[Iterators](lf-iterators.md):**
 

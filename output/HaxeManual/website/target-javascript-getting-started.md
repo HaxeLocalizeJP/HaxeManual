@@ -37,7 +37,7 @@ Another possibility is to create and run (double-click) a file called `compile.h
 
 The output will be a main-javascript.js, which creates and adds a clickable button to the document body.
 
-###### Run the JavaScript
+##### Run the JavaScript
 
 To display the output in a browser, create an HTML-document called `index.html` and open it.
 
@@ -45,12 +45,12 @@ To display the output in a browser, create an HTML-document called `index.html` 
 <!DOCTYPE html>
 <html>
 	<body>
-		<script src="main-javascript.js">
+		<script src="main-javascript.js"></script>
 	</body>
 </html>
 ```
 
-###### More information
+##### More information
 
 * [Haxe JavaScript API docs](http://api.haxe.org/js/)
 * [MDN JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)

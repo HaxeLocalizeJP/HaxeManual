@@ -24,12 +24,8 @@ class Main {
   }
 }
 ```
-<<<<<<< HEAD
 
 `@:op(A * B)`を宣言することで、`repeat`関数は、左辺が`MyAbstract`で右辺が`Int`の場合の`*`演算子による乗算の関数として利用されます。これは18行目で利用されています。この部分はJavaScriptにコンパイルすると以下のようになります。
-=======
-By defining `@:op(A * B)`, the function `repeat` serves as operator method for the multiplication `*` operator when the type of the left value is `MyAbstract` and the type of the right value is `Int`. The usage is shown in line 17, which turns into this when compiled to JavaScript:
->>>>>>> english/master
 
 ```haxe
 console.log(_AbstractOperatorOverload.
@@ -63,7 +59,7 @@ class Main {
 
 2項演算子と単項演算子の両方とも、戻り値の型は何でも構いません。
 
-###### 基底型の演算を公開する
+##### 基底型の演算を公開する
 
 基底型が抽象型でそこで許容されている演算子でかつ戻り値を元の抽象型に代入可能なものについては、`@:op`関数のボディを省略することが可能です。
 

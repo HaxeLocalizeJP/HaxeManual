@@ -342,18 +342,13 @@ class Point implements Printable implements Serializable
 
 \haxe{assets/InterfaceWithVariables.hx}
 
-<<<<<<< HEAD
-\trivia{Implementsの構文}{Haxeの3.0よりも前のバージョンでは、\expr{implements}キーワードはカンマで区切られていました。Javaのデファクトスタンダードに合わせるため、私たちはカンマを取り除くことに決定しました。これが、Haxe2と3の間の破壊的な変更の1つです。}
-=======
-Interfaces can extend multiple other interfaces using the \expr{extends} keyword:
+インターフェースは\expr{extends}キーワードで複数のインタフェースを継承することができます。
+
 \begin{lstlisting}
 interface Debuggable extends Printable extends Serializable
 \end{lstlisting}
 
-
-\trivia{Implements Syntax}{Haxe versions prior to 3.0 required multiple \expr{implements} keywords to be separated by a comma. We decided to adhere to the de-facto standard of Java and got rid of the comma. This was one of the breaking changes between Haxe 2 and 3.}
->>>>>>> english/master
-
+\trivia{Implementsの構文}{Haxeの3.0よりも前のバージョンでは、\expr{implements}キーワードはカンマで区切られていました。Javaのデファクトスタンダードに合わせるため、私たちはカンマを取り除くことに決定しました。これが、Haxe2と3の間の破壊的な変更の1つです。}
 
 \section{列挙型インスタンス}
 \label{types-enum-instance}
@@ -682,12 +677,8 @@ att.income = 0;
 さらに、抽象型は以下のように、クラスと同じようにインスタンス化して使用することができます
 
 \haxe[firstline=7,lastline=12]{assets/MyAbstract.hx}
-<<<<<<< HEAD
 
 はじめに書いたとおり、抽象型はコンパイル時の機能ですから、見るべきは上記のコードの実際の出力です。この出力例としては、簡潔なコードが出力される\target{JavaScript}が良いでしょう。上記のコードを\texttt{haxe -main MyAbstract -js myabstract.js}でコンパイルすると以下のような\target{JavaScript}が出力されます。
-=======
-As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is \target{JavaScript}, which tends to generate concise and clean code. Compiling the above (using \texttt{haxe -main MyAbstract -js myabstract.js}) shows this \target{JavaScript} code:
->>>>>>> english/master
 
 \begin{lstlisting}
 var a = 12;
@@ -727,14 +718,10 @@ console.log(a);
 
 同じように関数に\expr{@:to}を付けることで、その抽象型からその戻り値の型への暗黙のキャストを行う関数として判断されます。この関数は普通はメンバ関数ですが、\expr{static}でも構いません。そして、これは\tref{選択的関数}{types-abstract-selective-functions}として働きます。
 
-<<<<<<< HEAD
 上の例では、\expr{fromString}メソッドが\expr{"3"}の値を\type{MyAbstract}型の変数\expr{a}への代入を可能にし、
 \expr{toArray}メソッドがその抽象型インスタンスを\type{Array<Int>}型の変数\expr{b}への代入を可能にします。
 
 この種類のキャストを使った場合、必要な場所でキャスト関数の呼び出しが発生します。このことは\target{JavaScript}出力を見ると明らかです。
-=======
-When using this kind of cast, calls to the cast-functions are inserted where required. This becomes obvious when looking at the \target{JavaScript} output:
->>>>>>> english/master
 
 \begin{lstlisting}
 var a = _ImplicitCastField.MyAbstract_Impl_.fromString("3");
@@ -777,12 +764,8 @@ var b = [a];
 抽象型ではクラスフィールドに\expr{@:op}メタデータを付けることで、単項演算子と2項演算子のオーバーロードが可能です。
 
 \haxe{assets/AbstractOperatorOverload.hx}
-<<<<<<< HEAD
 
 \expr{@:op(A * B)}を宣言することで、\expr{repeat}関数は、左辺が\type{MyAbstract}で右辺が\type{Int}の場合の\expr{*}演算子による乗算の関数として利用されます。これは18行目で利用されています。この部分は\target{JavaScript}にコンパイルすると以下のようになります。
-=======
-By defining \expr{@:op(A * B)}, the function \expr{repeat} serves as operator method for the multiplication \expr{*} operator when the type of the left value is \type{MyAbstract} and the type of the right value is \type{Int}. The usage is shown in line 17, which turns into this when compiled to \target{JavaScript}:
->>>>>>> english/master
 
 \begin{lstlisting}
 console.log(_AbstractOperatorOverload.
@@ -874,12 +857,7 @@ Haxe3.2以前では、バグのため\expr{:arrayAccess}のフィールドがチ
 
 \haxe{assets/AbstractEnum.hx}
 
-<<<<<<< HEAD
-
-以下のJavaScriptへの出力を見ても明らかなように、Haxeは抽象型\type{HttpStatus}の全てのフィールドへのアクセスをその値に変換します。
-=======
-The Haxe Compiler replaces all field access to the \type{HttpStatus} abstract with their values, as evident in the \target{JavaScript} output:
->>>>>>> english/master
+以下のJavaScriptへの出力を見ても明らかなように、Haxeコンパイラは抽象型\type{HttpStatus}の全てのフィールドへのアクセスをその値に変換します。
 
 \begin{lstlisting}
 Main.main = function() {
@@ -915,11 +893,7 @@ Main.printStatus = function(status) {
 
 この例では、抽象型の\type{MyArray}が\type{Array}をラップしています。この\expr{@:forward}メタデータは、基底型から繰り上がらせるフィールド2つを引数として与えられています。上記の例の\expr{main}関数は、\type{MyArray}をインスタンス化して、その\expr{push}と\expr{pop}のメソッドにアクセスしています。コメント化されている行は、\expr{length}フィールドは利用できないことを実演するものです。
 
-<<<<<<< HEAD
 ではどのようなコードが出力されるのか、いつものように\target{JavaScript}への出力を見てみましょう。
-=======
-As usual we can look at the \target{JavaScript} output to see how the code is being generated:
->>>>>>> english/master
 
 \begin{lstlisting}
 Main.main = function() {

@@ -22,11 +22,7 @@ class Main {
 
 ```
 
-<<<<<<< HEAD
 めずらしく型の明示をしている`MyValue<String>`があり、それをいつもの[型推論](type-system-type-inference.md)であつかっていますが、これが重要です。コンパイラはコンストラクタの呼び出し時にジェネリッククラスの正確な型な型を知っている必要があります。このJavaScript出力は以下のような結果になります。
-=======
-It seems unusual to see the explicit type `MyArray<String>` here as we usually let [type inference](type-system-type-inference.md) deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The JavaScript output shows the result:
->>>>>>> english/master
 
 ```haxe
 (function () { "use strict";
@@ -58,11 +54,7 @@ class Main {
 }
 ```
 
-<<<<<<< HEAD
 JavaScript出力を見れば明白です。
-=======
-Again, the JavaScript output makes it obvious:
->>>>>>> english/master
 
 ```haxe
 (function () { "use strict";
