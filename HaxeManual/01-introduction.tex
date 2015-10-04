@@ -31,7 +31,7 @@ Haxeは強く型付けされている一方で、必要に応じて型付けを�
 
 この\Fullref{introduction}の残りでは、Haxeのプログラムがどのようなものなのか、Haxeはが2005年に生まれてからどのように進化してきたのか、を概要でお送りします。
 
-\Fullref{types}では、Haxeの7種類の異なる型についてとそれらがどう関わりあっているのかについて紹介します。型に関する話は、\Fullref{type-system}へと続き、\emph{単一化(Unification)}、\emph{型パラメータ}、\emph{型推論}についての解説がされます。
+\Fullref{types}では、Haxeの7種類の異なる型についてとそれらがどう関わりあっているのかについて紹介します。型に関する話は、\Fullref{type-system}へと続き、\emph{単一化(ユニファイ)}、\emph{型パラメータ}、\emph{型推論}についての解説がされます。
 
 \Fullref{class-field}では、Haxeのクラスの構造に関する全てをあつかいます。加えて、\emph{プロパティ}、\emph{インラインフィールド}、\emph{ジェネリック関数}についてもあつかいます。
 
@@ -98,7 +98,6 @@ Haxe code here
 次のプログラムはコンパイルして実行をすると``Hello World''と表示します:
 
 \haxe{assets/HelloWorld.hx}
-<<<<<<< HEAD
 
 上記のコードは、\ic{Main.hx}という名前で保存して、\ic{haxe -main Main --interp}というコマンドでHaxeコンパイラを呼び出すと実際に動作させることが可能です。これで\ic{Main.hx:3: Hello world}という出力がされるはずです。このことから以下のいくつかのことを学ぶことができます。
 

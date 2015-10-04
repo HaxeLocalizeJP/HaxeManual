@@ -1,4 +1,4 @@
-\begin{flowchart}{type-system-resolution-order-diagram}{識別子 `i'　の解決順序}
+\begin{flowchart}{type-system-resolution-order-diagram}{識別子`i'の解決順序}
 
 \tikzset {
 	level distance = 1.4cm,
@@ -17,33 +17,33 @@
 
 \Tree
 [.\node [decisionc] (dec1) {'i' == 'true'または'false'、'this'、'super'、'null'};
-\edge [noEdge] node {No};
+\edge [noEdge] node {いいえ};
 [.\node [decisionc] (dec2) {ローカル変数'i'が存在する};
-\edge [noEdge] node {No};
+\edge [noEdge] node {いいえ};
 [.\node [decisionc] (dec3) {現在のフィールドが静的フィールドである};
-\edge [noEdge] node {No};
+\edge [noEdge] node {いいえ};
 [.\node [decisionc] (dec4) {現在のクラス、親クラスのいずれかにフィールド'i'が存在する};
-\edge [noEdge] node {No};
+\edge [noEdge] node {いいえ};
 [.\node [decisionc] (dec5) {'this'の型の静的拡張があるか};
-\edge [noEdge] node {No};
+\edge [noEdge] node {いいえ};
 [.\node [decisionc] (dec6) {現在のクラスに静的フィールド'i'があるか};
-\edge [noEdge] node {No};
+\edge [noEdge] node {いいえ};
 [.\node [decisionc] (dec7) {インポートされたenumにコンストラクタ`i'があるか};
-\edge [noEdge] node {No};
+\edge [noEdge] node {いいえ};
 [.\node [decisionc] (dec8) {静的フィールド`i'がインポートされているか};
-\edge [noEdge] node {No};
+\edge [noEdge] node {いいえ};
 [.\node [decisionc] (dec9) {`i'が小文字から始まるか};
-\edge [noEdge] node {No};
+\edge [noEdge] node {いいえ};
 [.\node [decisionc] (dec10) {型`i'がインポートされているか};
-\edge [noEdge] node {No};
+\edge [noEdge] node {いいえ};
 [.\node [decisionc] (dec11) {現在のパッケージが型`i'をふくむモジュール`i'を持つか};
-\edge [noEdge] node {No};
+\edge [noEdge] node {いいえ};
 [.\node [decisionc] (dec12) {トップレベルの型`i'が存在するか};
-\edge [noEdge] node {No};
+\edge [noEdge] node {いいえ};
 [.\node [decisionc] (dec13) {untypedモードか};
-\edge [noEdge] node {Yes};
+\edge [noEdge] node {はい};
 [.\node [decisionc] (dec14) {`i' == `__this__'};
-\edge [noEdge] node {No};
+\edge [noEdge] node {いいえ};
 [.\node [decisionc] (dec15) {ローカル変数`i'を生成する};
 ]]]]]]]]]]]]]]]
 
@@ -67,13 +67,13 @@
 \draw [flowchartArrow] (dec14) -| (yesAnchor) node [yesNode] {はい};
 \draw [flowchartArrow] (dec15) -- (resolve.west);
 
-\draw [flowchartArrow] (dec3) to [out = 180, in = 180, distance = 3cm] (dec6);
+\draw [flowchartArrow] (dec3) to [out = 180, in = 180, distance = 4cm] (dec6);
 \draw (dec3.west) node [above left] {はい};
 
-\draw [flowchartArrow] (dec9) to [out = 180, in = 180, distance = 3cm] (dec13);
+\draw [flowchartArrow] (dec9) to [out = 180, in = 180, distance = 4cm] (dec13);
 \draw (dec9.west) node [above left] {はい};
 
-\node [startstop, fill = red!70, xshift = 2cm] (fail) at (dec13.east) {失敗};
+\node [startstop, fill = red!70, xshift = 3cm] (fail) at (dec13.east) {失敗};
 \draw [flowchartArrow] (dec13.east) -- (fail.west) node [above right, at start] {いいえ};
 
 

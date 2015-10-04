@@ -75,7 +75,8 @@ Haxeでは基本型は\tref{クラス}{types-class-instance}ではありませ�
 
 \todo{make sure the types are right for inc, dec, negate, and bitwise negate}
 \todo{While introducing the different operations, we should include that information as well, including how they differ with the "C" standard, see http://haxe.org/manual/operators}
-This the list of numeric operators in Haxe, grouped by descending priority.
+
+以下は、Haxeの数値演算子です。優先度が降順になるようにグループ化して並べています。
 
 \begin{center}
 \begin{tabular}{| l | l | l | l | l |}
@@ -130,7 +131,7 @@ This the list of numeric operators in Haxe, grouped by descending priority.
 \subsection{Bool(真偽値)}
 \label{types-bool}
 
-\define[Type]{Bool}{define-bool}{真(\emph{true})または、偽(\emph{false})のどちらかになる値を表す。}
+\define[Type]{Bool}{define-bool}{真(\emph{true})または、偽(\emph{false})のどちらかになる値を表します。}
 
 \type{Bool}型の値は、\tref{\expr{if}}{expression-if}や\tref{\expr{while}}{expression-while}のような\emph{条件文}によく表れます。以下の演算子は、\type{Bool}値を受け取って\type{Bool}値を返します。
 
@@ -828,7 +829,7 @@ console.log(map.get("foo")); // 1
 \paragraph{配列アクセスの解決順序}
 \label{types-abstract-array-access-order}
 
-Haxe3.2以前では、バグのため\expr{:arrayAccess}のフィールドがチェックされる順序は定義されていませんでした。これは、Haxe　3.2では修正されて一貫して上から下へと確認が行われるようになりました。
+Haxe3.2以前では、バグのため\expr{:arrayAccess}のフィールドがチェックされる順序は定義されていませんでした。これは、Haxe3.2では修正されて一貫して上から下へと確認が行われるようになりました。
 
 \haxe{assets/AbstractArrayAccessOrder.hx}
 

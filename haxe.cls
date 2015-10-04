@@ -27,7 +27,7 @@
 \newcommand{\target}[1]{#1} % when mentioning Javascript, Php etc.
 \newcommand{\type}[1]{\texttt{#1}} % when mentioning types
 \newcommand{\expr}[1]{\texttt{#1}} % Haxe expressions
-\newcommand{\since}[1]{\noindent\textbf{Haxe #1　から}\\} % to generate ``Since Haxe #1''
+\newcommand{\since}[1]{\noindent\textbf{Haxe #1以降}\\} % to generate ``Since Haxe #1''
 \newcommand{\Fullref}[1]{\nameref{#1} (\Cref{#1})} % full references
 \newcommand{\tref}[2]{#1 (\ref{#2})} % general references
 \newcommand{\state}[1]{} % state of the section
@@ -83,5 +83,11 @@
 	{\begin{myshaded}\noindent\textbf{トリビア: #1}\par\nobreak\noindent\ignorespaces#2\end{myshaded}}
 
 % Japanese Support
+\renewcommand{\contentsname}{目次}
 \renewcommand{\partname}{パート}
 \renewcommand{\chaptername}{章}
+
+\crefname{chapter}{章}{章}
+\crefname{section}{節}{節}
+\Crefname{chapter}{章}{章}
+\Crefname{section}{節}{節}
