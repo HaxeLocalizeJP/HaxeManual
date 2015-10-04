@@ -2,10 +2,10 @@
 
 Haxe includes a floating point math library for some common mathematical operations. Most of the functions operate on and return `floats`. However, an `Int` can be used where a `Float` is expected, and Haxe also converts `Int` to `Float` during most numeric operations  (see [数値の演算子](types-numeric-operators.md) for more details).
 
-Here are some example uses of the math library.  See the [Math API](http://api.haxe.org/Math.html) for all available functions.
+Here are some example uses of the math library:  
 
 ```haxe
-class MathExample {
+class Main {
   static public function main() {
     var x = 1/2;
     var y = 20.2;
@@ -28,6 +28,8 @@ class MathExample {
 
 
 ```
+
+See the [Math API](http://api.haxe.org/Math.html) for all available functions.
 
 ---
 

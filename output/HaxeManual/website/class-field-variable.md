@@ -3,7 +3,7 @@
 We have already seen variable fields in several code examples of previous sections. Variable fields hold values, a characteristic which they share with most (but not all) properties:
 
 ```haxe
-class VariableField {
+class Main {
   static var member:String = "bar";
 
   public static function main() {
@@ -24,7 +24,7 @@ The example first prints the initialization value of `member`, then sets it to `
 
 It should be noted that the explicit type is not required if there is an initialization value. The compiler will [infer](type-system-type-inference.md) it in this case.
 
-<img src="../../assets/graphics/generated/class-field-variable-init-values.png" alt="Initialization values of a variable field." title="Initialization values of a variable field." />
+<img src="../../../HaxeManual/assets/graphics/generated/class-field-variable-init-values.png" alt="Initialization values of a variable field." title="Initialization values of a variable field." />
 
 _Figure: Initialization values of a variable field._
 

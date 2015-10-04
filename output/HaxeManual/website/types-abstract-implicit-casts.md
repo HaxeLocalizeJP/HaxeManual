@@ -14,7 +14,7 @@ abstract MyAbstract(Int) from Int to Int {
   }
 }
 
-class ImplicitCastDirect {
+class Main {
   static public function main() {
     var a:MyAbstract = 12;
     var b:Int = a;
@@ -43,7 +43,7 @@ abstract MyAbstract(Int) {
   }
 }
 
-class ImplicitCastField {
+class Main {
   static public function main() {
     var a:MyAbstract = "3";
     var b:Array<Int> = a;
@@ -59,7 +59,11 @@ class ImplicitCastField {
 上の例では、`fromString`メソッドが`"3"`の値を`MyAbstract`型の変数`a`への代入を可能にし、
 `toArray`メソッドがその抽象型インスタンスを`Array<Int>`型の変数`b`への代入を可能にします。
 
+<<<<<<< HEAD
 この種類のキャストを使った場合、必要な場所でキャスト関数の呼び出しが発生します。このことはJavaScript出力を見ると明らかです。
+=======
+When using this kind of cast, calls to the cast-functions are inserted where required. This becomes obvious when looking at the JavaScript output:
+>>>>>>> english/master
 
 ```haxe
 var a = _ImplicitCastField.MyAbstract_Impl_.fromString("3");
@@ -75,12 +79,16 @@ var b = [a];
 
 型`A`から時の型`B`への代入の時にどちらかまたは両方が抽象型である場合に使われるキャストの**選択アルゴリズム**は簡単です。
 
+<<<<<<< HEAD
 1. `A`が抽象型でない場合は3へ。
 2. `A`が、`B`**への**変換を持っている場合、これを適用して6へ。
 3. `B`が抽象型でない場合は5へ。
 4. `B`が、`A`**からの**変換を持っている場合、これを適用して6へ。
 5. 単一化失敗で、終了。
 6. 単一化成功で、終了。
+=======
+<img src="../../../HaxeManual/assets/graphics/generated/types-abstract-implicit-casts-selection-algorithm.png" alt="Selection algorithm flow chart." title="Selection algorithm flow chart." />
+>>>>>>> english/master
 
 <img src="../../assets/graphics/generated/types-abstract-implicit-casts-selection-algorithm.png" alt="選択アルゴリズムのフローチャート" title="選択アルゴリズムのフローチャート" />
 

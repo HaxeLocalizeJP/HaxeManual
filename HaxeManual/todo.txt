@@ -32,7 +32,6 @@ Missing Content:
 5.4 - 単項演算子
 9.6.1 - Macro-in-Macro
 9.6.4 - Type Parameters
-10.10 - Xml
 10.11 - Input/Output
 10.12 - Sys/sys
 12.3 - Neko
@@ -137,9 +136,15 @@ Unreviewed:
 5.21 - continue
 5.22 - throw
 5.23 - cast
+<<<<<<< HEAD
 5.23.1 - 非セーフキャスト
 5.23.2 - セーフキャスト
 5.24 - 型チェック
+=======
+5.23.1 - unsafe cast
+5.23.2 - safe cast
+5.24 - type check
+>>>>>>> english/master
 6 - Language Features
 6.1 - Conditional Compilation
 6.1.1 - Global Compiler Flags
@@ -224,10 +229,14 @@ Unreviewed:
 10.7 - Reflection
 10.8 - Serialization
 10.8.1 - Serialization format
-10.9 - Json
-10.9.1 - Parsing JSON
-10.9.2 - Encoding JSON
-10.9.3 - Implementation details
+10.9 - Xml
+10.9.1 - Getting started with Xml
+10.9.2 - Parsing Xml
+10.9.3 - Encoding Xml
+10.10 - Json
+10.10.1 - Parsing JSON
+10.10.2 - Encoding JSON
+10.10.3 - Implementation details
 10.13 - Remoting
 10.13.1 - Remoting Connection
 10.13.2 - Implementation details
@@ -239,11 +248,21 @@ Unreviewed:
 11.2.2 - Dependencies
 11.3 - extraParams.hxml
 11.4 - Using Haxelib
+<<<<<<< HEAD
 12.1.1 - Getting started with Haxe/Javascript
 12.1.2 - Using external Javascript libraries
 12.1.3 - Javascript target Metadata
 12.1.4 - Exposing Haxe classes for Javascript
 12.1.5 - Loading extern classes using "require" function
+=======
+12.1.1 - Getting started with Haxe/JavaScript
+12.1.2 - Using external JavaScript libraries
+12.1.3 - Inject raw JavaScript
+12.1.4 - Debugging JavaScript
+12.1.5 - JavaScript target Metadata
+12.1.6 - Exposing Haxe classes for JavaScript
+12.1.7 - Loading extern classes using "require" function
+>>>>>>> english/master
 12.2.1 - Getting started with Haxe/Flash
 12.2.2 - Embedding resources
 12.2.3 - Using external Flash libraries

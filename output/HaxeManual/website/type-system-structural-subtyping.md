@@ -13,7 +13,7 @@ Haxeでは構造的部分型付けは、以下の単一化するときに利用�
 
 ```haxe
 public static function empty<T>(it : Iterable<T>):Bool {
-	return !it.iterator().hasNext();
+  return !it.iterator().hasNext();
 }
 ```
 

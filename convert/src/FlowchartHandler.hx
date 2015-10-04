@@ -17,7 +17,7 @@ class FlowchartHandler {
 		var targetName = envlabel;
 		latexCompile(Resource.getString("tikzTemplate"), "\\begin{flowchart}" + s + "\\end{flowchart}", targetPath, targetName);
 		var filePath = targetPath + targetName + ".png";
-		var relativePath = "../../" + filePath;
+		var relativePath = "../../../HaxeManual/" + filePath;
 		switch (config.outputMode) {
 			case EPub | Mobi:
 				return '![$envtitle]($filePath)';
@@ -70,8 +70,10 @@ class FlowchartHandler {
 		fout.close();
 		//Sys.command("pdflatex", ["-interaction=nonstopmode", Path.withoutDirectory(texFile)]);
 		//Sys.command("convert", ["-density", "120", tempName + ".pdf", tempName + ".png"]);
-		Sys.command("xelatex", ["-interaction=nonstopmode", Path.withoutDirectory(texFile)]);
-		Sys.command("mudraw", ["-r", "110", "-c", "rgba", "-o", tempName + ".png", tempName + ".pdf"]);
+		if (Sys.command("xelatex", ["-interaction=nonstopmode", Path.withoutDirectory(texFile)]) != 0)
+			throw "xelatex failed";
+		if (Sys.command("mudraw", ["-r", "110", "-c", "rgba", "-o", tempName + ".png", tempName + ".pdf"]) != 0)
+			throw "mudraw failed";
 		Sys.setCwd(cwd);
 
 		var imagePath = tempDir + tempName + ".png";

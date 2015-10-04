@@ -28,7 +28,11 @@ class Main {
 }
 ```
 
+<<<<<<< HEAD
 以下のJavaScriptへの出力を見ても明らかなように、Haxeは抽象型`HttpStatus`の全てのフィールドへのアクセスをその値に変換します。
+=======
+The Haxe Compiler replaces all field access to the `HttpStatus` abstract with their values, as evident in the JavaScript output:
+>>>>>>> english/master
 
 ```haxe
 Main.main = function() {

@@ -9,6 +9,10 @@
 ```haxe
 Haxe code here
 ```
+<<<<<<< HEAD
+=======
+Occasionally, we demonstrate how Haxe code is generated, for which we usually show the JavaScript target.
+>>>>>>> english/master
 
 時々、Haxeがどのようなコードを出力をするかを見せるため、ターゲットのJavaScriptなどのコードも示します。
 

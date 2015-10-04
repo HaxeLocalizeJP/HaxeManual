@@ -3,7 +3,7 @@
 関数の型は、[単相](types-monomorph.md)と共に、Haxeのユーザーからよく隠れている型の1つです。コンパイル時に式の型を出力させる`$type`という特殊な識別子を使えば、この型を以下のように浮かび上がらせることが可能です。
 
 ```haxe
-class FunctionType {
+class Main {
   static public function main() {
     // i : Int -> s : String -> Bool
     $type(test);

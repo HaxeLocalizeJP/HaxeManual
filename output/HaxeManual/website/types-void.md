@@ -7,7 +7,7 @@
 Voidは型システムにおける特殊な場合です。Voidは実際には型ではありません。Voidは特に関数の引数と戻り値で型が存在しないことを表現するのに使います。私たちはすでに最初の"Hello World"の例でVoidを使用しています。
 
 ```haxe
-class HelloWorld {
+class Main {
   static public function main():Void {
     trace("Hello World");
   }

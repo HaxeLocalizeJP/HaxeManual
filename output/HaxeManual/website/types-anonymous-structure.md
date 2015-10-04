@@ -3,7 +3,7 @@
 匿名の構造体は、型を明示せずに利用できるデータの集まりです。以下の例では、`x`と`name`の2つのフィールドを持つ構造体を生成して、それぞれを`12`と`"foo"`の値で初期化しています。
 
 ```haxe
-class Structure {
+class Main {
   static public function main() {
     var myStructure = { x: 12, name: "foo"};
   }

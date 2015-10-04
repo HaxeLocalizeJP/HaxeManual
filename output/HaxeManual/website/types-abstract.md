@@ -29,15 +29,19 @@ abstract AbstractInt(Int) {
 さらに、抽象型は以下のように、クラスと同じようにインスタンス化して使用することができます
 
 ```haxe
-class MyAbstract {
+class Main {
   static public function main() {
     var a = new AbstractInt(12);
     trace(a); //12
   }
 }
 ```
+<<<<<<< HEAD
 
 はじめに書いたとおり、抽象型はコンパイル時の機能ですから、見るべきは上記のコードの実際の出力です。この出力例としては、簡潔なコードが出力されるJavaScriptが良いでしょう。上記のコードを`haxe -main MyAbstract -js myabstract.js`でコンパイルすると以下のようなJavaScriptが出力されます。
+=======
+As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is JavaScript, which tends to generate concise and clean code. Compiling the above (using `haxe -main MyAbstract -js myabstract.js`) shows this JavaScript code:
+>>>>>>> english/master
 
 ```haxe
 var a = 12;

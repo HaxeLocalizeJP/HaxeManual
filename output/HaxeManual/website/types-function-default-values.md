@@ -3,7 +3,7 @@
 Haxeでは、引数のデフォルト値として定数値を割り当てることが可能です。
 
 ```haxe
-class DefaultValues {
+class Main {
   static public function main() {
     // ?i : Int -> ?s : String -> String
     $type(test);
@@ -13,7 +13,7 @@ class DefaultValues {
     trace(test("foo")); // i: 12, s: foo
   }
 
-  static function test(i = 12, s = "bar") {
+  static function test(?i = 12, s = "bar") {
     return "i: " +i + ", s: " +s;
   }
 }

@@ -1,6 +1,10 @@
 ## 12.2.2 Embedding resources
 
+<<<<<<< HEAD
 Embedding resources is different in Haxe compared to Actionscript 3. Instead of using `[embed]` (AS3-metadata) use [Flash specific compiler metadata](target-flash-metadata.md) like `@:bitmap`, `@:font`, `@:sound` or `@:file`.
+=======
+Embedding resources is different in Haxe compared to ActionScript 3. Instead of using `[embed]` (AS3-metadata) use [Flash specific compiler metadata](target-flash-metadata.md) like `@:bitmap`, `@:font`, `@:sound` or `@:file`.
+>>>>>>> english/master
 
 ```haxe
 import flash.Lib;

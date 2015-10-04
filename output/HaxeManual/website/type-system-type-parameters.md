@@ -4,7 +4,7 @@
 
 ```haxe
 class Array<T> {
-	function push(x : T) : Int;
+  function push(x : T) : Int;
 }
 ```
 `Array`のインスタンスが作られると、型パラメータ`T`は[単相](types-monomorph.md)となります。つまり、1度に1つの型であれば、あらゆる型を適用することができます。この適用は以下のどちらか方法で行います
@@ -28,7 +28,7 @@ Enumコンストラクタ  | インスタンス作成時  |
 関数の型パラメータは呼び出し時に適用される、この型パラメータは(制約をつけない限り)あらゆる型を許容します。しかし、一回の呼び出しにつき適用は1つの型のみ可能です。このことは関数が複数の引数を持つ場合に役立ちます。
 
 ```haxe
-class FunctionTypeParameter {
+class Main {
   static public function main() {
     equals(1, 1);
     // runtime message: bar should be foo

@@ -3,7 +3,7 @@
 オプション引数は、引数の識別子の直前にクエスチョンマーク(`?`)を付けることで表現できます。
 
 ```haxe
-class OptionalArguments {
+class Main {
   static public function main() {
     // ?i : Int -> ?s : String -> String
     $type(test);

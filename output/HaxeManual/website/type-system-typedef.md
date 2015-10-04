@@ -12,8 +12,8 @@ typedef IA = Array<Int>;
 
 ```haxe
 typedef User = {
-    var age : Int;
-    var name : String;
+  var age : Int;
+  var name : String;
 }
 ```
 
@@ -21,7 +21,17 @@ typedefはテキスト上の置き換えではなく、実は本物の型です�
 
 ```haxe
 typedef Iterable<T> = {
-	function iterator() : Iterator<T>;
+  function iterator() : Iterator<T>;
+}
+```
+
+###### Optional fields
+Mark the field of a structure as optional using the `@:optional` metadata.
+```haxe
+typedef User = {
+  var age : Int;
+  var name : String;
+  @:optional var phoneNumber : String;
 }
 ```
 

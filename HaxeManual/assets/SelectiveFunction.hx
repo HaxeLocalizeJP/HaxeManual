@@ -3,12 +3,13 @@ abstract MyAbstract<T>(T) from T {
 
   function get() return this;
 
+  @:impl
   static public function getString(v:MyAbstract<String>):String {
     return v.get();
   }
 }
 
-class SelectiveFunction {
+class Main {
   static public function main() {
     var a = new MyAbstract("foo");
     a.getString();

@@ -13,7 +13,11 @@
 * [期待される型](dictionary.md#define-expected-type)
 * `untyped`中の式か、そうでないか
 
+<<<<<<< HEAD
 <img src="../../assets/graphics/generated/type-system-resolution-order-diagram.png" alt="識別子 `i'　の解決順序" title="識別子 `i'　の解決順序" />
+=======
+<img src="../../../HaxeManual/assets/graphics/generated/type-system-resolution-order-diagram.png" alt="Resolution order of identifier `i'" title="Resolution order of identifier `i'" />
+>>>>>>> english/master
 
 _Figure: 識別子 `i'　の解決順序_
 

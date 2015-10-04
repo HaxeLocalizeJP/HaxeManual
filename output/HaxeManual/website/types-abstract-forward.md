@@ -25,7 +25,11 @@ class Main {
 
 この例では、抽象型の`MyArray`が`Array`をラップしています。この`@:forward`メタデータは、基底型から繰り上がらせるフィールド2つを引数として与えられています。上記の例の`main`関数は、`MyArray`をインスタンス化して、その`push`と`pop`のメソッドにアクセスしています。コメント化されている行は、`length`フィールドは利用できないことを実演するものです。
 
+<<<<<<< HEAD
 ではどのようなコードが出力されるのか、いつものようにJavaScriptへの出力を見てみましょう。
+=======
+As usual we can look at the JavaScript output to see how the code is being generated:
+>>>>>>> english/master
 
 ```haxe
 Main.main = function() {

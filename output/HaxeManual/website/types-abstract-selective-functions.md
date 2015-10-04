@@ -8,12 +8,13 @@ abstract MyAbstract<T>(T) from T {
 
   function get() return this;
 
+  @:impl
   static public function getString(v:MyAbstract<String>):String {
     return v.get();
   }
 }
 
-class SelectiveFunction {
+class Main {
   static public function main() {
     var a = new MyAbstract("foo");
     a.getString();
@@ -22,6 +23,7 @@ class SelectiveFunction {
     b.getString();
   }
 }
+
 ```
 
 抽象型の`MyAbstract`の`getString`のメソッドは、最初の引数として`MyAbstract<String>`を受け取ります。これにより、14行目の変数`a`の関数呼び出しが可能になります(`a`の型が`MyAbstract<String>`なので)。しかし、`MyAbstract<Int>`の変数`b`では使えません。

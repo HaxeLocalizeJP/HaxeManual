@@ -3,7 +3,7 @@
 型推論はこのドキュメントで何度も出てきており、これ以降でも重要です。型推論の動作の簡単なサンプルをお見せします。
 
 ```haxe
-class TypeInference {
+class Main {
   public static function main() {
     var x = null;
     $type(x); // Unknown<0>
@@ -25,7 +25,7 @@ class TypeInference {
 以下が単一化のルールです。型推論は複合型でも起こります。
 
 ```haxe
-class TypeInference2 {
+class Main {
   public static function main() {
     var x = [];
     $type(x); // Array<Unknown<0>>

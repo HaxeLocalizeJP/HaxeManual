@@ -49,13 +49,16 @@ LaTeXのコンパイル時の一時フォルダを消去せずに残します。
 
 `compileEnv`での書き出しには、以下が必要になります。
 
+
 - `xelatex` にパスを通す。[Tex Live]のバージョン2013を使えば良いです。カスタムしたLaTeXの環境の断片を、PDFに変換します。
 - `mudraw` にパスを通す。[MuPDF]に含まれます。PDFをpngの画像に変換するのに使われます。
 - [Source Sans Pro]と[Source Code Pro]のインストール。
+- `ebook-convert` にパスを通す。 これは[calibre]の一部です。*.epub*を*.mobi*に変換するのに使います。
 - 日本語用に[IPAフォント]のインストール。
 
 [TeX Live]:http://www.tug.org/texlive/
 [MuPDF]:http://www.mupdf.com/
+[calibre]:http://calibre-ebook.com/
 [Source Sans Pro]:http://sourceforge.net/projects/sourcesans.adobe/
 [Source Code Pro]:http://sourceforge.net/projects/sourcecodepro.adobe/
 [IPAフォント]:http://ipafont.ipa.go.jp/ipafont/download.html

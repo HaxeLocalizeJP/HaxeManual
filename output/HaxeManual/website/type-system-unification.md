@@ -10,10 +10,10 @@
 
 ```haxe
 class Main {
-	static public function main() {
+  static public function main() {
     // Int should be String
-		var s:String = 1;
-	}
+    var s:String = 1;
+  }
 }
 ```
 

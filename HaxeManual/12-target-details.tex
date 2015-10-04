@@ -2,14 +2,14 @@
 \label{target-details}
 \state{NoContent}
 
-\section{Javascript}
+\section{JavaScript}
 \label{target-javascript}
 \state{NoContent}
 
-\subsection{Getting started with Haxe/Javascript}
+\subsection{Getting started with Haxe/JavaScript}
 \label{target-javascript-getting-started}
 
-Haxe can be a powerful tool for developing Javascript applications. Let's look at our first sample.
+Haxe can be a powerful tool for developing JavaScript applications. Let's look at our first sample.
 This is a very simple example showing the toolchain. 
 
 Create a new folder and save this class as \ic{Main.hx}.
@@ -46,7 +46,7 @@ Another possibility is to create and run (double-click) a file called \ic{compil
 
 The output will be a main-javascript.js, which creates and adds a clickable button to the document body.
 
-\paragraph{Run the Javascript}
+\paragraph{Run the JavaScript}
 
 To display the output in a browser, create an HTML-document called \ic{index.html} and open it.
 
@@ -54,7 +54,7 @@ To display the output in a browser, create an HTML-document called \ic{index.htm
 <!DOCTYPE html>
 <html>
 	<body>
-		<script src="main-javascript.js">
+		<script src="main-javascript.js"></script>
 	</body>
 </html>
 \end{lstlisting}
@@ -62,42 +62,62 @@ To display the output in a browser, create an HTML-document called \ic{index.htm
 \paragraph{More information}
 
 \begin{itemize}
-	\item \href{http://api.haxe.org/js/}{Haxe Javascript API docs}
+	\item \href{http://api.haxe.org/js/}{Haxe JavaScript API docs}
 	\item \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference}{MDN JavaScript Reference}
 \end{itemize}
 
-\subsection{Using external Javascript libraries}
+\subsection{Using external JavaScript libraries}
 \label{target-javascript-external-libraries}
 
-The Haxe Standard Library comes with many externs for the Javascript target. They provide access to the native APIs in a type-safe manner.
-The \tref{externs mechanism}{lf-externs} assumes that the defined types exist at run-time but assumes nothing about how and where those types are defined. 
-To clarify, in most cases we have to add a \ic{<script>}-tag that links the external library manually to the HTML-document.
+The \tref{externs mechanism}{lf-externs} provides access to the native APIs in a type-safe manner. It assumes that the defined types exist at run-time but assumes nothing about how and where those types are defined. 
 
-
-An example of an extern class is the \href{https://github.com/HaxeFoundation/haxe/blob/development/std/js/JQuery.hx#L83}{jQuery class} of the Haxe Standard Library. 
-To illustrate, here is a part of this extern class:
+An example of an extern class is the \href{https://github.com/HaxeFoundation/haxe/blob/development/std/js/jquery/JQuery.hx}{jQuery class} of the Haxe Standard Library. 
+To illustrate, here is a simplified version of this extern class:
 
 \begin{lstlisting}
-@:initPackage
-extern class JQuery implements ArrayAccess<Element> {
-	function addClass( className : String ) : JQuery;
-	function removeClass( ?className : String ) : JQuery;
-	function hasClass( className : String ) : Bool;
-	
-	@:overload(function(html:String):JQuery{})
-	@:overload(function(html:JQuery):JQuery{})
-	function html() : String;
-..
+package js.jquery;
+@:native("$") extern class JQuery {
+	/**
+		Creates DOM elements on the fly from the provided string of raw HTML.
+		OR
+		Accepts a string containing a CSS selector which is then used to match a set of elements.
+		OR
+		Binds a function to be executed when the DOM has finished loading.
+	**/
+	@:selfCall
+	@:overload(function(element:js.html.Element):Void { })
+	@:overload(function(selection:js.jquery.JQuery):Void { })
+	@:overload(function(callback:haxe.Constraints.Function):Void { })
+	@:overload(function(selector:String, ?context:haxe.extern.EitherType<js.html.Element, js.jquery.JQuery>):Void { })
+	public function new():Void;
+
+	/**
+		Adds the specified class(es) to each element in the set of matched elements.
+	**/
+	@:overload(function(_function:Int -> String -> String):js.jquery.JQuery { })
+	public function addClass(className:String):js.jquery.JQuery;
+
+	/**
+		Get the HTML contents of the first element in the set of matched elements.
+		OR
+		Set the HTML contents of each element in the set of matched elements.
+	**/
+	@:overload(function(htmlString:String):js.jquery.JQuery { })
+	@:overload(function(_function:Int -> String -> String):js.jquery.JQuery { })
+	public function html():String;
+}
 \end{lstlisting}
 
-Note that functions can be overloaded to accept different types of arguments and return values, using the \expr{@:overload} metadata. Function overloading works only in extern classes.
+Note that functions can be overloaded to accept different types of arguments and return values, using the \expr{@:overload} metadata. Function overloading works only in externs.
+
 Using this extern, we can use jQuery like this:
 
 \begin{lstlisting}
+import js.jquery.*;
+..
 new JQuery("#my-div").addClass("brand-success").html("haxe is great!");
+..
 \end{lstlisting}
-
-Beside externs, \tref{Typedefs}{type-system-typedef} can be another great way to name (or alias) complex Javascript or JSON structures.
 
 The package and class name of the extern class should be the same as defined in the external library. If that is not the case, rewrite the path of a class using \expr{@:native}.
 
@@ -109,52 +129,169 @@ extern class Video {
 ..
 \end{lstlisting}
 
+Some JavaScript libraries favor instantiating classes without using the \expr{new} keyword. To prevent the Haxe compiler outputting the \expr{new} keyword when using a class, we can attach a \expr{@:selfCall} metadata to its constructor. For example, when we instantiate the jQuery extern class above, \expr{new JQuery()} will be outputted as \expr{\$()} instead of \expr{new \$()}. The \expr{@:selfCall} metadata can also be attached to a method. In this case, the method will be interpreted as a direct call to the object, illustrated as follows:
+
+\begin{lstlisting}
+extern class Functor {
+	public function new():Void;
+	@:selfCall function call():Void;
+}
+
+class Test {
+	static function main() {
+		var f = new Functor();
+		f.call(); // will be outputted as `f();`
+	}
+}
+\end{lstlisting}
+
+Beside externs, \tref{Typedefs}{type-system-typedef} can be another great way to name (or alias) a JavaScript type. The major difference between typedefs and externs is that, typedefs are duck-typed but externs are not. Typedefs are suitable for common data structures, e.g. point (\expr{\{x:Float, y:Float\}}). Use of a point structure typedef for function arguments allows external JavaScript functions to accept point class instances from Haxe or from another JavaScript library. It is also useful for typing JSON objects.
+
+The Haxe Standard Library comes with externs of \href{https://jquery.com/}{jQuery} and \href{http://blog.deconcept.com/swfobject/}{SWFObject}. Their version compatibility is summarized as follows:
+
+\begin{center}
+\begin{tabular}{| l | l | l |}
+	\hline
+	Haxe version & Library               & Externs location \\ \hline
+	3.3          & jQuery 1.11.3 / 2.1.4 & <code>js.jquery.*</code> \\
+	3.2-         & jQuery 1.6.4          & <code>js.JQuery</code> \\
+	3.3          & SWFObject 2.3         & <code>js.swfobject.*</code> \\
+	3.2-         & SWFObject 1.5         & <code>js.SWFObject</code> \\ \hline
+\end{tabular}
+\end{center}
+
+There are many externs for other popular native libraries available on \tref{Haxelib library}{haxelib}. To view a list of them, check out the \href{http://lib.haxe.org/t/extern/}{extern tag}.
+
+\subsection{Inject raw JavaScript}
+\label{target-javascript-injection}
+
 In Haxe, it is possible to call an exposed function thanks to the \expr{untyped} keyword. This can be useful in some cases if we don't want to write externs. Anything untyped that is valid syntax will be generated as it is.
 
 \begin{lstlisting}
 untyped window.trackEvent("page1");  
 \end{lstlisting}
 
-Using the magic \expr{__js__} function we can inject pure Javascript code fragments into the output. This code can not be validated, so it accepts invalid code in the output, which is error-prone.
-This could, for example, write a Javascript comment in the output.
+
+\subsection{JavaScript untyped functions}
+\label{target-javascript-untyped}
+
+These functions allow to access specific JavaScript platform features. It works only when the Haxe compiler is targeting JavaScript and should always be prefixed with \expr{untyped}. 
+
+\emph{Important note:} Before using these functions, make sure there is no alternative available in the Haxe Standard Library. The resulting syntax can not be validated by the Haxe compiler, which may result in invalid or error-prone code in the output.
+
+\paragraph{\expr{untyped __js__(expr, params)}}
+\tref{Injects raw JavaScript expressions}{target-javascript-injection}. It's allowed to use \ic{\{0\}}, \ic{\{1\}}, \ic{\{2\}} etc in the expression and use the rest arguments to feed Haxe fields. The Haxe compiler will take care of the surrounding quotes if needed. The function can also return values.
+
+\begin{lstlisting}
+untyped __js__('alert("Haxe is great!")');
+// output: alert("Haxe is great!");
+
+var myMessage = "Haxe is great!";
+untyped __js__('alert({0})', myMessage);
+// output: 
+//	var myMessage = "Haxe is great!";
+//	alert(myMessage);
+
+var myVar:Bool = untyped __js__('confirm({0})', "Are you sure?");
+// output: var myVar = confirm("Are you sure?");
+
+var hexString:String = untyped __js__('({0}).toString({1})', 255, 16);
+// output: var hexString = (255).toString(16);
+\end{lstlisting}
+
+\paragraph{\expr{untyped __instanceof__(o,cl)}} 
+Same as \ic{o instanceof cl} in JavaScript.
+
+\begin{lstlisting}
+var myString = new String("Haxe is great");
+var isString = untyped __instanceof__(myString, String);
+output: var isString = (myString instanceof String);
+\end{lstlisting}
+
+\paragraph{\expr{untyped __typeof__(o)}} 
+Same as \ic{typeof o} in JavaScript.
+
+\begin{lstlisting}
+var isNodeJS = untyped __typeof__(window) == null;
+output: var isNodeJS = typeof(window) == null;
+\end{lstlisting}
+
+\paragraph{\expr{untyped __strict_eq__(a,b)}} 
+Same as \ic{a === b}  in JavaScript, tests on \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness}{strict equality} (or "triple equals" or "identity").
+
+\begin{lstlisting}
+var a = "0";
+var b = 0;
+var isEqual = untyped __strict_eq__(a, b);
+output: var isEqual = ((a) === b);
+\end{lstlisting}
+
+\paragraph{\expr{untyped __strict_neq__(a,b)}} 
+Same as \ic{a !== b}  in JavaScript, tests on negative strict equality.
+
+\begin{lstlisting}
+var a = "0";
+var b = 0;
+var isntEqual = untyped __strict_neq__(a, b);
+output: var isntEqual = ((a) !== b);
+\end{lstlisting}
+
+\paragraph{Expression injection} 
+
+In some cases it may be needed to inject raw JavaScript code into Haxe-generated code. With the \expr{__js__} function we can inject pure JavaScript code fragments into the output. This code is always untyped and can not be validated, so it accepts invalid code in the output, which is error-prone.
+This could, for example, write a JavaScript comment in the output.
 
 \begin{lstlisting}
 untyped __js__('// haxe is great!');
 \end{lstlisting}
 
-The standard compilation options also provide more Haxe sources to be added to the project:
+A more useful demonstration would be to call a function and pass  arguments using the \expr{__js__} function. This example illustrates how to call this function and how to pass parameters. Note that the \emph{code interpolation} will wrap the quotes around strings in the generated output.
 
-\begin{itemize}
-	\item To add a \tref{Haxelib library}{haxelib}, use \expr{-lib <library-name>}. There are many externs for popular native libraries.
-	\item To add another class path, use \expr{-cp <directory>}.
-	\item To force a whole package to be included in the project, use \expr{--macro include('mypackage')} which will include all the classes declared in the given package and subpackages. 
-\end{itemize}
+\begin{lstlisting}
+// Haxe code:
+var myVar = untyped __js__('myObject.myJavaScriptFunction({0}, {1})', "Mark", 31);
+\end{lstlisting}
 
-\subsection{Javascript target Metadata}
+This will generate the following JavaScript code:
+\begin{lstlisting}
+// JavaScript Code
+var myVar = myObject.myJavaScriptFunction("Mark", 31);
+\end{lstlisting}
+
+\subsection{Debugging JavaScript}
+\label{target-javascript-debugging}
+
+Haxe is able to generate \href{http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/}{source maps}, allowing Javascript debuggers to map from generated JavaScript back to the original Haxe source. This makes reading error stack traces, debugging with breakpoints, and profiling much easier.
+
+Compiling with the \ic{-debug} flag will create a .map alongside the .js file. Enable it in Chrome by clicking on the cog settings button in the bottom right of the Developer Tools window, and checking "Enable source maps". The pause button on the bottom left can be toggled to pause on uncaught exceptions.
+
+\subsection{JavaScript target Metadata}
 \label{target-javascript-metadata}
 
-This is the list of Javascript specific metadata. For more information, see also the complete list of all \tref{Haxe built-in metadata}{cr-metadata}.
+This is the list of JavaScript specific metadata. For more information, see also the complete list of all \tref{Haxe built-in metadata}{cr-metadata}.
 
 \begin{center}
-\begin{tabular}{| l | l | l |}
+\begin{tabular}{| l | l |}
 	\hline
-	\multicolumn{3}{|c|}{Javascript metadata} \\ \hline
-	Metadata &  Description & Target \\ \hline
-	@:expose \_(?Name=Class path)\_  &  Makes the class available on the \expr{window} object or \expr{exports} for node.js  & js  \\
+	\multicolumn{2}{|c|}{JavaScript metadata} \\ \hline
+	Metadata &  Description \\ \hline
+	@:expose \_(?Name=Class path)\_  &  Makes the class available on the \expr{window} object or \expr{exports} for node.js  \\
+	@:jsRequire  &  Generate javascript module require expression for given extern \\
+	@:selfCall  &  Translates method calls into calling object directly \\
 \end{tabular}
 \end{center}
 
-\subsection{Exposing Haxe classes for Javascript}
+\subsection{Exposing Haxe classes for JavaScript}
 \label{target-javascript-expose}
 
-It is possible to make Haxe classes or static fields available for usage in plain Javascript. 
+It is possible to make Haxe classes or static fields available for usage in plain JavaScript. 
 To expose, add the \expr{@:expose} metadata to the desired class or static fields.
 
 This example exposes the Haxe class \ic{MyClass}.
 
 \haxe{assets/ClassExpose.hx}
 
-It generates the following Javascript output:
+It generates the following JavaScript output:
 
 \begin{lstlisting}
 (function ($hx_exports) { "use strict";
@@ -169,12 +306,12 @@ MyClass.prototype = {
 })(typeof window != "undefined" ? window : exports);
 \end{lstlisting}
 
-By passing globals (like \ic{window} or \ic{exports}) as parameters to our anonymous function in the Javascript module, it becomes available which allows to expose the Haxe generated module.
+By passing globals (like \ic{window} or \ic{exports}) as parameters to our anonymous function in the JavaScript module, it becomes available which allows to expose the Haxe generated module.
 
-In plain Javascript it is now possible to create an instance of the class and call its public functions.
+In plain JavaScript it is now possible to create an instance of the class and call its public functions.
 
 \begin{lstlisting}
-// Javascript code
+// JavaScript code
 var instance = new MyClass('Mark');
 console.log(instance.foo()); // logs a message in the console
 \end{lstlisting}
@@ -183,7 +320,7 @@ The package path of the Haxe class will be completely exposed. To rename the cla
 
 \paragraph{Shallow expose}
 
-When the code generated by Haxe is part of a larger Javascript project and wrapped in a large closure it is not always necessary to expose the Haxe types to global variables.
+When the code generated by Haxe is part of a larger JavaScript project and wrapped in a large closure it is not always necessary to expose the Haxe types to global variables.
 Compiling the project using \ic{-D shallow-expose} allows the types or static fields to be available for the surrounding scope of the generated closure only.
 
 When the code is compiled using \ic{-D shallow-expose}, the generated output will look like this:
@@ -298,7 +435,7 @@ To display the output in a browser using the Flash-plugin, create an HTML-docume
 \subsection{Embedding resources}
 \label{target-flash-resources}
 
-Embedding resources is different in Haxe compared to Actionscript 3. Instead of using \ic{\[embed\]} (AS3-metadata) use \tref{Flash specific compiler metadata}{target-flash-metadata} like \ic{@:bitmap}, \ic{@:font}, \ic{@:sound} or \ic{@:file}.
+Embedding resources is different in Haxe compared to ActionScript 3. Instead of using \ic{\[embed\]} (AS3-metadata) use \tref{Flash specific compiler metadata}{target-flash-metadata} like \ic{@:bitmap}, \ic{@:font}, \ic{@:sound} or \ic{@:file}.
 
 \begin{lstlisting}
 import flash.Lib;
@@ -340,20 +477,20 @@ The standard compilation options also provide more Haxe sources to be added to t
 This is the list of Flash specific metadata. For a complete list see \tref{Haxe built-in metadata}{cr-metadata}.
 
 \begin{center}
-\begin{tabular}{| l | l | l |}
+\begin{tabular}{| l | l |}
 	\hline
-	\multicolumn{3}{|c|}{Flash metadata} \\ \hline
-	Metadata &  Description  &  Target \\ \hline
-	@:bind  &  Override Swf class declaration  &  flash \\
-	@:bitmap \_(Bitmap file path)\_  &  \_Embeds given bitmap data into the class (must extend \expr{flash.display.BitmapData})   &  flash \\
-	@:debug  &  Forces debug information to be generated into the Swf even without \expr{-debug}   &  flash \\
-	@:file(File path)  &  Includes a given binary file into the target Swf and associates it with the class (must extend \expr{flash.utils.ByteArray})  &  flash \\
-	@:font \_(TTF path Range String)\_  &  Embeds the given TrueType font into the class (must extend \expr{flash.text.Font})  &  flash \\
-	@:getter \_(Class field name)\_  &  Generates a native getter function on the given field   &  flash \\
-	@:noDebug &  Does not generate debug information into the Swf even if \expr{-debug} is set   &  flash \\
-	@:ns  &  Internally used by the Swf generator to handle namespaces   &  flash \\
-	@:setter \_(Class field name)\_  &  Generates a native setter function on the given field   &  flash \\
-	@:sound \_(File path)\_  &  Includes a given \_.wav\_ or \_.mp3\_ file into the target Swf and associates it with the class (must extend \expr{flash.media.Sound})  &  flash \\
+	\multicolumn{2}{|c|}{Flash metadata} \\ \hline
+	Metadata &  Description  \\ \hline
+	@:bind  &  Override Swf class declaration \\
+	@:bitmap \_(Bitmap file path)\_  &  \_Embeds given bitmap data into the class (must extend \expr{flash.display.BitmapData}) \\
+	@:debug  &  Forces debug information to be generated into the Swf even without \expr{-debug} \\
+	@:file(File path)  &  Includes a given binary file into the target Swf and associates it with the class (must extend \expr{flash.utils.ByteArray}) \\
+	@:font \_(TTF path Range String)\_  &  Embeds the given TrueType font into the class (must extend \expr{flash.text.Font}) \\
+	@:getter \_(Class field name)\_  &  Generates a native getter function on the given field  \\
+	@:noDebug &  Does not generate debug information into the Swf even if \expr{-debug} is set \\
+	@:ns  &  Internally used by the Swf generator to handle namespaces \\
+	@:setter \_(Class field name)\_  &  Generates a native setter function on the given field \\
+	@:sound \_(File path)\_  &  Includes a given \_.wav\_ or \_.mp3\_ file into the target Swf and associates it with the class (must extend \expr{flash.media.Sound}) \\
 \end{tabular}
 \end{center}
 
@@ -394,6 +531,46 @@ The compiler outputs in the given \emph{bin}-folder, which contains the generate
 	\item \href{http://phptohaxe.haqteam.com/code.php}{PHP to Haxe tool}
 \end{itemize}
 
+
+\subsection{PHP untyped functions}
+\label{target-php-untyped}
+
+These functions allow to access specific PHP platform features. It works only when the Haxe compiler is targeting PHP and should always be prefixed with \expr{untyped}. 
+
+\emph{Important note:} Before using these functions, make sure there is no alternative available in the Haxe Standard Library. The resulting syntax can not be validated by the Haxe compiler, which may result in invalid or error-prone code in the output.
+
+\paragraph{\expr{untyped __php__(expr)}}
+Injects raw PHP code expressions. It's possible to pass fields from Haxe source code using \tref{String Interpolation}{lf-string-interpolation}.
+
+\begin{lstlisting}
+var value:String = "test";
+untyped __php__("echo '<pre>'; print_r($value); echo '</pre>';");
+// output: echo '<pre>'; print_r('test'); echo '</pre>';
+\end{lstlisting}
+
+\paragraph{\expr{untyped __call__(function, arg, arg, arg...)}}
+Calls a PHP function with the desired number of arguments and returns what the PHP function returns.
+
+\begin{lstlisting}
+var value = untyped __call__("array", 1,2,3); 
+// output returns a NativeArray with values [1,2,3]
+\end{lstlisting}
+
+\paragraph{\expr{untyped __var__(global, paramName)}}
+Get the values from global vars. Note that the dollar sign in the Haxe code is omitted.
+
+\begin{lstlisting}
+var value : String = untyped __var__('_SERVER', 'REQUEST_METHOD')  
+// output: $value = $_SERVER['REQUEST_METHOD']
+\end{lstlisting}
+
+\paragraph{\expr{untyped __physeq__(val1, val2)}}
+Strict equals test between the two values. Returns a \type{Bool}.
+
+\begin{lstlisting}
+var isFalse = untyped __physeq__(false, value);
+// output: $isFalse = false === $value;
+\end{lstlisting}
 
 
 \section{C++}
