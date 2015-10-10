@@ -32,7 +32,7 @@ Haxeの型システムは、以下の7つの型を認識します。
 
 ここからの節で、それぞれの型のグループとこれらがどうかかわっているのかについて解説していきます。
 
-\define{複合型(Compound Type)}{define-compound-type}{
+\define{複合型}{define-compound-type}{
 複合型というのは、従属する型を持つ型です。\tref{型パラメータ}{type-system-type-parameters}を持つ型や、\tref{関数}{types-function}型がこれに当たります。
 }
 
@@ -173,12 +173,12 @@ var x:Void;
 
 
 
-\section{Nullable(null許容型)}
+\section{null許容}
 \label{types-nullability}
 
-\define{Nullable}{define-nullable}{Haxeでは、ある型が値として\expr{null}をとる場合に\emph{Nullable}(null許容型)であるとみなす。}
+\define{null許容}{define-nullable}{Haxeでは、ある型が値として\expr{null}をとる場合にnull許容であるとみなす。}
 
-プログラミング言語は、Nullableについてなにか1つ明確な定義を持つのが一般的です。ですが、Haxeではターゲットとなる言語のもともとの挙動に従うことで妥協しています。ターゲット言語のうちのいくつかは全てがデフォルト値として\expr{null}をとり、その他は特定の型では\expr{null}を許容しません。つまり、以下の2種類の言語を区別しなくてはいけません。
+プログラミング言語は、null許容についてなにか1つ明確な定義を持つのが一般的です。ですが、Haxeではターゲットとなる言語の元々の挙動に従うことで妥協しています。ターゲット言語のうちのいくつかは全てがデフォルト値として\expr{null}をとり、その他は特定の型では\expr{null}を許容しません。つまり、以下の2種類の言語を区別しなくてはいけません。
 
 \define{静的ターゲット}{define-static-target}{静的ターゲットでは、その言語自体が基本型が\expr{null}を許容しないような型システムを持っています。この性質は\target{Flash}、\target{C++}、\target{Java}、\target{C\#}ターゲットに当てはまります。}
 \define{動的ターゲット}{define-dynamic-target}{動的ターゲットは型に関して寛容で、基本型が\expr{null}を許容します。これは\target{JavaScript}と\target{PHP}、\target{Neko}、\target{Flash 6-8}ターゲットが当てはまります。}

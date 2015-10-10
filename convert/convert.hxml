@@ -1,4 +1,3 @@
--D recompileEnv
 -cp src
 -main Main
 -lib hxparse

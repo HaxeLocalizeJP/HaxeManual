@@ -1,15 +1,15 @@
 \chapter{言語機能}
 \label{lf}
 
-\emph{\tref{抽象型}{types-abstract}:}
+\paragraph{\tref{抽象型}{types-abstract}:}
 
 抽象型は実行時には別の形として提供されるコンパイル時の構成要素です。これにより、すでに存在する型に別の意味をあたえることができます。
 
-\emph{\tref{externクラス}{lf-externs}:}
+\paragraph{\tref{externクラス}{lf-externs}:}
 
 externを使うことで、型安全のルールにしたがってターゲット固有の連携を記述することができます。
 
-\emph{\tref{匿名構造体}{types-anonymous-structure}:}
+\paragraph{\tref{匿名構造体}{types-anonymous-structure}:}
 
 匿名構造体を使うことでデータを簡単にまとめて、小さなデータクラスの必要性を減らすことができます。
 
@@ -18,7 +18,7 @@ var point = { x: 0, y: 10 };
 point.x += 10;
 \end{lstlisting}
 
-\emph{\tref{配列内包表記}{lf-array-comprehension}:}
+\paragraph{\tref{配列内包表記}{lf-array-comprehension}:}
 
 ループと条件分岐を使って、素早く配列を生成して受け渡すことができます。
 
@@ -26,25 +26,25 @@ point.x += 10;
 var evenNumbers = [ for (i in 0...100) if (i\%2==0) i ];
 \end{lstlisting}
 
-\emph{\tref{クラス、インターフェース、継承}{types-class-instance}:}
+\paragraph{\tref{クラス、インターフェース、継承}{types-class-instance}:}
 
-Haxeは、クラスを使ったコードの構造化ができる、オブジェクト指向言語です。継承やインターフェースといったJavaでサポートされるようなオブジェクト指向言語の標準的な機能を備えています。
+Haxeはクラスを使ったコードの構造化ができる、オブジェクト指向言語です。継承やインターフェースといったJavaでサポートされるようなオブジェクト指向言語の標準的な機能を備えています。
 
-\emph{\tref{条件付きコンパイル}{lf-condition-compilation}:}
+\paragraph{\tref{条件付きコンパイル}{lf-condition-compilation}:}
 
 条件付きコンパイルを使うことで、コンパイルのパラメータごとに固有のコードをコンパイルすることができます。これはターゲットごとの違いを抽象化する手助けになるだけでなく、詳細のデバッグ機能を提供するなどその他の用途にも使用できます。
 
 \begin{lstlisting}
-\#if js
+#if js
     js.Lib.alert("Hello");
-\#elseif sys
+#elseif sys
     Sys.println("Hello");
-\#end
+#end
 \end{lstlisting}
 
-\emph{\tref{(一般化)代数的データ型}{types-enum-instance}:}
+\paragraph{\tref{(一般化)代数的データ型}{types-enum-instance}:}
 
-Haxeではenumとして知られる、代数的データ型(ADT)を使って構造体を表現することができます。さらに、HaxeはGADTとして知られる一般化されたヴァリアントもサポートしています。
+Haxeではenumとして知られる、代数的データ型(ADT)を使ってデータ構造を表現することができます。さらに、Haxeは一般化されたヴァリアント(GADT)もサポートしています。
 
 \begin{lstlisting}
 enum Result {
@@ -54,13 +54,13 @@ enum Result {
 }
 \end{lstlisting}
 
-\emph{\tref{インライン呼び出し}{class-field-inline}:}
+\paragraph{\tref{インライン呼び出し}{class-field-inline}:}
 
-関数はインラインとして指定して、呼び出し場所にその関数のコードを挿入させることができます。これにより、手作業でのインライン化のようなコードの重複を発生させること無く、価値あるパフォーマンスの改善を得ることできます。
+関数をインラインとして指定して、呼び出し場所にその関数のコードを挿入させることができます。これにより、手作業でのインライン化のようなコードの重複を発生させること無く、価値あるパフォーマンスの改善を得ることできます。
 
-\emph{\tref{イテレータ(反復子)}{lf-iterators}:}
+\paragraph{\tref{イテレータ(反復子)}{lf-iterators}:}
 
-Haxeはイテレータを適切にあつかっているので、値のセット(例えば、配列)の反復処理がとても簡単です。自前のクラスであっても、イテレータ機能の実装をすることで素早く反復可能にすることができます。n.
+Haxeはイテレータを適切にあつかっているので、値のセット(例えば、配列)の反復処理がとても簡単です。自前のクラスであっても、イテレータ機能の実装をすることで素早く反復可能にすることができます。
 
 \begin{lstlisting}
 for (i in [1, 2, 3]) {
@@ -68,9 +68,9 @@ for (i in [1, 2, 3]) {
 }
 \end{lstlisting}
 
-\emph{\tref{ローカル関数とクロージャ}{expression-function}:}
+\paragraph{\tref{ローカル関数とクロージャ}{expression-function}:}
 
-Haxeでは関数はクラスフィールドに限定されず、式の中で定義することができます。その場合、強力なクロージャも利用可能です。
+Haxeでは関数はクラスフィールドに限定されず、式の中で定義することができます。その場合、強力なクロージャも使用可能です。
 
 \begin{lstlisting}
 var buffer = "";
@@ -82,7 +82,7 @@ append("bar");
 trace(buffer); // foobar
 \end{lstlisting}
 
-\emph{\tref{メタデータ}{lf-metadata}:}
+\paragraph{\tref{メタデータ}{lf-metadata}:}
 
 フィールド、クラス、式に対してメタデータを追加できます。これにより、コンパイラ、マクロ、実行時のクラスに情報の受け渡しができます。
 
@@ -93,7 +93,7 @@ class MyClass {
 trace(haxe.rtti.Meta.getFields(MyClass).value.range); // [1,8]
 \end{lstlisting}
 
-\emph{\tref{静的拡張}{lf-static-extension}:}
+\paragraph{\tref{静的拡張}{lf-static-extension}:}
 
 既に存在するクラスやその他の型に対して、静的拡張を使うことで追加の機能を足すことができます。
 
@@ -102,7 +102,7 @@ using StringTools;
 "  Me & You    ".trim().htmlEscape();
 \end{lstlisting}
 
-\emph{\tref{文字列中の変数展開}{lf-string-interpolation}:}
+\paragraph{\tref{文字列中の変数展開}{lf-string-interpolation}:}
 
 シングルクオテーションを使って宣言した文字列では現在の文脈中の変数へのアクセスができます。
 
@@ -110,7 +110,7 @@ using StringTools;
 trace('My name is $name and I work in ${job.industry}');
 \end{lstlisting}
 
-\emph{\tref{関数の部分適用}{lf-function-bindings}:} 
+\paragraph{\tref{関数の部分適用}{lf-function-bindings}:} 
 
 すべての関数は部分適用を使って、いくつかの引数だけに値を適用して残りの引数を後で指定できるように残すことができます。
 
@@ -121,9 +121,9 @@ setToTwelve(1);
 setToTwelve(2);
 \end{lstlisting}
 
-\emph{\tref{パターンマッチング}{lf-pattern-matching}:} 
+\paragraph{\tref{パターンマッチング}{lf-pattern-matching}:} 
 
-複雑な構造体は、enumや構造体から情報を抽出したり、特定の演算子で値の組み合わせを指定したりしながら、パターンを当てはめてマッチングすることができます。
+複雑な構造体はenumや構造体から情報を抽出したり、特定の演算子で値の組み合わせを指定したりしながら、パターンを当てはめてマッチングすることができます。
 
 \begin{lstlisting}
 var a = { foo: 12 };
@@ -133,9 +133,9 @@ switch (a) {
 }
 \end{lstlisting}
 
-\emph{\tref{プロパティ}{class-field-property}:}
+\paragraph{\tref{プロパティ}{class-field-property}:}
 
-変数のクラスフィールドは、カスタムの読み込み書き込みアクセスを指定するプロパティが使えます。これにより、より良いアクセス制御が実現できます。
+変数のクラスフィールドにはカスタムの読み込み書き込みアクセスを指定するプロパティが使えます。これにより、より良いアクセス制御が実現できます。
 
 \begin{lstlisting}
 public var color(get,set);
@@ -148,11 +148,11 @@ function set_color(c:String) {
 }
 \end{lstlisting}
 
-\emph{\tref{アクセス制御}{lf-access-control}:}
+\paragraph{\tref{アクセス制御}{lf-access-control}:}
 
-Haxeでは、メタデータの構文を使って、クラスやフィールドに対してアクセスを許可したりこじ開けたりといったアクセス制御をを行うことできます。
+Haxeでは、メタデータの構文を使って、クラスやフィールドに対してアクセスを許可したり強制したりといったアクセス制御をを行うことできます。
 
-\emph{\tref{型パラメータ、共変性、反変性}{type-system-type-parameters}:}
+\paragraph{\tref{型パラメータ、共変性、反変性}{type-system-type-parameters}:}
 
 型には型パラメータをつけて、型付きのコンテナなど複雑なデータ構造を表現できます。型パラメータは特定の型への制限が可能で、また、変性のルールに従います。
 
@@ -174,7 +174,7 @@ Haxeでは、\expr{\#if}、\expr{\#elseif}、\expr{\#else}を使って\emph{コ�
 
 \define{コンパイラフラグ}{define-compiler-flag}{コンパイラフラグはコンパイルの過程に影響をあたえる、設定可能な値です。このフラグは\expr{-D key=value}あるいは単に\expr{-D key}（この場合デフォルト値の\expr{"1"}になる）の形式でコマンドラインから指定できます。そのほかにも、コンパイラはコンパイルの過程で別のステップへ情報伝達するために、内部的にいくつかのフラグを設定します。}
 
-以下は条件付きコンパイラの利用例のデモです。
+以下は条件付きコンパイルの利用例のデモです。
 
 \haxe{assets/ConditionalCompilation.hx}
 
@@ -190,11 +190,11 @@ Haxeでは、\expr{\#if}、\expr{\#elseif}、\expr{\#else}を使って\emph{コ�
 	\item 小かっこ\expr{()}は通常通り、式をグループ化するのに使えます。
 \end{itemize}
 
-Haxeの構文解析器は、\expr{some-flag}を一つの句として認識しません、\expr{some - flag}の2項演算として読み取ります。このような場合は、アンダースコアを使う\expr{some_flag}の版を使用する必要があります。
+Haxeの構文解析器は\expr{some-flag}を一つの句として認識しません、\expr{some - flag}の2項演算として読み取ります。このような場合はアンダースコアを使う\expr{some_flag}の版を使用する必要があります。
 
 \paragraph{ビルトインのコンパイラフラグ}
 
-ビルトインのコンパイラフラグの完全なリストは、Haxeコンパイラを\expr{--help-defines}の引数をつけて呼び出すことで手に入れることができます。Haxeのコンパイラは、コンパイルごとに複数の\expr{-D}フラグを指定できます。
+ビルトインのコンパイラフラグの完全なリストはHaxeコンパイラを\expr{--help-defines}の引数をつけて呼び出すことで手に入れることができます。Haxeのコンパイラはコンパイルごとに複数の\expr{-D}フラグを指定できます。
 
 \tref{コンパイラフラグ一覧}{lf-condition-compilation-flags}も確認してみてください。
 
@@ -256,7 +256,7 @@ Haxe 3.0以降では\expr{haxe --help-defines}を実行することで、サポ�
 	\expr{no-compilation}  &  C++の最終コンパイルを無効化します。 \\
 	\expr{no-copt}  &  コンパイル時の最適化を無効化します \_(デバッグ用途)\_ \\
 	\expr{no-debug}  &  C++出力からすべてのデバッグマクロを取り除きます。 \\
-	\expr{no-deprecation-warnings} & \expr{@:deprecated}のフィールドが使われたことによる警告を無効化します。
+	\expr{no-deprecation-warnings} & \expr{@:deprecated}のフィールドが使われたことによる警告を無効化します。 \\
 	\expr{no-flash-override}  &  flashのみで、いくつかの基本クラスでのoverrideをHXサフィックスのついたメソッドで代替します。 \\
 	\expr{no-opt}  &  最適化を無効化します。 \\
 	\expr{no-pattern-matching}  &  パターンマッチングを無効化します。 \\
@@ -293,7 +293,7 @@ Haxe 3.0以降では\expr{haxe --help-defines}を実行することで、サポ�
 \section{extern}
 \label{lf-externs}
 
-externは、ターゲット固有の連携を型安全のルールに従って記述するために使います。宣言は普通のクラスに似た形で、以下の要素が必要です。
+externはターゲット固有の連携を型安全のルールに従って記述するために使います。宣言は普通のクラスに似た形で、以下の要素が必要です。
 
 \begin{itemize}
 	\item \expr{class}キーワードの前に\expr{extern}キーワードを置きます。
@@ -311,13 +311,13 @@ extern class Math
 }
 \end{lstlisting}
 
-\expr{extern}が、メソッドと変数の両方を定義できることがわかります(実際のところ、\expr{PI}は読み込み専用の\tref{プロパティ}{class-field-property})を定義しています。一度この情報がコンパイラで利用可能になると、型がわかり、フィールドへのアクセスが出来るようになります。
+\expr{extern}が、メソッドと変数の両方を定義できることがわかります(実際のところ、\expr{PI}は読み込み専用の\tref{プロパティ}{class-field-property})を定義しています。一度この情報がコンパイラで使用可能になると、型がわかり、フィールドへのアクセスが出来るようになります。
 
 \haxe{assets/Extern.hx}
 
 \expr{floor}メソッドの戻り値が\type{Int}して定義されているため、このように動作します。
 
-Haxe標準ライブラリは、多くの\expr{extern}を\target{Flash}、\target{JavaScript}ターゲット用にもっています。これにより、ネイティブのAPIに型安全のルールに従ってアクセス可能にし、より高いレベルのAPI設計の助けになります。\tref{haxelib}{haxelib}でも、多くのネイティブのライブラリの\expr{extern}を入手できます。
+Haxe標準ライブラリは多くの\expr{extern}を\target{Flash}、\target{JavaScript}ターゲット用にもっています。これにより、ネイティブのAPIに型安全のルールに従ってアクセス可能にし、より高いレベルのAPI設計の助けになります。\tref{haxelib}{haxelib}でも、多くのネイティブのライブラリの\expr{extern}を入手できます。
 
 \target{Flash}、\target{Java}、\target{C\#}ターゲットでは、\tref{コマンドライン}{compiler-usage}から直接ネイティブライブラリの取り込みを行うことができます。ターゲットごとの詳細は\Fullref{target-details}のそれぞれの節で説明されています。
 
@@ -326,7 +326,7 @@ Haxe標準ライブラリは、多くの\expr{extern}を\target{Flash}、\target
 \paragraph{可変長引数と、型の選択肢}
 \since{3.2.0}
 
-haxe.externパッケージは、ネイティブの概念をHaxeに対応させるため、2つの型を提供しています。
+haxe.externパッケージはネイティブの概念をHaxeに対応させるため、2つの型を提供しています。
 
 \begin{description}
 	\item[\type{Rest<T>}:] この型は関数の最後の引数として使って、可変長の引数を追加で渡すことを可能にします。型パラメータは引数を特定の型に制限するのに使います。
@@ -341,28 +341,28 @@ haxe.externパッケージは、ネイティブの概念をHaxeに対応させ�
 \section{静的拡張}
 \label{lf-static-extension}
 
-\define{静的拡張}{define-static-extension}{静的拡張は、すでに存在している型に対して元のソースコードを変更することなく、見せかけの拡張を行います。Haxeの静的拡張は、最初の引数が拡張する対象の型である静的メソッドを宣言して、それ\expr{using}を使って記述しているクラス内に持ちこむことで使用できます。}
+\define{静的拡張}{define-static-extension}{静的拡張はすでに存在している型に対して、元のソースコードを変更することなく見せかけの拡張を行います。Haxeの静的拡張は最初の引数が拡張する対象の型である静的メソッドを宣言して、それ\expr{using}を使って記述しているクラス内に持ちこむことで使用できます。}
 
-静的拡張は、実際に型の変更を行うことなく型を強化する強力なツールです。以下の例で、その使い方を実演します。
+静的拡張は実際に型の変更を行うことなく型を強化する強力なツールです。以下の例で、その使い方を実演します。
 
 \haxe{assets/StaticExtension.hx}
 
-\type{Int}がもともと\expr{triple}メソッドを持っていないのは明らかですが、このプログラムは期待通り\expr{36}を出力します。\expr{12.triple()}の呼び出しが\expr{IntExtender.triple(12)}に変形されるためです。これには必要な条件が3つあります。
+\type{Int}は元々\expr{triple}メソッドを持っていませんが、このプログラムは期待通り\expr{36}を出力します。\expr{12.triple()}の呼び出しが\expr{IntExtender.triple(12)}に変形されるためです。これには必要な条件が3つあります。
 
 \begin{enumerate}
-	\item 定数値の\expr{12}と、\expr{triple}の最初の引数の型がともに\type{Int}である
+	\item 定数値の\expr{12}と\expr{triple}の最初の引数の型が、共に\type{Int}である
 	\item \type{IntExtender}クラスが\expr{using Main.IntExtender}を使って現在の文脈に読み込まれている。
 	\item \type{Int}自身は\expr{triple}フィールドを持っていない(持っていた場合、静的拡張よりも高い優先度になる)。
 \end{enumerate}
 
-静的拡張は糖衣構文であると認識されており、実際そのとおりですが、コードの可読性に大きな影響を与えることには注目する価値がありますあ。\expr{f1(f2(f3(f4(x))))}の形のネストされた呼び出しの代わりに、\expr{x.f4().f3().f2().f1()}のチェーンの形での呼び出しが可能になります。
+静的拡張はシンタックスシュガーですが、コードの可読性に大きな影響を与えることには注目する価値があります。\expr{f1(f2(f3(f4(x))))}の形のネストされた呼び出しの代わりに、\expr{x.f4().f3().f2().f1()}のチェーンの形での呼び出しが可能になります。
 
-優先順位のルールは\Fullref{type-system-resolution-order}で、すでに説明されているとおり、\expr{using}式が複数ある場合は下から上へと確認がされ、各モジュールでは各型のフィールドが上から下へと確認がされます。モジュールを静的拡張として\expr{using}すると、そのすべての型が現在の文脈にインポートされます(モジュール内の特定の型の場合とは対照的です。詳しくは、\Fullref{type-system-modules-and-paths}を見てください)。
+優先順位のルールは\Fullref{type-system-resolution-order}ですでに説明されているとおり、\expr{using}式が複数ある場合は下から上へと確認がされ、各モジュールでは各型のフィールドが上から下へと確認がされます。モジュールを静的拡張として\expr{using}すると、そのすべての型が現在の文脈にインポートされます(モジュール内の特定の型の場合とは対照的です。詳しくは\Fullref{type-system-modules-and-paths}を見てください)。
 
 \subsection{Haxe標準ライブラリについて}
 \label{lf-static-extension-in-std}
 
-Haxeの標準ライブラリのいくつかのクラスを、静的拡張の用途に合うようになっています。次の例からは\type{StringTools}の使い方がわかります。
+Haxeの標準ライブラリのいくつかのクラスは静的拡張の用途に合うように設計されています。次の例からは\type{StringTools}の使い方がわかります。
 
 \haxe{assets/StaticExtension2.hx}
 
@@ -379,11 +379,11 @@ Haxe標準ライブラリでは以下のクラスが静的拡張として使う�
 \begin{description}
 	\item[\type{StringTools}:] 置換やトリミングといった、文字列に対する拡張を提供します。
 	\item[\type{Lambda}:] \type{Iterable}に対する関数型のメソッドを提供します。　
-	\item[\type{haxe.EnumTools}:] \expr{enum}とそのインスタンスに対して型の情報を得る機能を提供します。
-	\item[\type{haxe.macro.Tools}:] マクロをあつかう際のさまざまな拡張を提供します(詳しくは、\Fullref{macro-tools})。
+	\item[\type{haxe.EnumTools}:] 列挙型とそのインスタンスについての情報を得る機能を提供します。
+	\item[\type{haxe.macro.Tools}:] マクロをあつかう際のさまざまな拡張を提供します(詳しくは\Fullref{macro-tools})。
 \end{description}
 
-\trivia{``using'' using}{\expr{using}キーワードが追加されて以降、\expr{using}を使う(using using)ときの問題や、その影響についての会話がよくされるようになりました。"using using"のせいでさまざまな場面でわかりにくい英語が生まれたため、このマニュアルの著者はこの機能をその正体から静的拡張と呼ぶことに決めました。}
+\trivia{``using'' using}{\expr{using}キーワードが追加されて以降、\expr{using}を使う(using using)ときの問題や、その影響についての会話がよくされるようになりました。"using using"のせいでさまざまな場面でわかりにくい英語が生まれたため、このマニュアルの著者はこの機能をその実際の性質から静的拡張と呼ぶことに決めました。}
 
 \section{パターンマッチング}
 \label{lf-pattern-matching}
@@ -392,26 +392,26 @@ Haxe標準ライブラリでは以下のクラスが静的拡張として使う�
 \subsection{導入}
 \label{lf-pattern-matching-introduction}
 
-パターンマッチングは、与えられた、おそらく深いパターンに一致する値に応じて分岐する処理のことです。Haxeでは、すべてのパターンマッチングは\tref{\expr{switch}式}{expression-switch}の個々の\expr{case}式が書き表すパターンに従って行われます。それでは以下のデータ構造を使って、さまざまなパターンの構文を見ていきましょう。
+パターンマッチングは、与えられたパターンと値がマッチするかで分岐をする処理のことです。Haxeでは、すべてのパターンマッチングは\tref{\expr{switch}式}{expression-switch}の個々の\expr{case}式が表すパターンに従って行われます。それでは以下のデータ構造を使って、さまざまなパターンの構文を見ていきましょう。
 
 \haxe[firstline=1,lastline=4]{assets/PatternMatching.hx}
 
-以下は、パターンマッチングの基本事項です。
+以下はパターンマッチングの基本事項です。
 
 \begin{itemize}
 	\item パターンは上から下へとマッチングされます。
-	\item 入力値にマッチする最上位のパターンが持っている式が実行されます。
+	\item 入力値にマッチする最上位のパターンの持っている式が実行されます。
 	\item \expr{_}はすべてにマッチします。このため、\expr{case _:}は\expr{default:}と同じです。
 \end{itemize}
 
 \subsection{enumマッチング}
 \label{lf-pattern-matching-enums}
 
-enumはそのコンストラクタを自然な方法でマッチングすることができます。
+enumのコンストラクタは直観的な方法でマッチングできます。
 
 \haxe[firstline=8,lastline=21]{assets/PatternMatching.hx}
 
-パターンマッチングでは、ケースを上から下へと確認していき、入力値とマッチする最初のものを見つけ出します。以下の各ケースの実行の流れについての説明は、その過程を理解するのに役に立ちます。
+パターンマッチングでは、ケースを上から下へと確認していき、入力値とマッチする最初のものを見つけ出します。以下の各ケースを実行する流れの説明で、その過程を理解してください。
 
 \begin{description}
 	\item[\expr{case Leaf(_)}:] \expr{myTree}は\expr{Node}なので、マッチングに失敗します。
@@ -423,11 +423,11 @@ enumはそのコンストラクタを自然な方法でマッチングするこ�
 \subsection{変数の取り出し}
 \label{lf-pattern-matching-variable-capture}
 
-パターンの一部のあらゆる値は、識別子を使ってマッチングさせて取り出すことができます。
+パターンの一部のあらゆる値は識別子を使ってマッチングさせて、取り出すことができます。
 
 \haxe[firstline=24,lastline=30]{assets/PatternMatching.hx}
 
-これは、以下の流れにしたがって\expr{return}を行います。
+これは以下の流れにしたがって\expr{return}を行います。
 
 \begin{itemize}
 	\item \expr{myTree}が\expr{Leaf}の場合、その名前が返る。
@@ -464,7 +464,7 @@ enumはそのコンストラクタを自然な方法でマッチングするこ�
 \subsection{orパターン}
 \label{lf-pattern-matching-or}
 
-\expr{|}演算子は、複数のパターンが許容されることを示す用途で、パターン内のあらゆる箇所に使うことができます。
+\expr{|}演算子は複数のパターンが許容されることを示す用途で、パターン内のあらゆる箇所に使うことができます。
 
 \haxe[firstline=63,lastline=68]{assets/PatternMatching.hx}
 
@@ -490,7 +490,7 @@ orパターン内で変数の取得をしたい場合、その子要素両方で
 
 \begin{itemize}
 	\item 要素数は固定です。このためパターンの配列の長さが違ってはいけません。
-	\item switchしている値を取得できません。例えば、\expr{case x}は使えません(\expr{case x}は使えます)。
+	\item switchしている値を取得できません。例えば、\expr{case x}は使えません(\expr{case _}は使えます)。
 \end{itemize}
 
 \subsection{抽出子(エクストラクタ)}
@@ -501,14 +501,14 @@ orパターン内で変数の取得をしたい場合、その子要素両方で
 
 \haxe{assets/Extractor2.hx}
 
-この場合、\expr{TString}列挙型コンストラクタの引数の値を、\expr{temp}に割り当てて、さらにネストした\expr{temp.toLowerCase()}に対する\expr{switch}を行っています。見てのとおり、\expr{TString}が\expr{"foo"}のケース違いのものを持っているので、このマッチングは成功します。これは抽出子を使うことで簡略化できます。
+この場合、\expr{TString}列挙型コンストラクタの引数の値を、\expr{temp}に割り当てて、さらにネストした\expr{temp.toLowerCase()}に対する\expr{switch}を行っています。見てのとおり、\expr{TString}が\expr{"foo"}の一部大文字のものを持っているので、このマッチングは成功します。これは抽出子を使うことで簡略化できます。
 
 \haxe{assets/Extractor.hx}
 
 抽出子は\expr{extractorExpression => match}の式によって認識されます。コンパイラはその前の例と同じようなコードを出力しますが、記述する構文はずいぶんと簡略化されました。抽出子は\expr{=>}で分断される以下の2つの部品からなります。
 
 \begin{enumerate}
-\item 左側はあらゆる式が可能で、アンダースコア\expr{_}が出現する箇所すべてが、現在マッチする値で置き換えられます。
+\item 左側はあらゆる式が可能で、アンダースコア(\expr{_})が出現する箇所すべてが、現在マッチする値で置き換えられます。
 \item 右側は左側を評価した結果をマッチングするためのパターンです。
 \end{enumerate}
 
@@ -516,7 +516,7 @@ orパターン内で変数の取得をしたい場合、その子要素両方で
 
 \haxe{assets/Extractor4.hx}
 
-これは\expr{3}がマッチして\expr{add(3, 1)}を呼び出し、その結果の\expr{4}がマッチして\expr{mul(4, 3)}呼び出された結果として、\expr{12}が出力されます。2つ目の\expr{=>}の右側の\expr{a}は、\tref{変数取り出し}{lf-pattern-matching-variable-capture}であることに注意してください。
+これは\expr{3}がマッチして\expr{add(3, 1)}を呼び出し、その結果の\expr{4}がマッチして\expr{mul(4, 3)}呼び出された結果として、\expr{12}が出力されます。2つ目の\expr{=>}の右側の\expr{a}は\tref{変数取り出し}{lf-pattern-matching-variable-capture}であることに注意してください。
 
 現在は\tref{orパターン}{lf-pattern-matching-or}内で抽出子を使うことはできません。
 
@@ -527,7 +527,7 @@ orパターン内で変数の取得をしたい場合、その子要素両方で
 \subsection{網羅性のチェック}
 \label{lf-pattern-matching-exhaustiveness}
 
-コンパイラは、起こりうるケースが忘れ去られてないかのチェックを行います。
+コンパイラは起こりうるケースが忘れ去られてないかのチェックを行います。
 
 \begin{lstlisting}
 switch(true) {
@@ -535,7 +535,7 @@ switch(true) {
 } // Unmatched patterns: true
 \end{lstlisting}
 
-マッチング対象の\type{Bool}型は、\expr{true}と\expr{false}の2つの値を取り得ますが、\expr{false}のみがチェックされています。
+マッチング対象の\type{Bool}型は\expr{true}と\expr{false}の2つの値を取り得ますが、\expr{false}のみがチェックされています。
 
 \todo{Figure out wtf our rules are now for when this is checked.}
 
@@ -556,7 +556,7 @@ switch(Leaf("foo")) {
 \section{文字列補間}
 \label{lf-string-interpolation}
 
-Haxe3では、\emph{文字列補間}のおかげで、手動で文字列をつなげ合わせる必要がなくなりました。シングルクオート\expr{'}で囲まれた文字列の中で、ドル記号\expr{\$}に続けて識別子を記述すると、その識別子を評価してつなげ合わせてくれます。
+Haxe3では、\emph{文字列補間}のおかげで、手動で文字列をつなげ合わせる必要がなくなりました。シングルクオート(\expr{'})で囲まれた文字列の中で、ドル記号(\expr{\$})に続けて識別子を記述すると、その識別子を評価してつなげ合わせてくれます。
 
 \begin{lstlisting}
 var x = 12;
@@ -564,7 +564,7 @@ var x = 12;
 trace('The value of x is $x');
 \end{lstlisting}
 
-さらに、\expr{\$$\left\{expr\right\}$}を使うことで文字列内に式そのものを含めることが可能になります。この\expr{expr}は、Haxeの正当な式であれば、なんでもかまいません。
+さらに、\expr{\$$\left\{expr\right\}$}を使うことで文字列内に式そのものを含めることが可能になります。この\expr{expr}はHaxeの正当な式であれば、なんでもかまいません。
 
 \begin{lstlisting}
 var x = 12;
@@ -572,27 +572,27 @@ var x = 12;
 trace('The sum of $x and 3 is ${x + 3}');
 \end{lstlisting}
 
-文字列補間はコンパイル時の機能なので、実行時には影響を与えません。上の例は、手動のつなげ合わせと同じです。コンパイラは以下と同様のコードを生成します。
+文字列補間はコンパイル時の機能なので、実行時には影響を与えません。上の例は手動のつなげ合わせと同じです。コンパイラは以下と同様のコードを生成します。
 
 \begin{lstlisting}
 trace("The sum of " + x +
   " and 3 is " + (x + 3));
 \end{lstlisting}
 
-もちろん、一切の補間なしでシングルクオートで囲んだ文字列を使用することができますが、\$の文字が補間の引き金として予約されてしまっていることに気を付けてください。文字列内で、ドル記号そのものを使いたい場合は\expr{\$\$}で使えます。
+もちろん、一切の補間なしでシングルクオートで囲んだ文字列を使用することができますが、\$の文字が補間のトリガーとして予約されてしまっていることに気を付けてください。文字列内でドル記号そのものを使いたい場合は\expr{\$\$}を使います。
 
-\trivia{Haxe3以前の文字列補間}{文字列補間自体はバージョン2.09からHaxeの機能として存在しています。そのころは、\expr{Std.format}のマクロが使われいました。これは新しい文字列補間の構文よりも、遅くてあまり快適でないものでした。}
+\trivia{Haxe3以前の文字列補間}{文字列補間自体はバージョン2.09からHaxeの機能として存在しています。そのころは\expr{Std.format}のマクロが使われいました。これは新しい文字列補間の構文よりも遅くてあまり快適でないものでした。}
 
 \section{配列内包表記}
 \label{lf-array-comprehension}
 
 \todo{Comprehensions are only listing Arrays, not Maps}
 
-Haxeの配列内包表記は、既存の構文を配列の初期化をより簡単にするためにも使えるようにするものです。配列内包表記は、\expr{for}または\expr{while}のキーワードによって識別されます。
+Haxeの配列内包表記は既存の構文を配列の初期化をより簡単にするためにも使えるようにするものです。配列内包表記は\expr{for}または\expr{while}のキーワードによって識別されます。
 
 \haxe{assets/ArrayComprehension.hx}
 
-変数\expr{a}は、0から9までの数値を要素として持つ配列として初期化されます。コンパイラはループを作ってその繰り返しの一つ一つで要素を追加するコードを出力します。つまり以下のコードと等価です。
+変数\expr{a}は0から9までの数値を要素として持つ配列として初期化されます。コンパイラはループを作ってその繰り返しの一つ一つで要素を追加するコードを出力します。つまり以下のコードと等価です。
 
 \begin{lstlisting}
 var a = [];
@@ -601,14 +601,14 @@ for (i in 0...10) a.push(i);
 
 変数\expr{b}も同じ値に初期化されますが、\expr{for}ではなく\expr{while}という異なる内包表記の形式を使っています。そして、これは以下のコードと等価です。
 
-ループの式は、条件分岐やループのネストを含めて、いかなる式でもかまいません。ですから、以下の式は期待通りに動作します。
+ループの式は条件分岐やループのネストを含めて、いかなる式でもかまいません。ですから、以下の式は期待通りに動作します。
 
 \haxe{assets/AdvArrayComprehension.hx}
 
 \section{イテレータ(反復子)}
 \label{lf-iterators}
 
-Haxeでは、カスタムのイテレータや反復可能(iterable)なデータ型を簡単に定義できます。これらの概念は、\type{Iterator<T>}型と\type{Iterable<T>}型を使って以下のように表現されています。
+Haxeでは、カスタムのイテレータや反復可能(iterable)なデータ型を簡単に定義できます。これらの概念は\type{Iterator<T>}型と\type{Iterable<T>}型を使って以下のように表現されています。
 
 \begin{lstlisting}
 typedef Iterator<T> = {
@@ -625,12 +625,11 @@ typedef Iterable<T> = {
 
 \haxe{assets/Iterator.hx}
 
-この例での\type{MyStringIterator}は、\type{Bool}型を返す\expr{hasNext}と\type{String}型を返す\expr{next}メソッドを定義しているので、イテレータであると見なされます。また\expr{next}の戻り値の型から、これは\type{Iterator<String>}です。\expr{main}メソッドでこれをインスタンス化して反復処理を行っています。
+この例での\type{MyStringIterator}は\type{Bool}型を返す\expr{hasNext}と\type{String}型を返す\expr{next}メソッドを定義しているので、イテレータであると見なされます。また\expr{next}の戻り値の型から、これは\type{Iterator<String>}です。\expr{main}メソッドでこれをインスタンス化して反復処理を行っています。
 
 \haxe{assets/Iterable.hx}
 
-
-Here we do not setup a full iterator like in the previous example, but instead define that the \type{MyArrayWrap<T>} has a method \expr{iterator}, effectively forwarding the iterator method of the wrapped \type{Array<T>} type. 
+こちらは1つ前の例とは異なり自前の\expr{Iterator}を準備していませんが、代わりに\type{MyArrayWrap<T>}は\type{Array<T>}の\expr{iterator}関数を効果的に利用しています。
 
 
 \section{関数の束縛(bind)}
@@ -640,19 +639,19 @@ Haxe3では、部分的に引数を適用して関数を束縛することが可
 
 \haxe{assets/Bind.hx}
 
-行4では、\expr{map.set}関数に2番目の引数に\expr{12}を適用し、\expr{f}という変数に割り当てました。アンダースコア\expr{_}はその引数を束縛しないことを表すのに使います。このことは\expr{map.set}と、\expr{f}の型の比較でもわかります。束縛された\type{String}型の引数が取り除かれたので、\expr{Int->String->Void}型が\expr{Int->Void}型に変わっています。
+行4では、\expr{map.set}関数に2番目の引数に\expr{12}を適用し、\expr{f}という変数に割り当てました。アンダースコア(\expr{_})はその引数を束縛しないことを表すのに使います。このことは\expr{map.set}と、\expr{f}の型の比較でもわかります。束縛された\type{String}型の引数が取り除かれたので、\expr{Int->String->Void}型が\expr{Int->Void}型に変わっています。
 
-\expr{f(1)}を呼び出したことで実際には\expr{map.set(1, "12")}が実行され、\expr{f(2)}、\expr{f(3)}の呼び出しでも同じ関係性が成り立ちます。最後の行で、3つのインデックスすべてに紐づく値が\expr{"12"}になっていることが確認できます。
+\expr{f(1)}を呼び出したことで実際には\expr{map.set(1, "12")}が実行されます。\expr{f(2)}、\expr{f(3)}の呼び出しでも同じ関係性が成り立ちます。最後の行で、3つのインデックスすべてに紐づく値が\expr{"12"}になっていることが確認できます。
 
-アンダースコア\expr{_}は、末尾の引数では省略することができます。つまり、\expr{map.set.bind(1)}で最初の引数を束縛した場合、インデックス\expr{1}について新しい値を設定する\expr{String->Void}関数が提供されます。
+アンダースコア(\expr{_})は末尾の引数では省略することができます。つまり、\expr{map.set.bind(1)}で最初の引数を束縛した場合、インデックス\expr{1}について新しい値を設定する\expr{String->Void}関数が提供されます。
 
 \trivia{コールバック}{Haxe3よりも前のバージョンでは、\expr{callback}キーワードに1つの関数の引数と任意の個数の束縛する引数をつけて呼び出しをしていました。この束縛する機能に対してコールバック関数という名前が使われるようになっていました。\\
-\expr{callback}は、左から右への束縛のみでアンダースコア\expr{_}はサポートしていませんでした。アンダースコアを使うという選択肢は論争を生み、そのほかの案もいくつか現れましたがこれより優れているものはありませんでした。少なくともアンダースコア\expr{_}は、「ここに値を入れて」と言っているように見えるので、この意味を書き表すのに適しているという結論にいたりました。}
+\expr{callback}は左から右への束縛のみでアンダースコア(\expr{_})はサポートしていませんでした。アンダースコアを使うという選択肢は論争を生み、そのほかの案もいくつか現れましたがこれより優れているものはありませんでした。少なくともアンダースコア(\expr{_})は「ここに値を入れて」と言っているように見えるので、この意味を書き表すのに適しているという結論にいたりました。}
 
 \section{メタデータ}
 \label{lf-metadata}
 
-以下の要素は、メタデータで属性をつけることができます。
+以下の要素はメタデータで属性をつけることができます。
 
 \begin{itemize}
 	\item \expr{class}、\expr{enum}の定義
@@ -661,7 +660,7 @@ Haxe3では、部分的に引数を適用して関数を束縛することが可
 	\item 式
 \end{itemize}
 
-これらのメタデータの情報は、\type{haxe.rtti.Meta}APIを使って実行時に利用することが可能です。
+これらのメタデータの情報は\type{haxe.rtti.Meta}のAPIを使って実行時に利用することが可能です。
 
 \haxe{assets/Meta.hx}
 
@@ -669,7 +668,7 @@ Haxe3では、部分的に引数を適用して関数を束縛することが可
 
 \begin{itemize}
 	\item \type{MyClass}クラスは\expr{"Nicolas"}という文字列の引数1つを持つ\expr{author}メタデータと、引数を持たない\expr{debug}メタデータを持ちます。
-	\item メンバ変数\expr{value}は、\expr{1}と\expr{8}の2つの整数の引数を持つ\expr{range}メタデータを持ちます。
+	\item メンバ変数\expr{value}は\expr{1}と\expr{8}の2つの整数の引数を持つ\expr{range}メタデータを持ちます。
 	\item 静的メソッド\expr{method}は引数なしの\expr{broken}メタデータと、引数なしの\expr{:noCompletion}メタデータを持ちます。
 \end{itemize}
 
@@ -678,7 +677,7 @@ Haxe3では、部分的に引数を適用して関数を束縛することが可
 \begin{itemize}
 	\item 各メタデータについてフィールドがあり、フィールドの名前はメタデータの名前です。
 	\item フィールドの値はメタデータの引数に一致します。引数がない場合、フィールドの値は\expr{null}です。その他の場合、フィールドの値は引数1つが要素1つになった配列です。
-	\item \expr{:}から始まるメタデータは省略されます。このメタデータは、\emph{コンパイラメタデータ}として知られます。
+	\item \expr{:}から始まるメタデータは省略されます。このメタデータは\emph{コンパイラメタデータ}として知られます。
 \end{itemize}
 
 メタデータの引数の値は以下が使用できます。
@@ -718,7 +717,7 @@ Haxe3では、部分的に引数を適用して関数を束縛することが可
 
 \haxe{assets/ACL.hx}
 
-\expr{MyClass.foo}は、\type{MyClass}に\expr{@:allow(Main)}を適用しているので、\expr{main}メソッドからアクセスできます。このコードは、\expr{@:allow(Main.main)}でも動作しますし、以下のように\type{MyClass}クラスの\expr{foo}フィールドにメタデータをつけても動作します。
+\expr{MyClass.foo}は\type{MyClass}に\expr{@:allow(Main)}を適用しているので、\expr{main}メソッドからアクセスできます。このコードは\expr{@:allow(Main.main)}でも動作しますし、以下のように\type{MyClass}クラスの\expr{foo}フィールドにメタデータをつけても動作します。
 
 \haxe{assets/ACL2.hx}
 
@@ -726,13 +725,13 @@ Haxe3では、部分的に引数を適用して関数を束縛することが可
 
 \haxe{assets/ACL3.hx}
 
-\expr{@:access(MyClass.foo)}のメタデータは、\expr{main}メッソドからの\expr{foo}の可視性を変更します。
+\expr{@:access(MyClass.foo)}のメタデータは\expr{main}メッソドからの\expr{foo}の可視性を変更します。
 
 \trivia{メタデータという選択肢}{アクセス制御の言語機能には、新しい構文の導入ではなく、Haxeのメタデータの構文を使いました。これには以下のいくつかの理由があります。
 \begin{itemize}
 	\item 追加の構文は言語の構文解析を複雑にして、さらにはキーワードを増やしてしまします。
-	\item 追加の構文は、言語のユーザーに追加の学習を要求します。メタデータであれば、それは既知のものです。
-	\item メタデータは、この拡張を行うのに十分な表現力を持っています。
+	\item 追加の構文は言語のユーザーに追加の学習を要求します。メタデータであれば、それは既知のものです。
+	\item メタデータはこの拡張を行うのに十分な表現力を持っています。
 	\item メタデータはHaxeのマクロから、アクセスし、生成し、編集することが可能です。
 \end{itemize}
 もちろん、メタデータ構文の主な不利益はメタデータの名前、クラスやパッケージ名についてスペルミス(例えば、@:acesss)をした場合に何のエラーも出ないことです。しかし、この機能では実際に\expr{private}フィールドにアクセスしようとした場合にエラーがでるので、エラーが沈黙しているということにはなりえません。}
@@ -745,7 +744,7 @@ Haxe3では、部分的に引数を適用して関数を束縛することが可
 
 これは親クラスの場合も同様です。その場合、子クラスに対して引き継ぎがされます。
 
-\trivia{壊れた機能}{子クラスや実装クラスへのアクセスの継承は、Haxe3.0への導入を予定されており、そしてドキュメントまでも作られていました。しかし、このマニュアルを作る過程でこのアクセス制御の実装がぬけ落ちていることを発見しました。}
+\trivia{壊れた機能}{子クラスや実装クラスへのアクセスの継承はHaxe3.0への導入を予定されており、そしてドキュメントまでも作られていました。しかし、このマニュアルを作る過程でこのアクセス制御の実装がぬけ落ちていることを発見しました。}
 
 \section{インラインコンストラクタ}
 \label{lf-inline-constructor}
@@ -755,7 +754,7 @@ Haxe3では、部分的に引数を適用して関数を束縛することが可
 
 \begin{itemize}
 	\item コンストラクタの呼び出しの結果はローカル変数への直接の代入でなければいけない。
-	\item コンストラクタフィールドの式は、そのフィールドへの代入のみでなければならない。
+	\item コンストラクタフィールドの式はそのフィールドへの代入のみでなければならない。
 \end{itemize}
 
 以下に、コンストラクタのインライン化の実例を挙げます。

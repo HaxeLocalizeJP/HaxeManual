@@ -1,12 +1,12 @@
 \chapter{式}
 \label{expression}
 
-Haxeの式は、プログラムが\emph{何をするか}を決定します。ほとんどの式は\tref{メソッド}{class-field-method}に書かれ、そのメソッドが何をすべきかをその式の合わせによって表現します。この章では、さまざまな種類の式を説明していきます。
+Haxeの式はプログラムが\emph{何をするのか}を決定します。ほとんどの式は\tref{メソッド}{class-field-method}に書かれ、そのメソッドが何をすべきかをその式の合わせによって表現します。この章では、さまざまな種類の式を説明していきます。
 
-ここに、いくつか定義を示しておきます。
+ここでいくつかの定義を示しておきます。
 
 \define{名前}{define-name}{
-名前は次のいずれかにひもづきます。
+名前は次のいずれかに紐づきます。
 \begin{itemize}
 	\item 型
 	\item ローカル変数
@@ -15,11 +15,11 @@ Haxeの式は、プログラムが\emph{何をするか}を決定します。ほ
 \end{itemize}}
 
 \define{識別子}{define-identifier}{
-Haxeの識別子は、アンダースコア\expr{_}、ドル\expr{\$}、小文字\expr{a-z}、大文字\expr{A-Z}のいずれかから始まり、任意の\expr{_}、\expr{A-Z}、\expr{a-z}、\expr{0-9}のつなぎ合わせが続きます。
+Haxeの識別子はアンダースコア(\expr{_})、ドル(\expr{\$})、小文字(\expr{a-z})、大文字(\expr{A-Z})のいずれかから始まり、任意の\expr{_}、\expr{A-Z}、\expr{a-z}、\expr{0-9}のつなぎ合わせが続きます。
 
-さらに使用する状況によって以下の制限が加わります。これらは、型付けの時にチェックされます。
+さらに使用する状況によって以下の制限が加わります。これらは型付けの時にチェックされます。
 \begin{itemize}
-	\item 型の名前は大文字\expr{A-Z}か、アンダースコア\expr{_}で始まる。
+	\item 型の名前は大文字(\expr{A-Z})か、アンダースコア(\expr{_})で始まる。
 	\item \tref{名前}{define-name}では、先頭にドル記号は使えません。(ドル記号はほとんどの場合、\tref{マクロの実体化}{macro-reification}に使われます)
 \end{itemize}}
 
@@ -27,7 +27,7 @@ Haxeの識別子は、アンダースコア\expr{_}、ドル\expr{\$}、小文�
 \section{ブロック}
 \label{expression-block}
 
-Haxeのブロックは中かっこで\expr{\{}から始まり、\expr{\}}で終わります。ブロックはいくつかの式をふくみ、各式はセミコロンで終わります。一般の構文としては以下のとおりです。
+Haxeのブロックは中かっこ(\expr{\{})から始まり、中かっこ閉(\expr{\}})で終わります。ブロックはいくつかの式をふくみ、各式はセミコロン(\expr{;})で終わります。一般の構文としては以下のとおりです。
 
 \begin{lstlisting}
 {
@@ -38,9 +38,9 @@ Haxeのブロックは中かっこで\expr{\{}から始まり、\expr{\}}で終�
 }
 \end{lstlisting}
 
-ブロック式の値とその型は、ブロック式がふくむ最後の式の値と型と同じになります。
+ブロック式の値とその型はブロック式がふくむ最後の式の値と型と同じになります。
 
-ブロック内では、\tref{\expr{var}式}{expression-var}を使ったローカル変数の定義と\tref{\expr{function}式}{expression-function}を使ったローカル関数の定義が可能です。これらのローカル変数とローカル関数は、そのブロックとさらに入れ子のブロックの中では使用することができますが、ブロックの外では利用できません。また、定義よりも後でしか使えません。次の例では\expr{var}を使っていますが、同じルールが\expr{function}の場合でも使用されます。
+ブロック内では、\tref{\expr{var}式}{expression-var}を使ったローカル変数の定義と\tref{\expr{function}式}{expression-function}を使ったローカル関数の定義が可能です。これらのローカル変数とローカル関数はそのブロックとさらに入れ子のブロックの中では使用することができますが、ブロックの外では利用できません。また、定義よりも後でしか使えません。次の例では\expr{var}を使っていますが、同じルールが\expr{function}の場合でも使用されます。
 
 \begin{lstlisting}
 {
@@ -72,7 +72,7 @@ Haxeの構文では以下の定数値をサポートしています。
 	\item[null:] null値
 \end{description}
 
-また内部の構文木では、\tref{識別子}{define-identifier}は定数値としてあつかわれます。これは、\tref{マクロ}{macro}を使っているときに関係してくる話題です。
+また内部の構文木では、\tref{識別子}{define-identifier}は定数値としてあつかわれます。これは\tref{マクロ}{macro}を使っているときに関係してくる話題です。
 
 \section{2項演算子}
 \label{expression-binops}
@@ -83,9 +83,9 @@ Haxeの構文では以下の定数値をサポートしています。
 \section{配列の宣言}
 \label{expression-array-declaration}
 
-配列は\expr{,}で区切った値を、大かっこ\expr{[]}で囲んで初期化します。空の\expr{[]}は空の配列を表し、\expr{[1, 2, 3]}は\expr{1}、\expr{2}、\expr{3}の3つの要素を持つ配列になります。
+配列はカンマ(\expr{,})で区切った値を、大かっこ(\expr{[]})で囲んで初期化します。空の\expr{[]}は空の配列を表し、\expr{[1, 2, 3]}は\expr{1}、\expr{2}、\expr{3}の3つの要素を持つ配列を表します。
 
-配列の初期化をサポートしていないプラットフォームでは、生成されたコードはあまり簡潔ではないかもしれません。本質的には以下のようなコードに見えるでしょう。
+配列の初期化をサポートしていないプラットフォームでは、生成されるコードはあまり簡潔ではないかもしれません。以下のような意味合いのコードに見えるでしょう。
 
 \begin{lstlisting}
 var a = new Array();
@@ -96,12 +96,12 @@ a.push(3);
 
 つまり、関数を\tref{インライン化}{class-field-inline}するかを決める場合には、この構文で見えているよりも多くのコードがインライン化されることがあることを考慮すべきです。
 
-より高度な初期化方法は、\Fullref{lf-array-comprehension}で説明します。
+より高度な初期化方法については、\Fullref{lf-array-comprehension}で説明します。
 
 \section{オブジェクトの宣言}
 \label{expression-object-declaration}
 
-オブジェクトの宣言は、中かっこ\expr{\{}で始まり、\expr{キー:値}のペアがカンマ\expr{,}で区切られながら続いて、中かっこ\expr{\}}で終わります。
+オブジェクトの宣言は中かっこ(\expr{\{})で始まり、\expr{キー:値}のペアがカンマ(\expr{,})で区切られながら続いて、中かっこ閉(\expr{\}})で終わります。
 
 \begin{lstlisting}
 {
@@ -116,7 +116,7 @@ a.push(3);
 \section{フィールドへのアクセス}
 \label{expression-field-access}
 
-フィールドへのアクセスは、ドット\expr{.}の後にフィールドの名前を続けることで表現します。
+フィールドへのアクセスはドット(\expr{.})の後にフィールドの名前を続けることで表現します。
 
 \begin{lstlisting}
 object.fieldName
@@ -124,18 +124,18 @@ object.fieldName
 
 この構文は\expr{pack.Type}の形でパッケージ内の型にアクセスするのにも使われます。
 
-型付け機は、アクセスされたフィールドが本当に存在するかを確認し、フィールドの種類に依存した変更を適用します。もしフィールドへのアクセスが複数の意味にとれる場合は、\tref{解決順序}{type-system-resolution-order}の理解が役に立つでしょう。
+型付け器はアクセスされたフィールドが本当に存在するかをチェックして、フィールドの種類に依存した変更を適用します。もしフィールドへのアクセスが複数の意味にとれる場合は、\tref{解決順序}{type-system-resolution-order}の理解が役に立つでしょう。
 
 \section{配列アクセス}
 \label{expression-array-access}
 
-配列アクセスは、大かっこ\expr{[}で始まり、インデックスを表す式が続き、大かっこ\expr{]}で閉じます。
+配列アクセスは大かっこ(\expr{[})で始まり、インデックスを表す式が続き、大かっこ閉(\expr{]})で閉じます。
 
 \begin{lstlisting}
 expr[indexExpr]
 \end{lstlisting}
 
-この記法については任意の式で許可されていますが、型付けの段階では以下の特定の組み合わせのみが許可されます。
+\expr{expr}と\expr{indexExpr}について任意の式が許可されていますが、型付けの段階では以下の特定の組み合わせのみが許可されます。
 
 \begin{itemize}
 	\item \expr{expr}は\type{Array}か\type{Dynamic}であり、\expr{indexExpr}が\type{Int}である。
@@ -145,7 +145,7 @@ expr[indexExpr]
 \section{関数呼び出し}
 \label{expression-function-call}
 
-関数呼び出しは、任意の式を対象として、小かっこ\expr{(}を続け、引数の式のリストを\expr{,}で区切って並べて、小かっこ\expr{)}で閉じることで行います。
+関数呼び出しは任意の式を対象として、小かっこ(\expr{(})を続け、引数の式のリストを(\expr{,})で区切って並べて、小かっこ閉(\expr{)})で閉じることで行います。
 
 \begin{lstlisting}
 subject(); // call with no arguments
@@ -158,7 +158,7 @@ subject(e1, ..., eN);
 \section{var(変数宣言)}
 \label{expression-var}
 
-\expr{var}キーワードは、カンマ\expr{,}で区切って、複数の変数を宣言することができます。すべての変数は、正当な\tref{識別子}{define-identifier}を持ち、オプションとして\expr{=}を続けて値の代入を行うこともできます。また変数に明示的な型注釈をあたえることもできます。
+\expr{var}キーワードはカンマ(\expr{,})で区切って、複数の変数を宣言することができます。すべての変数は正当な\tref{識別子}{define-identifier}を持ち、オプションとして\expr{=}を続けて値の代入を行うこともできます。また変数に明示的な型注釈をあたえることもできます。
 
 \begin{lstlisting}
 var a; // declare local a
@@ -181,7 +181,7 @@ Haxeはファーストクラス関数をサポートしており、式の中で�
 
 \expr{myLocalFunction}を、\expr{main}クラスフィールドの\tref{ブロック式}{expression-block}の中で宣言しました。このローカル関数は1つの引数\expr{i}を取り、それをスコープの外のvalueに足しています。
 
-スコープについては、\tref{変数の場合}{expression-var}と同じで、多くの面で名前を持つローカル関数は、ローカル変数に対する匿名関数の代入と同じです。
+スコープについては\tref{変数の場合}{expression-var}と同じで、多くの面で名前を持つローカル関数はローカル変数に対する匿名関数の代入と同じです。
 
 \begin{lstlisting}
 var myLocalFunction = function(a) { }
@@ -197,26 +197,26 @@ var myLocalFunction = function(a) { }
 \section{new(インスタンス化)}
 \label{expression-new}
 
-\expr{new}キーワードは、\tref{クラス}{types-class-instance}と\tref{抽象型}{types-abstract}のインスタンス化を行います。\expr{new}の後にはインスタンス化される\tref{型のパス}{define-type-path}が続きます。場合によっては、\expr{<>}で囲んでカンマ\expr{,}で区切った、\tref{型パラメータ}{type-system-type-parameters}の記述がされます。その後に、小かっこ\expr{(}、カンマ\expr{,}区切りのコンストラクタの引数が続き、小かっこ\expr{)}で閉じます。
+\expr{new}キーワードは\tref{クラス}{types-class-instance}と\tref{抽象型}{types-abstract}のインスタンス化を行います。\expr{new}の後にはインスタンス化される\tref{型のパス}{define-type-path}が続きます。場合によっては、\expr{<>}で囲んでカンマ\expr{,}で区切った、\tref{型パラメータ}{type-system-type-parameters}の記述がされます。その後に、小かっこ(\expr{(})、カンマ(\expr{,})区切りのコンストラクタの引数が続き、小かっこ閉(\expr{)})で閉じます。
 
 \haxe{assets/New.hx}
 
-\expr{main}メソッドの中では、型パラメータ\type{Int}の明示付き、引数が\expr{12}と\expr{"foo"}で、\type{Main}クラス自身のインスタンス化を行っています。私たちが知っているように、この構文は、\tref{関数呼び出し}{expression-function-call}とよく似ており、「コンストラクタ呼び出し」と呼ぶことが多いです。
+\expr{main}メソッドの中では型パラメータ\type{Int}の明示付き、引数が\expr{12}と\expr{"foo"}で、\type{Main}クラス自身のインスタンス化を行っています。私たちが知っているように、この構文は\tref{関数呼び出し}{expression-function-call}とよく似ており、「コンストラクタ呼び出し」と呼ぶことが多いです。
 
-\section{for}
+\section{forループ}
 \label{expression-for}
 
-Haxeは、C言語で知られる伝統的なforループはサポートしていません。\expr{for}キーワードの後には、小かっこ\expr{(}、変数の識別子、\expr{in}キーワード、くり返しの処理を行うコレクションの任意の式が続き、小かっこ\expr{)}で閉じられて、最後にくり返しの本体の任意の式で終わります。
+HaxeはC言語で知られる伝統的なforループはサポートしていません。\expr{for}キーワードの後には小かっこ(\expr{(})、変数の識別子、\expr{in}キーワード、くり返しの処理を行うコレクションの任意の式が続き、小かっこ閉(\expr{)})で閉じられて、最後にくり返しの本体の任意の式で終わります。
 
 \begin{lstlisting}
 for (v in e1) e2;
 \end{lstlisting}
 
-型付け機は、\expr{e1}の型がくり返し可能であるかを確認します。くり返し可能というのは、\expr{iterator}メソッドが\type{Iterator<T>}を返すか、\type{Iterator<T>}自身である場合です。
+型付け器は\expr{e1}の型がくり返し可能であるかを確認します。くり返し可能というのは\expr{iterator}メソッドが\type{Iterator<T>}を返すか、\type{Iterator<T>}自身である場合です。
 
-変数vは、ループ本体の\expr{e2}の中で利用可能で、コレクション\expr{e1}の個々の要素の値が保持されます。
+変数vはループ本体の\expr{e2}の中で使用可能で、コレクション\expr{e1}の個々の要素の値が保持されます。
 
-Haxeには、ある範囲のくり返しを表す特殊な範囲演算子があります。これは、\expr{min...max}といった2つの\type{Int}をとり、\expr{min}(自身をふくむ)から\expr{max}の一つ前までをくり返す\expr{IntIterator}を返す2項演算子です。\expr{max}が\expr{min}より小さくしないように気をつけてください。
+Haxeにはある範囲のくり返しを表す特殊な範囲演算子があります。これは\expr{min...max}といった2つの\type{Int}をとり、\expr{min}(自身をふくむ)から\expr{max}の一つ前までをくり返す\expr{IntIterator}を返す2項演算子です。\expr{max}が\expr{min}より小さくしないように気をつけてください。
 
 \begin{lstlisting}
 for (i in 0...10) trace(i); // 0 to 9
@@ -224,12 +224,12 @@ for (i in 0...10) trace(i); // 0 to 9
 
 \expr{for}式の型は常に\type{Void}です。つまり、値は持たず、右辺の式としては使えません。
 
-ループは、\tref{\expr{break}}{expression-break}と、\tref{\expr{continue}}{expression-continue}の式を使って、フロー制御が行えます。
+ループは\tref{\expr{break}}{expression-break}と、\tref{\expr{continue}}{expression-continue}の式を使って、フロー制御が行えます。
 
 \section{whileループ}
 \label{expression-while}
 
-通常の\expr{while}ループは、\expr{while}キーワードから始まり、小かっこ\expr{(}、条件式が続き、小かっこ\expr{)}を閉じて、ループ本体の式で終わります。
+通常の\expr{while}ループは\expr{while}キーワードから始まり、小かっこ(\expr{(})、条件式が続き、小かっこ閉(\expr{)})を閉じて、ループ本体の式で終わります。
 
 \begin{lstlisting}
 while(condition) expression;
@@ -241,12 +241,12 @@ while(condition) expression;
 
 \haxe{assets/While.hx}
 
-この種類の\expr{while}ループは、ループ本体が一度も評価されないことがあります。条件式が最初から\expr{false}だった場合です。この点が\tref{do-whileループ}{expression-do-while}との違いです。
+この種類の\expr{while}ループはループ本体が一度も評価されないことがあります。条件式が最初から\expr{false}だった場合です。この点が\tref{do-whileループ}{expression-do-while}との違いです。
 
 \section{do-whileループ}
 \label{expression-do-while}
 
-do-whileループは、\expr{do}キーワードから始まり、次にループ本体の式が来ます。その後に\expr{while}、小かっこ\expr{(}、条件式、小かっこ\expr{)}となります。
+do-whileループは\expr{do}キーワードから始まり、次にループ本体の式が来ます。その後に\expr{while}、小かっこ(\expr{(})、条件式、小かっこ閉(\expr{)})となります。
 
 \begin{lstlisting}
 do expression while(condition);
@@ -259,7 +259,7 @@ do expression while(condition);
 \section{if}
 \label{expression-if}
 
-条件分岐式は、\expr{if}キーワードから始まり、小かっこ\expr{()}で囲んだ条件式、条件が真だった場合に評価される式となります。
+条件分岐式は\expr{if}キーワードから始まり、小かっこ(\expr{()})で囲んだ条件式、条件が真だった場合に評価される式となります。
 
 \begin{lstlisting}
 if (condition) expression;
@@ -281,12 +281,12 @@ else if(condition2) expression2
 else expression3
 \end{lstlisting}
 
-\expr{if}式に値が要求される場合（たとえば、\expr{var x = if(condition) expression1 else expression2}という風に）、型付け機は\expr{expression1}と\expr{expression2}の型を\tref{単一化}{type-system-unification}します。\expr{else}式がなかった場合、型は\type{Void}であると推論されます。
+\expr{if}式に値が要求される場合（たとえば、\expr{var x = if(condition) expression1 else expression2}というふうに）、型付け器は\expr{expression1}と\expr{expression2}の型を\tref{単一化}{type-system-unification}します。\expr{else}式がなかった場合、型は\type{Void}であると推論されます。
 
 \section{switch}
 \label{expression-switch}
 
-基本的なスイッチ式は、\expr{switch}キーワードと、その分岐対象の式から始まり、中かっこ\expr{\{\}}にはさまれてケース式が並びます。各ケース式は、\expr{case}キーワードからのパターン式か、\expr{default}キーワードで始まります。どちらの場合も、コロンが続き、オプショナルなケース本体の式が来ます。
+基本的なスイッチ式は\expr{switch}キーワードと、その分岐対象の式から始まり、中かっこ(\expr{\{\}})にはさまれてケース式が並びます。各ケース式は\expr{case}キーワードからのパターン式か、\expr{default}キーワードで始まります。どちらの場合も、コロンが続き、オプショナルなケース本体の式が来ます。
 
 \begin{lstlisting}
 switch subject {
@@ -300,12 +300,12 @@ switch subject {
 
 スイッチ式は値としてあつかうことができます。その場合、すべてのケース本体の式の型は\tref{単一化}{type-system-unification}できなくてはいけません。
 
-パターン式については、\Fullref{lf-pattern-matching}で詳しく説明されています。
+パターン式については\Fullref{lf-pattern-matching}で詳しく説明されています。
 
 \section{try/catch}
 \label{expression-try-catch}
 
-Haxeでは、\expr{try/catch}構文を使うことで値を捕捉することができます。
+Haxeでは\expr{try/catch}構文を使うことで値を捕捉することができます。
 
 \begin{lstlisting}
 try try-expr
@@ -323,24 +323,24 @@ catch(varName2:Type2) catch-expr-2
 
 Haxeでは、あらゆる種類の値を\expr{throw}して、\expr{catch}することができます。その型は特定の例外やエラークラスに限定されません。\expr{catch}ブロックは上から下へとチェックされていき、投げられた値と型が適合する最初のブロックが実行されます。
 
-この過程は、コンパイル時の\tref{単一化}{type-system-unification}に似ています。しかし、この判定は実行時に行われるものでいくつかの制限があります。
+この過程はコンパイル時の\tref{単一化}{type-system-unification}に似ています。しかし、この判定は実行時に行われるものでいくつかの制限があります。
 
 \begin{itemize}
 	\item 型は実行時に存在するものでなければならない。\tref{クラスインスタンス}{types-class-instance}、\tref{列挙型インスタンス}{types-enum-instance}、\tref{コアタイプ抽象型}{types-abstract-core-type}、\tref{Dynamic}{types-dynamic}.
-	\item 型パラメータは、\tref{Dynamic}{types-dynamic}でなければならない。
+	\item 型パラメータは\tref{Dynamic}{types-dynamic}でなければならない。
 \end{itemize}
 
 \section{return}
 \label{expression-return}
 
-\expr{return}式は、値をとるものと、とらないものの両方があります。
+\expr{return}式は値を取るものと、取らないものの両方があります。
 
 \begin{lstlisting}
 return;
 return expression;
 \end{lstlisting}
 
-\expr{return}式は、最も内側に定義されている関数のフロー制御からぬけ出します。最も内側というのは\tref{ローカル関数}{expression-function}の場合での特徴です。
+\expr{return}式は最も内側に定義されている関数のフロー制御からぬけ出します。最も内側というのは\tref{ローカル関数}{expression-function}の場合での特徴です。
 
 \begin{lstlisting}
 function f1() {
@@ -354,12 +354,12 @@ function f1() {
 
 \expr{return}により、ローカル関数\expr{f2}からはぬけ出しますが、\expr{f1}からはぬけ出しません。つまり、\expr{expression}は評価されます。
 
-\expr{return}が、値の式なしで使用された場合、型付け機はその関数の戻り値が\type{Void}型であることを確認します。\expr{return}が値の式を持つ場合、型付け機はその関数の戻り値の型(明示的に与えられているか、前のreturnによって推論されている場合)と、\expr{return}している値の型を\tref{単一化}{type-system-unification}します。
+\expr{return}が、値の式なしで使用された場合、型付け器はその関数の戻り値が\type{Void}型であることを確認します。\expr{return}が値の式を持つ場合、型付け器はその関数の戻り値の型と\expr{return}している値の型を\tref{単一化}{type-system-unification}します(明示的に与えられているか、前のreturnによって推論されている場合)。
 
 \section{break}
 \label{expression-break}
 
-\expr{break}キーワードは、そのキーワードをふくむ最も内側にあるループ(\expr{for}でも、\expr{while}でも)の制御フローからぬけ出して、くり返し処理を終了させます。
+\expr{break}キーワードはそのキーワードをふくむ最も内側にあるループ(\expr{for}でも、\expr{while}でも)の制御フローからぬけ出して、くり返し処理を終了させます。
 
 \begin{lstlisting}
 while(true) {
@@ -371,12 +371,12 @@ while(true) {
 
 \expr{expression1}はすべてのくり返しで評価されますが、\expr{condition}が偽になると\expr{expression2}は、実行されません。
 
-型付け機は\expr{break}がループの内部のみで使用されていることを確認します。\tref{\expr{switch}のケース}{expression-switch}に対する\expr{break}は、Haxeではサポートしていません。
+型付け器は\expr{break}がループの内部のみで使用されていることを確認します。\tref{\expr{switch}のケース}{expression-switch}に対する\expr{break}はHaxeではサポートしていません。
 
 \section{continue}
 \label{expression-continue}
 
-\expr{continue}キーワードは、そのキーワードをふくむ最も内側にあるループ(\expr{for}でも、\expr{while}でも)の現在のくり返しを終了します。そして、次のくり返しのためのループ条件チェックが行われます。
+\expr{continue}キーワードはそのキーワードをふくむ最も内側にあるループ(\expr{for}でも、\expr{while}でも)の現在のくり返しを終了します。そして、次のくり返しのためのループ条件チェックが行われます。
 
 \begin{lstlisting}
 while(true) {
@@ -386,25 +386,25 @@ while(true) {
 }
 \end{lstlisting}
 
-\expr{expression1}は、各くり返しすべてで評価されますが、\expr{condition}が偽の時は、その回のくり返しについては評価がされません。\expr{break}は異なりループ処理自体は続きます。
+\expr{expression1}は各くり返しすべてで評価されますが、\expr{condition}が偽の時はその回のくり返しについては評価がされません。\expr{break}は異なりループ処理自体は続きます。
 
-型付け機は\expr{continue}がループの内部のみで使用されていることを確認します。
+型付け器は\expr{continue}がループの内部のみで使用されていることを確認します。
 
 \section{throw}
 \label{expression-throw}
 
-Haxeでは、以下の構文で、値の\expr{throw}をすることができます。
+Haxeでは、以下の構文で値の\expr{throw}をすることができます。
 
 \begin{lstlisting}
 throw expr
 \end{lstlisting}
 
-\expr{throw}された値は、\tref{\expr{catch}ブロック}{expression-try-catch}で捕捉できます。捕捉されなかった場合の挙動はターゲット依存です。
+\expr{throw}された値は\tref{\expr{catch}ブロック}{expression-try-catch}で捕捉できます。捕捉されなかった場合の挙動はターゲット依存です。
 
 \section{cast}
 \label{expression-cast}
 
-Haxeには、以下の2種類のキャストがあります。
+Haxeには以下の2種類のキャストがあります。
 
 \begin{lstlisting}
 cast expr; // unsafe cast
@@ -414,17 +414,17 @@ cast (expr, Type); // safe cast
 \subsection{非セーフキャスト}
 \label{expression-cast-unsafe}
 
-非セーフキャストは型システムを無力化するのに役立ちます。コンパイラは\expr{expr}を通常通りに型付けを行い、それを\tref{単相}{types-monomorph}としてつつみ込みます。これにより、その式をあらゆるものに割り当てすることが可能です。
+非セーフキャストは型システムを無力化するのに役立ちます。コンパイラは\expr{expr}を通常通りに型付けし、それを\tref{単相}{types-monomorph}でつつみ込みます。これにより、その式をあらゆるものに割り当てすることが可能になります。
 
-非セーフキャストは、以下の例が示すように、\tref{Dynamic}{types-dynamic}への型変更ではありません。
+非セーフキャストは以下の例が示すように、\tref{Dynamic}{types-dynamic}への型変更ではありません。
 
 \haxe{assets/UnsafeCast.hx}
 
-変数\expr{i}は\type{Int}と型付けされて、非セーフキャスト\expr{cast i}を使って変数\expr{s}に代入しました。\expr{s}は、\type{Unknown}型、つまり単相となりました。その後は、通常の\tref{単一化}{type-system-unification}のルールに従って、あらゆる型へと結びつけることが可能です。例では、\type{String}型となりました。
+変数\expr{i}は\type{Int}と型付けされて、非セーフキャスト\expr{cast i}を使って変数\expr{s}に代入しました。\expr{s}は\type{Unknown}型、つまり単相となりました。その後は、通常の\tref{単一化}{type-system-unification}のルールに従って、あらゆる型へと結びつけることが可能です。例では、\type{String}型となりました。
 
-これらのキャストは「非セーフ」と呼ばれます。これは、実行時の不正なキャストが定義されてないためです。 ほとんどの\tref{動的ターゲット}{define-dynamic-target}では動作する可能性が高いですが、\tref{静的ターゲット}{define-static-target}では未知のエラーの原因になりえます。
+これらのキャストは「非セーフ」と呼ばれます。これは実行時の不正なキャストが定義されてないためです。 ほとんどの\tref{動的ターゲット}{define-dynamic-target}では動作する可能性が高いですが、\tref{静的ターゲット}{define-static-target}では未知のエラーの原因になりえます。
 
-非セーフキャストは実行時のオーバーヘッドは、ほぼ、または全くありません。
+非セーフキャストは実行時のオーバーヘッドはほぼ、または全くありません。
 
 \subsection{セーフキャスト}
 \label{expression-cast-safe}
@@ -433,11 +433,11 @@ cast (expr, Type); // safe cast
 
 \haxe{assets/SafeCast.hx}
 
-この例では、最初に\type{Child1}から\type{Base}へとキャストしています。これは、\type{Child1}が\type{Base}型の\tref{子クラス}{types-class-inheritance}なので、成功しています。次に\type{Child2}へキャストしていますが、\type{Child1}のインスタンスは\type{Child2}ではないので失敗しています。
+この例では、最初に\type{Child1}から\type{Base}へとキャストしています。これは\type{Child1}が\type{Base}型の\tref{子クラス}{types-class-inheritance}なので、成功しています。次に\type{Child2}へキャストしていますが、\type{Child1}のインスタンスは\type{Child2}ではないので失敗しています。
 
-Haxeコンパイラは、この場合\type{String}型の\tref{例外を投げます}{expression-throw}。この例外は、\tref{\expr{try/catch}ブロック}{expression-try-catch}を使って捕捉できます。
+Haxeコンパイラはこの場合\type{String}型の\tref{例外を投げます}{expression-throw}。この例外は\tref{\expr{try/catch}ブロック}{expression-try-catch}を使って捕捉できます。
 
-セーフキャストは実行時のオーバーヘッドがあります。重要なのは、コンパイラがすでにチェックを行っているので、\expr{Std.is}のようなチェックを自分で入れるのは、余分だということです。\type{String}型の例外を捕捉する、try-catchを行うのがセーフキャストで意図された用途です。
+セーフキャストは実行時のオーバーヘッドがあります。重要なのはコンパイラがすでにチェックを行っているので、\expr{Std.is}のようなチェックを自分で入れるのは、余分だということです。\type{String}型の例外を捕捉する、try-catchを行うのがセーフキャストで意図された用途です。
 
 \section{型チェック}
 \label{expression-type-check}
@@ -449,7 +449,7 @@ Haxeコンパイラは、この場合\type{String}型の\tref{例外を投げま
 (expr : type)
 \end{lstlisting}
 
-小かっこは必須です。\tref{セーフキャスト}{expression-cast-safe}とは異なり、実行時に影響はありません。これは、コンパイル時の以下の2つの挙動を持ちます。
+小かっこは必須です。\tref{セーフキャスト}{expression-cast-safe}とは異なり、実行時に影響はありません。これはコンパイル時の以下の2つの挙動を持ちます。
 
 \begin{enumerate}
 \item \tref{トップダウンの型推論}{type-system-top-down-inference}が\expr{expr}に対して\expr{type}の型で適用されます。
