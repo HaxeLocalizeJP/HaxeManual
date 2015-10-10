@@ -98,6 +98,7 @@ Haxe code here
 次のプログラムはコンパイルして実行をすると``Hello World''と表示します:
 
 \haxe{assets/HelloWorld.hx}
+<<<<<<< HEAD
 
 上記のコードは、\ic{Main.hx}という名前で保存して、\ic{haxe -main Main --interp}というコマンドでHaxeコンパイラを呼び出すと実際に動作させることが可能です。これで\ic{Main.hx:3: Hello world}という出力がされるはずです。このことから以下のいくつかのことを学ぶことができます。
 
@@ -108,6 +109,16 @@ Haxe code here
 	\item Haxeのコンパイラはコマンドラインツールであり、\ic{-main Main}や\ic{--interp}のようなパラメータをつけて呼び出すことができる。
 	\item Haxeのプログラムにはクラスがあり(\type{Main}、大文字から始まる)、クラスには関数がある(\expr{main}、小文字からはじまる)。 
 	\item Haxeのmainクラスをふくむファイルは、そのクラス名と同じ名前を使う(この場合だと、\type{Main.hx})。
+=======
+This can be tested by saving the above code to a file named \ic{Main.hx} and invoking the Haxe Compiler like so: \ic{haxe -main Main --interp}. It then generates the following output: \ic{Main.hx:3: Hello world}. There are several things to learn from this:
+\todo{This generates the following output: too many 'this'. You may like a passive sentence: the following output will be generated...though this is to be avoided, generally}
+
+\begin{itemize}
+	\item Haxe programs are saved in files with an extension of \ic{.hx}.
+	\item The Haxe Compiler is a command-line tool which can be invoked with parameters such as \ic{-main Main} and \ic{--interp}.
+	\item Haxe programs have classes (\type{Main}, upper-case), which have functions (\expr{main}, lower-case). 
+	\item The name of the file containing main Haxe class is the same as name of the class itself (in this case \type{Main.hx}). 
+>>>>>>> english/master
 \end{itemize}
 
 \section{歴史}
@@ -118,13 +129,23 @@ Haxeのプロジェクトは、2005年10月22日にフランスの開発者の\e
 
 そのころのつづりは\emph{haXe}で、2006年の2月にAVMのバイトコードとNicolas自身が作成した\emph{Neko}バーチャルマシン\footnote{http://nekovm.org}への出力をサポートするベータ版がリリースされました。
 
+<<<<<<< HEAD
 この日からHaxeプロジェクトのリーダーであり続けるNicolas Cannasseは明確なビジョンをもってHaxeの設計を続け、そして2006年5月のHaxe1.0のリリースに導きました。この最初のメジャーリリースから\target{Javascript}のコード生成をサポートの始まり、型推論や構造的部分型などの現在のHaxeの機能のいくつかはすでにこのころからありました。
 
 Haxe1では、2年間いくつかのマイナーリリースを行い、2006年8月に\target{Flash AVM2}ターゲットと\emph{haxelib}ツール、2007年3月に\target{ActionScript3}ターゲットを追加しました。この時期は安定性の改善に強く焦点が当てられ、その結果、数回のマイナーリリースが行われました。
+=======
+Nicolas Cannasse, who remains leader of the Haxe project to this date, kept on designing Haxe with a clear vision, subsequently leading to the Haxe 1.0 release in May 2006. This first major release came with support for \target{JavaScript} code generation and already had some of the features that define Haxe today such as type inference and structural sub-typing.
+
+Haxe 1 saw several minor releases over the course of two years, adding the \target{Flash AVM2} target along with the \emph{haxelib}-tool in August 2006 and the \target{ActionScript 3} target in March 2007. During these months, there was a strong focus on improving stability, which resulted in several minor bug-fix releases.
+>>>>>>> english/master
 
 Haxe2.0は2008年7月にリリースされました。\emph{Franco Ponticelli}の好意により、このリリースには\target{PHP}ターゲットが含まれました。同様に、\emph{Hugh Sanderson}の貢献により、2009年7月のHaxe2.04リリースで\target{C++}ターゲットが追加されました。
 
+<<<<<<< HEAD
 Haxe1と同じように、以降の数か月で安定性のためのリリースを行いました。そして2011年1月、\emph{macros}をサポートするHaxe2.07がリリースされました。このころに、\emph{Bruno Garcia}が\target{JavaScript}ターゲットのメンテナとしてチームに加わり、 2.08と2.09のリリースで劇的な改善が行われました。
+=======
+Just as with Haxe 1, what followed were several months of stability releases. In January 2011, Haxe 2.07 was released with the support of \emph{macros}. Around that time, \emph{Bruno Garcia} joined the team as maintainer of the \target{JavaScript} target, which saw vast improvements in the subsequent 2.08 and 2.09 releases.
+>>>>>>> english/master
 
 2.09のリリース後、\emph{Simon Krajewski}がチームに加わり、Haxe3の出発に向けて働き始めました。さらに\emph{Cau\^{e} Waneck}の\target{Java}と\target{C\#}のターゲットがHaxeのビルドに取り込まれました。そしてHaxe2は次で最後のリリースとなることが決まり、2012年1月にHaxe2.10がリリースされました。
 

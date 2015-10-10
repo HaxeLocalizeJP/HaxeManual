@@ -75,6 +75,7 @@ Haxeでは基本型は\tref{クラス}{types-class-instance}ではありませ�
 
 \todo{make sure the types are right for inc, dec, negate, and bitwise negate}
 \todo{While introducing the different operations, we should include that information as well, including how they differ with the "C" standard, see http://haxe.org/manual/operators}
+This the list of numeric operators in Haxe, grouped by descending priority.
 
 以下は、Haxeの数値演算子です。優先度が降順になるようにグループ化して並べています。
 
@@ -127,6 +128,17 @@ Haxeでは基本型は\tref{クラス}{types-class-instance}ではありませ�
 	\multicolumn{5}{|c|}{Comparison} \\ \hline
 \end{tabular}
 \end{center}
+
+\paragraph{等価性}
+
+\emph{enum:}
+\begin{description}
+	\item[パラメータなしのEnum] 常に同じ値になるので、\expr{MyEnum.A == MyEnum.A}で比較できる。
+	\item[パラメータありEnum] \expr{a.equals(b)}で比較できる。 (これは\expr{Type.enumEquals()}の短縮形である).
+\end{description}
+
+\emph{Dynamic:}
+1つ以上の\expr{Dynamic}な値に対する比較は、未定義であり、プラットフォーム依存です。
 
 \subsection{Bool(真偽値)}
 \label{types-bool}
@@ -344,10 +356,6 @@ class Point implements Printable implements Serializable
 \haxe{assets/InterfaceWithVariables.hx}
 
 インターフェースは\expr{extends}キーワードで複数のインタフェースを継承することができます。
-
-\begin{lstlisting}
-interface Debuggable extends Printable extends Serializable
-\end{lstlisting}
 
 \trivia{Implementsの構文}{Haxeの3.0よりも前のバージョンでは、\expr{implements}キーワードはカンマで区切られていました。Javaのデファクトスタンダードに合わせるため、私たちはカンマを取り除くことに決定しました。これが、Haxe2と3の間の破壊的な変更の1つです。}
 
@@ -858,7 +866,7 @@ Haxe3.2以前では、バグのため\expr{:arrayAccess}のフィールドがチ
 
 \haxe{assets/AbstractEnum.hx}
 
-以下のJavaScriptへの出力を見ても明らかなように、Haxeコンパイラは抽象型\type{HttpStatus}の全てのフィールドへのアクセスをその値に変換します。
+以下の\target{JavaScript}への出力を見ても明らかなように、Haxeコンパイラは抽象型\type{HttpStatus}の全てのフィールドへのアクセスをその値に変換します。
 
 \begin{lstlisting}
 Main.main = function() {
