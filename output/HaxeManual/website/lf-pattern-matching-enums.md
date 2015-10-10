@@ -1,6 +1,6 @@
-## 6.4.2 Enum matching
+## 6.4.2 enumマッチング
 
-Enums can be matched by their constructors in a natural way:
+enumのコンストラクタは直観的な方法でマッチングできます。
 
 ```haxe
     var myTree = Node(Leaf("foo"), Node(Leaf("bar"), Leaf("foobar")));
@@ -19,15 +19,15 @@ Enums can be matched by their constructors in a natural way:
     trace(match); // 2
 ```
 
-The pattern matcher will check each case from top to bottom and pick the first one that matches the input value. The following manual interpretation of each case rule helps understanding the process:
+パターンマッチングでは、ケースを上から下へと確認していき、入力値とマッチする最初のものを見つけ出します。以下の各ケースを実行する流れの説明で、その過程を理解してください。
 
-* `case Leaf(_)`: matching fails because `myTree` is a `Node`
-* `case Node(_, Leaf(_))`: matching fails because the right sub-tree of `myTree` is not a `Leaf`, but another `Node`
-* `case Node(_, Node(Leaf("bar"), _))`: matching succeeds
-* `case _`: this is not checked here because the previous line matched
+* `case Leaf(_)`: `myTree`は`Node`なので、マッチングに失敗します。
+* `case Node(_, Leaf(_))`: `myTree`の右側の子要素は`Leaf`ではなく、`Node`なので失敗します。
+* `case Node(_, Node(Leaf("bar"), _))`: マッチングに成功します。
+* `case _`: 前のケースでマッチングが成功したので確認が行われません。
 
 ---
 
-Previous section: [Introduction](lf-pattern-matching-introduction.md)
+Previous section: [導入](lf-pattern-matching-introduction.md)
 
-Next section: [Variable capture](lf-pattern-matching-variable-capture.md)
+Next section: [変数の取り出し](lf-pattern-matching-variable-capture.md)

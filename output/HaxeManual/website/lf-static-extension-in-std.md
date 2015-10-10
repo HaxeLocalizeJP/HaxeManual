@@ -1,6 +1,6 @@
-## 6.3.1 In the Haxe Standard Library
+## 6.3.1 Haxe標準ライブラリについて
 
-Several classes in the Haxe Standard Library are suitable for static extension usage. The next example shows the usage of `StringTools`:
+Haxeの標準ライブラリのいくつかのクラスは静的拡張の用途に合うように設計されています。次の例からは`StringTools`の使い方がわかります。
 
 ```haxe
 using StringTools;
@@ -12,7 +12,7 @@ class Main {
 }
 ```
 
-While `String` does not have a `replace` functionality by itself, the `using StringTools` static extension provides one. As usual, the JavaScript output nicely shows the transformation:
+`String`自身は`replace`を持っていませんが、`using StringTools`の静的拡張によって提供されます。いつものように、JavaScriptへの変換を見るとよくわかります。
 
 ```haxe
 Main.main = function() {
@@ -20,19 +20,19 @@ Main.main = function() {
 }
 ```
 
-The following classes from the Haxe Standard Library are designed to be used as static extensions:
+Haxe標準ライブラリでは以下のクラスが静的拡張として使うように設計されています。
 
-* `StringTools`: Provides extended functionality on strings, such as replacing or trimming.
-* `Lambda`: Provides functional methods on iterables.
-* `haxe.EnumTools`: Provides type information functionality on enums and their instances.
-* `haxe.macro.Tools`: Provides different extensions for working with macros (see [Tools](macro-tools.md)).
+* `StringTools`: 置換やトリミングといった、文字列に対する拡張を提供します。
+* `Lambda`: `Iterable`に対する関数型のメソッドを提供します。　
+* `haxe.EnumTools`: 列挙型とそのインスタンスについての情報を得る機能を提供します。
+* `haxe.macro.Tools`: マクロをあつかう際のさまざまな拡張を提供します(詳しくは[Tools](macro-tools.md))。
 
 > ##### Trivia: "using" using
 >
-> Since the `using` keyword was added to the language, it has been common to talk about certain problems with "using using" or the effect of "using using". This makes for awkward English in many cases, so the author of this manual decided to call the feature by what it actually is: Static extension.
+> `using`キーワードが追加されて以降、`using`を使う(using using)ときの問題や、その影響についての会話がよくされるようになりました。"using using"のせいでさまざまな場面でわかりにくい英語が生まれたため、このマニュアルの著者はこの機能をその実際の性質から静的拡張と呼ぶことに決めました。
 
 ---
 
-Previous section: [Static Extension](lf-static-extension.md)
+Previous section: [静的拡張](lf-static-extension.md)
 
-Next section: [Pattern Matching](lf-pattern-matching.md)
+Next section: [パターンマッチング](lf-pattern-matching.md)

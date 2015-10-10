@@ -1,6 +1,6 @@
-## 6.4.3 Variable capture
+## 6.4.3 変数の取り出し
 
-It is possible to catch any value of a sub-pattern by matching it against an identifier:
+パターンの一部のあらゆる値は識別子を使ってマッチングさせて、取り出すことができます。
 
 ```haxe
     var myTree = Node(Leaf("foo"), Node(Leaf("bar"), Leaf("foobar")));
@@ -12,13 +12,13 @@ It is possible to catch any value of a sub-pattern by matching it against an ide
     trace(name); // foo
 ```
 
-This would return one of the following:
+これは以下の流れにしたがって`return`を行います。
 
-* If `myTree` is a `Leaf`, its name is returned.
-* If `myTree` is a `Node` whose left sub-tree is a `Leaf`, its name is returned (this will apply here, returning `"foo"`).
-* Otherwise `"none"` is returned.
+* `myTree`が`Leaf`の場合、その名前が返る。
+* `myTree`が`Node`でその左の子要素が`Leaf`の場合、その名前が返る(上の例の場合、これが適用されて`"foo"`が返る)。
+* そのほかの場合、`"none"`が返る。
 
-It is also possible to use = to capture values which are further matched:
+マッチされた値を取り出すのに`=`を使うこともできます。
 
 ```haxe
     var node = switch(myTree) {
@@ -28,10 +28,10 @@ It is also possible to use = to capture values which are further matched:
     trace(node); // Leaf(foo)
 ```
 
-Here, `leafNode` is bound to `Leaf("foo")` if the input matches that. In all other cases, `myTree` itself is returned: `case x` works similar to `case _` in that it matches anything, but with an identifier name like `x` it also binds the matched value to that variable.
+`leafNode`には`Leaf("foo")`が割り当てられているので、これにマッチします。そのほかのケースでは、`myTree`自身が返ります。`case x`は`case _`と同じようにすべてにマッチしますが、`x`のような識別子が使われるとマッチした値がその変数に対して割り当てられます。
 
 ---
 
-Previous section: [Enum matching](lf-pattern-matching-enums.md)
+Previous section: [enumマッチング](lf-pattern-matching-enums.md)
 
-Next section: [Structure matching](lf-pattern-matching-structure.md)
+Next section: [構造体マッチング](lf-pattern-matching-structure.md)

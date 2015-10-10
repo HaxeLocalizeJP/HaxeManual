@@ -1,6 +1,6 @@
-## 6.4.6 Or patterns
+## 6.4.6 orパターン
 
-The `|` operator can be used anywhere within patterns to describe multiple accepted patterns:
+`|`演算子は複数のパターンが許容されることを示す用途で、パターン内のあらゆる箇所に使うことができます。
 
 ```haxe
     var match = switch(7) {
@@ -11,10 +11,10 @@ The `|` operator can be used anywhere within patterns to describe multiple accep
     trace(match); // 1
 ```
 
-If there is a captured variable in an or-pattern, it must appear in both its sub-patterns.
+orパターン内で変数の取得をしたい場合、その子要素両方で行わなくてはいけません。
 
 ---
 
-Previous section: [Array matching](lf-pattern-matching-array.md)
+Previous section: [配列マッチング](lf-pattern-matching-array.md)
 
-Next section: [Guards](lf-pattern-matching-guards.md)
+Next section: [ガード](lf-pattern-matching-guards.md)

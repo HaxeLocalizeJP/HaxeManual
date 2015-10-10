@@ -1,6 +1,6 @@
-## 6.6 Array Comprehension
+## 6.6 配列内包表記
 
-Array comprehension in Haxe uses existing syntax to allow concise initialization of arrays. It is identified by `for` or `while` constructs:
+Haxeの配列内包表記は既存の構文を配列の初期化をより簡単にするためにも使えるようにするものです。配列内包表記は`for`または`while`のキーワードによって識別されます。
 
 ```haxe
 class Main {
@@ -15,22 +15,16 @@ class Main {
 }
 ```
 
-Variable `a` is initialized to an array holding the numbers 0 to 9. The compiler generates code which adds the value of each loop iteration to the array, so the following code would be equivalent:
+変数`a`は0から9までの数値を要素として持つ配列として初期化されます。コンパイラはループを作ってその繰り返しの一つ一つで要素を追加するコードを出力します。つまり以下のコードと等価です。
 
 ```haxe
 var a = [];
 for (i in 0...10) a.push(i);
 ```
 
-Variable `b` is initialized to an array with the same values, but through a different comprehension style using `while` instead of `for`. Again, the following code would be equivalent:
+変数`b`も同じ値に初期化されますが、`for`ではなく`while`という異なる内包表記の形式を使っています。そして、これは以下のコードと等価です。
 
-```haxe
-var i = 0;
-var a = [];
-while(i < 10) a.push(i++);
-```
-
-The loop expression can be anything, including conditions and nested loops, so the following works as expected:
+ループの式は条件分岐やループのネストを含めて、いかなる式でもかまいません。ですから、以下の式は期待通りに動作します。
 
 ```haxe
 class Main {
@@ -50,6 +44,6 @@ class Main {
 
 ---
 
-Previous section: [String Interpolation](lf-string-interpolation.md)
+Previous section: [文字列補間](lf-string-interpolation.md)
 
-Next section: [Iterators](lf-iterators.md)
+Next section: [イテレータ(反復子)](lf-iterators.md)

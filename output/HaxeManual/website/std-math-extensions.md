@@ -1,6 +1,6 @@
 ## 10.4.4 Extensions
 
-It is common to see [Static Extension](lf-static-extension.md) used with the math library.  This code shows a simple example:  
+It is common to see [静的拡張](lf-static-extension.md) used with the math library.  This code shows a simple example:  
 ```haxe
 class MathStaticExtension {
   /* Converts an angle in radians to degrees */

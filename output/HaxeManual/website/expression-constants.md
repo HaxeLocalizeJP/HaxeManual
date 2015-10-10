@@ -8,7 +8,7 @@ Haxeの構文では以下の定数値をサポートしています。
 * true,false: [真偽値](dictionary.md#define-bool)
 * null: null値
 
-また内部の構文木では、[識別子](dictionary.md#define-identifier)は定数値としてあつかわれます。これは、[マクロ](macro.md)を使っているときに関係してくる話題です。
+また内部の構文木では、[識別子](dictionary.md#define-identifier)は定数値としてあつかわれます。これは[マクロ](macro.md)を使っているときに関係してくる話題です。
 
 ---
 

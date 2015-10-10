@@ -1,6 +1,6 @@
-## 6.4.8 Match on multiple values
+## 6.4.8 複数の値のマッチング
 
-Array syntax can be used to match on multiple values:
+配列の構文は複数の値のマッチングにも使えます。
 
 ```haxe
     var s = switch [1, false, "foo"] {
@@ -11,13 +11,13 @@ Array syntax can be used to match on multiple values:
     trace(s); // 2
 ```
 
-This is quite similar to usual array matching, but there are differences:
+これは通常の配列のマッチングによく似ていますが、以下の点で違います。
 
-* The number of elements is fixed, so patterns of different array length will not be accepted.
-* It is not possible to capture the switch value in a variable, i.e. `case x` is not allowed (`case _` still is).
+* 要素数は固定です。このためパターンの配列の長さが違ってはいけません。
+* switchしている値を取得できません。例えば、`case x`は使えません(`case _`は使えます)。
 
 ---
 
-Previous section: [Guards](lf-pattern-matching-guards.md)
+Previous section: [ガード](lf-pattern-matching-guards.md)
 
-Next section: [Extractors](lf-pattern-matching-extractors.md)
+Next section: [抽出子(エクストラクタ)](lf-pattern-matching-extractors.md)

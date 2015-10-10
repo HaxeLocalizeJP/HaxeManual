@@ -1,13 +1,13 @@
-## 6.9 Metadata
+## 6.9 メタデータ
 
-Several constructs can be attributed with custom metadata:
+以下の要素はメタデータで属性をつけることができます。
 
-* `class` and `enum` declarations
-* Class fields
-* Enum constructors
-* Expressions
+* `class`、`enum`の定義
+* クラスフィールド
+* 列挙型コンストラクタ
+* 式
 
-These metadata information can be obtained at runtime through the `haxe.rtti.Meta` API:
+これらのメタデータの情報は`haxe.rtti.Meta`のAPIを使って実行時に利用することが可能です。
 
 ```haxe
 import haxe.rtti.Meta;
@@ -35,31 +35,31 @@ class Main {
 }
 ```
 
-We can easily identify metadata by the leading `@` character, followed by the metadata name and, optionally, by a number of comma-separated constant arguments enclosed in parentheses.
+メタデータは`@`の文字で始まり、メタデータの名前が続き、その後にオプションでカンマで区切った定数値の引数が小かっこで囲まれている、ということで簡単に識別できます。
 
-* Class `MyClass` has an `author` metadata with a single String argument `"Nicolas"`, as well as a `debug` metadata without arguments.
-* The member variable `value` has a `range` metadata with two Int arguments `1` and `8`.
-* The static method `method` has a `broken` metadata without arguments, as well as a `:noCompletion` metadata without arguments.
+* `MyClass`クラスは`"Nicolas"`という文字列の引数1つを持つ`author`メタデータと、引数を持たない`debug`メタデータを持ちます。
+* メンバ変数`value`は`1`と`8`の2つの整数の引数を持つ`range`メタデータを持ちます。
+* 静的メソッド`method`は引数なしの`broken`メタデータと、引数なしの`:noCompletion`メタデータを持ちます。
 
-The `main` method accesses these metadata values using their API. The output reveals the structure of the obtained data:
+`main`メソッドでは、APIを通してこれらのメタデータへアクセスしています。この出力からは取得可能なデータの構造が分かります。
 
-* There is a field for each metadata, with the field name being the metadata name.
-* The field values correspond to the metadata arguments. If there are no arguments, the field value is `null`. Otherwise the field value is an array with one element per argument.
-* Metadata starting with `:` is omitted. This kind of metadata is known as **compiler metadata**.
+* 各メタデータについてフィールドがあり、フィールドの名前はメタデータの名前です。
+* フィールドの値はメタデータの引数に一致します。引数がない場合、フィールドの値は`null`です。その他の場合、フィールドの値は引数1つが要素1つになった配列です。
+* `:`から始まるメタデータは省略されます。このメタデータは**コンパイラメタデータ**として知られます。
 
-Allowed values for metadata arguments are:
+メタデータの引数の値は以下が使用できます。
 
-* [Constants](expression-constants.md)
-* [Arrays declarations](expression-array-declaration.md) (if all their elements qualify)
-* [Object declarations](expression-object-declaration.md) (if all their field values qualify)
+* [定数値](expression-constants.md)
+* [配列の宣言](expression-array-declaration.md) (すべての要素がこのリストのいずれか)
+* [オブジェクトの宣言](expression-object-declaration.md) (すべての要素がこのリストのいずれか)
 
-##### Built-in Compiler Metadata
-An exhaustive list of all defined metadata can be obtained by running `haxe --help-metas` from command line.
+##### ビルトインのコンパイラメタデータ
+コマンドラインから`haxe --help-metas`を実行することで、定義済みメタデータの完全なリストを得ることができます。
 
-See also the [Compiler Metadata list](cr-metadata.md).
+詳しくは[コンパイラメタデータのリスト](cr-metadata.md)を見てください。
 
 ---
 
-Previous section: [Function Bindings](lf-function-bindings.md)
+Previous section: [関数の束縛(bind)](lf-function-bindings.md)
 
-Next section: [Access Control](lf-access-control.md)
+Next section: [アクセス制御](lf-access-control.md)

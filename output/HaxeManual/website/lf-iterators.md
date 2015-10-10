@@ -1,6 +1,6 @@
-## 6.7 Iterators
+## 6.7 イテレータ(反復子)
 
-With Haxe it is very easy to define custom iterators and iterable data types. These concepts are represented by the types `Iterator<T>` and `Iterable<T>` respectively:
+Haxeでは、カスタムのイテレータや反復可能(iterable)なデータ型を簡単に定義できます。これらの概念は`Iterator<T>`型と`Iterable<T>`型を使って以下のように表現されています。
 
 ```haxe
 typedef Iterator<T> = {
@@ -13,7 +13,7 @@ typedef Iterable<T> = {
 }
 ```
 
-Any [class](types-class-instance.md) which [structurally unifies](type-system-structural-subtyping.md) with one of these types can be iterated over using a [for-loop](expression-for.md). That is, if the class defines methods `hasNext` and `next` with matching return types it is considered an iterator, if it defines a method `iterator` returning an `Iterator<T>` it is considered an iterable type.
+これらの型のいずれかで[構造的に単一化できる](type-system-structural-subtyping.md)あらゆる[class](types-class-instance.md)は、[forループ](expression-for.md)で反復処理を行うことができます。つまり、型が合うように`hasNext`と`next`メソッドを定義すればそのクラスはイテレータであるし、`Iterator<T>`を返す`iterator`メソッドを定義すれば反復可能な型です。
 
 ```haxe
 class MyStringIterator {
@@ -44,7 +44,7 @@ class Main {
 }
 ```
 
-The type `MyStringIterator` in this example qualifies as iterator: It defines a method `hasNext` returning `Bool` and a method `next` returning `String`, making it compatible with `Iterator<String>`. The `main` method instantiates it, then iterates over it.
+この例での`MyStringIterator`は`Bool`型を返す`hasNext`と`String`型を返す`next`メソッドを定義しているので、イテレータであると見なされます。また`next`の戻り値の型から、これは`Iterator<String>`です。`main`メソッドでこれをインスタンス化して反復処理を行っています。
 
 ```haxe
 class MyArrayWrap<T> {
@@ -68,10 +68,10 @@ class Main {
 }
 ```
 
-Here we do not setup a full iterator like in the previous example, but instead define that the `MyArrayWrap<T>` has a method `iterator`, effectively forwarding the iterator method of the wrapped `Array<T>` type.
+こちらは1つ前の例とは異なり自前の`Iterator`を準備していませんが、代わりに`MyArrayWrap<T>`は`Array<T>`の`iterator`関数を効果的に利用しています。
 
 ---
 
-Previous section: [Array Comprehension](lf-array-comprehension.md)
+Previous section: [配列内包表記](lf-array-comprehension.md)
 
-Next section: [Function Bindings](lf-function-bindings.md)
+Next section: [関数の束縛(bind)](lf-function-bindings.md)

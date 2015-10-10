@@ -1,12 +1,12 @@
-## 6.1 Conditional Compilation
+## 6.1 条件付きコンパイル
 
-Haxe allows conditional compilation by using `#if`, `#elseif` and `#else` and checking for **compiler flags**.
+Haxeでは、`#if`、`#elseif`、`#else`を使って**コンパイラフラグ**を確認することで条件付きコンパイルが可能です。
 
-> ##### Define: Compiler Flag
+> ##### Define: コンパイラフラグ
 >
-> A compiler flag is a configurable value which may influence the compilation process. Such a flag can be set by invoking the command line with `-D key=value` or just `-D key`, in which case the value defaults to `"1"`. The compiler also sets several flags internally to pass information between different compilation steps.
+> コンパイラフラグはコンパイルの過程に影響をあたえる、設定可能な値です。このフラグは`-D key=value`あるいは単に`-D key`（この場合デフォルト値の`"1"`になる）の形式でコマンドラインから指定できます。そのほかにも、コンパイラはコンパイルの過程で別のステップへ情報伝達するために、内部的にいくつかのフラグを設定します。
 
-This example demonstrates usage of conditional compilation:
+以下は条件付きコンパイルの利用例のデモです。
 
 ```haxe
 class Main {
@@ -22,25 +22,26 @@ class Main {
 }
 ```
 
-Compiling this without any flags will leave only the `trace("ok");` line in the body of the `main` method. The other branches are discarded while parsing the file. These other branches must still contain valid Haxe syntax, but the code is not type-checked.
+これをフラグ無しでコンパイルした場合、`main`メソッドの`trace("ok");`が実行されて終了します。他の分岐はファイルを構文解析する際に切り捨てられます。他の分岐についても、正しいHaxeの構文である必要がありますが、型チェックはされません。
 
-The conditions after `#if` and `#elseif` allow the following expressions:
+`#if`と`#elseif`の直後の条件には以下の式が使えます。
 
-* Any identifier is replaced by the value of the compiler flag by the same name. Note that `-D some-flag` from command line leads to the flags `some-flag` and `some_flag` to be defined.
-* The values of `String`, `Int` and `Float` constants are used directly.
-* The boolean operators `&&` (and), `||` (or) and `!` (not) work as expected, however the full expression must be completely contained by parentheses.
-* The operators `==`, `!=`, `>`, `>=`, `<`, `<=` can be used to compare values.
-* Parentheses `()` can be used to group expressions as usual.
+* すべての識別子は同名のコンパイラフラグの値で置きかえられます。コマンドラインから`-D some-flag`を指定すると`some-flag`と`some_flag`のフラグが定義されることに気を付けてください。
+* `String`、`Int`、`Float`の定数値は直接使用されます。
+* `Bool`の演算`&&` (and)、`||` (or)、`!` (not) は期待どおりに動作しますが、式全体を小かっこでかこむ必要があります。
+* `==`、`!=`、`>`、`>=`、`<`、`<=`の演算子が値の比較に使えます。
+* 小かっこ`()`は通常通り、式をグループ化するのに使えます。
 
-The Haxe parser does not parse `some-flag` as a single token and instead reads it as a subtraction binary operator `some - flag`. In cases like this the underscore version `some_flag` has to be used.
+Haxeの構文解析器は`some-flag`を一つの句として認識しません、`some - flag`の2項演算として読み取ります。このような場合はアンダースコアを使う`some_flag`の版を使用する必要があります。
 
-##### Built-in Compiler Flags
-An exhaustive list of all built-in defines can be obtained by invoking the Haxe Compiler with the `--help-defines` argument. The Haxe Compiler allows multiple `-D` flags per compilation.
+##### ビルトインのコンパイラフラグ
 
-See also the [Compiler Flags list](lf-condition-compilation-flags.md).
+ビルトインのコンパイラフラグの完全なリストはHaxeコンパイラを`--help-defines`の引数をつけて呼び出すことで手に入れることができます。Haxeのコンパイラはコンパイルごとに複数の`-D`フラグを指定できます。
+
+[コンパイラフラグ一覧](lf-condition-compilation-flags.md)も確認してみてください。
 
 ---
 
-Previous section: [Language Features](lf.md)
+Previous section: [言語機能](lf.md)
 
-Next section: [Global Compiler Flags](lf-condition-compilation-flags.md)
+Next section: [グローバルコンパイラフラグ](lf-condition-compilation-flags.md)

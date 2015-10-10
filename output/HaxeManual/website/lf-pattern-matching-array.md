@@ -1,6 +1,6 @@
-## 6.4.5 Array matching
+## 6.4.5 配列マッチング
 
-Arrays can be matched on fixed length:
+配列は固定長のマッチングを行うことができます。
 
 ```haxe
     var myArray = [1, 6];
@@ -14,10 +14,10 @@ Arrays can be matched on fixed length:
     trace(match); // 1
 ```
 
-This will trace `1` because `array[1]` matches `6`, and `array[0]` is allowed to be anything.
+この例では、`array[1]`が`6`にマッチし、`array[0]`は何でもよいので、`1`が出力されます。
 
 ---
 
-Previous section: [Structure matching](lf-pattern-matching-structure.md)
+Previous section: [構造体マッチング](lf-pattern-matching-structure.md)
 
-Next section: [Or patterns](lf-pattern-matching-or.md)
+Next section: [orパターン](lf-pattern-matching-or.md)

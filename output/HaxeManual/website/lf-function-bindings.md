@@ -1,6 +1,6 @@
-## 6.8 Function Bindings
+## 6.8 関数の束縛(bind)
 
-Haxe 3 allows binding functions with partially applied arguments. Each function type can be considered to have a `bind` field, which can be called with the desired number of arguments in order to create a new function. This is demonstrated here:
+Haxe3では、部分的に引数を適用して関数を束縛することが可能です。すべての関数型は`bind`フィールドを持っており、これを呼び出すことで引数の数を減らした新しい関数を作りだすことができます。その実例を示します。
 
 ```haxe
 class Main {
@@ -17,20 +17,21 @@ class Main {
 }
 
 ```
-Line 4 binds the function `map.set` to a variable named `f`, and applies `12` as second argument. The underscore `_` is used to denote that this argument is not bound, which is shown by comparing the types of `map.set` and `f`: The bound `String` argument is effectively cut from the type, turning a `Int->String->Void` type into `Int->Void`.
 
-A call to `f(1)` then actually invokes `map.set(1, "12")`, the calls to `f(2)` and `f(3)` are analogous. The last line proves that all three indices indeed are mapped to the value `"12"`.
+行4では、`map.set`関数に2番目の引数に`12`を適用し、`f`という変数に割り当てました。アンダースコア(`_`)はその引数を束縛しないことを表すのに使います。このことは`map.set`と、`f`の型の比較でもわかります。束縛された`String`型の引数が取り除かれたので、`Int->String->Void`型が`Int->Void`型に変わっています。
 
-The underscore `_` can be skipped for trailing arguments, so the first argument could be bound through `map.set.bind(1)`, yielding a `String->Void` function that sets a new value for index `1` on invocation.
+`f(1)`を呼び出したことで実際には`map.set(1, "12")`が実行されます。`f(2)`、`f(3)`の呼び出しでも同じ関係性が成り立ちます。最後の行で、3つのインデックスすべてに紐づく値が`"12"`になっていることが確認できます。
 
-> ##### Trivia: Callback
+アンダースコア(`_`)は末尾の引数では省略することができます。つまり、`map.set.bind(1)`で最初の引数を束縛した場合、インデックス`1`について新しい値を設定する`String->Void`関数が提供されます。
+
+> ##### Trivia: コールバック
 >
-> Prior to Haxe 3, Haxe used to know a `callback`-keyword which could be called with a function argument followed by any number of binding arguments. The name originated from a common usage were a callback-function is created with the this-object being bound.
+> Haxe3よりも前のバージョンでは、`callback`キーワードに1つの関数の引数と任意の個数の束縛する引数をつけて呼び出しをしていました。この束縛する機能に対してコールバック関数という名前が使われるようになっていました。
 > 
-> Callback would allow binding of arguments only from left to right as there was no support for the underscore `_`. The choice to use an underscore was controversial and several other suggestions were made, none of which were considered superior. After all, the underscore `_` at least looks like it's saying "fill value in here", which nicely describes its semantics.
+> `callback`は左から右への束縛のみでアンダースコア(`_`)はサポートしていませんでした。アンダースコアを使うという選択肢は論争を生み、そのほかの案もいくつか現れましたがこれより優れているものはありませんでした。少なくともアンダースコア(`_`)は「ここに値を入れて」と言っているように見えるので、この意味を書き表すのに適しているという結論にいたりました。
 
 ---
 
-Previous section: [Iterators](lf-iterators.md)
+Previous section: [イテレータ(反復子)](lf-iterators.md)
 
-Next section: [Metadata](lf-metadata.md)
+Next section: [メタデータ](lf-metadata.md)

@@ -16,7 +16,7 @@ class Main {
 
 `myLocalFunction`を、`main`クラスフィールドの[ブロック式](expression-block.md)の中で宣言しました。このローカル関数は1つの引数`i`を取り、それをスコープの外のvalueに足しています。
 
-スコープについては、[変数の場合](expression-var.md)と同じで、多くの面で名前を持つローカル関数は、ローカル変数に対する匿名関数の代入と同じです。
+スコープについては[変数の場合](expression-var.md)と同じで、多くの面で名前を持つローカル関数はローカル変数に対する匿名関数の代入と同じです。
 
 ```haxe
 var myLocalFunction = function(a) { }

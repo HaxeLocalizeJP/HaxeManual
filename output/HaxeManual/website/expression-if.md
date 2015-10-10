@@ -1,6 +1,6 @@
 ## 5.16 if
 
-条件分岐式は、`if`キーワードから始まり、小かっこ`()`で囲んだ条件式、条件が真だった場合に評価される式となります。
+条件分岐式は`if`キーワードから始まり、小かっこ(`()`)で囲んだ条件式、条件が真だった場合に評価される式となります。
 
 ```haxe
 if (condition) expression;
@@ -22,7 +22,7 @@ else if(condition2) expression2
 else expression3
 ```
 
-`if`式に値が要求される場合（たとえば、`var x = if(condition) expression1 else expression2`という風に）、型付け機は`expression1`と`expression2`の型を[単一化](type-system-unification.md)します。`else`式がなかった場合、型は`Void`であると推論されます。
+`if`式に値が要求される場合（たとえば、`var x = if(condition) expression1 else expression2`というふうに）、型付け器は`expression1`と`expression2`の型を[単一化](type-system-unification.md)します。`else`式がなかった場合、型は`Void`であると推論されます。
 
 ---
 

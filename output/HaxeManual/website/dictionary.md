@@ -42,11 +42,6 @@ An **accessor method** (or short **accessor**) for a field named `field` of type
 ##### Class Field
 A class field is a variable, property or method of a class which can either be static or non-static. Non-static fields are referred to as **member** fields, so we speak of e.g. a **static method** or a **member variable**.
 
-<a id="define-compiler-flag" class="anch"></a>
-
-##### Compiler Flag
-A compiler flag is a configurable value which may influence the compilation process. Such a flag can be set by invoking the command line with `-D key=value` or just `-D key`, in which case the value defaults to `"1"`. The compiler also sets several flags internally to pass information between different compilation steps.
-
 <a id="define-enumvalue" class="anch"></a>
 
 ##### EnumValue
@@ -74,8 +69,8 @@ The macro context is the environment in which the macro is executed. Depending o
 
 <a id="define-nullable" class="anch"></a>
 
-##### Nullable
-Haxeでは、ある型が値として`null`をとる場合に**Nullable**(null許容型)であるとみなす。
+##### null許容
+Haxeでは、ある型が値として`null`をとる場合にnull許容であるとみなす。
 
 <a id="define-physical-field" class="anch"></a>
 
@@ -100,11 +95,6 @@ A field is considered to be **physical** if it is either
 ##### Read Access
 A read access to a field occurs when a right-hand side [field access expression](expression-field-access.md) is used. This includes calls in the form of `obj.field()`, where `field` is accessed to be read.
 
-<a id="define-static-extension" class="anch"></a>
-
-##### Static Extension
-A static extension allows pseudo-extending existing types without modifying their source. In Haxe this is achieved by declaring a static method with a first argument of the extending type and then bringing the defining class into context through `using`.
-
 <a id="define-string" class="anch"></a>
 
 ##### String
@@ -119,6 +109,11 @@ Voidは型が存在しないことを表します。特定の場面(主に関数
 
 ##### Write Access
 A write access to a field occurs when a [field access expression](expression-field-access.md) is assigned a value in the form of `obj.field = value`. It may also occur in combination with [read access](dictionary.md#define-read-access) for special assignment operators such as `+=` in expressions like `obj.field += value`.
+
+<a id="define-compiler-flag" class="anch"></a>
+
+##### コンパイラフラグ
+コンパイラフラグはコンパイルの過程に影響をあたえる、設定可能な値です。このフラグは`-D key=value`あるいは単に`-D key`（この場合デフォルト値の`"1"`になる）の形式でコマンドラインから指定できます。そのほかにも、コンパイラはコンパイルの過程で別のステップへ情報伝達するために、内部的にいくつかのフラグを設定します。
 
 <a id="define-generic-type-parameter" class="anch"></a>
 
@@ -167,7 +162,7 @@ A write access to a field occurs when a [field access expression](expression-fie
 
 ##### 名前
 
-名前は次のいずれかにひもづきます。
+名前は次のいずれかに紐づきます。
 
 * 型
 * ローカル変数
@@ -199,7 +194,7 @@ A write access to a field occurs when a [field access expression](expression-fie
 
 <a id="define-compound-type" class="anch"></a>
 
-##### 複合型(Compound Type)
+##### 複合型
 
 複合型というのは、従属する型を持つ型です。[型パラメータ](type-system-type-parameters.md)を持つ型や、[関数](types-function.md)型がこれに当たります。
 
@@ -213,11 +208,11 @@ A write access to a field occurs when a [field access expression](expression-fie
 
 ##### 識別子
 
-Haxeの識別子は、アンダースコア`_`、ドル`$`、小文字`a-z`、大文字`A-Z`のいずれかから始まり、任意の`_`、`A-Z`、`a-z`、`0-9`のつなぎ合わせが続きます。
+Haxeの識別子はアンダースコア(`_`)、ドル(`$`)、小文字(`a-z`)、大文字(`A-Z`)のいずれかから始まり、任意の`_`、`A-Z`、`a-z`、`0-9`のつなぎ合わせが続きます。
 
-さらに使用する状況によって以下の制限が加わります。これらは、型付けの時にチェックされます。
+さらに使用する状況によって以下の制限が加わります。これらは型付けの時にチェックされます。
 
-* 型の名前は大文字`A-Z`か、アンダースコア`_`で始まる。
+* 型の名前は大文字(`A-Z`)か、アンダースコア(`_`)で始まる。
 * [名前](dictionary.md#define-name)では、先頭にドル記号は使えません。(ドル記号はほとんどの場合、[マクロの実体化](macro-reification.md)に使われます)
 
 
@@ -225,3 +220,8 @@ Haxeの識別子は、アンダースコア`_`、ドル`$`、小文字`a-z`、�
 
 ##### 静的ターゲット
 静的ターゲットでは、その言語自体が基本型が`null`を許容しないような型システムを持っています。この性質はFlash、C++、Java、C#ターゲットに当てはまります。
+
+<a id="define-static-extension" class="anch"></a>
+
+##### 静的拡張
+静的拡張はすでに存在している型に対して、元のソースコードを変更することなく見せかけの拡張を行います。Haxeの静的拡張は最初の引数が拡張する対象の型である静的メソッドを宣言して、それ`using`を使って記述しているクラス内に持ちこむことで使用できます。

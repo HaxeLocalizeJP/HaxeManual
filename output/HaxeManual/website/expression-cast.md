@@ -1,6 +1,6 @@
 ## 5.23 cast
 
-Haxeには、以下の2種類のキャストがあります。
+Haxeには以下の2種類のキャストがあります。
 
 ```haxe
 cast expr; // unsafe cast

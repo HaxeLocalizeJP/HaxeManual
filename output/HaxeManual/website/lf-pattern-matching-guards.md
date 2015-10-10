@@ -1,6 +1,6 @@
-## 6.4.7 Guards
+## 6.4.7 ガード
 
-It is also possible to further restrict patterns with the `case ... if(condition):` syntax:
+`case ... if(condition):`の構文を使ってパターンをさらに限定することができます。
 
 ```haxe
     var myArray = [7, 6];
@@ -14,10 +14,10 @@ It is also possible to further restrict patterns with the `case ... if(condition
     trace(s); // 6<=7
 ```
 
-The first case has an additional guard condition `if (b > a)`. It will only be selected if that condition holds, otherwise matching continues with the next case.
+最初のケースは追加のガード条件`if (b > a)`を持っています。このケースはこの条件が正だった場合のみ選択され、それ以外の場合は次のケースとのマッチングが続きます。
 
 ---
 
-Previous section: [Or patterns](lf-pattern-matching-or.md)
+Previous section: [orパターン](lf-pattern-matching-or.md)
 
-Next section: [Match on multiple values](lf-pattern-matching-tuples.md)
+Next section: [複数の値のマッチング](lf-pattern-matching-tuples.md)

@@ -1,6 +1,6 @@
 ## 5.18 try/catch
 
-Haxeでは、`try/catch`構文を使うことで値を捕捉することができます。
+Haxeでは`try/catch`構文を使うことで値を捕捉することができます。
 
 ```haxe
 try try-expr
@@ -16,10 +16,10 @@ catch(varName2:Type2) catch-expr-2
 
 Haxeでは、あらゆる種類の値を`throw`して、`catch`することができます。その型は特定の例外やエラークラスに限定されません。`catch`ブロックは上から下へとチェックされていき、投げられた値と型が適合する最初のブロックが実行されます。
 
-この過程は、コンパイル時の[単一化](type-system-unification.md)に似ています。しかし、この判定は実行時に行われるものでいくつかの制限があります。
+この過程はコンパイル時の[単一化](type-system-unification.md)に似ています。しかし、この判定は実行時に行われるものでいくつかの制限があります。
 
 * 型は実行時に存在するものでなければならない。[クラスインスタンス](types-class-instance.md)、[列挙型インスタンス](types-enum-instance.md)、[コアタイプ抽象型](types-abstract-core-type.md)、[Dynamic](types-dynamic.md).
-* 型パラメータは、[Dynamic](types-dynamic.md)でなければならない。
+* 型パラメータは[Dynamic](types-dynamic.md)でなければならない。
 
 ---
 

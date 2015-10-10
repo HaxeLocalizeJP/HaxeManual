@@ -8,7 +8,7 @@
 (expr : type)
 ```
 
-小かっこは必須です。[セーフキャスト](expression-cast-safe.md)とは異なり、実行時に影響はありません。これは、コンパイル時の以下の2つの挙動を持ちます。
+小かっこは必須です。[セーフキャスト](expression-cast-safe.md)とは異なり、実行時に影響はありません。これはコンパイル時の以下の2つの挙動を持ちます。
 
 1. [トップダウンの型推論](type-system-top-down-inference.md)が`expr`に対して`type`の型で適用されます。
 2. その結果、`type`の型との[単一化](type-system-unification.md)がされます。
@@ -19,4 +19,4 @@
 
 Previous section: [セーフキャスト](expression-cast-safe.md)
 
-Next section: [Language Features](lf.md)
+Next section: [言語機能](lf.md)

@@ -1,8 +1,8 @@
-## 6.4.9 Extractors
+## 6.4.9 抽出子(エクストラクタ)
 
 ##### since Haxe 3.1.0
 
-Extractors allow applying transformations to values being matched. This is often useful when a small operation is required on a matched value before matching can continue:
+抽出子(エクストラクタ)はマッチした値に変更を適用することができます。マッチした値に小さな変更を適用して、さらにマッチングを行う場合に便利です。
 
 ```haxe
 enum Test {
@@ -25,7 +25,7 @@ class Main {
 }
 ```
 
-Here we have to capture the argument value of the `TString` enum constructor in a variable `temp` and use a nested switch on `temp.toLowerCase()`. Obviously, we want matching to succeed if `TString` holds a value of `"foo"` regardless of its casing. This can be simplified with extractors:
+この場合、`TString`列挙型コンストラクタの引数の値を、`temp`に割り当てて、さらにネストした`temp.toLowerCase()`に対する`switch`を行っています。見てのとおり、`TString`が`"foo"`の一部大文字のものを持っているので、このマッチングは成功します。これは抽出子を使うことで簡略化できます。
 
 ```haxe
 enum Test {
@@ -46,12 +46,12 @@ class Main {
 }
 ```
 
-Extractors are identified by the `extractorExpression => match` expression. The compiler generates code which is similar to the previous example, but the original syntax was greatly simplified. Extractors consist of two parts, which are separated by the `=>` operator:
+抽出子は`extractorExpression => match`の式によって認識されます。コンパイラはその前の例と同じようなコードを出力しますが、記述する構文はずいぶんと簡略化されました。抽出子は`=>`で分断される以下の2つの部品からなります。
 
-1. The left side can be any expression, where all occurrences of underscore `_` are replaced with the currently matched value.
-2. The right side is a pattern which is matched against the result of the evaluation of the left side.
+1. 左側はあらゆる式が可能で、アンダースコア(`_`)が出現する箇所すべてが、現在マッチする値で置き換えられます。
+2. 右側は左側を評価した結果をマッチングするためのパターンです。
 
-Since the right side is a pattern, it can contain another extractor. The following example "chains" two extractors:
+右側はパターンですから、さらに別の抽出子を使うことが可能です。以下の例では2つの抽出子をチェーンさせています。
 
 ```haxe
 class Main {
@@ -72,9 +72,9 @@ class Main {
 }
 ```
 
-This traces `12` as a result of the calls to `add(3, 1)`, where `3` is the matched value, and `mul(4, 3)` where `4` is the result of the `add` call. It is worth noting that the `a` on the right side of the second `=>` operator is a [capture variable](lf-pattern-matching-variable-capture.md).
+これは`3`がマッチして`add(3, 1)`を呼び出し、その結果の`4`がマッチして`mul(4, 3)`呼び出された結果として、`12`が出力されます。2つ目の`=>`の右側の`a`は[変数取り出し](lf-pattern-matching-variable-capture.md)であることに注意してください。
 
-It is currently not possible to use extractors within [or-patterns](lf-pattern-matching-or.md):
+現在は[orパターン](lf-pattern-matching-or.md)内で抽出子を使うことはできません。
 
 ```haxe
 class Main {
@@ -87,10 +87,10 @@ class Main {
 }
 ```
 
-However, it is possible to have or-patterns on the right side of an extractor, so the previous example would compile without the parentheses.
+しかし、orパターンを抽出子の右側に使うことはできます。そのため、上の例は小かっこ無しの場合ではコンパイル可能です。
 
 ---
 
-Previous section: [Match on multiple values](lf-pattern-matching-tuples.md)
+Previous section: [複数の値のマッチング](lf-pattern-matching-tuples.md)
 
-Next section: [Exhaustiveness checks](lf-pattern-matching-exhaustiveness.md)
+Next section: [網羅性のチェック](lf-pattern-matching-exhaustiveness.md)

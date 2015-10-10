@@ -17,8 +17,8 @@
 \contentsline {todo}{Mention toString()/String conversion somewhere in this chapter.}{47}{section*.23}
 \contentsline {todo}{''parent class'' should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.}{48}{section*.24}
 \contentsline {todo}{proper label and caption + code/identifier styling for diagram}{55}{section*.27}
-\contentsline {todo}{Figure out wtf our rules are now for when this is checked.}{94}{section*.30}
-\contentsline {todo}{Comprehensions are only listing Arrays, not Maps}{95}{section*.31}
-\contentsline {todo}{what to use for listing of non-haxe code like hxml?}{117}{section*.42}
-\contentsline {todo}{Check if we can build GADTs this way.}{128}{section*.49}
-\contentsline {todo}{I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?}{146}{section*.52}
+\contentsline {todo}{Figure out wtf our rules are now for when this is checked.}{93}{section*.48}
+\contentsline {todo}{Comprehensions are only listing Arrays, not Maps}{94}{section*.49}
+\contentsline {todo}{what to use for listing of non-haxe code like hxml?}{116}{section*.60}
+\contentsline {todo}{Check if we can build GADTs this way.}{127}{section*.67}
+\contentsline {todo}{I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?}{145}{section*.70}

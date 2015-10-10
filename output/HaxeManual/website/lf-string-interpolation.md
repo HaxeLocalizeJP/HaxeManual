@@ -1,33 +1,36 @@
-## 6.5 String Interpolation
+## 6.5 文字列補間
 
-With Haxe 3 it is no longer necessary to manually concatenate parts of a string due to the introduction of **String Interpolation**. Special identifiers, denoted by the dollar sign `$` within a String enclosed by single-quote `'` characters, are evaluated as if they were concatenated identifiers:
+Haxe3では、**文字列補間**のおかげで、手動で文字列をつなげ合わせる必要がなくなりました。シングルクオート(`'`)で囲まれた文字列の中で、ドル記号(`$`)に続けて識別子を記述すると、その識別子を評価してつなげ合わせてくれます。
 
 ```haxe
 var x = 12;
 // The value of x is 12
 trace('The value of x is $x');
 ```
-Furthermore, it is possible to include whole expressions in the string by using `${expr}`, with `expr` being any valid Haxe expression:
+
+さらに、`${expr}`を使うことで文字列内に式そのものを含めることが可能になります。この`expr`はHaxeの正当な式であれば、なんでもかまいません。
 
 ```haxe
 var x = 12;
 // The sum of 12 and 3 is 15
 trace('The sum of $x and 3 is ${x + 3}');
 ```
-String interpolation is a compile-time feature and has no impact on the runtime. The above example is equivalent to manual concatenation, which is exactly what the compiler generates:
+
+文字列補間はコンパイル時の機能なので、実行時には影響を与えません。上の例は手動のつなげ合わせと同じです。コンパイラは以下と同様のコードを生成します。
 
 ```haxe
 trace("The sum of " + x +
   " and 3 is " + (x + 3));
 ```
-Of course the use of single-quote enclosed strings without any interpolation remains valid, but care has to be taken regarding the $ character as it triggers interpolation. If an actual dollar-sign should be used in the string, `$$` can be used.
 
-> ##### Trivia: String Interpolation before Haxe 3
+もちろん、一切の補間なしでシングルクオートで囲んだ文字列を使用することができますが、$の文字が補間のトリガーとして予約されてしまっていることに気を付けてください。文字列内でドル記号そのものを使いたい場合は`$$`を使います。
+
+> ##### Trivia: Haxe3以前の文字列補間
 >
-> String Interpolation has been a Haxe feature since version 2.09. Back then, the macro `Std.format` had to be used, being both slower and less comfortable than the new string interpolation syntax.
+> 文字列補間自体はバージョン2.09からHaxeの機能として存在しています。そのころは`Std.format`のマクロが使われいました。これは新しい文字列補間の構文よりも遅くてあまり快適でないものでした。
 
 ---
 
-Previous section: [Useless pattern checks](lf-pattern-matching-unused.md)
+Previous section: [無意味なパターンのチェック](lf-pattern-matching-unused.md)
 
-Next section: [Array Comprehension](lf-array-comprehension.md)
+Next section: [配列内包表記](lf-array-comprehension.md)

@@ -33,6 +33,6 @@ The second question usually comes down to providing an argument specifying the d
 
 ---
 
-Previous section: [Inline constructors](lf-inline-constructor.md)
+Previous section: [インラインコンストラクタ](lf-inline-constructor.md)
 
 Next section: [Compiler Features](cr-features.md)

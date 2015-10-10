@@ -1,10 +1,10 @@
-## 6.3 Static Extension
+## 6.3 静的拡張
 
-> ##### Define: Static Extension
+> ##### Define: 静的拡張
 >
-> A static extension allows pseudo-extending existing types without modifying their source. In Haxe this is achieved by declaring a static method with a first argument of the extending type and then bringing the defining class into context through `using`.
+> 静的拡張はすでに存在している型に対して、元のソースコードを変更することなく見せかけの拡張を行います。Haxeの静的拡張は最初の引数が拡張する対象の型である静的メソッドを宣言して、それ`using`を使って記述しているクラス内に持ちこむことで使用できます。
 
-Static extensions can be a powerful tool which allows augmenting types without actually changing them. The following example demonstrates the usage:
+静的拡張は実際に型の変更を行うことなく型を強化する強力なツールです。以下の例で、その使い方を実演します。
 
 ```haxe
 using Main.IntExtender;
@@ -22,18 +22,18 @@ class Main {
 }
 ```
 
-Clearly, `Int` does not natively provide a `triple` method, yet this program compiles and outputs `36` as expected. This is because the call to `12.triple()` is transformed into `IntExtender.triple(12)`. There are three requirements for this:
+`Int`は元々`triple`メソッドを持っていませんが、このプログラムは期待通り`36`を出力します。`12.triple()`の呼び出しが`IntExtender.triple(12)`に変形されるためです。これには必要な条件が3つあります。
 
-1. Both the literal `12` and the first argument of `triple` are of type `Int`.
-2. The class `IntExtender` is brought into context through `using Main.IntExtender`.
-3. `Int` does not have a `triple` field by itself (if it had, that field would take priority over the static extension).
+1. 定数値の`12`と`triple`の最初の引数の型が、共に`Int`である
+2. `IntExtender`クラスが`using Main.IntExtender`を使って現在の文脈に読み込まれている。
+3. `Int`自身は`triple`フィールドを持っていない(持っていた場合、静的拡張よりも高い優先度になる)。
 
-Static extensions are usually considered syntactic sugar and indeed they are, but it is worth noting that they can have a dramatic effect on code readability: Instead of nested calls in the form of `f1(f2(f3(f4(x))))`, chained calls in the form of `x.f4().f3().f2().f1()` can be used.
+静的拡張はシンタックスシュガーですが、コードの可読性に大きな影響を与えることには注目する価値があります。`f1(f2(f3(f4(x))))`の形のネストされた呼び出しの代わりに、`x.f4().f3().f2().f1()`のチェーンの形での呼び出しが可能になります。
 
-Following the rules previously described in [解決順序](type-system-resolution-order.md), multiple `using` expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see [モジュールとパス](type-system-modules-and-paths.md)) as static extension brings all its types into context.
+優先順位のルールは[解決順序](type-system-resolution-order.md)ですでに説明されているとおり、`using`式が複数ある場合は下から上へと確認がされ、各モジュールでは各型のフィールドが上から下へと確認がされます。モジュールを静的拡張として`using`すると、そのすべての型が現在の文脈にインポートされます(モジュール内の特定の型の場合とは対照的です。詳しくは[モジュールとパス](type-system-modules-and-paths.md)を見てください)。
 
 ---
 
-Previous section: [Externs](lf-externs.md)
+Previous section: [extern](lf-externs.md)
 
-Next section: [In the Haxe Standard Library](lf-static-extension-in-std.md)
+Next section: [Haxe標準ライブラリについて](lf-static-extension-in-std.md)

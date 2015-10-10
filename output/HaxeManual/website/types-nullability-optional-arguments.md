@@ -19,6 +19,6 @@ function opt( ?z : Int = -1) {}
 
 ---
 
-Previous section: [Nullable(null許容型)](types-nullability.md)
+Previous section: [null許容](types-nullability.md)
 
 Next section: [クラスインスタンス](types-class-instance.md)

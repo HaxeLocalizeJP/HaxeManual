@@ -1,6 +1,6 @@
-## 6.4.10 Exhaustiveness checks
+## 6.4.10 網羅性のチェック
 
-The compiler ensures that no possible cases are forgotten:
+コンパイラは起こりうるケースが忘れ去られてないかのチェックを行います。
 
 ```haxe
 switch(true) {
@@ -8,10 +8,10 @@ switch(true) {
 } // Unmatched patterns: true
 ```
 
-The matched type `Bool` admits two values `true` and `false`, but only `false` is checked.
+マッチング対象の`Bool`型は`true`と`false`の2つの値を取り得ますが、`false`のみがチェックされています。
 
 ---
 
-Previous section: [Extractors](lf-pattern-matching-extractors.md)
+Previous section: [抽出子(エクストラクタ)](lf-pattern-matching-extractors.md)
 
-Next section: [Useless pattern checks](lf-pattern-matching-unused.md)
+Next section: [無意味なパターンのチェック](lf-pattern-matching-unused.md)

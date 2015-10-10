@@ -1,13 +1,13 @@
-## 6.11 Inline constructors
+## 6.11 インラインコンストラクタ
 
 ##### since Haxe 3.1.0
 
-If a constructor is declared to be [inline](class-field-inline.md), the compiler may try to optimize it away in certain situations. There are several requirements for this to work:
+コンストラクタに、[inline](class-field-inline.md)の宣言をつけると、コンパイラは特定の場合において最適化を試みます。この最適化が動作するためにはいくつかの必要事項があります。
 
-* The result of the constructor call must be directly assigned to a local variable.
-* The expression of the constructor field must only contain assignments to its fields.
+* コンストラクタの呼び出しの結果はローカル変数への直接の代入でなければいけない。
+* コンストラクタフィールドの式はそのフィールドへの代入のみでなければならない。
 
-The following example demonstrates constructor inlining:
+以下に、コンストラクタのインライン化の実例を挙げます。
 
 ```haxe
 class Point {
@@ -27,7 +27,7 @@ class Main {
 }
 ```
 
-A look at the JavaScript output reveals the effect:
+JavaScript出力をみると、その効果がわかります。
 
 ```haxe
 Main.main = function() {
@@ -38,6 +38,6 @@ Main.main = function() {
 
 ---
 
-Previous section: [Access Control](lf-access-control.md)
+Previous section: [アクセス制御](lf-access-control.md)
 
 Next section: [Compiler Usage](compiler-usage.md)

@@ -1,12 +1,12 @@
-## 6.2 Externs
+## 6.2 extern
 
-Externs can be used to describe target-specific interaction in a type-safe manner. They are defined like normal classes, except that
+externはターゲット固有の連携を型安全のルールに従って記述するために使います。宣言は普通のクラスに似た形で、以下の要素が必要です。
 
-* the `class` keyword is preceded by the `extern` keyword,
-* [methods](class-field-method.md) have no expressions and
-* all argument and return types are explicit.
+* `class`キーワードの前に`extern`キーワードを置きます。
+* [メソッド](class-field-method.md)は式を持ちません。
+* すべての引数と戻り値の型を明示します。
 
-A common example from the [Haxe Standard Library](std.md) is the `Math` class, as an excerpt shows:
+[Haxe標準ライブラリ](std.md)の`Math`クラスがちょうどいい例です。その一部を抜粋します。
 
 ```haxe
 extern class Math
@@ -16,7 +16,7 @@ extern class Math
 }
 ```
 
-We see that externs can define both methods and variables (actually, `PI` is declared as a read-only [property](class-field-property.md)). Once this information is available to the compiler, it allows field access accordingly and also knows the types:
+`extern`が、メソッドと変数の両方を定義できることがわかります(実際のところ、`PI`は読み込み専用の[プロパティ](class-field-property.md))を定義しています。一度この情報がコンパイラで使用可能になると、型がわかり、フィールドへのアクセスが出来るようになります。
 
 ```haxe
 class Main {
@@ -27,23 +27,23 @@ class Main {
 }
 ```
 
-This works because the return type of method `floor` is declared to be `Int`.
+`floor`メソッドの戻り値が`Int`して定義されているため、このように動作します。
 
-The Haxe Standard Library comes with many externs for the Flash and JavaScript target. They allow accessing the native APIs in a type-safe manner and are instrumental for designing higher-level APIs. There are also externs for many popular native libraries on [haxelib](haxelib.md).
+Haxe標準ライブラリは多くの`extern`をFlash、JavaScriptターゲット用にもっています。これにより、ネイティブのAPIに型安全のルールに従ってアクセス可能にし、より高いレベルのAPI設計の助けになります。[haxelib](haxelib.md)でも、多くのネイティブのライブラリの`extern`を入手できます。
 
-The Flash, Java and C# targets allow direct inclusion of native libraries from [command line](compiler-usage.md). Target-specific details are explained in the respective sections of [Target Details](target-details.md).
+Flash、Java、C#ターゲットでは、[コマンドライン](compiler-usage.md)から直接ネイティブライブラリの取り込みを行うことができます。ターゲットごとの詳細は[Target Details](target-details.md)のそれぞれの節で説明されています。
 
-Some targets such as Python or JavaScript may require generating additional "import" code that loads an `extern` class from a native module. Haxe provides ways to declare such dependencies also described in respective sections [Target Details](target-details.md).
+Pythonや、JavaScriptといったターゲットでは、`extern`クラスをネイティブのモジュールから読み込むために追加の「インポート」が必要になる場合があります。Haxeはそのような依存関係を宣言する仕組みを提供しているので、それらを[Target Details](target-details.md)のそれぞれの節で説明します。
 
-##### Rest arguments and type choices
+##### 可変長引数と、型の選択肢
 ##### since Haxe 3.2.0
 
-The haxe.extern package provides two types that help mapping native semantics to Haxe:
+haxe.externパッケージはネイティブの概念をHaxeに対応させるため、2つの型を提供しています。
 
-* `Rest<T>`: This type can be used as a final function argument to allow passing an arbitrary number of additional call arguments. The type parameter can be used to constrain these arguments to a specific type.
-* `EitherType<T1,T2>`: This type allows using either of its parameter types, thus representing a type choice. It can be nested to allow more than two different types.
+* `Rest<T>`: この型は関数の最後の引数として使って、可変長の引数を追加で渡すことを可能にします。型パラメータは引数を特定の型に制限するのに使います。
+* `EitherType<T1,T2>`: この型はパラメータのどちらかの型を使うことができるようにする。つまり、型の選択肢を表現できます。3つ以上の型を選ばせたい場合はネストさせて使います。
 
-We demonstrate the usage in this code sample:
+以下にデモを用意しました。
 
 ```haxe
 import haxe.extern.Rest;
@@ -69,6 +69,6 @@ class Main {
 
 ---
 
-Previous section: [Global Compiler Flags](lf-condition-compilation-flags.md)
+Previous section: [グローバルコンパイラフラグ](lf-condition-compilation-flags.md)
 
-Next section: [Static Extension](lf-static-extension.md)
+Next section: [静的拡張](lf-static-extension.md)

@@ -1,6 +1,6 @@
 ## 5.14 whileループ
 
-通常の`while`ループは、`while`キーワードから始まり、小かっこ`(`、条件式が続き、小かっこ`)`を閉じて、ループ本体の式で終わります。
+通常の`while`ループは`while`キーワードから始まり、小かっこ(`(`)、条件式が続き、小かっこ閉(`)`)を閉じて、ループ本体の式で終わります。
 
 ```haxe
 while(condition) expression;
@@ -22,10 +22,10 @@ class Main {
 }
 ```
 
-この種類の`while`ループは、ループ本体が一度も評価されないことがあります。条件式が最初から`false`だった場合です。この点が[do-whileループ](expression-do-while.md)との違いです。
+この種類の`while`ループはループ本体が一度も評価されないことがあります。条件式が最初から`false`だった場合です。この点が[do-whileループ](expression-do-while.md)との違いです。
 
 ---
 
-Previous section: [for](expression-for.md)
+Previous section: [forループ](expression-for.md)
 
 Next section: [do-whileループ](expression-do-while.md)

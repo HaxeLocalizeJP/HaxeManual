@@ -22,11 +22,11 @@ class Main {
 }
 ```
 
-この例では、最初に`Child1`から`Base`へとキャストしています。これは、`Child1`が`Base`型の[子クラス](types-class-inheritance.md)なので、成功しています。次に`Child2`へキャストしていますが、`Child1`のインスタンスは`Child2`ではないので失敗しています。
+この例では、最初に`Child1`から`Base`へとキャストしています。これは`Child1`が`Base`型の[子クラス](types-class-inheritance.md)なので、成功しています。次に`Child2`へキャストしていますが、`Child1`のインスタンスは`Child2`ではないので失敗しています。
 
-Haxeコンパイラは、この場合`String`型の[例外を投げます](expression-throw.md)。この例外は、[`try/catch`ブロック](expression-try-catch.md)を使って捕捉できます。
+Haxeコンパイラはこの場合`String`型の[例外を投げます](expression-throw.md)。この例外は[`try/catch`ブロック](expression-try-catch.md)を使って捕捉できます。
 
-セーフキャストは実行時のオーバーヘッドがあります。重要なのは、コンパイラがすでにチェックを行っているので、`Std.is`のようなチェックを自分で入れるのは、余分だということです。`String`型の例外を捕捉する、try-catchを行うのがセーフキャストで意図された用途です。
+セーフキャストは実行時のオーバーヘッドがあります。重要なのはコンパイラがすでにチェックを行っているので、`Std.is`のようなチェックを自分で入れるのは、余分だということです。`String`型の例外を捕捉する、try-catchを行うのがセーフキャストで意図された用途です。
 
 ---
 

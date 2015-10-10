@@ -1,6 +1,6 @@
-## 6.4.11 Useless pattern checks
+## 6.4.11 無意味なパターンのチェック
 
-In a similar fashion, the compiler detects patterns which will never match the input value:
+同じように、コンパイラはどのような入力値に対してもマッチしないパターンを禁止します。
 
 ```haxe
 switch(Leaf("foo")) {
@@ -13,6 +13,6 @@ switch(Leaf("foo")) {
 
 ---
 
-Previous section: [Exhaustiveness checks](lf-pattern-matching-exhaustiveness.md)
+Previous section: [網羅性のチェック](lf-pattern-matching-exhaustiveness.md)
 
-Next section: [String Interpolation](lf-string-interpolation.md)
+Next section: [文字列補間](lf-string-interpolation.md)
