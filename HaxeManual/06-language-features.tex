@@ -1,38 +1,38 @@
-\chapter{Language Features}
+\chapter{言語機能}
 \label{lf}
 
-\emph{\tref{Abstract types}{types-abstract}:}
+\emph{\tref{抽象型}{types-abstract}:}
 
-An abstract type is a compile-time construct which is represented in a different way at runtime. This allows giving a whole new meaning to existing types.
+抽象型は実行時には別の形として提供されるコンパイル時の構成要素です。これにより、すでに存在する型に別の意味をあたえることができます。
 
-\emph{\tref{Extern classes}{lf-externs}:}
+\emph{\tref{externクラス}{lf-externs}:}
 
-Externs can be used to describe target-specific interaction in a type-safe manner.
+externを使うことで、型安全のルールにしたがってターゲット固有の連携を記述することができます。
 
-\emph{\tref{Anonymous structures}{types-anonymous-structure}:}
+\emph{\tref{匿名構造体}{types-anonymous-structure}:}
 
-Data can easily be grouped in anonymous structures, minimizing the necessity of small data classes.
+匿名構造体を使うことでデータを簡単にまとめて、小さなデータクラスの必要性を減らすことができます。
 
 \begin{lstlisting}
 var point = { x: 0, y: 10 };
 point.x += 10;
 \end{lstlisting}
 
-\emph{\tref{Array Comprehension}{lf-array-comprehension}:}
+\emph{\tref{配列内包表記}{lf-array-comprehension}:}
 
-Create and populate arrays quickly using for loops and logic.
+ループと条件分岐を使って、素早く配列を生成して受け渡すことができます。
 
 \begin{lstlisting}
 var evenNumbers = [ for (i in 0...100) if (i\%2==0) i ];
 \end{lstlisting}
 
-\emph{\tref{Classes, interfaces and inheritance}{types-class-instance}:}
+\emph{\tref{クラス、インターフェース、継承}{types-class-instance}:}
 
-Haxe allows structuring code in classes, making it an object-oriented language. Common related features known from languages such as Java are supported, including inheritance and interfaces.
+Haxeは、クラスを使ったコードの構造化ができる、オブジェクト指向言語です。継承やインターフェースといったJavaでサポートされるようなオブジェクト指向言語の標準的な機能を備えています。
 
-\emph{\tref{Conditional compilation}{lf-condition-compilation}:}
+\emph{\tref{条件付きコンパイル}{lf-condition-compilation}:}
 
-Conditional Compilation allows compiling specific code depending on compilation parameters. This is instrumental for abstracting target-specific differences, but can also be used for other purposes, such as more detailed debugging.
+条件付きコンパイルを使うことで、コンパイルのパラメータごとに固有のコードをコンパイルすることができます。これはターゲットごとの違いを抽象化する手助けになるだけでなく、詳細のデバッグ機能を提供するなどその他の用途にも使用できます。
 
 \begin{lstlisting}
 \#if js
@@ -42,9 +42,9 @@ Conditional Compilation allows compiling specific code depending on compilation 
 \#end
 \end{lstlisting}
 
-\emph{\tref{(Generalized) Algebraic Data Types}{types-enum-instance}:}
+\emph{\tref{(一般化)代数的データ型}{types-enum-instance}:}
 
-Structure can be expressed through algebraic data types (ADT), which are known as enums in the Haxe Language. Furthermore, Haxe supports their generalized variant known as GADT.
+Haxeではenumとして知られる、代数的データ型(ADT)を使って構造体を表現することができます。さらに、HaxeはGADTとして知られる一般化されたヴァリアントもサポートしています。
 
 \begin{lstlisting}
 enum Result {
@@ -54,13 +54,13 @@ enum Result {
 }
 \end{lstlisting}
 
-\emph{\tref{Inlined calls}{class-field-inline}:}
+\emph{\tref{インライン呼び出し}{class-field-inline}:}
 
-Functions can be designated as being inline, allowing their code to be inserted at call-site. This can yield significant performance benefits without resorting to code duplication via manual inlining.
+関数はインラインとして指定して、呼び出し場所にその関数のコードを挿入させることができます。これにより、手作業でのインライン化のようなコードの重複を発生させること無く、価値あるパフォーマンスの改善を得ることできます。
 
-\emph{\tref{Iterators}{lf-iterators}:}
+\emph{\tref{イテレータ(反復子)}{lf-iterators}:}
 
-Iterating over a set of values, e.g. the elements of an array, is very easy in Haxe courtesy of iterators. Custom classes can quickly implement iterator functionality to allow iteration.
+Haxeはイテレータを適切にあつかっているので、値のセット(例えば、配列)の反復処理がとても簡単です。自前のクラスであっても、イテレータ機能の実装をすることで素早く反復可能にすることができます。n.
 
 \begin{lstlisting}
 for (i in [1, 2, 3]) {
@@ -68,9 +68,9 @@ for (i in [1, 2, 3]) {
 }
 \end{lstlisting}
 
-\emph{\tref{Local functions and closures}{expression-function}:}
+\emph{\tref{ローカル関数とクロージャ}{expression-function}:}
 
-Functions in Haxe are not limited to class fields and can be declared in expressions as well, allowing powerful closures.
+Haxeでは関数はクラスフィールドに限定されず、式の中で定義することができます。その場合、強力なクロージャも利用可能です。
 
 \begin{lstlisting}
 var buffer = "";
@@ -82,9 +82,9 @@ append("bar");
 trace(buffer); // foobar
 \end{lstlisting}
 
-\emph{\tref{Metadata}{lf-metadata}:}
+\emph{\tref{メタデータ}{lf-metadata}:}
 
-Add metadata to fields, classes or expressions. This can communicate information to the compiler, macros, or runtime classes.
+フィールド、クラス、式に対してメタデータを追加できます。これにより、コンパイラ、マクロ、実行時のクラスに情報の受け渡しができます。
 
 \begin{lstlisting}
 class MyClass {
@@ -93,26 +93,26 @@ class MyClass {
 trace(haxe.rtti.Meta.getFields(MyClass).value.range); // [1,8]
 \end{lstlisting}
 
-\emph{\tref{Static Extensions}{lf-static-extension}:}
+\emph{\tref{静的拡張}{lf-static-extension}:}
 
-Existing classes and other types can be augmented with additional functionality through using static extensions.
+既に存在するクラスやその他の型に対して、静的拡張を使うことで追加の機能を足すことができます。
 
 \begin{lstlisting}
 using StringTools;
 "  Me & You    ".trim().htmlEscape();
 \end{lstlisting}
 
-\emph{\tref{String Interpolation}{lf-string-interpolation}:}
+\emph{\tref{文字列中の変数展開}{lf-string-interpolation}:}
 
-Strings declared with a single quotes are able to access variables in the current context.
+シングルクオテーションを使って宣言した文字列では現在の文脈中の変数へのアクセスができます。
 
 \begin{lstlisting}
 trace('My name is $name and I work in ${job.industry}');
 \end{lstlisting}
 
-\emph{\tref{Partial function application}{lf-function-bindings}:} 
+\emph{\tref{関数の部分適用}{lf-function-bindings}:} 
 
-Any function can be applied partially, providing the values of some arguments and leaving the rest to be filled in later.
+すべての関数は部分適用を使って、いくつかの引数だけに値を適用して残りの引数を後で指定できるように残すことができます。
 
 \begin{lstlisting}
 var map = new haxe.ds.IntMap();
@@ -121,9 +121,9 @@ setToTwelve(1);
 setToTwelve(2);
 \end{lstlisting}
 
-\emph{\tref{Pattern Matching}{lf-pattern-matching}:} 
+\emph{\tref{パターンマッチング}{lf-pattern-matching}:} 
 
-Complex structures can be matched against patterns, extracting information from an enum or a structure and defining specific operations for specific value combination.
+複雑な構造体は、enumや構造体から情報を抽出したり、特定の演算子で値の組み合わせを指定したりしながら、パターンを当てはめてマッチングすることができます。
 
 \begin{lstlisting}
 var a = { foo: 12 };
@@ -133,9 +133,10 @@ switch (a) {
 }
 \end{lstlisting}
 
-\emph{\tref{Properties}{class-field-property}:}
+\emph{\tref{プロパティ}{class-field-property}:}
 
-Variable class fields can be designed as properties with custom read and write access, allowing fine grained access control.
+変数のクラスフィールドは、カスタムの読み込み書き込みアクセスを指定するプロパティが使えます。これにより、より良いアクセス制御が実現できます。
+
 \begin{lstlisting}
 public var color(get,set);
 function get_color() {
@@ -147,13 +148,13 @@ function set_color(c:String) {
 }
 \end{lstlisting}
 
-\emph{\tref{Access control}{lf-access-control}:}
+\emph{\tref{アクセス制御}{lf-access-control}:}
 
-The access control language feature uses the Haxe metadata syntax to force or allow access classes or fields.
+Haxeでは、メタデータの構文を使って、クラスやフィールドに対してアクセスを許可したりこじ開けたりといったアクセス制御をを行うことできます。
 
-\emph{\tref{Type Parameters, Constraints and Variance}{type-system-type-parameters}:}
+\emph{\tref{型パラメータ、共変性、反変性}{type-system-type-parameters}:}
 
-Types can be parametrized with type parameters, allowing typed containers and other complex data structures. Type parameters can also be constrained to certain types and respect variance rules.
+型には型パラメータをつけて、型付きのコンテナなど複雑なデータ構造を表現できます。型パラメータは特定の型への制限が可能で、また、変性のルールに従います。
 
 \begin{lstlisting}
 class Main<A> {
@@ -166,141 +167,141 @@ class Main<A> {
 }
 \end{lstlisting}
 
-\section{Conditional Compilation}
+\section{条件付きコンパイル}
 \label{lf-condition-compilation}
 
-Haxe allows conditional compilation by using \expr{\#if}, \expr{\#elseif} and \expr{\#else} and checking for \emph{compiler flags}.
+Haxeでは、\expr{\#if}、\expr{\#elseif}、\expr{\#else}を使って\emph{コンパイラフラグ}を確認することで条件付きコンパイルが可能です。
 
-\define{Compiler Flag}{define-compiler-flag}{A compiler flag is a configurable value which may influence the compilation process. Such a flag can be set by invoking the command line with \expr{-D key=value} or just \expr{-D key}, in which case the value defaults to \expr{"1"}. The compiler also sets several flags internally to pass information between different compilation steps.}
+\define{コンパイラフラグ}{define-compiler-flag}{コンパイラフラグはコンパイルの過程に影響をあたえる、設定可能な値です。このフラグは\expr{-D key=value}あるいは単に\expr{-D key}（この場合デフォルト値の\expr{"1"}になる）の形式でコマンドラインから指定できます。そのほかにも、コンパイラはコンパイルの過程で別のステップへ情報伝達するために、内部的にいくつかのフラグを設定します。}
 
-This example demonstrates usage of conditional compilation:
+以下は条件付きコンパイラの利用例のデモです。
 
 \haxe{assets/ConditionalCompilation.hx}
 
-Compiling this without any flags will leave only the \expr{trace("ok");} line in the body of the \expr{main} method. The other branches are discarded while parsing the file. These other branches must still contain valid Haxe syntax, but the code is not type-checked.
+これをフラグ無しでコンパイルした場合、\expr{main}メソッドの\expr{trace("ok");}が実行されて終了します。他の分岐はファイルを構文解析する際に切り捨てられます。他の分岐についても、正しいHaxeの構文である必要がありますが、型チェックはされません。
 
-The conditions after \expr{\#if} and \expr{\#elseif} allow the following expressions:
+\expr{\#if}と\expr{\#elseif}の直後の条件には以下の式が使えます。
 
 \begin{itemize}
-	\item Any identifier is replaced by the value of the compiler flag by the same name. Note that \expr{-D some-flag} from command line leads to the flags \expr{some-flag} and \expr{some\_flag} to be defined.
-	\item The values of \type{String}, \type{Int} and \type{Float} constants are used directly.
-		\item The boolean operators \expr{\&\&} (and), \expr{||} (or) and \expr{!} (not) work as expected, however the full expression must be completely contained by parentheses.
-	\item The operators \expr{==}, \expr{!=}, \expr{>}, \expr{>=}, \expr{<}, \expr{<=} can be used to compare values.
-	\item Parentheses \expr{()} can be used to group expressions as usual.
+	\item すべての識別子は同名のコンパイラフラグの値で置きかえられます。コマンドラインから\expr{-D some-flag}を指定すると\expr{some-flag}と\expr{some\_flag}のフラグが定義されることに気を付けてください。
+	\item \type{String}、\type{Int}、\type{Float}の定数値は直接使用されます。
+		\item \type{Bool}の演算\expr{\&\&} (and)、\expr{||} (or)、\expr{!} (not) は期待どおりに動作しますが、式全体を小かっこでかこむ必要があります。
+	\item \expr{==}、\expr{!=}、\expr{>}、\expr{>=}、\expr{<}、\expr{<=}の演算子が値の比較に使えます。
+	\item 小かっこ\expr{()}は通常通り、式をグループ化するのに使えます。
 \end{itemize}
 
-The Haxe parser does not parse \expr{some-flag} as a single token and instead reads it as a subtraction binary operator \expr{some - flag}. In cases like this the underscore version \expr{some_flag} has to be used.
+Haxeの構文解析器は、\expr{some-flag}を一つの句として認識しません、\expr{some - flag}の2項演算として読み取ります。このような場合は、アンダースコアを使う\expr{some_flag}の版を使用する必要があります。
 
+\paragraph{ビルトインのコンパイラフラグ}
 
-\paragraph{Built-in Compiler Flags}
-An exhaustive list of all built-in defines can be obtained by invoking the Haxe Compiler with the \expr{--help-defines} argument. The Haxe Compiler allows multiple \expr{-D} flags per compilation.
+ビルトインのコンパイラフラグの完全なリストは、Haxeコンパイラを\expr{--help-defines}の引数をつけて呼び出すことで手に入れることができます。Haxeのコンパイラは、コンパイルごとに複数の\expr{-D}フラグを指定できます。
 
-See also the \tref{Compiler Flags list}{lf-condition-compilation-flags}.
+\tref{コンパイラフラグ一覧}{lf-condition-compilation-flags}も確認してみてください。
 
-\subsection{Global Compiler Flags}
+\subsection{グローバルコンパイラフラグ}
 \label{lf-condition-compilation-flags}
 
-Starting from Haxe 3.0, you can get the list of supported \tref{compiler flags}{lf-condition-compilation} by running \expr{haxe --help-defines}
+Haxe 3.0以降では\expr{haxe --help-defines}を実行することで、サポートしている\tref{コンパイラフラグ}{lf-condition-compilation}の一覧を取得することができます。
 
 \begin{center}
 \begin{tabular}{| l | l |}
 	\hline
-	\multicolumn{2}{|c|}{Global Compiler Flags} \\ \hline
-	Flag &  Description \\ \hline
-	\expr{absolute-path} &  Print absolute file path in trace output \\
-	\expr{advanced-telemetry}  &  Allow the SWF to be measured with Monocle tool \\
-	\expr{analyzer}  &  Use static analyzer for optimization (experimental) \\
-	\expr{as3} &  Defined when outputing flash9 as3 source code \\
-	\expr{check-xml-proxy}  &  Check the used fields of the xml proxy \\
-	\expr{core-api}  &  Defined in the core api context \\
-	\expr{core-api-serialize}  &  Mark some generated core api classes with the Serializable attribute on C\# \\
-	\expr{cppia}  &  Generate experimental cpp instruction assembly \\
-	\expr{dce=<mode:std|full|no>}  &  Set the \tref{dead code elimination}{cr-dce} mode (default std) \\
+	\multicolumn{2}{|c|}{グローバルコンパイラフラグ} \\ \hline
+	フラグ &  説明 \\ \hline
+	\expr{absolute-path} &  \expr{trace}の出力を絶対パスで行います。 \\
+	\expr{advanced-telemetry}  &  SWFをMonocleのツールで測定できるようにします。 \\
+	\expr{analyzer}  &  静的解析器を使った最適化を行います(実験的)。 \\
+	\expr{as3} &  flash9のas3のソースコードを出力する場合に定義されます。 \\
+	\expr{check-xml-proxy}  &  xmlプロキシの使用済みフィールドを確認します。 \\
+	\expr{core-api}  & core APIの文脈で定義されています。 \\
+	\expr{core-api-serialize}  &  C\#で、いくつかのcore APIクラスをSerializable属性でマークします。 \\
+	\expr{cppia}  &  実験的にC++のインストラクションアセンブリを出力します \\
+	\expr{dce=<mode:std|full|no>}  &  \tref{デッドコード削除}{cr-dce}のモードを設定します(デフォルトではstd)。 \\
 	\expr{dce-debug}  &  Show \tref{dead code elimination}{cr-dce} log \\
-	\expr{debug}  &  Activated when compiling with \expr{-debug} \\
-	\expr{display}  &  Activated during completion \\
-	\expr{dll-export}  &  GenCPP experimental linking \\
-	\expr{dll-import}  &  GenCPP experimental linking \\
-	\expr{doc-gen}  &  Do not perform any removal/change in order to correctly generate documentation \\
-	\expr{dump}  &  Dump the complete typed AST for internal debugging in a dump subdirectory - use \expr{dump=pretty} for Haxe-like formatting \\
-	\expr{dump-dependencies}  &  Dump the classes dependencies in a dump subdirectory \\
-	\expr{dump-ignore-var-ids}  &  Remove variable IDs from non-pretty dumps (helps with diff) \\
-	\expr{erase-generics}  &  Erase generic classes on C\# \\
-	\expr{fdb}  &  Enable full flash debug infos for FDB interactive debugging \\
-	\expr{file-extension}  &  Output filename extension for cpp source code \\
-	\expr{flash-strict}  &  More strict typing for flash target \\
-	\expr{flash-use-stage}  &  Keep the SWF library initial stage \\
-	\expr{force-lib-check}  &  Force the compiler to check -net-lib and -java-lib added classes (internal) \\
-	\expr{force-native-property}  &  Tag all properties with \expr{:nativeProperty} metadata for 3.1 compatibility \\
-	\expr{format-warning}  &  Print a warning for each formated string, for 2.x compatibility \\
-	\expr{gencommon-debug}  &  GenCommon internal \\
-	\expr{haxe-boot}  &  Given the name 'haxe' to the flash boot class instead of a generated name \\
-	\expr{haxe-ver}  &  The current Haxe version value \\
-	\expr{hxcpp-api-level}  &  Provided to allow compatibility between hxcpp versions \\
-	\expr{include-prefix}  &  prepend path to generated include files \\
-	\expr{interp}  &  The code is compiled to be run with \expr{--interp} \\
-	\expr{java-ver=[version:5-7]}  & Sets the Java version to be targeted \\
-	\expr{js-classic}  &  Don't use a function wrapper and strict mode in JS output \\
-	\expr{js-es5}  &  Generate JS for ES5-compliant runtimes \\
-	\expr{js-unflatten}  & Generate nested objects for packages and types \\
-	\expr{keep-old-output}  & Keep old source files in the output directory (for C\#/Java) \\
-	\expr{loop-unroll-max-cost}  & Maximum cost (number of expressions * iterations) before loop unrolling is canceled (default 250) \\
-	\expr{macro} & Defined when code is compiled in the \tref{macro context}{macro} \\
-	\expr{macro-times} & Display per-macro timing when used with \expr{--times} \\
-	\expr{net-ver=<version:20-45>}  &  Sets the .NET version to be targeted \\
-	\expr{net-target=<name>}  &  Sets the .NET target. Defaults to net. xbox, micro \_(Micro Framework\_, compact \_(Compact Framework)\_ are some valid values  \\
-	\expr{neko-source} & Output neko source instead of bytecode \\
-	\expr{neko-v1} &  Keep Neko 1.x compatibility \\
-	\expr{network-sandbox}  &  Use local network sandbox instead of local file access one \\
-	\expr{no-compilation}  &  Disable CPP final compilation \\
-	\expr{no-copt}  &  Disable completion optimization \_(for debug purposes)\_ \\
-	\expr{no-debug}  &  Remove all debug macros from cpp output \\
-	\expr{no-deprecation-warnings} & Do not warn if fields annotated with \expr{@:deprecated} are used \\
-	\expr{no-flash-override}  &  Change overrides on some basic classes into HX suffixed methods flash only \\
-	\expr{no-opt}  &  Disable optimizations \\
-	\expr{no-pattern-matching}  &  Disable \tref{pattern matching}{lf-pattern-matching} \\
-	\expr{no-inline}  &  Disable \tref{inlining}{class-field-inline} \\
-	\expr{no-root}  &  GenCS internal \\
-	\expr{no-macro-cache}  &  Disable macro context caching \\
-	\expr{no-simplify}  &  Disable simplification filter \\
-	\expr{no-swf-compress}  &  Disable SWF output compression \\
-	\expr{no-traces}  &  Disable all \expr{trace} calls \\
-	\expr{php-prefix}  &  Compiled with \expr{--php-prefix} \\
-	\expr{real-position}  &  Disables haxe source mapping when targetting C\# \\
-	\expr{replace-files}  &  GenCommon internal \\
-	\expr{scriptable}  &  GenCPP internal \\
-	\expr{shallow-expose}  &  Expose types to surrounding scope of Haxe generated closure without writing to window object \\
-	\expr{source-map-content}  &  Include the hx sources as part of the JS source map \\
-	\expr{swc}  &  Output a SWC instead of a SWF \\
-	\expr{swf-compress-level=<level:1-9>}  &  Set the amount of compression for the SWF output \\
-	\expr{swf-debug-password=<yourPassword>}  &  Set a password for debugging. The password field is encrypted by using the MD5 algorithm and prevents unauthorised debugging of your swf. Without this flag -D fdb will use no password. \\
-	\expr{swf-direct-blit}  &  Use hardware acceleration to blit graphics \\
-	\expr{swf-gpu}  &  Use GPU compositing features when drawing graphics \\
-	\expr{swf-metadata=<file.xml>}  &  Include contents of \expr{<file.xml>} as metadata in the swf. \\
-	\expr{swf-preloader-frame}  &  Insert empty first frame in swf. To be used together with \expr{-D flash-use-stage} and \expr{-swf-lib} \\
-	\expr{swf-protected}  &  Compile Haxe private as protected in the SWF instead of public \\
-	\expr{swf-script-timeout}  &  Maximum ActionScript processing time before script stuck dialog box displays (in seconds) \\
-	\expr{swf-use-doabc}  &  Use DoAbc swf-tag instead of DoAbcDefine \\
-	\expr{sys}  &  Defined for all system platforms \\
-	\expr{unsafe}  &  Allow unsafe code when targeting C\# \\
-	\expr{use-nekoc}  &  Use nekoc compiler instead of internal one \\
-	\expr{use-rtti-doc}  &  Allows access to documentation during compilation \\
-	\expr{vcproj}  &  GenCPP internal \\
+	\expr{debug}  &  \expr{-debug}をつけてコンパイルした場合に有効化されます。 \\
+	\expr{display}  &  補完中に有効化されます。 \\
+	\expr{dll-export}  &  実験的なリンクをつけてC++生成します。 \\
+	\expr{dll-import}  &  実験的なリンクをつけてC++生成します。 \\
+	\expr{doc-gen}  &  正しくドキュメントを生成するため、削除と変更をしないように振る舞います。 \\
+	\expr{dump}  &  dumpサブディレクトリに、完全な型付け済みの抽象構文木を出力します。Haxeに似た形式で出力するには\expr{dump=pretty}を使ってください。 \\
+	\expr{dump-dependencies}  &  dumpサブディレクトリに、クラスの依存関係を出力をします。 \\
+	\expr{dump-ignore-var-ids}  &  prettyではないdumpから、変数IDを削除します。(diffを取るのに役立ちます) \\
+	\expr{erase-generics}  &  C\#でジェネリッククラスを取り消します。 \\
+	\expr{fdb}  &  FDBの対話的なデバッグのために、flashのデバッグ情報をすべて有効化します。 \\
+	\expr{file-extension}  &  C++ソースコードで拡張子を出力します。 \\
+	\expr{flash-strict}  &  Flash出力でより厳密な型付けを行います。 \\
+	\expr{flash-use-stage}  &  SWFライブラリを初期のstageに保ちます。 \\
+	\expr{force-lib-check}  &  コンパイラが-net-libと-java-libの追加クラスを確認するように強制します(内部用)。 \\
+	\expr{force-native-property}  &  3.1の互換性のために、すべてプロパティに\expr{:nativeProperty}のタグ付けをします。　\\
+	\expr{format-warning}  &  2.xの互換性のために、フォーマットされた文字列に対して警告を出します。 \\
+	\expr{gencommon-debug}  &  GenCommonの内部用 \\
+	\expr{haxe-boot}  &  flashのbootクラスに生成された名前の代わりに'haxe'という名前を使います。 \\
+	\expr{haxe-ver}  &  現在のHaxeのバージョンの値です。 \\
+	\expr{hxcpp-api-level}  &  hxcppのバージョン間の互換性を保ちます。 \\
+	\expr{include-prefix}  & 　含有している出力ファイルにパスを付加します。 \\
+	\expr{interp}  &  \expr{--interp}でコンパイルされて実行される場合に定義されます。 \\
+	\expr{java-ver=[version:5-7]}  &  ターゲットとするJavaのバージョンを設定します。 \\
+	\expr{js-classic}  &  JavaScript出力にfunctionラッパーと、strictモードを使いません。 \\
+	\expr{js-es5}  &  ES5に準拠した実行環境のためのJavaScriptを出力します。 \\
+	\expr{js-unflatten}  &  packageや型でネストしたオブジェクトを出力します。 \\
+	\expr{keep-old-output}  &  出力ディレクトリの古いコードのファイルを残します(C\#/Java)。 \\
+	\expr{loop-unroll-max-cost}  & ループ展開がキャンセルされる最大コスト(expressions * iterations、デフォルトでは250)。 \\
+	\expr{macro} & \tref{マクロの文脈}{macro}でコンパイルされた場合に定義されます。 \\
+	\expr{macro-times} & \expr{--times}と一緒に使用された場合にマクロごとの時間を表示します。 \\
+	\expr{net-ver=<version:20-45>}  &  ターゲットとする.NETのバージョンを設定します。 \\
+	\expr{net-target=<name>}  &  .NETのターゲット名を設定します。xbox、micro \_(Micro Framework)\_、compact \_(Compact Framework)\_が、正当な名前です。 \\
+	\expr{neko-source} & Nekoのバイトコードではなくソースコードを出力します。 \\
+	\expr{neko-v1} &  Nekoの1.xとの互換性を保ちます。 \\
+	\expr{network-sandbox}  &  ローカルファイルアクセスの代わりに、ローカルネットワークサンドボックスを使います。 \\
+	\expr{no-compilation}  &  C++の最終コンパイルを無効化します。 \\
+	\expr{no-copt}  &  コンパイル時の最適化を無効化します \_(デバッグ用途)\_ \\
+	\expr{no-debug}  &  C++出力からすべてのデバッグマクロを取り除きます。 \\
+	\expr{no-deprecation-warnings} & \expr{@:deprecated}のフィールドが使われたことによる警告を無効化します。
+	\expr{no-flash-override}  &  flashのみで、いくつかの基本クラスでのoverrideをHXサフィックスのついたメソッドで代替します。 \\
+	\expr{no-opt}  &  最適化を無効化します。 \\
+	\expr{no-pattern-matching}  &  パターンマッチングを無効化します。 \\
+	\expr{no-inline}  &  \tref{インライン化}{class-field-inline}を無効化します。 \\
+	\expr{no-root}  &  GenCSの内部用 \\
+	\expr{no-macro-cache}  &  マクロの文脈でのキャッシュを無効化します。 \\
+	\expr{no-simplify}  &  簡易化のフィルタを無効化します。 \\
+	\expr{no-swf-compress}  &  SWF出力の圧縮を無効化します。 \\
+	\expr{no-traces}  &  すべての\expr{trace}呼び出しを無効化します。 \\
+	\expr{php-prefix}  &  \expr{--php-prefix}をつけてコンパイルした場合です。 \\
+	\expr{real-position}  &  C\#ターゲットで、Haxeのソースマップを無効化します。 \\
+	\expr{replace-files}  &  GenCommonの内部用です。 \\
+	\expr{scriptable}  &  GenCPPの内部用です。 \\
+	\expr{shallow-expose}  &  Haxeが生成したクロージャのスコープについて、windowオブジェクトの記述なしでのアクセスを許可します。 \\
+	\expr{source-map-content}  &  JSのソースマップの一部として、.hxのソースコードを含ませます。 \\
+	\expr{swc}  &  SWFの代わりにSWCを出力します。 \\
+	\expr{swf-compress-level=<level:1-9>}  &  SWF出力の圧縮レベルを指定します。 \\
+	\expr{swf-debug-password=<yourPassword>}  &  デバッグ用のパスワードを指定します。このパスワードはMD5アルゴリズムを使って暗号化されて、swfをデバッグするための認証解除を防ぎます。-D fdbを指定しない場合パスワードは使われません。 \\
+	\expr{swf-direct-blit}  &  グラフィックの転送をするのにハードウェアアクセラレーションを使います。 \\
+	\expr{swf-gpu}  &  グラフィックを描画するのにGPUを使います。 \\
+	\expr{swf-metadata=<file.xml>}  &  swf内に\expr{<file.xml>}をメタデータとして埋め込みます。 \\
+	\expr{swf-preloader-frame}  &  SWFの最初に空白フレームを挿入します。\expr{-D flash-use-stage}、\expr{-swf-lib}と合わせて使います。 \\
+	\expr{swf-protected}  &  Haxeのprivateを、SWF内でpublicではなくprotectedを使うようにコンパイルします。 \\
+	\expr{swf-script-timeout}  &  ActionScriptがタイムアウトのダイアログを表示するまでの最大時間を設定します(秒数で)。 \\
+	\expr{swf-use-doabc}  &  DoAbcDefineのswfタグの代わりにDoAbcを使います。 \\
+	\expr{sys}  &  システムのすべてのプラットフォームで定義されています。 \\
+	\expr{unsafe}  &  C\#ターゲットでunsafeのコードを許容します \\
+	\expr{use-nekoc}  &  内部のものの代わりにnekocのコンパイラを使います。 \\
+	\expr{use-rtti-doc}  &  コンパイル中にドキュメントにアクセスできるようにします。 \\
+	\expr{vcproj}  &  GenCPPの内部用。 \\
 \end{tabular}
 \end{center}
 
-\section{Externs}
+\section{extern}
 \label{lf-externs}
 
-Externs can be used to describe target-specific interaction in a type-safe manner. They are defined like normal classes, except that
+externは、ターゲット固有の連携を型安全のルールに従って記述するために使います。宣言は普通のクラスに似た形で、以下の要素が必要です。
 
 \begin{itemize}
-	\item the \expr{class} keyword is preceded by the \expr{extern} keyword,
-	\item \tref{methods}{class-field-method} have no expressions and
-	\item all argument and return types are explicit.
+	\item \expr{class}キーワードの前に\expr{extern}キーワードを置きます。
+	\item \tref{メソッド}{class-field-method}は式を持ちません。
+	\item すべての引数と戻り値の型を明示します。
 \end{itemize}
 
-A common example from the \tref{Haxe Standard Library}{std} is the \type{Math} class, as an excerpt shows:
+\tref{Haxe標準ライブラリ}{std}の\type{Math}クラスがちょうどいい例です。その一部を抜粋します。
 
 \begin{lstlisting}
 extern class Math
@@ -310,62 +311,62 @@ extern class Math
 }
 \end{lstlisting}
 
-We see that externs can define both methods and variables (actually, \expr{PI} is declared as a read-only \tref{property}{class-field-property}). Once this information is available to the compiler, it allows field access accordingly and also knows the types:
+\expr{extern}が、メソッドと変数の両方を定義できることがわかります(実際のところ、\expr{PI}は読み込み専用の\tref{プロパティ}{class-field-property})を定義しています。一度この情報がコンパイラで利用可能になると、型がわかり、フィールドへのアクセスが出来るようになります。
 
 \haxe{assets/Extern.hx}
 
-This works because the return type of method \expr{floor} is declared to be \type{Int}.
+\expr{floor}メソッドの戻り値が\type{Int}して定義されているため、このように動作します。
 
-The Haxe Standard Library comes with many externs for the \target{Flash} and \target{JavaScript} target. They allow accessing the native APIs in a type-safe manner and are instrumental for designing higher-level APIs. There are also externs for many popular native libraries on \tref{haxelib}{haxelib}.
+Haxe標準ライブラリは、多くの\expr{extern}を\target{Flash}、\target{JavaScript}ターゲット用にもっています。これにより、ネイティブのAPIに型安全のルールに従ってアクセス可能にし、より高いレベルのAPI設計の助けになります。\tref{haxelib}{haxelib}でも、多くのネイティブのライブラリの\expr{extern}を入手できます。
 
-The \target{Flash}, \target{Java} and \target{C\#} targets allow direct inclusion of native libraries from \tref{command line}{compiler-usage}. Target-specific details are explained in the respective sections of \Fullref{target-details}.
+\target{Flash}、\target{Java}、\target{C\#}ターゲットでは、\tref{コマンドライン}{compiler-usage}から直接ネイティブライブラリの取り込みを行うことができます。ターゲットごとの詳細は\Fullref{target-details}のそれぞれの節で説明されています。
 
-Some targets such as \target{Python} or \target{JavaScript} may require generating additional "import" code that loads an \expr{extern} class from a native module. Haxe provides ways to declare such dependencies also described in respective sections \Fullref{target-details}.
+\target{Python}や、\target{JavaScript}といったターゲットでは、\expr{extern}クラスをネイティブのモジュールから読み込むために追加の「インポート」が必要になる場合があります。Haxeはそのような依存関係を宣言する仕組みを提供しているので、それらを\Fullref{target-details}のそれぞれの節で説明します。
 
-\paragraph{Rest arguments and type choices}
+\paragraph{可変長引数と、型の選択肢}
 \since{3.2.0}
 
-The haxe.extern package provides two types that help mapping native semantics to Haxe:
+haxe.externパッケージは、ネイティブの概念をHaxeに対応させるため、2つの型を提供しています。
 
 \begin{description}
-	\item[\type{Rest<T>}:] This type can be used as a final function argument to allow passing an arbitrary number of additional call arguments. The type parameter can be used to constrain these arguments to a specific type.
-	\item[\type{EitherType<T1,T2>}:] This type allows using either of its parameter types, thus representing a type choice. It can be nested to allow more than two different types.
+	\item[\type{Rest<T>}:] この型は関数の最後の引数として使って、可変長の引数を追加で渡すことを可能にします。型パラメータは引数を特定の型に制限するのに使います。
+	\item[\type{EitherType<T1,T2>}:] この型はパラメータのどちらかの型を使うことができるようにする。つまり、型の選択肢を表現できます。3つ以上の型を選ばせたい場合はネストさせて使います。
 \end{description}
 
-We demonstrate the usage in this code sample:
+以下にデモを用意しました。
 
 \haxe{assets/RestAndEitherType.hx}
 
 
-\section{Static Extension}
+\section{静的拡張}
 \label{lf-static-extension}
 
-\define{Static Extension}{define-static-extension}{A static extension allows pseudo-extending existing types without modifying their source. In Haxe this is achieved by declaring a static method with a first argument of the extending type and then bringing the defining class into context through \expr{using}.}
+\define{静的拡張}{define-static-extension}{静的拡張は、すでに存在している型に対して元のソースコードを変更することなく、見せかけの拡張を行います。Haxeの静的拡張は、最初の引数が拡張する対象の型である静的メソッドを宣言して、それ\expr{using}を使って記述しているクラス内に持ちこむことで使用できます。}
 
-Static extensions can be a powerful tool which allows augmenting types without actually changing them. The following example demonstrates the usage:
+静的拡張は、実際に型の変更を行うことなく型を強化する強力なツールです。以下の例で、その使い方を実演します。
 
 \haxe{assets/StaticExtension.hx}
 
-Clearly, \type{Int} does not natively provide a \expr{triple} method, yet this program compiles and outputs \expr{36} as expected. This is because the call to \expr{12.triple()} is transformed into \expr{IntExtender.triple(12)}. There are three requirements for this:
+\type{Int}がもともと\expr{triple}メソッドを持っていないのは明らかですが、このプログラムは期待通り\expr{36}を出力します。\expr{12.triple()}の呼び出しが\expr{IntExtender.triple(12)}に変形されるためです。これには必要な条件が3つあります。
 
 \begin{enumerate}
-	\item Both the literal \expr{12} and the first argument of \expr{triple} are of type \type{Int}.
-	\item The class \type{IntExtender} is brought into context through \expr{using Main.IntExtender}.
-	\item \type{Int} does not have a \expr{triple} field by itself (if it had, that field would take priority over the static extension).
+	\item 定数値の\expr{12}と、\expr{triple}の最初の引数の型がともに\type{Int}である
+	\item \type{IntExtender}クラスが\expr{using Main.IntExtender}を使って現在の文脈に読み込まれている。
+	\item \type{Int}自身は\expr{triple}フィールドを持っていない(持っていた場合、静的拡張よりも高い優先度になる)。
 \end{enumerate}
 
-Static extensions are usually considered syntactic sugar and indeed they are, but it is worth noting that they can have a dramatic effect on code readability: Instead of nested calls in the form of \expr{f1(f2(f3(f4(x))))}, chained calls in the form of \expr{x.f4().f3().f2().f1()} can be used.
+静的拡張は糖衣構文であると認識されており、実際そのとおりですが、コードの可読性に大きな影響を与えることには注目する価値がありますあ。\expr{f1(f2(f3(f4(x))))}の形のネストされた呼び出しの代わりに、\expr{x.f4().f3().f2().f1()}のチェーンの形での呼び出しが可能になります。
 
-Following the rules previously described in \Fullref{type-system-resolution-order}, multiple \expr{using} expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see \Fullref{type-system-modules-and-paths}) as static extension brings all its types into context.
+優先順位のルールは\Fullref{type-system-resolution-order}で、すでに説明されているとおり、\expr{using}式が複数ある場合は下から上へと確認がされ、各モジュールでは各型のフィールドが上から下へと確認がされます。モジュールを静的拡張として\expr{using}すると、そのすべての型が現在の文脈にインポートされます(モジュール内の特定の型の場合とは対照的です。詳しくは、\Fullref{type-system-modules-and-paths}を見てください)。
 
-\subsection{In the Haxe Standard Library}
+\subsection{Haxe標準ライブラリについて}
 \label{lf-static-extension-in-std}
 
-Several classes in the Haxe Standard Library are suitable for static extension usage. The next example shows the usage of \type{StringTools}:
+Haxeの標準ライブラリのいくつかのクラスを、静的拡張の用途に合うようになっています。次の例からは\type{StringTools}の使い方がわかります。
 
 \haxe{assets/StaticExtension2.hx}
 
-While \type{String} does not have a \expr{replace} functionality by itself, the \expr{using StringTools} static extension provides one. As usual, the \target{JavaScript} output nicely shows the transformation:
+\type{String}自身は\expr{replace}を持っていませんが、\expr{using StringTools}の静的拡張によって提供されます。いつものように、\target{JavaScript}への変換を見るとよくわかります。
 
 \begin{lstlisting}
 Main.main = function() {
@@ -373,168 +374,160 @@ Main.main = function() {
 }
 \end{lstlisting}
 
-The following classes from the Haxe Standard Library are designed to be used as static extensions:
+Haxe標準ライブラリでは以下のクラスが静的拡張として使うように設計されています。
 
 \begin{description}
-	\item[\type{StringTools}:] Provides extended functionality on strings, such as replacing or trimming.
-	\item[\type{Lambda}:] Provides functional methods on iterables.
-	\item[\type{haxe.EnumTools}:] Provides type information functionality on enums and their instances.
-	\item[\type{haxe.macro.Tools}:] Provides different extensions for working with macros (see \Fullref{macro-tools}).
+	\item[\type{StringTools}:] 置換やトリミングといった、文字列に対する拡張を提供します。
+	\item[\type{Lambda}:] \type{Iterable}に対する関数型のメソッドを提供します。　
+	\item[\type{haxe.EnumTools}:] \expr{enum}とそのインスタンスに対して型の情報を得る機能を提供します。
+	\item[\type{haxe.macro.Tools}:] マクロをあつかう際のさまざまな拡張を提供します(詳しくは、\Fullref{macro-tools})。
 \end{description}
 
+\trivia{``using'' using}{\expr{using}キーワードが追加されて以降、\expr{using}を使う(using using)ときの問題や、その影響についての会話がよくされるようになりました。"using using"のせいでさまざまな場面でわかりにくい英語が生まれたため、このマニュアルの著者はこの機能をその正体から静的拡張と呼ぶことに決めました。}
 
-
-\trivia{``using'' using}{Since the \expr{using} keyword was added to the language, it has been common to talk about certain problems with ``using using'' or the effect of ``using using''. This makes for awkward English in many cases, so the author of this manual decided to call the feature by what it actually is: Static extension.}
-
-
-
-\section{Pattern Matching}
+\section{パターンマッチング}
 \label{lf-pattern-matching}
 \state{NoContent}
 
-\subsection{Introduction}
+\subsection{導入}
 \label{lf-pattern-matching-introduction}
 
-Pattern matching is the process of branching depending on a value matching given, possibly deep patterns. In Haxe, all pattern matching is done within a \tref{\expr{switch} expression}{expression-switch} where the individual \expr{case} expressions represent the patterns. Here we will explore the syntax for different patterns using this data structure as running example:
+パターンマッチングは、与えられた、おそらく深いパターンに一致する値に応じて分岐する処理のことです。Haxeでは、すべてのパターンマッチングは\tref{\expr{switch}式}{expression-switch}の個々の\expr{case}式が書き表すパターンに従って行われます。それでは以下のデータ構造を使って、さまざまなパターンの構文を見ていきましょう。
 
 \haxe[firstline=1,lastline=4]{assets/PatternMatching.hx}
 
-Some pattern matcher basics include:
+以下は、パターンマッチングの基本事項です。
 
 \begin{itemize}
-	\item Patterns will always be matched from top to bottom.
-	\item The topmost pattern that matches the input value has its expression executed.
-	\item A \expr{_} pattern matches anything, so \expr{case _}: is equal to \expr{default:}
+	\item パターンは上から下へとマッチングされます。
+	\item 入力値にマッチする最上位のパターンが持っている式が実行されます。
+	\item \expr{_}はすべてにマッチします。このため、\expr{case _:}は\expr{default:}と同じです。
 \end{itemize}
 
-\subsection{Enum matching}
+\subsection{enumマッチング}
 \label{lf-pattern-matching-enums}
 
-Enums can be matched by their constructors in a natural way:
+enumはそのコンストラクタを自然な方法でマッチングすることができます。
 
 \haxe[firstline=8,lastline=21]{assets/PatternMatching.hx}
 
-The pattern matcher will check each case from top to bottom and pick the first one that matches the input value. The following manual interpretation of each case rule helps understanding the process:
+パターンマッチングでは、ケースを上から下へと確認していき、入力値とマッチする最初のものを見つけ出します。以下の各ケースの実行の流れについての説明は、その過程を理解するのに役に立ちます。
 
 \begin{description}
-	\item[\expr{case Leaf(_)}:] matching fails because \expr{myTree} is a \expr{Node}
-	\item[\expr{case Node(_, Leaf(_))}:] matching fails because the right sub-tree of \expr{myTree} is not a \expr{Leaf}, but another \expr{Node}
-	\item[\expr{case Node(_, Node(Leaf("bar"), _))}:] matching succeeds
-	\item[\expr{case _}:] this is not checked here because the previous line matched
+	\item[\expr{case Leaf(_)}:] \expr{myTree}は\expr{Node}なので、マッチングに失敗します。
+	\item[\expr{case Node(_, Leaf(_))}:] \expr{myTree}の右側の子要素は\expr{Leaf}ではなく、\expr{Node}なので失敗します。
+	\item[\expr{case Node(_, Node(Leaf("bar"), _))}:] マッチングに成功します。
+	\item[\expr{case _}:] 前のケースでマッチングが成功したので確認が行われません。
 \end{description}
 
-\subsection{Variable capture}
+\subsection{変数の取り出し}
 \label{lf-pattern-matching-variable-capture}
 
-It is possible to catch any value of a sub-pattern by matching it against an identifier:
+パターンの一部のあらゆる値は、識別子を使ってマッチングさせて取り出すことができます。
 
 \haxe[firstline=24,lastline=30]{assets/PatternMatching.hx}
 
-This would return one of the following:
+これは、以下の流れにしたがって\expr{return}を行います。
 
 \begin{itemize}
-	\item If \expr{myTree} is a \expr{Leaf}, its name is returned.
-	\item If \expr{myTree} is a \expr{Node} whose left sub-tree is a \expr{Leaf}, its name is returned (this will apply here, returning \expr{"foo"}).
-	\item Otherwise \expr{"none"} is returned.
+	\item \expr{myTree}が\expr{Leaf}の場合、その名前が返る。
+	\item \expr{myTree}が\expr{Node}でその左の子要素が\expr{Leaf}の場合、その名前が返る(上の例の場合、これが適用されて\expr{"foo"}が返る)。
+	\item そのほかの場合、\expr{"none"}が返る。
 \end{itemize}
 
-It is also possible to use = to capture values which are further matched:
+マッチされた値を取り出すのに\expr{=}を使うこともできます。
 
 \haxe[firstline=32,lastline=36]{assets/PatternMatching.hx}
 
-Here, \expr{leafNode} is bound to \expr{Leaf("foo")} if the input matches that. In all other cases, \expr{myTree} itself is returned: \expr{case x} works similar to \expr{case _} in that it matches anything, but with an identifier name like \expr{x} it also binds the matched value to that variable.
+\expr{leafNode}には\expr{Leaf("foo")}が割り当てられているので、これにマッチします。そのほかのケースでは、\expr{myTree}自身が返ります。\expr{case x}は\expr{case _}と同じようにすべてにマッチしますが、\expr{x}のような識別子が使われるとマッチした値がその変数に対して割り当てられます。
 
-\subsection{Structure matching}
+\subsection{構造体マッチング}
 \label{lf-pattern-matching-structure}
 
-It is also possible to match against the fields of anonymous structures and instances:
+匿名構造体とインスタンスのフィールドに対してマッチさせることも可能です。
 
 \haxe[firstline=38,lastline=50]{assets/PatternMatching.hx}
 
-In the second case we bind the matched \expr{name} field to identifier \expr{n} if \expr{rating} matches \expr{"awesome"}. Of course this structure could also be put into the \type{Tree} from the previous example to combine structure and enum matching.
+2番目のケースでは、\expr{rating}が\expr{"awesome"}にマッチすると、\expr{name}フィールドが識別子\expr{n}に割り当てられます。もちろん、この構造体を先の例のTreeに入れて、構造体と\expr{enum}を合わせたマッチングを行うこともできます。
 
-A limitation with regards to class instances is that you cannot match against fields of their parent class.
+クラスインスタンスについては、その親クラスのフィールドについてはマッチングできないという制限があります。
 
-\subsection{Array matching}
+\subsection{配列マッチング}
 \label{lf-pattern-matching-array}
 
-Arrays can be matched on fixed length:
+配列は固定長のマッチングを行うことができます。
 
 \haxe[firstline=52,lastline=60]{assets/PatternMatching.hx}
 
-This will trace \expr{1} because \expr{array[1]} matches \expr{6}, and \expr{array[0]} is allowed to be anything.
+この例では、\expr{array[1]}が\expr{6}にマッチし、\expr{array[0]}は何でもよいので、\expr{1}が出力されます。
 
-\subsection{Or patterns}
+\subsection{orパターン}
 \label{lf-pattern-matching-or}
 
-The \expr{|} operator can be used anywhere within patterns to describe multiple accepted patterns:
+\expr{|}演算子は、複数のパターンが許容されることを示す用途で、パターン内のあらゆる箇所に使うことができます。
 
 \haxe[firstline=63,lastline=68]{assets/PatternMatching.hx}
 
-If there is a captured variable in an or-pattern, it must appear in both its sub-patterns.
+orパターン内で変数の取得をしたい場合、その子要素両方で行わなくてはいけません。
 
-\subsection{Guards}
+\subsection{ガード}
 \label{lf-pattern-matching-guards}
 
-It is also possible to further restrict patterns with the \expr{case ... if(condition):} syntax:
+\expr{case ... if(condition):}の構文を使ってパターンをさらに限定することができます。
 
 \haxe[firstline=71,lastline=79]{assets/PatternMatching.hx}
 
-The first case has an additional guard condition \expr{if (b > a)}. It will only be selected if that condition holds, otherwise matching continues with the next case.
+最初のケースは追加のガード条件\expr{if (b > a)}を持っています。このケースはこの条件が正だった場合のみ選択され、それ以外の場合は次のケースとのマッチングが続きます。
 
-\subsection{Match on multiple values}
+\subsection{複数の値のマッチング}
 \label{lf-pattern-matching-tuples}
 
-Array syntax can be used to match on multiple values:
+配列の構文は複数の値のマッチングにも使えます。
 
 \haxe[firstline=82,lastline=87]{assets/PatternMatching.hx}
 
-This is quite similar to usual array matching, but there are differences:
+これは通常の配列のマッチングによく似ていますが、以下の点で違います。
 
 \begin{itemize}
-	\item The number of elements is fixed, so patterns of different array length will not be accepted.
-	\item It is not possible to capture the switch value in a variable, i.e. \expr{case x} is not allowed (\expr{case _} still is).
+	\item 要素数は固定です。このためパターンの配列の長さが違ってはいけません。
+	\item switchしている値を取得できません。例えば、\expr{case x}は使えません(\expr{case x}は使えます)。
 \end{itemize}
 
-
-
-
-\subsection{Extractors}
+\subsection{抽出子(エクストラクタ)}
 \label{lf-pattern-matching-extractors}
 \since{3.1.0}
 
-Extractors allow applying transformations to values being matched. This is often useful when a small operation is required on a matched value before matching can continue:
+抽出子(エクストラクタ)はマッチした値に変更を適用することができます。マッチした値に小さな変更を適用して、さらにマッチングを行う場合に便利です。
 
 \haxe{assets/Extractor2.hx}
 
-Here we have to capture the argument value of the \expr{TString} enum constructor in a variable \expr{temp} and use a nested switch on \expr{temp.toLowerCase()}. Obviously, we want matching to succeed if \expr{TString} holds a value of \expr{"foo"} regardless of its casing. This can be simplified with extractors:
+この場合、\expr{TString}列挙型コンストラクタの引数の値を、\expr{temp}に割り当てて、さらにネストした\expr{temp.toLowerCase()}に対する\expr{switch}を行っています。見てのとおり、\expr{TString}が\expr{"foo"}のケース違いのものを持っているので、このマッチングは成功します。これは抽出子を使うことで簡略化できます。
 
 \haxe{assets/Extractor.hx}
 
-Extractors are identified by the \expr{extractorExpression => match} expression. The compiler generates code which is similar to the previous example, but the original syntax was greatly simplified. Extractors consist of two parts, which are separated by the \expr{=>} operator:
+抽出子は\expr{extractorExpression => match}の式によって認識されます。コンパイラはその前の例と同じようなコードを出力しますが、記述する構文はずいぶんと簡略化されました。抽出子は\expr{=>}で分断される以下の2つの部品からなります。
 
 \begin{enumerate}
-\item The left side can be any expression, where all occurrences of underscore \expr{_} are replaced with the currently matched value.
-\item The right side is a pattern which is matched against the result of the evaluation of the left side.
+\item 左側はあらゆる式が可能で、アンダースコア\expr{_}が出現する箇所すべてが、現在マッチする値で置き換えられます。
+\item 右側は左側を評価した結果をマッチングするためのパターンです。
 \end{enumerate}
 
-Since the right side is a pattern, it can contain another extractor. The following example ``chains'' two extractors:
+右側はパターンですから、さらに別の抽出子を使うことが可能です。以下の例では2つの抽出子をチェーンさせています。
 
 \haxe{assets/Extractor4.hx}
 
-This traces \expr{12} as a result of the calls to \expr{add(3, 1)}, where \expr{3} is the matched value, and \expr{mul(4, 3)} where \expr{4} is the result of the \expr{add} call. It is worth noting that the \expr{a} on the right side of the second \expr{=>} operator is a \tref{capture variable}{lf-pattern-matching-variable-capture}.
+これは\expr{3}がマッチして\expr{add(3, 1)}を呼び出し、その結果の\expr{4}がマッチして\expr{mul(4, 3)}呼び出された結果として、\expr{12}が出力されます。2つ目の\expr{=>}の右側の\expr{a}は、\tref{変数取り出し}{lf-pattern-matching-variable-capture}であることに注意してください。
 
-It is currently not possible to use extractors within \tref{or-patterns}{lf-pattern-matching-or}:
+現在は\tref{orパターン}{lf-pattern-matching-or}内で抽出子を使うことはできません。
 
 \haxe{assets/Extractor5.hx}
 
-However, it is possible to have or-patterns on the right side of an extractor, so the previous example would compile without the parentheses.
+しかし、orパターンを抽出子の右側に使うことはできます。そのため、上の例は小かっこ無しの場合ではコンパイル可能です。
 
-
-\subsection{Exhaustiveness checks}
+\subsection{網羅性のチェック}
 \label{lf-pattern-matching-exhaustiveness}
 
-The compiler ensures that no possible cases are forgotten:
+コンパイラは、起こりうるケースが忘れ去られてないかのチェックを行います。
 
 \begin{lstlisting}
 switch(true) {
@@ -542,16 +535,14 @@ switch(true) {
 } // Unmatched patterns: true
 \end{lstlisting}
 
-The matched type \type{Bool} admits two values \expr{true} and \expr{false}, but only \expr{false} is checked. 
+マッチング対象の\type{Bool}型は、\expr{true}と\expr{false}の2つの値を取り得ますが、\expr{false}のみがチェックされています。
 
 \todo{Figure out wtf our rules are now for when this is checked.}
 
-
-
-\subsection{Useless pattern checks}
+\subsection{無意味なパターンのチェック}
 \label{lf-pattern-matching-unused}
 
-In a similar fashion, the compiler detects patterns which will never match the input value:
+同じように、コンパイラはどのような入力値に対してもマッチしないパターンを禁止します。
 
 \begin{lstlisting}
 switch(Leaf("foo")) {
@@ -562,69 +553,62 @@ switch(Leaf("foo")) {
 }
 \end{lstlisting}
 
-
-
-\section{String Interpolation}
+\section{文字列補間}
 \label{lf-string-interpolation}
 
-With Haxe 3 it is no longer necessary to manually concatenate parts of a string due to the introduction of \emph{String Interpolation}. Special identifiers, denoted by the dollar sign \expr{\$} within a String enclosed by single-quote \expr{'} characters, are evaluated as if they were concatenated identifiers:
+Haxe3では、\emph{文字列補間}のおかげで、手動で文字列をつなげ合わせる必要がなくなりました。シングルクオート\expr{'}で囲まれた文字列の中で、ドル記号\expr{\$}に続けて識別子を記述すると、その識別子を評価してつなげ合わせてくれます。
 
 \begin{lstlisting}
 var x = 12;
 // The value of x is 12
 trace('The value of x is $x');
 \end{lstlisting}
-Furthermore, it is possible to include whole expressions in the string by using \expr{\$$\left\{expr\right\}$}, with \expr{expr} being any valid Haxe expression:
+
+さらに、\expr{\$$\left\{expr\right\}$}を使うことで文字列内に式そのものを含めることが可能になります。この\expr{expr}は、Haxeの正当な式であれば、なんでもかまいません。
 
 \begin{lstlisting}
 var x = 12;
 // The sum of 12 and 3 is 15
 trace('The sum of $x and 3 is ${x + 3}');
 \end{lstlisting}
-String interpolation is a compile-time feature and has no impact on the runtime. The above example is equivalent to manual concatenation, which is exactly what the compiler generates:
+
+文字列補間はコンパイル時の機能なので、実行時には影響を与えません。上の例は、手動のつなげ合わせと同じです。コンパイラは以下と同様のコードを生成します。
 
 \begin{lstlisting}
 trace("The sum of " + x +
   " and 3 is " + (x + 3));
 \end{lstlisting}
-Of course the use of single-quote enclosed strings without any interpolation remains valid, but care has to be taken regarding the \$ character as it triggers interpolation. If an actual dollar-sign should be used in the string, \expr{\$\$} can be used.
 
-\trivia{String Interpolation before Haxe 3}{String Interpolation has been a Haxe feature since version 2.09. Back then, the macro \expr{Std.format} had to be used, being both slower and less comfortable than the new string interpolation syntax.}
+もちろん、一切の補間なしでシングルクオートで囲んだ文字列を使用することができますが、\$の文字が補間の引き金として予約されてしまっていることに気を付けてください。文字列内で、ドル記号そのものを使いたい場合は\expr{\$\$}で使えます。
 
+\trivia{Haxe3以前の文字列補間}{文字列補間自体はバージョン2.09からHaxeの機能として存在しています。そのころは、\expr{Std.format}のマクロが使われいました。これは新しい文字列補間の構文よりも、遅くてあまり快適でないものでした。}
 
-\section{Array Comprehension}
+\section{配列内包表記}
 \label{lf-array-comprehension}
 
 \todo{Comprehensions are only listing Arrays, not Maps}
 
-Array comprehension in Haxe uses existing syntax to allow concise initialization of arrays. It is identified by \expr{for} or \expr{while} constructs:
+Haxeの配列内包表記は、既存の構文を配列の初期化をより簡単にするためにも使えるようにするものです。配列内包表記は、\expr{for}または\expr{while}のキーワードによって識別されます。
 
 \haxe{assets/ArrayComprehension.hx}
 
-Variable \expr{a} is initialized to an array holding the numbers 0 to 9. The compiler generates code which adds the value of each loop iteration to the array, so the following code would be equivalent:
+変数\expr{a}は、0から9までの数値を要素として持つ配列として初期化されます。コンパイラはループを作ってその繰り返しの一つ一つで要素を追加するコードを出力します。つまり以下のコードと等価です。
 
 \begin{lstlisting}
 var a = [];
 for (i in 0...10) a.push(i);
 \end{lstlisting}
 
-Variable \expr{b} is initialized to an array with the same values, but through a different comprehension style using \expr{while} instead of \expr{for}. Again, the following code would be equivalent:
+変数\expr{b}も同じ値に初期化されますが、\expr{for}ではなく\expr{while}という異なる内包表記の形式を使っています。そして、これは以下のコードと等価です。
 
-\begin{lstlisting}
-var i = 0;
-var a = [];
-while(i < 10) a.push(i++);
-\end{lstlisting}
-
-The loop expression can be anything, including conditions and nested loops, so the following works as expected:
+ループの式は、条件分岐やループのネストを含めて、いかなる式でもかまいません。ですから、以下の式は期待通りに動作します。
 
 \haxe{assets/AdvArrayComprehension.hx}
 
-
-\section{Iterators}
+\section{イテレータ(反復子)}
 \label{lf-iterators}
 
-With Haxe it is very easy to define custom iterators and iterable data types. These concepts are represented by the types \type{Iterator<T>} and \type{Iterable<T>} respectively:
+Haxeでは、カスタムのイテレータや反復可能(iterable)なデータ型を簡単に定義できます。これらの概念は、\type{Iterator<T>}型と\type{Iterable<T>}型を使って以下のように表現されています。
 
 \begin{lstlisting}
 typedef Iterator<T> = {
@@ -637,150 +621,148 @@ typedef Iterable<T> = {
 }
 \end{lstlisting}
 
-Any \tref{class}{types-class-instance} which \tref{structurally unifies}{type-system-structural-subtyping} with one of these types can be iterated over using a \tref{for-loop}{expression-for}. That is, if the class defines methods \expr{hasNext} and \expr{next} with matching return types it is considered an iterator, if it defines a method \expr{iterator} returning an \type{Iterator<T>} it is considered an iterable type.
+これらの型のいずれかで\tref{構造的に単一化できる}{type-system-structural-subtyping}あらゆる\tref{class}{types-class-instance}は、\tref{forループ}{expression-for}で反復処理を行うことができます。つまり、型が合うように\expr{hasNext}と\expr{next}メソッドを定義すればそのクラスはイテレータであるし、\type{Iterator<T>}を返す\expr{iterator}メソッドを定義すれば反復可能な型です。
 
 \haxe{assets/Iterator.hx}
 
-The type \type{MyStringIterator} in this example qualifies as iterator: It defines a method \expr{hasNext} returning \type{Bool} and a method \expr{next} returning \type{String}, making it compatible with \type{Iterator<String>}. The \expr{main} method instantiates it, then iterates over it.
+この例での\type{MyStringIterator}は、\type{Bool}型を返す\expr{hasNext}と\type{String}型を返す\expr{next}メソッドを定義しているので、イテレータであると見なされます。また\expr{next}の戻り値の型から、これは\type{Iterator<String>}です。\expr{main}メソッドでこれをインスタンス化して反復処理を行っています。
 
 \haxe{assets/Iterable.hx}
+
 
 Here we do not setup a full iterator like in the previous example, but instead define that the \type{MyArrayWrap<T>} has a method \expr{iterator}, effectively forwarding the iterator method of the wrapped \type{Array<T>} type. 
 
 
-
-\section{Function Bindings}
+\section{関数の束縛(bind)}
 \label{lf-function-bindings}
 
-Haxe 3 allows binding functions with partially applied arguments. Each function type can be considered to have a \expr{bind} field, which can be called with the desired number of arguments in order to create a new function. This is demonstrated here:
+Haxe3では、部分的に引数を適用して関数を束縛することが可能です。すべての関数型は\expr{bind}フィールドを持っており、これを呼び出すことで引数の数を減らした新しい関数を作りだすことができます。その実例を示します。
 
 \haxe{assets/Bind.hx}
-Line 4 binds the function \expr{map.set} to a variable named \expr{f}, and applies \expr{12} as second argument. The underscore \expr{_} is used to denote that this argument is not bound, which is shown by comparing the types of \expr{map.set} and \expr{f}: The bound \type{String} argument is effectively cut from the type, turning a \expr{Int->String->Void} type into \expr{Int->Void}.
 
-A call to \expr{f(1)} then actually invokes \expr{map.set(1, "12")}, the calls to \expr{f(2)} and \expr{f(3)} are analogous. The last line proves that all three indices indeed are mapped to the value \expr{"12"}.
+行4では、\expr{map.set}関数に2番目の引数に\expr{12}を適用し、\expr{f}という変数に割り当てました。アンダースコア\expr{_}はその引数を束縛しないことを表すのに使います。このことは\expr{map.set}と、\expr{f}の型の比較でもわかります。束縛された\type{String}型の引数が取り除かれたので、\expr{Int->String->Void}型が\expr{Int->Void}型に変わっています。
 
-The underscore \expr{_} can be skipped for trailing arguments, so the first argument could be bound through \expr{map.set.bind(1)}, yielding a \expr{String->Void} function that sets a new value for index \expr{1} on invocation.
+\expr{f(1)}を呼び出したことで実際には\expr{map.set(1, "12")}が実行され、\expr{f(2)}、\expr{f(3)}の呼び出しでも同じ関係性が成り立ちます。最後の行で、3つのインデックスすべてに紐づく値が\expr{"12"}になっていることが確認できます。
 
-\trivia{Callback}{Prior to Haxe 3, Haxe used to know a \expr{callback}-keyword which could be called with a function argument followed by any number of binding arguments. The name originated from a common usage were a callback-function is created with the this-object being bound.\\
-Callback would allow binding of arguments only from left to right as there was no support for the underscore \expr{_}. The choice to use an underscore was controversial and several other suggestions were made, none of which were considered superior. After all, the underscore \expr{_} at least looks like it's saying ``fill value in here'', which nicely describes its semantics.}
+アンダースコア\expr{_}は、末尾の引数では省略することができます。つまり、\expr{map.set.bind(1)}で最初の引数を束縛した場合、インデックス\expr{1}について新しい値を設定する\expr{String->Void}関数が提供されます。
 
+\trivia{コールバック}{Haxe3よりも前のバージョンでは、\expr{callback}キーワードに1つの関数の引数と任意の個数の束縛する引数をつけて呼び出しをしていました。この束縛する機能に対してコールバック関数という名前が使われるようになっていました。\\
+\expr{callback}は、左から右への束縛のみでアンダースコア\expr{_}はサポートしていませんでした。アンダースコアを使うという選択肢は論争を生み、そのほかの案もいくつか現れましたがこれより優れているものはありませんでした。少なくともアンダースコア\expr{_}は、「ここに値を入れて」と言っているように見えるので、この意味を書き表すのに適しているという結論にいたりました。}
 
-
-\section{Metadata}
+\section{メタデータ}
 \label{lf-metadata}
 
-Several constructs can be attributed with custom metadata:
+以下の要素は、メタデータで属性をつけることができます。
 
 \begin{itemize}
-	\item \expr{class} and \expr{enum} declarations
-	\item Class fields
-	\item Enum constructors
-	\item Expressions
+	\item \expr{class}、\expr{enum}の定義
+	\item クラスフィールド
+	\item 列挙型コンストラクタ
+	\item 式
 \end{itemize}
 
-These metadata information can be obtained at runtime through the \type{haxe.rtti.Meta} API:
+これらのメタデータの情報は、\type{haxe.rtti.Meta}APIを使って実行時に利用することが可能です。
 
 \haxe{assets/Meta.hx}
 
-We can easily identify metadata by the leading \expr{@} character, followed by the metadata name and, optionally, by a number of comma-separated constant arguments enclosed in parentheses.
+メタデータは\expr{@}の文字で始まり、メタデータの名前が続き、その後にオプションでカンマで区切った定数値の引数が小かっこで囲まれている、ということで簡単に識別できます。
 
 \begin{itemize}
-	\item Class \type{MyClass} has an \expr{author} metadata with a single String argument \expr{"Nicolas"}, as well as a \expr{debug} metadata without arguments.
-	\item The member variable \expr{value} has a \expr{range} metadata with two Int arguments \expr{1} and \expr{8}.
-	\item The static method \expr{method} has a \expr{broken} metadata without arguments, as well as a \expr{:noCompletion} metadata without arguments.
+	\item \type{MyClass}クラスは\expr{"Nicolas"}という文字列の引数1つを持つ\expr{author}メタデータと、引数を持たない\expr{debug}メタデータを持ちます。
+	\item メンバ変数\expr{value}は、\expr{1}と\expr{8}の2つの整数の引数を持つ\expr{range}メタデータを持ちます。
+	\item 静的メソッド\expr{method}は引数なしの\expr{broken}メタデータと、引数なしの\expr{:noCompletion}メタデータを持ちます。
 \end{itemize}
 
-The \expr{main} method accesses these metadata values using their API. The output reveals the structure of the obtained data:
+\expr{main}メソッドでは、APIを通してこれらのメタデータへアクセスしています。この出力からは取得可能なデータの構造が分かります。
 
 \begin{itemize}
-	\item There is a field for each metadata, with the field name being the metadata name.
-	\item The field values correspond to the metadata arguments. If there are no arguments, the field value is \expr{null}. Otherwise the field value is an array with one element per argument.
-	\item Metadata starting with \expr{:} is omitted. This kind of metadata is known as \emph{compiler metadata}.
+	\item 各メタデータについてフィールドがあり、フィールドの名前はメタデータの名前です。
+	\item フィールドの値はメタデータの引数に一致します。引数がない場合、フィールドの値は\expr{null}です。その他の場合、フィールドの値は引数1つが要素1つになった配列です。
+	\item \expr{:}から始まるメタデータは省略されます。このメタデータは、\emph{コンパイラメタデータ}として知られます。
 \end{itemize}
 
-Allowed values for metadata arguments are:
+メタデータの引数の値は以下が使用できます。
 
 \begin{itemize}
-	\item \tref{Constants}{expression-constants}
-	\item \tref{Arrays declarations}{expression-array-declaration} (if all their elements qualify)
-	\item \tref{Object declarations}{expression-object-declaration} (if all their field values qualify)
+	\item \tref{定数値}{expression-constants}
+	\item \tref{配列の宣言}{expression-array-declaration} (すべての要素がこのリストのいずれか)
+	\item \tref{オブジェクトの宣言}{expression-object-declaration} (すべての要素がこのリストのいずれか)
 \end{itemize}
 
-\paragraph{Built-in Compiler Metadata}
-An exhaustive list of all defined metadata can be obtained by running \expr{haxe --help-metas} from command line.
+\paragraph{ビルトインのコンパイラメタデータ}
+コマンドラインから\expr{haxe --help-metas}を実行することで、定義済みメタデータの完全なリストを得ることができます。
 
-See also the \tref{Compiler Metadata list}{cr-metadata}.
+詳しくは\tref{コンパイラメタデータのリスト}{cr-metadata}を見てください。
 
-\section{Access Control}
+\section{アクセス制御}
 \label{lf-access-control}
 
-Access control can be used if the basic \tref{visibility}{class-field-visibility} options are not sufficient. It is applicable at \emph{class-level} and at \emph{field-level} and knows two directions:
+基本的な\tref{可視性}{class-field-visibility}のオプションで十分でない場合、アクセス制御が役に立ちます。アクセス制御は\emph{クラスレベル}と\emph{フィールドレベル}、そして以下の2方向の適用が可能です。
 
 \begin{description}
-	\item[Allowing access:] The target is granted access to the given class or field by using the \expr{:allow(target)} \tref{metadata}{lf-metadata}.
-	\item[Forcing access:] A target is forced to allow access to the given class or field by using the \expr{:access(target)} \tref{metadata}{lf-metadata}.
+	\item[アクセス許可:] \expr{:allow(target)}\tref{メタデータ}{lf-metadata}を使うことで、対象を与えられたクラスやフィールドからのアクセスを許容するようにします。
+	\item[アクセス強制:] \expr{:access(target)}\tref{メタデータ}{lf-metadata}を使うことで、対象からの与えられたクラスやフィールドへのアクセスを強制的に可能にします。
 \end{description}
 
-In this context, a \emph{target} can be the \tref{dot-path}{define-type-path} to
+このとき、\expr{target}には以下の\tref{ドットパス}{define-type-path}を使うことができます。
 
 \begin{itemize}
-	\item a \emph{class field},
-	\item a \emph{class} or \emph{abstract} type, or
-	\item a \emph{package}.
+	\item \emph{クラスフィールド}
+	\item　\emph{クラス}、\emph{抽象型}
+	\item \emph{パッケージ}
 \end{itemize}
 
-Target does \emph{not} respect imports, so the fully qualified path has to be used.
+\expr{target}はインポートを参照しません。つまり、完全なパスを正しく記述する必要があります。
 
-If it is a class or abstract type, access modification extends to all fields of that type. Likewise, if it is a package, access modification extends to all types of that package and recursively to all fields of these types.
+クラスや抽象型の場合、アクセスの変更はその型のすべてのフィールドに反映されます。同じように、パッケージの場合、アクセスの変更はそのパッケージ内のすべての型のすべてのフィールドに反映されます。
 
 \haxe{assets/ACL.hx}
 
-Here, \expr{MyClass.foo} can be accessed from the \expr{main}-method because \type{MyClass} is annotated with \expr{@:allow(Main)}. This would also work with \expr{@:allow(Main.main)} and both versions could alternatively be annotated to the field \expr{foo} instead of the class \type{MyClass}:
+\expr{MyClass.foo}は、\type{MyClass}に\expr{@:allow(Main)}を適用しているので、\expr{main}メソッドからアクセスできます。このコードは、\expr{@:allow(Main.main)}でも動作しますし、以下のように\type{MyClass}クラスの\expr{foo}フィールドにメタデータをつけても動作します。
 
 \haxe{assets/ACL2.hx}
 
-If a type cannot be modified to allow this kind of access, the accessing method may force access:
+もし型にこのようなアクセスの変更ができない場合は、アクセス強制の方法が役立つかもしれません。
 
 \haxe{assets/ACL3.hx}
 
-The \expr{@:access(MyClass.foo)} annotation effectively subverts the visibility of the \expr{foo} field within the \expr{main}-method. 
+\expr{@:access(MyClass.foo)}のメタデータは、\expr{main}メッソドからの\expr{foo}の可視性を変更します。
 
-\trivia{On the choice of metadata}{The access control language feature uses the Haxe metadata syntax instead of additional language-specific syntax. There are several reasons for that:\\
+\trivia{メタデータという選択肢}{アクセス制御の言語機能には、新しい構文の導入ではなく、Haxeのメタデータの構文を使いました。これには以下のいくつかの理由があります。
 \begin{itemize}
-	\item Additional syntax often adds complexity to the language parsing, and also adds (too) many keywords.
-	\item Additional syntax requires additional learning by the language user, whereas metadata syntax is something that is already known.
-	\item The metadata syntax is flexible enough to allow extension of this feature.
-	\item The metadata can be accessed/generated/modified by Haxe macros.
+	\item 追加の構文は言語の構文解析を複雑にして、さらにはキーワードを増やしてしまします。
+	\item 追加の構文は、言語のユーザーに追加の学習を要求します。メタデータであれば、それは既知のものです。
+	\item メタデータは、この拡張を行うのに十分な表現力を持っています。
+	\item メタデータはHaxeのマクロから、アクセスし、生成し、編集することが可能です。
 \end{itemize}
-Of course, the main drawback of using metadata syntax is that you get no error report in case you misspell either the metadata key (@:acesss for instance) or the class/package name. However, with this feature you will get an error when you try to access a private field that you are not allowed to, therefore there is no possibility for silent errors.}
+もちろん、メタデータ構文の主な不利益はメタデータの名前、クラスやパッケージ名についてスペルミス(例えば、@:acesss)をした場合に何のエラーも出ないことです。しかし、この機能では実際に\expr{private}フィールドにアクセスしようとした場合にエラーがでるので、エラーが沈黙しているということにはなりえません。}
 
 \since{3.1.0}
 
-If access is allowed to an \tref{interface}{types-interfaces}, it extends to all classes implementing that interface:
+アクセスが\tref{インターフェース}{types-interfaces}に対して許可される場合、そのインターフェースを実装しているすべてのクラスに対してそれが引き継がれます。
 
 \haxe{assets/ACL4.hx}
 
-This is also true for access granted to parent classes, in which case it extends to all child classes.
+これは親クラスの場合も同様です。その場合、子クラスに対して引き継ぎがされます。
 
-\trivia{Broken feature}{Access extension to child classes and implementing classes was supposed to work in Haxe 3.0 and even documented accordingly. While writing this manual it was found that this part of the access control implementation was simply missing.}
+\trivia{壊れた機能}{子クラスや実装クラスへのアクセスの継承は、Haxe3.0への導入を予定されており、そしてドキュメントまでも作られていました。しかし、このマニュアルを作る過程でこのアクセス制御の実装がぬけ落ちていることを発見しました。}
 
-
-\section{Inline constructors}
+\section{インラインコンストラクタ}
 \label{lf-inline-constructor}
 \since{3.1.0}
 
-If a constructor is declared to be \tref{inline}{class-field-inline}, the compiler may try to optimize it away in certain situations. There are several requirements for this to work:
+コンストラクタに、\tref{inline}{class-field-inline}の宣言をつけると、コンパイラは特定の場合において最適化を試みます。この最適化が動作するためにはいくつかの必要事項があります。
 
 \begin{itemize}
-	\item The result of the constructor call must be directly assigned to a local variable.
-	\item The expression of the constructor field must only contain assignments to its fields.
+	\item コンストラクタの呼び出しの結果はローカル変数への直接の代入でなければいけない。
+	\item コンストラクタフィールドの式は、そのフィールドへの代入のみでなければならない。
 \end{itemize}
 
-The following example demonstrates constructor inlining:
+以下に、コンストラクタのインライン化の実例を挙げます。
 
 \haxe{assets/NewInline.hx}
 
-A look at the \target{JavaScript} output reveals the effect:
+\target{JavaScript}出力をみると、その効果がわかります。
 
 \begin{lstlisting}
 Main.main = function() {
@@ -788,4 +770,3 @@ Main.main = function() {
 	var pt_y = 9.3;
 };
 \end{lstlisting}
-
