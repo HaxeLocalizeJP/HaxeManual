@@ -1,10 +1,10 @@
 \chapter{クラスフィールド}
 \label{class-field}
 
-\define{クラスフィールド}{define-class-field}{クラスフィールドは、クラスに属する変数、プロパティまたはメソッドです。これは静的、または非静的になることができます。\emph{静的メソッド}と\emph{メンバ変数}といった名前を使うのと同じように、非静的フィールドについては\emph{メンバ}フィールドと呼びます。}
+\define{クラスフィールド}{define-class-field}{クラスフィールドはクラスに属する変数、プロパティまたはメソッドです。これは静的、または非静的になることができます。\emph{静的メソッド}と\emph{メンバ変数}といった名前を使うのと同じように、非静的フィールドについては\emph{メンバ}フィールドと呼びます。}
 
 ここまで、一般的なHaxeのプログラムと型がどのように構成されているのかを見てきました。
-このクラスフィールドに関する章では、構成に関する話題をまとめて、Haxeの動作に関する話題へのかけ橋とします。これは、クラスフィールドが\tref{式}{expression}を持つ場所だからです。
+このクラスフィールドに関する章では、構成に関する話題をまとめて、Haxeの動作に関する話題へのかけ橋とします。これはクラスフィールドが\tref{式}{expression}を持つ場所だからです。
 
 クラスフィールドには3種類あります。
 
@@ -48,17 +48,17 @@
 
 \begin{itemize}
 	\item どこからでも読み込み可能だが、書き込みは定義しているクラスからのみのフィールドを作る
-	\item 読み込みアクセスがされたときに\emph{getter}メソッドが実行されるフィールドを作る。
-	\item 書き込みアクセスがされたときに\emph{setter}メソッドが実行されるフィールドを作る。
+	\item 読み込みアクセスがされたときに\emph{ゲッター}メソッドが実行されるフィールドを作る。
+	\item 書き込みアクセスがされたときに\emph{セッター}メソッドが実行されるフィールドを作る。
 \end{itemize}
 
 プロパティをあつかう場合、2種類のアクセスについて理解することが重要です。
 
 \define{読み込みアクセス}{define-read-access}{読み込みアクセスは右辺側で\tref{フィールドアクセス式}{expression-field-access}が使われると発生します。これには\expr{obj.field()}の形の関数呼び出しもふくまれるため、この\expr{field}も読み込みアクセスがされます。}
 
-\define{書き込みアクセス}{define-write-access}{フィールドへの書き込みアクセスは、\tref{フィールドアクセス式}{expression-field-access}に\expr{obj.field = value}の形式で値の代入することで発生します。これは、\expr{obj.field += value}の式\expr{+=}のような特殊な代入演算子を使うと、書き込みアクセスと\tref{読み込みアクセス}{define-read-access}の両方が発生します。} 
+\define{書き込みアクセス}{define-write-access}{フィールドへの書き込みアクセスは、\tref{フィールドアクセス式}{expression-field-access}に\expr{obj.field = value}の形式で値の代入することで発生します。また、\expr{obj.field += value}の式\expr{+=}のような特殊な代入演算子を使うと、書き込みアクセスと\tref{読み込みアクセス}{define-read-access}の両方が発生します。} 
 
-読み込みアクセスと書き込みアクセスを以下の例の構文を使って直接指定します。
+読み込みアクセスと書き込みアクセスを以下の構文を使って直接指定します。
 
 \haxe{assets/Property.hx}
 
@@ -82,7 +82,7 @@
 	\item[\expr{never}:] いかなるアクセスも許可しません。
 \end{description}
 
-\define{アクセサメソッド}{define-accessor-method}{型が\type{T}でフィールド名が\expr{field}のフィールドの\emph{アクセサメソッド}(省略して\emph{アクセサ}とも呼ぶ)は、\type{Void->T}型のフィールド名\expr{get_field}の\emph{ゲッター}または\type{T->T}型のフィールド名\expr{set_field}の\emph{セッター}です。}
+\define{アクセサメソッド}{define-accessor-method}{型が\type{T}でフィールド名が\expr{field}のフィールドに対する\emph{アクセサメソッド}は、\type{Void->T}型のフィールド名\expr{get_field}の\emph{ゲッター}または\type{T->T}型のフィールド名\expr{set_field}の\emph{セッター}です。アクセサメソッドは略して\emph{アクセサ}とも呼びます。}
 
 \trivia{アクセサ名}{Haxe2では、アクセス識別子に自由な識別子を使うことが可能で、その場合はそれがカスタムのアクセサメソッド名となっていました。しかし、これにより実装は変則的なものになっていました。例えば、\expr{Reflect.getProperty()}と\expr{Reflect.setProperty()}はどのような名前が名前が使われていたとしても対応する必要がありました。そのため、ターゲット出力時に参照のためのメタ情報を生成する必要がありました。\\
 この識別子の名前を\expr{get_}、\expr{set_}から始まるもののみに制限することで、実装を大きく簡略化することに成功しました。これがHaxe2と3の間の破壊的な変更の1つ。}
@@ -94,7 +94,7 @@
 
 \haxe{assets/Property2.hx}
 
-以下の\expr{main}の\target{JavaScript}へのコンパイル結果は、フィールドアクセスがどのようなものなのか理解する助けになるでしょう。
+\expr{main}メソッドの\target{JavaScript}へのコンパイル結果は、フィールドアクセスがどのようなものなのか理解する助けになるでしょう。
 
 \begin{lstlisting}
 var Main = function() {
@@ -105,7 +105,7 @@ var Main = function() {
 };
 \end{lstlisting}
 
-このとおり、読み込みアクセスは\expr{get_x()}の呼び出しとなり、書き込みアクセスは\expr{x}への\expr{2}の代入が\expr{set_x(2)}の呼び出しになります。\expr{+=}の場合の出力は最初は少し不思議に見えるかもしれませんが、次の例で簡単にわかるはずです。
+このとおり、読み込みアクセスは\expr{get_x()}の呼び出しとなり、書き込みアクセスは\expr{x}への\expr{2}の代入が\expr{set_x(2)}の呼び出しになりました。\expr{+=}の場合の出力は最初は少し不思議に見えるかもしれませんが、次の例で簡単にわかるはずです。
 
 \haxe{assets/Property3.hx}
 
@@ -184,7 +184,7 @@ Main.main = function() {
 
 \haxe{assets/MethodField.hx}
 
-引数はフィールド名の後に、小かっこ(\expr{(})を続け、引数の詳細のリストをカンマ(\expr{,})区切りで並べて、小かっこを閉じる(\expr{)})ことで記述します。引数の詳細についての詳しい情報は\Fullref{types-function}で説明されています。
+引数はフィールド名の後に、小かっこ(\expr{(})を続け、引数の詳細のリストをカンマ(\expr{,})区切りで並べて、小かっこを閉じる(\expr{)})ことで記述します。引数の詳細についての情報は\Fullref{types-function}で説明されています。
 
 この例からは\tref{型推論}{type-system-type-inference}が引数と戻り値についてどのように動作するのかもわかります。\expr{myFunc}は2つの引数を持ちますが、最初の引数の\expr{f}のみで\type{String}の型が明示されていて、2つ目の引数の\expr{i}には型注釈がありません。コンパイラがこのメソッドの呼び出しから推論を行うように残してあります。同じように、メソッドの戻り値の型も\expr{return true}から推論されて\type{Bool}になります。
 
@@ -251,7 +251,7 @@ Main.main = function() {
 	\item \expr{public}フィールドを\tref{オーバーライド}{class-field-overriding}している。
 \end{enumerate}
 
-\trivia{protected}{HaxeにはJavaやC++やその他のオブジェクト指向言語で知られる\expr{protected}キーワードはありません。しかし、\expr{private}の挙動がそれらの言語の\expr{protected}の挙動に当たります。つまり、Haxeにはそれらの言語の\expr{private}に当たる挙動がありません。}
+\trivia{protected}{HaxeにはJavaやC++やその他のオブジェクト指向言語で知られる\expr{protected}キーワードはありません。しかし、\expr{private}の挙動がこれらの言語の\expr{protected}の挙動に当たります。つまり、Haxeにはこれらの言語の\expr{private}に当たる挙動がありません。}
 
 \subsection{inline(インライン化)}
 \label{class-field-inline}
@@ -302,7 +302,6 @@ Main.main();
 \subsection{override}
 \label{class-field-override}
 
-The access modifier 
 \expr{override}アクセス修飾子は\tref{親クラス}{types-class-inheritance}ですでに存在するフィールドを定義するときに必要です。これはクラスの継承関係が大きい場合でも、書き手がオーバーライドに気づくようにするためです。同様に、実際には何もオーバーライドしないフィールドに\expr{override}しようとするとエラーになります(例えば、スペルミスの場合)。
 
 オーバーライドの効果については、\Fullref{class-field-overriding}で詳しく説明しています。この修飾子は\tref{メソッド}{class-field-method}フィールドのみに使用可能です。

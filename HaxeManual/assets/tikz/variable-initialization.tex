@@ -1,23 +1,23 @@
-\begin{flowchart}{class-field-variable-init-values}{Initialization values of a variable field.}
+\begin{flowchart}{class-field-variable-init-values}{変数フィールドの値の初期化}
 \Tree[.\node [decision] {\expr{inline}};
-	\edge node[auto=right] {Yes};
+	\edge node[auto=right] {はい};
 	[.\node [decision] {\expr{static}};
-		\edge node[auto=right] {No};
-		\node [startstop, valueNone] {Invalid};
-		\edge node[auto=left] {Yes};
-		\node [startstop, valueSome] {Constants only};
+		\edge node[auto=right] {いいえ};
+		\node [startstop, valueNone] {不正};
+		\edge node[auto=left] {はい};
+		\node [startstop, valueSome] {定数のみ};
 	]
-	\edge node[auto=left] {No};
+	\edge node[auto=left] {いいえ};
 	[.\node [decision] {\expr{extern}};
-		\edge node[auto=right] {No};
+		\edge node[auto=right] {いいえ};
 		[.\node [decision] {\expr{static}};
-			\edge node[auto=right] {No};
-			\node [startstop, valueSome] {No 'this'};
-			\edge node[auto=left] {Yes};
-			\node [startstop, valueAll] {Anything};
+			\edge node[auto=right] {いいえ};
+			\node [startstop, valueSome] {'this'を使えない};
+			\edge node[auto=left] {はい};
+			\node [startstop, valueAll] {何でも};
 		]
-		\edge node[auto=left] {Yes};
-		\node [startstop, valueNone] {None};
+		\edge node[auto=left] {はい};
+		\node [startstop, valueNone] {なし};
 	]
 ]
 \end{flowchart}
