@@ -1,103 +1,100 @@
-\chapter{Class Fields}
+\chapter{クラスフィールド}
 \label{class-field}
 
-\define{クラスフィールド}{define-class-field}{クラスフィールドは、クラスに属する変数、プロパティまたはメソッドです。これは静的、または非静的になることができます。非静的フィールドは\emph{メンバ}フィールドと呼ばれるので、例えば、\emph{静的メソッド}と\emph{メンバ変数}と言います。}
+\define{クラスフィールド}{define-class-field}{クラスフィールドは、クラスに属する変数、プロパティまたはメソッドです。これは静的、または非静的になることができます。\emph{静的メソッド}と\emph{メンバ変数}といった名前を使うのと同じように、非静的フィールドについては\emph{メンバ}フィールドと呼びます。}
 
-ここまで、私達は型と一般的なHaxeのプログラムがどのように構成されているのかを見てきました。
-このクラスフィールドに関する章では、この話題についてまとめ、Haxeの動作の一部につなげます。これは、クラスフィールドが\tref{式}{expression}を持つ場所だからです。
+ここまで、一般的なHaxeのプログラムと型がどのように構成されているのかを見てきました。
+このクラスフィールドに関する章では、構成に関する話題をまとめて、Haxeの動作に関する話題へのかけ橋とします。これは、クラスフィールドが\tref{式}{expression}を持つ場所だからです。
 
-% この部分は現段階では未遂行なのでコメントにしています。
-% ...are at home や "the structural part"の日本語訳をもう少し練る予定です
-%So far we have seen how types and Haxe programs in general are structured. This section about class fields concludes the structural part and at the same time bridges to the behavioral part of Haxe. This is because class fields are the place where \tref{expressions}{expression} are at home.
-
-クラスフィールドには3種類あります:
+クラスフィールドには3種類あります。
 
 \begin{description}
 	\item[変数:] \tref{変数}{class-field-variable}クラスフィールドにはある型の値が入っていて、参照、または代入することがができます。
-	\item[プロパティ:] \tref{プロパティ}{class-field-property}クラスフィールドはアクセスされた時の独自の動作を定義します。クラスの外からは変数のフィールドのように見えます。
-	\item[メソッド:] A \tref{メソッド}{class-field-method}はコードを実行するために呼び出すことのできる関数です。
+	\item[プロパティ:] \tref{プロパティ}{class-field-property}クラスフィールドはアクセスされた時のカスタムの動作を定義します。クラスの外からは変数フィールドのように見えます。
+	\item[メソッド:] \tref{メソッド}{class-field-method}はコードを実行するために呼び出すことのできる関数です。
 \end{description}
-Strictly speaking, a variable could be considered to be a property with certain access modifiers. Indeed, the Haxe Compiler does not distinguish variables and properties during its typing phase, but they remain separated at syntax level.
 
-Regarding terminology, a method is a (static or non-static) function belonging to a class. Other functions, such as a \tref{local functions}{expression-function} in expressions, are not considered methods.
+厳密に言うと、変数は特定のアクセス方法を持つプロパティであると見なせます。実際に、Haxeコンパイラは変数とプロパティを型付けの段階では区別していません。しかし、構文レベルでは区別されます。
 
+用語について補足すると、メソッドは(静的また非静的の)クラスに属する関数であり、式の中で現れる\tref{ローカル関数}{expression-function}のようなその他の関数はメソッドではありません。
 
-\section{Variable}
+\section{変数}
 \label{class-field-variable}
 
-We have already seen variable fields in several code examples of previous sections. Variable fields hold values, a characteristic which they share with most (but not all) properties:
+変数フィールドについては、すでに前章でいくつかのサンプルコードで見てきました。変数フィールドは値を保持するもので、その性質はほとんどプロパティと共通しています(すべてでは無い)。
 
 \haxe{assets/VariableField.hx}
-We can learn from this that a variable
+
+ここから変数が以下のようなものだとわかります。
 
 \begin{enumerate}
-	\item has a name (here: \expr{member}),
-	\item has a type (here: \type{String}),
-	\item may have a constant initialization (here: \expr{"bar"}) and
-	\item may have \tref{access modifiers}{class-field-access-modifier} (here: \expr{static})
+	\item 名前を持つ(ここでは\expr{member}),
+	\item 型を持つ(ここでは\type{String}),
+	\item 一定の初期値を持つ場合がある(ここでは\expr{"bar"}) and
+	\item \tref{アクセス修飾子}{class-field-access-modifier}を持つ場合がある(ここでは\expr{static})
 \end{enumerate}
 
-The example first prints the initialization value of \expr{member}, then sets it to \expr{"foo"} before printing its new value. The effect of access modifiers is shared by all three class field kinds and explained in a separate section.
+上の例は最初に\expr{member}の初期値を出力した後、\expr{"foo"}を割り当ててから新しい値を出力しています。アクセス修飾子の効果は3種類のクラスフィールドで共通しており、その内容については後の節で説明します。
 
-It should be noted that the explicit type is not required if there is an initialization value. The compiler will \tref{infer}{type-system-type-inference} it in this case.
+変数フィールドが初期値をもつ場合には、型の明示は不要になります。この場合、コンパイラが\tref{推論}{type-system-type-inference}を行います。
 
 \input{assets/tikz/variable-initialization.tex}
 
 
-\section{Property}
+\section{プロパティ}
 \label{class-field-property}
 
-Next to \tref{variables}{class-field-variable}, properties are the second option for dealing with data on a class. Unlike variables however, they offer more control of which kind of field access should be allowed and how it should be generated. Common use cases include:
+\tref{変数}{class-field-variable}に続き、プロパティがクラスにデータ持つ2番目の方法になります。変数とは異なり、プロパティはどのようなアクセスが許可されるかと、どのように生成されるかのより細かい制御が要求されます。よくある使い方は、例えば以下のようなものです。
 
 \begin{itemize}
-	\item Have a field which can be read from anywhere, but only be written from within the defining class.
-	\item Have a field which invokes a \emph{getter}-method upon read-access.
-	\item Have a field which invokes a \emph{setter}-method upon write-access.
+	\item どこからでも読み込み可能だが、書き込みは定義しているクラスからのみのフィールドを作る
+	\item 読み込みアクセスがされたときに\emph{getter}メソッドが実行されるフィールドを作る。
+	\item 書き込みアクセスがされたときに\emph{setter}メソッドが実行されるフィールドを作る。
 \end{itemize}
 
-When dealing with properties, it is important to understand the two kinds of access:
+プロパティをあつかう場合、2種類のアクセスについて理解することが重要です。
 
-\define{Read Access}{define-read-access}{A read access to a field occurs when a right-hand side \tref{field access expression}{expression-field-access} is used. This includes calls in the form of \expr{obj.field()}, where \expr{field} is accessed to be read.}
+\define{読み込みアクセス}{define-read-access}{読み込みアクセスは右辺側で\tref{フィールドアクセス式}{expression-field-access}が使われると発生します。これには\expr{obj.field()}の形の関数呼び出しもふくまれるため、この\expr{field}も読み込みアクセスがされます。}
 
-\define{Write Access}{define-write-access}{A write access to a field occurs when a \tref{field access expression}{expression-field-access} is assigned a value in the form of \expr{obj.field = value}. It may also occur in combination with \tref{read access}{define-read-access} for special assignment operators such as \expr{+=} in expressions like \expr{obj.field += value}.} 
+\define{書き込みアクセス}{define-write-access}{フィールドへの書き込みアクセスは、\tref{フィールドアクセス式}{expression-field-access}に\expr{obj.field = value}の形式で値の代入することで発生します。これは、\expr{obj.field += value}の式\expr{+=}のような特殊な代入演算子を使うと、書き込みアクセスと\tref{読み込みアクセス}{define-read-access}の両方が発生します。} 
 
-Read access and write access are directly reflected in the syntax, as the following example shows:
+読み込みアクセスと書き込みアクセスを以下の例の構文を使って直接指定します。
 
 \haxe{assets/Property.hx}
 
-For the most part, the syntax is similar to variable syntax, and the same rules indeed apply. Properties are identified by
+大部分は変数の構文と同じで、同じルールが適用されます。プロパティは以下の点で異なります。
 
 \begin{itemize}
-	\item the opening parenthesis \expr{(} after the field name,
-	\item followed by a special \emph{access identifier} (here: \expr{default}),
-	\item with a comma \expr{,} separating
-	\item another special access identifier (here: \expr{null})
-	\item before a closing parenthesis \expr{)}.
+	\item フィールド名の後から小かっこが始まります(\expr{(})。
+	\item 次に、特殊な\emph{アクセス識別子}が来ます(ここでは\expr{default})。
+	\item カンマ(\expr{,})で区切ります。
+	\item もう一つ特殊なアクセス識別子が続きます(ここでは\expr{null})。
+	\item 小かっこを閉じます(\expr{)})。
 \end{itemize}
 
-The access identifiers define the behavior when the field is read (first identifier) and written (second identifier). The accepted values are:
+1つ目のアクセス識別子はフィールドの読み込み、2つ目は書き込み時の挙動を決定します。アクセス識別子には以下の値が使用できます。
 
 \begin{description}
-	\item[\expr{default}:] Allows normal field access if the field has public visibility, otherwise equal to \expr{null} access.
-	\item[\expr{null}:] Allows access only from within the defining class.
-	\item[\expr{get}/\expr{set}:] Access is generated as a call to an \emph{accessor method}. The compiler ensures that the accessor is available.
-	\item[\expr{dynamic}:] Like \expr{get}/\expr{set} access, but does not verify the existence of the accessor field.
-	\item[\expr{never}:] Allows no access at all.
+	\item[\expr{default}:] フィールドの可視性が\expr{public}の場合、通常のフィールドと同じです。その他の場合、\expr{null}アクセスと同じです。
+	\item[\expr{null}:] 定義したクラスのみからアクセスできます。
+	\item[\expr{get}/\expr{set}:] アクセス時に\emph{アクセサメソッド}を呼び出します。コンパイラが使用可能なアクセサの存在を確認します。
+	\item[\expr{dynamic}:] \expr{get}/\expr{set}アクセスに似ていますが、アクセサフィールドの存在を確認しません。
+	\item[\expr{never}:] いかなるアクセスも許可しません。
 \end{description}
 
-\define{Accessor method}{define-accessor-method}{An \emph{accessor method} (or short \emph{accessor}) for a field named \expr{field} of type \type{T} is a \emph{getter} named \expr{get_field} of type \type{Void->T} or a \emph{setter} named \expr{set_field} of type \type{T->T}.}
+\define{アクセサメソッド}{define-accessor-method}{型が\type{T}でフィールド名が\expr{field}のフィールドの\emph{アクセサメソッド}(省略して\emph{アクセサ}とも呼ぶ)は、\type{Void->T}型のフィールド名\expr{get_field}の\emph{ゲッター}または\type{T->T}型のフィールド名\expr{set_field}の\emph{セッター}です。}
 
-\trivia{Accessor names}{In Haxe 2, arbitrary identifiers were allowed as access identifiers and would lead to custom accessor method names to be admitted. This made parts of the implementation quite tricky to deal with. In particular, \expr{Reflect.getProperty()} and \expr{Reflect.setProperty()} had to assume that any name could have been used, requiring the target generators to generate meta-information and perform lookups.\\
-We disallowed these identifiers and went for the \expr{get_} and \expr{set_} naming convention which greatly simplified implementation. This was one of the breaking changes between Haxe 2 and 3.}
+\trivia{アクセサ名}{Haxe2では、アクセス識別子に自由な識別子を使うことが可能で、その場合はそれがカスタムのアクセサメソッド名となっていました。しかし、これにより実装は変則的なものになっていました。例えば、\expr{Reflect.getProperty()}と\expr{Reflect.setProperty()}はどのような名前が名前が使われていたとしても対応する必要がありました。そのため、ターゲット出力時に参照のためのメタ情報を生成する必要がありました。\\
+この識別子の名前を\expr{get_}、\expr{set_}から始まるもののみに制限することで、実装を大きく簡略化することに成功しました。これがHaxe2と3の間の破壊的な変更の1つ。}
 
-\subsection{Common accessor identifier combinations}
+\subsection{よくあるアクセス識別子の組み合わせ}
 \label{class-field-property-common-combinations}
 
-The next example shows common access identifier combinations for properties:
+次の例はプロパティのよくあるアクセス識別子の組み合わせです。
 
 \haxe{assets/Property2.hx}
 
-The \target{JavaScript} output helps understand what the field access in the \expr{main}-method is compiled to:
+以下の\expr{main}の\target{JavaScript}へのコンパイル結果は、フィールドアクセスがどのようなものなのか理解する助けになるでしょう。
 
 \begin{lstlisting}
 var Main = function() {
@@ -108,11 +105,11 @@ var Main = function() {
 };
 \end{lstlisting}
 
-As specified, the read access generates a call to \expr{get_x()}, while the write access generates a call to \expr{set_x(2)} where \expr{2} is the value being assigned to \expr{x}. The way the \expr{+=} is being generated might look a little odd at first, but can easily be justified by the following example:
+このとおり、読み込みアクセスは\expr{get_x()}の呼び出しとなり、書き込みアクセスは\expr{x}への\expr{2}の代入が\expr{set_x(2)}の呼び出しになります。\expr{+=}の場合の出力は最初は少し不思議に見えるかもしれませんが、次の例で簡単にわかるはずです。
 
 \haxe{assets/Property3.hx}
 
-What happens here is that the expression part of the field access to \expr{x} in the \expr{main} method is \emph{complex}: It has potential side-effects, such as the construction of \type{Main} in this case. Thus, the compiler cannot generate the \expr{+=} operation as \expr{new Main().x = new Main().x + 1} and has to cache the complex expression in a local variable:
+\expr{main}メソッドの\expr{x}のフィールドアクセスについて、ここで起きる事象は複雑です。まずこの場合は、\type{Main}のインスタンス化という副作用があります。そのため、コンパイラは\expr{new Main().x = new Main().x + 1}という出力を行わないように、複雑な式をローカル変数にキャッシュします。
 
 \begin{lstlisting}
 Main.main = function() {
@@ -121,158 +118,149 @@ Main.main = function() {
 }
 \end{lstlisting}
 
-
-
-\subsection{Impact on the type system}
+\subsection{型システムへの影響}
 \label{class-field-property-type-system-impact}
 
-The presence of properties has several consequences on the type system. Most importantly, it is necessary to understand that properties are a compile-time feature and thus \emph{require the types to be known}. If we were to assign a class with properties to \type{Dynamic}, field access would \emph{not} respect accessor methods. Likewise, access restrictions no longer apply and all access is virtually public.
+プロパティの存在は型システム対して、いくつかの重要な影響をもたらします。もっとも重要なのはプロパティはコンパイル時の機能であり、\emph{型がわかっている}必要があるということです。クラスインスタンスを\type{Dynamic}に代入すると、フィールドアクセスはアクセサメソッドを参照\emph{しません}。同じようにアクセス制限も働かなくなり、すべてのアクセスは\expr{public}と同じになります。
 
-When using \expr{get} or \expr{set} access identifier, the compiler ensures that the getter and setter actually exists. The following problem does not compile:
+\expr{get}または\expr{set}のアクセス識別子を使うと、コンパイラはゲッターとセッターが本当に存在するかを確認します。以下はコンパイルできません。
 
 \haxe{assets/Property4.hx}
 
-The method \expr{get_x} is missing, but it need not be declared on the class defining the property itself as long as a parent class defines it:
+\expr{get_x}メソッドを忘れていますが、親クラスでそれが定義されていた場合は今のクラスでそれを定義する必要はなくなります。
 
 \haxe{assets/Property5.hx}
 
-The \expr{dynamic} access modifier works exactly like \expr{get} or \expr{set}, but does not check for the existence
+\expr{dynamic}アクセス識別子は\expr{get}や\expr{set}と同じように動作しますが、この存在チェックは行われません。
 
-
-
-\subsection{Rules for getter and setter}
+\subsection{ゲッターとセッターのルール}
 \label{class-field-property-rules}
 
-Visibility of accessor methods has no effect on the accessibility of its property. That is, if a property is \expr{public} and defined to have a getter, that getter may me defined as \expr{private} regardless.
+アクセサメソッドの可視性は、プロパティの可視性に影響を与えません。つまり、プロパティが\expr{public}であってもそのゲッターは\expr{private}でも構わないということです。
 
-Both getter and setter may access their physical field for data storage. The compiler ensures that this kind of field access does not go through the accessor method if made from within the accessor method itself, thus avoiding infinite recursion:
+ゲッターとセッターは、その物理的フィールドにアクセスしてデータを使用する場合があります。アクセサメソッド自身からそのフィールドへのアクセスが行われた場合、コンパイラはこれをアクセサメソッド経由しないアクセスと見なします。これにより無限ループが回避されます。
 
 \haxe{assets/GetterSetter.hx}
 
-However, the compiler assumes that a physical field exists only if at least one of the access identifiers is \expr{default} or \expr{null}.
+しかし、フィールドが少なくとも1つ、\expr{default}または\expr{null}のアクセス識別子を持つ時のみ、コンパイラはその物理的フィールドが存在していると考えます。
 
-\define{Physical field}{define-physical-field}{A field is considered to be \emph{physical} if it is either
+\define{物理的フィールド}{define-physical-field}{以下のいずれかの場合にフィールドが\emph{物理的}であると考えられます
 	\begin{itemize}
-		\item a \tref{variable}{class-field-variable}
-		\item a \tref{property}{class-field-property} with the read-access or write-access identifier being \expr{default} or \expr{null}
-		\item a \tref{property}{class-field-property} with \expr{:isVar} \tref{metadata}{lf-metadata}
+		\item \tref{変数}{class-field-variable}
+		\item 読み込みアクセスか書き込みアクセスのアクセス識別子が\expr{default}または\expr{null}である\tref{プロパティ}{class-field-property}
+		\item \expr{:isVar}\tref{メタデータ}{lf-metadata}がつけられた\tref{プロパティ}{class-field-property}
 	\end{itemize}
 }
 
-If this is not the case, access to the field from within an accessor method causes a compilation error:
+これらのケースに含まれない場合、アクセサメソッド内での自身のフィールドへのアクセスはコンパイルエラーを起こします。
 
 \haxe{assets/GetterSetter2.hx}
 
-If a physical field is indeed intended, it can be forced by attributing the field in question with the \expr{:isVar} \tref{metadata}{lf-metadata}:
+物理的フィールドが必要であれば、\expr{:isVar}\tref{メタデータ}{lf-metadata}をフィールドつけることでそれを強制できます。
 
 \haxe{assets/GetterSetter3.hx}
 
+\trivia{プロパティのセッターの型}{新しいHaxeのユーザーにとって、セッターの型が\type{T->Void}ではなくて\type{T->T}でなくてはいけないというのはなじみがなく、驚かれるかもしれません。ではなぜ\emph{setter}が値を返す必要があるのでしょうか？\\
+それはセッターを使ったフィールドへの代入を右辺の式として使いたいからです。\expr{x = y = 1}のような連結された式は、\expr{x = (y = 1)}として評価されます。\expr{x}に\expr{y = 1}の結果を代入するためには、\expr{y = 1}が値を持たなければなりません。\expr{y}のセッターの戻り値が\type{Void}であれば、それは不可能です。}
 
-\trivia{Property setter type}{It is not uncommon for new Haxe users to be surprised by the type of a setter being required to be \type{T->T} instead of the seemingly more natural \type{T->Void}. After all, why would a \emph{setter} have to return something?\\
-The rationale is that we still want to be able to use field assignments using setters as right-side expressions. Given a chain like \expr{x = y = 1}, it is evaluated as \expr{x = (y = 1)}. In order to assign the result of \expr{y = 1} to \expr{x}, the former must have a value. If \expr{y} had a setter returning \type{Void}, this would not be possible.}
-
-
-\section{Method}
+\section{メソッド}
 \label{class-field-method}
 
-While \tref{variables}{class-field-variable} hold data, methods are defining behavior of a program by hosting \tref{expressions}{expression}. We have seen method fields in every code example of this document with even the initial \tref{Hello World}{introduction-hello-world} example containing a \expr{main} method:
+\tref{変数}{class-field-variable}がデータを保持する一方で、メソッドは\tref{式}{expression}をもってプログラムの動作を定義します。このマニュアルのさまざまなサンプルコード中で、メソッドフィールドを見てきました。最初の\tref{Hello World}{introduction-hello-world}の例ですら、\expr{main}メソッドとして現れています。
 
 \haxe{assets/HelloWorld.hx}
 
-Methods are identified by the \expr{function} keyword. We can also learn that they
+メソッドは\expr{function}キーワードから始まることで識別されます。そして以下の要素を持ちます。
 
 \begin{enumerate}
-	\item have a name (here: \expr{main}),
-	\item have an argument list (here: empty \expr{()}),
-	\item have a return type (here: \type{Void}),
-	\item may have \tref{access modifiers}{class-field-access-modifier} (here: \expr{static} and \expr{public}) and
-	\item may have an expression (here: \expr{\{trace("Hello World");\}}).
+	\item 名前を持つ(ここでは\expr{main})。
+	\item 引数のリストを持つ(ここでは空の\expr{()})。
+	\item 戻り値を持つ(ここでは\type{Void})。
+	\item \tref{アクセス修飾子}{class-field-access-modifier}を持つ場合がある(ここでは\expr{static}と\expr{public})
+	\item 式を持つ場合がある(ここでは\expr{\{trace("Hello World");\}})。
 \end{enumerate}
 
-We can also look at the next example to learn more about arguments and return types:
+引数と戻り値の型について学ぶために次の例を見てみましょう。
 
 \haxe{assets/MethodField.hx}
 
-Arguments are given by an opening parenthesis \expr{(} after the field name, a comma \expr{,} separated list of argument specifications and a closing parenthesis \expr{)}. Additional information on the argument specification is described in \Fullref{types-function}.
+引数はフィールド名の後に、小かっこ(\expr{(})を続け、引数の詳細のリストをカンマ(\expr{,})区切りで並べて、小かっこを閉じる(\expr{)})ことで記述します。引数の詳細についての詳しい情報は\Fullref{types-function}で説明されています。
 
-The example demonstrates how \tref{type inference}{type-system-type-inference} can be used for both argument and return types. The method \expr{myFunc} has two arguments but only explicitly gives the type of the first one, \expr{f}, as \type{String}. The second one, \expr{i}, is not type-hinted and it is left to the compiler to infer its type from calls made to it. Likewise, the return type of the method is inferred from the \expr{return true} expression as \type{Bool}.
+この例からは\tref{型推論}{type-system-type-inference}が引数と戻り値についてどのように動作するのかもわかります。\expr{myFunc}は2つの引数を持ちますが、最初の引数の\expr{f}のみで\type{String}の型が明示されていて、2つ目の引数の\expr{i}には型注釈がありません。コンパイラがこのメソッドの呼び出しから推論を行うように残してあります。同じように、メソッドの戻り値の型も\expr{return true}から推論されて\type{Bool}になります。
 
-\subsection{Overriding Methods}
+\subsection{メソッドのオーバーライド(override)}
 \label{class-field-overriding}
 
-Overriding fields is instrumental for creating class hierarchies. Many design patterns utilize it, but here we will explore only the basic functionality. In order to use overrides in a class, it is required that this class has a \tref{parent class}{types-class-inheritance}. Let us consider the following example:
+フィールドのオーバーライドは、クラスの階層構造を作る助けになります。オーバーライドはさまざまなデザインパターンで活用されますが、ここでは基本的な機能のみを説明します。クラスでオーバーライドを使うためには、\tref{親クラス}{types-class-inheritance}を持つ必要があります。次の例を見てみましょう。
 
 \haxe{assets/Override.hx}
 
-The important components here are:
+ここで重要なのは以下の要素です。
 
 \begin{itemize}
-	\item the class \type{Base} which has a method \expr{myMethod} and a constructor,
-	\item the class \type{Child} which \expr{extends Base} and also has a method \expr{myMethod} being declared with \expr{override}, and
-	\item the \type{Main} class whose \expr{main} method creates an instance of \expr{Child}, assigns it to a variable \expr{child} of explicit type \type{Base} and calls \expr{myMethod()} on it.
+	\item \type{Base}クラスは\expr{myMethod}メソッドとコンストラクタを持つ。
+	\item \type{Child}は\type{Base}を継承しており、\expr{override}を宣言した\expr{myMethod}を持つ。
+	\item \type{Main}クラスは\expr{main}メソッドで\expr{Child}をインスタンス化して、\type{Base}型を明示した\expr{child}変数に代入して、その\expr{myMethod()}を呼び出している。
 \end{itemize}
 
-The variable \expr{child} is explicitly typed as \type{Base} to highlight an important difference: At compile-time the type is known to be \type{Base}, but the runtime still finds the correct method \expr{myMethod} on class \type{Child}. This is because field access is resolved dynamically at runtime.
+\expr{child}変数の\type{Base}型を明示することで、コンパイル時には\type{Base}型であっても、実行時には\type{Child}型の\expr{myMethod}メソッドが実行されるという重要なことを強調しました。これはフィールドのアクセスが実行時に動的に解決されるからです。
 
-The \type{Child} class can access methods it has overriden by calling \expr{super.methodName()}:
+\type{Child}クラスでは\expr{super.methodName()}を呼び出して、オーバーライドされたメソッドにアクセスすることができます。
 
 \haxe{assets/OverrideCallParent.hx}
 
-The section on \Fullref{types-class-inheritance} explains the use of \expr{super()} from within a \expr{new} constructor.
+\expr{new}コンストラクタ内での\expr{super()}の使用については、\Fullref{types-class-inheritance}の節で説明してあります。
 
-
-\subsection{Effects of variance and access modifiers}
+\subsection{変性とアクセス修飾子の影響}
 \label{class-field-override-effects}
 
-Overriding adheres to the rules of \tref{variance}{type-system-variance}. That is, their argument types allow \emph{contravariance} (less specific types) while their return type allows \emph{covariance} (more specific types):
+オーバーライドは\tref{変性}{type-system-variance}のルールと深い関わりがあります。というのは、引数の型が\emph{反変性} (より一般的な型)を許容し、戻り値の型は\emph{共変性}(より具体的な型)を許容するからです。
 
 \haxe{assets/OverrideVariance.hx}
 
-Intuitively, this follows from the fact that arguments are ``written to'' the function and the return value is ``read from'' it.
+直観的には、この挙動は引数は関数へ「書き込み」であり戻り値は「読み込み」であるという事実から来ています。
 
-The example also demonstrates how \tref{visibility}{class-field-visibility} may be changed: An overriding field may be \expr{public} if the overridden field is \expr{private}, but not the other way around.
+この例から、\tref{可視性}{class-field-visibility}が変更できるということもわかります。オーバーライドされる側のフィールドが\expr{private}の場合は、\expr{public}のフィールドでオーバーライドすることができます。ただし、そのほかの場合は、可視性の変更はできません。
 
-It is not possible to override fields which are declared as \tref{\expr{inline}}{class-field-inline}. This is due to the conflicting concepts: While inlining is done at compile-time by replacing a call with the function body, overriding fields necessarily have to be resolved at runtime.
+\tref{\expr{inline}}{class-field-inline}の宣言をされたフィールドもオーバーライドできません。これはインライン化がコンパイル時に関数の中身で書き換えを行う一方で、オーバーライドのフィールドは実行時に解決される、という衝突を避けるためです。	
 	
-	
-	
-\section{Access Modifier}
+\section{アクセス修飾子}
 \label{class-field-access-modifier}
 \state{NoContent}
 
-\subsection{Visibility}
+\subsection{可視性}
 \label{class-field-visibility}
 
-Fields are by default \emph{private}, meaning that only the class and its sub-classes may access them. They can be made \emph{public} by using the \expr{public} access modifier, allowing access from anywhere.
+フィールドはデフォルトでは\emph{private}です。つまり、そのクラス自身とその子クラスからしかアクセスできません。\expr{public}アクセス修飾子を使うことでどこからでもアクセスができるようにフィールドを公開できます。
 
 \haxe{assets/Visibility.hx}
 
-Access to field \expr{available} of class \type{MyClass} is allowed from within \type{Main} because it is denoted as being \expr{public}. However, while access to field \expr{unavailable} is allowed from within class \type{MyClass}, it is not allowed from within class \type{Main} because it is \expr{private} (explicitly, although this identifier is redundant here).
+\type{Main}から\type{MyClass}の\expr{available}フィールドへのアクセスは、フィールドが\expr{public}なので許可されます。しかし\expr{unavailable}については、\type{MyClass}からのアクセスは許可されますが\type{Main}からは許可されません。これはフィールドが\expr{private}だからです(ここでは無くてもいい明示的宣言を行っています)。
 
-The example demonstrates visibility through \emph{static} fields, but the rules for member fields are equivalent. The following example demonstrates visibility behavior for when \tref{inheritance}{types-class-inheritance} is involved.
+この例では\emph{static}フィールドを使って可視性の実演をしていますが、メンバフィールドでもこのルールは同じです。次の例は\tref{継承}{types-class-inheritance}がある場合の可視性について実演しています。
 
 \haxe{assets/Visibility2.hx}
 
-We can see that access to \expr{child1.baseField()} is allowed from within \type{Child2} even though \expr{child1} is of a different type, \type{Child1}. This is because the field is defined on their common ancestor class \type{Base}, contrary to field \expr{child1Field} which can not be accessed from within \type{Child2}.
+\type{Child2}からの、\type{Child1}という異なる型の\expr{child1.baseField()}へのアクセスが許可されていることがわかります。これはこのフィールドが共通の親クラスの\type{Base}で定義されているからです。反対に\expr{child1Field}については、\type{Child2}からはアクセスできません。
 
-Omitting the visibility modifier usually defaults the visibility to \expr{private}, but there are exceptions where it becomes \expr{public} instead:
+可視性の修飾子の省略はデフォルトでは\expr{private}になることが多いですが、以下の場合は例外的に\expr{public}になります。
 
 \begin{enumerate}
-	\item If the class is declared as \expr{extern}.
-	\item If the field is declared on an \tref{interface}{types-interfaces}.
-	\item If the field \tref{overrides}{class-field-overriding} a public field.
+	\item クラスが\expr{extern}として宣言されている。
+	\item \tref{インターフェース}{types-interfaces}で宣言しているフィールドである。
+	\item \expr{public}フィールドを\tref{オーバーライド}{class-field-overriding}している。
 \end{enumerate}
 
-\trivia{Protected}{Haxe has no notion of a \expr{protected} keyword known from Java, C++ and other object-oriented languages. However, its \expr{private} behavior is equal to those language's protected behavior, so Haxe actually lacks their real private behavior.}
+\trivia{protected}{HaxeにはJavaやC++やその他のオブジェクト指向言語で知られる\expr{protected}キーワードはありません。しかし、\expr{private}の挙動がそれらの言語の\expr{protected}の挙動に当たります。つまり、Haxeにはそれらの言語の\expr{private}に当たる挙動がありません。}
 
-\subsection{Inline}
+\subsection{inline(インライン化)}
 \label{class-field-inline}
 
-The \expr{inline} keyword allows function bodies to be directly inserted in place of calls to them. This can be a powerful optimization tool, but should be used judiciously as not all functions are good candidates for inline behavior. The following example demonstrates the basic usage:
+\expr{inline}キーワードはその関数の式を関数を呼び出した位置に直接挿し込みできるようにします。これは強力な最適化手段ですが、すべての関数にインライン化の挙動を持つ資格があるわけでありません。基本的な使い方は以下の通りです。
 
 \haxe{assets/Inline.hx}
 
-The generated \target{JavaScript} output reveals the effect of inline:
+\target{JavaScript}出力を見るとインライン化の効果がわかります。
 
 \begin{lstlisting}
 (function () { "use strict";
@@ -286,35 +274,35 @@ Main.main();
 })();
 \end{lstlisting}
 
-As evident, the function body \expr{(s1 + s2) / 2} of field \expr{mid} was generated in place of the call to \expr{mid(a, b)}, with \expr{s1} being replaced by \expr{a} and \expr{s2} being replaced by \expr{b}. This avoids a function call which, depending on the target and frequency of occurrences, may yield noticeable performance improvements.
+見てのとおり\expr{mid}フィールドの関数本体の\expr{(s1 + s2) / 2}が、\expr{mid(a, b)}の位置で\expr{s1}を\expr{a}に\expr{s2}を\expr{b}に置き換えられて出力されています。ターゲットによっては消えない場合もありますが、関数呼び出しが消滅しており、これが大きなパフォーマンスの改善になりえます。
 
-It is not always easy to judge if a function qualifies for being inline. Short functions that have no writing expressions (such as a \expr{=} assignment) are usually a good choice, but even more complex functions can be candidates. However, in some cases inlining can actually be detrimental to performance, e.g. because the compiler has to create temporary variables for complex expressions.
+インライン化するべきかの判断は簡単ではありません。書き込み処理の無い短い関数(\expr{=}の代入のみといった)は、たいていインライン化すると良いですし、より複雑な関数であってもインライン化する候補となりえます。一方で、インライン化がパフォーマンスに悪影響を与える場合もあります(複雑な式では、コンパイラが一時変数を作るなどのため)。
 
-Inline is not guaranteed to be done. The compiler might cancel inlining for various reasons or a user could supply the \ic{--no-inline} command line argument to disable inlining. The only exception is if the class is \tref{extern}{lf-externs} or if the class field has the \expr{:extern} \tref{metadata}{lf-metadata}, in which case inline is forced. If it cannot be done, the compiler emits an error.
+\expr{inline}キーワードは、インライン化されることを保証しません。コンパイラはさまざまな理由でインライン化をキャンセルします。例えば、コマンドラインの引数で\ic{--no-inline}が与えられた場合です。例外としてクラスが\tref{extern}{lf-externs}か、フィールドが\expr{:extern}\tref{メタデータ}{lf-metadata}を付けられていた場合、インライン化が強制されます。インライン化ができない場合、コンパイラはエラーを出力します。
 
-It is important to remember this when relying on inline:
+これはインライン化を使う上で重要なので覚えておきましょう。
 
 \haxe{assets/InlineRelying.hx}
 
-If the call to \expr{error} is inlined the program compiles correctly because the control flow checker is satisfied due to the inlined \tref{throw}{expression-throw} expression. If inline is not done, the compiler only sees a function call to \expr{error} and emits the error \expr{A return is missing here}.
+\expr{error}の呼び出しがインライン化できれば、制御フローのチェッカーはインライン化された\tref{throw}{expression-throw}に満足してプログラムは正しくコンパイルされます。インライン化されなければ、コンパイラは関数呼び出しのみを見て、\expr{A return is missing here}(ここにリターンが足りません)というエラーを出力します。
 
-
-\subsection{Dynamic}
+\subsection{dynamic}
 \label{class-field-dynamic}
 
-Methods can be denoted with the \expr{dynamic} keyword to make them (re-)bindable:
+メソッドは\expr{dynamic}キーワードをつけることで、束縛のしなおしをできるようにします。
 
 \haxe{assets/DynamicFunction.hx}
 
-The first call to \expr{test()} invokes the original function which returns the \type{String} \expr{"original"}. In the next line, \expr{test} is \emph{assigned} a new function. This is precisely what \expr{dynamic} allows: Function fields can be assigned a new function. As a result, the next invocation of \expr{test()} returns the \type{String} \expr{"new"}.
+最初の\expr{test()}の呼び出しではもともとの関数を実行して\expr{"original"}の文字列を返します。つぎの行で、\expr{test()}に新しい関数が代入されます。これが\expr{dynamic}が可能にする関数の再束縛です。その結果として、次の\expr{test()}の呼び出しでは\expr{"new"}の文字列が返っています。
 
-Dynamic fields cannot be \expr{inline} for obvious reasons: While inlining is done at compile-time, dynamic functions necessarily have to be resolved at runtime.
+\expr{dynamic}フィールドは\expr{inline}フィールドにできません。その理由は明らかです。インライン化はコンパイル時に行われますが、\expr{dynamic}な関数は実行時に解決されます。
 
 %TODO: performance estimation %
 
-\subsection{Override}
+\subsection{override}
 \label{class-field-override}
 
-The access modifier \expr{override} is required when a field is declared which also exists on a \tref{parent class}{types-class-inheritance}. Its purpose is to ensure that the author of a class is aware of the override as this may not always be obvious in large class hierarchies. Likewise, having \expr{override} on a field which does not actually override anything (e.g. due to a misspelled field name) triggers an error.
+The access modifier 
+\expr{override}アクセス修飾子は\tref{親クラス}{types-class-inheritance}ですでに存在するフィールドを定義するときに必要です。これはクラスの継承関係が大きい場合でも、書き手がオーバーライドに気づくようにするためです。同様に、実際には何もオーバーライドしないフィールドに\expr{override}しようとするとエラーになります(例えば、スペルミスの場合)。
 
-The effects of overriding fields are detailed in \Fullref{class-field-overriding}. This modifier is only allowed on \tref{method}{class-field-method} fields.
+オーバーライドの効果については、\Fullref{class-field-overriding}で詳しく説明しています。この修飾子は\tref{メソッド}{class-field-method}フィールドのみに使用可能です。
