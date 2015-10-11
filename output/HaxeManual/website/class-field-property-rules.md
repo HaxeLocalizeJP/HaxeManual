@@ -1,8 +1,8 @@
-## 4.2.3 Rules for getter and setter
+## 4.2.3 ゲッターとセッターのルール
 
-Visibility of accessor methods has no effect on the accessibility of its property. That is, if a property is `public` and defined to have a getter, that getter may me defined as `private` regardless.
+アクセサメソッドの可視性は、プロパティの可視性に影響を与えません。つまり、プロパティが`public`であってもそのゲッターは`private`でも構わないということです。
 
-Both getter and setter may access their physical field for data storage. The compiler ensures that this kind of field access does not go through the accessor method if made from within the accessor method itself, thus avoiding infinite recursion:
+ゲッターとセッターは、その物理的フィールドにアクセスしてデータを使用する場合があります。アクセサメソッド自身からそのフィールドへのアクセスが行われた場合、コンパイラはこれをアクセサメソッド経由しないアクセスと見なします。これにより無限ループが回避されます。
 
 ```haxe
 class Main {
@@ -16,19 +16,19 @@ class Main {
 }
 ```
 
-However, the compiler assumes that a physical field exists only if at least one of the access identifiers is `default` or `null`.
+しかし、フィールドが少なくとも1つ、`default`または`null`のアクセス識別子を持つ時のみ、コンパイラはその物理的フィールドが存在していると考えます。
 
-> ##### Define: Physical field
+> ##### Define: 物理的フィールド
 >
-> A field is considered to be **physical** if it is either
+> 以下のいずれかの場合にフィールドが**物理的**であると考えられます
 > 
-> * a [variable](class-field-variable.md)
-> * a [property](class-field-property.md) with the read-access or write-access identifier being `default` or `null`
-> * a [property](class-field-property.md) with `:isVar` [metadata](lf-metadata.md)
+> * [変数](class-field-variable.md)
+> * 読み込みアクセスか書き込みアクセスのアクセス識別子が`default`または`null`である[プロパティ](class-field-property.md)
+> * `:isVar`[メタデータ](lf-metadata.md)がつけられた[プロパティ](class-field-property.md)
 > 
 > 
 
-If this is not the case, access to the field from within an accessor method causes a compilation error:
+これらのケースに含まれない場合、アクセサメソッド内での自身のフィールドへのアクセスはコンパイルエラーを起こします。
 
 ```haxe
 class Main {
@@ -48,7 +48,7 @@ class Main {
 
 ```
 
-If a physical field is indeed intended, it can be forced by attributing the field in question with the `:isVar` [metadata](lf-metadata.md):
+物理的フィールドが必要であれば、`:isVar`[メタデータ](lf-metadata.md)をフィールドつけることでそれを強制できます。
 
 ```haxe
 class Main {
@@ -68,14 +68,14 @@ class Main {
 
 ```
 
-> ##### Trivia: Property setter type
+> ##### Trivia: プロパティのセッターの型
 >
-> It is not uncommon for new Haxe users to be surprised by the type of a setter being required to be `T->T` instead of the seemingly more natural `T->Void`. After all, why would a **setter** have to return something?
+> 新しいHaxeのユーザーにとって、セッターの型が`T->Void`ではなくて`T->T`でなくてはいけないというのはなじみがなく、驚かれるかもしれません。ではなぜ**setter**が値を返す必要があるのでしょうか？
 > 
-> The rationale is that we still want to be able to use field assignments using setters as right-side expressions. Given a chain like `x = y = 1`, it is evaluated as `x = (y = 1)`. In order to assign the result of `y = 1` to `x`, the former must have a value. If `y` had a setter returning `Void`, this would not be possible.
+> それはセッターを使ったフィールドへの代入を右辺の式として使いたいからです。`x = y = 1`のような連結された式は、`x = (y = 1)`として評価されます。`x`に`y = 1`の結果を代入するためには、`y = 1`が値を持たなければなりません。`y`のセッターの戻り値が`Void`であれば、それは不可能です。
 
 ---
 
-Previous section: [Impact on the type system](class-field-property-type-system-impact.md)
+Previous section: [型システムへの影響](class-field-property-type-system-impact.md)
 
-Next section: [Method](class-field-method.md)
+Next section: [メソッド](class-field-method.md)

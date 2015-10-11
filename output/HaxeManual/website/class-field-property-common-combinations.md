@@ -1,6 +1,6 @@
-## 4.2.1 Common accessor identifier combinations
+## 4.2.1 よくあるアクセス識別子の組み合わせ
 
-The next example shows common access identifier combinations for properties:
+次の例はプロパティのよくあるアクセス識別子の組み合わせです。
 
 ```haxe
 class Main {
@@ -39,7 +39,7 @@ class Main {
 }
 ```
 
-The JavaScript output helps understand what the field access in the `main`-method is compiled to:
+`main`メソッドのJavaScriptへのコンパイル結果は、フィールドアクセスがどのようなものなのか理解する助けになるでしょう。
 
 ```haxe
 var Main = function() {
@@ -50,7 +50,7 @@ var Main = function() {
 };
 ```
 
-As specified, the read access generates a call to `get_x()`, while the write access generates a call to `set_x(2)` where `2` is the value being assigned to `x`. The way the `+=` is being generated might look a little odd at first, but can easily be justified by the following example:
+このとおり、読み込みアクセスは`get_x()`の呼び出しとなり、書き込みアクセスは`x`への`2`の代入が`set_x(2)`の呼び出しになりました。`+=`の場合の出力は最初は少し不思議に見えるかもしれませんが、次の例で簡単にわかるはずです。
 
 ```haxe
 class Main {
@@ -66,7 +66,7 @@ class Main {
 }
 ```
 
-What happens here is that the expression part of the field access to `x` in the `main` method is **complex**: It has potential side-effects, such as the construction of `Main` in this case. Thus, the compiler cannot generate the `+=` operation as `new Main().x = new Main().x + 1` and has to cache the complex expression in a local variable:
+`main`メソッドの`x`のフィールドアクセスについて、ここで起きる事象は複雑です。まずこの場合は、`Main`のインスタンス化という副作用があります。そのため、コンパイラは`new Main().x = new Main().x + 1`という出力を行わないように、複雑な式をローカル変数にキャッシュします。
 
 ```haxe
 Main.main = function() {
@@ -77,6 +77,6 @@ Main.main = function() {
 
 ---
 
-Previous section: [Property](class-field-property.md)
+Previous section: [プロパティ](class-field-property.md)
 
-Next section: [Impact on the type system](class-field-property-type-system-impact.md)
+Next section: [型システムへの影響](class-field-property-type-system-impact.md)

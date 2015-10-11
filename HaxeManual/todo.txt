@@ -101,19 +101,19 @@ Unreviewed:
 3.7.1 - モジュールのサブタイプ(従属型)
 3.7.2 - インポート(import)
 3.7.3 - 解決順序
-4 - Class Fields
-4.1 - Variable
-4.2 - Property
-4.2.1 - Common accessor identifier combinations
-4.2.2 - Impact on the type system
-4.2.3 - Rules for getter and setter
-4.3 - Method
-4.3.1 - Overriding Methods
-4.3.2 - Effects of variance and access modifiers
-4.4.1 - Visibility
-4.4.2 - Inline
-4.4.3 - Dynamic
-4.4.4 - Override
+4 - クラスフィールド
+4.1 - 変数
+4.2 - プロパティ
+4.2.1 - よくあるアクセス識別子の組み合わせ
+4.2.2 - 型システムへの影響
+4.2.3 - ゲッターとセッターのルール
+4.3 - メソッド
+4.3.1 - メソッドのオーバーライド(override)
+4.3.2 - 変性とアクセス修飾子の影響
+4.4.1 - 可視性
+4.4.2 - inline(インライン化)
+4.4.3 - dynamic
+4.4.4 - override
 5 - 式
 5.1 - ブロック
 5.2 - 定数値

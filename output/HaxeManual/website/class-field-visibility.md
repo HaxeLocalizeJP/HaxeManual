@@ -1,6 +1,6 @@
-## 4.4.1 Visibility
+## 4.4.1 可視性
 
-Fields are by default **private**, meaning that only the class and its sub-classes may access them. They can be made **public** by using the `public` access modifier, allowing access from anywhere.
+フィールドはデフォルトでは**private**です。つまり、そのクラス自身とその子クラスからしかアクセスできません。`public`アクセス修飾子を使うことでどこからでもアクセスができるようにフィールドを公開できます。
 
 ```haxe
 class MyClass {
@@ -19,9 +19,9 @@ class Main {
 }
 ```
 
-Access to field `available` of class `MyClass` is allowed from within `Main` because it is denoted as being `public`. However, while access to field `unavailable` is allowed from within class `MyClass`, it is not allowed from within class `Main` because it is `private` (explicitly, although this identifier is redundant here).
+`Main`から`MyClass`の`available`フィールドへのアクセスは、フィールドが`public`なので許可されます。しかし`unavailable`については、`MyClass`からのアクセスは許可されますが`Main`からは許可されません。これはフィールドが`private`だからです(ここでは無くてもいい明示的宣言を行っています)。
 
-The example demonstrates visibility through **static** fields, but the rules for member fields are equivalent. The following example demonstrates visibility behavior for when [inheritance](types-class-inheritance.md) is involved.
+この例では**static**フィールドを使って可視性の実演をしていますが、メンバフィールドでもこのルールは同じです。次の例は[継承](types-class-inheritance.md)がある場合の可視性について実演しています。
 
 ```haxe
 class Base {
@@ -47,20 +47,20 @@ class Main {
 }
 ```
 
-We can see that access to `child1.baseField()` is allowed from within `Child2` even though `child1` is of a different type, `Child1`. This is because the field is defined on their common ancestor class `Base`, contrary to field `child1Field` which can not be accessed from within `Child2`.
+`Child2`からの、`Child1`という異なる型の`child1.baseField()`へのアクセスが許可されていることがわかります。これはこのフィールドが共通の親クラスの`Base`で定義されているからです。反対に`child1Field`については、`Child2`からはアクセスできません。
 
-Omitting the visibility modifier usually defaults the visibility to `private`, but there are exceptions where it becomes `public` instead:
+可視性の修飾子の省略はデフォルトでは`private`になることが多いですが、以下の場合は例外的に`public`になります。
 
-1. If the class is declared as `extern`.
-2. If the field is declared on an [interface](types-interfaces.md).
-3. If the field [overrides](class-field-overriding.md) a public field.
+1. クラスが`extern`として宣言されている。
+2. [インターフェース](types-interfaces.md)で宣言しているフィールドである。
+3. `public`フィールドを[オーバーライド](class-field-overriding.md)している。
 
-> ##### Trivia: Protected
+> ##### Trivia: protected
 >
-> Haxe has no notion of a `protected` keyword known from Java, C++ and other object-oriented languages. However, its `private` behavior is equal to those language's protected behavior, so Haxe actually lacks their real private behavior.
+> HaxeにはJavaやC++やその他のオブジェクト指向言語で知られる`protected`キーワードはありません。しかし、`private`の挙動がこれらの言語の`protected`の挙動に当たります。つまり、Haxeにはこれらの言語の`private`に当たる挙動がありません。
 
 ---
 
-Previous section: [Access Modifier](class-field-access-modifier.md)
+Previous section: [アクセス修飾子](class-field-access-modifier.md)
 
-Next section: [Inline](class-field-inline.md)
+Next section: [inline(インライン化)](class-field-inline.md)

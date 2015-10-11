@@ -1,6 +1,6 @@
-## 4.3.1 Overriding Methods
+## 4.3.1 メソッドのオーバーライド(override)
 
-Overriding fields is instrumental for creating class hierarchies. Many design patterns utilize it, but here we will explore only the basic functionality. In order to use overrides in a class, it is required that this class has a [parent class](types-class-inheritance.md). Let us consider the following example:
+フィールドのオーバーライドは、クラスの階層構造を作る助けになります。オーバーライドはさまざまなデザインパターンで活用されますが、ここでは基本的な機能のみを説明します。クラスでオーバーライドを使うためには、[親クラス](types-class-inheritance.md)を持つ必要があります。次の例を見てみましょう。
 
 ```haxe
 class Base {
@@ -25,15 +25,15 @@ class Main {
 
 ```
 
-The important components here are:
+ここで重要なのは以下の要素です。
 
-* the class `Base` which has a method `myMethod` and a constructor,
-* the class `Child` which `extends Base` and also has a method `myMethod` being declared with `override`, and
-* the `Main` class whose `main` method creates an instance of `Child`, assigns it to a variable `child` of explicit type `Base` and calls `myMethod()` on it.
+* `Base`クラスは`myMethod`メソッドとコンストラクタを持つ。
+* `Child`は`Base`を継承しており、`override`を宣言した`myMethod`を持つ。
+* `Main`クラスは`main`メソッドで`Child`をインスタンス化して、`Base`型を明示した`child`変数に代入して、その`myMethod()`を呼び出している。
 
-The variable `child` is explicitly typed as `Base` to highlight an important difference: At compile-time the type is known to be `Base`, but the runtime still finds the correct method `myMethod` on class `Child`. This is because field access is resolved dynamically at runtime.
+`child`変数の`Base`型を明示することで、コンパイル時には`Base`型であっても、実行時には`Child`型の`myMethod`メソッドが実行されるという重要なことを強調しました。これはフィールドのアクセスが実行時に動的に解決されるからです。
 
-The `Child` class can access methods it has overriden by calling `super.methodName()`:
+`Child`クラスでは`super.methodName()`を呼び出して、オーバーライドされたメソッドにアクセスすることができます。
 
 ```haxe
 class Base {
@@ -63,10 +63,10 @@ class Main {
 
 ```
 
-The section on [継承](types-class-inheritance.md) explains the use of `super()` from within a `new` constructor.
+`new`コンストラクタ内での`super()`の使用については、[継承](types-class-inheritance.md)の節で説明してあります。
 
 ---
 
-Previous section: [Method](class-field-method.md)
+Previous section: [メソッド](class-field-method.md)
 
-Next section: [Effects of variance and access modifiers](class-field-override-effects.md)
+Next section: [変性とアクセス修飾子の影響](class-field-override-effects.md)

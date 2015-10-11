@@ -1,6 +1,6 @@
-## 4.1 Variable
+## 4.1 変数
 
-We have already seen variable fields in several code examples of previous sections. Variable fields hold values, a characteristic which they share with most (but not all) properties:
+変数フィールドについては、すでに前章でいくつかのサンプルコードで見てきました。変数フィールドは値を保持するもので、その性質はほとんどプロパティと共通しています(すべてでは無い)。
 
 ```haxe
 class Main {
@@ -13,23 +13,24 @@ class Main {
   }
 }
 ```
-We can learn from this that a variable
 
-1. has a name (here: `member`),
-2. has a type (here: `String`),
-3. may have a constant initialization (here: `"bar"`) and
-4. may have [access modifiers](class-field-access-modifier.md) (here: `static`)
+ここから変数が以下のようなものだとわかります。
 
-The example first prints the initialization value of `member`, then sets it to `"foo"` before printing its new value. The effect of access modifiers is shared by all three class field kinds and explained in a separate section.
+1. 名前を持つ(ここでは`member`),
+2. 型を持つ(ここでは`String`),
+3. 一定の初期値を持つ場合がある(ここでは`"bar"`) and
+4. [アクセス修飾子](class-field-access-modifier.md)を持つ場合がある(ここでは`static`)
 
-It should be noted that the explicit type is not required if there is an initialization value. The compiler will [infer](type-system-type-inference.md) it in this case.
+上の例は最初に`member`の初期値を出力した後、`"foo"`を割り当ててから新しい値を出力しています。アクセス修飾子の効果は3種類のクラスフィールドで共通しており、その内容については後の節で説明します。
 
-<img src="../../../HaxeManual/assets/graphics/generated/class-field-variable-init-values.png" alt="Initialization values of a variable field." title="Initialization values of a variable field." />
+変数フィールドが初期値をもつ場合には、型の明示は不要になります。この場合、コンパイラが[推論](type-system-type-inference.md)を行います。
 
-_Figure: Initialization values of a variable field._
+<img src="../../../HaxeManual/assets/graphics/generated/class-field-variable-init-values.png" alt="変数フィールドの値の初期化" title="変数フィールドの値の初期化" />
+
+_Figure: 変数フィールドの値の初期化_
 
 ---
 
-Previous section: [Class Fields](class-field.md)
+Previous section: [クラスフィールド](class-field.md)
 
-Next section: [Property](class-field-property.md)
+Next section: [プロパティ](class-field-property.md)

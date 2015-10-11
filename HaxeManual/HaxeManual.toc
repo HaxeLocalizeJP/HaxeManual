@@ -13,7 +13,8 @@
 \contentsline {subsection}{\numberline {2.1.1}数値型}{14}{subsection.2.1.1}
 \contentsline {subsection}{\numberline {2.1.2}オーバーフロー}{14}{subsection.2.1.2}
 \contentsline {subsection}{\numberline {2.1.3}数値の演算子}{14}{subsection.2.1.3}
-\contentsline {subsection}{\numberline {2.1.4}Bool(真偽値)}{15}{subsection.2.1.4}
+\contentsline {paragraph}{等価性}{15}{section*.8}
+\contentsline {subsection}{\numberline {2.1.4}Bool(真偽値)}{16}{subsection.2.1.4}
 \contentsline {subsection}{\numberline {2.1.5}Void}{16}{subsection.2.1.5}
 \contentsline {section}{\numberline {2.2}null許容}{16}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}オプション引数とnull許容}{18}{subsection.2.2.1}
@@ -26,11 +27,11 @@
 \contentsline {subsection}{\numberline {2.4.2}列挙型を使う}{22}{subsection.2.4.2}
 \contentsline {section}{\numberline {2.5}匿名の構造体}{23}{section.2.5}
 \contentsline {subsection}{\numberline {2.5.1}JSONで構造体を書く}{24}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}構造体の型のクラス記法}{24}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.2}構造体の型のクラス記法}{25}{subsection.2.5.2}
 \contentsline {subsection}{\numberline {2.5.3}オプションのフィールド}{25}{subsection.2.5.3}
 \contentsline {subsection}{\numberline {2.5.4}パフォーマンスへの影響}{25}{subsection.2.5.4}
 \contentsline {section}{\numberline {2.6}関数}{25}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}オプション引数}{25}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.1}オプション引数}{26}{subsection.2.6.1}
 \contentsline {subsection}{\numberline {2.6.2}デフォルト値}{26}{subsection.2.6.2}
 \contentsline {section}{\numberline {2.7}ダイナミック}{27}{section.2.7}
 \contentsline {subsection}{\numberline {2.7.1}型パラメータ付きのダイナミック}{28}{subsection.2.7.1}
@@ -38,17 +39,17 @@
 \contentsline {section}{\numberline {2.8}抽象型(abstract)}{29}{section.2.8}
 \contentsline {subsection}{\numberline {2.8.1}暗黙のキャスト}{30}{subsection.2.8.1}
 \contentsline {subsection}{\numberline {2.8.2}演算子オーバーロード}{33}{subsection.2.8.2}
-\contentsline {paragraph}{基底型の演算を公開する}{34}{section*.18}
-\contentsline {subsection}{\numberline {2.8.3}配列アクセス}{34}{subsection.2.8.3}
-\contentsline {paragraph}{配列アクセスの解決順序}{35}{section*.21}
+\contentsline {paragraph}{基底型の演算を公開する}{34}{section*.19}
+\contentsline {subsection}{\numberline {2.8.3}配列アクセス}{35}{subsection.2.8.3}
+\contentsline {paragraph}{配列アクセスの解決順序}{35}{section*.22}
 \contentsline {subsection}{\numberline {2.8.4}選択的関数}{36}{subsection.2.8.4}
-\contentsline {subsection}{\numberline {2.8.5}抽象型列挙体}{36}{subsection.2.8.5}
-\contentsline {subsection}{\numberline {2.8.6}抽象型フィールドの繰り上げ}{37}{subsection.2.8.6}
+\contentsline {subsection}{\numberline {2.8.5}抽象型列挙体}{37}{subsection.2.8.5}
+\contentsline {subsection}{\numberline {2.8.6}抽象型フィールドの繰り上げ}{38}{subsection.2.8.6}
 \contentsline {subsection}{\numberline {2.8.7}コアタイプの抽象型}{38}{subsection.2.8.7}
 \contentsline {section}{\numberline {2.9}単相(モノモーフ)}{39}{section.2.9}
 \contentsline {chapter}{\numberline {3}型システム}{40}{chapter.3}
 \contentsline {section}{\numberline {3.1}typedef}{40}{section.3.1}
-\contentsline {paragraph}{オプションのフィールド}{41}{section*.22}
+\contentsline {paragraph}{オプションのフィールド}{41}{section*.23}
 \contentsline {subsection}{\numberline {3.1.1}拡張}{41}{subsection.3.1.1}
 \contentsline {section}{\numberline {3.2}型パラメータ}{42}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}制約}{43}{subsection.3.2.1}
@@ -67,23 +68,23 @@
 \contentsline {section}{\numberline {3.7}モジュールとパス}{52}{section.3.7}
 \contentsline {subsection}{\numberline {3.7.1}モジュールのサブタイプ(従属型)}{52}{subsection.3.7.1}
 \contentsline {subsection}{\numberline {3.7.2}インポート(import)}{53}{subsection.3.7.2}
-\contentsline {paragraph}{ワイルドカードインポート}{54}{section*.25}
-\contentsline {paragraph}{別名(エイリアス)を使ったインポート}{54}{section*.26}
+\contentsline {paragraph}{ワイルドカードインポート}{54}{section*.26}
+\contentsline {paragraph}{別名(エイリアス)を使ったインポート}{54}{section*.27}
 \contentsline {subsection}{\numberline {3.7.3}解決順序}{55}{subsection.3.7.3}
-\contentsline {chapter}{\numberline {4}Class Fields}{58}{chapter.4}
-\contentsline {section}{\numberline {4.1}Variable}{58}{section.4.1}
-\contentsline {section}{\numberline {4.2}Property}{59}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Common accessor identifier combinations}{61}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Impact on the type system}{62}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Rules for getter and setter}{63}{subsection.4.2.3}
-\contentsline {section}{\numberline {4.3}Method}{64}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Overriding Methods}{65}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Effects of variance and access modifiers}{66}{subsection.4.3.2}
-\contentsline {section}{\numberline {4.4}Access Modifier}{67}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Visibility}{67}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Inline}{68}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Dynamic}{70}{subsection.4.4.3}
-\contentsline {subsection}{\numberline {4.4.4}Override}{70}{subsection.4.4.4}
+\contentsline {chapter}{\numberline {4}クラスフィールド}{58}{chapter.4}
+\contentsline {section}{\numberline {4.1}変数}{58}{section.4.1}
+\contentsline {section}{\numberline {4.2}プロパティ}{59}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}よくあるアクセス識別子の組み合わせ}{61}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}型システムへの影響}{62}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}ゲッターとセッターのルール}{63}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}メソッド}{64}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}メソッドのオーバーライド(override)}{65}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}変性とアクセス修飾子の影響}{66}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4}アクセス修飾子}{67}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}可視性}{67}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}inline(インライン化)}{68}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}dynamic}{69}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}override}{70}{subsection.4.4.4}
 \contentsline {chapter}{\numberline {5}式}{71}{chapter.5}
 \contentsline {section}{\numberline {5.1}ブロック}{71}{section.5.1}
 \contentsline {section}{\numberline {5.2}定数値}{72}{section.5.2}
@@ -112,29 +113,29 @@
 \contentsline {subsection}{\numberline {5.23.2}セーフキャスト}{79}{subsection.5.23.2}
 \contentsline {section}{\numberline {5.24}型チェック}{80}{section.5.24}
 \contentsline {chapter}{\numberline {6}言語機能}{81}{chapter.6}
-\contentsline {paragraph}{抽象型 (\ref {types-abstract}):}{81}{section*.28}
-\contentsline {paragraph}{externクラス (\ref {lf-externs}):}{81}{section*.29}
-\contentsline {paragraph}{匿名構造体 (\ref {types-anonymous-structure}):}{81}{section*.30}
-\contentsline {paragraph}{配列内包表記 (\ref {lf-array-comprehension}):}{81}{section*.31}
-\contentsline {paragraph}{クラス、インターフェース、継承 (\ref {types-class-instance}):}{81}{section*.32}
-\contentsline {paragraph}{条件付きコンパイル (\ref {lf-condition-compilation}):}{81}{section*.33}
-\contentsline {paragraph}{(一般化)代数的データ型 (\ref {types-enum-instance}):}{81}{section*.34}
-\contentsline {paragraph}{インライン呼び出し (\ref {class-field-inline}):}{82}{section*.35}
-\contentsline {paragraph}{イテレータ(反復子) (\ref {lf-iterators}):}{82}{section*.36}
-\contentsline {paragraph}{ローカル関数とクロージャ (\ref {expression-function}):}{82}{section*.37}
-\contentsline {paragraph}{メタデータ (\ref {lf-metadata}):}{82}{section*.38}
-\contentsline {paragraph}{静的拡張 (\ref {lf-static-extension}):}{82}{section*.39}
-\contentsline {paragraph}{文字列中の変数展開 (\ref {lf-string-interpolation}):}{82}{section*.40}
-\contentsline {paragraph}{関数の部分適用 (\ref {lf-function-bindings}):}{83}{section*.41}
-\contentsline {paragraph}{パターンマッチング (\ref {lf-pattern-matching}):}{83}{section*.42}
-\contentsline {paragraph}{プロパティ (\ref {class-field-property}):}{83}{section*.43}
-\contentsline {paragraph}{アクセス制御 (\ref {lf-access-control}):}{83}{section*.44}
-\contentsline {paragraph}{型パラメータ、共変性、反変性 (\ref {type-system-type-parameters}):}{83}{section*.45}
+\contentsline {paragraph}{抽象型 (\ref {types-abstract}):}{81}{section*.29}
+\contentsline {paragraph}{externクラス (\ref {lf-externs}):}{81}{section*.30}
+\contentsline {paragraph}{匿名構造体 (\ref {types-anonymous-structure}):}{81}{section*.31}
+\contentsline {paragraph}{配列内包表記 (\ref {lf-array-comprehension}):}{81}{section*.32}
+\contentsline {paragraph}{クラス、インターフェース、継承 (\ref {types-class-instance}):}{81}{section*.33}
+\contentsline {paragraph}{条件付きコンパイル (\ref {lf-condition-compilation}):}{81}{section*.34}
+\contentsline {paragraph}{(一般化)代数的データ型 (\ref {types-enum-instance}):}{81}{section*.35}
+\contentsline {paragraph}{インライン呼び出し (\ref {class-field-inline}):}{82}{section*.36}
+\contentsline {paragraph}{イテレータ(反復子) (\ref {lf-iterators}):}{82}{section*.37}
+\contentsline {paragraph}{ローカル関数とクロージャ (\ref {expression-function}):}{82}{section*.38}
+\contentsline {paragraph}{メタデータ (\ref {lf-metadata}):}{82}{section*.39}
+\contentsline {paragraph}{静的拡張 (\ref {lf-static-extension}):}{82}{section*.40}
+\contentsline {paragraph}{文字列中の変数展開 (\ref {lf-string-interpolation}):}{82}{section*.41}
+\contentsline {paragraph}{関数の部分適用 (\ref {lf-function-bindings}):}{83}{section*.42}
+\contentsline {paragraph}{パターンマッチング (\ref {lf-pattern-matching}):}{83}{section*.43}
+\contentsline {paragraph}{プロパティ (\ref {class-field-property}):}{83}{section*.44}
+\contentsline {paragraph}{アクセス制御 (\ref {lf-access-control}):}{83}{section*.45}
+\contentsline {paragraph}{型パラメータ、共変性、反変性 (\ref {type-system-type-parameters}):}{83}{section*.46}
 \contentsline {section}{\numberline {6.1}条件付きコンパイル}{83}{section.6.1}
-\contentsline {paragraph}{ビルトインのコンパイラフラグ}{84}{section*.46}
+\contentsline {paragraph}{ビルトインのコンパイラフラグ}{84}{section*.47}
 \contentsline {subsection}{\numberline {6.1.1}グローバルコンパイラフラグ}{84}{subsection.6.1.1}
 \contentsline {section}{\numberline {6.2}extern}{86}{section.6.2}
-\contentsline {paragraph}{可変長引数と、型の選択肢}{86}{section*.47}
+\contentsline {paragraph}{可変長引数と、型の選択肢}{86}{section*.48}
 \contentsline {section}{\numberline {6.3}静的拡張}{87}{section.6.3}
 \contentsline {subsection}{\numberline {6.3.1}Haxe標準ライブラリについて}{88}{subsection.6.3.1}
 \contentsline {section}{\numberline {6.4}パターンマッチング}{88}{section.6.4}
@@ -154,32 +155,32 @@
 \contentsline {section}{\numberline {6.7}イテレータ(反復子)}{95}{section.6.7}
 \contentsline {section}{\numberline {6.8}関数の束縛(bind)}{96}{section.6.8}
 \contentsline {section}{\numberline {6.9}メタデータ}{97}{section.6.9}
-\contentsline {paragraph}{ビルトインのコンパイラメタデータ}{98}{section*.50}
+\contentsline {paragraph}{ビルトインのコンパイラメタデータ}{98}{section*.51}
 \contentsline {section}{\numberline {6.10}アクセス制御}{98}{section.6.10}
 \contentsline {section}{\numberline {6.11}インラインコンストラクタ}{100}{section.6.11}
 \contentsline {part}{II\hspace {1em}Compiler Reference}{102}{part.2}
 \contentsline {chapter}{\numberline {7}Compiler Usage}{103}{chapter.7}
-\contentsline {paragraph}{Basic Usage}{103}{section*.51}
-\contentsline {paragraph}{Common arguments}{103}{section*.52}
+\contentsline {paragraph}{Basic Usage}{103}{section*.52}
+\contentsline {paragraph}{Common arguments}{103}{section*.53}
 \contentsline {chapter}{\numberline {8}Compiler Features}{105}{chapter.8}
 \contentsline {section}{\numberline {8.1}Built-in Compiler Metadata}{105}{section.8.1}
 \contentsline {section}{\numberline {8.2}Dead Code Elimination}{107}{section.8.2}
-\contentsline {section}{\numberline {8.3}Completion}{107}{section.8.3}
+\contentsline {section}{\numberline {8.3}Compiler Services}{107}{section.8.3}
 \contentsline {subsection}{\numberline {8.3.1}Overview}{107}{subsection.8.3.1}
-\contentsline {paragraph}{General notes on the interface}{108}{section*.53}
+\contentsline {paragraph}{General notes on the interface}{108}{section*.54}
 \contentsline {subsection}{\numberline {8.3.2}Field access completion}{109}{subsection.8.3.2}
 \contentsline {subsection}{\numberline {8.3.3}Call argument completion}{110}{subsection.8.3.3}
 \contentsline {subsection}{\numberline {8.3.4}Type path completion}{110}{subsection.8.3.4}
-\contentsline {paragraph}{package completion}{110}{section*.54}
-\contentsline {paragraph}{import module completion}{111}{section*.55}
-\contentsline {paragraph}{other module completion}{112}{section*.56}
+\contentsline {paragraph}{package completion}{110}{section*.55}
+\contentsline {paragraph}{import module completion}{111}{section*.56}
+\contentsline {paragraph}{other module completion}{112}{section*.57}
 \contentsline {subsection}{\numberline {8.3.5}Usage completion}{112}{subsection.8.3.5}
 \contentsline {subsection}{\numberline {8.3.6}Position completion}{113}{subsection.8.3.6}
 \contentsline {subsection}{\numberline {8.3.7}Top-level completion}{113}{subsection.8.3.7}
 \contentsline {subsection}{\numberline {8.3.8}Completion server}{114}{subsection.8.3.8}
-\contentsline {paragraph}{How it works}{114}{section*.57}
-\contentsline {paragraph}{Protocol}{115}{section*.58}
-\contentsline {paragraph}{Effect on macros}{115}{section*.59}
+\contentsline {paragraph}{How it works}{114}{section*.58}
+\contentsline {paragraph}{Protocol}{115}{section*.59}
+\contentsline {paragraph}{Effect on macros}{115}{section*.60}
 \contentsline {section}{\numberline {8.4}Resources}{115}{section.8.4}
 \contentsline {subsection}{\numberline {8.4.1}Embedding resources}{116}{subsection.8.4.1}
 \contentsline {subsection}{\numberline {8.4.2}Retrieving text resources}{116}{subsection.8.4.2}
@@ -187,12 +188,12 @@
 \contentsline {subsection}{\numberline {8.4.4}Implementation details}{116}{subsection.8.4.4}
 \contentsline {section}{\numberline {8.5}Runtime Type Information}{117}{section.8.5}
 \contentsline {subsection}{\numberline {8.5.1}RTTI structure}{117}{subsection.8.5.1}
-\contentsline {paragraph}{General type information}{117}{section*.61}
-\contentsline {paragraph}{Class type information}{118}{section*.62}
-\contentsline {paragraph}{Enum type information}{118}{section*.63}
-\contentsline {paragraph}{Abstract type information}{118}{section*.64}
-\contentsline {paragraph}{Class field information}{118}{section*.65}
-\contentsline {paragraph}{Enum constructor information}{119}{section*.66}
+\contentsline {paragraph}{General type information}{117}{section*.62}
+\contentsline {paragraph}{Class type information}{118}{section*.63}
+\contentsline {paragraph}{Enum type information}{118}{section*.64}
+\contentsline {paragraph}{Abstract type information}{118}{section*.65}
+\contentsline {paragraph}{Class field information}{118}{section*.66}
+\contentsline {paragraph}{Enum constructor information}{119}{section*.67}
 \contentsline {chapter}{\numberline {9}Macros}{120}{chapter.9}
 \contentsline {section}{\numberline {9.1}Macro Context}{121}{section.9.1}
 \contentsline {section}{\numberline {9.2}Arguments}{121}{section.9.2}
@@ -208,7 +209,7 @@
 \contentsline {subsection}{\numberline {9.5.1}Enum building}{127}{subsection.9.5.1}
 \contentsline {subsection}{\numberline {9.5.2}@:autoBuild}{128}{subsection.9.5.2}
 \contentsline {subsection}{\numberline {9.5.3}@:genericBuild}{129}{subsection.9.5.3}
-\contentsline {paragraph}{Const type parameter}{130}{section*.68}
+\contentsline {paragraph}{Const type parameter}{130}{section*.69}
 \contentsline {section}{\numberline {9.6}Limitations}{131}{section.9.6}
 \contentsline {subsection}{\numberline {9.6.1}Macro-in-Macro}{131}{subsection.9.6.1}
 \contentsline {subsection}{\numberline {9.6.2}Static extension}{131}{subsection.9.6.2}
@@ -218,7 +219,7 @@
 \contentsline {part}{III\hspace {1em}Standard Library}{134}{part.3}
 \contentsline {chapter}{\numberline {10}Standard Library}{135}{chapter.10}
 \contentsline {section}{\numberline {10.1}String}{135}{section.10.1}
-\contentsline {paragraph}{Character code}{135}{section*.69}
+\contentsline {paragraph}{Character code}{135}{section*.70}
 \contentsline {section}{\numberline {10.2}Data Structures}{135}{section.10.2}
 \contentsline {subsection}{\numberline {10.2.1}Array}{135}{subsection.10.2.1}
 \contentsline {subsection}{\numberline {10.2.2}Vector}{137}{subsection.10.2.2}
@@ -239,28 +240,28 @@
 \contentsline {subsection}{\numberline {10.4.3}Integer Math}{145}{subsection.10.4.3}
 \contentsline {subsection}{\numberline {10.4.4}Extensions}{145}{subsection.10.4.4}
 \contentsline {section}{\numberline {10.5}Lambda}{145}{section.10.5}
-\contentsline {paragraph}{Lambda Functions}{146}{section*.71}
+\contentsline {paragraph}{Lambda Functions}{146}{section*.72}
 \contentsline {section}{\numberline {10.6}Template}{147}{section.10.6}
-\contentsline {paragraph}{Expressions}{147}{section*.72}
-\contentsline {paragraph}{Conditions}{148}{section*.73}
-\contentsline {paragraph}{Iterating}{148}{section*.74}
-\contentsline {paragraph}{Sub-templates}{148}{section*.75}
-\contentsline {paragraph}{Template macros}{148}{section*.76}
-\contentsline {paragraph}{Globals}{149}{section*.77}
-\contentsline {paragraph}{Using resources}{149}{section*.78}
+\contentsline {paragraph}{Expressions}{147}{section*.73}
+\contentsline {paragraph}{Conditions}{148}{section*.74}
+\contentsline {paragraph}{Iterating}{148}{section*.75}
+\contentsline {paragraph}{Sub-templates}{148}{section*.76}
+\contentsline {paragraph}{Template macros}{148}{section*.77}
+\contentsline {paragraph}{Globals}{149}{section*.78}
+\contentsline {paragraph}{Using resources}{149}{section*.79}
 \contentsline {section}{\numberline {10.7}Reflection}{149}{section.10.7}
 \contentsline {section}{\numberline {10.8}Serialization}{151}{section.10.8}
-\contentsline {paragraph}{Supported values}{152}{section*.79}
-\contentsline {paragraph}{Serialization configuration}{152}{section*.80}
-\contentsline {paragraph}{Deserialization behavior}{152}{section*.81}
-\contentsline {paragraph}{Custom (de)serialization}{153}{section*.82}
+\contentsline {paragraph}{Supported values}{152}{section*.80}
+\contentsline {paragraph}{Serialization configuration}{152}{section*.81}
+\contentsline {paragraph}{Deserialization behavior}{152}{section*.82}
+\contentsline {paragraph}{Custom (de)serialization}{153}{section*.83}
 \contentsline {subsection}{\numberline {10.8.1}Serialization format}{153}{subsection.10.8.1}
 \contentsline {section}{\numberline {10.9}Xml}{155}{section.10.9}
 \contentsline {subsection}{\numberline {10.9.1}Getting started with Xml}{155}{subsection.10.9.1}
-\contentsline {paragraph}{Creating a root element}{155}{section*.83}
-\contentsline {paragraph}{Creating child elements}{155}{section*.84}
-\contentsline {paragraph}{Accessing elements and values}{155}{section*.85}
-\contentsline {paragraph}{Iterate on Xml elements}{156}{section*.86}
+\contentsline {paragraph}{Creating a root element}{155}{section*.84}
+\contentsline {paragraph}{Creating child elements}{155}{section*.85}
+\contentsline {paragraph}{Accessing elements and values}{155}{section*.86}
+\contentsline {paragraph}{Iterate on Xml elements}{156}{section*.87}
 \contentsline {subsection}{\numberline {10.9.2}Parsing Xml}{156}{subsection.10.9.2}
 \contentsline {subsection}{\numberline {10.9.3}Encoding Xml}{156}{subsection.10.9.3}
 \contentsline {section}{\numberline {10.10}Json}{156}{section.10.10}
@@ -271,21 +272,21 @@
 \contentsline {section}{\numberline {10.12}Sys/sys}{158}{section.10.12}
 \contentsline {section}{\numberline {10.13}Remoting}{158}{section.10.13}
 \contentsline {subsection}{\numberline {10.13.1}Remoting Connection}{158}{subsection.10.13.1}
-\contentsline {paragraph}{Start a connection}{158}{section*.87}
-\contentsline {paragraph}{Remoting context}{159}{section*.88}
-\contentsline {paragraph}{Using the connection}{159}{section*.89}
-\contentsline {paragraph}{Error handling}{159}{section*.90}
-\contentsline {paragraph}{Data serialization}{160}{section*.91}
+\contentsline {paragraph}{Start a connection}{158}{section*.88}
+\contentsline {paragraph}{Remoting context}{159}{section*.89}
+\contentsline {paragraph}{Using the connection}{159}{section*.90}
+\contentsline {paragraph}{Error handling}{159}{section*.91}
+\contentsline {paragraph}{Data serialization}{160}{section*.92}
 \contentsline {subsection}{\numberline {10.13.2}Implementation details}{160}{subsection.10.13.2}
-\contentsline {paragraph}{JavaScript security specifics}{160}{section*.92}
-\contentsline {paragraph}{Flash security specifics}{160}{section*.93}
-\contentsline {paragraph}{Arguments types are not ensured}{160}{section*.94}
+\contentsline {paragraph}{JavaScript security specifics}{160}{section*.93}
+\contentsline {paragraph}{Flash security specifics}{160}{section*.94}
+\contentsline {paragraph}{Arguments types are not ensured}{160}{section*.95}
 \contentsline {section}{\numberline {10.14}Unit testing}{160}{section.10.14}
-\contentsline {paragraph}{Creating new test cases}{160}{section*.95}
-\contentsline {paragraph}{Running unit tests}{161}{section*.96}
-\contentsline {paragraph}{Test functions}{161}{section*.97}
-\contentsline {paragraph}{Setup and tear down}{161}{section*.98}
-\contentsline {paragraph}{Comparing Complex Objects}{162}{section*.99}
+\contentsline {paragraph}{Creating new test cases}{160}{section*.96}
+\contentsline {paragraph}{Running unit tests}{161}{section*.97}
+\contentsline {paragraph}{Test functions}{161}{section*.98}
+\contentsline {paragraph}{Setup and tear down}{161}{section*.99}
+\contentsline {paragraph}{Comparing Complex Objects}{162}{section*.100}
 \contentsline {part}{IV\hspace {1em}Miscellaneous}{163}{part.4}
 \contentsline {chapter}{\numberline {11}Haxelib}{164}{chapter.11}
 \contentsline {section}{\numberline {11.1}Using a Haxe library with the Haxe Compiler}{164}{section.11.1}
@@ -297,38 +298,38 @@
 \contentsline {chapter}{\numberline {12}Target Details}{169}{chapter.12}
 \contentsline {section}{\numberline {12.1}JavaScript}{169}{section.12.1}
 \contentsline {subsection}{\numberline {12.1.1}Getting started with Haxe/JavaScript}{169}{subsection.12.1.1}
-\contentsline {paragraph}{Run the JavaScript}{169}{section*.100}
-\contentsline {paragraph}{More information}{170}{section*.101}
+\contentsline {paragraph}{Run the JavaScript}{169}{section*.101}
+\contentsline {paragraph}{More information}{170}{section*.102}
 \contentsline {subsection}{\numberline {12.1.2}Using external JavaScript libraries}{170}{subsection.12.1.2}
 \contentsline {subsection}{\numberline {12.1.3}Inject raw JavaScript}{172}{subsection.12.1.3}
 \contentsline {subsection}{\numberline {12.1.4}JavaScript untyped functions}{172}{subsection.12.1.4}
-\contentsline {paragraph}{\texttt {untyped __js__(expr, params)}}{172}{section*.102}
-\contentsline {paragraph}{\texttt {untyped __instanceof__(o,cl)}}{172}{section*.103}
-\contentsline {paragraph}{\texttt {untyped __typeof__(o)}}{173}{section*.104}
-\contentsline {paragraph}{\texttt {untyped __strict_eq__(a,b)}}{173}{section*.105}
-\contentsline {paragraph}{\texttt {untyped __strict_neq__(a,b)}}{173}{section*.106}
-\contentsline {paragraph}{Expression injection}{173}{section*.107}
+\contentsline {paragraph}{\texttt {untyped __js__(expr, params)}}{172}{section*.103}
+\contentsline {paragraph}{\texttt {untyped __instanceof__(o,cl)}}{172}{section*.104}
+\contentsline {paragraph}{\texttt {untyped __typeof__(o)}}{173}{section*.105}
+\contentsline {paragraph}{\texttt {untyped __strict_eq__(a,b)}}{173}{section*.106}
+\contentsline {paragraph}{\texttt {untyped __strict_neq__(a,b)}}{173}{section*.107}
+\contentsline {paragraph}{Expression injection}{173}{section*.108}
 \contentsline {subsection}{\numberline {12.1.5}Debugging JavaScript}{173}{subsection.12.1.5}
 \contentsline {subsection}{\numberline {12.1.6}JavaScript target Metadata}{174}{subsection.12.1.6}
 \contentsline {subsection}{\numberline {12.1.7}Exposing Haxe classes for JavaScript}{174}{subsection.12.1.7}
-\contentsline {paragraph}{Shallow expose}{175}{section*.108}
+\contentsline {paragraph}{Shallow expose}{175}{section*.109}
 \contentsline {subsection}{\numberline {12.1.8}Loading extern classes using "require" function}{175}{subsection.12.1.8}
 \contentsline {section}{\numberline {12.2}Flash}{176}{section.12.2}
 \contentsline {subsection}{\numberline {12.2.1}Getting started with Haxe/Flash}{176}{subsection.12.2.1}
-\contentsline {paragraph}{Display the Flash}{176}{section*.109}
-\contentsline {paragraph}{More information}{177}{section*.110}
+\contentsline {paragraph}{Display the Flash}{176}{section*.110}
+\contentsline {paragraph}{More information}{177}{section*.111}
 \contentsline {subsection}{\numberline {12.2.2}Embedding resources}{177}{subsection.12.2.2}
 \contentsline {subsection}{\numberline {12.2.3}Using external Flash libraries}{177}{subsection.12.2.3}
 \contentsline {subsection}{\numberline {12.2.4}Flash target Metadata}{177}{subsection.12.2.4}
 \contentsline {section}{\numberline {12.3}Neko}{178}{section.12.3}
 \contentsline {section}{\numberline {12.4}PHP}{178}{section.12.4}
 \contentsline {subsection}{\numberline {12.4.1}Getting started with Haxe/PHP}{178}{subsection.12.4.1}
-\contentsline {paragraph}{More information}{178}{section*.111}
+\contentsline {paragraph}{More information}{178}{section*.112}
 \contentsline {subsection}{\numberline {12.4.2}PHP untyped functions}{179}{subsection.12.4.2}
-\contentsline {paragraph}{\texttt {untyped __php__(expr)}}{179}{section*.112}
-\contentsline {paragraph}{\texttt {untyped __call__(function, arg, arg, arg...)}}{179}{section*.113}
-\contentsline {paragraph}{\texttt {untyped __var__(global, paramName)}}{179}{section*.114}
-\contentsline {paragraph}{\texttt {untyped __physeq__(val1, val2)}}{179}{section*.115}
+\contentsline {paragraph}{\texttt {untyped __php__(expr)}}{179}{section*.113}
+\contentsline {paragraph}{\texttt {untyped __call__(function, arg, arg, arg...)}}{179}{section*.114}
+\contentsline {paragraph}{\texttt {untyped __var__(global, paramName)}}{179}{section*.115}
+\contentsline {paragraph}{\texttt {untyped __physeq__(val1, val2)}}{179}{section*.116}
 \contentsline {section}{\numberline {12.5}C++}{179}{section.12.5}
 \contentsline {subsection}{\numberline {12.5.1}Using C++ Defines}{179}{subsection.12.5.1}
 \contentsline {subsection}{\numberline {12.5.2}Using C++ Pointers}{181}{subsection.12.5.2}

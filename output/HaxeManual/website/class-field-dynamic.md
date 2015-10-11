@@ -1,6 +1,6 @@
-## 4.4.3 Dynamic
+## 4.4.3 dynamic
 
-Methods can be denoted with the `dynamic` keyword to make them (re-)bindable:
+メソッドは`dynamic`キーワードをつけることで、束縛のしなおしをできるようにします。
 
 ```haxe
 class Main {
@@ -16,12 +16,12 @@ class Main {
 }
 ```
 
-The first call to `test()` invokes the original function which returns the `String` `"original"`. In the next line, `test` is **assigned** a new function. This is precisely what `dynamic` allows: Function fields can be assigned a new function. As a result, the next invocation of `test()` returns the `String` `"new"`.
+最初の`test()`の呼び出しではもともとの関数を実行して`"original"`の文字列を返します。つぎの行で、`test()`に新しい関数が代入されます。これが`dynamic`が可能にする関数の再束縛です。その結果として、次の`test()`の呼び出しでは`"new"`の文字列が返っています。
 
-Dynamic fields cannot be `inline` for obvious reasons: While inlining is done at compile-time, dynamic functions necessarily have to be resolved at runtime.
+`dynamic`フィールドは`inline`フィールドにできません。その理由は明らかです。インライン化はコンパイル時に行われますが、`dynamic`な関数は実行時に解決されます。
 
 ---
 
-Previous section: [Inline](class-field-inline.md)
+Previous section: [inline(インライン化)](class-field-inline.md)
 
-Next section: [Override](class-field-override.md)
+Next section: [override](class-field-override.md)

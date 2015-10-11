@@ -1,6 +1,6 @@
-## 4.3 Method
+## 4.3 メソッド
 
-While [variables](class-field-variable.md) hold data, methods are defining behavior of a program by hosting [expressions](expression.md). We have seen method fields in every code example of this document with even the initial [Hello World](introduction-hello-world.md) example containing a `main` method:
+[変数](class-field-variable.md)がデータを保持する一方で、メソッドは[式](expression.md)をもってプログラムの動作を定義します。このマニュアルのさまざまなサンプルコード中で、メソッドフィールドを見てきました。最初の[Hello World](introduction-hello-world.md)の例ですら、`main`メソッドとして現れています。
 
 ```haxe
 class Main {
@@ -10,15 +10,15 @@ class Main {
 }
 ```
 
-Methods are identified by the `function` keyword. We can also learn that they
+メソッドは`function`キーワードから始まることで識別されます。そして以下の要素を持ちます。
 
-1. have a name (here: `main`),
-2. have an argument list (here: empty `()`),
-3. have a return type (here: `Void`),
-4. may have [access modifiers](class-field-access-modifier.md) (here: `static` and `public`) and
-5. may have an expression (here: `{trace("Hello World");}`).
+1. 名前を持つ(ここでは`main`)。
+2. 引数のリストを持つ(ここでは空の`()`)。
+3. 戻り値を持つ(ここでは`Void`)。
+4. [アクセス修飾子](class-field-access-modifier.md)を持つ場合がある(ここでは`static`と`public`)
+5. 式を持つ場合がある(ここでは`{trace("Hello World");}`)。
 
-We can also look at the next example to learn more about arguments and return types:
+引数と戻り値の型について学ぶために次の例を見てみましょう。
 
 ```haxe
 class Main {
@@ -32,12 +32,12 @@ class Main {
 }
 ```
 
-Arguments are given by an opening parenthesis `(` after the field name, a comma `,` separated list of argument specifications and a closing parenthesis `)`. Additional information on the argument specification is described in [関数](types-function.md).
+引数はフィールド名の後に、小かっこ(`(`)を続け、引数の詳細のリストをカンマ(`,`)区切りで並べて、小かっこを閉じる(`)`)ことで記述します。引数の詳細についての情報は[関数](types-function.md)で説明されています。
 
-The example demonstrates how [type inference](type-system-type-inference.md) can be used for both argument and return types. The method `myFunc` has two arguments but only explicitly gives the type of the first one, `f`, as `String`. The second one, `i`, is not type-hinted and it is left to the compiler to infer its type from calls made to it. Likewise, the return type of the method is inferred from the `return true` expression as `Bool`.
+この例からは[型推論](type-system-type-inference.md)が引数と戻り値についてどのように動作するのかもわかります。`myFunc`は2つの引数を持ちますが、最初の引数の`f`のみで`String`の型が明示されていて、2つ目の引数の`i`には型注釈がありません。コンパイラがこのメソッドの呼び出しから推論を行うように残してあります。同じように、メソッドの戻り値の型も`return true`から推論されて`Bool`になります。
 
 ---
 
-Previous section: [Rules for getter and setter](class-field-property-rules.md)
+Previous section: [ゲッターとセッターのルール](class-field-property-rules.md)
 
-Next section: [Overriding Methods](class-field-overriding.md)
+Next section: [メソッドのオーバーライド(override)](class-field-overriding.md)

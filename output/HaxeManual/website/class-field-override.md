@@ -1,11 +1,11 @@
-## 4.4.4 Override
+## 4.4.4 override
 
-The access modifier `override` is required when a field is declared which also exists on a [parent class](types-class-inheritance.md). Its purpose is to ensure that the author of a class is aware of the override as this may not always be obvious in large class hierarchies. Likewise, having `override` on a field which does not actually override anything (e.g. due to a misspelled field name) triggers an error.
+`override`アクセス修飾子は[親クラス](types-class-inheritance.md)ですでに存在するフィールドを定義するときに必要です。これはクラスの継承関係が大きい場合でも、書き手がオーバーライドに気づくようにするためです。同様に、実際には何もオーバーライドしないフィールドに`override`しようとするとエラーになります(例えば、スペルミスの場合)。
 
-The effects of overriding fields are detailed in [Overriding Methods](class-field-overriding.md). This modifier is only allowed on [method](class-field-method.md) fields.
+オーバーライドの効果については、[メソッドのオーバーライド(override)](class-field-overriding.md)で詳しく説明しています。この修飾子は[メソッド](class-field-method.md)フィールドのみに使用可能です。
 
 ---
 
-Previous section: [Dynamic](class-field-dynamic.md)
+Previous section: [dynamic](class-field-dynamic.md)
 
 Next section: [式](expression.md)

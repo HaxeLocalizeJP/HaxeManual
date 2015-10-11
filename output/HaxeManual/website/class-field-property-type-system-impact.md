@@ -1,8 +1,8 @@
-## 4.2.2 Impact on the type system
+## 4.2.2 型システムへの影響
 
-The presence of properties has several consequences on the type system. Most importantly, it is necessary to understand that properties are a compile-time feature and thus **require the types to be known**. If we were to assign a class with properties to `Dynamic`, field access would **not** respect accessor methods. Likewise, access restrictions no longer apply and all access is virtually public.
+プロパティの存在は型システム対して、いくつかの重要な影響をもたらします。もっとも重要なのはプロパティはコンパイル時の機能であり、**型がわかっている**必要があるということです。クラスインスタンスを`Dynamic`に代入すると、フィールドアクセスはアクセサメソッドを参照**しません**。同じようにアクセス制限も働かなくなり、すべてのアクセスは`public`と同じになります。
 
-When using `get` or `set` access identifier, the compiler ensures that the getter and setter actually exists. The following problem does not compile:
+`get`または`set`のアクセス識別子を使うと、コンパイラはゲッターとセッターが本当に存在するかを確認します。以下はコンパイルできません。
 
 ```haxe
 class Main {
@@ -12,7 +12,7 @@ class Main {
 }
 ```
 
-The method `get_x` is missing, but it need not be declared on the class defining the property itself as long as a parent class defines it:
+`get_x`メソッドを忘れていますが、親クラスでそれが定義されていた場合は今のクラスでそれを定義する必要はなくなります。
 
 ```haxe
 class Base {
@@ -27,10 +27,10 @@ class Main extends Base {
 }
 ```
 
-The `dynamic` access modifier works exactly like `get` or `set`, but does not check for the existence
+`dynamic`アクセス識別子は`get`や`set`と同じように動作しますが、この存在チェックは行われません。
 
 ---
 
-Previous section: [Common accessor identifier combinations](class-field-property-common-combinations.md)
+Previous section: [よくあるアクセス識別子の組み合わせ](class-field-property-common-combinations.md)
 
-Next section: [Rules for getter and setter](class-field-property-rules.md)
+Next section: [ゲッターとセッターのルール](class-field-property-rules.md)

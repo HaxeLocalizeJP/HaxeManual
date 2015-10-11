@@ -1,6 +1,6 @@
-## 4.3.2 Effects of variance and access modifiers
+## 4.3.2 変性とアクセス修飾子の影響
 
-Overriding adheres to the rules of [variance](type-system-variance.md). That is, their argument types allow **contravariance** (less specific types) while their return type allows **covariance** (more specific types):
+オーバーライドは[変性](type-system-variance.md)のルールと深い関わりがあります。というのは、引数の型が**反変性** (より一般的な型)を許容し、戻り値の型は**共変性**(より具体的な型)を許容するからです。
 
 ```haxe
 class Base {
@@ -24,14 +24,14 @@ class Main {
 }
 ```
 
-Intuitively, this follows from the fact that arguments are "written to" the function and the return value is "read from" it.
+直観的には、この挙動は引数は関数へ「書き込み」であり戻り値は「読み込み」であるという事実から来ています。
 
-The example also demonstrates how [visibility](class-field-visibility.md) may be changed: An overriding field may be `public` if the overridden field is `private`, but not the other way around.
+この例から、[可視性](class-field-visibility.md)が変更できるということもわかります。オーバーライドされる側のフィールドが`private`の場合は、`public`のフィールドでオーバーライドすることができます。ただし、そのほかの場合は、可視性の変更はできません。
 
-It is not possible to override fields which are declared as [`inline`](class-field-inline.md). This is due to the conflicting concepts: While inlining is done at compile-time by replacing a call with the function body, overriding fields necessarily have to be resolved at runtime.
+[`inline`](class-field-inline.md)の宣言をされたフィールドもオーバーライドできません。これはインライン化がコンパイル時に関数の中身で書き換えを行う一方で、オーバーライドのフィールドは実行時に解決される、という衝突を避けるためです。
 
 ---
 
-Previous section: [Overriding Methods](class-field-overriding.md)
+Previous section: [メソッドのオーバーライド(override)](class-field-overriding.md)
 
-Next section: [Access Modifier](class-field-access-modifier.md)
+Next section: [アクセス修飾子](class-field-access-modifier.md)

@@ -53,4 +53,4 @@ _Figure: 識別子`i'の解決順序_
 
 Previous section: [インポート(import)](type-system-import.md)
 
-Next section: [Class Fields](class-field.md)
+Next section: [クラスフィールド](class-field.md)

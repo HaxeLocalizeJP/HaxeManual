@@ -1,5 +1,7 @@
 ## 2.1.3 数値の演算子
 
+This the list of numeric operators in Haxe, grouped by descending priority.
+
 以下は、Haxeの数値演算子です。優先度が降順になるようにグループ化して並べています。
 
 ##### 算術演算
@@ -55,6 +57,18 @@
 <code>&gt;&gt;&gt;</code>  | 符号なしの右シフト  | `Int`  | `Int`  | `Int` 
  
 ##### Comparison
+ 
+ 
+
+##### 等価性
+
+**enum:**
+
+* パラメータなしのEnum 常に同じ値になるので、`MyEnum.A == MyEnum.A`で比較できる。
+* パラメータありEnum `a.equals(b)`で比較できる。 (これは`Type.enumEquals()`の短縮形である).
+
+**Dynamic:**
+1つ以上の`Dynamic`な値に対する比較は、未定義であり、プラットフォーム依存です。
 
 ---
 

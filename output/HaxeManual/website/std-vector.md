@@ -23,8 +23,6 @@ class Main {
 
 See the [Vector API](http://api.haxe.org/haxe/ds/Vector.html) for details about the vector methods.
 
-See the [Vector API](http://api.haxe.org/haxe/ds/Vector.html) for details about the vector methods.
-
 ---
 
 Previous section: [Array](std-Array.md)

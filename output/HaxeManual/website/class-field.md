@@ -1,23 +1,24 @@
-## 4 Class Fields
+## 4 クラスフィールド
 
-> ##### Define: Class Field
+> ##### Define: クラスフィールド
 >
-> A class field is a variable, property or method of a class which can either be static or non-static. Non-static fields are referred to as **member** fields, so we speak of e.g. a **static method** or a **member variable**.
+> クラスフィールドはクラスに属する変数、プロパティまたはメソッドです。これは静的、または非静的になることができます。**静的メソッド**と**メンバ変数**といった名前を使うのと同じように、非静的フィールドについては**メンバ**フィールドと呼びます。
 
-So far we have seen how types and Haxe programs in general are structured. This section about class fields concludes the structural part and at the same time bridges to the behavioral part of Haxe. This is because class fields are the place where [expressions](expression.md) are at home.
+ここまで、一般的なHaxeのプログラムと型がどのように構成されているのかを見てきました。
+このクラスフィールドに関する章では、構成に関する話題をまとめて、Haxeの動作に関する話題へのかけ橋とします。これはクラスフィールドが[式](expression.md)を持つ場所だからです。
 
-There are three kinds of class fields:
+クラスフィールドには3種類あります。
 
-* Variable: A [variable](class-field-variable.md) class field holds a value of a certain type, which can be read or written.
-* Property: A [property](class-field-property.md) class field defines a custom access behavior for something that, outside the class, looks like a variable field.
-* Method: A [method](class-field-method.md) is a function which can be called to execute code.
+* 変数: [変数](class-field-variable.md)クラスフィールドにはある型の値が入っていて、参照、または代入することがができます。
+* プロパティ: [プロパティ](class-field-property.md)クラスフィールドはアクセスされた時のカスタムの動作を定義します。クラスの外からは変数フィールドのように見えます。
+* メソッド: [メソッド](class-field-method.md)はコードを実行するために呼び出すことのできる関数です。
 
-Strictly speaking, a variable could be considered to be a property with certain access modifiers. Indeed, the Haxe Compiler does not distinguish variables and properties during its typing phase, but they remain separated at syntax level.
+厳密に言うと、変数は特定のアクセス方法を持つプロパティであると見なせます。実際に、Haxeコンパイラは変数とプロパティを型付けの段階では区別していません。しかし、構文レベルでは区別されます。
 
-Regarding terminology, a method is a (static or non-static) function belonging to a class. Other functions, such as a [local functions](expression-function.md) in expressions, are not considered methods.
+用語について補足すると、メソッドは(静的また非静的の)クラスに属する関数であり、式の中で現れる[ローカル関数](expression-function.md)のようなその他の関数はメソッドではありません。
 
 ---
 
 Previous section: [解決順序](type-system-resolution-order.md)
 
-Next section: [Variable](class-field-variable.md)
+Next section: [変数](class-field-variable.md)

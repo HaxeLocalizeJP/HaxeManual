@@ -23,8 +23,6 @@ The **Generic** in `GenericStack` is literal.  It is attributed with the `:gener
 
 See the [GenericStack API](http://api.haxe.org/haxe/ds/GenericStack.html) for details about its methods.
 
-See the [GenericStack API](http://api.haxe.org/haxe/ds/GenericStack.html) for details about its methods.
-
 ---
 
 Previous section: [List](std-List.md)

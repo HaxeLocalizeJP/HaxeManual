@@ -28,6 +28,6 @@ Haxeの式はプログラムが**何をするのか**を決定します。ほと
 
 ---
 
-Previous section: [Override](class-field-override.md)
+Previous section: [override](class-field-override.md)
 
 Next section: [ブロック](expression-block.md)

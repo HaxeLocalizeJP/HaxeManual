@@ -1,23 +1,23 @@
-## 4.2 Property
+## 4.2 プロパティ
 
-Next to [variables](class-field-variable.md), properties are the second option for dealing with data on a class. Unlike variables however, they offer more control of which kind of field access should be allowed and how it should be generated. Common use cases include:
+[変数](class-field-variable.md)に続き、プロパティがクラスにデータ持つ2番目の方法になります。変数とは異なり、プロパティはどのようなアクセスが許可されるかと、どのように生成されるかのより細かい制御が要求されます。よくある使い方は、例えば以下のようなものです。
 
-* Have a field which can be read from anywhere, but only be written from within the defining class.
-* Have a field which invokes a **getter**-method upon read-access.
-* Have a field which invokes a **setter**-method upon write-access.
+* どこからでも読み込み可能だが、書き込みは定義しているクラスからのみのフィールドを作る
+* 読み込みアクセスがされたときに**ゲッター**メソッドが実行されるフィールドを作る。
+* 書き込みアクセスがされたときに**セッター**メソッドが実行されるフィールドを作る。
 
-When dealing with properties, it is important to understand the two kinds of access:
+プロパティをあつかう場合、2種類のアクセスについて理解することが重要です。
 
-> ##### Define: Read Access
+> ##### Define: 読み込みアクセス
 >
-> A read access to a field occurs when a right-hand side [field access expression](expression-field-access.md) is used. This includes calls in the form of `obj.field()`, where `field` is accessed to be read.
+> 読み込みアクセスは右辺側で[フィールドアクセス式](expression-field-access.md)が使われると発生します。これには`obj.field()`の形の関数呼び出しもふくまれるため、この`field`も読み込みアクセスがされます。
 
-> ##### Define: Write Access
+> ##### Define: 書き込みアクセス
 >
-> A write access to a field occurs when a [field access expression](expression-field-access.md) is assigned a value in the form of `obj.field = value`. It may also occur in combination with [read access](dictionary.md#define-read-access) for special assignment operators such as `+=` in expressions like `obj.field += value`.
+> フィールドへの書き込みアクセスは、[フィールドアクセス式](expression-field-access.md)に`obj.field = value`の形式で値の代入することで発生します。また、`obj.field += value`の式`+=`のような特殊な代入演算子を使うと、書き込みアクセスと[読み込みアクセス](dictionary.md#define-read-access)の両方が発生します。
  
 
-Read access and write access are directly reflected in the syntax, as the following example shows:
+読み込みアクセスと書き込みアクセスを以下の構文を使って直接指定します。
 
 ```haxe
 class Main {
@@ -26,34 +26,34 @@ class Main {
 }
 ```
 
-For the most part, the syntax is similar to variable syntax, and the same rules indeed apply. Properties are identified by
+大部分は変数の構文と同じで、同じルールが適用されます。プロパティは以下の点で異なります。
 
-* the opening parenthesis `(` after the field name,
-* followed by a special **access identifier** (here: `default`),
-* with a comma `,` separating
-* another special access identifier (here: `null`)
-* before a closing parenthesis `)`.
+* フィールド名の後から小かっこが始まります(`(`)。
+* 次に、特殊な**アクセス識別子**が来ます(ここでは`default`)。
+* カンマ(`,`)で区切ります。
+* もう一つ特殊なアクセス識別子が続きます(ここでは`null`)。
+* 小かっこを閉じます(`)`)。
 
-The access identifiers define the behavior when the field is read (first identifier) and written (second identifier). The accepted values are:
+1つ目のアクセス識別子はフィールドの読み込み、2つ目は書き込み時の挙動を決定します。アクセス識別子には以下の値が使用できます。
 
-* `default`: Allows normal field access if the field has public visibility, otherwise equal to `null` access.
-* `null`: Allows access only from within the defining class.
-* `get`/`set`: Access is generated as a call to an **accessor method**. The compiler ensures that the accessor is available.
-* `dynamic`: Like `get`/`set` access, but does not verify the existence of the accessor field.
-* `never`: Allows no access at all.
+* `default`: フィールドの可視性が`public`の場合、通常のフィールドと同じです。その他の場合、`null`アクセスと同じです。
+* `null`: 定義したクラスのみからアクセスできます。
+* `get`/`set`: アクセス時に**アクセサメソッド**を呼び出します。コンパイラが使用可能なアクセサの存在を確認します。
+* `dynamic`: `get`/`set`アクセスに似ていますが、アクセサフィールドの存在を確認しません。
+* `never`: いかなるアクセスも許可しません。
 
-> ##### Define: Accessor method
+> ##### Define: アクセサメソッド
 >
-> An **accessor method** (or short **accessor**) for a field named `field` of type `T` is a **getter** named `get_field` of type `Void->T` or a **setter** named `set_field` of type `T->T`.
+> 型が`T`でフィールド名が`field`のフィールドに対する**アクセサメソッド**は、`Void->T`型のフィールド名`get_field`の**ゲッター**または`T->T`型のフィールド名`set_field`の**セッター**です。アクセサメソッドは略して**アクセサ**とも呼びます。
 
-> ##### Trivia: Accessor names
+> ##### Trivia: アクセサ名
 >
-> In Haxe 2, arbitrary identifiers were allowed as access identifiers and would lead to custom accessor method names to be admitted. This made parts of the implementation quite tricky to deal with. In particular, `Reflect.getProperty()` and `Reflect.setProperty()` had to assume that any name could have been used, requiring the target generators to generate meta-information and perform lookups.
+> Haxe2では、アクセス識別子に自由な識別子を使うことが可能で、その場合はそれがカスタムのアクセサメソッド名となっていました。しかし、これにより実装は変則的なものになっていました。例えば、`Reflect.getProperty()`と`Reflect.setProperty()`はどのような名前が名前が使われていたとしても対応する必要がありました。そのため、ターゲット出力時に参照のためのメタ情報を生成する必要がありました。
 > 
-> We disallowed these identifiers and went for the `get_` and `set_` naming convention which greatly simplified implementation. This was one of the breaking changes between Haxe 2 and 3.
+> この識別子の名前を`get_`、`set_`から始まるもののみに制限することで、実装を大きく簡略化することに成功しました。これがHaxe2と3の間の破壊的な変更の1つ。
 
 ---
 
-Previous section: [Variable](class-field-variable.md)
+Previous section: [変数](class-field-variable.md)
 
-Next section: [Common accessor identifier combinations](class-field-property-common-combinations.md)
+Next section: [よくあるアクセス識別子の組み合わせ](class-field-property-common-combinations.md)

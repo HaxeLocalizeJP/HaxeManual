@@ -1,6 +1,6 @@
-## 4.4.2 Inline
+## 4.4.2 inline(インライン化)
 
-The `inline` keyword allows function bodies to be directly inserted in place of calls to them. This can be a powerful optimization tool, but should be used judiciously as not all functions are good candidates for inline behavior. The following example demonstrates the basic usage:
+`inline`キーワードはその関数の式を関数を呼び出した位置に直接挿し込みできるようにします。これは強力な最適化手段ですが、すべての関数にインライン化の挙動を持つ資格があるわけでありません。基本的な使い方は以下の通りです。
 
 ```haxe
 class Main {
@@ -16,7 +16,7 @@ class Main {
 }
 ```
 
-The generated JavaScript output reveals the effect of inline:
+JavaScript出力を見るとインライン化の効果がわかります。
 
 ```haxe
 (function () { "use strict";
@@ -30,13 +30,13 @@ Main.main();
 })();
 ```
 
-As evident, the function body `(s1 + s2) / 2` of field `mid` was generated in place of the call to `mid(a, b)`, with `s1` being replaced by `a` and `s2` being replaced by `b`. This avoids a function call which, depending on the target and frequency of occurrences, may yield noticeable performance improvements.
+見てのとおり`mid`フィールドの関数本体の`(s1 + s2) / 2`が、`mid(a, b)`の位置で`s1`を`a`に`s2`を`b`に置き換えられて出力されています。ターゲットによっては消えない場合もありますが、関数呼び出しが消滅しており、これが大きなパフォーマンスの改善になりえます。
 
-It is not always easy to judge if a function qualifies for being inline. Short functions that have no writing expressions (such as a `=` assignment) are usually a good choice, but even more complex functions can be candidates. However, in some cases inlining can actually be detrimental to performance, e.g. because the compiler has to create temporary variables for complex expressions.
+インライン化するべきかの判断は簡単ではありません。書き込み処理の無い短い関数(`=`の代入のみといった)は、たいていインライン化すると良いですし、より複雑な関数であってもインライン化する候補となりえます。一方で、インライン化がパフォーマンスに悪影響を与える場合もあります(複雑な式では、コンパイラが一時変数を作るなどのため)。
 
-Inline is not guaranteed to be done. The compiler might cancel inlining for various reasons or a user could supply the `--no-inline` command line argument to disable inlining. The only exception is if the class is [extern](lf-externs.md) or if the class field has the `:extern` [metadata](lf-metadata.md), in which case inline is forced. If it cannot be done, the compiler emits an error.
+`inline`キーワードは、インライン化されることを保証しません。コンパイラはさまざまな理由でインライン化をキャンセルします。例えば、コマンドラインの引数で`--no-inline`が与えられた場合です。例外としてクラスが[extern](lf-externs.md)か、フィールドが`:extern`[メタデータ](lf-metadata.md)を付けられていた場合、インライン化が強制されます。インライン化ができない場合、コンパイラはエラーを出力します。
 
-It is important to remember this when relying on inline:
+これはインライン化を使う上で重要なので覚えておきましょう。
 
 ```haxe
 class Main {
@@ -56,10 +56,10 @@ class Main {
 }
 ```
 
-If the call to `error` is inlined the program compiles correctly because the control flow checker is satisfied due to the inlined [throw](expression-throw.md) expression. If inline is not done, the compiler only sees a function call to `error` and emits the error `A return is missing here`.
+`error`の呼び出しがインライン化できれば、制御フローのチェッカーはインライン化された[throw](expression-throw.md)に満足してプログラムは正しくコンパイルされます。インライン化されなければ、コンパイラは関数呼び出しのみを見て、`A return is missing here`(ここにリターンが足りません)というエラーを出力します。
 
 ---
 
-Previous section: [Visibility](class-field-visibility.md)
+Previous section: [可視性](class-field-visibility.md)
 
-Next section: [Dynamic](class-field-dynamic.md)
+Next section: [dynamic](class-field-dynamic.md)

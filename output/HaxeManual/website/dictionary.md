@@ -27,20 +27,10 @@
 ##### Abstract Syntax Tree (AST)
 The AST is the result of **parsing** Haxe code into a typed structure. This structure is exposed to macros through the types defined in the file `haxe/macro/Expr.hx` of the Haxe Standard Library.
 
-<a id="define-accessor-method" class="anch"></a>
-
-##### Accessor method
-An **accessor method** (or short **accessor**) for a field named `field` of type `T` is a **getter** named `get_field` of type `Void->T` or a **setter** named `set_field` of type `T->T`.
-
 <a id="define-bool" class="anch"></a>
 
 ##### Bool
 真(**true**)または、偽(**false**)のどちらかになる値を表します。
-
-<a id="define-class-field" class="anch"></a>
-
-##### Class Field
-A class field is a variable, property or method of a class which can either be static or non-static. Non-static fields are referred to as **member** fields, so we speak of e.g. a **static method** or a **member variable**.
 
 <a id="define-enumvalue" class="anch"></a>
 
@@ -72,28 +62,12 @@ The macro context is the environment in which the macro is executed. Depending o
 ##### null許容
 Haxeでは、ある型が値として`null`をとる場合にnull許容であるとみなす。
 
-<a id="define-physical-field" class="anch"></a>
-
-##### Physical field
-A field is considered to be **physical** if it is either
-
-* a [variable](class-field-variable.md)
-* a [property](class-field-property.md) with the read-access or write-access identifier being `default` or `null`
-* a [property](class-field-property.md) with `:isVar` [metadata](lf-metadata.md)
-
-
-
 <a id="define-private-type" class="anch"></a>
 
 ##### private型
 型は`private`の修飾子を使って可視性を下げることが可能です。`private`修飾子をつけると、その型を定義している[モジュール](dictionary.md#define-module)以外からは、直接アクセスできなくなります。
 
 `private`な型は`public`な型とは異なり、パッケージにはふくまれません。
-
-<a id="define-read-access" class="anch"></a>
-
-##### Read Access
-A read access to a field occurs when a right-hand side [field access expression](expression-field-access.md) is used. This includes calls in the form of `obj.field()`, where `field` is accessed to be read.
 
 <a id="define-string" class="anch"></a>
 
@@ -105,10 +79,15 @@ A String is a sequence of characters.
 ##### Void
 Voidは型が存在しないことを表します。特定の場面(主に関数)で値を持たないことを表現するのに使います。
 
-<a id="define-write-access" class="anch"></a>
+<a id="define-accessor-method" class="anch"></a>
 
-##### Write Access
-A write access to a field occurs when a [field access expression](expression-field-access.md) is assigned a value in the form of `obj.field = value`. It may also occur in combination with [read access](dictionary.md#define-read-access) for special assignment operators such as `+=` in expressions like `obj.field += value`.
+##### アクセサメソッド
+型が`T`でフィールド名が`field`のフィールドに対する**アクセサメソッド**は、`Void->T`型のフィールド名`get_field`の**ゲッター**または`T->T`型のフィールド名`set_field`の**セッター**です。アクセサメソッドは略して**アクセサ**とも呼びます。
+
+<a id="define-class-field" class="anch"></a>
+
+##### クラスフィールド
+クラスフィールドはクラスに属する変数、プロパティまたはメソッドです。これは静的、または非静的になることができます。**静的メソッド**と**メンバ変数**といった名前を使うのと同じように、非静的フィールドについては**メンバ**フィールドと呼びます。
 
 <a id="define-compiler-flag" class="anch"></a>
 
@@ -187,10 +166,26 @@ A write access to a field occurs when a [field access expression](expression-fie
 ##### 定義の名前
 定義の説明
 
+<a id="define-write-access" class="anch"></a>
+
+##### 書き込みアクセス
+フィールドへの書き込みアクセスは、[フィールドアクセス式](expression-field-access.md)に`obj.field = value`の形式で値の代入することで発生します。また、`obj.field += value`の式`+=`のような特殊な代入演算子を使うと、書き込みアクセスと[読み込みアクセス](dictionary.md#define-read-access)の両方が発生します。
+
 <a id="define-structural-subtyping" class="anch"></a>
 
 ##### 構造的部分型付け
 構造的部分型付けは、同じ構造を持つ型の暗黙の関係を示します。
+
+<a id="define-physical-field" class="anch"></a>
+
+##### 物理的フィールド
+以下のいずれかの場合にフィールドが**物理的**であると考えられます
+
+* [変数](class-field-variable.md)
+* 読み込みアクセスか書き込みアクセスのアクセス識別子が`default`または`null`である[プロパティ](class-field-property.md)
+* `:isVar`[メタデータ](lf-metadata.md)がつけられた[プロパティ](class-field-property.md)
+
+
 
 <a id="define-compound-type" class="anch"></a>
 
@@ -203,6 +198,11 @@ A write access to a field occurs when a [field access expression](expression-fie
 
 ##### 要求される型
 要求される型は、式の型が式が型付けされるより前にわかっている場合に現れます。例えば、式が関数の呼び出しの引数の場合です。この場合、[トップダウンの推論](type-system-top-down-inference.md)と呼ばれる方法で、式に型が伝搬します。
+
+<a id="define-read-access" class="anch"></a>
+
+##### 読み込みアクセス
+読み込みアクセスは右辺側で[フィールドアクセス式](expression-field-access.md)が使われると発生します。これには`obj.field()`の形の関数呼び出しもふくまれるため、この`field`も読み込みアクセスがされます。
 
 <a id="define-identifier" class="anch"></a>
 
