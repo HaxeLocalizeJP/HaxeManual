@@ -22,6 +22,7 @@ HaxeManual 日本語版
  - todonotes
  - underscore
  - xcolor
+ - xeCJK
 
  
 マークダウンの生成
