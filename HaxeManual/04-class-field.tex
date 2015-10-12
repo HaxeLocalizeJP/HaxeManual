@@ -85,7 +85,7 @@
 \define{アクセサメソッド}{define-accessor-method}{型が\type{T}でフィールド名が\expr{field}のフィールドに対する\emph{アクセサメソッド}は、\type{Void->T}型のフィールド名\expr{get_field}の\emph{ゲッター}または\type{T->T}型のフィールド名\expr{set_field}の\emph{セッター}です。アクセサメソッドは略して\emph{アクセサ}とも呼びます。}
 
 \trivia{アクセサ名}{Haxe2では、アクセス識別子に自由な識別子を使うことが可能で、その場合はそれがカスタムのアクセサメソッド名となっていました。しかし、これにより実装は変則的なものになっていました。例えば、\expr{Reflect.getProperty()}と\expr{Reflect.setProperty()}はどのような名前が名前が使われていたとしても対応する必要がありました。そのため、ターゲット出力時に参照のためのメタ情報を生成する必要がありました。\\
-この識別子の名前を\expr{get_}、\expr{set_}から始まるもののみに制限することで、実装を大きく簡略化することに成功しました。これがHaxe2と3の間の破壊的な変更の1つ。}
+この識別子の名前を\expr{get_}、\expr{set_}から始まるもののみに制限することで、実装を大きく簡略化することに成功しました。これがHaxe2と3の間の破壊的な変更の1つです。}
 
 \subsection{よくあるアクセス識別子の組み合わせ}
 \label{class-field-property-common-combinations}
