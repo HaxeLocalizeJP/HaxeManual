@@ -1,40 +1,39 @@
-\chapter{Compiler Usage}
+\chapter{コンパイラの使い方}
 \label{compiler-usage}
 
-\paragraph{Basic Usage}
+\paragraph{基本的な使い方}
 
-The Haxe Compiler is typically invoked from command line with several arguments which have to answer two questions:
+Haxeコンパイラは基本的にはコマンドラインから以下の2つの質問に答える引数をつけて呼び出します。
 
 \begin{itemize}
-	\item What should be compiled?
-	\item What should the output be?
+	\item 何をコンパイルするのか?
+	\item 何を出力するのか?
 \end{itemize}
-	
-To answer the first question, it is usually sufficient to provide a class path via the \ic{-cp path} argument, along with the main class to be compiled via the \ic{-main dot_path} argument. The Haxe Compiler then resolves the main class file and begins compilation.
 
-The second question usually comes down to providing an argument specifying the desired target. Each Haxe target has a dedicated command line switch, such as \ic{-js file_name} for JavaScript and \ic{-php directory} for PHP. Depending on the nature of the target, the argument value is either a file name (for \ic{-js}, \ic{-swf} and \ic{neko}) or a directory path.
+最初の質問に答えるためには、\ic{-cp path}引数でクラスパスを指定し、\ic{-main dot_path}引数でコンパイル対象のメインクラスを指定すれば十分です。これでHaxeコンパイラはメインクラスのファイルを解決しコンパイルを始めます。
 
-\paragraph{Common arguments}
+2つ目の質問に答えるためには、目的のターゲット特有の引数を指定します。Haxeターゲットはそれぞれ専用のコマンドラインオプションを持っています。例えば、\target{JavaScript}は\ic{-js file_name}、\target{PHP}は\ic{-php directory}です。ターゲットによってファイル名を指定するもの(\ic{-js}、\ic{-swf}、\ic{-neko}、\ic{-python}が該当)と、ディレクトリを指定するものがあります。
 
-\emph{Input:}
+\paragraph{よく使う引数}
 
-\begin{description}
-	\item[\ic{-cp path}] Adds a class path where \ic{.hx} source files or packages (sub-directories) can be found.
-	\item[\ic{-lib library_name}] Adds a \Fullref{haxelib} library.
-	\item[\ic{-main dot_path}] Sets the main class.
-\end{description}
-
-\emph{Output:}
+\emph{入力:}
 
 \begin{description}
-	\item[\ic{-js file_name}] Generates \tref{JavaScript}{target-javascript} source code in specified file.
-	\item[\ic{-as3 directory}] Generates ActionScript 3 source code in specified directory.
-	\item[\ic{-swf file_name}] Generates the specified file as \tref{Flash}{target-flash} .swf.
-	\item[\ic{-neko file_name}] Generates \tref{Neko}{target-neko} binary as specified file.
-	\item[\ic{-php directory}] Generates \tref{PHP}{target-php} source code in specified directory.
-	\item[\ic{-cpp directory}] Generates \tref{C++}{target-cpp} source code in specified directory and compiles it using native C++ compiler.
-	\item[\ic{-cs directory}] Generates \tref{C\#}{target-cs} source code in specified directory.
-	\item[\ic{-java directory}] Generates \tref{Java}{target-java} source code in specified directory and compiles it using the Java Compiler.
-	\item[\ic{-python file_name}] Generates \tref{Python}{target-python} source code in the specified file.
+	\item[\ic{-cp path}] \ic{.hx}のソースファイルまたはパッケージ(サブディレクトリ)が置かれているディレクトリのパスを追加します。
+	\item[\ic{-lib library_name}] \Fullref{haxelib}のライブラリを追加します。
+	\item[\ic{-main dot_path}] メインクラスを設定します。
 \end{description}
 
+\emph{出力:}
+
+\begin{description}
+	\item[\ic{-js file_name}] 指定されたファイルに\tref{JavaScript}{target-javascript}のソースコードを出力します。
+	\item[\ic{-as3 directory}] 指定されたディレクトリにActionScript3のソースコードを出力します。
+	\item[\ic{-swf file_name}] 指定されたファイルに\tref{Flash}{target-flash}の.swfを出力します。
+	\item[\ic{-neko file_name}] 指定されたファイルに\tref{Neko}{target-neko}のバイナリを出力します。
+	\item[\ic{-php directory}] 指定されたディレクトリに\tref{PHP}{target-php}のソースコードを出力します。
+	\item[\ic{-cpp directory}] 指定されたディレクトリに\tref{C++}{target-cpp}のソースコードを出力して、ネイティブのC++コンパイラでコンパイルします。
+	\item[\ic{-cs directory}] 指定されたディレクトリに\tref{C\#}{target-cs}のソースコードを出力します。
+	\item[\ic{-java directory}] 指定されたディレクトリに\tref{Java}{target-java}のソースコードを出力して、Javaコンパイラでコンパイルします。
+	\item[\ic{-python file_name}] 指定されたファイルに\tref{Python}{target-python}のソースコードを出力します。
+\end{description}
