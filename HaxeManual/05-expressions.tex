@@ -44,17 +44,16 @@ Haxeのブロックは中かっこ(\expr{\{})から始まり、中かっこ閉(\
 
 \begin{lstlisting}
 {
-	a; // error, a is not declared yet
-	var a = 1; // declare a
-	a; // ok, a was declared
+	a; // エラー。aはまだ宣言されていない。
+	var a = 1; // aを宣言。
+	a; // 問題ない。aは宣言されている。
 	{
-		a; // ok, a is available in sub-blocks
+		a; // 問題ない。子のブロックでもaは使用できる。
 	}
-  // ok, a is still available after
-	// sub-blocks	
+	// 問題ない。子のブロックの後でもaは使用できる。
 	a;
 }
-a; // error, a is not available outside
+a; // エラー。ブロック外ではaは使用できない。
 \end{lstlisting}
 
 実行時には、ブロックは上から下へと評価されていきます。フロー制御(例えば、\tref{例外}{expression-try-catch}や\tref{return式}{expression-return}など)によって、すべての式が評価される前に中断されることもあります。
@@ -161,12 +160,11 @@ subject(e1, ..., eN);
 \expr{var}キーワードはカンマ(\expr{,})で区切って、複数の変数を宣言することができます。すべての変数は正当な\tref{識別子}{define-identifier}を持ち、オプションとして\expr{=}を続けて値の代入を行うこともできます。また変数に明示的な型注釈をあたえることもできます。
 
 \begin{lstlisting}
-var a; // declare local a
-var b:Int; // declare variable b of type Int
-// declare variable c, initialized to value 1
+var a; // ローカル変数aを宣言。
+var b:Int; // Int型のローカル変数bを宣言。
+// cを宣言し、値を1で初期化。
 var c = 1;
-// declare variable d and variable e
-// initialized to value 2
+// 変数dと変数eを宣言。eを2で初期化。
 var d,e = 2;
 \end{lstlisting}
 
@@ -407,8 +405,8 @@ throw expr
 Haxeには以下の2種類のキャストがあります。
 
 \begin{lstlisting}
-cast expr; // unsafe cast
-cast (expr, Type); // safe cast
+cast expr; // 非セーフキャスト
+cast (expr, Type); // セーフキャスト
 \end{lstlisting}
 
 \subsection{非セーフキャスト}

@@ -8,11 +8,11 @@ class Main {
     trace(Math.sin(x*Math.PI)); //1
     trace(Math.ceil(y)); //21
 
-    // log is the natural logarithm
+    // logは自然対数。
     trace(Math.log(Math.exp(5))); //5
 
-    // Output for neko target, may vary
-    // depending on platform
+    // nekoターゲットの場合の出力。
+    // 以下の出力はプラットフォームによって変わりえる。
     trace(1/0); //inf
     trace(-1/0); //-inf
     trace(Math.sqrt(-1)); //nan

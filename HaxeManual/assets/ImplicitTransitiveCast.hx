@@ -15,8 +15,8 @@ abstract C(Int) {
 class Main {
   static public function main() {
     var a = new A();
-    var b:B = a; // valid, uses A.toB
-    var c:C = b; // valid, uses B.toC
-    var c:C = a; // error, A should be C
+    var b:B = a; // 問題無い。A.toBが使われる。
+    var c:C = b; // 問題無い。B.toCが使われる。
+    var c:C = a; // エラー。A should be C(AではなくCであるべき)
   }
 }

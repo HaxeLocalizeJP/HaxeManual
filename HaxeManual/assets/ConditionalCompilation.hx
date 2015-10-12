@@ -5,7 +5,7 @@ class Main {
     #elseif (debug_level > 3)
       trace(3);
     #else
-      trace("debug level too low");
+      trace("デバッグレベルが低すぎます。");
     #end
   }
 }

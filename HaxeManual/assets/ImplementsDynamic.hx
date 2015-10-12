@@ -7,11 +7,11 @@ class ImplementsDynamic
 class Main {
   static public function main() {
     var c = new ImplementsDynamic();
-    // valid, present is an existing field
+    // 問題無い。presentフィールドは存在する。
     c.present = 1;
-    // valid, assigned value is a String
+    // 問題無い。Stringを代入している。
     c.stringField = "foo";
-    // error, Int should be String
+    // エラー。 Int should be String(IntではなくStringであるべき)
     //c.intField = 1;
   }
 }

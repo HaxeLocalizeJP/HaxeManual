@@ -5,9 +5,9 @@ class Main {
     var result = trySomething();
     switch (result) {
       case None:
-        trace("Got None");
+        trace("Noneを取得");
       case Some(s):
-        trace("Got a value: " +s);
+        trace("値を取得: " +s);
     }
   }
 

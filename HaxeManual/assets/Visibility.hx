@@ -8,7 +8,7 @@ class MyClass {
 class Main {
   static public function main() {
     MyClass.available();
-    // Cannot access private field unavailable
+    // privateのフィールドunavailableにアクセスできません。
     MyClass.unavailable();
   }
 }

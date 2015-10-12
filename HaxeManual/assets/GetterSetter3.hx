@@ -1,5 +1,5 @@
 class Main {
-  // @isVar forces the field to be physical allowing the program to compile.
+  // @isVarが物理的フィールドを強制するのでコンパイル可能になります。
   @:isVar public var x(get, set):Int;
 
   function get_x() {

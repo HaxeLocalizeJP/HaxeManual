@@ -3,7 +3,7 @@ class Base {
 }
 
 class Main extends Base {
-  // ok, get_x is declared by parent class
+  // get_xが親クラスで宣言されているので問題ありません
   public var x(get, null):Int;
 
   static public function main() {}

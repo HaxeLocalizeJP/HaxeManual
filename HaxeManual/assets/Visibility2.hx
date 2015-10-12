@@ -11,7 +11,7 @@ class Child2 extends Base {
   public function child2Field() {
     var child1 = new Child1();
     child1.baseField();
-    // Cannot access private field child1Field
+    // privateなフィールドchild1Fieldにアクセスできません
     child1.child1Field();
   }
 }

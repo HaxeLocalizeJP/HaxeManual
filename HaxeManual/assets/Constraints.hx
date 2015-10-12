@@ -6,7 +6,7 @@ class Main {
   static public function main() {
     trace(test([]));
     trace(test(["bar", "foo"]));
-    // String should be Iterable<String>
+    // StringではなくIterable<String>であるべきです。
     //test("foo");
   }
 

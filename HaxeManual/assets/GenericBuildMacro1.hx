@@ -8,7 +8,7 @@ class GenericBuildMacro1 {
       case TInst(_, [t1]):
         trace(t1);
       case t:
-        Context.error("Class expected", Context.currentPos());
+        Context.error("Classが要求されています", Context.currentPos());
     }
     return null;
   }

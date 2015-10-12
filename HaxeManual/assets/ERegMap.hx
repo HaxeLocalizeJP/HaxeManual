@@ -7,7 +7,7 @@ class Main {
         switch (match) {
             case 'dog': return 'fox';
             case 'fox': return 'dog';
-            default: throw 'Unknown animal: $match';
+            default: throw '知らない動物です: $match';
         };
     });
     trace(s2); // The quick brown dog jumped over the lazy fox.

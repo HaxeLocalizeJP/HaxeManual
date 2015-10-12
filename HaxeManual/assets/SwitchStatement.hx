@@ -1,4 +1,4 @@
-// Conditional based on if...else if statements
+// if...else if 構文を使った条件分岐
 if( v == 0 )
   e1;
 else if( v == foo(1) )
@@ -9,7 +9,7 @@ else
   e4;
 
 
-// Same conditional check using switch
+// switchを使った同様の条件分岐
 switch( v ) {
   case 0:
     e1;

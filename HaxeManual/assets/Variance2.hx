@@ -9,7 +9,7 @@ class OtherChild extends Base { }
 class Main {
   public static function main () {
     var children = [new Child()];
-    // subvert type checker
+    // 型チェックを黙らせる
     var bases:Array<Base> = cast children;
     bases.push(new OtherChild());
     for(child in children) {

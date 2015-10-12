@@ -1,13 +1,11 @@
 class Main {
   static public function main() {
-    // Maps are initialized like arrays, but
-    // use the map literal syntax with the
-    // '=>' operator. Maps can have their
-    // key value types defined explicity
+	// Mapは配列と似た形で初期化するが、'=>'演算子を使う。
+    // Mapでは、キーと値の型を明示的に宣言しても良い。
     var map1:Map<Int, String> =
       [1 => "one", 2=>"two"];
 
-    // Or they can infer their key value types
+    // キーと値の型を推論させても良い。
     var map2 = [
       "one"=>1,
       "two"=>2,
@@ -15,30 +13,26 @@ class Main {
     ];
     $type(map2); // Map<String, Int>
 
-    // Keys must be unique
-    // Error: Duplicate Key
+    // キーは重複してはいけない。
+    // エラー: Duplicate Key
     //var map3 = [1=>"dog", 1=>"cat"];
 
-    // Maps values can be accessed using array
-    // accessors "[]"
+	// マップの値は配列アクセスの構文を使って取得できる。
     var map4 = ["M"=>"Monday", "T"=>"Tuesday"];
     trace(map4["M"]); //Monday
 
-    // Maps iterate over their values by
-    // default
+	// Mapはデフォルトでその値を反復処理できる。
     var valueSum;
     for (value in map4) {
       trace(value); // Monday \n Tuesday
     }
 
-    // Can iterate over keys by using the
-    // keys() method
+	// keys()メソッドを使ってそのキーを反復処理できる。
     for (key in map4.keys()) {
       trace(key); // M \n T
     }
 
-    // Like arrays, a new Map can be made using
-    // comprehension
+    // 配列と同様に内包表記で初期化できる。
     var map5 = [
       for (key in map4.keys())
         key => "FRIDAY!!"
@@ -47,4 +41,3 @@ class Main {
     trace(map5);
   }
 }
-

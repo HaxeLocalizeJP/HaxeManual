@@ -178,7 +178,7 @@ Haxeでは、フィールドや変数に対してVoidを指定することはで
 \todo{review please, sounds weird}
 
 \begin{lstlisting}
-// Arguments and variables of type Void are not allowed
+// 引数と変数の型にVoidは使えません。
 var x:Void;
 \end{lstlisting}
 
@@ -207,19 +207,19 @@ var x:Void;
 その結果、Haxeコンパイラは静的ターゲットでは基本型に対する\expr{null}を代入することはできません。\expr{null}を代入するためには、以下のように基本型を\type{Null$<$T$>$}で囲う必要があります。
 
 \begin{lstlisting}
-// error on static platforms
+// 静的プラットフォームではエラー
 var a:Int = null;
-var b:Null<Int> = null; // allowed
+var b:Null<Int> = null; // こちらは問題ない
 \end{lstlisting}
 
 同じように、基本型は\type{Null$<$T$>$}で囲わなければ\expr{null}と比較することはできません。
 
 \begin{lstlisting}
 var a : Int = 0;
-// error on static platforms
+// 静的プラットフォームではエラー
 if( a == null ) { ... }
 var b : Null<Int> = 0;
-if( b != null ) { ... } // allowed
+if( b != null ) { ... } // 問題ない
 \end{lstlisting}
 
 この制限は\tref{unification}{type-system-unification}が動作するすべての状況でかかります。
@@ -231,7 +231,7 @@ nullの値は隠匿されます。つまり、\type{Null$<$T$>$}や\type{Dynamic
 \begin{lstlisting}
 var n : Null<Int> = null;
 var a : Int = n;
-trace(a); // 0 on static platforms
+trace(a); // 静的プラットフォームでは0
 \end{lstlisting}
 
 
@@ -244,9 +244,9 @@ null許容について考える場合、オプション引数についても考�
 特に、null許容ではない\emph{ネイティブ}のオプション引数と、それとは異なる、null許容であるHaxe特有のオプション引数があることです。この違いは以下のように、オプション引数にクエスチョンマークを付けることで作ります。
 
 \begin{lstlisting}
-// x is a native Int (not nullable)
+// xはネイティブのInt(null許容ではない)
 function foo(x : Int = 0) {}
-// y is Null<Int> (nullable)
+// y is Null<Int> (null許容)
 function bar( ?y : Int) {}
 // z is also Null<Int>
 function opt( ?z : Int = -1) {}
@@ -455,9 +455,9 @@ var user = {
 構造体のフィールドは、クラスと同じように、\emph{ドット}(\expr{.})を使ってアクセスします。
 
 \begin{lstlisting}
-// get value of name, which is "Nicolas"
+// 名前を取得する。ここでは"Nicolas"。
 user.name;
-// set value of age to 33
+// ageを33に設定。
 user.age = 33;
 \end{lstlisting}
 特筆すべきは、匿名の構造体の使用は型システムを崩壊させないことです。コンパイラは実際に利用可能なフィールドにしかアクセスを許しません。つまり、以下のようなコードはコンパイルできません。
@@ -466,7 +466,7 @@ user.age = 33;
 class Test {
   static public function main() {
     var point = { x: 0.0, y: 12.0 };
-    // { y : Float, x : Float } has no field z
+    // { y : Float, x : Float } has no field z　(zフィールドが足りない)
     point.z;
   }
 }
@@ -634,11 +634,11 @@ d.foo;
 
 \begin{lstlisting}
 var att : Dynamic<String> = xml.attributes;
-// valid, value is a String
+// 正当。値が文字列。
 att.name = "Nicolas";
-// dito (this documentation is quite old)
+// 同上
 att.age = "26";
-// error, value is not a String
+// エラー。値が文字列ではない。
 att.income = 0;
 \end{lstlisting}
 
@@ -656,8 +656,6 @@ att.income = 0;
 型パラメータなしの\type{Dynamic}を実装したクラスでは、特殊なメソッド\expr{resolve}を利用することができます。\tref{読み込みアクセス}{define-read-access}がありフィールドが存在しなかった場合、\expr{resolve}メソッドが以下のように呼び出されます。
 
 \haxe{assets/DynamicResolve.hx}
-
-
 
 \section{抽象型(abstract)}
 \label{types-abstract}
@@ -762,8 +760,6 @@ var b = [a];
 \haxe{assets/ImplicitTransitiveCast.hx}
 
 \type{A}から\type{B}、\type{B}から\type{C}への個々のキャストは可能ですが、\type{A}から\type{C}への連鎖的なキャストはできません。これは、キャスト方法が複数生まれてしまうことは避けて、選択アルゴリズムの簡潔さを保つためです。
-
-
 
 
 \subsection{演算子オーバーロード}

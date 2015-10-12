@@ -160,7 +160,7 @@ Haxeでは、メタデータの構文を使って、クラスやフィールド�
 class Main<A> {
     static function main() {
         new Main<String>("foo");
-        new Main(12); // use type inference
+        new Main(12); // 型推論を使う。
     }
 
     function new(a:A) { }
@@ -532,7 +532,7 @@ orパターン内で変数の取得をしたい場合、その子要素両方で
 \begin{lstlisting}
 switch(true) {
     case false:
-} // Unmatched patterns: true
+} // Unmatched patterns: true (trueにマッチするパターンが無い)
 \end{lstlisting}
 
 マッチング対象の\type{Bool}型は\expr{true}と\expr{false}の2つの値を取り得ますが、\expr{false}のみがチェックされています。
@@ -547,9 +547,9 @@ switch(true) {
 \begin{lstlisting}
 switch(Leaf("foo")) {
     case Leaf(_)
-       | Leaf("foo"): // This pattern is unused
+       | Leaf("foo"): // This pattern is unused (このパターンは使用されない)
     case Node(l,r):
-    case _: // This pattern is unused
+    case _: // This pattern is unused　(このパターンは使用されない)
 }
 \end{lstlisting}
 
@@ -560,23 +560,22 @@ Haxe3では、\emph{文字列補間}のおかげで、手動で文字列をつ�
 
 \begin{lstlisting}
 var x = 12;
-// The value of x is 12
-trace('The value of x is $x');
+// xの値は12
+trace('xの値は$x');
 \end{lstlisting}
 
 さらに、\expr{\$$\left\{expr\right\}$}を使うことで文字列内に式そのものを含めることが可能になります。この\expr{expr}はHaxeの正当な式であれば、なんでもかまいません。
 
 \begin{lstlisting}
 var x = 12;
-// The sum of 12 and 3 is 15
-trace('The sum of $x and 3 is ${x + 3}');
+// 12足す3は15
+trace('$x足す3は${x + 3}');
 \end{lstlisting}
 
 文字列補間はコンパイル時の機能なので、実行時には影響を与えません。上の例は手動のつなげ合わせと同じです。コンパイラは以下と同様のコードを生成します。
 
 \begin{lstlisting}
-trace("The sum of " + x +
-  " and 3 is " + (x + 3));
+trace(x + "足す3は" + (x + 3));
 \end{lstlisting}
 
 もちろん、一切の補間なしでシングルクオートで囲んだ文字列を使用することができますが、\$の文字が補間のトリガーとして予約されてしまっていることに気を付けてください。文字列内でドル記号そのものを使いたい場合は\expr{\$\$}を使います。

@@ -9,10 +9,10 @@ class Main {
   static function main() {
     var color = getColor();
     switch (color) {
-      case Red: trace("Color was red");
-      case Green: trace("Color was green");
-      case Blue: trace("Color was blue");
-      case Rgb(r, g, b): trace("Color had a red value of " +r);
+      case Red: trace("赤色");
+      case Green: trace("緑色");
+      case Blue: trace("青色");
+      case Rgb(r, g, b): trace("この色の赤成分は" +r);
     }
   }
 

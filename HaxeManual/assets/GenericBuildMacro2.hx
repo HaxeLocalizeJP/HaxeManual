@@ -8,7 +8,7 @@ class GenericBuildMacro2 {
       case TInst(_,[TInst(_.get() => { kind: KExpr(macro $v{(s:String)}) },_)]):
         trace(s);
       case t:
-        Context.error("Class expected", Context.currentPos());
+        Context.error("Classが要求されています", Context.currentPos());
     }
     return null;
   }

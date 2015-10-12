@@ -1,11 +1,11 @@
-// while counter
+// whileカウンター
 var i = 0;
 while( i < 10){
   trace(i);
   i ++;
 }
 
-// same counter as a do-while
+// do-whileを使った同様のカウンター
 var j = 0;
 do {
   trace(j);

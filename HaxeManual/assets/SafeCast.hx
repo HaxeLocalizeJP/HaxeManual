@@ -11,7 +11,7 @@ class Main {
     var child1:Base = new Child1();
     var child2:Base = new Child2();
     cast(child1, Base);
-    // Exception: Class cast error
+    // 例外: Class cast error
     cast(child1, Child2);
   }
 }
