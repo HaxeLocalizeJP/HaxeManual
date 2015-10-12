@@ -7,7 +7,7 @@ import haxe.ds.StringMap;
 
 class Main {
   static public function main() {
-    // instead of: new haxe.ds.StringMap();
+    // new haxe.ds.StringMap();　の代わり。
     new StringMap();
   }
 }
@@ -59,7 +59,7 @@ import haxe.macro.*;
 class Main {
   static function main() {
     var expr:Expr = null;
-    //var expr:ExprDef = null; // Class not found : ExprDef
+    //var expr:ExprDef = null; // ExprDefクラスが見つかりません
   }
 }
 ```

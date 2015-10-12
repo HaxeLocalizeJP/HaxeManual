@@ -37,7 +37,7 @@
 \contentsline {subsection}{\numberline {2.7.1}型パラメータ付きのダイナミック}{28}{subsection.2.7.1}
 \contentsline {subsection}{\numberline {2.7.2}ダイナミックを実装(implements)する}{28}{subsection.2.7.2}
 \contentsline {section}{\numberline {2.8}抽象型(abstract)}{29}{section.2.8}
-\contentsline {subsection}{\numberline {2.8.1}暗黙のキャスト}{30}{subsection.2.8.1}
+\contentsline {subsection}{\numberline {2.8.1}暗黙のキャスト}{31}{subsection.2.8.1}
 \contentsline {subsection}{\numberline {2.8.2}演算子オーバーロード}{33}{subsection.2.8.2}
 \contentsline {paragraph}{基底型の演算を公開する}{34}{section*.19}
 \contentsline {subsection}{\numberline {2.8.3}配列アクセス}{35}{subsection.2.8.3}
@@ -45,7 +45,7 @@
 \contentsline {subsection}{\numberline {2.8.4}選択的関数}{36}{subsection.2.8.4}
 \contentsline {subsection}{\numberline {2.8.5}抽象型列挙体}{37}{subsection.2.8.5}
 \contentsline {subsection}{\numberline {2.8.6}抽象型フィールドの繰り上げ}{38}{subsection.2.8.6}
-\contentsline {subsection}{\numberline {2.8.7}コアタイプの抽象型}{38}{subsection.2.8.7}
+\contentsline {subsection}{\numberline {2.8.7}コアタイプの抽象型}{39}{subsection.2.8.7}
 \contentsline {section}{\numberline {2.9}単相(モノモーフ)}{39}{section.2.9}
 \contentsline {chapter}{\numberline {3}型システム}{40}{chapter.3}
 \contentsline {section}{\numberline {3.1}typedef}{40}{section.3.1}
@@ -109,7 +109,7 @@
 \contentsline {section}{\numberline {5.21}continue}{78}{section.5.21}
 \contentsline {section}{\numberline {5.22}throw}{78}{section.5.22}
 \contentsline {section}{\numberline {5.23}cast}{78}{section.5.23}
-\contentsline {subsection}{\numberline {5.23.1}非セーフキャスト}{78}{subsection.5.23.1}
+\contentsline {subsection}{\numberline {5.23.1}非セーフキャスト}{79}{subsection.5.23.1}
 \contentsline {subsection}{\numberline {5.23.2}セーフキャスト}{79}{subsection.5.23.2}
 \contentsline {section}{\numberline {5.24}型チェック}{80}{section.5.24}
 \contentsline {chapter}{\numberline {6}言語機能}{81}{chapter.6}
@@ -138,26 +138,26 @@
 \contentsline {paragraph}{可変長引数と、型の選択肢}{86}{section*.48}
 \contentsline {section}{\numberline {6.3}静的拡張}{87}{section.6.3}
 \contentsline {subsection}{\numberline {6.3.1}Haxe標準ライブラリについて}{88}{subsection.6.3.1}
-\contentsline {section}{\numberline {6.4}パターンマッチング}{88}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}導入}{88}{subsection.6.4.1}
+\contentsline {section}{\numberline {6.4}パターンマッチング}{89}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}導入}{89}{subsection.6.4.1}
 \contentsline {subsection}{\numberline {6.4.2}enumマッチング}{89}{subsection.6.4.2}
-\contentsline {subsection}{\numberline {6.4.3}変数の取り出し}{89}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.3}変数の取り出し}{90}{subsection.6.4.3}
 \contentsline {subsection}{\numberline {6.4.4}構造体マッチング}{90}{subsection.6.4.4}
-\contentsline {subsection}{\numberline {6.4.5}配列マッチング}{90}{subsection.6.4.5}
+\contentsline {subsection}{\numberline {6.4.5}配列マッチング}{91}{subsection.6.4.5}
 \contentsline {subsection}{\numberline {6.4.6}orパターン}{91}{subsection.6.4.6}
 \contentsline {subsection}{\numberline {6.4.7}ガード}{91}{subsection.6.4.7}
-\contentsline {subsection}{\numberline {6.4.8}複数の値のマッチング}{91}{subsection.6.4.8}
+\contentsline {subsection}{\numberline {6.4.8}複数の値のマッチング}{92}{subsection.6.4.8}
 \contentsline {subsection}{\numberline {6.4.9}抽出子(エクストラクタ)}{92}{subsection.6.4.9}
-\contentsline {subsection}{\numberline {6.4.10}網羅性のチェック}{93}{subsection.6.4.10}
-\contentsline {subsection}{\numberline {6.4.11}無意味なパターンのチェック}{93}{subsection.6.4.11}
+\contentsline {subsection}{\numberline {6.4.10}網羅性のチェック}{94}{subsection.6.4.10}
+\contentsline {subsection}{\numberline {6.4.11}無意味なパターンのチェック}{94}{subsection.6.4.11}
 \contentsline {section}{\numberline {6.5}文字列補間}{94}{section.6.5}
-\contentsline {section}{\numberline {6.6}配列内包表記}{94}{section.6.6}
+\contentsline {section}{\numberline {6.6}配列内包表記}{95}{section.6.6}
 \contentsline {section}{\numberline {6.7}イテレータ(反復子)}{95}{section.6.7}
-\contentsline {section}{\numberline {6.8}関数の束縛(bind)}{96}{section.6.8}
+\contentsline {section}{\numberline {6.8}関数の束縛(bind)}{97}{section.6.8}
 \contentsline {section}{\numberline {6.9}メタデータ}{97}{section.6.9}
-\contentsline {paragraph}{ビルトインのコンパイラメタデータ}{98}{section*.51}
-\contentsline {section}{\numberline {6.10}アクセス制御}{98}{section.6.10}
-\contentsline {section}{\numberline {6.11}インラインコンストラクタ}{100}{section.6.11}
+\contentsline {paragraph}{ビルトインのコンパイラメタデータ}{99}{section*.51}
+\contentsline {section}{\numberline {6.10}アクセス制御}{99}{section.6.10}
+\contentsline {section}{\numberline {6.11}インラインコンストラクタ}{101}{section.6.11}
 \contentsline {part}{II\hspace {1em}Compiler Reference}{102}{part.2}
 \contentsline {chapter}{\numberline {7}Compiler Usage}{103}{chapter.7}
 \contentsline {paragraph}{Basic Usage}{103}{section*.52}
@@ -226,24 +226,24 @@
 \contentsline {subsection}{\numberline {10.2.3}List}{137}{subsection.10.2.3}
 \contentsline {subsection}{\numberline {10.2.4}GenericStack}{138}{subsection.10.2.4}
 \contentsline {subsection}{\numberline {10.2.5}Map}{138}{subsection.10.2.5}
-\contentsline {subsection}{\numberline {10.2.6}Option}{140}{subsection.10.2.6}
+\contentsline {subsection}{\numberline {10.2.6}Option}{139}{subsection.10.2.6}
 \contentsline {section}{\numberline {10.3}Regular Expressions}{140}{section.10.3}
 \contentsline {subsection}{\numberline {10.3.1}Matching}{141}{subsection.10.3.1}
-\contentsline {subsection}{\numberline {10.3.2}Groups}{142}{subsection.10.3.2}
+\contentsline {subsection}{\numberline {10.3.2}Groups}{141}{subsection.10.3.2}
 \contentsline {subsection}{\numberline {10.3.3}Replace}{142}{subsection.10.3.3}
 \contentsline {subsection}{\numberline {10.3.4}Split}{143}{subsection.10.3.4}
 \contentsline {subsection}{\numberline {10.3.5}Map}{143}{subsection.10.3.5}
-\contentsline {subsection}{\numberline {10.3.6}Implementation Details}{144}{subsection.10.3.6}
+\contentsline {subsection}{\numberline {10.3.6}Implementation Details}{143}{subsection.10.3.6}
 \contentsline {section}{\numberline {10.4}Math}{144}{section.10.4}
 \contentsline {subsection}{\numberline {10.4.1}Special Numbers}{144}{subsection.10.4.1}
-\contentsline {subsection}{\numberline {10.4.2}Mathematical Errors}{145}{subsection.10.4.2}
+\contentsline {subsection}{\numberline {10.4.2}Mathematical Errors}{144}{subsection.10.4.2}
 \contentsline {subsection}{\numberline {10.4.3}Integer Math}{145}{subsection.10.4.3}
 \contentsline {subsection}{\numberline {10.4.4}Extensions}{145}{subsection.10.4.4}
 \contentsline {section}{\numberline {10.5}Lambda}{145}{section.10.5}
-\contentsline {paragraph}{Lambda Functions}{146}{section*.72}
+\contentsline {paragraph}{Lambda Functions}{145}{section*.72}
 \contentsline {section}{\numberline {10.6}Template}{147}{section.10.6}
 \contentsline {paragraph}{Expressions}{147}{section*.73}
-\contentsline {paragraph}{Conditions}{148}{section*.74}
+\contentsline {paragraph}{Conditions}{147}{section*.74}
 \contentsline {paragraph}{Iterating}{148}{section*.75}
 \contentsline {paragraph}{Sub-templates}{148}{section*.76}
 \contentsline {paragraph}{Template macros}{148}{section*.77}

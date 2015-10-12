@@ -32,7 +32,7 @@ class Main {
 
 ```haxe
 class Main {
-  // This field cannot be accessed because it is not a real variable
+  // 物理的フィールドを持たないので、フィールドにアクセス
   public var x(get, set):Int;
 
   function get_x() {
@@ -52,7 +52,7 @@ class Main {
 
 ```haxe
 class Main {
-  // @isVar forces the field to be physical allowing the program to compile.
+  // @isVarが物理的フィールドを強制するのでコンパイル可能になります。
   @:isVar public var x(get, set):Int;
 
   function get_x() {

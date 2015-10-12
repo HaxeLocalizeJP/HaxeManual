@@ -26,8 +26,8 @@ class Main {
       "tags": ["awesome"]
     }';
     var o:MyData = haxe.Json.parse(s);
-    trace(o.name); // Haxe (a string)
-    // awesome (a string in an array)
+    trace(o.name); // Haxe (文字列)
+    // awesome (配列の中の文字列)
     trace(o.tags[0]);
   }
 }

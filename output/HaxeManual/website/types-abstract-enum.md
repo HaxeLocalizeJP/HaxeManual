@@ -20,9 +20,9 @@ class Main {
   static function printStatus(status:HttpStatus) {
     return switch(status) {
       case NotFound:
-        "Not found";
+        "ページが見つかりません";
       case MethodNotAllowed:
-        "Method not allowed";
+        "無効なメソッドです";
     }
   }
 }

@@ -32,9 +32,9 @@ var user = {
 構造体のフィールドは、クラスと同じように、**ドット**(`.`)を使ってアクセスします。
 
 ```haxe
-// get value of name, which is "Nicolas"
+// 名前を取得する。ここでは"Nicolas"。
 user.name;
-// set value of age to 33
+// ageを33に設定。
 user.age = 33;
 ```
 特筆すべきは、匿名の構造体の使用は型システムを崩壊させないことです。コンパイラは実際に利用可能なフィールドにしかアクセスを許しません。つまり、以下のようなコードはコンパイルできません。
@@ -43,7 +43,7 @@ user.age = 33;
 class Test {
   static public function main() {
     var point = { x: 0.0, y: 12.0 };
-    // { y : Float, x : Float } has no field z
+    // { y : Float, x : Float } has no field z　(zフィールドが足りない)
     point.z;
   }
 }

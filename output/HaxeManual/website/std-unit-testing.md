@@ -23,9 +23,9 @@ class Main {
   static function main() {
     var r = new haxe.unit.TestRunner();
     r.add(new MyTestCase());
-    // add other TestCases here
+    // ここに他のTestCaseを足す。
 
-    // finally, run the tests
+    // 最後にテストを走らせる。
     r.run();
   }
 }

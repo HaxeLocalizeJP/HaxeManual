@@ -5,9 +5,9 @@
 ```haxe
 switch(Leaf("foo")) {
     case Leaf(_)
-       | Leaf("foo"): // This pattern is unused
+       | Leaf("foo"): // This pattern is unused (このパターンは使用されない)
     case Node(l,r):
-    case _: // This pattern is unused
+    case _: // This pattern is unused　(このパターンは使用されない)
 }
 ```
 

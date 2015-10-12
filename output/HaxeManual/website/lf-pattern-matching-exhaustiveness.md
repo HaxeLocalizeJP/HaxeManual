@@ -5,7 +5,7 @@
 ```haxe
 switch(true) {
     case false:
-} // Unmatched patterns: true
+} // Unmatched patterns: true (trueにマッチするパターンが無い)
 ```
 
 マッチング対象の`Bool`型は`true`と`false`の2つの値を取り得ますが、`false`のみがチェックされています。

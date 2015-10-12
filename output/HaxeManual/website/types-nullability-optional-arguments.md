@@ -5,9 +5,9 @@ null許容について考える場合、オプション引数についても考�
 特に、null許容ではない**ネイティブ**のオプション引数と、それとは異なる、null許容であるHaxe特有のオプション引数があることです。この違いは以下のように、オプション引数にクエスチョンマークを付けることで作ります。
 
 ```haxe
-// x is a native Int (not nullable)
+// xはネイティブのInt(null許容ではない)
 function foo(x : Int = 0) {}
-// y is Null<Int> (nullable)
+// y is Null<Int> (null許容)
 function bar( ?y : Int) {}
 // z is also Null<Int>
 function opt( ?z : Int = -1) {}

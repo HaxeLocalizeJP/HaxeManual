@@ -4,27 +4,27 @@
 
 ```haxe
 class Main {
-  // read from outside, write only within Main
+  // 外からの読み込みが可能で、Mainからのみ書き込みが可能。
   public var ro(default, null):Int;
 
-  // write from outside, read only within Main
+  // 外からの書き込みが可能で、Mainからのみ読み込みが可能。
   public var wo(null, default):Int;
 
-  // access through getter get_x and setter
-  // set_x
+  // ゲッターのget_xと
+  // セッターのset_xを通してアクセスする
   public var x(get, set):Int;
 
-  // read access through getter, no write
-  // access
+  // ゲッターを通して読み込みアクセスし、
+  // 書き込みアクセスはできない。
   public var y(get, never):Int;
 
-  // required by field x
+  // xフィールドに必要
   function get_x() return 1;
 
-  // required by field x
+  // xフィールドに必要
   function set_x(x) return x;
 
-  // required by field y
+  // yフィールドに必要
   function get_y() return 1;
 
   function new() {

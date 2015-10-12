@@ -5,7 +5,7 @@
 ```haxe
 typedef IterableWithLength<T> = {
   > Iterable<T>,
-  // read only property
+  // 読み込み専用プロパティ
   var length(default, null):Int;
 }
 

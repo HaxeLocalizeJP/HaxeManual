@@ -17,17 +17,16 @@ Haxeのブロックは中かっこ(`{`)から始まり、中かっこ閉(`}`)で
 
 ```haxe
 {
-	a; // error, a is not declared yet
-	var a = 1; // declare a
-	a; // ok, a was declared
+	a; // エラー。aはまだ宣言されていない。
+	var a = 1; // aを宣言。
+	a; // 問題ない。aは宣言されている。
 	{
-		a; // ok, a is available in sub-blocks
+		a; // 問題ない。子のブロックでもaは使用できる。
 	}
-  // ok, a is still available after
-	// sub-blocks	
+	// 問題ない。子のブロックの後でもaは使用できる。
 	a;
 }
-a; // error, a is not available outside
+a; // エラー。ブロック外ではaは使用できない。
 ```
 
 実行時には、ブロックは上から下へと評価されていきます。フロー制御(例えば、[例外](expression-try-catch.md)や[return式](expression-return.md)など)によって、すべての式が評価される前に中断されることもあります。

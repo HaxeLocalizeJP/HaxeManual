@@ -17,7 +17,7 @@ class Main {
     var myArray = new MyArray();
     myArray.push(12);
     myArray.pop();
-    // MyArray<Int> has no field length
+    // MyArray<Int>にはlengthフィールドはありません。
     //myArray.length;
   }
 }

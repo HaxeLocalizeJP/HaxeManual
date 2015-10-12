@@ -3,12 +3,11 @@
 `var`キーワードはカンマ(`,`)で区切って、複数の変数を宣言することができます。すべての変数は正当な[識別子](dictionary.md#define-identifier)を持ち、オプションとして`=`を続けて値の代入を行うこともできます。また変数に明示的な型注釈をあたえることもできます。
 
 ```haxe
-var a; // declare local a
-var b:Int; // declare variable b of type Int
-// declare variable c, initialized to value 1
+var a; // ローカル変数aを宣言。
+var b:Int; // Int型のローカル変数bを宣言。
+// cを宣言し、値を1で初期化。
 var c = 1;
-// declare variable d and variable e
-// initialized to value 2
+// 変数dと変数eを宣言。eを2で初期化。
 var d,e = 2;
 ```
 

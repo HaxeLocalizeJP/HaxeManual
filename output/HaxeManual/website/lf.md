@@ -159,7 +159,7 @@ Haxeでは、メタデータの構文を使って、クラスやフィールド�
 class Main<A> {
     static function main() {
         new Main<String>("foo");
-        new Main(12); // use type inference
+        new Main(12); // 型推論を使う。
     }
 
     function new(a:A) { }

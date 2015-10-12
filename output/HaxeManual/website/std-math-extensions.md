@@ -3,7 +3,7 @@
 It is common to see [静的拡張](lf-static-extension.md) used with the math library.  This code shows a simple example:  
 ```haxe
 class MathStaticExtension {
-  /* Converts an angle in radians to degrees */
+  /* ラジアンから度数への角度の変換。 */
   inline public static function toDegrees(radians:Float):Float {
     return radians * 180 / Math.PI;
   }

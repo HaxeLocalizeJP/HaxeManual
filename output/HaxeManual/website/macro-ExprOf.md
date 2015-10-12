@@ -11,7 +11,7 @@ class Main {
     identity("foo");
     identity(1);
     "foo".identity();
-    // Int has no field identity
+    // Intにはidentityフィールドはありません。
     //1.identity();
   }
 

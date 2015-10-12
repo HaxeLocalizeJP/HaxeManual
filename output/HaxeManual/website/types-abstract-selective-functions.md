@@ -19,7 +19,7 @@ class Main {
     var a = new MyAbstract("foo");
     a.getString();
     var b = new MyAbstract(1);
-    // Int should be MyAbstract<String>
+    // IntではなくMyAbstract<String>であるべき
     b.getString();
   }
 }

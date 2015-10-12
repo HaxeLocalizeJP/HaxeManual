@@ -56,13 +56,13 @@ extern class MyExtern {
 
 class Main {
   static function main() {
-    MyExtern.f1("foo", 1, 2, 3); // use 1, 2, 3 as rest argument
-    MyExtern.f1("foo"); // no rest argument
-    //MyExtern.f1("foo", "bar"); // String should be Int
+    MyExtern.f1("foo", 1, 2, 3); // 1, 2, 3を可変長引数として渡す
+    MyExtern.f1("foo"); // 可変長引数なし
+    //MyExtern.f1("foo", "bar"); // StringではなくIntであるべき
 
     MyExtern.f2("foo");
     MyExtern.f2(12);
-    //MyExtern.f2(true); // Bool should be EitherType<Int, String>
+    //MyExtern.f2(true); // BoolではなくEitherType<Int, String>であるべき
   }
 }
 ```

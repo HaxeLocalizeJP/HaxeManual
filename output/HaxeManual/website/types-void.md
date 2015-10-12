@@ -19,7 +19,7 @@ class Main {
 Haxeでは、フィールドや変数に対してVoidを指定することはできません。以下のように書こうとするとエラーが発生します。
 
 ```haxe
-// Arguments and variables of type Void are not allowed
+// 引数と変数の型にVoidは使えません。
 var x:Void;
 ```
 

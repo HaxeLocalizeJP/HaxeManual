@@ -63,7 +63,7 @@ typedef MyStructure = {
 class Main {
   static function main() {
     var data = reflective();
-    // At this point data is nicely typed as MyStructure
+    //この時点ではdataはちゃんとMyStructureとして型付けされている
   }
 
   static function reflective():MyStructure {

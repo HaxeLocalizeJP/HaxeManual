@@ -4,11 +4,11 @@
 
 ```haxe
 var att : Dynamic<String> = xml.attributes;
-// valid, value is a String
+// 正当。値が文字列。
 att.name = "Nicolas";
-// dito (this documentation is quite old)
+// 同上
 att.age = "26";
-// error, value is not a String
+// エラー。値が文字列ではない。
 att.income = 0;
 ```
 

@@ -3,8 +3,8 @@
 Haxeには以下の2種類のキャストがあります。
 
 ```haxe
-cast expr; // unsafe cast
-cast (expr, Type); // safe cast
+cast expr; // 非セーフキャスト
+cast (expr, Type); // セーフキャスト
 ```
 
 ---

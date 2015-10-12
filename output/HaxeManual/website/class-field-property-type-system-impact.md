@@ -6,7 +6,7 @@
 
 ```haxe
 class Main {
-  // Method get_x required by property x is missing
+  // xプロパティに必要とされるget_xメソッドが足りません。
   public var x(get, null):Int;
   static public function main() {}
 }
@@ -20,7 +20,7 @@ class Base {
 }
 
 class Main extends Base {
-  // ok, get_x is declared by parent class
+  // get_xが親クラスで宣言されているので問題ありません
   public var x(get, null):Int;
 
   static public function main() {}

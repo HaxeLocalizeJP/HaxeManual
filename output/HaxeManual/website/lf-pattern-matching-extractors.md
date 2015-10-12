@@ -80,7 +80,7 @@ class Main {
 class Main {
   static public function main() {
     switch("foo") {
-      // Extractors in or patterns are not allowed
+      // orパターン内で抽出子は使えません。
       case (_.toLowerCase() => "foo") | "bar":
     }
   }

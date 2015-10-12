@@ -31,9 +31,9 @@ Enumコンストラクタ  | インスタンス作成時  |
 class Main {
   static public function main() {
     equals(1, 1);
-    // runtime message: bar should be foo
+    // 実行時のメッセージ: bar should be foo
     equals("foo", "bar");
-    // compiler error: String should be Int
+    // コンパイルエラー: String should be Int
     equals(1, "foo");
   }
 

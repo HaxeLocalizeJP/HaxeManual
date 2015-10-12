@@ -28,19 +28,19 @@
 その結果、Haxeコンパイラは静的ターゲットでは基本型に対する`null`を代入することはできません。`null`を代入するためには、以下のように基本型を`Null<T>`で囲う必要があります。
 
 ```haxe
-// error on static platforms
+// 静的プラットフォームではエラー
 var a:Int = null;
-var b:Null<Int> = null; // allowed
+var b:Null<Int> = null; // こちらは問題ない
 ```
 
 同じように、基本型は`Null<T>`で囲わなければ`null`と比較することはできません。
 
 ```haxe
 var a : Int = 0;
-// error on static platforms
+// 静的プラットフォームではエラー
 if( a == null ) { ... }
 var b : Null<Int> = 0;
-if( b != null ) { ... } // allowed
+if( b != null ) { ... } // 問題ない
 ```
 
 この制限は[unification](type-system-unification.md)が動作するすべての状況でかかります。
@@ -54,7 +54,7 @@ nullの値は隠匿されます。つまり、`Null<T>`や`Dynamic`のnullの値
 ```haxe
 var n : Null<Int> = null;
 var a : Int = n;
-trace(a); // 0 on static platforms
+trace(a); // 静的プラットフォームでは0
 ```
 
 ---

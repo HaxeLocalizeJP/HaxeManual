@@ -1,6 +1,6 @@
 ## 4.4.1 可視性
 
-フィールドはデフォルトでは**private**です。つまり、そのクラス自身とその子クラスからしかアクセスできません。`public`アクセス修飾子を使うことでどこからでもアクセスができるようにフィールドを公開できます。
+フィールドの可視性はデフォルトでは**private**です。つまり、そのクラス自身とその子クラスからしかアクセスできません。`public`アクセス修飾子を使うことでどこからでもアクセスができるようにフィールドを公開できます。
 
 ```haxe
 class MyClass {
@@ -13,7 +13,7 @@ class MyClass {
 class Main {
   static public function main() {
     MyClass.available();
-    // Cannot access private field unavailable
+    // privateのフィールドunavailableにアクセスできません。
     MyClass.unavailable();
   }
 }
@@ -37,7 +37,7 @@ class Child2 extends Base {
   public function child2Field() {
     var child1 = new Child1();
     child1.baseField();
-    // Cannot access private field child1Field
+    // privateなフィールドchild1Fieldにアクセスできません
     child1.child1Field();
   }
 }
