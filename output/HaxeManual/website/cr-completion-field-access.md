@@ -1,6 +1,6 @@
-## 8.3.2 Field access completion
+## 8.3.2 フィールドアクセス補完
 
-Field completion is triggered after a dot `.` character to list the fields that are available on the given type. The compiler parses and types everything up to the point of completion and then outputs the relevant information to stderr:
+フィールドの補完はドット`.`文字の後から開始されて、その型で利用可能なフィールドをリストアップします。コンパイラは補完の位置までのすべての構文解析と型付けを行い、関連する情報を標準エラー出力に出力します。
 
 ```haxe
 class Main {
@@ -10,7 +10,7 @@ class Main {
 }
 ```
 
-If this file is saved to Main.hx, the completion can be invoked using the command `haxe --display Main.hx@0`. The output looks similar to this (we omit several fields for brevity and improve the formatting for readability):
+このファイルをMain.hxとして保存すると、補完は`haxe --display Main.hx@0`のコマンドを使って呼び出せます。その出力は以下のようなものでしょう（いくつかの情報を可読性のために削ったりフォーマットをかけたりしています）。
 
 ```haxe
 <list>
@@ -41,19 +41,19 @@ If this file is saved to Main.hx, the completion can be invoked using the comman
 </list>
 ```
 
-The XML structure follows:
+このXMLの構造は以下の通りです。
 
-* The document node `list` encloses several nodes `i`, each representing a field.
-* The `n` attribute contains the name of the field.
-* The `t` node contains the type of the field.
-* the `d` node contains the documentation of the field.
+* ドキュメントの`list`ノードがいくつかの`i`ノードを含み、このそれぞれが1つのフィールドを表現しています。
+* `n`属性はフィールドの名前です。
+* `t`ノードはフィールドの型です。
+* `d`ノードはフィールドのドキュメントです。
 
 ##### since Haxe 3.2.0
 
-When compiling with `-D display-details`, each field additionally has a `k` attribute which can either be `var` or `method`. This allows distinguishing method fields from variable fields that have a function type.
+`-D display-details`をつけてコンパイルすると、各フィールドに`var`と`method`のいずれかの`k`属性が付きます。これにより、関数型の変数フィールドとメソッドフィールドを区別できます。
 
 ---
 
-Previous section: [Overview](cr-completion-overview.md)
+Previous section: [概要](cr-completion-overview.md)
 
-Next section: [Call argument completion](cr-completion-call-argument.md)
+Next section: [呼び出し引数の補完](cr-completion-call-argument.md)

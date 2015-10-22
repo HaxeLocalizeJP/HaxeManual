@@ -40,4 +40,4 @@ Main.main = function() {
 
 Previous section: [アクセス制御](lf-access-control.md)
 
-Next section: [Compiler Usage](compiler-usage.md)
+Next section: [コンパイラの使い方](compiler-usage.md)

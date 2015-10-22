@@ -58,7 +58,7 @@
 \contentsline {section}{\numberline {3.4}変性(バリアンス)}{46}{section.3.4}
 \contentsline {section}{\numberline {3.5}単一化(ユニファイ)}{47}{section.3.5}
 \contentsline {subsection}{\numberline {3.5.1}クラスとインターフェースの単一化}{48}{subsection.3.5.1}
-\contentsline {subsection}{\numberline {3.5.2}構造的部分型付け}{48}{subsection.3.5.2}
+\contentsline {subsection}{\numberline {3.5.2}構造的部分型付け}{49}{subsection.3.5.2}
 \contentsline {subsection}{\numberline {3.5.3}単相}{49}{subsection.3.5.3}
 \contentsline {subsection}{\numberline {3.5.4}関数の戻り値}{49}{subsection.3.5.4}
 \contentsline {subsection}{\numberline {3.5.5}共通の基底型}{49}{subsection.3.5.5}
@@ -158,181 +158,181 @@
 \contentsline {paragraph}{ビルトインのコンパイラメタデータ}{99}{section*.51}
 \contentsline {section}{\numberline {6.10}アクセス制御}{99}{section.6.10}
 \contentsline {section}{\numberline {6.11}インラインコンストラクタ}{101}{section.6.11}
-\contentsline {part}{II\hspace {1em}Compiler Reference}{102}{part.2}
-\contentsline {chapter}{\numberline {7}Compiler Usage}{103}{chapter.7}
-\contentsline {paragraph}{Basic Usage}{103}{section*.52}
-\contentsline {paragraph}{Common arguments}{103}{section*.53}
-\contentsline {chapter}{\numberline {8}Compiler Features}{105}{chapter.8}
-\contentsline {section}{\numberline {8.1}Built-in Compiler Metadata}{105}{section.8.1}
-\contentsline {section}{\numberline {8.2}Dead Code Elimination}{107}{section.8.2}
-\contentsline {section}{\numberline {8.3}Compiler Services}{107}{section.8.3}
-\contentsline {subsection}{\numberline {8.3.1}Overview}{107}{subsection.8.3.1}
-\contentsline {paragraph}{General notes on the interface}{108}{section*.54}
-\contentsline {subsection}{\numberline {8.3.2}Field access completion}{109}{subsection.8.3.2}
-\contentsline {subsection}{\numberline {8.3.3}Call argument completion}{110}{subsection.8.3.3}
-\contentsline {subsection}{\numberline {8.3.4}Type path completion}{110}{subsection.8.3.4}
-\contentsline {paragraph}{package completion}{110}{section*.55}
-\contentsline {paragraph}{import module completion}{111}{section*.56}
-\contentsline {paragraph}{other module completion}{112}{section*.57}
-\contentsline {subsection}{\numberline {8.3.5}Usage completion}{112}{subsection.8.3.5}
-\contentsline {subsection}{\numberline {8.3.6}Position completion}{113}{subsection.8.3.6}
-\contentsline {subsection}{\numberline {8.3.7}Top-level completion}{113}{subsection.8.3.7}
-\contentsline {subsection}{\numberline {8.3.8}Completion server}{114}{subsection.8.3.8}
-\contentsline {paragraph}{How it works}{114}{section*.58}
-\contentsline {paragraph}{Protocol}{115}{section*.59}
-\contentsline {paragraph}{Effect on macros}{115}{section*.60}
-\contentsline {section}{\numberline {8.4}Resources}{115}{section.8.4}
-\contentsline {subsection}{\numberline {8.4.1}Embedding resources}{116}{subsection.8.4.1}
-\contentsline {subsection}{\numberline {8.4.2}Retrieving text resources}{116}{subsection.8.4.2}
-\contentsline {subsection}{\numberline {8.4.3}Retrieving binary resources}{116}{subsection.8.4.3}
-\contentsline {subsection}{\numberline {8.4.4}Implementation details}{116}{subsection.8.4.4}
-\contentsline {section}{\numberline {8.5}Runtime Type Information}{117}{section.8.5}
-\contentsline {subsection}{\numberline {8.5.1}RTTI structure}{117}{subsection.8.5.1}
-\contentsline {paragraph}{General type information}{117}{section*.62}
-\contentsline {paragraph}{Class type information}{118}{section*.63}
-\contentsline {paragraph}{Enum type information}{118}{section*.64}
-\contentsline {paragraph}{Abstract type information}{118}{section*.65}
-\contentsline {paragraph}{Class field information}{118}{section*.66}
-\contentsline {paragraph}{Enum constructor information}{119}{section*.67}
-\contentsline {chapter}{\numberline {9}Macros}{120}{chapter.9}
-\contentsline {section}{\numberline {9.1}Macro Context}{121}{section.9.1}
-\contentsline {section}{\numberline {9.2}Arguments}{121}{section.9.2}
-\contentsline {subsection}{\numberline {9.2.1}ExprOf}{122}{subsection.9.2.1}
-\contentsline {subsection}{\numberline {9.2.2}Constant Expressions}{123}{subsection.9.2.2}
-\contentsline {subsection}{\numberline {9.2.3}Rest Argument}{123}{subsection.9.2.3}
-\contentsline {section}{\numberline {9.3}Reification}{123}{section.9.3}
-\contentsline {subsection}{\numberline {9.3.1}Expression Reification}{124}{subsection.9.3.1}
-\contentsline {subsection}{\numberline {9.3.2}Type Reification}{124}{subsection.9.3.2}
-\contentsline {subsection}{\numberline {9.3.3}Class Reification}{125}{subsection.9.3.3}
-\contentsline {section}{\numberline {9.4}Tools}{125}{section.9.4}
-\contentsline {section}{\numberline {9.5}Type Building}{126}{section.9.5}
-\contentsline {subsection}{\numberline {9.5.1}Enum building}{127}{subsection.9.5.1}
-\contentsline {subsection}{\numberline {9.5.2}@:autoBuild}{128}{subsection.9.5.2}
-\contentsline {subsection}{\numberline {9.5.3}@:genericBuild}{129}{subsection.9.5.3}
-\contentsline {paragraph}{Const type parameter}{130}{section*.69}
-\contentsline {section}{\numberline {9.6}Limitations}{131}{section.9.6}
-\contentsline {subsection}{\numberline {9.6.1}Macro-in-Macro}{131}{subsection.9.6.1}
-\contentsline {subsection}{\numberline {9.6.2}Static extension}{131}{subsection.9.6.2}
-\contentsline {subsection}{\numberline {9.6.3}Build Order}{132}{subsection.9.6.3}
-\contentsline {subsection}{\numberline {9.6.4}Type Parameters}{132}{subsection.9.6.4}
-\contentsline {section}{\numberline {9.7}Initialization macros}{132}{section.9.7}
-\contentsline {part}{III\hspace {1em}Standard Library}{134}{part.3}
-\contentsline {chapter}{\numberline {10}Standard Library}{135}{chapter.10}
-\contentsline {section}{\numberline {10.1}String}{135}{section.10.1}
-\contentsline {paragraph}{Character code}{135}{section*.70}
-\contentsline {section}{\numberline {10.2}Data Structures}{135}{section.10.2}
-\contentsline {subsection}{\numberline {10.2.1}Array}{135}{subsection.10.2.1}
-\contentsline {subsection}{\numberline {10.2.2}Vector}{137}{subsection.10.2.2}
-\contentsline {subsection}{\numberline {10.2.3}List}{137}{subsection.10.2.3}
-\contentsline {subsection}{\numberline {10.2.4}GenericStack}{138}{subsection.10.2.4}
-\contentsline {subsection}{\numberline {10.2.5}Map}{138}{subsection.10.2.5}
-\contentsline {subsection}{\numberline {10.2.6}Option}{139}{subsection.10.2.6}
-\contentsline {section}{\numberline {10.3}Regular Expressions}{140}{section.10.3}
-\contentsline {subsection}{\numberline {10.3.1}Matching}{141}{subsection.10.3.1}
-\contentsline {subsection}{\numberline {10.3.2}Groups}{141}{subsection.10.3.2}
-\contentsline {subsection}{\numberline {10.3.3}Replace}{142}{subsection.10.3.3}
-\contentsline {subsection}{\numberline {10.3.4}Split}{143}{subsection.10.3.4}
-\contentsline {subsection}{\numberline {10.3.5}Map}{143}{subsection.10.3.5}
-\contentsline {subsection}{\numberline {10.3.6}Implementation Details}{143}{subsection.10.3.6}
-\contentsline {section}{\numberline {10.4}Math}{144}{section.10.4}
-\contentsline {subsection}{\numberline {10.4.1}Special Numbers}{144}{subsection.10.4.1}
-\contentsline {subsection}{\numberline {10.4.2}Mathematical Errors}{144}{subsection.10.4.2}
-\contentsline {subsection}{\numberline {10.4.3}Integer Math}{145}{subsection.10.4.3}
-\contentsline {subsection}{\numberline {10.4.4}Extensions}{145}{subsection.10.4.4}
-\contentsline {section}{\numberline {10.5}Lambda}{145}{section.10.5}
-\contentsline {paragraph}{Lambda Functions}{145}{section*.72}
-\contentsline {section}{\numberline {10.6}Template}{147}{section.10.6}
-\contentsline {paragraph}{Expressions}{147}{section*.73}
-\contentsline {paragraph}{Conditions}{147}{section*.74}
-\contentsline {paragraph}{Iterating}{148}{section*.75}
-\contentsline {paragraph}{Sub-templates}{148}{section*.76}
-\contentsline {paragraph}{Template macros}{148}{section*.77}
-\contentsline {paragraph}{Globals}{149}{section*.78}
-\contentsline {paragraph}{Using resources}{149}{section*.79}
-\contentsline {section}{\numberline {10.7}Reflection}{149}{section.10.7}
-\contentsline {section}{\numberline {10.8}Serialization}{151}{section.10.8}
-\contentsline {paragraph}{Supported values}{152}{section*.80}
-\contentsline {paragraph}{Serialization configuration}{152}{section*.81}
-\contentsline {paragraph}{Deserialization behavior}{152}{section*.82}
-\contentsline {paragraph}{Custom (de)serialization}{153}{section*.83}
-\contentsline {subsection}{\numberline {10.8.1}Serialization format}{153}{subsection.10.8.1}
-\contentsline {section}{\numberline {10.9}Xml}{155}{section.10.9}
-\contentsline {subsection}{\numberline {10.9.1}Getting started with Xml}{155}{subsection.10.9.1}
-\contentsline {paragraph}{Creating a root element}{155}{section*.84}
-\contentsline {paragraph}{Creating child elements}{155}{section*.85}
-\contentsline {paragraph}{Accessing elements and values}{155}{section*.86}
-\contentsline {paragraph}{Iterate on Xml elements}{156}{section*.87}
-\contentsline {subsection}{\numberline {10.9.2}Parsing Xml}{156}{subsection.10.9.2}
-\contentsline {subsection}{\numberline {10.9.3}Encoding Xml}{156}{subsection.10.9.3}
-\contentsline {section}{\numberline {10.10}Json}{156}{section.10.10}
-\contentsline {subsection}{\numberline {10.10.1}Parsing JSON}{156}{subsection.10.10.1}
-\contentsline {subsection}{\numberline {10.10.2}Encoding JSON}{157}{subsection.10.10.2}
-\contentsline {subsection}{\numberline {10.10.3}Implementation details}{157}{subsection.10.10.3}
-\contentsline {section}{\numberline {10.11}Input/Output}{158}{section.10.11}
-\contentsline {section}{\numberline {10.12}Sys/sys}{158}{section.10.12}
-\contentsline {section}{\numberline {10.13}Remoting}{158}{section.10.13}
-\contentsline {subsection}{\numberline {10.13.1}Remoting Connection}{158}{subsection.10.13.1}
-\contentsline {paragraph}{Start a connection}{158}{section*.88}
-\contentsline {paragraph}{Remoting context}{159}{section*.89}
-\contentsline {paragraph}{Using the connection}{159}{section*.90}
-\contentsline {paragraph}{Error handling}{159}{section*.91}
-\contentsline {paragraph}{Data serialization}{160}{section*.92}
-\contentsline {subsection}{\numberline {10.13.2}Implementation details}{160}{subsection.10.13.2}
-\contentsline {paragraph}{JavaScript security specifics}{160}{section*.93}
-\contentsline {paragraph}{Flash security specifics}{160}{section*.94}
-\contentsline {paragraph}{Arguments types are not ensured}{160}{section*.95}
-\contentsline {section}{\numberline {10.14}Unit testing}{160}{section.10.14}
-\contentsline {paragraph}{Creating new test cases}{160}{section*.96}
-\contentsline {paragraph}{Running unit tests}{161}{section*.97}
-\contentsline {paragraph}{Test functions}{161}{section*.98}
-\contentsline {paragraph}{Setup and tear down}{161}{section*.99}
-\contentsline {paragraph}{Comparing Complex Objects}{162}{section*.100}
-\contentsline {part}{IV\hspace {1em}Miscellaneous}{163}{part.4}
-\contentsline {chapter}{\numberline {11}Haxelib}{164}{chapter.11}
-\contentsline {section}{\numberline {11.1}Using a Haxe library with the Haxe Compiler}{164}{section.11.1}
-\contentsline {section}{\numberline {11.2}haxelib.json}{165}{section.11.2}
-\contentsline {subsection}{\numberline {11.2.1}Versioning}{165}{subsection.11.2.1}
-\contentsline {subsection}{\numberline {11.2.2}Dependencies}{167}{subsection.11.2.2}
-\contentsline {section}{\numberline {11.3}extraParams.hxml}{167}{section.11.3}
-\contentsline {section}{\numberline {11.4}Using Haxelib}{167}{section.11.4}
-\contentsline {chapter}{\numberline {12}Target Details}{169}{chapter.12}
-\contentsline {section}{\numberline {12.1}JavaScript}{169}{section.12.1}
-\contentsline {subsection}{\numberline {12.1.1}Getting started with Haxe/JavaScript}{169}{subsection.12.1.1}
-\contentsline {paragraph}{Run the JavaScript}{169}{section*.101}
-\contentsline {paragraph}{More information}{170}{section*.102}
-\contentsline {subsection}{\numberline {12.1.2}Using external JavaScript libraries}{170}{subsection.12.1.2}
-\contentsline {subsection}{\numberline {12.1.3}Inject raw JavaScript}{172}{subsection.12.1.3}
-\contentsline {subsection}{\numberline {12.1.4}JavaScript untyped functions}{172}{subsection.12.1.4}
-\contentsline {paragraph}{\texttt {untyped __js__(expr, params)}}{172}{section*.103}
-\contentsline {paragraph}{\texttt {untyped __instanceof__(o,cl)}}{172}{section*.104}
-\contentsline {paragraph}{\texttt {untyped __typeof__(o)}}{173}{section*.105}
-\contentsline {paragraph}{\texttt {untyped __strict_eq__(a,b)}}{173}{section*.106}
-\contentsline {paragraph}{\texttt {untyped __strict_neq__(a,b)}}{173}{section*.107}
-\contentsline {paragraph}{Expression injection}{173}{section*.108}
-\contentsline {subsection}{\numberline {12.1.5}Debugging JavaScript}{173}{subsection.12.1.5}
-\contentsline {subsection}{\numberline {12.1.6}JavaScript target Metadata}{174}{subsection.12.1.6}
-\contentsline {subsection}{\numberline {12.1.7}Exposing Haxe classes for JavaScript}{174}{subsection.12.1.7}
-\contentsline {paragraph}{Shallow expose}{175}{section*.109}
-\contentsline {subsection}{\numberline {12.1.8}Loading extern classes using "require" function}{175}{subsection.12.1.8}
-\contentsline {section}{\numberline {12.2}Flash}{176}{section.12.2}
-\contentsline {subsection}{\numberline {12.2.1}Getting started with Haxe/Flash}{176}{subsection.12.2.1}
-\contentsline {paragraph}{Display the Flash}{176}{section*.110}
-\contentsline {paragraph}{More information}{177}{section*.111}
-\contentsline {subsection}{\numberline {12.2.2}Embedding resources}{177}{subsection.12.2.2}
-\contentsline {subsection}{\numberline {12.2.3}Using external Flash libraries}{177}{subsection.12.2.3}
-\contentsline {subsection}{\numberline {12.2.4}Flash target Metadata}{177}{subsection.12.2.4}
-\contentsline {section}{\numberline {12.3}Neko}{178}{section.12.3}
-\contentsline {section}{\numberline {12.4}PHP}{178}{section.12.4}
-\contentsline {subsection}{\numberline {12.4.1}Getting started with Haxe/PHP}{178}{subsection.12.4.1}
-\contentsline {paragraph}{More information}{178}{section*.112}
-\contentsline {subsection}{\numberline {12.4.2}PHP untyped functions}{179}{subsection.12.4.2}
-\contentsline {paragraph}{\texttt {untyped __php__(expr)}}{179}{section*.113}
-\contentsline {paragraph}{\texttt {untyped __call__(function, arg, arg, arg...)}}{179}{section*.114}
-\contentsline {paragraph}{\texttt {untyped __var__(global, paramName)}}{179}{section*.115}
-\contentsline {paragraph}{\texttt {untyped __physeq__(val1, val2)}}{179}{section*.116}
-\contentsline {section}{\numberline {12.5}C++}{179}{section.12.5}
-\contentsline {subsection}{\numberline {12.5.1}Using C++ Defines}{179}{subsection.12.5.1}
-\contentsline {subsection}{\numberline {12.5.2}Using C++ Pointers}{181}{subsection.12.5.2}
-\contentsline {section}{\numberline {12.6}Java}{181}{section.12.6}
-\contentsline {section}{\numberline {12.7}C\#}{181}{section.12.7}
-\contentsline {section}{\numberline {12.8}Python}{181}{section.12.8}
+\contentsline {part}{II\hspace {1em}コンパイラリファレンス}{102}{part.2}
+\contentsline {chapter}{\numberline {7}コンパイラの使い方}{103}{chapter.7}
+\contentsline {paragraph}{基本的な使い方}{103}{section*.52}
+\contentsline {paragraph}{よく使う引数}{103}{section*.53}
+\contentsline {chapter}{\numberline {8}コンパイラの機能}{105}{chapter.8}
+\contentsline {section}{\numberline {8.1}ビルトインのコンパイラメタデータ}{105}{section.8.1}
+\contentsline {section}{\numberline {8.2}デッドコード削除}{107}{section.8.2}
+\contentsline {section}{\numberline {8.3}コンパイラサービス}{107}{section.8.3}
+\contentsline {subsection}{\numberline {8.3.1}概要}{107}{subsection.8.3.1}
+\contentsline {paragraph}{インターフェースについての注意事項}{108}{section*.54}
+\contentsline {subsection}{\numberline {8.3.2}フィールドアクセス補完}{109}{subsection.8.3.2}
+\contentsline {subsection}{\numberline {8.3.3}呼び出し引数の補完}{110}{subsection.8.3.3}
+\contentsline {subsection}{\numberline {8.3.4}型のパスの補完}{110}{subsection.8.3.4}
+\contentsline {paragraph}{パッケージの補完}{110}{section*.55}
+\contentsline {paragraph}{モジュールのインポートの補完}{111}{section*.56}
+\contentsline {paragraph}{その他のモジュールの補完}{112}{section*.57}
+\contentsline {subsection}{\numberline {8.3.5}使用状況の補完}{112}{subsection.8.3.5}
+\contentsline {subsection}{\numberline {8.3.6}定義位置の補完}{113}{subsection.8.3.6}
+\contentsline {subsection}{\numberline {8.3.7}トップレベルの補完}{113}{subsection.8.3.7}
+\contentsline {subsection}{\numberline {8.3.8}補完サーバー}{114}{subsection.8.3.8}
+\contentsline {paragraph}{動作の詳細}{114}{section*.58}
+\contentsline {paragraph}{プロトコル}{114}{section*.59}
+\contentsline {paragraph}{マクロの影響}{115}{section*.60}
+\contentsline {section}{\numberline {8.4}リソース}{115}{section.8.4}
+\contentsline {subsection}{\numberline {8.4.1}リソースの埋め込み}{115}{subsection.8.4.1}
+\contentsline {subsection}{\numberline {8.4.2}テキストリソースを取得する}{116}{subsection.8.4.2}
+\contentsline {subsection}{\numberline {8.4.3}バイナリリソースを取得する}{116}{subsection.8.4.3}
+\contentsline {subsection}{\numberline {8.4.4}実装の詳細}{116}{subsection.8.4.4}
+\contentsline {section}{\numberline {8.5}実行時型情報（RTTI）}{116}{section.8.5}
+\contentsline {subsection}{\numberline {8.5.1}RTTIの構造}{117}{subsection.8.5.1}
+\contentsline {paragraph}{一般的な型情報}{117}{section*.62}
+\contentsline {paragraph}{クラスの型情報}{117}{section*.63}
+\contentsline {paragraph}{列挙型の型情報}{117}{section*.64}
+\contentsline {paragraph}{抽象型の型情報}{118}{section*.65}
+\contentsline {paragraph}{クラスフィールド情報}{118}{section*.66}
+\contentsline {paragraph}{列挙型コンストラクタ情報}{118}{section*.67}
+\contentsline {chapter}{\numberline {9}Macros}{119}{chapter.9}
+\contentsline {section}{\numberline {9.1}Macro Context}{120}{section.9.1}
+\contentsline {section}{\numberline {9.2}Arguments}{120}{section.9.2}
+\contentsline {subsection}{\numberline {9.2.1}ExprOf}{121}{subsection.9.2.1}
+\contentsline {subsection}{\numberline {9.2.2}Constant Expressions}{122}{subsection.9.2.2}
+\contentsline {subsection}{\numberline {9.2.3}Rest Argument}{122}{subsection.9.2.3}
+\contentsline {section}{\numberline {9.3}Reification}{122}{section.9.3}
+\contentsline {subsection}{\numberline {9.3.1}Expression Reification}{123}{subsection.9.3.1}
+\contentsline {subsection}{\numberline {9.3.2}Type Reification}{123}{subsection.9.3.2}
+\contentsline {subsection}{\numberline {9.3.3}Class Reification}{124}{subsection.9.3.3}
+\contentsline {section}{\numberline {9.4}Tools}{124}{section.9.4}
+\contentsline {section}{\numberline {9.5}Type Building}{125}{section.9.5}
+\contentsline {subsection}{\numberline {9.5.1}Enum building}{126}{subsection.9.5.1}
+\contentsline {subsection}{\numberline {9.5.2}@:autoBuild}{127}{subsection.9.5.2}
+\contentsline {subsection}{\numberline {9.5.3}@:genericBuild}{128}{subsection.9.5.3}
+\contentsline {paragraph}{Const type parameter}{129}{section*.69}
+\contentsline {section}{\numberline {9.6}Limitations}{130}{section.9.6}
+\contentsline {subsection}{\numberline {9.6.1}Macro-in-Macro}{130}{subsection.9.6.1}
+\contentsline {subsection}{\numberline {9.6.2}Static extension}{130}{subsection.9.6.2}
+\contentsline {subsection}{\numberline {9.6.3}Build Order}{131}{subsection.9.6.3}
+\contentsline {subsection}{\numberline {9.6.4}Type Parameters}{131}{subsection.9.6.4}
+\contentsline {section}{\numberline {9.7}Initialization macros}{131}{section.9.7}
+\contentsline {part}{III\hspace {1em}標準ライブラリ}{133}{part.3}
+\contentsline {chapter}{\numberline {10}Standard Library}{134}{chapter.10}
+\contentsline {section}{\numberline {10.1}String}{134}{section.10.1}
+\contentsline {paragraph}{Character code}{134}{section*.70}
+\contentsline {section}{\numberline {10.2}Data Structures}{134}{section.10.2}
+\contentsline {subsection}{\numberline {10.2.1}Array}{134}{subsection.10.2.1}
+\contentsline {subsection}{\numberline {10.2.2}Vector}{136}{subsection.10.2.2}
+\contentsline {subsection}{\numberline {10.2.3}List}{136}{subsection.10.2.3}
+\contentsline {subsection}{\numberline {10.2.4}GenericStack}{137}{subsection.10.2.4}
+\contentsline {subsection}{\numberline {10.2.5}Map}{137}{subsection.10.2.5}
+\contentsline {subsection}{\numberline {10.2.6}Option}{138}{subsection.10.2.6}
+\contentsline {section}{\numberline {10.3}Regular Expressions}{139}{section.10.3}
+\contentsline {subsection}{\numberline {10.3.1}Matching}{140}{subsection.10.3.1}
+\contentsline {subsection}{\numberline {10.3.2}Groups}{140}{subsection.10.3.2}
+\contentsline {subsection}{\numberline {10.3.3}Replace}{141}{subsection.10.3.3}
+\contentsline {subsection}{\numberline {10.3.4}Split}{142}{subsection.10.3.4}
+\contentsline {subsection}{\numberline {10.3.5}Map}{142}{subsection.10.3.5}
+\contentsline {subsection}{\numberline {10.3.6}Implementation Details}{142}{subsection.10.3.6}
+\contentsline {section}{\numberline {10.4}Math}{143}{section.10.4}
+\contentsline {subsection}{\numberline {10.4.1}Special Numbers}{143}{subsection.10.4.1}
+\contentsline {subsection}{\numberline {10.4.2}Mathematical Errors}{143}{subsection.10.4.2}
+\contentsline {subsection}{\numberline {10.4.3}Integer Math}{144}{subsection.10.4.3}
+\contentsline {subsection}{\numberline {10.4.4}Extensions}{144}{subsection.10.4.4}
+\contentsline {section}{\numberline {10.5}Lambda}{144}{section.10.5}
+\contentsline {paragraph}{Lambda Functions}{144}{section*.72}
+\contentsline {section}{\numberline {10.6}Template}{146}{section.10.6}
+\contentsline {paragraph}{Expressions}{146}{section*.73}
+\contentsline {paragraph}{Conditions}{146}{section*.74}
+\contentsline {paragraph}{Iterating}{147}{section*.75}
+\contentsline {paragraph}{Sub-templates}{147}{section*.76}
+\contentsline {paragraph}{Template macros}{147}{section*.77}
+\contentsline {paragraph}{Globals}{148}{section*.78}
+\contentsline {paragraph}{Using resources}{148}{section*.79}
+\contentsline {section}{\numberline {10.7}Reflection}{148}{section.10.7}
+\contentsline {section}{\numberline {10.8}Serialization}{150}{section.10.8}
+\contentsline {paragraph}{Supported values}{151}{section*.80}
+\contentsline {paragraph}{Serialization configuration}{151}{section*.81}
+\contentsline {paragraph}{Deserialization behavior}{151}{section*.82}
+\contentsline {paragraph}{Custom (de)serialization}{152}{section*.83}
+\contentsline {subsection}{\numberline {10.8.1}Serialization format}{152}{subsection.10.8.1}
+\contentsline {section}{\numberline {10.9}Xml}{154}{section.10.9}
+\contentsline {subsection}{\numberline {10.9.1}Getting started with Xml}{154}{subsection.10.9.1}
+\contentsline {paragraph}{Creating a root element}{154}{section*.84}
+\contentsline {paragraph}{Creating child elements}{154}{section*.85}
+\contentsline {paragraph}{Accessing elements and values}{154}{section*.86}
+\contentsline {paragraph}{Iterate on Xml elements}{155}{section*.87}
+\contentsline {subsection}{\numberline {10.9.2}Parsing Xml}{155}{subsection.10.9.2}
+\contentsline {subsection}{\numberline {10.9.3}Encoding Xml}{155}{subsection.10.9.3}
+\contentsline {section}{\numberline {10.10}Json}{155}{section.10.10}
+\contentsline {subsection}{\numberline {10.10.1}Parsing JSON}{155}{subsection.10.10.1}
+\contentsline {subsection}{\numberline {10.10.2}Encoding JSON}{156}{subsection.10.10.2}
+\contentsline {subsection}{\numberline {10.10.3}Implementation details}{156}{subsection.10.10.3}
+\contentsline {section}{\numberline {10.11}Input/Output}{157}{section.10.11}
+\contentsline {section}{\numberline {10.12}Sys/sys}{157}{section.10.12}
+\contentsline {section}{\numberline {10.13}Remoting}{157}{section.10.13}
+\contentsline {subsection}{\numberline {10.13.1}Remoting Connection}{157}{subsection.10.13.1}
+\contentsline {paragraph}{Start a connection}{157}{section*.88}
+\contentsline {paragraph}{Remoting context}{158}{section*.89}
+\contentsline {paragraph}{Using the connection}{158}{section*.90}
+\contentsline {paragraph}{Error handling}{158}{section*.91}
+\contentsline {paragraph}{Data serialization}{159}{section*.92}
+\contentsline {subsection}{\numberline {10.13.2}Implementation details}{159}{subsection.10.13.2}
+\contentsline {paragraph}{JavaScript security specifics}{159}{section*.93}
+\contentsline {paragraph}{Flash security specifics}{159}{section*.94}
+\contentsline {paragraph}{Arguments types are not ensured}{159}{section*.95}
+\contentsline {section}{\numberline {10.14}Unit testing}{159}{section.10.14}
+\contentsline {paragraph}{Creating new test cases}{159}{section*.96}
+\contentsline {paragraph}{Running unit tests}{160}{section*.97}
+\contentsline {paragraph}{Test functions}{160}{section*.98}
+\contentsline {paragraph}{Setup and tear down}{160}{section*.99}
+\contentsline {paragraph}{Comparing Complex Objects}{161}{section*.100}
+\contentsline {part}{IV\hspace {1em}Miscellaneous}{162}{part.4}
+\contentsline {chapter}{\numberline {11}Haxelib}{163}{chapter.11}
+\contentsline {section}{\numberline {11.1}Using a Haxe library with the Haxe Compiler}{163}{section.11.1}
+\contentsline {section}{\numberline {11.2}haxelib.json}{164}{section.11.2}
+\contentsline {subsection}{\numberline {11.2.1}Versioning}{164}{subsection.11.2.1}
+\contentsline {subsection}{\numberline {11.2.2}Dependencies}{166}{subsection.11.2.2}
+\contentsline {section}{\numberline {11.3}extraParams.hxml}{166}{section.11.3}
+\contentsline {section}{\numberline {11.4}Using Haxelib}{166}{section.11.4}
+\contentsline {chapter}{\numberline {12}Target Details}{168}{chapter.12}
+\contentsline {section}{\numberline {12.1}JavaScript}{168}{section.12.1}
+\contentsline {subsection}{\numberline {12.1.1}Getting started with Haxe/JavaScript}{168}{subsection.12.1.1}
+\contentsline {paragraph}{Run the JavaScript}{168}{section*.101}
+\contentsline {paragraph}{More information}{169}{section*.102}
+\contentsline {subsection}{\numberline {12.1.2}Using external JavaScript libraries}{169}{subsection.12.1.2}
+\contentsline {subsection}{\numberline {12.1.3}Inject raw JavaScript}{171}{subsection.12.1.3}
+\contentsline {subsection}{\numberline {12.1.4}JavaScript untyped functions}{171}{subsection.12.1.4}
+\contentsline {paragraph}{\texttt {untyped __js__(expr, params)}}{171}{section*.103}
+\contentsline {paragraph}{\texttt {untyped __instanceof__(o,cl)}}{171}{section*.104}
+\contentsline {paragraph}{\texttt {untyped __typeof__(o)}}{172}{section*.105}
+\contentsline {paragraph}{\texttt {untyped __strict_eq__(a,b)}}{172}{section*.106}
+\contentsline {paragraph}{\texttt {untyped __strict_neq__(a,b)}}{172}{section*.107}
+\contentsline {paragraph}{Expression injection}{172}{section*.108}
+\contentsline {subsection}{\numberline {12.1.5}Debugging JavaScript}{172}{subsection.12.1.5}
+\contentsline {subsection}{\numberline {12.1.6}JavaScript target Metadata}{173}{subsection.12.1.6}
+\contentsline {subsection}{\numberline {12.1.7}Exposing Haxe classes for JavaScript}{173}{subsection.12.1.7}
+\contentsline {paragraph}{Shallow expose}{174}{section*.109}
+\contentsline {subsection}{\numberline {12.1.8}Loading extern classes using "require" function}{174}{subsection.12.1.8}
+\contentsline {section}{\numberline {12.2}Flash}{175}{section.12.2}
+\contentsline {subsection}{\numberline {12.2.1}Getting started with Haxe/Flash}{175}{subsection.12.2.1}
+\contentsline {paragraph}{Display the Flash}{175}{section*.110}
+\contentsline {paragraph}{More information}{176}{section*.111}
+\contentsline {subsection}{\numberline {12.2.2}Embedding resources}{176}{subsection.12.2.2}
+\contentsline {subsection}{\numberline {12.2.3}Using external Flash libraries}{176}{subsection.12.2.3}
+\contentsline {subsection}{\numberline {12.2.4}Flash target Metadata}{176}{subsection.12.2.4}
+\contentsline {section}{\numberline {12.3}Neko}{177}{section.12.3}
+\contentsline {section}{\numberline {12.4}PHP}{177}{section.12.4}
+\contentsline {subsection}{\numberline {12.4.1}Getting started with Haxe/PHP}{177}{subsection.12.4.1}
+\contentsline {paragraph}{More information}{177}{section*.112}
+\contentsline {subsection}{\numberline {12.4.2}PHP untyped functions}{178}{subsection.12.4.2}
+\contentsline {paragraph}{\texttt {untyped __php__(expr)}}{178}{section*.113}
+\contentsline {paragraph}{\texttt {untyped __call__(function, arg, arg, arg...)}}{178}{section*.114}
+\contentsline {paragraph}{\texttt {untyped __var__(global, paramName)}}{178}{section*.115}
+\contentsline {paragraph}{\texttt {untyped __physeq__(val1, val2)}}{178}{section*.116}
+\contentsline {section}{\numberline {12.5}C++}{178}{section.12.5}
+\contentsline {subsection}{\numberline {12.5.1}Using C++ Defines}{178}{subsection.12.5.1}
+\contentsline {subsection}{\numberline {12.5.2}Using C++ Pointers}{180}{subsection.12.5.2}
+\contentsline {section}{\numberline {12.6}Java}{180}{section.12.6}
+\contentsline {section}{\numberline {12.7}C\#}{180}{section.12.7}
+\contentsline {section}{\numberline {12.8}Python}{180}{section.12.8}

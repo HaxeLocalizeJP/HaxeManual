@@ -1,8 +1,8 @@
-## 8.3.7 Top-level completion
+## 8.3.7 トップレベルの補完
 
 ##### since Haxe 3.2.0
 
-Top-level completion displays all identifiers which the Haxe Compiler knows about at a given compilation position. This is the only completion method for which we need a real position argument in order to demonstrate its effect:
+トップレベルの補完は、与えられた補完位置での使用可能なHaxeコンパイラが知るかぎりのすべての識別子を表示します。この補完機能だけはその効果を実演するために、実際の位置を引数であたえてやる必要があります。
 
 ```haxe
 class Main {
@@ -17,7 +17,7 @@ enum MyEnum {
 }
 ```
 
-If this file is saved to Main.hx, the completion can be invoked using the command `haxe --display Main.hx@63@toplevel`. The output looks similar to this (we omit several entries for brevity):
+このファイルをMain.hxとして保存すると、補完は`haxe --display Main.hx@63@toplevel`のコマンドを使って呼び出せます。その出力は以下のようなものになります（簡潔さのためにいくつかの要素を削っています）。
 
 ```haxe
 <il>
@@ -34,13 +34,13 @@ If this file is saved to Main.hx, the completion can be invoked using the comman
 </il>
 ```
 
-The structure of the XML depends on the `k` attribute of each entry. In all cases the node value of the `i` nodes contains the relevant name.
+XMLの構造は各要素の`k`属性によります。すべての場合で`i`のノードはその値として名前を持ちます。
 
-* `local`, `member`, `static`, `enum`, `global`: The `t` attribute holds the type of the variable or field.
-* `global`, `type`: The `p` attribute holds the path of the module which contains the type or field.
+* `local`, `member`, `static`, `enum`, `global`: `t`属性にその変数やフィールドの型を持ちます。
+* `global`, `type`: `p`属性にその型やフィールドが属するモジュールのパスを持ちます。
 
 ---
 
-Previous section: [Position completion](cr-completion-position.md)
+Previous section: [定義位置の補完](cr-completion-position.md)
 
-Next section: [Completion server](cr-completion-server.md)
+Next section: [補完サーバー](cr-completion-server.md)

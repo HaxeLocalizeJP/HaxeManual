@@ -1,33 +1,34 @@
-## 8.2 Dead Code Elimination
+## 8.2 デッドコード削除
 
-Dead Code Elimination or **DCE** is a compiler feature which removes unused code from the output. After typing, the compiler evaluates the DCE entry-points (usually the main-method) and recursively determines which fields and types are used. Used fields are marked accordingly and unmarked fields are then removed from their classes.
+デッドコード削除(Dead Code Elimination、**DCE**)は、未使用のコードを出力から取り除くコンパイラ機能です。型付けの後に、DCEの始点（多くの場合はmainメソッド）から再帰的にたどっていきどのフィールドと型が使用されているかを決定します。これにより使用済みのフィールドはマークされ、マークされていないフィールドはクラスから取り除かれます。
 
-DCE has three modes which are set when invoking the command line:
+DCEには3つのモードがあり、コマンドラインからの呼び出し時に指定します。
 
-* -dce std: Only classes in the Haxe Standard Library are affected by DCE. This is the default setting on all targets.
-* -dce no: No DCE is performed.
-* -dce full: All classes are affected by DCE.
+* -dce std: Haxeの標準ライブラリのクラスのみがDCEの影響を受けます。これがすべてのターゲットでのデフォルト値です。
+* -dce no: DCEされません。
+* -dce full: すべてのクラスがDCEの影響を受けます。
 
-The DCE-algorithm works well with typed code, but may fail when [dynamic](types-dynamic.md) or [reflection](std-reflection.md) is involved. This may require explicit marking of fields or classes as being used by attributing the following metadata:
+DCEのアルゴリズムは型付けされたコードではうまく働きますが、[Dynamic](types-dynamic.md)や[リフレクション](std-reflection.md)を使っていると失敗する場合があります。そういった場合は、以下のメタデータを使ったクラスやフィールドの明示的な修飾が必要かもしれません。
 
-* `@:keep`: If used on a class, the class along with all fields is unaffected by DCE. If used on a field, that field is unaffected by DCE.
-* `@:keepSub`: If used on a class, it works like `@:keep` on the annotated class as well as all subclasses.
-* `@:keepInit`: Usually, a class which had all fields removed by DCE (or is empty to begin with) is removed from the output. By using this metadata, empty classes are kept.
+* `@:keep`: クラスに使用するとすべてのフィールドがDCEの対象から除外されます。フィールドに使用するとそのフィールドがDCEの対象になりません。
+* `@:keepSub`: クラスに使用すると、その子孫クラスすべてを`@:keep`で修飾したのと同様の動作をします。
+* `@:keepInit`: 通常、クラスはすべてのフィールドがDCEによって削除されると（あるいは最初から空だと）出力から削除されます。このメタデータを使うと、空のクラスが保持されます。
 
-If a class needs to be marked with `@:keep` from the command line instead of editing its source code, there is a compiler macro available for doing so: `--macro keep('type dot path')` See the [haxe.macro.Compiler.keep API](http://api.haxe.org/haxe/macro/Compiler.html#keep) for details of this macro. It will mark package, module or sub-type to be kept by DCE and includes them for compilation.
- 
-The compiler automatically defines the flag `dce` with a value of either `"std"`, `"no"` or `"full"` depending on the active mode. This can be used in [conditional compilation](lf-condition-compilation.md).
+ソースコードを編集するのではなくコマンドラインからクラスを`@:keep`としてマークしたい場合、コンパイラマクロの`--macro keep('type dot path')`を使うことでそれが可能です。このマクロについて詳しくは[haxe.macro.Compiler.keep API](http://api.haxe.org/haxe/macro/Compiler.html#keep)をご覧ください。パッケージをマークするとそのモジュールやサブタイプがDCEから保護されて、コンパイルに含まれます。
 
-> ##### Trivia: DCE-rewrite
+コンパイラは現在のモードに応じて、自動的に`dce`フラグの値を`"std"`、`"no"`、`"full"`のいずれかに設定します。このフラグは[条件付きコンパイル](lf-condition-compilation.md)で使用できます。
+
+> ##### Trivia: DCEの書き直し
 >
-> DCE was originally implemented in Haxe 2.07. This implementation considered a function to be used when it was explicitly typed. The problem with that was that several features, most importantly interfaces, would cause all class fields to be typed in order to verify type-safety. This effectively subverted DCE completely, prompting the rewrite for Haxe 2.10.
+> 
+> DCEは元々Haxe 2.07で実装されましたが、その実装では関数は明示的に型付けされているときに使用しているという判定がされていました。このせいでいくつか機能で問題がありました。とくにインタフェースで深刻で、型安全性を確かめるためにはすべてのクラスフィールドを型付けする必要がありました。このせいでDCEは完全に破たんし、Haxe 2.10での書き直しにつながりました。
 
-> ##### Trivia: DCE and try.haxe.org
+> ##### Trivia: DCEとtry.haxe.org
 >
-> DCE for the `JavaScript` target saw vast improvements when the website <http://try.haxe.org> was published. Initial reception of the generated JavaScript code was mixed, leading to a more fine-grained selection of which code to eliminate.
+> <http://try.haxe.org>のサイトが公開されたとき、`JavaScript`ターゲットのDCEは大きく改善されました。JavaScriptの出力コードに対する反応はさまざまでしたが、これにより削除されるコードの選択がより細かく行われるようになりました。
 
 ---
 
-Previous section: [Built-in Compiler Metadata](cr-metadata.md)
+Previous section: [ビルトインのコンパイラメタデータ](cr-metadata.md)
 
-Next section: [Compiler Services](cr-completion.md)
+Next section: [コンパイラサービス](cr-completion.md)

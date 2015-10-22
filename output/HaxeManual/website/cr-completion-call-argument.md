@@ -1,6 +1,6 @@
-## 8.3.3 Call argument completion
+## 8.3.3 呼び出し引数の補完
 
-Call argument completion is triggered after an opening parenthesis character `(` to show the type of the function that is currently being called. It works for any function call as well as constructor calls:
+呼び出し引数の補完は小かっこ`(`の後から開始されて、呼び出しをしようとしている関数の型を返します。これはコンストラクタの呼び出しを含むすべての関数呼び出しで使用可能です。
 
 ```haxe
 class Main {
@@ -10,7 +10,7 @@ class Main {
 }
 ```
 
-If this file is saved to Main.hx, the completion can be invoked using the command `haxe --display Main.hx@0`. The output looks like this:
+このファイルをMain.hxとして保存すると、補完は`haxe --display Main.hx@0`のコマンドを使って呼び出せます。その出力は以下のようなものになります。
 
 ```haxe
 <type>
@@ -18,14 +18,14 @@ delimiter : String -&gt; Array&lt;String&gt;
 </type>
 ```
 
-IDEs can parse this to recognize that the called function requires one argument named `delimiter` of type `String` and returns an `Array<String>`.
+IDEはここから、呼び出す関数が`delimiter`という`String`型の引数が1つあって`Array<String>`を返すということを読み取れます。
 
-> ##### Trivia: Problems with the output structure
+> ##### Trivia: 出力構造の問題
 >
-> We acknowledge that the current format requires a bit of manual parsing which can be annoying. In the future we might look into providing a more structured output, especially for functions.
+> 私たちは現在のフォーマットはほんの少しのうっとおしい自前の構文解析が必要になることを認めます。特に関数については、将来的にはより構造化された出力を提供するようになるかもしれません。
 
 ---
 
-Previous section: [Field access completion](cr-completion-field-access.md)
+Previous section: [フィールドアクセス補完](cr-completion-field-access.md)
 
-Next section: [Type path completion](cr-completion-type-path.md)
+Next section: [型のパスの補完](cr-completion-type-path.md)

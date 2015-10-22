@@ -1,8 +1,8 @@
-## 8.3.6 Position completion
+## 8.3.6 定義位置の補完
 
 ##### since Haxe 3.2.0
 
-Position completion is enabled by using the `"position"` mode argument (see [Overview](cr-completion-overview.md)). We demonstrate it using a field. Note that it would work with local variables and types the same way:
+定義位置の補完は`"position"`モードの引数を使うことで使用可能です（詳しくは[概要](cr-completion-overview.md)）。フィールドを使って実演しますが、ローカル変数と型でも同じように動作することに気をつけてください。
 
 ```haxe
 class Main {
@@ -11,7 +11,7 @@ class Main {
 }
 ```
 
-If this file is saved to Main.hx, the completion can be invoked using the command `haxe --display Main.hx@0@position`. The output looks like this:
+このファイルをMain.hxとして保存すると、補完は`haxe --display Main.hx@0@position`のコマンドを使って呼び出せます。この出力は以下のようなものになります。
 
 ```haxe
 <list>
@@ -19,12 +19,12 @@ If this file is saved to Main.hx, the completion can be invoked using the comman
 </list>
 ```
 
-> ##### Trivia: Effects of omitting a target specifier
+> ##### Trivia: ターゲットの特定の省略による影響
 >
-> In this example the compiler reports the standard String.hx definition which does not actually have an implementation. This happens because we did not specify any target, which is allowed in completion-mode. If the command line arguments included, say, `-neko neko.n`, the reported position would instead be `std/neko/_std/string.hx:84: lines 84-98`.
+> このサンプルでは標準のString.hxが取得されましたが、実際の実装はありません。これはどのターゲットとも特定しなかったためであり、補完モードではそれでも構いません。例えば`-neko neko.n`のコマンドラインが含められた場合、結果として取得される位置は代わりに`std/neko/_std/string.hx:84: lines 84-98.`となるでしょう。
 
 ---
 
-Previous section: [Usage completion](cr-completion-usage.md)
+Previous section: [使用状況の補完](cr-completion-usage.md)
 
-Next section: [Top-level completion](cr-completion-top-level.md)
+Next section: [トップレベルの補完](cr-completion-top-level.md)

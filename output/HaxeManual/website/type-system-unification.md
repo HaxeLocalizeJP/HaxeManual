@@ -11,7 +11,8 @@
 ```haxe
 class Main {
   static public function main() {
-    // Intではなく、Stringであるべき
+    // Int should be String
+    // (IntではなくStringであるべき)
     var s:String = 1;
   }
 }

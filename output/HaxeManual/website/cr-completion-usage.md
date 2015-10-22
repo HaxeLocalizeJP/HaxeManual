@@ -1,8 +1,8 @@
-## 8.3.5 Usage completion
+## 8.3.5 使用状況の補完
 
 ##### since Haxe 3.2.0
 
-Usage completion is enabled by using the `"usage"` mode argument (see [Overview](cr-completion-overview.md)). We demonstrate it here using a local variable. Note that it would work with fields and types the same way:
+使用状況の補完は`"usage"`モードの引数を使うことで使用可能です（詳しくは[概要](cr-completion-overview.md)）。ローカル変数を使って実演してみますが、フィールドと型についても同じように動作することに気をつけてください。
 
 ```haxe
 class Main {
@@ -15,7 +15,7 @@ class Main {
 }
 ```
 
-If this file is saved to Main.hx, the completion can be invoked using the command `haxe --display Main.hx@0@usage`. The output looks like this:
+このファイルをMain.hxとして保存すると、補完は`haxe --display Main.hx@0@usage`のコマンドを使って呼び出せます。この出力は以下のようなものになります。
 
 ```haxe
 <list>
@@ -27,6 +27,6 @@ If this file is saved to Main.hx, the completion can be invoked using the comman
 
 ---
 
-Previous section: [Type path completion](cr-completion-type-path.md)
+Previous section: [型のパスの補完](cr-completion-type-path.md)
 
-Next section: [Position completion](cr-completion-position.md)
+Next section: [定義位置の補完](cr-completion-position.md)

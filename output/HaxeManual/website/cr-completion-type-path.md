@@ -1,10 +1,10 @@
-## 8.3.4 Type path completion
+## 8.3.4 型のパスの補完
 
-Type path completion can occur in [import declarations](type-system-import.md), [using declarations](lf-static-extension.md) or any place a type is referenced. We can identify three different cases:
+型のパスの補完は[import宣言](type-system-import.md)、[using宣言](lf-static-extension.md)あるいはあらゆる位置での型の記述で発生します。そしてこれは以降の3種類に分けることができます。
 
-##### package completion
+##### パッケージの補完
 
-This lists all sub-packages of the haxe package as well as all modules in that package:
+以下はhaxeパッケージに属する子パッケージとモジュールのすべてをリストアップします。
 
 ```haxe
 import haxe.|
@@ -45,9 +45,9 @@ import haxe.|
 </list>
 ```
 
-##### import module completion
+##### モジュールのインポートの補完
 
-This lists all [sub-types](type-system-module-sub-types.md) of the module `haxe.Unserializer` as well as all its public static fields (because these can be imported too):
+以下は、`haxe.Unserializer`モジュールの[サブタイプ](type-system-module-sub-types.md)と、`haxe.Unserializer`の`public static`なフィールド（これらもインポート可能なので）のすべてをリストアップします。
 
 ```haxe
 import haxe.Unserializer.|
@@ -94,9 +94,9 @@ import haxe.Unserializer.|
 using haxe.Unserializer.|
 ```
 
-##### other module completion
+##### その他のモジュールの補完
 
-This lists all [sub-types](type-system-module-sub-types.md) of the module `haxe.Unserializer`:
+以下は、`haxe.Unserializer`のすべての[サブタイプ](type-system-module-sub-types.md)をリストアップします。
 
 ```haxe
 using haxe.Unserializer.|
@@ -119,6 +119,6 @@ class Main {
 
 ---
 
-Previous section: [Call argument completion](cr-completion-call-argument.md)
+Previous section: [呼び出し引数の補完](cr-completion-call-argument.md)
 
-Next section: [Usage completion](cr-completion-usage.md)
+Next section: [使用状況の補完](cr-completion-usage.md)

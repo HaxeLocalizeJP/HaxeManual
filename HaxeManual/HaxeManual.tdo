@@ -19,6 +19,6 @@
 \contentsline {todo}{proper label and caption + code/identifier styling for diagram}{55}{section*.28}
 \contentsline {todo}{Figure out wtf our rules are now for when this is checked.}{94}{section*.49}
 \contentsline {todo}{Comprehensions are only listing Arrays, not Maps}{95}{section*.50}
-\contentsline {todo}{what to use for listing of non-haxe code like hxml?}{116}{section*.61}
-\contentsline {todo}{Check if we can build GADTs this way.}{127}{section*.68}
-\contentsline {todo}{I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?}{145}{section*.71}
+\contentsline {todo}{what to use for listing of non-haxe code like hxml?}{115}{section*.61}
+\contentsline {todo}{Check if we can build GADTs this way.}{126}{section*.68}
+\contentsline {todo}{I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?}{144}{section*.71}

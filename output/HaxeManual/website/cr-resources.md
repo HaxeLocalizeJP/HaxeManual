@@ -1,22 +1,22 @@
-## 8.4 Resources
+## 8.4 リソース
 
-Haxe provides a simple resource embedding system that can be used for embedding files directly into the compiled application.
+Haxeは単純なリソース埋め込みのシステムを提供しています。これによりファイルをコンパイル後のアプリケーションに直接埋め込むことができます。
 
-While it may be not optimal to embed large assets such as images or music in the application file, it comes in very handy for embedding smaller resources like configuration or XML data.
+この方法は画像や音楽のような巨大なファイルの埋め込みには適していないかもしれませんが、設定やXMLのようなより小さなデータを埋め込むのにはとても便利です。
 
-### 8.4.1 Embedding resources
+### 8.4.1 リソースの埋め込み
 
-External files are embedded using the **-resource** compiler argument:
+以下のように、**-resource**のコンパイラ引数をつかって外部ファイルの埋め込みができます。
 
 ```haxe
 -resource hello_message.txt@welcome
 ```
 
-The string after the **@** symbol is the **resource identifier** which is used in the code for retrieving the resource. If it is omitted (together with the **@** symbol) then the file name will become the resource identifier.
+**@**マークの後の文字列は**リソースの識別子**です。コードからリソースを取得するのに使います。省略された場合（**@**マークごと）、ファイル名がリソース識別子として使われます。
 
-### 8.4.2 Retrieving text resources
+### 8.4.2 テキストリソースを取得する
 
-To retrieve the content of an embedded resource we use the static method **getString** of `haxe.Resource`, passing a **resource identifier** to it:
+埋め込んだリソースを取得するには、`haxe.Resource`の**getString**の静的メソッドにリソース識別子を渡して事項します。
 
 ```haxe
 class Main {
@@ -27,11 +27,11 @@ class Main {
 
 ```
 
-The code above will display the content of the **hello_message.txt** file that we included earlier using **welcome** as the identifier.
+上記のコードは先ほどの**welcome**を識別子として使って**hello_message.txt**ファイルの内容を表示します。
 
-### 8.4.3 Retrieving binary resources
+### 8.4.3 バイナリリソースを取得する
 
-While it's not recommended to embed large binary files in the application, it still may be useful to embed binary data. The binary representation of an embedded resource can be accessed using the static method **getBytes** of `haxe.Resource`:
+巨大バイナリファイルをアプリケーションに埋め込むのは推奨されないものの、バイナリデータの埋め込みは便利です。埋め込んだリソースは`haxe.Resource`の**getBytes**の静的メソッドを使うことでバイナリとして取得できます。
 
 ```haxe
 class Main {
@@ -43,21 +43,21 @@ class Main {
 
 ```
 
-The return type of **getBytes** method is `haxe.io.Bytes`, which is an object providing access to individual bytes of the data.
+**getBytes**メソッドの戻り値の型は、データの各バイトにアクセスできる`haxe.io.Bytes`です。
 
-### 8.4.4 Implementation details
+### 8.4.4 実装の詳細
 
-Haxe uses the target platform's native resource embedding if there is one, otherwise it provides its own implementation.
+ターゲットのプラットフォームにリソースの埋め込み機能があればそれを使います。その他の場合、独自の実装を持ちます。
 
-* **Flash** resources are embedded as ByteArray definitions
-* **C#** resources are included in the compiled assembly
-* **Java** resources are packed in the resulting JAR file
-* **C++** resources are stored in global byte array constants.
-* **JavaScript** resources are serialized in Haxe serialization format and stored in a static field of `haxe.Resource` class.
-* **Neko** resources are stored as strings in a static field of `haxe.Resource` class.
+* **Flash** リソースは`ByteArray`として定義されて埋め込まれる。
+* **C#** コンパイルされたアセンブリに含まれる。
+* **Java** JARファイル内にパッケージされる。
+* **C++** グローバルなバイト列の定数として記録される。
+* **JavaScript** Haxeシリアル化フォーマットに従ってシリアル化されて`haxe.Resource`の静的フィールドに記録される。
+* **Neko** 文字列として`haxe.Resource`クラスの静的フィールドに記録される。
 
 ---
 
-Previous section: [Completion server](cr-completion-server.md)
+Previous section: [補完サーバー](cr-completion-server.md)
 
-Next section: [Runtime Type Information](cr-rtti.md)
+Next section: [実行時型情報（RTTI）](cr-rtti.md)

@@ -20,6 +20,6 @@ We can identify different kinds of macros, which are run at specific compilation
 
 ---
 
-Previous section: [RTTI structure](cr-rtti-structure.md)
+Previous section: [RTTIの構造](cr-rtti-structure.md)
 
 Next section: [Macro Context](macro-context.md)

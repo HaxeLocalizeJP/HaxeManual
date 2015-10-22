@@ -22,7 +22,7 @@ Todo:
 3.7.3 - 解決順序: proper label and caption + code/identifier styling for diagram
 6.4.10 - 網羅性のチェック: Figure out wtf our rules are now for when this is checked.
 6.6 - 配列内包表記: Comprehensions are only listing Arrays, not Maps
-8.4.1 - Embedding resources: what to use for listing of non-haxe code like hxml?
+8.4.1 - リソースの埋め込み: what to use for listing of non-haxe code like hxml?
 9.5.1 - Enum building: Check if we can build GADTs this way.
 10.4.3 - Integer Math: I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?
 
@@ -163,24 +163,24 @@ Unreviewed:
 6.9 - メタデータ
 6.10 - アクセス制御
 6.11 - インラインコンストラクタ
-7 - Compiler Usage
-8.1 - Built-in Compiler Metadata
-8.2 - Dead Code Elimination
-8.3.1 - Overview
-8.3.2 - Field access completion
-8.3.3 - Call argument completion
-8.3.4 - Type path completion
-8.3.5 - Usage completion
-8.3.6 - Position completion
-8.3.7 - Top-level completion
-8.3.8 - Completion server
-8.4 - Resources
-8.4.1 - Embedding resources
-8.4.2 - Retrieving text resources
-8.4.3 - Retrieving binary resources
-8.4.4 - Implementation details
-8.5 - Runtime Type Information
-8.5.1 - RTTI structure
+7 - コンパイラの使い方
+8.1 - ビルトインのコンパイラメタデータ
+8.2 - デッドコード削除
+8.3.1 - 概要
+8.3.2 - フィールドアクセス補完
+8.3.3 - 呼び出し引数の補完
+8.3.4 - 型のパスの補完
+8.3.5 - 使用状況の補完
+8.3.6 - 定義位置の補完
+8.3.7 - トップレベルの補完
+8.3.8 - 補完サーバー
+8.4 - リソース
+8.4.1 - リソースの埋め込み
+8.4.2 - テキストリソースを取得する
+8.4.3 - バイナリリソースを取得する
+8.4.4 - 実装の詳細
+8.5 - 実行時型情報（RTTI）
+8.5.1 - RTTIの構造
 9 - Macros
 9.1 - Macro Context
 9.2 - Arguments
