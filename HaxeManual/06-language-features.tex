@@ -631,7 +631,7 @@ typedef Iterable<T> = {
 こちらは1つ前の例とは異なり自前の\expr{Iterator}を準備していませんが、代わりに\type{MyArrayWrap<T>}は\type{Array<T>}の\expr{iterator}関数を効果的に利用しています。
 
 
-\section{関数の束縛(bind)}
+\section{関数の束縛（bind）}
 \label{lf-function-bindings}
 
 Haxe3では、部分的に引数を適用して関数を束縛することが可能です。すべての関数型は\expr{bind}フィールドを持っており、これを呼び出すことで引数の数を減らした新しい関数を作りだすことができます。その実例を示します。

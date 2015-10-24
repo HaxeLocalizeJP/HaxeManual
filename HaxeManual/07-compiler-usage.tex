@@ -3,20 +3,20 @@
 
 \paragraph{基本的な使い方}
 
-Haxeコンパイラは基本的にはコマンドラインから以下の2つの質問に答える引数をつけて呼び出します。
+Haxeコンパイラは基本的には、以下の2つの質問に答える引数をつけてコマンドラインから呼び出します。
 
 \begin{itemize}
 	\item 何をコンパイルするのか?
 	\item 何を出力するのか?
 \end{itemize}
 
-最初の質問に答えるためには、\ic{-cp path}引数でクラスパスを指定し、\ic{-main dot_path}引数でコンパイル対象のメインクラスを指定すれば十分です。これでHaxeコンパイラはメインクラスのファイルを解決しコンパイルを始めます。
+最初の質問に答えるためには、\ic{-cp path}引数でクラスパスを指定して、\ic{-main dot_path}引数でコンパイル対象のメインクラスを指定すれば十分です。これでHaxeコンパイラはメインクラスのファイルを解決しコンパイルを始めます。
 
-2つ目の質問に答えるためには、目的のターゲット特有の引数を指定します。Haxeターゲットはそれぞれ専用のコマンドラインオプションを持っています。例えば、\target{JavaScript}は\ic{-js file_name}、\target{PHP}は\ic{-php directory}です。ターゲットによってファイル名を指定するもの(\ic{-js}、\ic{-swf}、\ic{-neko}、\ic{-python}が該当)と、ディレクトリを指定するものがあります。
+2つ目の質問に答えるためには、目的のターゲットごとの引数を指定します。Haxeのターゲットはそれぞれ専用のコマンドラインオプションを持っています。例えば、\target{JavaScript}は\ic{-js file_name}、\target{PHP}は\ic{-php directory}です。ターゲットによってファイル名を指定するもの(\ic{-js}、\ic{-swf}、\ic{-neko}、\ic{-python}が該当)と、ディレクトリを指定するものがあります。
 
 \paragraph{よく使う引数}
 
-\emph{入力:}
+■\emph{入力:}
 
 \begin{description}
 	\item[\ic{-cp path}] \ic{.hx}のソースファイルまたはパッケージ(サブディレクトリ)が置かれているディレクトリのパスを追加します。
@@ -24,7 +24,7 @@ Haxeコンパイラは基本的にはコマンドラインから以下の2つの
 	\item[\ic{-main dot_path}] メインクラスを設定します。
 \end{description}
 
-\emph{出力:}
+■\emph{出力:}
 
 \begin{description}
 	\item[\ic{-js file_name}] 指定されたファイルに\tref{JavaScript}{target-javascript}のソースコードを出力します。

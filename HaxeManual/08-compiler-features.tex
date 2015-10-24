@@ -61,15 +61,15 @@ Haxe 3.0以降では、\expr{haxe --help-metas}を実行することで定義済
 	@:headerCode   &  生成されたヘッダファイルにコードを挿入する。  &  cpp \\
 	@:headerNamespaceCode  &    &  cpp \\
 	@:hxGen  &  Haxeによって生成されたexternクラスに付く  &  cs  java \\
-	@:ifFeature \_(Feature name)\_  &  指定された機能がコンパイルに含まれていた場合に、フィールドを\tref{DCE}{cr-dce}から保護する。  &  all \\
+	@:ifFeature \_(Feature name)\_  &  指定された機能がコンパイルに含まれていた場合に、フィールドを\tref{デッドコード削除}{cr-dce}から保護する。  &  all \\
 	@:include &     &  cpp \\
 	@:initPackage  &    &  all \\
 	@:internal  &  クラスやフィールドに\expr{internal}アクセスの修飾をする。  &  cs  java \\
 	@:isVar  &  物理的フィールドが不要なプロパティに対して、物理的フィールドを強制する。  &  all \\
 	@:javaCanonical \_(Output type package,Output type name)\_ &  Javaターゲットで型の正規パスを指定するのに使われる。  &  java \\
 	@:jsRequire  &  その\expr{extern}に必要なJavaScriptモジュールを出力する。  &  js \\
-	@:keep   &  \tref{DCE}{cr-dce}から、フィールドや型を保護する。  &  all \\
-	@:keepInit  &  クラスからすべてのフィールドが削除された場合でも、\tref{DCE}{cr-dce}から保護する。  &  all \\
+	@:keep   &  \tref{デッドコード削除}{cr-dce}から、フィールドや型を保護する。  &  all \\
+	@:keepInit  &  クラスからすべてのフィールドが削除された場合でも、\tref{デッドコード削除}{cr-dce}から保護する。  &  all \\
 	@:keepSub &  すべての実装クラス、子孫クラスに\expr{@:keep}メタデータを継承する。  &  all \\
 	@:macro  &  \_(deprecated)\_  &  all \\
 	@:mergeBlock  &  修飾したブロックを現在のスコープにマージする。 &  all \\
@@ -129,31 +129,31 @@ Haxe 3.0以降では、\expr{haxe --help-metas}を実行することで定義済
 \section{デッドコード削除}
 \label{cr-dce}
 
-デッドコード削除(Dead Code Elimination、\emph{DCE})は、未使用のコードを出力から取り除くコンパイラ機能です。型付けの後に、DCEの始点（多くの場合はmainメソッド）から再帰的にたどっていきどのフィールドと型が使用されているかを決定します。これにより使用済みのフィールドはマークされ、マークされていないフィールドはクラスから取り除かれます。
+デッドコード削除(Dead Code Elimination、\emph{DCE})は、未使用のコードを出力から取り除くコンパイラ機能です。型付けの後に、デッドコード削除の始点（多くの場合はmainメソッド）から再帰的にたどっていき、どのフィールドと型が使用されているかを決定します。これにより使用済みのフィールドはマークされ、マークされていないフィールドはクラスから取り除かれます。
 
-DCEには3つのモードがあり、コマンドラインからの呼び出し時に指定します。
+デッドコード削除には3つのモードがあり、コマンドラインからの呼び出し時に指定します。
 
 \begin{description}
-	\item[-dce std:] Haxeの標準ライブラリのクラスのみがDCEの影響を受けます。これがすべてのターゲットでのデフォルト値です。
-	\item[-dce no:] DCEされません。
-	\item[-dce full:] すべてのクラスがDCEの影響を受けます。
+	\item[-dce std:] Haxeの標準ライブラリのクラスのみがデッドコード削除の影響を受けます。これがすべてのターゲットでのデフォルト値です。
+	\item[-dce no:] デッドコード削除されません。
+	\item[-dce full:] すべてのクラスがデッドコード削除の影響を受けます。
 \end{description}
-DCEのアルゴリズムは型付けされたコードではうまく働きますが、\tref{Dynamic}{types-dynamic}や\tref{リフレクション}{std-reflection}を使っていると失敗する場合があります。そういった場合は、以下のメタデータを使ったクラスやフィールドの明示的な修飾が必要かもしれません。
+デッドコード削除のアルゴリズムは型付けされたコードではうまく働きますが、\tref{Dynamic}{types-dynamic}や\tref{リフレクション}{std-reflection}を使っていると失敗する場合があります。そのような場合は、以下のメタデータを使ったクラスやフィールドの明示的な修飾が有効かもしれません。
 
 \begin{description}
-	\item[\expr{@:keep}:] クラスに使用するとすべてのフィールドがDCEの対象から除外されます。フィールドに使用するとそのフィールドがDCEの対象になりません。
+	\item[\expr{@:keep}:] クラスに使用するとすべてのフィールドがデッドコード削除の対象から除外されます。フィールドに使用するとそのフィールドがデッドコード削除の対象になりません。
 	\item[\expr{@:keepSub}:] クラスに使用すると、その子孫クラスすべてを\expr{@:keep}で修飾したのと同様の動作をします。
-	\item[\expr{@:keepInit}:] 通常、クラスはすべてのフィールドがDCEによって削除されると（あるいは最初から空だと）出力から削除されます。このメタデータを使うと、空のクラスが保持されます。
+	\item[\expr{@:keepInit}:] 通常、クラスはすべてのフィールドがデッドコード削除によって削除されると（あるいは最初から空だと）出力から削除されます。このメタデータを使うと、空のクラスが保護されます。
 \end{description}
 
-ソースコードを編集するのではなくコマンドラインからクラスを\expr{@:keep}としてマークしたい場合、コンパイラマクロの\expr{--macro keep('type dot path')}を使うことでそれが可能です。このマクロについて詳しくは\href{http://api.haxe.org/haxe/macro/Compiler.html#keep}{haxe.macro.Compiler.keep API}をご覧ください。パッケージをマークするとそのモジュールやサブタイプがDCEから保護されて、コンパイルに含まれます。
+ソースコードを編集するのではなくコマンドラインからクラスを\expr{@:keep}としてマークしたい場合、コンパイラマクロの\expr{--macro keep('type dot path')}を使うことでそれが可能です。このマクロについて詳しくは\href{http://api.haxe.org/haxe/macro/Compiler.html#keep}{haxe.macro.Compiler.keep API}をご覧ください。パッケージをマークするとそのモジュールやサブタイプがデッドコード削除から保護されて、コンパイルに含まれます。
 
 コンパイラは現在のモードに応じて、自動的に\expr{dce}フラグの値を\expr{"std"}、\expr{"no"}、\expr{"full"}のいずれかに設定します。このフラグは\tref{条件付きコンパイル}{lf-condition-compilation}で使用できます。
 
-\trivia{DCEの書き直し}{
-DCEは元々Haxe 2.07で実装されましたが、その実装では関数は明示的に型付けされているときに使用しているという判定がされていました。このせいでいくつか機能で問題がありました。とくにインタフェースで深刻で、型安全性を確かめるためにはすべてのクラスフィールドを型付けする必要がありました。このせいでDCEは完全に破たんし、Haxe 2.10での書き直しにつながりました。}
+\trivia{デッドコード削除の書き直し}{
+デッドコード削除は元々Haxe 2.07で実装されましたが、その実装では関数が明示的に型付けされると使用されているという判定がされていました。このせいでいくつか機能で問題がありました。型安全性を確かめるためにすべてのクラスフィールドを型付けする必要があるインタフェースでとくに深刻でした。このせいでデッドコード削除は完全に破たんし、Haxe 2.10での書き直しにつながりました。}
 
-\trivia{DCEとtry.haxe.org}{\url{http://try.haxe.org}のサイトが公開されたとき、\type{JavaScript}ターゲットのDCEは大きく改善されました。\target{JavaScript}の出力コードに対する反応はさまざまでしたが、これにより削除されるコードの選択がより細かく行われるようになりました。}
+\trivia{デッドコード削除とtry.haxe.org}{\url{http://try.haxe.org}のサイトが公開されたとき、\type{JavaScript}ターゲットのデッドコード削除は大きく改善されました。\target{JavaScript}の出力コードに対する反応はさまざまでしたが、これにより削除されるコードの選択がより細かく行われるようになりました。}
 
 
 \section{コンパイラサービス}
@@ -163,13 +163,13 @@ DCEは元々Haxe 2.07で実装されましたが、その実装では関数は�
 \subsection{概要}
 \label{cr-completion-overview}
 
-Haxeの豊富な\tref{型システム}{type-system}は、IDEやエディタが正確な補完情報を提供することを難しくしています。\tref{型推論}{type-system-type-inference}と\tref{マクロ}{macro}については、必要な挙動を再現するのに相当な量の仕事が必要です。これがHaxeのコンパイラが、サードパーティーのソフトウェアが使うためのビルトインの補完モードを備えている理由です。
+Haxeの豊富な\tref{型システム}{type-system}は、IDEやエディタが正確な補完情報を提供することを難しくしています。\tref{型推論}{type-system-type-inference}や\tref{マクロ}{macro}のせいで、必要な挙動を再現するのに相当な量の作業が必要です。これがHaxeのコンパイラが、サードパーティーのソフトウェアが使うためのビルトインの補完モードを備えている理由です。
 
-すべての補完は\ic{--display file@position[@mode]}のコンパイラ引数を使うことで開始されます。この引数は以下を必要とします。
+すべての補完は\ic{--display file@position[@mode]}のコンパイラ引数を使うことで開始されます。この引数は以下を要求します。
 
 \begin{description}
 	\item[file:] 補完のためチェックを行うファイルです。これは.hxファイルの絶対パスまたは相対パスです。クラスパスやライブラリではありません。
-	\item[position:] 補完のためのチェックを行う与えられたファイルのバイト位置です（文字位置ではありません）。
+	\item[position:] 補完のためのチェックを行う、与えられたファイルのバイト位置です（文字数での位置ではありません）。
 	\item[mode:] 使用する補完モードです（後述）。
 \end{description}
 
@@ -178,28 +178,28 @@ Haxeの豊富な\tref{型システム}{type-system}は、IDEやエディタが�
 \begin{description}
 	\item[\tref{フィールドアクセス}{cr-completion-field-access}:] その型のアクセス可能なフィールドのリストを提供します。
 	\item[\tref{関数の引数}{cr-completion-call-argument}:] 呼び出そうとしている関数の型を取得します。
-	\item[\tref{型のパス}{cr-completion-type-path}:] 子パッケージ、サブタイプ、静的フィールドをリストアップします。
+	\item[\tref{型のパス}{cr-completion-type-path}:] 子パッケージとサブタイプ、静的フィールドをリストアップします。
 	\item[\tref{使用状況}{cr-completion-usage}:] コンパイルされるファイルのすべて中から指定された型またはフィールド、変数の出現位置をリストアップします。（\ic{"usage"}モード）
 	\item[\tref{定義位置}{cr-completion-position}:] 指定された型またはフィールド、変数の定義位置を取得します。（\ic{"position"}モード）
-	\item[\tref{トップレベル}{cr-completion-top-level}:] 指定した位置で使用可能なすべての識別子（mode: \ic{"toplevel"}）
+	\item[\tref{トップレベル}{cr-completion-top-level}:] 指定した位置で使用可能なすべての識別子をリストアップします。（\ic{"toplevel"}モード）
 \end{description}
 
-Haxeのコンパイラは非常に速いので、多くの場合は通常のコンパイラの呼び出しを使っても問題がありません。しかし、より大きなHaxeプロジェクトのために\tref{サーバーモード}{cr-completion-server}を用意してあります。これにより、ファイルに実際に変更があった場合や依存関係の更新がされたときだけ再コンパイルがされます。
+Haxeのコンパイラは非常に速いので多くの場合では通常のコンパイラの呼び出しを使っても問題がありませんが、より大きなHaxeプロジェクトのために\tref{サーバーモード}{cr-completion-server}を用意してあります。これにより、ファイルに実際に変更があった場合や依存関係の更新がされたときだけ再コンパイルがされます。
 
 \paragraph{インターフェースについての注意事項}
 \label{cr-completion-interface-notes}
 
 \begin{itemize}
 	\item ファイルの目的の位置にパイプライン\ic{|}の文字を置くことで、\ic{position}引数を0に設定することができます。これは、バイト数のカウント無しでIDEが何をすべきなのかをテストしたり実演したりするのに、便利です。この章のサンプルはこの機能を使っていきます。この機能は\ic{|}が不正な構文になる位置に置かれている場合のみ動作します。例えば、ドットの直後（\ic{.|}）や小かっこの直後（\ic{(|}）です。
-	\item 出力はHTMLエスケープされます。つまり、\ic{\&}、\ic{<}、\ic{>}はそれぞれ\ic{\&amp;}、\ic{\&lt;}、\ic{\&gt;}に変換されます。
+	\item 出力はHTMLエスケープされます。つまり\ic{\&}、\ic{<}、\ic{>}はそれぞれ\ic{\&amp;}、\ic{\&lt;}、\ic{\&gt;}に変換されます。
 	\item ドキュメントの出力は、ソースコード内のものと同じように改行とタブ文字を含みます。
-	\item 補完モードの実行ではコンパイラはエラーを表示せずににエラーからの復帰を試みます。補完中に致命的なエラーが発生した場合、Haxeのコンパイラは補完結果の代わりにエラーメッセージを出力します。XMLではあらゆる出力は致命的なエラーメッセージであると判断できます。
+	\item 補完モードの実行ではコンパイラはなるべくエラーを出力せずにエラーからの復帰を試みます。補完中に致命的なエラーが発生した場合、Haxeのコンパイラは補完結果の代わりにエラーメッセージを出力します。XMLでは無いあらゆる出力は致命的なエラーメッセージであると判断できます。
 \end{itemize}
 
 \subsection{フィールドアクセス補完}
 \label{cr-completion-field-access}
 
-フィールドの補完はドット\ic{.}文字の後から開始されて、その型で利用可能なフィールドをリストアップします。コンパイラは補完の位置までのすべての構文解析と型付けを行い、関連する情報を標準エラー出力に出力します。
+フィールドの補完はドット（\ic{.}）文字の後から開始されて、その型で利用可能なフィールドをリストアップします。コンパイラは補完の位置までのすべての構文解析と型付けを行い、関連する情報を標準エラー出力に出力します。
 
 \begin{lstlisting}
 class Main {
@@ -209,7 +209,7 @@ class Main {
 }
 \end{lstlisting}
 
-このファイルをMain.hxとして保存すると、補完は\ic{haxe --display Main.hx@0}のコマンドを使って呼び出せます。その出力は以下のようなものでしょう（いくつかの情報を可読性のために削ったりフォーマットをかけたりしています）。
+このファイルをMain.hxとして保存すると、補完を\ic{haxe --display Main.hx@0}のコマンドで呼び出せます。その出力は以下のようなものでしょう（いくつかの情報を可読性のために削ったりフォーマットをかけたりしています）。
 
 \begin{lstlisting}
 <list>
@@ -243,7 +243,7 @@ class Main {
 このXMLの構造は以下の通りです。
 
 \begin{itemize}
-	\item ドキュメントの\ic{list}ノードがいくつかの\ic{i}ノードを含み、このそれぞれが1つのフィールドを表現しています。
+	\item ドキュメント直下の\ic{list}ノードはいくつかの\ic{i}ノードを持ち、そのそれぞれが1つフィールドを表現しています。
 	\item \ic{n}属性はフィールドの名前です。
 	\item \ic{t}ノードはフィールドの型です。
 	\item \ic{d}ノードはフィールドのドキュメントです。
@@ -256,7 +256,7 @@ class Main {
 \subsection{呼び出し引数の補完}
 \label{cr-completion-call-argument}
 
-呼び出し引数の補完は小かっこ\ic{(}の後から開始されて、呼び出しをしようとしている関数の型を返します。これはコンストラクタの呼び出しを含むすべての関数呼び出しで使用可能です。
+呼び出し引数の補完は小かっこ（\ic{(}）の後から開始されて、呼び出しをしようとしている関数の型を返します。これはコンストラクタの呼び出しを含むすべての関数呼び出しで使用できます。
 
 \begin{lstlisting}
 class Main {
@@ -266,7 +266,7 @@ class Main {
 }
 \end{lstlisting}
 
-このファイルをMain.hxとして保存すると、補完は\ic{haxe --display Main.hx@0}のコマンドを使って呼び出せます。その出力は以下のようなものになります。
+このファイルをMain.hxとして保存すると、補完を\ic{haxe --display Main.hx@0}のコマンドで呼び出せます。その出力は以下のようなになります。
 
 \begin{lstlisting}
 <type>
@@ -274,9 +274,9 @@ delimiter : String -&gt; Array&lt;String&gt;
 </type>
 \end{lstlisting}
 
-IDEはここから、呼び出す関数が\ic{delimiter}という\type{String}型の引数が1つあって\type{Array<String>}を返すということを読み取れます。
+IDEはここから、呼び出す関数に\ic{delimiter}という\type{String}型の引数が1つあって\type{Array<String>}を返すということを、読み取れます。
 
-\trivia{出力構造の問題}{私たちは現在のフォーマットはほんの少しのうっとおしい自前の構文解析が必要になることを認めます。特に関数については、将来的にはより構造化された出力を提供するようになるかもしれません。}
+\trivia{出力構造の問題}{私たちは現在のフォーマットはほんの少しのわずらわしい自前の構文解析が必要になることを認めます。特に関数については、将来的にはより構造化された出力を提供するようになるかもしれません。}
 
 \subsection{型のパスの補完}
 \label{cr-completion-type-path}
@@ -406,7 +406,7 @@ class Main {
 \label{cr-completion-usage}
 \since{3.2.0}
 
-使用状況の補完は\ic{"usage"}モードの引数を使うことで使用可能です（詳しくは\Fullref{cr-completion-overview}）。ローカル変数を使って実演してみますが、フィールドと型についても同じように動作することに気をつけてください。
+使用状況の補完は\ic{"usage"}モードの引数を使うことで使用できます（詳しくは\Fullref{cr-completion-overview}）。ローカル変数を使って実演しますが、フィールドと型についても同じように動作することも覚えておきましょう。
 
 \begin{lstlisting}
 class Main {
@@ -419,7 +419,7 @@ class Main {
 }
 \end{lstlisting}
 
-このファイルをMain.hxとして保存すると、補完は\ic{haxe --display Main.hx@0@usage}のコマンドを使って呼び出せます。この出力は以下のようなものになります。
+このファイルをMain.hxとして保存すると、補完を\ic{haxe --display Main.hx@0@usage}のコマンドで呼び出せます。この出力は以下のようになります。
 
 \begin{lstlisting}
 <list>
@@ -434,7 +434,7 @@ class Main {
 \label{cr-completion-position}
 \since{3.2.0}
 
-定義位置の補完は\ic{"position"}モードの引数を使うことで使用可能です（詳しくは\Fullref{cr-completion-overview}）。フィールドを使って実演しますが、ローカル変数と型でも同じように動作することに気をつけてください。
+定義位置の補完は\ic{"position"}モードの引数を使うことで使用できます（詳しくは\Fullref{cr-completion-overview}）。フィールドを使って実演しますが、ローカル変数と型でも同じように動作することも覚えておきましょう。
 
 \begin{lstlisting}
 class Main {
@@ -443,7 +443,7 @@ class Main {
 }
 \end{lstlisting}
 
-このファイルをMain.hxとして保存すると、補完は\ic{haxe --display Main.hx@0@position}のコマンドを使って呼び出せます。この出力は以下のようなものになります。
+このファイルをMain.hxとして保存すると、補完を\ic{haxe --display Main.hx@0@position}のコマンドで呼び出せます。この出力は以下のようになります。
 
 \begin{lstlisting}
 <list>
@@ -451,13 +451,13 @@ class Main {
 </list>
 \end{lstlisting}
 
-\trivia{ターゲットの特定の省略による影響}{このサンプルでは標準のString.hxが取得されましたが、実際の実装はありません。これはどのターゲットとも特定しなかったためであり、補完モードではそれでも構いません。例えば\ic{-neko neko.n}のコマンドラインが含められた場合、結果として取得される位置は代わりに\ic{std/neko/_std/string.hx:84: lines 84-98.}となるでしょう。}
+\trivia{ターゲットの特定の省略による影響}{このサンプルでは\expr{std}のString.hxが取得されましたが、ここに実際の実装はありません。これはどのターゲットとも特定しなかったためであり、補完モードではそれでも構いません。例えば\ic{-neko neko.n}のコマンドラインが含められた場合、結果として取得される位置は代わりに\ic{std/neko/_std/string.hx:84: lines 84-98.}となるでしょう。}
 
 \subsection{トップレベルの補完}
 \label{cr-completion-top-level}
 \since{3.2.0}
 
-トップレベルの補完は、与えられた補完位置での使用可能なHaxeコンパイラが知るかぎりのすべての識別子を表示します。この補完機能だけはその効果を実演するために、実際の位置を引数であたえてやる必要があります。
+トップレベルの補完は、与えられた補完位置での使用可能な識別子をHaxeコンパイラが知るかぎりのすべて表示します。この補完機能だけは実演するのに、実際の位置を引数であたえる必要があります。
 
 \begin{lstlisting}
 class Main {
@@ -472,7 +472,7 @@ enum MyEnum {
 }
 \end{lstlisting}
 
-このファイルをMain.hxとして保存すると、補完は\ic{haxe --display Main.hx@63@toplevel}のコマンドを使って呼び出せます。その出力は以下のようなものになります（簡潔さのためにいくつかの要素を削っています）。
+このファイルをMain.hxとして保存すると、補完を\ic{haxe --display Main.hx@63@toplevel}のコマンドで呼び出せます。その出力は以下のようになります（簡潔さのためにいくつかの要素を削っています）。
 
 \begin{lstlisting}
 <il>
@@ -505,7 +505,7 @@ XMLの構造は各要素の\ic{k}属性によります。すべての場合で\i
 haxe -v --wait 6000
 \end{lstlisting}
 
-こうすることで、Haxeサーバーに接続して、コマンドラインパラメータを送って、NULL文字を送ると、レスポンスの読み取りができます（補完が成功の場合も失敗の場合も）。
+こうすると、Haxeサーバーに接続して、コマンドラインパラメータを送って、最後にNULL文字を送ることで、レスポンスの読み取りができます（補完が成功の場合も失敗の場合も）。
 
 \ic{--connect}のコマンドラインのパラメータを使うことで、Haxeはコンパイルコマンドを直接実行するのではなくサーバーに送るようになります。
 
@@ -522,7 +522,7 @@ haxe --connect 6000 myproject.hxml
 \begin{description}
 	\item[構文解析したファイル] ファイルは編集があせれたときが解析エラーになったときのみ再度構文解析が行われます。
 	\item[Haxelibの呼び出し] 前回のHaxelibの呼び出し結果は再度利用されます（補完時のみです。コンパイルには関係ありません）
-	\item[型付けされたモジュール] モジュールのコンパイルはコンパイル成功した場合にキャッシュされて、その依存関係が更新されるまで補完とコンパイルに再利用されます。
+	\item[型付けされたモジュール] モジュールのコンパイル結果はコンパイル成功した場合にキャッシュされて、その依存関係が更新されるまで補完とコンパイルに再利用されます。
 \end{description}
 
 コマンドラインで\ic{--times}を追加することで、コンパイラが使用した正確な時間を取得して、コンパイルサーバーがどのような影響を与えたかを知ることができます。
@@ -530,28 +530,28 @@ haxe --connect 6000 myproject.hxml
 \paragraph{プロトコル}
 次のHaxe/Nekoの例からわかるとおり、サーバーのポートに単純につないで、1行づつコマンドを送って、NULL文字で終了します。その後に結果を読み取ります。
 
-マクロやその他のコマンドはエラー以外のログを出力することができます。コマンドラインからの実行の場合は、標準出力と標準エラー出力にプリントされるものの違いがありますが、ソケットモードの場合は違います。この2つを区別するために、ログメッセージ（エラーではない）は\ic{\\x01}の文字から始まり、そのメッセージのすべての改行文字は\ic{\\x01}で置き換えられます。
+マクロやその他のコマンドはエラー以外のログを出力することができます。コマンドラインからの実行の場合は、標準出力と標準エラー出力にプリントされるものの違いがありますが、ソケットモードの場合は違います。この2つを区別するために、ログメッセージ（エラーではない）は\ic{x01}の文字から始まり、そのメッセージのすべての改行文字は\ic{x01}で置き換えられます。
 
-警告やそのほかのメッセージはエラーと考えられますが、致命的なものではありません。致命的なエラーが起こると、\ic{\\x02}から始まる1行のメッセージが送られます。
+警告やそのほかのメッセージはエラーと考えられますが、致命的なものではありません。致命的なエラーが起こると、\ic{x02}から始まる1行のメッセージが送られます。
 
 以下にサーバーへ接続して、このプロトコルに従った処理を行うコードがあります。
 
 \begin{lstlisting}
 class Test {
     static function main() {
-		var newline = "\textbackslash\ n";
+		var newline = "\n";
         var s = new neko.net.Socket();
         s.connect(new neko.net.Host("127.0.0.1"),6000);
         s.write("--cwd /my/project" + newline);
         s.write("myproject.hxml" + newline);
-        s.write("\textbackslash\ 000");
+        s.write("\x00");
 		
         var hasError = false;
         for (line in s.read().split(newline))
 		{
             switch (line.charCodeAt(0)) {
 				case 0x01: 
-					neko.Lib.print(line.substr(1).split("\textbackslash\ x01").join(newline));
+					neko.Lib.print(line.substr(1).split("\x01").join(newline));
 				case 0x02: 
 					hasError = true;
 				default: 
@@ -640,7 +640,7 @@ Haxeコンパイラは\expr{:rtti}メタデータで修飾されたクラス、�
 	\item[path:] \tref{型のパス}{define-type-path}。
 	\item[module:] その型を含んでいる\tref{モジュール}{define-module}のパス。
 	\item[file:] その型を含む.hxのファイルのフルパス。例えば\tref{マクロ}{macro}から定義された場合など、そのようなファイルがない場合\expr{null}になる場合がある。
-	\item[params:] その型が持つ\tref{型パラメータ}{type-system-type-parameters}を表す文字列の配列。Haxe3.2.0では、\tref{制約}{type-system-type-parameter-constraints}についての情報を持ちません。
+	\item[params:] その型が持つ\tref{型パラメータ}{type-system-type-parameters}を表す文字列の配列。Haxe 3.2.0では、\tref{制約}{type-system-type-parameter-constraints}についての情報を持ちません。
 	\item[doc:] その型のドキュメント。この情報は\expr{-D use_rtti_doc}の\tref{コンパイラフラグ}{define-compiler-flag}を付けた場合のみ使用できます。フラグがないか、ドキュメントがない場合は\expr{null}です。
 	\item[isPrivate:] その型が\tref{private}{define-private-type}かどうか。
 	\item[platforms:] その型が利用可能なターゲットのリスト。
@@ -671,7 +671,7 @@ Haxeコンパイラは\expr{:rtti}メタデータで修飾されたクラス、�
 
 \begin{description}
 	\item[to:] 定義されている\tref{暗黙のtoキャスト}{types-abstract-implicit-casts}の配列。
-	\item[from:] 定義されている\tref{暗黙のtoキャスト}{types-abstract-implicit-casts}の配列。
+	\item[from:] 定義されている\tref{暗黙のfromキャスト}{types-abstract-implicit-casts}の配列。
 	\item[impl:] 実装しているクラスの\tref{クラスの型情報}{cr-rtti-class-type-information}。
 	\item[athis:] その抽象型の\tref{基底型}{define-underlying-type}。
 \end{description}
@@ -688,10 +688,10 @@ Haxeコンパイラは\expr{:rtti}メタデータで修飾されたクラス、�
 	\item[doc:] フィールドのドキュメント。この情報は\expr{-D use_rtti_doc}の\tref{コンパイラフラグ}{define-compiler-flag}を付けた場合のみ使用できます。フラグがないか、ドキュメントがない場合は\expr{null}です。
 	\item[get:] フィールドの\tref{読み込みアクセスの挙動}{define-read-access}。
 	\item[set:] フィールドの\tref{書き込みアクセスの挙動}{define-write-access}。
-	\item[params:] そのフィールドが持つ\tref{型パラメータ}{type-system-type-parameters}を表す文字列の配列。Haxe3.2.0では、\tref{制約}{type-system-type-parameter-constraints}についての情報を持ちません。
+	\item[params:] そのフィールドが持つ\tref{型パラメータ}{type-system-type-parameters}を表す文字列の配列。Haxe 3.2.0では、\tref{制約}{type-system-type-parameter-constraints}についての情報を持ちません。
 	\item[platforms:] フィールドが使用可能なターゲットのリスト。
 	\item[meta:] フィールドに付けられているメタデータ。
-	\item[line:] フィールドが定義されている行番号。この情報はフィールドが式を持つ場合のみ使用可能です。その他の場合は\expr{null}です
+	\item[line:] フィールドが定義されている行番号。この情報はフィールドが式を持つ場合のみ使用できます。その他の場合は\expr{null}です
 	\item[overloads:] このフィールドに対する利用可能なオーバーロードのリスト。存在しなければ\expr{null}です。
 \end{description}
 
