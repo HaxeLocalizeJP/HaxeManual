@@ -1,119 +1,116 @@
-\chapter{Macros}
+\chapter{マクロ}
 \label{macro}
 
-Macros are without a doubt the most advanced feature in Haxe. They are often perceived as dark magic that only a select few are capable of mastering, yet there is nothing magical (and certainly nothing dark) about them.
+マクロは疑いようもなくHaxeの最も高度な機能です。マクロは少数の精鋭にとってのみこれをマスターする価値があるので黒魔術と呼ばれることがありますが、実際には魔法のようなものは何もありません（もちろん闇も）。
 
-\define{Abstract Syntax Tree (AST)}{define-ast}{The AST is the result of \emph{parsing} Haxe code into a typed structure. This structure is exposed to macros through the types defined in the file \expr{haxe/macro/Expr.hx} of the Haxe Standard Library.}
+\define{抽象構文木（AST：Abstract Syntax Tree）}{define-ast}{抽象構文木はHaxeのコードを構文解析して型付けされた構造へと変換した結果です。この構造はHaxe標準ライブラリの\expr{haxe/macro/Expr.hx}ファイルで定義されている型をつかってマクロから利用可能です。}
 
 \input{assets/tikz/macro-compilation-role.tex}
 
-A basic macro is a \emph{syntax-transformation}. It receives zero or more \tref{expressions}{expression} and also returns an expression. If a macro is called, it effectively inserts code at the place it was called from. In that respect, it could be compared to a preprocessor like \expr{\#define} in C++, but a Haxe macro is not a textual replacement tool.
+基本的なマクロの1つは\emph{構文変形}です。これは0個以上の式を受け取り、1つの式を返します。マクロが呼び出されると、その結果としてマクロを呼び出した位置にコードが挿入されます。この点はプリプロセッサに似ていますが、Haxeのマクロはテキストの置換ツールではありません。
 
-We can identify different kinds of macros, which are run at specific compilation stages:
+マクロには種類があり、それぞれ異なるコンパイルの段階で動作します。
 
 \begin{description}
-	\item[Initialization Macros:] These are provided by command line using the \ic{--macro} compiler parameter. They are executed after the compiler arguments were processed and the \emph{typer context} has been created, but before any typing was done (see \Fullref{macro-initialization}).
-	\item[Build Macros:] These are defined for classes, enums and abstracts through the \expr{@:build} or \expr{@:autoBuild} \tref{metadata}{lf-metadata}. They are executed per-type, after the type has been set up (including its relation to other types, such as inheritance for classes) but before its fields are typed (see \Fullref{macro-type-building}).
-	\item[Expression Macros:] These are normal functions which are executed as soon as they are typed.
+	\item[初期化マクロ:] コマンドラインから\ic{--macro}コンパイラパラメータを使うことで使用します。コンパイラ引数が処理されて、\emph{型付けコンテクスト}が作成されたあとに実行されます。ただし、これはどの型付けが実行されるよりも前です（詳しくは\Fullref{macro-initialization}）。
+	\item[ビルドマクロ:] クラス、列挙型、抽象型を\expr{@:build}または\expr{@:autoBuild}\tref{メタデータ}{lf-metadata}を使って定義します。その型の生成（クラスの継承関係などの他の型との依存関係の解決も含めて）後に型ごとに実行されます。ただし、これはフィールドが型付けされるよりは前です（詳しくは\Fullref{macro-type-building}）。
+	\item[式マクロ:] 型付けされると同時に実行される普通の関数です。
 \end{description}
-	
-\section{Macro Context}
+
+\section{マクロコンテクスト}
 \label{macro-context}
 
-\define{Macro Context}{define-macro-context}{The macro context is the environment in which the macro is executed. Depending on the macro type, it can be considered to be a class being built or a function being typed. Contextual information can be obtained through the \ic{haxe.macro.Context} API.}
+\define{マクロコンテクスト}{define-macro-context}{マクロコンテクストとはマクロが実行される環境です。マクロの種別によって、クラスのビルドや、関数の型付けなどを行います。コンテクストについての情報は\ic{haxe.macro.Context} APIを通して入手できます。}
 
-Haxe macros have access to different contextual information depending on the macro type. Other than querying such information, the context also allows some modifications such as defining a new type or registering certain callbacks. It is important to understand that not all information is available for all macro kinds, as the following examples demonstrate:
+Haxeマクロはマクロの種類に応じて異なる、コンテクストの情報にアクセスできます。\type{Context}のAPIでは情報の問い合わせをするだけでなく、新しい型を定義したり、特定のコールバックを登録したりといった編集も行えます。以下で説明している通り、すべてのマクロの種類ですべての情報が利用可能なわけではないことに注意してください。
 
 \begin{itemize}
-	\item Initialization macros will find that the \expr{Context.getLocal*()} methods return \expr{null}. There is no local type or method in the context of an initialization macro.
-	\item Only build macros get a proper return value from \expr{Context.getBuildFields()}. There are no fields being built for the other macro kinds.
-	\item Build macros have a local type (if incomplete), but no local method, so \expr{Context.getLocalMethod()} returns \expr{null}.
+	\item 初期化マクロでは\expr{Context.getLocal*()}メソッドは\expr{null}を返します。初期化マクロのコンテクストでは、ローカルの型やメソッドはありません。
+	\item ビルドマクロのみで\expr{Context.getBuildFields()}からしかるべき値が返ってきます。その他のマクロでは、ビルドされるフィールドはありません。
+	\item ビルドマクロでは、ローカルの型があります（ただし、不完全）が、ローカルのメソッドはありません。\expr{Context.getLocalMethod()}は、\expr{null}を返します。
 \end{itemize}
 
-The context API is complemented by the \expr{haxe.macro.Compiler} API detailed in \Fullref{macro-initialization}. While this API is available to all macro kinds, care has to be taken for any modification outside of initialization macros. This stems from the natural limitation of undefined \tref{build order}{macro-limitations-build-order}, which could cause e.g. a flag definition through \expr{Compiler.define()} to take effect before or after a \tref{conditional compilation}{lf-condition-compilation} check against that flag.
+\type{Context}のAPIは、\expr{haxe.macro.Compiler}のAPIと合わせて完全なものになります。\expr{haxe.macro.Compiler}について、詳しくは\Fullref{macro-initialization}を参照してください。こちらのAPIはすべての種類のマクロで使用可能で、初期化マクロ以外からでもあらゆる編集が可能であることに注意しなくてはいけません。定義されていない\tref{ビルド順序}{macro-limitations-build-order}の自然な制限に逆らいます。つまり、例えば\expr{Compiler.define()}でのフラグの定義は、そのフラグに対する\tref{条件付きコンパイル}{lf-condition-compilation}のチェックの後でも先でも影響を与えます。
 
-\section{Arguments}
+\section{引数}
 \label{macro-arguments}
 
-Most of the time, arguments to macros are expressions represented as an instance of enum \type{Expr}. As such, they are parsed but not typed, meaning they can be anything conforming to Haxe's syntax rules. The macro can then inspect their structure, or (try to) get their type using \expr{haxe.macro.Context.typeof()}.
+ほとんどの場合、マクロへの引数は式を\type{Expr}列挙型インスタンスとして表現したものです。これらは構文解析されていますが、型付けはされていません。つまり、Haxeの構文ルールに従うものであればどのようなものもあり得ます。マクロではその構造を解析したり、\expr{haxe.macro.Context.typeof()}を使ってその構造を調べたりできます。
 
-It is important to understand that arguments to macros are not guaranteed to be evaluated, so any intended side-effect is not guaranteed to occur. On the other hand, it is also important to understand that an argument expression may be duplicated by a macro and used multiple times in the returned expression:
+マクロへの引数は評価できるとは限らないため、意図する副作用が起きる保証がないことに気を付けてください。また、引数の式はマクロで複製されて戻り値の式で複数使うことができるというのも重要です。
 
 \haxe{assets/MacroArguments.hx}
 
-The macro \expr{add} is called with \expr{x++} as argument and thus returns \expr{x++ + x++} using \tref{expression reification}{macro-reification-expression}, causing \expr{x} to be incremented twice.
+\expr{add}マクロは、\expr{x++}を引数としてよびだされており、\tref{式の実体化}{macro-reification-expression}を使って\expr{x++ + x++}を返しており、このため2度インクリメントがされています。
 
 \subsection{ExprOf}
 \label{macro-ExprOf}
 
-Since \type{Expr} is compatible with any possible input, Haxe provides the type \type{haxe.macro.ExprOf<T>}. For the most part, this type is identical to \type{Expr}, but it allows constraining the type of accepted expressions. This is useful when combining macros with \tref{static extensions}{lf-static-extension}:
+\type{Expr}はあらゆる入力と一致するため、Haxeでは\type{haxe.macro.ExprOf<T>}型を提供しています。ほとんどの面では\type{Expr}と同じですが、受け入れる式の型を強制することができます。これは\tref{静的拡張}{lf-static-extension}と合わせてマクロを使うときに便利です。
 
 \haxe{assets/ExprOf.hx}
 
-The two direct calls to \expr{identity} are accepted, even though the argument is declared as \expr{ExprOf<String>}. It might come as a surprise that the \type{Int} \expr{1} is accepted, but it is a logical consequence of what was explained about \tref{macro arguments}{macro-arguments}: The argument expressions are never typed, so it is not possible for the compiler to check their compatibility by \tref{unifying}{type-system-unification}.
+上2種類の\expr{identity}の呼び出しは両方とも問題ありません。たとえ引数が\expr{ExprOf<String>}で宣言されていてもです。\type{Int}型の\expr{1}が許容されることに驚くかもしれませんが、\tref{マクロの引数}{macro-arguments}での説明からの論理的な必然性があります。つまり引数の式は型付けされないので、コンパイラは\tref{単一化}{type-system-unification}の一致チェックができないというわけです。
 
-This is different for the next two lines which are using static extensions (note the \expr{using Main}): For these it is mandatory to type the left side (\expr{"foo"} and \expr{1}) first in order to make sense of the \expr{identity} field access. This makes it possible to check the types against the argument types, which causes \expr{1.identity()} to not consider \expr{Main.identity()} as a suitable field.
+次の2つの行の呼び出しは、静的拡張を使っている点で状況が異なります（\expr{using Main}に注目してください）。静的拡張では左側（\expr{"foo"}や\expr{1}）の型によって、\expr{identity}のフィールドアクセスが意味を持ちます。これにより引数の型に対しての型チェックが可能になり、\expr{1.identity()}が\expr{Main.identity()}のフィールドが合わないという結果になっています。
 
-\subsection{Constant Expressions}
+\subsection{定数の式}
 \label{macro-constant-arguments}
 
-A macro can be declared to expect \tref{constant}{expression-constants} arguments:
+マクロは\tref{定数}{expression-constants}の引数を要求するように宣言することができます。
 
 \haxe{assets/MacroArgumentsConst.hx}
 
-With these it is not necessary to detour over expressions as the compiler can use the provided constants directly.
+これによりわざわざ式を経由するなく、コンパイラはその定数を直接使うことができます。
 
-\subsection{Rest Argument}
+\subsection{残りの引数}
 \label{macro-rest-argument}
 
-If the final argument of a macro is of type \type{Array<Expr>}, the macro accepts an arbitrary number of extra arguments which are available from that array:
+マクロの引数の最後が\type{Array<Expr>}型だった場合、任意の個数の追加の引数を渡して、それを配列として利用できます。
 
 \haxe{assets/MacroArgumentsRest.hx}
 
-
-
-
-\section{Reification}
+\section{実体化（レイフィケーション）}
 \label{macro-reification}
 
-The Haxe Compiler allows \emph{reification} of expressions, types and classes to simplify working with macros. The syntax for reification is \expr{macro expr}, where \expr{expr} is any valid Haxe expression.
+Haxeコンパイラではマクロの活用を簡単にするために式、型、クラスの\emph{実体化（レイフィケーション）}が可能です。実体化の構文は\expr{macro expr}であり、\expr{expr}は正当なHaxe式であれば何でもかまいません。
 
-\subsection{Expression Reification}
+\subsection{式の実体化}
 \label{macro-reification-expression}
 
-Expression reification is used to create instances of \type{haxe.macro.Expr} in a convenient way. The Haxe Compiler accepts the usual Haxe syntax and translates it to an expression object. It supports several escaping mechanisms, all of which are triggered by the \expr{\$} character:
+式の実体化を使うと、手軽に\type{haxe.macro.Expr}のインスタンスを作成できます。Haxeのコンパイラは通常のHaxeの構文を式のオブジェクトへと変換します。これにはエスケープの仕組みがあり、それらはすべて\expr{\$}の文字からはじまります。
 
 \begin{description}
-	\item[\expr{\$\{\}} and \expr{\$e\{\}}:] \type{Expr -> Expr} This can be used to compose expressions. The expression within the delimiting \expr{\{ \}} is executed, with its value being used in place.
-	\item[\expr{\$a\{\}}:] \type{Expr -> Array<Expr>} If used in a place where an \type{Array<Expr>} is expected (e.g. call arguments, block elements), \expr{\$a\{\}} treats its value as that array. Otherwise it generates an array declaration.
-	\item[\expr{\$b\{\}}:] \type{Array<Expr> -> Expr} Generates a block expression from the given expression array.
-	\item[\expr{\$i\{\}}:] \type{String -> Expr} Generates an identifier from the given string.
-	\item[\expr{\$p\{\}}:] \type{Array<String> -> Expr} Generates a field expression from the given string array.
-	\item[\expr{\$v\{\}}:] \type{Dynamic -> Expr} Generates an expression depending on the type of its argument. This is only guaranteed to work for \tref{basic types}{types-basic-types} and \tref{enum instances}{types-enum-instance}.
+	\item[\expr{\$\{\}}または\expr{\$e\{\}}:] \type{Expr -> Expr} これは式の構築に使います。\expr{\{ \}}の中の式が評価されてその値がその位置に配置されます。
+	\item[\expr{\$a\{\}}:] \type{Expr -> Array<Expr>} \type{Array<Expr>}が要求される場所（例えば、呼び出し引数や、ブロックの要素）で使用すると、\expr{\$a\{\}}の値を配列にします。そのほかの場合は、配列の宣言を生成します。
+	\item[\expr{\$b\{\}}:] \type{Array<Expr> -> Expr} 与えられた配列からブロック式を生成します。
+	\item[\expr{\$i\{\}}:] \type{String -> Expr} 与えられた文字列の識別子を生成します。
+	\item[\expr{\$p\{\}}:] \type{Array<String> -> Expr} 文字列の配列から、フィールドアクセス式を生成します。
+	\item[\expr{\$v\{\}}:] \type{Dynamic -> Expr} その引数の型にあわせて式を作ります。これは\tref{基本型}{types-basic-types}と\tref{列挙型インスタンス}{types-enum-instance}でのみ動作することが保証されています。
 \end{description}
 
-Additionally the \tref{metadata}{lf-metadata} \expr{@:pos(p)} can be used to map the position of the annotated expression to \expr{p} instead of the place it is reified at.
+加えて\expr{@:pos(p)}\tref{メタデータ}{lf-metadata}を使って、実体化の場所の代わりに\expr{p}に式の位置を対応させられます。
 
-This kind of reification only works in places where the internal structure expects an expression. This disallows \expr{object.\$\{fieldName\}}, but \expr{object.\$fieldName} works. This is true for all places where the internal structure expects a string:
+この種類の実体化は式が期待されている場所でのみ動作します。また、\expr{object.\$\{fieldName\}}は動作しませんが、\expr{object.\$fieldName}は動作します。これはすべての文字列を期待する場所で同じです。
 
 \begin{itemize}
-	\item field access \expr{object.\$name}
-	\item variable name \expr{var \$name = 1;}
+	\item フィールドアクセス \expr{object.\$name}
+	\item 変数名 \expr{var \$name = 1;}
 \end{itemize}
+
 \since{3.1.0}
 \begin{itemize}
-	\item field name \expr{\{ \$name: 1\} }
-	\item function name \expr{function \$name() \{ \}}
-	\item catch variable name \expr{try e() catch(\$name:Dynamic) \{\}}
+	\item フィールド名 \expr{\{ \$name: 1\} }
+	\item 関数名 \expr{function \$name() \{ \}}
+	\item キャッチの変数名 \expr{try e() catch(\$name:Dynamic) \{\}}
 \end{itemize}
 
-
-\subsection{Type Reification}
+\subsection{型の実体化}
 \label{macro-reification-type}
 
-Type reification is used to create instances of \type{haxe.macro.Expr.ComplexType} in a convenient way. It is identified by a \expr{macro : Type}, where \expr{Type} can be any valid type path expression. This is similar to explicit type hints in normal code, e.g. for variables in the form of \expr{var x:Type}.
+型の実体化を使うと、手軽に\type{haxe.macro.Expr.ComplexType}のインスタンスを生成できます。構文は\expr{macro : Type}で、\expr{Type}は正当な型のパスの式であれば何でもかまいません。この構文は通常の明示的な型注釈のコードに似ています（例えば、\expr{var x:Type}の変数宣言）。
 
-Each constructor of \type{ComplexType} has a distinct syntax:
+\type{ComplexType}のコンストラクタごとに、以下の別々の構文があります。
 
 \begin{description}
 	\item[\expr{TPath}:] \expr{macro : pack.Type}
@@ -124,84 +121,84 @@ Each constructor of \type{ComplexType} has a distinct syntax:
 	\item[\expr{TOptional}:] \expr{macro : ?Type}
 \end{description}
 
-\subsection{Class Reification}
+\subsection{クラスの実体化}
 \label{macro-reification-class}
 
-It is also possible to use reification to obtain an instance of \type{haxe.macro.Expr.TypeDefinition}. This is indicated by the \expr{macro class} syntax as shown here:
+\type{haxe.macro.Expr.TypeDefinition}のインスタンスを取得するためにも、実体化は使えます。これには以下のような、\expr{macro class}の構文を使います。
 
 \haxe{assets/ClassReification.hx}
 
-The generated \type{TypeDefinition} instance is typically passed to \expr{haxe.macro.Context.defineType} in order to add a new type to the calling context (not the macro context itself).
+生成された\type{TypeDefinition}のインスタンスは、多くの場合は\expr{haxe.macro.Context.defineType}に渡すことで、呼び出し対象のコンテクストに（マクロコンテクスト自体にではありません）新しい型を追加して使います。
 
-This kind of reification can also be useful to obtain instances of \expr{haxe.macro.Expr.Field}, which are available from the \expr{fields} array of the generated \type{TypeDefinition}. 
+この種類の実体化は\type{TypeDefinition}の\expr{fields}の配列から\expr{haxe.macro.Expr.Field}のインスタンスの取得するのにも便利です。
 
 \section{Tools}
 \label{macro-tools}
 
-The Haxe Standard Library comes with a set of tool-classes to simplify working with macros. These classes work best as \tref{static extensions}{lf-static-extension} and can be brought into context either individually or as a whole through \expr{using haxe.macro.Tools}. These classes are:
+Haxe標準ライブラリには、マクロの活用を簡単にするツールクラス一式も用意されています。これらのクラスは\tref{静的拡張}{lf-static-extension}で使うのが最適で、\expr{using haxe.macro.Tools}で各コンテクストそれぞれやすべてに持ち込むことができます。
 
 \begin{description}
-	\item[\type{ComplexTypeTools}:] Allows printing \type{ComplexType} instances in a human-readable way. Also allows determining the \type{Type} corresponding to a \type{ComplexType}.
-	\item[\type{ExprTools}:] Allows printing \type{Expr} instances in a human-readable way. Also allows iterating and mapping expressions.
-	\item[\type{MacroStringTools}:] Offers useful operations on strings and string expressions in macro context.
-	\item[\type{TypeTools}:] Allows printing \type{Type} instances in a human-readable way. Also offers several useful operations on types, such as \tref{unifying}{type-system-unification} them or getting their corresponding \type{ComplexType}.
+	\item[\type{ComplexTypeTools}:] \type{ComplexType}のインスタンスを人間が読める形に出力したり、\type{ComplexType}対応する\type{Type}を見つけたりできます。
+	\item[\type{ExprTools}:] \type{Expr}のインスタンスを人間が読める形で出力したり、式の繰り返しやマッピングの処理を行ったりできます。
+	\item[\type{MacroStringTools}:] マクロコンテクストで有用な文字列と文字列式を扱う処理を提供します。
+	\item[\type{TypeTools}:] \type{Type}インスタンスを人間が読める形で出力したり、\tref{単一化}{type-system-unification}や対応する\type{ComplexType}の取得といった型を扱うのに便利な機能を提供します。
 \end{description}
 
-Furthermore the \type{haxe.macro.Printer} class has public methods for printing various types as a human-readable format. This can be helpful when debugging macros.
+さらに\type{haxe.macro.Printer}クラスが、様々な型を人間の読めるフォーマットで出力する\expr{public}メソッドを提供しています。これはマクロのデバッグをするのに便利です。
 
-\trivia{The tinkerbell library and why Tools.hx works}{We learned about static extensions that using a \emph{module} implies that all its types are brought into static extension context. As it turns out, such a type can also be a \tref{typedef}{type-system-typedef} to another type. The compiler then considers this type part of the module, and extends static extension accordingly.\\
-This ``trick'' was first used in Juraj Kirchheim's \emph{tinkerbell}\footnote{https://github.com/back2dos/tinkerbell} library for exactly the same purpose. Tinkerbell provided many useful macro tools long before they made it into the Haxe Compiler and Haxe Standard Library. It remains the primary library for additional macro tools and offers other useful functionality as well.} 
+\trivia{ティンカーベルライブラリとなぜTools.hxが動作するのか}{
+モジュールを\expr{using}することでそのすべての型が静的拡張のコンテクストに取り込まれることはこれまでに学んできました。つまるところ、その型というのは他の型指定する\tref{typedef}{type-system-typedef}でも良いわけです。コンパイラはよその型をモジュールの一部と認識して、それが静的拡張にも引き継がれるわけです。\\
+このテクニックはJuraj Kirchheimの\emph{tinkerbell}\footnote{https://github.com/back2dos/tinkerbell}で同じ目的で初めて使われました。tinkerbellではHaxeコンパイラと標準ライブラリが提供するよりもずっと先に便利なマクロツールを提供していました。このライブラリは今でも追加のマクロのツールを得るためのライブラリとして第一候補でありつづけており、さらにその他の便利機能も提供しています。}
 
 
-
-\section{Type Building}
+\section{型ビルド}
 \label{macro-type-building}
 
-Type-building macros are different from expression macros in several ways:
+型ビルドのマクロはいくつかの点で式マクロとは使い方が違います。
 
 \begin{itemize}
-	\item They do not return expressions, but an array of class fields. Their return type must be set explicitly to \type{Array<haxe.macro.Expr.Field>}.
-	\item Their \tref{context}{macro-context} has no local method and no local variables.
-	\item Their context does have build fields, available from \expr{haxe.macro.Context.getBuildFields()}.
-	\item They are not called directly, but are argument to a \expr{@:build} or \expr{@:autoBuild} \tref{metadata}{lf-metadata} on a \tref{class}{types-class-instance} or \tref{enum}{types-enum-instance} declaration.
+	\item 式は返しません。その代わりクラスフィールドの配列を返します。戻り値の型は明示的に\type{Array<haxe.macro.Expr.Field>}を指定しないといけません。
+	\item \tref{コンテクスト}{macro-context}にローカルメソッドとローカル変数が含まれません。
+	\item コンテクストにビルドフィールドが含まれ、\expr{haxe.macro.Context.getBuildFields()}で使用可能です。
+	\item 直接呼び出すのではなく、\tref{class}{types-class-instance}または\tref{enum}{types-enum-instance}の宣言に対する\expr{@:build}または\expr{@:autoBuild}\tref{メタデータ}{lf-metadata}の引数として指定します。
 \end{itemize}
 
-The following example demonstrates type building. Note that it is split up into two files for a reason: If a module contains a \expr{macro} function, it has to be typed into macro context as well. This is often a problem for type-building macros because the type to be built could only be loaded in its incomplete state, before the building macro has run. We recommend to always define type-building macros in their own module.
+以下の例で型ビルドを実演しています。モジュールが\expr{macro}関数を含むとそのモジュールがマクロコンテクストで型付けされてしまうため、2つのファイルに分割していることに気を付けてください。ビルドされる型はビルドマクロが走る前は不完全な状態でしか読み込みがされないので、このことがよく問題になります。型ビルドのマクロは常にそれ用のモジュールに分けて定義することをオススメします。
 
 \haxe{assets/TypeBuildingMacro.hx}
 \haxe{assets/TypeBuilding.hx}
 
-The \expr{build} method of \type{TypeBuildingMacro} performs three steps:
+\type{TypeBuildingMacro}の\expr{build}メソッドは次の3つのステップを経て動作します。
 
 \begin{enumerate}
-	\item It obtains the build fields using \expr{Context.getBuildFields()}.
-	\item It declares a new \type{haxe.macro.expr.Field} field using the \expr{funcName} macro argument as field name. This field is a \type{String} \tref{variable}{class-field-variable} with a default value \expr{"my default"} (from the \expr{kind} field) and is public and static (from the \expr{access} field).
-	\item It adds the new field to the build field array and returns it.
+	\item \expr{Context.getBuildFields()}を使ってビルドフィールドを取得する。
+	\item \expr{funcName}マクロ引数をフィールド名として使って、新しい\type{haxe.macro.expr.Field}を宣言する。このフィールドは\type{String}\tref{変数}{class-field-variable}でデフォルト値は\expr{"my default"}（\expr{kind}フィールドより）で\expr{public static}です（\expr{access}フィールドより）。
+	\item 新しいフィールドをビルドフィールドに追加してそれを返す。
 \end{enumerate}
 
-This macro is argument to the \expr{@:build} metadata on the \type{Main} class. As soon as this type is required, the compiler does the following:
+このマクロは\type{Main}クラスに対する\expr{@:build}メタデータの引数です。この型が必要になるとコンパイラは以下を行います。
 
 \begin{enumerate}
-	\item It parses the module file, including the class fields.
-	\item It sets up the type, including its relation to other types through \tref{inheritance}{types-class-inheritance} and \tref{interfaces}{types-interfaces}.
-	\item It executes the type-building macro according to the \expr{@:build} metadata.
-	\item It continues typing the class normally with the fields returned by the type-building macro.
+	\item クラスフィールドも含めて、このモジュールを構文解析する。
+	\item \tref{インターフェース}{types-interfaces}や\tref{継承}{types-class-inheritance}などの他の型との関係も含めて、型の設定をする。
+	\item \expr{@:build}メタデータに従って、型ビルドのマクロを実行する。
+	\item 型ビルドの返したフィールドに従って、クラスの型付けを通常通り続行する。
 \end{enumerate}
 
-This allows adding and modifying class fields at will in a type-building macro. In our example, the macro is called with a \expr{"myFunc"} argument, making \expr{Main.myFunc} a valid field access.
+こうして型ビルドマクロによって思いのままにクラスのフィールドを追加したり、編集したりができます。上の例では、マクロは\expr{"myFunc"}の引数で呼び出されて、\expr{Main.myFunc}を正当なフィールドアクセスにしています。
 
-If a type-building macro should not modify anything, the macro can return \expr{null}. This indicates to the compiler that no changes are intended and is preferable to returning \expr{Context.getBuildFields()}.
+型ビルドのマクロで何も編集したくない場合、マクロで\expr{null}を返してもかまいません。これでコンパイラに何の変更もしないことが伝わります。\expr{Context.getBuildFields()}を返すよりも好ましいです。
 
 
 
-\subsection{Enum building}
+\subsection{列挙型ビルド}
 \label{macro-enum-building}
 
-Building \tref{enums}{types-enum-instance} is analogous to building classes with a simple mapping:
+\tref{列挙型}{types-enum-instance}のビルドは、クラスのビルドと類似しており簡単な対応関係があります。
 
 \begin{itemize}
-	\item Enum constructors without arguments are variable fields \expr{FVar}.
-	\item Enum constructors with arguments are method fields \expr{FFun}.
+	\item 引数を持たない列挙型は変数フィールド\expr{FVar}です。
+	\item 引数を持つ列挙型はメソッドフィールド\expr{FFun}です。
 \end{itemize}
 
 \todo{Check if we can build GADTs this way.}
@@ -209,9 +206,9 @@ Building \tref{enums}{types-enum-instance} is analogous to building classes with
 \haxe{assets/EnumBuildingMacro.hx}
 \haxe{assets/EnumBuilding.hx}
 
-Because enum \type{E} is annotated with a \expr{:build} metadata, the called macro builds two constructors \expr{A} and \expr{B} ``into'' it. The former is added with the kind being \expr{FVar(null, null)}, meaning it is a constructor without argument. For the latter, we use \tref{reification}{macro-reification-expression} to obtain an instance of \type{haxe.macro.Expr.Function} with a singular \type{Int} argument.
+列挙型\type{E}は\expr{:build}メタデータの修飾されており、呼び出されたマクロが2つのコンストラクタ\expr{A}と\expr{B}を追加しています。\expr{A}は\expr{FVar(null, null)}、つまり引数の無いコンストラクタとして追加されています。\expr{B}は\tref{実体化}{macro-reification-expression}を使って、\type{Int}引数1つを持つ\type{haxe.macro.Expr.Function}を取得しています。
 
-The \expr{main} method proves the structure of our generated enum by \tref{matching}{lf-pattern-matching} it. We can see that the generated type is equivalent to this:
+\expr{main}メソッドは\tref{マッチング}{lf-pattern-matching}によって生成された列挙型の構造を証明しています。これで、生成された型が以下と同じだということがわかります。
 
 \begin{lstlisting}
 enum E {
@@ -224,12 +221,12 @@ enum E {
 \subsection{@:autoBuild}
 \label{macro-auto-build}
 
-If a class has the \expr{:autoBuild} metadata, the compiler generates \expr{:build} metadata on all extending classes. If an interface has the \expr{:autoBuild} metadata, the compiler generates \expr{:build} metadata on all implementing classes and all extending interfaces. Note that \expr{:autoBuild} does not imply \expr{:build} on the class/interface itself.
+クラスが\expr{:autoBuild}メタデータを持つ場合、それを継承するすべてのクラスに\expr{:build}メタデータを生成します。インターフェースが\expr{:autoBuild}メタデータを持つ場合、それを継承するすべてのインターフェースとすべての実装クラスに\expr{:build}メタデータを生成します。\expr{:autoBuild}はそのクラスやインターフェース自身には\expr{:build}を適用しないことに気をつけてください。
 
 \haxe{assets/AutoBuildingMacro.hx}
 \haxe{assets/AutoBuilding.hx}
 
-This outputs during compilation:
+コンパイル中に以下の出力がされます。
 
 \begin{lstlisting}
 AutoBuildingMacro.hx:6:
@@ -240,79 +237,73 @@ AutoBuildingMacro.hx:11:
   fromBaseClass: TInst(Main,[])
 \end{lstlisting}
 
-It is important to keep in mind that the order of these macro executions is undefined, which is detailed in \Fullref{macro-limitations-build-order}.
-
+これらのマクロ実行順序は不定であることを留意しておきましょう、詳しくは\Fullref{macro-limitations-build-order}で説明されています。
 
 
 \subsection{@:genericBuild}
 \label{macro-generic-build}
 \since{3.1.0}
 
-Normal \tref{build-macros}{macro-type-building} are run per-type and are already very powerful. In some cases it is useful to run a build macro per type \emph{usage} instead, i.e. whenever it actually appears in the code. Among other things this allows accessing the concrete type parameters in the macro.
+通常の\tref{ビルドマクロ}{macro-type-building}は型ごとに実行するもので、これでも十分に強力です。いくつかの用途では、型の\emph{使用}ごと、つまりコードに出現するごとにビルドマクロが走ることが役立つものもあります。何より、これにより具体的な型パラメータにもアクセスできるようになります。
 
-\expr{@:genericBuild} is used just like \expr{@:build} by adding it to a type with the argument being a macro call:
+\expr{@:genericBuild}は\expr{@:build}と全くおなじように型に引数付きのマクロ呼び出しを追加することで使用します。
 
 \haxe{assets/GenericBuildMacro1.hx}
-
 \haxe{assets/GenericBuild1.hx}
 
-When running this example the compiler outputs \ic{TAbstract(Int,[])} and \ic{TInst(String,[])}, indicating that it is indeed aware of the concrete type parameters of \type{MyType}. The macro logic could use this information to generate a custom type (using \expr{haxe.macro.Context.defineType}) or refer to an existing one. For brevity we return \expr{null} here which asks the compiler to \tref{infer}{type-system-type-inference} the type.
+この例を実行するとコンパイラは\ic{TAbstract(Int,[])}と\ic{TInst(String,[])}を出力することから、\type{MyType}の具体的な型が認識されたことがわかります。このマクロの処理では、この情報をカスタムの型の生成もできます（\expr{haxe.macro.Context.defineType}を使うことで）し、すでに存在する型の参照もできます。簡潔さのためにここでは\expr{null}を返して、コンパイラに型を\tref{推論}{type-system-type-inference}させています。
 
-In Haxe 3.1 the return type of a \expr{@:genericBuild} macro has to be a \type{haxe.macro.Type}. Haxe 3.2 allows (and prefers) returning a \type{haxe.macro.ComplexType} instead, which is the syntactic representation of a type. This is easier to work with in many cases because types can simply be referenced by their paths.
+Haxe 3.1では\expr{@:genericBuild}マクロの戻り値は\type{haxe.macro.Type}でなくてはいけませんでした。Haxe 3.2では、
+\type{haxe.macro.ComplexType}を返すことが許可（そして推奨）されています。多くの場合は、型はただパスで参照するだけで動作するのでこのほうが簡単です。
 
-\paragraph{Const type parameter}
+\paragraph{定数型パラメータ}
 
-Haxe allows passing \tref{constant expression}{expression-constants} as a type parameter if the type parameter name is \expr{Const}. This can be utilized in the context of \expr{@:genericBuild} macros to pass information from the syntax directly to the macro:
+Haxeでは型パラメータ名が\expr{Const}の場合、\tref{定数値の式}{expression-constants}を型パラメータとして渡すことができます。\expr{@:genericBuild}マクロのコンテクストでマクロに直接情報を渡すのに役立ちます。
 
 \haxe{assets/GenericBuildMacro2.hx}
-
 \haxe{assets/GenericBuild2.hx}
 
-Here the macro logic could load a file and use its contents to generate a custom type.
+このマクロの処理ではファイルを読み込んで、カスタムの型を生成することができます。
 
-
-
-\section{Limitations}
+\section{制限}
 \label{macro-limitations}
 \state{NoContent}
 
-\subsection{Macro-in-Macro}
+\subsection{マクロ内のマクロ}
 \label{macro-limitations-macro-in-macro}
 
-\subsection{Static extension}
+\subsection{静的拡張}
 \label{macro-limitations-static-extension}
 
-The concepts or \tref{static extensions}{lf-static-extension} and macros are somewhat conflicting: While the former requires a known type in order to determine used functions, macros execute before typing on plain syntax. It is thus not surprising that combining these two features can lead to issues. Haxe 3.0 would try to convert the typed expression back to a syntax expression, which is not always possible and may lose important information. We recommend that it is used with caution.
+マクロと\tref{静的拡張}{lf-static-extension}の概念には多少の衝突があります。静的拡張は使用される関数を決定するために既知の型を要求しますが、構文が型付けされる前に実行されます。ですからこの2つの機能を合わせて使うと問題が生じるというのは驚くことではありません。Haxe 3.0では型付けされた式を元の構文の式に戻す変換を試みます。これは必ず成功するわけではなく、重要な情報が失われることもあります。これらについては十分に気を付けたうえで使用することを推奨します。
 
 \since{3.1.0}
 
-The combination of static extensions and macros was reworked for the 3.1.0 release. The Haxe Compiler does not even try to find the original expression for the macro argument and instead passes a special \expr{@:this this} expression. While the structure of this expression conveys no information, the expression can still be typed correctly:
+静的拡張とマクロの合わせた使用について3.1.0のリリースで修正がされました。Haxeコンパイラはマクロの引数から元の式の復元を試行しなくなった代わりに、特殊な\expr{@:this this}の式を渡すようになりました。式の構造については何の情報も提供しない代わりに正しく型付けができます。
 
 \haxe{assets/MacroStaticExtension.hx}
 
-
-
-\subsection{Build Order}
+\subsection{ビルド順序}
 \label{macro-limitations-build-order}
 
-The build order of types is unspecified and this extends to the execution order of \tref{build-macros}{macro-type-building}. While certain rules can be determined, we strongly recommend to not rely on the execution order of build-macros. If type building requires multiple passes, this should be reflected directly in the macro code. In order to avoid multiple build-macro execution on the same type, state can be stored in static variables or added as \tref{metadata}{lf-metadata} to the type in question:
+型のビルド順序は未定義であり、それは\tref{ビルドマクロ}{macro-type-building}の実行順序についても同じです。いくつかのルールは決まってはいますが、ビルドマクロは実行順序に依存しないようにすることを強く推奨します。もし型ビルドを複数回実行する必要があるなら、マクロのコードで直接解決してください。ビルドマクロが同じ型に対して複数回実行されるのを避けるためには、状態を静的変数にいれておくか、型に\tref{メタデータ}{lf-metadata}を追加するのが有効です。
 
 \haxe{assets/MacroBuildOrder.hx}
 
-With both interfaces \type{I1} and \type{I2} having \expr{:autoBuild} metadata, the build macro is executed twice for class \type{C}. We guard against duplicate processing by adding a custom \expr{:processed} metadata to the class, which can be checked during the second macro execution.
+\type{I1}と、\type{I2}の両方のインターフェースが\expr{:autoBuild}を持っており、\type{C}クラスに対して2度ビルドマクロが実行されます。ここではクラスに\expr{:processed}メタデータを足して、2度目の実行でそれを確認することで重複した処理を回避しています。
 
 
-\subsection{Type Parameters}
+\subsection{型パラメータ}
 \label{macro-limitations-type-parameters}
 
 
-\section{Initialization macros}
+\section{初期化マクロ}
 \label{macro-initialization}
 
-Initialization macros are invoked from command line by using the \expr{--macro callExpr(args)} command. This registers a callback which the compiler invokes after creating its context, but before typing what was argument to \expr{-main}. This then allows configuring the compiler in some ways.
+初期化マクロはコマンドラインから\expr{--macro callExpr(args)}コマンドを使って呼び出します。これにより、コンテクストを生成した後の、\expr{-main}の引数が型付けされるより前に呼び出されるコールバックを登録します。これにより様々な方法でコンパイラの設定ができます。
 
-If the argument to \expr{--macro} is a call to a plain identifier, that identifier is looked up in the class \type{haxe.macro.Compiler} which is part of the Haxe Standard Library. It comes with several useful initialization macros which are detailed in its \href{http://api.haxe.org//haxe/macro/Compiler.html}{API}.
+\expr{--macro}の引数が単なる識別子の呼び出しだった場合、その識別子はHaxe標準ライブラリの\type{haxe.macro.Compiler}内から検索されます。このクラスには便利な初期化マクロがいくつもあります。詳しくは\href{http://api.haxe.org//haxe/macro/Compiler.html}{API}を記載されています。
 
-As an example, the \expr{include} macro allows inclusion of an entire package for compilation, recursively if necessary. The command line argument for this would then be \expr{--macro include('some.pack', true)}.
+例えば、\expr{include}マクロではパッケージをまるまる、必要であれば再帰的にコンパイルに含めることができます。その場合のコマンドライン引数は\expr{--macro include('some.pack', true)}といった形になります。
 
-Of course it is also possible to define custom initialization macros to perform various tasks before the real compilation. A macro like this would then be invoked via \expr{--macro some.Class.theMacro(args)}. For instance, as all macros share the same \tref{context}{macro-context}, an initialization macro could set the value of a static field which other macros use as configuration.
+もちろん、カスタムの初期化マクロを定義して実際のコンパイルの前に様々な作業をさせることもできます。そういったマクロは\expr{--macro some.Class.theMacro(args)}の形で呼び出します。例えば、すべてのマクロに共通の\tref{コンテクスト}{macro-context}が使われるので、初期化マクロで他のマクロの設定のための静的フィールドに値を設定することができます。
