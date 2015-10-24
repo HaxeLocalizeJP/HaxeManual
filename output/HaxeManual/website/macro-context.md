@@ -1,19 +1,19 @@
-## 9.1 Macro Context
+## 9.1 マクロコンテクスト
 
-> ##### Define: Macro Context
+> ##### Define: マクロコンテクスト
 >
-> The macro context is the environment in which the macro is executed. Depending on the macro type, it can be considered to be a class being built or a function being typed. Contextual information can be obtained through the `haxe.macro.Context` API.
+> マクロコンテクストとはマクロが実行される環境です。マクロの種別によって、クラスのビルドや、関数の型付けなどを行います。コンテクストについての情報は`haxe.macro.Context` APIを通して入手できます。
 
-Haxe macros have access to different contextual information depending on the macro type. Other than querying such information, the context also allows some modifications such as defining a new type or registering certain callbacks. It is important to understand that not all information is available for all macro kinds, as the following examples demonstrate:
+Haxeマクロはマクロの種類に応じて異なる、コンテクストの情報にアクセスできます。`Context`のAPIでは情報の問い合わせをするだけでなく、新しい型を定義したり、特定のコールバックを登録したりといった編集も行えます。以下で説明している通り、すべてのマクロの種類ですべての情報が利用可能なわけではないことに注意してください。
 
-* Initialization macros will find that the `Context.getLocal*()` methods return `null`. There is no local type or method in the context of an initialization macro.
-* Only build macros get a proper return value from `Context.getBuildFields()`. There are no fields being built for the other macro kinds.
-* Build macros have a local type (if incomplete), but no local method, so `Context.getLocalMethod()` returns `null`.
+* 初期化マクロでは`Context.getLocal*()`メソッドは`null`を返します。初期化マクロのコンテクストでは、ローカルの型やメソッドはありません。
+* ビルドマクロのみで`Context.getBuildFields()`からしかるべき値が返ってきます。その他のマクロでは、ビルドされるフィールドはありません。
+* ビルドマクロでは、ローカルの型があります（ただし、不完全）が、ローカルのメソッドはありません。`Context.getLocalMethod()`は、`null`を返します。
 
-The context API is complemented by the `haxe.macro.Compiler` API detailed in [Initialization macros](macro-initialization.md). While this API is available to all macro kinds, care has to be taken for any modification outside of initialization macros. This stems from the natural limitation of undefined [build order](macro-limitations-build-order.md), which could cause e.g. a flag definition through `Compiler.define()` to take effect before or after a [conditional compilation](lf-condition-compilation.md) check against that flag.
+`Context`のAPIは、`haxe.macro.Compiler`のAPIと合わせて完全なものになります。`haxe.macro.Compiler`について、詳しくは[初期化マクロ](macro-initialization.md)を参照してください。こちらのAPIはすべての種類のマクロで使用可能で、初期化マクロ以外からでもあらゆる編集が可能であることに注意しなくてはいけません。定義されていない[ビルド順序](macro-limitations-build-order.md)の自然な制限に逆らいます。つまり、例えば`Compiler.define()`でのフラグの定義は、そのフラグに対する[条件付きコンパイル](lf-condition-compilation.md)のチェックの後でも先でも影響を与えます。
 
 ---
 
-Previous section: [Macros](macro.md)
+Previous section: [マクロ](macro.md)
 
-Next section: [Arguments](macro-arguments.md)
+Next section: [引数](macro-arguments.md)

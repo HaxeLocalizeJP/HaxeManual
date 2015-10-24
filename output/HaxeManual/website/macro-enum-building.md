@@ -1,9 +1,9 @@
-## 9.5.1 Enum building
+## 9.5.1 列挙型ビルド
 
-Building [enums](types-enum-instance.md) is analogous to building classes with a simple mapping:
+[列挙型](types-enum-instance.md)のビルドは、クラスのビルドと類似しており簡単な対応関係があります。
 
-* Enum constructors without arguments are variable fields `FVar`.
-* Enum constructors with arguments are method fields `FFun`.
+* 引数を持たない列挙型は変数フィールド`FVar`です。
+* 引数を持つ列挙型はメソッドフィールド`FFun`です。
 
 ```haxe
 import haxe.macro.Context;
@@ -47,9 +47,9 @@ class Main {
 }
 ```
 
-Because enum `E` is annotated with a `:build` metadata, the called macro builds two constructors `A` and `B` "into" it. The former is added with the kind being `FVar(null, null)`, meaning it is a constructor without argument. For the latter, we use [reification](macro-reification-expression.md) to obtain an instance of `haxe.macro.Expr.Function` with a singular `Int` argument.
+列挙型`E`は`:build`メタデータの修飾されており、呼び出されたマクロが2つのコンストラクタ`A`と`B`を追加しています。`A`は`FVar(null, null)`、つまり引数の無いコンストラクタとして追加されています。`B`は[実体化](macro-reification-expression.md)を使って、`Int`引数1つを持つ`haxe.macro.Expr.Function`を取得しています。
 
-The `main` method proves the structure of our generated enum by [matching](lf-pattern-matching.md) it. We can see that the generated type is equivalent to this:
+`main`メソッドは[マッチング](lf-pattern-matching.md)によって生成された列挙型の構造を証明しています。これで、生成された型が以下と同じだということがわかります。
 
 ```haxe
 enum E {
@@ -60,6 +60,6 @@ enum E {
 
 ---
 
-Previous section: [Type Building](macro-type-building.md)
+Previous section: [型ビルド](macro-type-building.md)
 
 Next section: [@:autoBuild](macro-auto-build.md)

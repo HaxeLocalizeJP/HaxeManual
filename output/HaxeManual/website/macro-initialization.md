@@ -1,15 +1,15 @@
-## 9.7 Initialization macros
+## 9.7 初期化マクロ
 
-Initialization macros are invoked from command line by using the `--macro callExpr(args)` command. This registers a callback which the compiler invokes after creating its context, but before typing what was argument to `-main`. This then allows configuring the compiler in some ways.
+初期化マクロはコマンドラインから`--macro callExpr(args)`コマンドを使って呼び出します。これにより、コンテクストを生成した後の、`-main`の引数が型付けされるより前に呼び出されるコールバックを登録します。これにより様々な方法でコンパイラの設定ができます。
 
-If the argument to `--macro` is a call to a plain identifier, that identifier is looked up in the class `haxe.macro.Compiler` which is part of the Haxe Standard Library. It comes with several useful initialization macros which are detailed in its [API](http://api.haxe.org//haxe/macro/Compiler.html).
+`--macro`の引数が単なる識別子の呼び出しだった場合、その識別子はHaxe標準ライブラリの`haxe.macro.Compiler`内から検索されます。このクラスには便利な初期化マクロがいくつもあります。詳しくは[API](http://api.haxe.org//haxe/macro/Compiler.html)を記載されています。
 
-As an example, the `include` macro allows inclusion of an entire package for compilation, recursively if necessary. The command line argument for this would then be `--macro include('some.pack', true)`.
+例えば、`include`マクロではパッケージをまるまる、必要であれば再帰的にコンパイルに含めることができます。その場合のコマンドライン引数は`--macro include('some.pack', true)`といった形になります。
 
-Of course it is also possible to define custom initialization macros to perform various tasks before the real compilation. A macro like this would then be invoked via `--macro some.Class.theMacro(args)`. For instance, as all macros share the same [context](macro-context.md), an initialization macro could set the value of a static field which other macros use as configuration.
+もちろん、カスタムの初期化マクロを定義して実際のコンパイルの前に様々な作業をさせることもできます。そういったマクロは`--macro some.Class.theMacro(args)`の形で呼び出します。例えば、すべてのマクロに共通の[コンテクスト](macro-context.md)が使われるので、初期化マクロで他のマクロの設定のための静的フィールドに値を設定することができます。
 
 ---
 
-Previous section: [Build Order](macro-limitations-build-order.md)
+Previous section: [ビルド順序](macro-limitations-build-order.md)
 
 Next section: [Standard Library](std.md)

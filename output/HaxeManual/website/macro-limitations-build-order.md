@@ -1,6 +1,6 @@
-## 9.6.3 Build Order
+## 9.6.3 ビルド順序
 
-The build order of types is unspecified and this extends to the execution order of [build-macros](macro-type-building.md). While certain rules can be determined, we strongly recommend to not rely on the execution order of build-macros. If type building requires multiple passes, this should be reflected directly in the macro code. In order to avoid multiple build-macro execution on the same type, state can be stored in static variables or added as [metadata](lf-metadata.md) to the type in question:
+型のビルド順序は未定義であり、それは[ビルドマクロ](macro-type-building.md)の実行順序についても同じです。いくつかのルールは決まってはいますが、ビルドマクロは実行順序に依存しないようにすることを強く推奨します。もし型ビルドを複数回実行する必要があるなら、マクロのコードで直接解決してください。ビルドマクロが同じ型に対して複数回実行されるのを避けるためには、状態を静的変数にいれておくか、型に[メタデータ](lf-metadata.md)を追加するのが有効です。
 
 ```haxe
 import haxe.macro.Context;
@@ -33,10 +33,10 @@ class Main {
 }
 ```
 
-With both interfaces `I1` and `I2` having `:autoBuild` metadata, the build macro is executed twice for class `C`. We guard against duplicate processing by adding a custom `:processed` metadata to the class, which can be checked during the second macro execution.
+`I1`と、`I2`の両方のインターフェースが`:autoBuild`を持っており、`C`クラスに対して2度ビルドマクロが実行されます。ここではクラスに`:processed`メタデータを足して、2度目の実行でそれを確認することで重複した処理を回避しています。
 
 ---
 
-Previous section: [Static extension](macro-limitations-static-extension.md)
+Previous section: [静的拡張](macro-limitations-static-extension.md)
 
-Next section: [Initialization macros](macro-initialization.md)
+Next section: [初期化マクロ](macro-initialization.md)

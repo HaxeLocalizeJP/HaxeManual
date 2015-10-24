@@ -63,7 +63,7 @@
 **enum:**
 
 * パラメータなしのEnum 常に同じ値になるので、`MyEnum.A == MyEnum.A`で比較できる。
-* パラメータありEnum `a.equals(b)`で比較できる。 (これは`Type.enumEquals()`の短縮形である).
+* パラメータありEnum `a.equals(b)`で比較できる。 （これは`Type.enumEquals()`の短縮形である）。
 
 **Dynamic:**
 1つ以上の`Dynamic`な値に対する比較は、未定義であり、プラットフォーム依存です。
@@ -72,4 +72,4 @@
 
 Previous section: [オーバーフロー](types-overflow.md)
 
-Next section: [Bool(真偽値)](types-bool.md)
+Next section: [Bool（真偽値）](types-bool.md)

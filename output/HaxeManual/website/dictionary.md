@@ -7,7 +7,7 @@
 
 ##### `Class<T>`
 
-この型はすべてのクラスの型と一致します。つまり、すべてのクラス(インスタンスではなくクラス)をこれに代入することができます。コンパイル時に、`Class<T>`は全てのクラスの型の共通の親の型となります。しかし、この関係性は生成されたコードに影響を与えません。
+この型はすべてのクラスの型と一致します。つまり、すべてのクラス（インスタンスではなくクラス）をこれに代入することができます。コンパイル時に、`Class<T>`は全てのクラスの型の共通の親の型となります。しかし、この関係性は生成されたコードに影響を与えません。
 
 この型は、任意のクラスを要求するようなAPIで役立ちます。例えば、[HaxeリフレクションAPI](std-reflection.md)のいくつかのメソッドがこれに当てはまります。
 
@@ -22,15 +22,10 @@
 ##### `Null<T>`
 静的ターゲットでは、`Null<Int>`、`Null<Float>`、`Null<Bool>`の型で`null`を許容することが可能になります。動的ターゲットでは`Null<T>`に効果はありません。また、`Null<T>`はその型が`null`を持つことを表すドキュメントとしても使うことができます。
 
-<a id="define-ast" class="anch"></a>
-
-##### Abstract Syntax Tree (AST)
-The AST is the result of **parsing** Haxe code into a typed structure. This structure is exposed to macros through the types defined in the file `haxe/macro/Expr.hx` of the Haxe Standard Library.
-
 <a id="define-bool" class="anch"></a>
 
 ##### Bool
-真(**true**)または、偽(**false**)のどちらかになる値を表します。
+真（**true**）または、偽（**false**）のどちらかになる値を表します。
 
 <a id="define-enumvalue" class="anch"></a>
 
@@ -52,11 +47,6 @@ IEEEの64bit倍精度浮動小数点数を表します。
 ##### Lambda
 Lambda is a functional language concept within Haxe that allows you to apply a function to a list or [iterators](lf-iterators.md). The Lambda class is a collection of functional methods in order to use functional-style programming with Haxe.
 
-<a id="define-macro-context" class="anch"></a>
-
-##### Macro Context
-The macro context is the environment in which the macro is executed. Depending on the macro type, it can be considered to be a class being built or a function being typed. Contextual information can be obtained through the `haxe.macro.Context` API.
-
 <a id="define-nullable" class="anch"></a>
 
 ##### null許容
@@ -77,7 +67,7 @@ A String is a sequence of characters.
 <a id="define-void" class="anch"></a>
 
 ##### Void
-Voidは型が存在しないことを表します。特定の場面(主に関数)で値を持たないことを表現するのに使います。
+Voidは型が存在しないことを表します。特定の場面（主に関数）で値を持たないことを表現するのに使います。
 
 <a id="define-accessor-method" class="anch"></a>
 
@@ -110,6 +100,11 @@ Voidは型が存在しないことを表します。特定の場面(主に関数
 * `Bool`: `false`。
 
 
+
+<a id="define-macro-context" class="anch"></a>
+
+##### マクロコンテクスト
+マクロコンテクストとはマクロが実行される環境です。マクロの種別によって、クラスのビルドや、関数の型付けなどを行います。コンテクストについての情報は`haxe.macro.Context` APIを通して入手できます。
 
 <a id="define-module" class="anch"></a>
 
@@ -166,6 +161,11 @@ Voidは型が存在しないことを表します。特定の場面(主に関数
 ##### 定義の名前
 定義の説明
 
+<a id="define-ast" class="anch"></a>
+
+##### 抽象構文木（AST：Abstract Syntax Tree）
+抽象構文木はHaxeのコードを構文解析して型付けされた構造へと変換した結果です。この構造はHaxe標準ライブラリの`haxe/macro/Expr.hx`ファイルで定義されている型をつかってマクロから利用可能です。
+
 <a id="define-write-access" class="anch"></a>
 
 ##### 書き込みアクセス
@@ -191,7 +191,7 @@ Voidは型が存在しないことを表します。特定の場面(主に関数
 
 ##### 複合型
 
-複合型というのは、従属する型を持つ型です。[型パラメータ](type-system-type-parameters.md)を持つ型や、[関数](types-function.md)型がこれに当たります。
+複合型というのは、型の一部として型を持つ型です。[型パラメータ](type-system-type-parameters.md)を持つ型や、[関数](types-function.md)型がこれに当たります。
 
 
 <a id="define-expected-type" class="anch"></a>

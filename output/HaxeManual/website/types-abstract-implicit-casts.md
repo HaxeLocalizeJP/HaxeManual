@@ -22,7 +22,7 @@ class Main {
 }
 ```
 
-`from Int`かつ`to Int`の`MyAbstract`を定義しました。これは`Int`を代入することが可能で、かつ`Int`に代入することが可能だという意味です。このことは、9、10行目に表れています。まず、`Int`の12を`MyAbstract`型の変数`a`に代入しています(これは`from Int`の宣言により可能になります)。そして次に、`Int`型の変数`b`に、抽象型のインスタンスを代入しています(これは`to Int`の宣言により可能になります)。
+`from Int`かつ`to Int`の`MyAbstract`を定義しました。これは`Int`を代入することが可能で、かつ`Int`に代入することが可能だという意味です。このことは、9、10行目に表れています。まず、`Int`の12を`MyAbstract`型の変数`a`に代入しています（これは`from Int`の宣言により可能になります）。そして次に、`Int`型の変数`b`に、抽象型のインスタンスを代入しています（これは`to Int`の宣言により可能になります）。
 
 クラスフィールドのキャストも同じ意味を持ちますが、定義の仕方はまったく異なります。
 
@@ -117,6 +117,6 @@ class Main {
 
 ---
 
-Previous section: [抽象型(abstract)](types-abstract.md)
+Previous section: [抽象型（abstract）](types-abstract.md)
 
 Next section: [演算子オーバーロード](types-abstract-operator-overloading.md)

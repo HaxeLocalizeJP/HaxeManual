@@ -1,6 +1,6 @@
 ## 9.2.1 ExprOf
 
-Since `Expr` is compatible with any possible input, Haxe provides the type `haxe.macro.ExprOf<T>`. For the most part, this type is identical to `Expr`, but it allows constraining the type of accepted expressions. This is useful when combining macros with [static extensions](lf-static-extension.md):
+`Expr`はあらゆる入力と一致するため、Haxeでは`haxe.macro.ExprOf<T>`型を提供しています。ほとんどの面では`Expr`と同じですが、受け入れる式の型を強制することができます。これは[静的拡張](lf-static-extension.md)と合わせてマクロを使うときに便利です。
 
 ```haxe
 import haxe.macro.Expr;
@@ -21,12 +21,12 @@ class Main {
 }
 ```
 
-The two direct calls to `identity` are accepted, even though the argument is declared as `ExprOf<String>`. It might come as a surprise that the `Int` `1` is accepted, but it is a logical consequence of what was explained about [macro arguments](macro-arguments.md): The argument expressions are never typed, so it is not possible for the compiler to check their compatibility by [unifying](type-system-unification.md).
+上2種類の`identity`の呼び出しは両方とも問題ありません。たとえ引数が`ExprOf<String>`で宣言されていてもです。`Int`型の`1`が許容されることに驚くかもしれませんが、[マクロの引数](macro-arguments.md)での説明からの論理的な必然性があります。つまり引数の式は型付けされないので、コンパイラは[単一化](type-system-unification.md)の一致チェックができないというわけです。
 
-This is different for the next two lines which are using static extensions (note the `using Main`): For these it is mandatory to type the left side (`"foo"` and `1`) first in order to make sense of the `identity` field access. This makes it possible to check the types against the argument types, which causes `1.identity()` to not consider `Main.identity()` as a suitable field.
+次の2つの行の呼び出しは、静的拡張を使っている点で状況が異なります（`using Main`に注目してください）。静的拡張では左側（`"foo"`や`1`）の型によって、`identity`のフィールドアクセスが意味を持ちます。これにより引数の型に対しての型チェックが可能になり、`1.identity()`が`Main.identity()`のフィールドが合わないという結果になっています。
 
 ---
 
-Previous section: [Arguments](macro-arguments.md)
+Previous section: [引数](macro-arguments.md)
 
-Next section: [Constant Expressions](macro-constant-arguments.md)
+Next section: [定数の式](macro-constant-arguments.md)

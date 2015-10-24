@@ -1,6 +1,6 @@
 ## 9.5.2 @:autoBuild
 
-If a class has the `:autoBuild` metadata, the compiler generates `:build` metadata on all extending classes. If an interface has the `:autoBuild` metadata, the compiler generates `:build` metadata on all implementing classes and all extending interfaces. Note that `:autoBuild` does not imply `:build` on the class/interface itself.
+クラスが`:autoBuild`メタデータを持つ場合、それを継承するすべてのクラスに`:build`メタデータを生成します。インターフェースが`:autoBuild`メタデータを持つ場合、それを継承するすべてのインターフェースとすべての実装クラスに`:build`メタデータを生成します。`:autoBuild`はそのクラスやインターフェース自身には`:build`を適用しないことに気をつけてください。
 
 ```haxe
 import haxe.macro.Context;
@@ -34,7 +34,7 @@ class Main extends Base implements I2 {
 }
 ```
 
-This outputs during compilation:
+コンパイル中に以下の出力がされます。
 
 ```haxe
 AutoBuildingMacro.hx:6:
@@ -45,10 +45,10 @@ AutoBuildingMacro.hx:11:
   fromBaseClass: TInst(Main,[])
 ```
 
-It is important to keep in mind that the order of these macro executions is undefined, which is detailed in [Build Order](macro-limitations-build-order.md).
+これらのマクロ実行順序は不定であることを留意しておきましょう、詳しくは[ビルド順序](macro-limitations-build-order.md)で説明されています。
 
 ---
 
-Previous section: [Enum building](macro-enum-building.md)
+Previous section: [列挙型ビルド](macro-enum-building.md)
 
 Next section: [@:genericBuild](macro-generic-build.md)

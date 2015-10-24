@@ -19,7 +19,7 @@ interface Printable {
 class Point implements Printable { }
 ```
 
-`implements`キーワードの記述により、"`Point`は`Printable`である(is-a)"の関係性が生まれます。つまり、すべての`Point`のインスタンスは、`Printable`のインスタンスでもあります。クラスは親のクラスを1つしか持てませんが、以下のように複数の`implements`キーワードを使用することで複数のインターフェースを実装(implements)することが可能です。
+`implements`キーワードの記述により、"`Point`は`Printable`である（is-a）"の関係性が生まれます。つまり、すべての`Point`のインスタンスは、`Printable`のインスタンスでもあります。クラスは親のクラスを1つしか持てませんが、以下のように複数の`implements`キーワードを使用することで複数のインターフェースを実装（implements）することが可能です。
 
 ```haxe
 class Point implements Printable implements Serializable
@@ -46,7 +46,7 @@ class Main implements Placeable {
 
 > ##### Trivia: Implementsの構文
 >
-> Haxeの3.0よりも前のバージョンでは、`implements`キーワードはカンマで区切られていました。Javaのデファクトスタンダードに合わせるため、私たちはカンマを取り除くことに決定しました。これが、Haxe2と3の間の破壊的な変更の1つです。
+> Haxeの3.0よりも前のバージョンでは、`implements`キーワードはカンマで区切られていました。Javaのデファクトスタンダードに合わせるため、私たちはカンマを取り除くことに決定しました。これが、Haxe 2と3の間の破壊的な変更の1つです。
 
 ---
 

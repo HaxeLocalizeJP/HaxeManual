@@ -16,4 +16,4 @@ att.income = 0;
 
 Previous section: [ダイナミック](types-dynamic.md)
 
-Next section: [ダイナミックを実装(implements)する](types-dynamic-implemented.md)
+Next section: [ダイナミックを実装（implements）する](types-dynamic-implemented.md)

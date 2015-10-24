@@ -1,4 +1,4 @@
-## 2.7.2 ダイナミックを実装(implements)する
+## 2.7.2 ダイナミックを実装（implements）する
 
 クラスは`Dynamic`と`Dynamic<T>`を[実装](types-interfaces.md)することができます。
 これにより任意のフィールドへのアクセスが可能になります。`Dynamic`の場合、フィールドはあらゆる型になる可能性があり、`Dynamic<T>`の場合、フィールドはパラメータの型と矛盾しない型のみに強制されます。
@@ -50,4 +50,4 @@ class Main {
 
 Previous section: [型パラメータ付きのダイナミック](types-dynamic-with-type-parameter.md)
 
-Next section: [抽象型(abstract)](types-abstract.md)
+Next section: [抽象型（abstract）](types-abstract.md)

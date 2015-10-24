@@ -19,7 +19,7 @@ class Main {
 
 ```
 
-`haxe.ds.Vector` is implemented as an abstract type ([抽象型(abstract)](types-abstract.md)) over a native array implementation for given target and can be faster for fixed-size collections, because the memory for storing its elements is pre-allocated.
+`haxe.ds.Vector` is implemented as an abstract type ([抽象型（abstract）](types-abstract.md)) over a native array implementation for given target and can be faster for fixed-size collections, because the memory for storing its elements is pre-allocated.
 
 See the [Vector API](http://api.haxe.org/haxe/ds/Vector.html) for details about the vector methods.
 

@@ -30,6 +30,6 @@
 
 ---
 
-Previous section: [Initialization macros](macro-initialization.md)
+Previous section: [初期化マクロ](macro-initialization.md)
 
 Next section: [String](std-String.md)

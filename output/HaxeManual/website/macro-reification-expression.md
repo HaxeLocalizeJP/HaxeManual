@@ -1,29 +1,29 @@
-## 9.3.1 Expression Reification
+## 9.3.1 式の実体化
 
-Expression reification is used to create instances of `haxe.macro.Expr` in a convenient way. The Haxe Compiler accepts the usual Haxe syntax and translates it to an expression object. It supports several escaping mechanisms, all of which are triggered by the `$` character:
+式の実体化を使うと、手軽に`haxe.macro.Expr`のインスタンスを作成できます。Haxeのコンパイラは通常のHaxeの構文を式のオブジェクトへと変換します。これにはエスケープの仕組みがあり、それらはすべて`$`の文字からはじまります。
 
-* `${}` and `$e{}`: `Expr -> Expr` This can be used to compose expressions. The expression within the delimiting `{ }` is executed, with its value being used in place.
-* `$a{}`: `Expr -> Array<Expr>` If used in a place where an `Array<Expr>` is expected (e.g. call arguments, block elements), `$a{}` treats its value as that array. Otherwise it generates an array declaration.
-* `$b{}`: `Array<Expr> -> Expr` Generates a block expression from the given expression array.
-* `$i{}`: `String -> Expr` Generates an identifier from the given string.
-* `$p{}`: `Array<String> -> Expr` Generates a field expression from the given string array.
-* `$v{}`: `Dynamic -> Expr` Generates an expression depending on the type of its argument. This is only guaranteed to work for [basic types](types-basic-types.md) and [enum instances](types-enum-instance.md).
+* `${}`または`$e{}`: `Expr -> Expr` これは式の構築に使います。`{ }`の中の式が評価されてその値がその位置に配置されます。
+* `$a{}`: `Expr -> Array<Expr>` `Array<Expr>`が要求される場所（例えば、呼び出し引数や、ブロックの要素）で使用すると、`$a{}`の値を配列にします。そのほかの場合は、配列の宣言を生成します。
+* `$b{}`: `Array<Expr> -> Expr` 与えられた配列からブロック式を生成します。
+* `$i{}`: `String -> Expr` 与えられた文字列の識別子を生成します。
+* `$p{}`: `Array<String> -> Expr` 文字列の配列から、フィールドアクセス式を生成します。
+* `$v{}`: `Dynamic -> Expr` その引数の型にあわせて式を作ります。これは[基本型](types-basic-types.md)と[列挙型インスタンス](types-enum-instance.md)でのみ動作することが保証されています。
 
-Additionally the [metadata](lf-metadata.md) `@:pos(p)` can be used to map the position of the annotated expression to `p` instead of the place it is reified at.
+加えて`@:pos(p)`[メタデータ](lf-metadata.md)を使って、実体化の場所の代わりに`p`に式の位置を対応させられます。
 
-This kind of reification only works in places where the internal structure expects an expression. This disallows `object.${fieldName}`, but `object.$fieldName` works. This is true for all places where the internal structure expects a string:
+この種類の実体化は式が期待されている場所でのみ動作します。また、`object.${fieldName}`は動作しませんが、`object.$fieldName`は動作します。これはすべての文字列を期待する場所で同じです。
 
-* field access `object.$name`
-* variable name `var $name = 1;`
+* フィールドアクセス `object.$name`
+* 変数名 `var $name = 1;`
 
 ##### since Haxe 3.1.0
 
-* field name `{ $name: 1} `
-* function name `function $name() { }`
-* catch variable name `try e() catch($name:Dynamic) {}`
+* フィールド名 `{ $name: 1} `
+* 関数名 `function $name() { }`
+* キャッチの変数名 `try e() catch($name:Dynamic) {}`
 
 ---
 
-Previous section: [Reification](macro-reification.md)
+Previous section: [実体化（レイフィケーション）](macro-reification.md)
 
-Next section: [Type Reification](macro-reification-type.md)
+Next section: [型の実体化](macro-reification-type.md)

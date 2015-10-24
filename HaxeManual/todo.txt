@@ -23,15 +23,15 @@ Todo:
 6.4.10 - 網羅性のチェック: Figure out wtf our rules are now for when this is checked.
 6.6 - 配列内包表記: Comprehensions are only listing Arrays, not Maps
 8.4.1 - リソースの埋め込み: what to use for listing of non-haxe code like hxml?
-9.5.1 - Enum building: Check if we can build GADTs this way.
+9.5.1 - 列挙型ビルド: Check if we can build GADTs this way.
 10.4.3 - Integer Math: I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?
 
 Missing Content:
 2.5.3 - オプションのフィールド
 5.3 - 2項演算子
 5.4 - 単項演算子
-9.6.1 - Macro-in-Macro
-9.6.4 - Type Parameters
+9.6.1 - マクロ内のマクロ
+9.6.4 - 型パラメータ
 10.11 - Input/Output
 10.12 - Sys/sys
 12.3 - Neko
@@ -50,7 +50,7 @@ Unreviewed:
 2.1.1 - 数値型
 2.1.2 - オーバーフロー
 2.1.3 - 数値の演算子
-2.1.4 - Bool(真偽値)
+2.1.4 - Bool（真偽値）
 2.1.5 - Void
 2.2 - null許容
 2.2.1 - オプション引数とnull許容
@@ -70,8 +70,8 @@ Unreviewed:
 2.6.2 - デフォルト値
 2.7 - ダイナミック
 2.7.1 - 型パラメータ付きのダイナミック
-2.7.2 - ダイナミックを実装(implements)する
-2.8 - 抽象型(abstract)
+2.7.2 - ダイナミックを実装（implements）する
+2.8 - 抽象型（abstract）
 2.8.1 - 暗黙のキャスト
 2.8.2 - 演算子オーバーロード
 2.8.3 - 配列アクセス
@@ -79,7 +79,7 @@ Unreviewed:
 2.8.5 - 抽象型列挙体
 2.8.6 - 抽象型フィールドの繰り上げ
 2.8.7 - コアタイプの抽象型
-2.9 - 単相(モノモーフ)
+2.9 - 単相（モノモーフ）
 3 - 型システム
 3.1 - typedef
 3.1.1 - 拡張
@@ -159,7 +159,7 @@ Unreviewed:
 6.5 - 文字列補間
 6.6 - 配列内包表記
 6.7 - イテレータ(反復子)
-6.8 - 関数の束縛(bind)
+6.8 - 関数の束縛（bind）
 6.9 - メタデータ
 6.10 - アクセス制御
 6.11 - インラインコンストラクタ
@@ -181,24 +181,24 @@ Unreviewed:
 8.4.4 - 実装の詳細
 8.5 - 実行時型情報（RTTI）
 8.5.1 - RTTIの構造
-9 - Macros
-9.1 - Macro Context
-9.2 - Arguments
+9 - マクロ
+9.1 - マクロコンテクスト
+9.2 - 引数
 9.2.1 - ExprOf
-9.2.2 - Constant Expressions
-9.2.3 - Rest Argument
-9.3 - Reification
-9.3.1 - Expression Reification
-9.3.2 - Type Reification
-9.3.3 - Class Reification
+9.2.2 - 定数の式
+9.2.3 - 残りの引数
+9.3 - 実体化（レイフィケーション）
+9.3.1 - 式の実体化
+9.3.2 - 型の実体化
+9.3.3 - クラスの実体化
 9.4 - Tools
-9.5 - Type Building
-9.5.1 - Enum building
+9.5 - 型ビルド
+9.5.1 - 列挙型ビルド
 9.5.2 - @:autoBuild
 9.5.3 - @:genericBuild
-9.6.2 - Static extension
-9.6.3 - Build Order
-9.7 - Initialization macros
+9.6.2 - 静的拡張
+9.6.3 - ビルド順序
+9.7 - 初期化マクロ
 10.1 - String
 10.2.1 - Array
 10.2.2 - Vector

@@ -2,9 +2,9 @@
 
 ##### since Haxe 3.1.0
 
-Normal [build-macros](macro-type-building.md) are run per-type and are already very powerful. In some cases it is useful to run a build macro per type **usage** instead, i.e. whenever it actually appears in the code. Among other things this allows accessing the concrete type parameters in the macro.
+通常の[ビルドマクロ](macro-type-building.md)は型ごとに実行するもので、これでも十分に強力です。いくつかの用途では、型の**使用**ごと、つまりコードに出現するごとにビルドマクロが走ることが役立つものもあります。何より、これにより具体的な型パラメータにもアクセスできるようになります。
 
-`@:genericBuild` is used just like `@:build` by adding it to a type with the argument being a macro call:
+`@:genericBuild`は`@:build`と全くおなじように型に引数付きのマクロ呼び出しを追加することで使用します。
 
 ```haxe
 import haxe.macro.Expr;
@@ -23,7 +23,6 @@ class GenericBuildMacro1 {
   }
 }
 ```
-
 ```haxe
 @:genericBuild(GenericBuildMacro1.build())
 class MyType<T> { }
@@ -36,13 +35,14 @@ class Main {
 }
 ```
 
-When running this example the compiler outputs `TAbstract(Int,[])` and `TInst(String,[])`, indicating that it is indeed aware of the concrete type parameters of `MyType`. The macro logic could use this information to generate a custom type (using `haxe.macro.Context.defineType`) or refer to an existing one. For brevity we return `null` here which asks the compiler to [infer](type-system-type-inference.md) the type.
+この例を実行するとコンパイラは`TAbstract(Int,[])`と`TInst(String,[])`を出力することから、`MyType`の具体的な型が認識されたことがわかります。このマクロの処理では、この情報をカスタムの型の生成もできます（`haxe.macro.Context.defineType`を使うことで）し、すでに存在する型の参照もできます。簡潔さのためにここでは`null`を返して、コンパイラに型を[推論](type-system-type-inference.md)させています。
 
-In Haxe 3.1 the return type of a `@:genericBuild` macro has to be a `haxe.macro.Type`. Haxe 3.2 allows (and prefers) returning a `haxe.macro.ComplexType` instead, which is the syntactic representation of a type. This is easier to work with in many cases because types can simply be referenced by their paths.
+Haxe 3.1では`@:genericBuild`マクロの戻り値は`haxe.macro.Type`でなくてはいけませんでした。Haxe 3.2では、
+`haxe.macro.ComplexType`を返すことが許可（そして推奨）されています。多くの場合は、型はただパスで参照するだけで動作するのでこのほうが簡単です。
 
-##### Const type parameter
+##### 定数型パラメータ
 
-Haxe allows passing [constant expression](expression-constants.md) as a type parameter if the type parameter name is `Const`. This can be utilized in the context of `@:genericBuild` macros to pass information from the syntax directly to the macro:
+Haxeでは型パラメータ名が`Const`の場合、[定数値の式](expression-constants.md)を型パラメータとして渡すことができます。`@:genericBuild`マクロのコンテクストでマクロに直接情報を渡すのに役立ちます。
 
 ```haxe
 import haxe.macro.Expr;
@@ -61,7 +61,6 @@ class GenericBuildMacro2 {
   }
 }
 ```
-
 ```haxe
 @:genericBuild(GenericBuildMacro2.build())
 class MyType<Const> { }
@@ -73,10 +72,10 @@ class Main {
 }
 ```
 
-Here the macro logic could load a file and use its contents to generate a custom type.
+このマクロの処理ではファイルを読み込んで、カスタムの型を生成することができます。
 
 ---
 
 Previous section: [@:autoBuild](macro-auto-build.md)
 
-Next section: [Limitations](macro-limitations.md)
+Next section: [制限](macro-limitations.md)

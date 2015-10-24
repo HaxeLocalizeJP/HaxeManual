@@ -55,15 +55,15 @@ Haxe 3.0以降では、`haxe --help-metas`を実行することで定義済み�
 @:headerCode    |  生成されたヘッダファイルにコードを挿入する。   |  cpp 
 @:headerNamespaceCode   |     |  cpp 
 @:hxGen   |  Haxeによって生成されたexternクラスに付く   |  cs  java 
-@:ifFeature _(Feature name)_   |  指定された機能がコンパイルに含まれていた場合に、フィールドを[DCE](cr-dce.md)から保護する。   |  all 
+@:ifFeature _(Feature name)_   |  指定された機能がコンパイルに含まれていた場合に、フィールドを[デッドコード削除](cr-dce.md)から保護する。   |  all 
 @:include  |      |  cpp 
 @:initPackage   |     |  all 
 @:internal   |  クラスやフィールドに<code>internal</code>アクセスの修飾をする。   |  cs  java 
 @:isVar   |  物理的フィールドが不要なプロパティに対して、物理的フィールドを強制する。   |  all 
 @:javaCanonical _(Output type package,Output type name)_  |  Javaターゲットで型の正規パスを指定するのに使われる。   |  java 
 @:jsRequire   |  その<code>extern</code>に必要なJavaScriptモジュールを出力する。   |  js 
-@:keep    |  [DCE](cr-dce.md)から、フィールドや型を保護する。   |  all 
-@:keepInit   |  クラスからすべてのフィールドが削除された場合でも、[DCE](cr-dce.md)から保護する。   |  all 
+@:keep    |  [デッドコード削除](cr-dce.md)から、フィールドや型を保護する。   |  all 
+@:keepInit   |  クラスからすべてのフィールドが削除された場合でも、[デッドコード削除](cr-dce.md)から保護する。   |  all 
 @:keepSub  |  すべての実装クラス、子孫クラスに<code>@:keep</code>メタデータを継承する。   |  all 
 @:macro   |  _(deprecated)_   |  all 
 @:mergeBlock   |  修飾したブロックを現在のスコープにマージする。  |  all 

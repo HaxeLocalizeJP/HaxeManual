@@ -1,22 +1,23 @@
 ## 9.4 Tools
 
-The Haxe Standard Library comes with a set of tool-classes to simplify working with macros. These classes work best as [static extensions](lf-static-extension.md) and can be brought into context either individually or as a whole through `using haxe.macro.Tools`. These classes are:
+Haxe標準ライブラリには、マクロの活用を簡単にするツールクラス一式も用意されています。これらのクラスは[静的拡張](lf-static-extension.md)で使うのが最適で、`using haxe.macro.Tools`で各コンテクストそれぞれやすべてに持ち込むことができます。
 
-* `ComplexTypeTools`: Allows printing `ComplexType` instances in a human-readable way. Also allows determining the `Type` corresponding to a `ComplexType`.
-* `ExprTools`: Allows printing `Expr` instances in a human-readable way. Also allows iterating and mapping expressions.
-* `MacroStringTools`: Offers useful operations on strings and string expressions in macro context.
-* `TypeTools`: Allows printing `Type` instances in a human-readable way. Also offers several useful operations on types, such as [unifying](type-system-unification.md) them or getting their corresponding `ComplexType`.
+* `ComplexTypeTools`: `ComplexType`のインスタンスを人間が読める形に出力したり、`ComplexType`対応する`Type`を見つけたりできます。
+* `ExprTools`: `Expr`のインスタンスを人間が読める形で出力したり、式の繰り返しやマッピングの処理を行ったりできます。
+* `MacroStringTools`: マクロコンテクストで有用な文字列と文字列式を扱う処理を提供します。
+* `TypeTools`: `Type`インスタンスを人間が読める形で出力したり、[単一化](type-system-unification.md)や対応する`ComplexType`の取得といった型を扱うのに便利な機能を提供します。
 
-Furthermore the `haxe.macro.Printer` class has public methods for printing various types as a human-readable format. This can be helpful when debugging macros.
+さらに`haxe.macro.Printer`クラスが、様々な型を人間の読めるフォーマットで出力する`public`メソッドを提供しています。これはマクロのデバッグをするのに便利です。
 
-> ##### Trivia: The tinkerbell library and why Tools.hx works
+> ##### Trivia: ティンカーベルライブラリとなぜTools.hxが動作するのか
 >
-> We learned about static extensions that using a **module** implies that all its types are brought into static extension context. As it turns out, such a type can also be a [typedef](type-system-typedef.md) to another type. The compiler then considers this type part of the module, and extends static extension accordingly.
 > 
-> This "trick" was first used in Juraj Kirchheim's **tinkerbell** library for exactly the same purpose. Tinkerbell provided many useful macro tools long before they made it into the Haxe Compiler and Haxe Standard Library. It remains the primary library for additional macro tools and offers other useful functionality as well.
+> モジュールを`using`することでそのすべての型が静的拡張のコンテクストに取り込まれることはこれまでに学んできました。つまるところ、その型というのは他の型指定する[typedef](type-system-typedef.md)でも良いわけです。コンパイラはよその型をモジュールの一部と認識して、それが静的拡張にも引き継がれるわけです。
+> 
+> このテクニックはJuraj Kirchheimの**tinkerbell**で同じ目的で初めて使われました。tinkerbellではHaxeコンパイラと標準ライブラリが提供するよりもずっと先に便利なマクロツールを提供していました。このライブラリは今でも追加のマクロのツールを得るためのライブラリとして第一候補でありつづけており、さらにその他の便利機能も提供しています。
 
 ---
 
-Previous section: [Class Reification](macro-reification-class.md)
+Previous section: [クラスの実体化](macro-reification-class.md)
 
-Next section: [Type Building](macro-type-building.md)
+Next section: [型ビルド](macro-type-building.md)

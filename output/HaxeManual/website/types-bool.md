@@ -1,8 +1,8 @@
-## 2.1.4 Bool(真偽値)
+## 2.1.4 Bool（真偽値）
 
 > ##### Define: Bool
 >
-> 真(**true**)または、偽(**false**)のどちらかになる値を表します。
+> 真（**true**）または、偽（**false**）のどちらかになる値を表します。
 
 `Bool`型の値は、[`if`](expression-if.md)や[`while`](expression-while.md)のような**条件文**によく表れます。以下の演算子は、`Bool`値を受け取って`Bool`値を返します。
 

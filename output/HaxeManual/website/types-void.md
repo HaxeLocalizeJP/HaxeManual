@@ -2,7 +2,7 @@
 
 > ##### Define: Void
 >
-> Voidは型が存在しないことを表します。特定の場面(主に関数)で値を持たないことを表現するのに使います。
+> Voidは型が存在しないことを表します。特定の場面（主に関数）で値を持たないことを表現するのに使います。
 
 Voidは型システムにおける特殊な場合です。Voidは実際には型ではありません。Voidは特に関数の引数と戻り値で型が存在しないことを表現するのに使います。私たちはすでに最初の"Hello World"の例でVoidを使用しています。
 
@@ -25,6 +25,6 @@ var x:Void;
 
 ---
 
-Previous section: [Bool(真偽値)](types-bool.md)
+Previous section: [Bool（真偽値）](types-bool.md)
 
 Next section: [null許容](types-nullability.md)

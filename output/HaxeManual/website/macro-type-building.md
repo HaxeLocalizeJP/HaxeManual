@@ -1,13 +1,13 @@
-## 9.5 Type Building
+## 9.5 型ビルド
 
-Type-building macros are different from expression macros in several ways:
+型ビルドのマクロはいくつかの点で式マクロとは使い方が違います。
 
-* They do not return expressions, but an array of class fields. Their return type must be set explicitly to `Array<haxe.macro.Expr.Field>`.
-* Their [context](macro-context.md) has no local method and no local variables.
-* Their context does have build fields, available from `haxe.macro.Context.getBuildFields()`.
-* They are not called directly, but are argument to a `@:build` or `@:autoBuild` [metadata](lf-metadata.md) on a [class](types-class-instance.md) or [enum](types-enum-instance.md) declaration.
+* 式は返しません。その代わりクラスフィールドの配列を返します。戻り値の型は明示的に`Array<haxe.macro.Expr.Field>`を指定しないといけません。
+* [コンテクスト](macro-context.md)にローカルメソッドとローカル変数が含まれません。
+* コンテクストにビルドフィールドが含まれ、`haxe.macro.Context.getBuildFields()`で使用可能です。
+* 直接呼び出すのではなく、[class](types-class-instance.md)または[enum](types-enum-instance.md)の宣言に対する`@:build`または`@:autoBuild`[メタデータ](lf-metadata.md)の引数として指定します。
 
-The following example demonstrates type building. Note that it is split up into two files for a reason: If a module contains a `macro` function, it has to be typed into macro context as well. This is often a problem for type-building macros because the type to be built could only be loaded in its incomplete state, before the building macro has run. We recommend to always define type-building macros in their own module.
+以下の例で型ビルドを実演しています。モジュールが`macro`関数を含むとそのモジュールがマクロコンテクストで型付けされてしまうため、2つのファイルに分割していることに気を付けてください。ビルドされる型はビルドマクロが走る前は不完全な状態でしか読み込みがされないので、このことがよく問題になります。型ビルドのマクロは常にそれ用のモジュールに分けて定義することをオススメします。
 
 ```haxe
 import haxe.macro.Context;
@@ -38,25 +38,25 @@ class Main {
 }
 ```
 
-The `build` method of `TypeBuildingMacro` performs three steps:
+`TypeBuildingMacro`の`build`メソッドは次の3つのステップを経て動作します。
 
-1. It obtains the build fields using `Context.getBuildFields()`.
-2. It declares a new `haxe.macro.expr.Field` field using the `funcName` macro argument as field name. This field is a `String` [variable](class-field-variable.md) with a default value `"my default"` (from the `kind` field) and is public and static (from the `access` field).
-3. It adds the new field to the build field array and returns it.
+1. `Context.getBuildFields()`を使ってビルドフィールドを取得する。
+2. `funcName`マクロ引数をフィールド名として使って、新しい`haxe.macro.expr.Field`を宣言する。このフィールドは`String`[変数](class-field-variable.md)でデフォルト値は`"my default"`（`kind`フィールドより）で`public static`です（`access`フィールドより）。
+3. 新しいフィールドをビルドフィールドに追加してそれを返す。
 
-This macro is argument to the `@:build` metadata on the `Main` class. As soon as this type is required, the compiler does the following:
+このマクロは`Main`クラスに対する`@:build`メタデータの引数です。この型が必要になるとコンパイラは以下を行います。
 
-1. It parses the module file, including the class fields.
-2. It sets up the type, including its relation to other types through [inheritance](types-class-inheritance.md) and [interfaces](types-interfaces.md).
-3. It executes the type-building macro according to the `@:build` metadata.
-4. It continues typing the class normally with the fields returned by the type-building macro.
+1. クラスフィールドも含めて、このモジュールを構文解析する。
+2. [インターフェース](types-interfaces.md)や[継承](types-class-inheritance.md)などの他の型との関係も含めて、型の設定をする。
+3. `@:build`メタデータに従って、型ビルドのマクロを実行する。
+4. 型ビルドの返したフィールドに従って、クラスの型付けを通常通り続行する。
 
-This allows adding and modifying class fields at will in a type-building macro. In our example, the macro is called with a `"myFunc"` argument, making `Main.myFunc` a valid field access.
+こうして型ビルドマクロによって思いのままにクラスのフィールドを追加したり、編集したりができます。上の例では、マクロは`"myFunc"`の引数で呼び出されて、`Main.myFunc`を正当なフィールドアクセスにしています。
 
-If a type-building macro should not modify anything, the macro can return `null`. This indicates to the compiler that no changes are intended and is preferable to returning `Context.getBuildFields()`.
+型ビルドのマクロで何も編集したくない場合、マクロで`null`を返してもかまいません。これでコンパイラに何の変更もしないことが伝わります。`Context.getBuildFields()`を返すよりも好ましいです。
 
 ---
 
 Previous section: [Tools](macro-tools.md)
 
-Next section: [Enum building](macro-enum-building.md)
+Next section: [列挙型ビルド](macro-enum-building.md)

@@ -8,6 +8,6 @@
 
 ---
 
-Previous section: [単相(モノモーフ)](types-monomorph.md)
+Previous section: [単相（モノモーフ）](types-monomorph.md)
 
 Next section: [typedef](type-system-typedef.md)

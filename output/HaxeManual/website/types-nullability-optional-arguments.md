@@ -13,7 +13,7 @@ function bar( ?y : Int) {}
 function opt( ?z : Int = -1) {}
 ```
 
-> ##### Trivia: アーギュメント(Argument)とパラメータ(Parameter)
+> ##### Trivia: アーギュメント（Argument）とパラメータ（Parameter）
 >
 > 他のプログラミング言語では、よく**アーギュメント**と**パラメータ**は同様の意味として使われます。Haxeでは、関数に関連する場合に**アーギュメント**を、[型パラメータ](type-system-type-parameters.md)と関連する場合に**パラメータ**を使います。
 

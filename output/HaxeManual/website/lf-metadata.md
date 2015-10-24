@@ -60,6 +60,6 @@ class Main {
 
 ---
 
-Previous section: [関数の束縛(bind)](lf-function-bindings.md)
+Previous section: [関数の束縛（bind）](lf-function-bindings.md)
 
 Next section: [アクセス制御](lf-access-control.md)

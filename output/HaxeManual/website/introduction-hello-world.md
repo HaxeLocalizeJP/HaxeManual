@@ -1,6 +1,6 @@
 ## 1.3 Hello World
 
-次のプログラムはコンパイルして実行をすると"Hello World"と表示します:
+次のプログラムはコンパイルして実行をすると"Hello World"と表示します。
 
 ```haxe
 class Main {

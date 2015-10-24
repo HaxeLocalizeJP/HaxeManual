@@ -1,6 +1,6 @@
-## 9.3.3 Class Reification
+## 9.3.3 クラスの実体化
 
-It is also possible to use reification to obtain an instance of `haxe.macro.Expr.TypeDefinition`. This is indicated by the `macro class` syntax as shown here:
+`haxe.macro.Expr.TypeDefinition`のインスタンスを取得するためにも、実体化は使えます。これには以下のような、`macro class`の構文を使います。
 
 ```haxe
 class Main {
@@ -22,12 +22,12 @@ class Main {
 }
 ```
 
-The generated `TypeDefinition` instance is typically passed to `haxe.macro.Context.defineType` in order to add a new type to the calling context (not the macro context itself).
+生成された`TypeDefinition`のインスタンスは、多くの場合は`haxe.macro.Context.defineType`に渡すことで、呼び出し対象のコンテクストに（マクロコンテクスト自体にではありません）新しい型を追加して使います。
 
-This kind of reification can also be useful to obtain instances of `haxe.macro.Expr.Field`, which are available from the `fields` array of the generated `TypeDefinition`.
+この種類の実体化は`TypeDefinition`の`fields`の配列から`haxe.macro.Expr.Field`のインスタンスの取得するのにも便利です。
 
 ---
 
-Previous section: [Type Reification](macro-reification-type.md)
+Previous section: [型の実体化](macro-reification-type.md)
 
 Next section: [Tools](macro-tools.md)

@@ -74,4 +74,4 @@ class Main {
 
 Previous section: [配列内包表記](lf-array-comprehension.md)
 
-Next section: [関数の束縛(bind)](lf-function-bindings.md)
+Next section: [関数の束縛（bind）](lf-function-bindings.md)

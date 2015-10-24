@@ -1,10 +1,10 @@
-## 9.6.2 Static extension
+## 9.6.2 静的拡張
 
-The concepts or [static extensions](lf-static-extension.md) and macros are somewhat conflicting: While the former requires a known type in order to determine used functions, macros execute before typing on plain syntax. It is thus not surprising that combining these two features can lead to issues. Haxe 3.0 would try to convert the typed expression back to a syntax expression, which is not always possible and may lose important information. We recommend that it is used with caution.
+マクロと[静的拡張](lf-static-extension.md)の概念には多少の衝突があります。静的拡張は使用される関数を決定するために既知の型を要求しますが、構文が型付けされる前に実行されます。ですからこの2つの機能を合わせて使うと問題が生じるというのは驚くことではありません。Haxe 3.0では型付けされた式を元の構文の式に戻す変換を試みます。これは必ず成功するわけではなく、重要な情報が失われることもあります。これらについては十分に気を付けたうえで使用することを推奨します。
 
 ##### since Haxe 3.1.0
 
-The combination of static extensions and macros was reworked for the 3.1.0 release. The Haxe Compiler does not even try to find the original expression for the macro argument and instead passes a special `@:this this` expression. While the structure of this expression conveys no information, the expression can still be typed correctly:
+静的拡張とマクロの合わせた使用について3.1.0のリリースで修正がされました。Haxeコンパイラはマクロの引数から元の式の復元を試行しなくなった代わりに、特殊な`@:this this`の式を渡すようになりました。式の構造については何の情報も提供しない代わりに正しく型付けができます。
 
 ```haxe
 import haxe.macro.Context;
@@ -32,6 +32,6 @@ class Main {
 
 ---
 
-Previous section: [Limitations](macro-limitations.md)
+Previous section: [制限](macro-limitations.md)
 
-Next section: [Build Order](macro-limitations-build-order.md)
+Next section: [ビルド順序](macro-limitations-build-order.md)

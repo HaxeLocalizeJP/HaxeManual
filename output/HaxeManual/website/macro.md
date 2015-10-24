@@ -1,25 +1,25 @@
-## 9 Macros
+## 9 マクロ
 
-Macros are without a doubt the most advanced feature in Haxe. They are often perceived as dark magic that only a select few are capable of mastering, yet there is nothing magical (and certainly nothing dark) about them.
+マクロは疑いようもなくHaxeの最も高度な機能です。マクロは少数の精鋭にとってのみこれをマスターする価値があるので黒魔術と呼ばれることがありますが、実際には魔法のようなものは何もありません（もちろん闇も）。
 
-> ##### Define: Abstract Syntax Tree (AST)
+> ##### Define: 抽象構文木（AST：Abstract Syntax Tree）
 >
-> The AST is the result of **parsing** Haxe code into a typed structure. This structure is exposed to macros through the types defined in the file `haxe/macro/Expr.hx` of the Haxe Standard Library.
+> 抽象構文木はHaxeのコードを構文解析して型付けされた構造へと変換した結果です。この構造はHaxe標準ライブラリの`haxe/macro/Expr.hx`ファイルで定義されている型をつかってマクロから利用可能です。
 
-<img src="../../../HaxeManual/assets/graphics/generated/macro-compilation-role.png" alt="The role of macros during compilation." title="The role of macros during compilation." />
+<img src="../../../HaxeManual/assets/graphics/generated/macro-compilation-role.png" alt="コンパイルにおけるマクロの役割" title="コンパイルにおけるマクロの役割" />
 
-_Figure: The role of macros during compilation._
+_Figure: コンパイルにおけるマクロの役割_
 
-A basic macro is a **syntax-transformation**. It receives zero or more [expressions](expression.md) and also returns an expression. If a macro is called, it effectively inserts code at the place it was called from. In that respect, it could be compared to a preprocessor like `#define` in C++, but a Haxe macro is not a textual replacement tool.
+基本的なマクロの1つは**構文変形**です。これは0個以上の式を受け取り、1つの式を返します。マクロが呼び出されると、その結果としてマクロを呼び出した位置にコードが挿入されます。この点はプリプロセッサに似ていますが、Haxeのマクロはテキストの置換ツールではありません。
 
-We can identify different kinds of macros, which are run at specific compilation stages:
+マクロには種類があり、それぞれ異なるコンパイルの段階で動作します。
 
-* Initialization Macros: These are provided by command line using the `--macro` compiler parameter. They are executed after the compiler arguments were processed and the **typer context** has been created, but before any typing was done (see [Initialization macros](macro-initialization.md)).
-* Build Macros: These are defined for classes, enums and abstracts through the `@:build` or `@:autoBuild` [metadata](lf-metadata.md). They are executed per-type, after the type has been set up (including its relation to other types, such as inheritance for classes) but before its fields are typed (see [Type Building](macro-type-building.md)).
-* Expression Macros: These are normal functions which are executed as soon as they are typed.
+* 初期化マクロ: コマンドラインから`--macro`コンパイラパラメータを使うことで使用します。コンパイラ引数が処理されて、**型付けコンテクスト**が作成されたあとに実行されます。ただし、これはどの型付けが実行されるよりも前です（詳しくは[初期化マクロ](macro-initialization.md)）。
+* ビルドマクロ: クラス、列挙型、抽象型を`@:build`または`@:autoBuild`[メタデータ](lf-metadata.md)を使って定義します。その型の生成（クラスの継承関係などの他の型との依存関係の解決も含めて）後に型ごとに実行されます。ただし、これはフィールドが型付けされるよりは前です（詳しくは[型ビルド](macro-type-building.md)）。
+* 式マクロ: 型付けされると同時に実行される普通の関数です。
 
 ---
 
 Previous section: [RTTIの構造](cr-rtti-structure.md)
 
-Next section: [Macro Context](macro-context.md)
+Next section: [マクロコンテクスト](macro-context.md)

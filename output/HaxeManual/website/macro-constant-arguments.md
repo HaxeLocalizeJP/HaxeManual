@@ -1,6 +1,6 @@
-## 9.2.2 Constant Expressions
+## 9.2.2 定数の式
 
-A macro can be declared to expect [constant](expression-constants.md) arguments:
+マクロは[定数](expression-constants.md)の引数を要求するように宣言することができます。
 
 ```haxe
 class Main {
@@ -18,10 +18,10 @@ class Main {
 }
 ```
 
-With these it is not necessary to detour over expressions as the compiler can use the provided constants directly.
+これによりわざわざ式を経由するなく、コンパイラはその定数を直接使うことができます。
 
 ---
 
 Previous section: [ExprOf](macro-ExprOf.md)
 
-Next section: [Rest Argument](macro-rest-argument.md)
+Next section: [残りの引数](macro-rest-argument.md)
