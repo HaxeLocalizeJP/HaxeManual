@@ -83,6 +83,8 @@
 	{\begin{myshaded}\noindent\textbf{トリビア: #1}\par\nobreak\noindent\ignorespaces#2\end{myshaded}}
 
 % Japanese Support
+\RequirePackage{xltxtra}
+\RequirePackage{xeCJK}
 \renewcommand{\contentsname}{目次}
 \renewcommand{\partname}{パート}
 \renewcommand{\chaptername}{章}
@@ -91,3 +93,26 @@
 \crefname{section}{節}{節}
 \Crefname{chapter}{章}{章}
 \Crefname{section}{節}{節}
+
+\setmainfont{源ノ角ゴシック ExtraLight}
+\setsansfont{源ノ角ゴシック ExtraLight}
+\setmonofont{源ノ角ゴシック Code JP L}
+\setCJKmainfont{源ノ角ゴシック ExtraLight}
+\setCJKsansfont{源ノ角ゴシック ExtraLight}
+\setCJKmonofont{源ノ角ゴシック Code JP L}
+
+\newcommand{\bfemph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\emph}[1]{\bfemph{#1}}
+
+
+\XeTeXlinebreaklocale "ja"
+
+\XeTeXlinebreakskip=0em plus 0.8em minus 0.07em
+\XeTeXlinebreakpenalty=0
+
+\setlength{\textwidth}{17cm}
+\setlength{\textheight}{24cm}
+\setlength{\leftmargin}{-1cm}
+\setlength{\topmargin}{-2cm}
+\setlength{\oddsidemargin}{0cm}
+\setlength{\evensidemargin}{0cm}

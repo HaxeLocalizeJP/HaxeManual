@@ -51,16 +51,14 @@ LaTeXのコンパイル時の一時フォルダを消去せずに残します。
 `compileEnv`での書き出しには、以下が必要になります。
 
 
-- `xelatex` にパスを通す。[Tex Live]のバージョン2013を使えば良いです。カスタムしたLaTeXの環境の断片を、PDFに変換します。
+- `xelatex` にパスを通す。[Tex Live]のバージョン2015を使えば良いです。カスタムしたLaTeXの環境の断片を、PDFに変換します。
 - `mudraw` にパスを通す。[MuPDF]に含まれます。PDFをpngの画像に変換するのに使われます。
-- [Source Sans Pro]と[Source Code Pro]のインストール。
 - `pandoc`にパスを通す。*.epub*ファイルの出力に使います。
 - `ebook-convert` にパスを通す。 これは[calibre]の一部です。*.epub*を*.mobi*に変換するのに使います。
-- 日本語用に[IPAフォント]のインストール。
+- 日本語用に[源ノ角ゴシック]と[源ノ角ゴシック Code JP]のインストール。
 
 [TeX Live]:http://www.tug.org/texlive/
 [MuPDF]:http://www.mupdf.com/
 [calibre]:http://calibre-ebook.com/
-[Source Sans Pro]:http://sourceforge.net/projects/sourcesans.adobe/
-[Source Code Pro]:http://sourceforge.net/projects/sourcecodepro.adobe/
-[IPAフォント]:http://ipafont.ipa.go.jp/ipafont/download.html
+[源ノ角ゴシック]:https://github.com/adobe-fonts/source-han-sans/tree/master
+[源ノ角ゴシック Code JP]:https://github.com/adobe-fonts/source-han-code-jp/releases
